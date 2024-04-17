@@ -1,0 +1,33 @@
+import BigNumber from 'bignumber.js';
+import React from 'react';
+
+import { CardWarning } from '@/components/CardWarning';
+import { useAppCurrency } from '@/realm/settings/useAppCurrency';
+
+import loc from '/loc';
+import { formatAppCurrencyValue } from '/modules/text-utils';
+
+const feePercentageThreshold = 0.1;
+const feeLimit = 30;
+
+export type FeeAmountWarningProps = {
+  transferToAmount: BigNumber;
+  feeAmount: BigNumber;
+};
+
+export const FeeAmountWarning = React.memo(({ transferToAmount, feeAmount }: FeeAmountWarningProps) => {
+  const isAbovePercentageThreshold = feeAmount.dividedBy(transferToAmount).isGreaterThan(feePercentageThreshold);
+  const isAboveAmountThreshold = feeAmount.isGreaterThan(feeLimit);
+  const { currency } = useAppCurrency();
+
+  if (!isAbovePercentageThreshold && !isAboveAmountThreshold) {
+    return null;
+  }
+
+  const args = {
+    feeAmount: formatAppCurrencyValue(feeAmount.toString(10), currency),
+    percentage: feePercentageThreshold * 100,
+  };
+
+  return <CardWarning iconSize={18} type="info" description={loc.formatString(loc.send.feeWarning, args).toString()} />;
+});

@@ -1,0 +1,46 @@
+diff --git a/node_modules/react-native-fs/RNFSManager.m b/node_modules/react-native-fs/RNFSManager.m
+index 5ddd941..e9f7776 100755
+--- a/node_modules/react-native-fs/RNFSManager.m
++++ b/node_modules/react-native-fs/RNFSManager.m
+@@ -722,29 +722,7 @@ + (BOOL)requiresMainQueueSetup
+   }
+ }
+ 
+-RCT_EXPORT_METHOD(getFSInfo:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+-{
+-  unsigned long long totalSpace = 0;
+-  unsigned long long totalFreeSpace = 0;
+-
+-  __autoreleasing NSError *error = nil;
+-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+-  NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error:&error];
+ 
+-  if (dictionary) {
+-    NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
+-    NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
+-    totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
+-    totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
+-
+-    resolve(@{
+-      @"totalSpace": [NSNumber numberWithUnsignedLongLong:totalSpace],
+-      @"freeSpace": [NSNumber numberWithUnsignedLongLong:totalFreeSpace]
+-    });
+-  } else {
+-    [self reject:reject withError:error];
+-  }
+-}
+ 
+ 
+ // [PHAsset fetchAssetsWithALAssetURLs] is deprecated and not supported in Mac Catalyst
+diff --git a/node_modules/react-native-fs/index.d.ts b/node_modules/react-native-fs/index.d.ts
+index da3fa7d..e743d48 100644
+--- a/node_modules/react-native-fs/index.d.ts
++++ b/node_modules/react-native-fs/index.d.ts
+@@ -123,7 +123,6 @@ export function copyFile(
+ ): Promise<void>
+ export function pathForBundle(bundleNamed: string): Promise<string>
+ export function pathForGroup(groupName: string): Promise<string>
+-export function getFSInfo(): Promise<FSInfoResult>
+ export function getAllExternalFilesDirs(): Promise<string[]>
+ export function unlink(filepath: string): Promise<void>
+ export function exists(filepath: string): Promise<boolean>

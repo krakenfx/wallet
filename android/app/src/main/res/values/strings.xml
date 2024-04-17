@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kraken Wallet</string>
+    <string name="default_notification_channel_id">channel-default</string>
+</resources>

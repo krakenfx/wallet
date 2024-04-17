@@ -1,0 +1,6 @@
+{
+  "name": "babel-plugin-error-context",
+  "version": "1.0.0",
+  "description": "Converts placeholder key to current file name and line number",
+  "main": "index.js"
+}

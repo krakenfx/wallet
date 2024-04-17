@@ -1,0 +1,6 @@
+{
+  "name": "eslint-plugin-test-id",
+  "version": "1.0.0",
+  "description": "Checks if testID props are using correct case",
+  "main": "index.js"
+}

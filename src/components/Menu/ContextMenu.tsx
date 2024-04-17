@@ -1,0 +1,52 @@
+import React, { ReactElement } from 'react';
+import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
+
+import { ColorName } from '@/theme/themes';
+
+import { Label } from '../Label';
+import { IconName, SvgIcon } from '../SvgIcon';
+import { Touchable } from '../Touchable';
+
+type ContextMenuItem = {
+  title: string;
+  subtitle?: string;
+  onPress: () => void;
+  tintColor?: ColorName;
+  icon: IconName | ReactElement;
+  testID?: string;
+};
+
+export type ContextMenuProps = {
+  items: ContextMenuItem[];
+};
+
+export const ContextMenu: React.FC<ContextMenuProps & { onClose: () => void }> = ({ items, onClose }) => {
+  const onItemSelected = (item: ContextMenuItem) => {
+    item.onPress();
+    onClose();
+  };
+
+  const renderItem: ListRenderItem<ContextMenuItem> = ({ item }) => (
+    <Touchable style={styles.item} onPress={() => onItemSelected(item)} testID={item.testID}>
+      <Label color={item.tintColor}>{item.title}</Label>
+      {typeof item.icon === 'string' ? <SvgIcon name={item.icon} color={item.tintColor} size={24} /> : item.icon}
+    </Touchable>
+  );
+  return <FlatList bounces={false} data={items} keyExtractor={keyExtractor} contentContainerStyle={styles.scroll} renderItem={renderItem} />;
+};
+
+const keyExtractor = (item: ContextMenuItem) => item.title;
+
+const styles = StyleSheet.create({
+  item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 16,
+    height: 56,
+  },
+  scroll: {
+    paddingVertical: 6,
+  },
+});

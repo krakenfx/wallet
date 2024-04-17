@@ -1,0 +1,125 @@
+diff --git a/node_modules/react-native-fast-image/RNFastImage.podspec b/node_modules/react-native-fast-image/RNFastImage.podspec
+index db0fada..82e0c08 100644
+--- a/node_modules/react-native-fast-image/RNFastImage.podspec
++++ b/node_modules/react-native-fast-image/RNFastImage.podspec
+@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
+   s.source_files  = "ios/**/*.{h,m}"
+ 
+   s.dependency 'React-Core'
+-  s.dependency 'SDWebImage', '~> 5.11.1'
+-  s.dependency 'SDWebImageWebPCoder', '~> 0.8.4'
++  s.dependency 'SDWebImage', '~> 5.18.0'
++  s.dependency 'SDWebImageWebPCoder', '~> 0.13.0'
+ end
+diff --git a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewConverter.java b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewConverter.java
+index 86ca00d..8b7657c 100644
+--- a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewConverter.java
++++ b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewConverter.java
+@@ -14,6 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
+ import com.bumptech.glide.load.model.Headers;
+ import com.bumptech.glide.load.model.LazyHeaders;
+ import com.bumptech.glide.request.RequestOptions;
++import com.bumptech.glide.request.target.Target;
+ import com.bumptech.glide.signature.ApplicationVersionSignature;
+ import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
+ import com.facebook.react.bridge.NoSuchKeyException;
+@@ -79,7 +80,7 @@ class FastImageViewConverter {
+         return headers;
+     }
+ 
+-    static RequestOptions getOptions(Context context, FastImageSource imageSource, ReadableMap source) {
++    static RequestOptions getOptions(Context context, FastImageSource imageSource, ReadableMap source, boolean targetOriginalSize) {
+         // Get priority.
+         final Priority priority = FastImageViewConverter.getPriority(source);
+         // Get cache control method.
+@@ -108,6 +109,10 @@ class FastImageViewConverter {
+                 .priority(priority)
+                 .placeholder(TRANSPARENT_DRAWABLE);
+ 
++        if (targetOriginalSize){
++            options = options.override(Target.SIZE_ORIGINAL);
++        }
++
+         if (imageSource.isResource()) {
+             // Every local resource (drawable) in Android has its own unique numeric id, which are
+             // generated at build time. Although these ids are unique, they are not guaranteed unique
+diff --git a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewManager.java b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewManager.java
+index c7a7954..38473dc 100644
+--- a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewManager.java
++++ b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewManager.java
+@@ -83,6 +83,11 @@ class FastImageViewManager extends SimpleViewManager<FastImageViewWithUrl> imple
+         view.setScaleType(scaleType);
+     }
+ 
++    @ReactProp(name = "targetOriginalSize")
++    public void setTargetOriginalSize(FastImageViewWithUrl view, Boolean value) {
++        view.setTargetOriginalSize(value);
++    }
++
+     @Override
+     public void onDropViewInstance(@NonNull FastImageViewWithUrl view) {
+         // This will cancel existing requests.
+diff --git a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewModule.java b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewModule.java
+index f9d6faa..6e158f5 100644
+--- a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewModule.java
++++ b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewModule.java
+@@ -51,7 +51,7 @@ class FastImageViewModule extends ReactContextBaseJavaModule {
+                                     imageSource.isBase64Resource() ? imageSource.getSource() :
+                                     imageSource.isResource() ? imageSource.getUri() : imageSource.getGlideUrl()
+                             )
+-                            .apply(FastImageViewConverter.getOptions(activity, imageSource, source))
++                            .apply(FastImageViewConverter.getOptions(activity, imageSource, source, false))
+                             .preload();
+                 }
+             }
+diff --git a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewWithUrl.java b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewWithUrl.java
+index 34fcf89..1c36d7f 100644
+--- a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewWithUrl.java
++++ b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewWithUrl.java
+@@ -33,6 +33,9 @@ class FastImageViewWithUrl extends AppCompatImageView {
+ 
+     public GlideUrl glideUrl;
+ 
++    private boolean targetOriginalSize = false;
++
++
+     public FastImageViewWithUrl(Context context) {
+         super(context);
+     }
+@@ -47,6 +50,10 @@ class FastImageViewWithUrl extends AppCompatImageView {
+         mDefaultSource = source;
+     }
+ 
++    public void setTargetOriginalSize(Boolean value) {
++        targetOriginalSize = value;
++    }
++
+     private boolean isNullOrEmpty(final String url) {
+         return url == null || url.trim().isEmpty();
+     }
+@@ -140,7 +147,7 @@ class FastImageViewWithUrl extends AppCompatImageView {
+                             //    - data:image/png;base64
+                             .load(imageSource == null ? null : imageSource.getSourceForLoad())
+                             .apply(FastImageViewConverter
+-                                    .getOptions(context, imageSource, mSource)
++                                    .getOptions(context, imageSource, mSource, targetOriginalSize)
+                                     .placeholder(mDefaultSource) // show until loaded
+                                     .fallback(mDefaultSource)); // null will not be treated as error
+ 
+diff --git a/node_modules/react-native-fast-image/dist/index.d.ts b/node_modules/react-native-fast-image/dist/index.d.ts
+index 5abb7c9..c2655ae 100644
+--- a/node_modules/react-native-fast-image/dist/index.d.ts
++++ b/node_modules/react-native-fast-image/dist/index.d.ts
+@@ -89,6 +89,12 @@ export interface FastImageProps extends AccessibilityProps, ViewProps {
+      * Render children within the image.
+      */
+     children?: React.ReactNode;
++    /**
++     * Force Glide target to original size in order to receive original image dimensions inside onLoad callback
++     * 
++     * Android only, defaults to false
++     */
++    targetOriginalSize?: boolean;
+ }
+ export interface FastImageStaticProperties {
+     resizeMode: typeof resizeMode;

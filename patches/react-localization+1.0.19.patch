@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-localization/lib/LocalizedStrings.d.ts b/node_modules/react-localization/lib/LocalizedStrings.d.ts
+index 0b16b44..039e734 100644
+--- a/node_modules/react-localization/lib/LocalizedStrings.d.ts
++++ b/node_modules/react-localization/lib/LocalizedStrings.d.ts
+@@ -31,7 +31,7 @@ declare module 'react-localization' {
+          * Use example:
+          *   strings.formatString(strings.question, strings.bread, strings.butter)
+          */
+-        formatString<T extends Formatted>(str: string, ...values: Array<T | FormatObject<T>>): Array<string | T> | string;
++        formatString<T extends Formatted>(str: string, ...values: Array<T | FormatObject<T> | Record<string, T | FormatObject<T>>>): Array<string | T> | string;
+ 
+         /**
+          * Return an array containing the available languages passed as props in the constructor

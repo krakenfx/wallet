@@ -1,0 +1,6 @@
+{
+    "name": "kraken-wallet-cryptoicons",
+    "private": true,
+    "version": "1.0.0",
+    "description": "Internal Cryptoicons package. Contents mirror that of the remote Cryptoicons package, https://github.com/Cryptofonts/cryptoicons/tree/master/SVG. This is a preliminary step in moving away from Cryptowatch Beacons. In the future, as we move towards a more scalable solution, this could helps us create/integrate a KX-owned remote package."
+}

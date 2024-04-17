@@ -1,0 +1,1246 @@
+{
+  "_": {
+    "add": "Toevoegen",
+    "appName": "Kraken-portemonnee",
+    "balance": "Tegoed {0}",
+    "cancel": "Annuleren",
+    "confirm": "Bevestigen",
+    "continue": "Doorgaan",
+    "copied": "Gekopieerd",
+    "copy": "Kopiëren",
+    "copyToClipboard": "Naar klembord gekopieerd",
+    "details": "Details",
+    "done": "Gereed",
+    "ok": "Oké",
+    "plus": "+{count}",
+    "receive": "Ontvangen",
+    "reconnecting": "Verbinding wordt hersteld",
+    "remove": "Verwijderen",
+    "send": "Verzenden",
+    "showLess": "Minder weergeven",
+    "showMore": "Meer weergeven",
+    "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "updating": "Wordt bijgewerkt",
+    "upToDate": "Bijgewerkt",
+    "view": "Bekijken",
+    "yes": "Ja"
+  },
+  "about": {
+    "licenses": "Licenties",
+    "privacyPolicy": "Privacybeleid",
+    "releaseNotes": "Opmerkingen bij release",
+    "termsOfService": "Servicevoorwaarden"
+  },
+  "accountSwitch": {
+    "createWallet": "Aanmaken portemonnee",
+    "createWalletError": "De portemonnee is niet aangemaakt, probeer het opnieuw",
+    "createWalletSuccess": "Portemonnee is aangemaakt",
+    "creatingNewWallet": "Nieuwe portemonnee aanmaken",
+    "manage": "Beheren",
+    "menu": {
+      "advanced_info": "Geavanceerde informatie",
+      "connected_apps": "Verbonden apps",
+      "delete": "Verwijderen",
+      "edit": "Bewerk"
+    },
+    "walletDelete": {
+      "error": "De portemonnee is niet verwijderd, probeer het opnieuw",
+      "success": "Uw portemonnee is verwijderd"
+    },
+    "wallets": "Portemonnees"
+  },
+  "advanced_account_info": {
+    "derivation_path": "Derivatiepad",
+    "path_copied": "Pad gekopieerd",
+    "title": "{walletName} - info",
+    "type": "Type",
+    "wallet_information": "Portemonneegegevens",
+    "xpub": "Extended public key",
+    "xpub_key_copied": "Naar klembord gekopieerd"
+  },
+  "advancedAccountInfo": {
+    "derivationPath": "Derivatiepad",
+    "ethereumDerivationPath": "Derivatiepad van Ethereum",
+    "ethereumDerivationPathContent": "Het derivatiepad van Ethereum wordt gedeeld met Layer 2-netwerken zoals Polygon, Arbitrum, Optimism en Base, wat betekent dat hetzelfde derivatiepad voor al deze netwerken wordt gebruikt.",
+    "extendedPublicKey": "Extended public key",
+    "includesLayer2Networks": "Omvat Layer 2-netwerken",
+    "pathCopied": "Pad gekopieerd",
+    "title": "{walletName} - info",
+    "walletInformation": "Portemonneegegevens",
+    "xpub": "Extended public key",
+    "xpubCopied": "xPub gekopieerd",
+    "xpubHidden": "xPub verborgen",
+    "xpubKeyCopied": "Naar klembord gekopieerd"
+  },
+  "appLock": {
+    "appLockIsRequiredWhen": "App-vergrendeling is vereist wanneer:",
+    "authenticationCancelled": "Verificatie geannuleerd",
+    "authenticationCancelledDescription": "Biometrische verificatie geannuleerd.",
+    "authSignConnectedApps": "Verbonden apps voor autoriseren & ondertekenen",
+    "authType": {
+      "faceId": "Face ID",
+      "generic": "privacy-instellingen zoals pincode of biometrische ontgrendeling",
+      "passcode": "wachtwoordcode",
+      "touchId": "Touch ID"
+    },
+    "description": "App-vergrendeling geeft u extra beveiliging door het gebruik van {authType} uw apparaat om de volgende acties toe te staan:",
+    "missingAuth": {
+      "biometrics": "Biometrie of pinvergrendeling",
+      "description": "Om uw portemonnee te beveiligen, moet u {authType} instellen in de instellingen van uw apparaat.",
+      "faceId": "Face ID of wachtwoordcode",
+      "ok": "Oké",
+      "settings": "Instellingen in de app openen",
+      "setupPin": "Pin- of biometrische ontgrendeling instellen",
+      "tapFaceId": "Tik op Face ID & wachtwoordcode”",
+      "tapSecurityPivacy": "Tik op 'Veiligheid en privacy”",
+      "tapTouchId": "Tik op 'Touch ID & wachtwoordcode”",
+      "title": "Eerst {authType} inschakelen in Instellingen",
+      "touchId": "Touch ID of wachtwoordcode",
+      "turnOn": "Schakel {authType} in"
+    },
+    "openTheApp": "Open de app",
+    "sendCryptoAndNfts": "Crypto en NFT's versturen",
+    "signTransactions": "Ondertekenen transacties",
+    "title": "App-vergrendeling",
+    "turnOnAppLock": "App-vergrendeling inschakelen",
+    "viewSecret": "Geheime herstelzin weergeven",
+    "whatIs": "Wat is app-vergrendeling? "
+  },
+  "appSignRequest": {
+    "allowAccess": "Toegang tot uw {tokenSymbol} toestaan?",
+    "allowAccessDescription": "Hierdoor kan {dappName} transacties automatiseren en uw {tokenSymbol} uitgeven.",
+    "amount": "Hoeveelheid",
+    "approve": "Goedkeuren",
+    "approveSpendingCap": "Bestedingslimiet goedkeuren",
+    "balance": "Tegoed",
+    "cancel": "Annuleren",
+    "claim": "Vordering",
+    "confirm": "Bevestigen",
+    "contractAddress": "Contractadres",
+    "contractInteraction": "Contractinteractie",
+    "deposit": "Storten",
+    "from": "Van",
+    "message": "Bericht",
+    "message_signing_request": "Ondertekeningsverzoek bericht",
+    "messageSigningRequest": "Ondertekenen",
+    "mint": "Mint",
+    "nonce": "Nonce",
+    "scrollToBottomToConfirm": "Scroll naar beneden om te bevestigen",
+    "setSpendingCap": "Bestedingslimiet instellen",
+    "sign": "Ondertekenen",
+    "swap": "Swap",
+    "to": "Naar",
+    "typed_message_signing_request": "{type} Ondertekeningsverzoek",
+    "typedMessageSigningRequest": "{type} Ondertekeningsverzoek",
+    "withdrawal": "Opname"
+  },
+  "backupWallet": {
+    "backup": "Back-up",
+    "backupYourWallet": "Maak een back-up van uw portemonnee",
+    "backupYourWalletDescription": "Zorg ervoor dat u uw crypto kunt herstellen als u uw apparaat verliest of naar een andere portemonnee overschakelt.",
+    "secretRecoveryPhrase": "Geheime herstelzin",
+    "tapHereToView": "Tik hier om weer te geven"
+  },
+  "broadcast": {
+    "sent": "Verzonden"
+  },
+  "coins": {
+    "allNetworks": "Alle netwerken",
+    "filterAssets": "Activa filteren",
+    "search_placeholder": "Activa zoeken",
+    "showAssets": "Activa weergeven",
+    "testnet": "Testnet"
+  },
+  "collection": {
+    "title": "Collectie"
+  },
+  "config": {
+    "contract-approved-failed": {
+      "title": "👎 Goedkeuring mislukt"
+    },
+    "contract-approved": {
+      "body": "{amount} {symbol} is goedgekeurd op {contractAddress}",
+      "title": "🤝 Contract goedgekeurd"
+    },
+    "contract-interaction-failed": {
+      "body": "Interactie met {contractAddress} is mislukt",
+      "title": "👎 Interactie mislukt"
+    },
+    "contract-interaction": {
+      "body": "Interactie met {contractAddress}",
+      "title": "🤝 Contractinteractie"
+    },
+    "funds-deposited-failed": {
+      "title": "👎 Storting mislukt"
+    },
+    "funds-deposited": {
+      "body": "{amount} {symbol} was gestort naar {address}",
+      "title": "🤝 {symbol} gestort"
+    },
+    "funds-withdrawn-failed": {
+      "title": "👎 Opname mislukt"
+    },
+    "funds-withdrawn": {
+      "body": "Opnemen en overmaken naar {address}",
+      "title": "+ {amount} {symbol}"
+    },
+    "generic-transaction": {
+      "body": "Recente transactie is succesvol verwerkt op {network}",
+      "title": "✅ Transactie geslaagd!"
+    },
+    "nft-failed": {
+      "title": "👎 NFT verzenden mislukt"
+    },
+    "nft-received": {
+      "body": "Ontvangen op {address}",
+      "title": "NFT ontvangen: {symbol}"
+    },
+    "nft-sent": {
+      "body": "{nftName} is verzonden naar {address}",
+      "title": "🖼️ {nftName} is verstuurd!"
+    },
+    "payment-debited": {
+      "body": "Afgeschreven op {address}",
+      "title": "- {amount} {symbol}"
+    },
+    "payment-failed": {
+      "title": "👎 Verzenden mislukt"
+    },
+    "payment-pending": {
+      "body": "In afwachting van{address}"
+    },
+    "payment-received-pending": {
+      "bitcoin": {
+        "body": "{amount} {symbol} wordt ontvangen",
+        "title": "🤌 Onderweg"
+      },
+      "body": "{amount} {symbol} wordt ontvangen",
+      "dogecoin": {
+        "body": "{amount} {symbol} wordt ontvangen",
+        "title": "🤌 Onderweg"
+      },
+      "title": "🤌 Onderweg"
+    },
+    "payment-received": {
+      "bitcoin": {
+        "body": "{amount} {symbol} is ontvangen"
+      },
+      "body": "Ontvangen op {address}",
+      "dogecoin": {
+        "body": "{amount} {symbol} is ontvangen"
+      },
+      "title": "+ {amount} {symbol}"
+    },
+    "payment-sent": {
+      "bitcoin": {
+        "body": "{amount} {symbol} is verzonden"
+      },
+      "body": "{amount} {symbol} is verzonden naar {address}",
+      "dogecoin": {
+        "body": "{amount} {symbol} is verzonden"
+      },
+      "title": "{symbol} verzonden"
+    },
+    "swap-complete": {
+      "body": "{amountOut} {symbolOut} is omgewisseld voor {amountIn} {symbolIn} via {facilitator}",
+      "title": "🫡 Komt voor elkaar!"
+    },
+    "swap-failed": {
+      "title": "👎 Swap mislukt"
+    },
+    "token-approved": {
+      "body": "{symbol} is goedgekeurd op {operator}",
+      "title": "🫡 Komt voor elkaar!"
+    },
+    "transaction-confirmed": {
+      "body": "Uw transactie is geslaagd.",
+      "title": "🫡 Komt voor elkaar!"
+    },
+    "transaction-failed": {
+      "body": "Uw transactie is mislukt.",
+      "title": "👎 Arrrrgggghhhh.."
+    },
+    "utxo-payment-failed": {
+      "title": "👎 Verzenden mislukt"
+    },
+    "utxo-payment-received-pending": {
+      "body": "{amount} {symbol} wordt ontvangen",
+      "title": "🤌 Onderweg"
+    },
+    "utxo-payment-received": {
+      "body": "{amount} {symbol} is ontvangen",
+      "title": "🙌 {symbol} Ontvangen!"
+    },
+    "utxo-payment-sent-pending": {
+      "body": "{amount} {symbol} wordt verzonden",
+      "title": "🤌 Onderweg"
+    },
+    "utxo-payment-sent": {
+      "body": "{amount} {symbol} is verzonden",
+      "title": "🙌 {symbol} verzonden!"
+    }
+  },
+  "confirm": {
+    "no": "Annuleren",
+    "title": "Weet u het zeker?",
+    "yes": "Ja"
+  },
+  "connect_app_auth": {
+    "app_has_access_to": "{app} heeft toegang tot:",
+    "connect_app": "App verbinden",
+    "network": "Netwerk"
+  },
+  "connectApp": {
+    "all_networks": "Alle netwerken",
+    "cancel": "Annuleren",
+    "connect": "Verbinden",
+    "connect_wallet": "Portemonnee koppelen",
+    "request_approval": "Goedkeuringsverzoek voor transacties",
+    "see_balance": "Uw tegoed en activiteit bekijken",
+    "unsupportedNetwork": "Niet ondersteund netwerk",
+    "unsupportedNetworkDescription": "Deze app gebruikt het {unsupportedNetwork}-netwerk dat op dit moment niet ondersteund wordt. Kraken-portemonnee ondersteunt momenteel apps op de Ethereum-, Polygon-, Optimism-, Arbitrum- en Solana-netwerken.",
+    "unsupportedNetworksDescription": "Deze app gebruikt {unsupportedNetworks}-netwerken die op dit moment niet ondersteund worden. Kraken-portemonnee ondersteunt momenteel apps op de Ethereum-, Polygon-, Optimism-, Arbitrum- en Solana-netwerken."
+  },
+  "connectedApps": {
+    "app_details": {
+      "disconnect": "Verbindingen verbreken",
+      "disconnect_decscription": "Als u de verbinding met deze app verbreekt, wordt alle toegang tot uw portemonnee verwijderd",
+      "error": "Fout bij het verbreken van de verbinding",
+      "open": "Open"
+    },
+    "list": {
+      "connect_to_app": "Verbinding maken met app",
+      "disconnect_all": "Alle verbindingen verbreken ({0})",
+      "error_all": "Fout bij het verbreken van de verbinding met alle apps",
+      "instructions": "Scan QR-codes om apps te verbinden met WalletConnect",
+      "title": "Verbonden apps",
+      "tutorial": "Hoe werkt het?"
+    }
+  },
+  "currency": {
+    "australianDollar": "Australische dollar",
+    "bitcoin": "Bitcoin",
+    "britishPound": "Britse pond",
+    "canadianDollar": "Canadese dollar",
+    "ether": "Ether",
+    "euro": "Euro",
+    "japaneseYen": "Japanse yen",
+    "russianRuble": "Russische roebel",
+    "satoshis": "Satoshi's",
+    "southKoreanWon": "Zuid-Koreaanse won",
+    "swissFranc": "Zwitserse frank",
+    "usDollar": "Amerikaanse dollar"
+  },
+  "defi": {
+    "claimable": "Te vorderen",
+    "debt": "Schuld",
+    "dept": "Dept",
+    "network": "netwerk",
+    "onePosition": "1 positie",
+    "positions": "{numberOfPositions} posities",
+    "rewards": "Beloningen",
+    "vaults": "Kluizen"
+  },
+  "deleteAccountConfirm": {
+    "cancel": "Annuleren",
+    "caption": "U kunt uw portemonnee terugkrijgen met uw geheime herstelzin",
+    "delete": "Verwijderen",
+    "header": "Weet u zeker dat u deze portemonnee wilt verwijderen?",
+    "title": "Portemonnee verwijderen"
+  },
+  "deleteAccountVerifyBalance": {
+    "balanceLabel": "Tegoed",
+    "cancel": "Annuleren",
+    "caption": "Voer uw portemonnee-tegoed in voordat u deze verwijdert. U kunt uw portemonnee herstellen met uw geheime herstelzin",
+    "delete": "Verwijderen",
+    "header": "Uw portemonnee heeft een tegoed",
+    "inputLabel": "Portemonnee-tegoed invoeren"
+  },
+  "diagnostics": {
+    "running": "Diagnose wordt uitgevoerd..."
+  },
+  "editAccount": {
+    "save": "Opslaan",
+    "title": "Portemonnee wijzigen",
+    "walletName": "Naam van portemonnee"
+  },
+  "editNote": {
+    "title": "Beschrijving"
+  },
+  "errors": {
+    "connectionError": "Verbindingsfout",
+    "generalFetchError": "Fout, probeer het opnieuw",
+    "generic": "Er is iets misgegaan",
+    "genericTryAgainLater": "Er ging iets mis, probeer het later opnieuw",
+    "network": "Netwerkfout",
+    "offline": "Offline",
+    "seedMissing": "Kritieke fout! Seed is niet beschikbaar."
+  },
+  "extendedPublicKey": {
+    "bitcoinXpub": "Bitcoin xPub",
+    "copyXpub": "Copy xPub",
+    "summary": "Dit is uw {summaryEmphasis}, het is de master public key die is gebruikt om alle openbare bitcoinadressen voor deze portemonnee te genereren.",
+    "summaryEmphasis": "Bitcoin Extended Public Key (xPub)",
+    "type": "Type: {type}"
+  },
+  "floatingTransactionActivityButtons": {
+    "receive": "Ontvangen",
+    "send": "Verzenden"
+  },
+  "globalActivity": {
+    "addAssets": "Voeg activa toe aan uw portemonnee",
+    "allActivity": "Alle activiteit",
+    "emptySelection": {
+      "description": "Uw portemonnee bevat 0 activa op het geselecteerde netwerk",
+      "title": "Geen activa op geselecteerde netwerk"
+    },
+    "noActivity": {
+      "description": "Voeg activa toe aan uw portemonnee",
+      "title": "Transacties worden hier weergegeven"
+    },
+    "recentActivity": "Recente activiteit",
+    "title": "Activiteit",
+    "transactionFailedInfo": "Recente {network} transactie mislukt",
+    "transactionsWillAppearHere": "Transacties worden hier weergegeven"
+  },
+  "home": {
+    "assets": "Activa",
+    "collection": "NFT's",
+    "collection_see_all": "Alles weergeven",
+    "deposits": "Stortingen",
+    "manage": "Beheren",
+    "total_balance": "Tegoed"
+  },
+  "manageWallets": {
+    "title": "Portemonnees beheren"
+  },
+  "network": {
+    "arbitrum": "Arbitrum",
+    "base": "Base",
+    "bitcoin": "Bitcoin",
+    "dogecoin": "Dogecoin",
+    "ethereum": "Ethereum",
+    "ethereum_goerli": "Ethereum - Goerli-testnet",
+    "ethereum_sepolia": "Ethereum - Sepolia-testnet",
+    "matic": "Matic",
+    "optimism": "Optimism",
+    "polygon": "Polygon",
+    "solana": "Solana",
+    "solana_devnet": "Solana - Devnet",
+    "tezos": "Tezos",
+    "unknown": "Onbekend"
+  },
+  "nftCollection": {
+    "archiveCollectionDetailsSubtitle": "Alle gearchiveerde NFT's",
+    "archiveCollectionDetailsTitle": "Archief",
+    "archiveCollectionSubtitle": "Alle gearchiveerde NFT's",
+    "archiveCollectionTitle": "Gearchiveerde NFT's",
+    "archivedDaysInfo": "{days} dagen geleden",
+    "archivedOneDayInfo": "1 dag geleden",
+    "heading": "Items"
+  },
+  "nftGallery": {
+    "favorite": "Favoriet"
+  },
+  "nftList": {
+    "collections": "Collecties",
+    "collectionsEmptyState": {
+      "allNetworks": {
+        "heading": "Nog geen collecties in deze portemonnee",
+        "subheading": "Uw portemonnee bevat 0 collecties op alle ondersteunde netwerken"
+      },
+      "selectedNetworks": {
+        "heading": "Geen collecties op geselecteerde netwerken",
+        "subheading": "Uw portemonnee bevat 0 NFT-collecties op de geselecteerde netwerken"
+      }
+    },
+    "everything": "Alles",
+    "everythingEmptyState": {
+      "allNetworks": {
+        "heading": "Nog geen NFT's in deze portemonnee",
+        "subheading": "Uw portemonnee bevat 0 NFT's op alle ondersteunde netwerken"
+      },
+      "selectedNetworks": {
+        "heading": "Geen NFT's op geselecteerde netwerken",
+        "subheading": "Uw portemonnee bevat 0 NFT's op de geselecteerde netwerken"
+      }
+    },
+    "title": "NFT's"
+  },
+  "nftManage": {
+    "archive": "Archief",
+    "copy_id": "ID kopiëren",
+    "favorite": "Favoriet",
+    "title": "NFT beheren",
+    "unArchive": "Niet archiveren",
+    "unArchiveSuccess": "NFT niet gearchiveerd"
+  },
+  "nftView": {
+    "about": "Over",
+    "ens": {
+      "description": "Ethereum Name Service (ENS)- domeinen zijn veilige domeinnamen voor de gedecentraliseerde wereld. ENS-domeinen bieden voor gebruikers een manier om door de mens leesbare namen aan blockchain- en niet-blockchainbronnen toe wijzen, zoals Ethereum-adressen, IPFS-hashes of website-URL's. ENS-domeinen kunnen gekocht en verkocht worden op secundaire markten.",
+      "links": {
+        "label": "Bekijken op"
+      },
+      "ownership": {
+        "label": "Eigendom",
+        "manager": "Beheerder",
+        "owner": "Eigenaar"
+      },
+      "traits": {
+        "created": "Datum aanmaak",
+        "expiration": "Verloopt op"
+      }
+    },
+    "failedMedia": {
+      "desc": "Mediatype is mogelijk nog niet ondersteund.",
+      "title": "Media kon niet worden geladen"
+    },
+    "links": {
+      "label": "Bekijken op"
+    },
+    "manage": "Beheren",
+    "noName": "Geen naam",
+    "properties": "Eigenschappen",
+    "show_less": "Minder weergeven",
+    "show_more": "Meer weergeven"
+  },
+  "onboarding_backup_prompt": {
+    "caption": "U hebt uw {recoveryPhrase} nodig om uw crypto te herstellen als u uw apparaat verliest of naar een andere portemonnee overschakelt. {neverShare}",
+    "continue": "Zin onthullen",
+    "recovery_phrase": "geheime herstelzin",
+    "skip": "Overslaan",
+    "subtitle": "uw portemonnee",
+    "title": "Back-up"
+  },
+  "onboarding_backup_verify": {
+    "caption": "Tik op de onderstaande woorden in de juiste numerieke volgorde om te verifiëren dat u uw geheime herstelzin hebt opgeslagen.",
+    "failed": "Zin is niet geldig",
+    "paste": "Plakken",
+    "retry": "Probeer het opnieuw",
+    "title": "Verifieer of u de zin correct hebt opgeslagen",
+    "verified": "Geverifieerd",
+    "verify": "Verifiëren"
+  },
+  "onboarding_backup": {
+    "caption": "Schrijf deze 12 woorden in numerieke volgorde op en bewaar ze op een veilige plaats. {neverShare}",
+    "continue": "Volgende",
+    "copy": "Kopiëren",
+    "title": "Uw geheime herstelzin"
+  },
+  "onboarding_import_wallet": {
+    "caption": "Voer uw geheime herstelzin of privésleutel in om uw portemonnee te importeren.",
+    "import": "Importeren",
+    "paste": "Plakken",
+    "title": "Uw portemonnee importeren"
+  },
+  "onboarding_secure_wallet": {
+    "authBiometric": "Biometrische verificatie",
+    "authFaceID": "Face ID",
+    "authPasscode": "Wachtwoordcode",
+    "authTouchID": "Touch ID",
+    "caption": "Gebruik {authType} om te voorkomen dat iemand met uw telefoon toegang krijgt tot uw crypto.",
+    "secureWallet": "Portemonnee beveiligen",
+    "skip": "Overslaan",
+    "subtitle": "uw portemonnee",
+    "title": "Veilig"
+  },
+  "onboarding": {
+    "create_wallet": "Aanmaken portemonnee",
+    "import_error": "De portemonnee kon niet geïmporteerd worden",
+    "import_wallet": "Importeren",
+    "intro_pages": {
+      "1": {
+        "subtitle": "Kraken-portemonnee",
+        "text": "Word crypto-eigenaar, ontdek blockchains en stel uw financiële toekomst veilig.",
+        "title": "Welkom bij"
+      },
+      "2": {
+        "subtitle": "uw beheer",
+        "text": "Bewaak uw crypto veilig in een portemonnee in eigen beheer die alleen voor u toegankelijk is.",
+        "title": "Uw crypto"
+      },
+      "3": {
+        "subtitle": "blockchains",
+        "text": "Kraken-portemonnee ondersteunt Bitcoin, Ethereum, Polygon, Doge en meer. ",
+        "title": "Ontdek meer"
+      },
+      "4": {
+        "subtitle": "en bewaar NFT's",
+        "text": "Koop, verkoop, wissel crypto in en sla NFT's op van uw favoriete collecties.",
+        "title": "Crypto kopen"
+      },
+      "settingUp": {
+        "subtitle": "uw portemonnee...",
+        "text": "Een ogenblik geduld",
+        "title": "Wordt ingesteld"
+      }
+    },
+    "never_share": "Deel het nooit met iemand.",
+    "scroll_note": "Scroll voor meer"
+  },
+  "onboardingBackupVerify": {
+    "caption": "Tik op de onderstaande woorden in de juiste numerieke volgorde om te verifiëren dat u uw geheime herstelzin hebt opgeslagen.",
+    "failed": "Zin is niet geldig",
+    "paste": "Plakken",
+    "pasteWarning": {
+      "back": "Terug",
+      "checkOne": "Ik begrijp dat als ik mijn telefoon verlies of de app verwijder, ik de geheime herstelzin nodig heb om mijn portemonnee te herstellen.",
+      "checkTwo": "Ik begrijp dat als ik mijn herstelzin verlies, ik alleen verantwoordelijk ben voor het verlies van activa.",
+      "confirm": "Bevestigen",
+      "title": "Bevestig dat u deze ergens veilig hebt opgeslagen"
+    },
+    "retry": "Probeer het opnieuw",
+    "title": "Verifieer of u de zin correct hebt opgeslagen",
+    "verified": "Geverifieerd",
+    "verify": "Verifiëren"
+  },
+  "onboardingImportWallet": {
+    "caption": "Voer uw geheime herstelzin in om uw portemonnee te importeren.",
+    "header": "Uw portemonnee importeren",
+    "headerInvalid": "Controleer uw geheime zin",
+    "import": "Importeren",
+    "invalid": "Zin is niet geldig",
+    "loading": "Portemonnee importeren...",
+    "paste": "Plakken",
+    "valid": "Geïmporteerd"
+  },
+  "onboardingOutro": {
+    "button": "Geef akkoord en ga verder",
+    "caption": "Deze Kraken-portemonnee ondersteunt Bitcoin, Ethereum, Polygon, Solana, en meer.",
+    "footer": "Door verder te gaan, gaat u akkoord met de portemonnee van Kraken\n",
+    "termsOfService": "servicevoorwaarden",
+    "title": "Uw portemonnee is klaar"
+  },
+  "onboardingPushNotifications": {
+    "allow": "Toestaan",
+    "content": "Ontvang es­sen­tië­le waarschuwingen over transacties en andere belangrijke portemonnee-interacties. Sta meldingen toe om in te schakelen.",
+    "skip": "Later vragen",
+    "title": "Sta meldingen toe om op de hoogte te blijven",
+    "titleEnd": "sta meldingen toe",
+    "titleStart": "Om op de hoogte blijven, "
+  },
+  "onChainSecurity": {
+    "appConnectCriticalWarning": "We denken dat deze app onbetrouwbaar is en dat verbinding maken onveilig zou zijn. Goedkeuring kan leiden tot verlies van geld.",
+    "appConnectMediumWarning": "De app die het verzoek stuurt, kan niet worden geverifieerd.",
+    "appFlagged": "App gemarkeerd!",
+    "appSignMessageCriticalWarning": "We denken dat deze app onbetrouwbaar is en dat het onveilig is om het bericht te ondertekenen. Goedkeuring kan leiden tot verlies van geld.",
+    "appSignMessageMediumWarning": "De app die het verzoek stuurt, kan niet worden geverifieerd.",
+    "appSignTransactionCriticalWarning": "We denken dat deze app onbetrouwbaar is en dat het onveilig is om de transactie te ondertekenen. Goedkeuring kan leiden tot verlies van geld.",
+    "appSignTransactionMediumWarning": "De app die het verzoek stuurt, kan niet worden geverifieerd.",
+    "appWarning": "We denken dat deze app onbetrouwbaar is en dat verbinding maken onveilig zou zijn. Goedkeuring kan leiden tot verlies van geld",
+    "criticalWarning": "Kritieke waarschuwing",
+    "domainMatch": "Domein komt overeen",
+    "domainMatchInfo": "Het domein dat aan dit verzoek is gekoppeld, is geverifieerd als het domein van deze toepassing.",
+    "domainMismatch": "Domein komt niet overeen",
+    "domainMismatchInfo": "Deze website heeft een domein dat niet overeenkomt met de afzender van dit verzoek. Goedkeuring kan leiden tot verlies van geld.",
+    "domainMismatchMessage": "Het domein van de toepassing komt niet overeen met de afzender van dit verzoek. Goedkeuring kan leiden tot verlies van geld.",
+    "domainMismatchWarning": "Waarschuwing - domein komt niet overeen",
+    "ignoreWarningAndProceed": "Waarschuwing negeren en doorgaan",
+    "knownSecurityRisk": "Bekend veiligheidsrisico",
+    "knownSecurityRisk!": "Bekend veiligheidsrisico!",
+    "knownSecurityRiskExclaimed": "Bekend veiligheidsrisico!",
+    "knownSecurityRiskExclamation": "Bekend veiligheidsrisico!",
+    "knownSecurityRiskInfo": "Deze website is door meerdere beveiligingsproviders als onveilig gemarkeerd. Maak er GEEN verbinding mee om uw activa te beschermen.",
+    "knownSecurityRiskMessage": "Deze website is door meerdere beveiligingsproviders als onveilig aangemerkt. Verlaat de website onmiddellijk om te voorkomen dat uw activa worden aangetast",
+    "messageFlagged": "Bericht gemarkeerd!",
+    "returnToSafety": "Ga terug",
+    "signTransactionCriticalWarning": "We denken dat deze transactie onbetrouwbaar is en onveilig om te ondertekenen. Goedkeuring kan leiden tot verlies van geld.",
+    "transactionFlagged": "Transactie gemarkeerd!",
+    "transactionWarning": "We denken dat deze transactie onbetrouwbaar is en onveilig om te ondertekenen. Goedkeuring kan leiden tot verlies van geld",
+    "unverifiedApp": "De app die het verzoek stuurt, kan niet worden geverifieerd.",
+    "warning": "Waarschuwing"
+  },
+  "passwordProtection": {
+    "authFailed": "Verificatie mislukt",
+    "authFailedDescription": "U kunt het opnieuw proberen of u kunt de app volledig wissen en resetten",
+    "biometricDescriptionAndroid": "zelfs als u Biometrie hebt ingesteld via App-vergrendeling",
+    "biometricDescriptionIOS": "zelfs als u Face ID of Touch ID hebt ingesteld via App-vergrendeling",
+    "confirm": "Bevestigen",
+    "confirmPassword": "Bevestig wachtwoord",
+    "confirmResetApp": "Bevestig het resetten van de app",
+    "connectedApps": "Verbonden apps voor autoriseren & ondertekenen",
+    "createPassword": "Wachtwoord aanmaken",
+    "dataLoss1": "Ik begrijp dat door het resetten de app wordt teruggebracht naar de beginwaarden.",
+    "dataLoss2": "Ik begrijp dat ik na het herstellen van de app mijn geheime herstelzin(nen) nodig heb om toegang te krijgen tot mijn portemonnee(s).",
+    "dataLoss3": "Ik begrijp dat als ik de app reset en mijn geheime herstelzin(nen) niet heb, het onmogelijk is om mijn portemonnee(s) te herstellen.",
+    "dataLoss4": "Ik begrijp dat als ik mijn herstelzin(nen) verlies, ik alleen verantwoordelijk ben voor het verlies van activa.",
+    "dataLossWarning": "Waarschuwing voor gegevensverlies!",
+    "disable": "Uitschakelen",
+    "disablePassword": "Wachtwoord uitschakelen",
+    "disablePasswordDescription": "Voer wachtwoord in om wachtwoordbeveiliging uit te schakelen",
+    "doubleEncryptsData": "Versleutelt uw app-gegevens dubbel",
+    "enablePasswordProtection": "Wachtwoordbeveiliging inschakelen",
+    "enterPassword": "Wachtwoord invoeren",
+    "lockout": "Te veel mislukte pogingen. Probeer het later opnieuw",
+    "openApp": "Open de app (optioneel)",
+    "password": "Wachtwoord",
+    "passwordHintLetters": "Probeer hoofdletters en kleine letters te gebruiken",
+    "passwordHintLonger": "Probeer een langer wachtwoord te gebruiken",
+    "passwordHintNumbers": "Probeer letters en cijfers te gebruiken",
+    "passwordHintSpecialChars": "Probeer speciale tekens te gebruiken: !@#$%^&*?_~",
+    "passwordIncorrect": "Wachtwoord is onjuist",
+    "passwordLengthError": "Minimaal zes tekens vereist",
+    "passwordMatchError": "Wachtwoorden komen niet overeen",
+    "passwordStrength": "Wachtwoordsterkte:",
+    "passwordStrengthAverage": "Gemiddeld",
+    "passwordStrengthSecure": "Veilig",
+    "passwordStrengthStrong": "Sterk",
+    "passwordStrengthVeryWeak": "Zeer zwak",
+    "passwordStrengthWeak": "Zwak",
+    "passwordSupersedesAppLock": "App-vergrendeling vervangt niet het wachtwoord",
+    "passwordSupersedesAppLockDescription": "Als u een wachtwoord aanmaakt, is het vereist om transacties uit te voeren {biometricDescription}. Voor de veiligheid zijn beide vereist.",
+    "protectYourData": "Bescherm uw gegevens met extra versleuteling",
+    "rationaleCreateWallet": "Om een nieuwe portemonnee aan te maken is uw wachtwoord vereist",
+    "rationaleGetXPub": "Om uw uitgebreide publieke sleutel weer te geven is uw wachtwoord is nodig",
+    "rationaleSeeRecoveryPhrase": "om uw geheime herstelzin weer te geven",
+    "rationaleSignTransaction": "Om transacties te ondertekenen is uw wachtwoord is nodig",
+    "requiredToAccess": "Vereist om toegang te krijgen tot uw portemonnee",
+    "requireOnOpen": "Vereist elke keer dat u de app opent?",
+    "requireOnOpenDesc": "Voegt beveiliging toe door uw app-gegevens dubbel te versleutelen. U moet dan wel het wachtwoord invoeren bij elke keer dat u de app opent",
+    "resetHintModalConfirm": "Oké",
+    "resetHintModalDesc": "Om de wachtwoordopties aan te passen, moet u de wachtwoordbeveiliging uitschakelen en opnieuw inschakelen met de toegevoegde wijziging.",
+    "resetHintModalTitle": "Wachtwoord resetten om instellingen te wijzigen",
+    "retry": "Probeer opnieuw",
+    "sendCrypto": "Crypto en NFT's versturen",
+    "signTransactions": "Ondertekenen transacties",
+    "title": "Wachtwoordbeveiliging",
+    "typePassword": "Voer wachtwoord in",
+    "unlock": "Ontgrendelen",
+    "viewPhrase": "Geheime herstelzin weergeven",
+    "walletLocked": "Portemonnee is vergrendeld",
+    "walletLockedDescription": "Voer uw wachtwoord in om hem te ontgrendelen",
+    "warning": "Waarschuwing: wachtwoord niet verliezen",
+    "warningDescription": "Bewaar uw wachtwoord op een veilige plaats. Het wachtwoord wordt lokaal versleuteld op uw apparaat en kan dus niet meer worden teruggehaald door Kraken als u het verliest of vergeet.",
+    "whatIs": "Wat is wachtwoordbeveiliging? ",
+    "whatIsDescription": "Het voegt extra beveiliging toe door een wachtwoord te vereisen voor de volgende acties:",
+    "wipeAndReset": "App wissen en resetten",
+    "wrongPassword": "Dat was niet juist",
+    "wrongPasswordDescription": "Controleer uw wachtwoord en probeer het opnieuw"
+  },
+  "pushNotificationsPrompt": {
+    "allow": "Toestaan",
+    "content": "Ontvang es­sen­tië­le waarschuwingen over transacties en andere belangrijke portemonnee-interacties. Sta meldingen toe om in te schakelen.",
+    "disallow": "Niet toestaan",
+    "skip": "Later vragen",
+    "title": "Sta meldingen toe om op de hoogte te blijven",
+    "titleEnd": "sta meldingen toe",
+    "titleStart": "Om op de hoogte blijven, "
+  },
+  "receive": {
+    "addressCopied": "Adres gekopieerd",
+    "addressError": "Het ontvangstadres is mogelijk niet up-to-date. Vernieuw de pagina en probeer het opnieuw",
+    "copied": "Gekopieerd",
+    "copy": "Kopiëren",
+    "share": "Delen",
+    "warning": "Dit is uw {networkName}-adres.",
+    "warning_nft": "Dit is uw {networkName}-adres. Gebruik het om crypto en NFT's te ontvangen die compatibel zijn op dit netwerk."
+  },
+  "reputation": {
+    "likelySpam": "Waarschijnlijk spam",
+    "likelySpamDescription": "Dit token staat op een zwarte lijst. Wees voorzichtig bij interactie met tokens die u niet kunt verifiëren. Niet vertrouwen, maar verifiëren.",
+    "likelySpamHelp": "Wat zijn tokens die op de zwarte lijst staan?",
+    "openDocs": "Open documenten",
+    "tokenLists": "Tokenlijsten",
+    "tokenListsDescription": "Tokenlijsten zijn een initiatief van de gemeenschap om de vindbaarheid, reputatie en het vertrouwen in ERC20-tokens te verbeteren.",
+    "tokenListsHelp": "Wat zijn tokenlijsten?",
+    "unverified": "Niet opgenomen",
+    "unverifiedDescription": "Dit token staat niet op de lijst. Wees voorzichtig bij interactie met tokens die u niet kunt verifiëren. Niet vertrouwen, maar verifiëren.",
+    "unverifiedHelp": "Waarom staat het niet in de lijst?",
+    "verified": "Opgenomen door",
+    "verifiedDescription": "Tokenlijsten zijn lijsten op basis van reputatie met als doel betrouwbare tokens van hoge kwaliteit voor u te identificeren en te markeren.",
+    "verifiedHelp": "Wat zijn tokenlijsten?"
+  },
+  "scan": {
+    "apps": "Apps",
+    "connected_to": "Verbonden met {appName}",
+    "instructions": "Maak verbinding met dapps door een QR-code te scannen",
+    "manage": "Beheren",
+    "missingPermission": "Om de camera te gebruiken gaat u naar de instellingen van uw telefoon en activeert u de camera-rechten voor de Super Wallet-app",
+    "paste": "Adres plakken",
+    "wallet_connect_failed": "De QR-code is niet gescand, probeer het opnieuw",
+    "wallet_connect_initialization_failure": "Initialisatie van WalletConnect is mislukt",
+    "wallet_connect_invalid_qr_code": "Dit is een ongeldige QR-code",
+    "wallet_connect_previously_submitted_qr_code": "Dit is een ongeldige QR-code. Vernieuw de pagina en probeer het opnieuw",
+    "wallet_connect_version_deprecated": "Deze applicatie is niet compatibel"
+  },
+  "send": {
+    "address": "Adres invoeren...",
+    "addressHeader": "Verzenden naar",
+    "addressOrENS": "Adres of ENS-domein invoeren...",
+    "amountHeader": "Hoeveelheid",
+    "balance": "Tegoed {0}",
+    "confirm": "Bevestigen",
+    "confirmSend": "Verzenden bevestigen",
+    "create": "Aanmaken",
+    "enterAmount": "Bedrag invoeren",
+    "evm_fee_fast": "Snel",
+    "evm_fee_normal": "Normaal",
+    "evm_fee_urgent": "Urgent",
+    "exceedsBalance": "Ingevoerd bedrag overschrijdt beschikbaar tegoed",
+    "exceedsFee": "Niet voldoende {token} voor netwerkkosten",
+    "failed": "Mislukt",
+    "failedPriceAlert": {
+      "desc": "We kunnen op dit moment geen koersgegevens voor dit token ophalen.",
+      "title": "USD-koers voor {token} is niet beschikbaar"
+    },
+    "fee": "Kosten",
+    "fee_fast": "Snel",
+    "fee_medium": "Gemiddeld",
+    "fee_slow": "Langzaam",
+    "feeWarning": "De huidige netwerkkosten zijn {feeAmount} en dat is meer dan {percentage}% van wat u verzendt.",
+    "invalidAddress": "Ongeldig adres. Gelieve het te controleren en opnieuw te proberen",
+    "max": "Max",
+    "network_fee": "Netwerkkosten",
+    "networkWarning": {
+      "alertBody": "Zorg ervoor dat de persoon naar wie u verstuurt, een portemonnee heeft die {networkName} ondersteunt",
+      "alertTitle": "Op het {networkName} netwerk versturen"
+    },
+    "no_note": "Geen opmerking",
+    "note": "Opmerking",
+    "note_to_self": "Opmerking voor mezelf",
+    "pending": "In behandeling",
+    "polygonWarning": {
+      "alertBody": "Zorg ervoor dat de persoon naar wie u verstuurt, een portemonnee heeft die Polygon ondersteunt",
+      "alertTitle": "Versturen op het Polygon-netwerk",
+      "label": "Versturen op het Polygon-netwerk"
+    },
+    "priority": "Prioriteit",
+    "recipient": "Ontvanger",
+    "scan": "Scannen",
+    "send": "Verzenden",
+    "sendError": "De transactie kon niet worden voltooid, probeer het opnieuw",
+    "sending": "Wordt verzonden...",
+    "sent": "Verzonden",
+    "successEstimation": "Geschatte tijd om te voltooien: ~{time}",
+    "successLabel": "Transactie gestart!",
+    "suspiciousCharWarning": {
+      "desc": "Dit adres bevat niet-ASCII-tekens. Houd er rekening mee dat er tekens zijn die er identiek uitzien of erg lijken op Engelse letters.",
+      "title": "Opgelet:"
+    },
+    "technicalIssues": "Er is een probleem opgetreden. Probeer het later opnieuw.",
+    "timeStampabbreviation": {
+      "day": "dag",
+      "days": "dagen",
+      "hour": "uur",
+      "hours": "uren",
+      "minute": "min.",
+      "minutes": "minuten",
+      "second": "sec.",
+      "seconds": "seconden"
+    },
+    "title": "Verzenden {ticker}",
+    "title_nft": "Verzend NFT",
+    "transaction_id": "Transactie-ID",
+    "transfer_token": "Overboeken token",
+    "undo": "Ongedaan maken",
+    "warning": {
+      "firstTimeSending": "Eerste keer verzenden naar dit adres",
+      "nthTimeSending": "{count} vorige verzendingen naar dit adres",
+      "title": "Waarschuwing",
+      "titleCritical": "Kritieke waarschuwing"
+    }
+  },
+  "settings": {
+    "about": "Over",
+    "about_release_notes": "Opmerkingen bij release",
+    "about_selftest": "Diagnose uitvoeren",
+    "advanced": "Gevorderd",
+    "appLock": "App-vergrendeling",
+    "backup": "Back-up",
+    "backup_mnemonic_seed": "Back-up maken van mnemonic seed",
+    "currency": "Valuta",
+    "deleteAll": "Alle gegevens verwijderen",
+    "electrum_error_connect": "Kan geen verbinding maken met de opgegeven Electrum-server",
+    "electrum_reset": "Terugzetten naar standaardwaarden",
+    "electrum_reset_to_default": "Weet u zeker dat u uw Electrum-instellingen wilt resetten naar de standaardwaarden?",
+    "electrum_saved": "Uw wijzigingen zijn opgeslagen. Het kan nodig zijn om de app opnieuw op te starten om de wijzigingen door te voeren.",
+    "electrum_unable_to_connect": "Kan geen verbinding maken met {server}.",
+    "general": "Algemeen",
+    "header": "Instellingen",
+    "language": "Taal",
+    "manageWallets": "Portemonnees beheren",
+    "notifications": "Pushmeldingen",
+    "passwordProtection": "Wachtwoordbeveiliging",
+    "pn_account_activity": "Accountactiviteit",
+    "pn_auth_n_sign_connected_apps": "Verbonden apps voor autoriseren & ondertekenen",
+    "pn_connected_app_interactions": "Interacties van verbonden apps",
+    "pn_incoming_transactions": "Inkomende transacties",
+    "pn_incoming_transactions_pending": "Inkomende transacties in behandeling",
+    "pn_levelAll": "Accountactiviteit inschakelen",
+    "pn_outgoing_transactions": "Uitgaande transacties",
+    "pn_outgoing_transactions_complete": "Uitgaande transacties voltooid",
+    "pn_outgoing_transactions_pending": "Uitgaande transacties in behandeling",
+    "pn_types_of_notifications_youll_receive": "Soorten meldingen die u zult ontvangen:",
+    "pn_would_you_like_to_receive_notifications": "Wilt u meldingen ontvangen?",
+    "privacy": "Privacy",
+    "pushNotifications": "Pushmeldingen",
+    "refreshAll": "Metagegevens vernieuwen",
+    "refreshAllDesc": "Cache verwijderen voor alle NFT's en activa",
+    "secretRecoveryPhrase": "Geheime herstelzin",
+    "security": "Veiligheid",
+    "support": "Support",
+    "testnet": "Testnet",
+    "testnetDescription": "Indien ingeschakeld, kunt u uw testnetwerk en activa selecteren in het scherm Activa beheren.",
+    "view_list_of_connected_dapps": "Lijst met verbonden Dapps weergeven",
+    "wallets": "Portemonnees"
+  },
+  "support": {
+    "contactUs": "Neem contact met ons op",
+    "getInTouch": "Neem contact op",
+    "knowledgeBaseDesc": "Doorzoek onze documenten, lees onze veelgestelde vragen en neem contact op",
+    "knowledgeBaseTitle": "Kennisbank",
+    "visitSupportCenter": "Ga naar Support Center"
+  },
+  "test": {
+    "key": "Testen"
+  },
+  "tokenLists": {
+    "blacklisted": "Blokkeringslijst",
+    "description": "Tokenlijsten zijn lijsten op basis van reputatie met als doel om tokens te identificeren die vertrouwd worden door verschillende beurzen en andere Web3-deelnemers.",
+    "help": "Wat zijn tokenlijsten?",
+    "likelySpam": "Waarschijnlijk spam",
+    "likelySpamDescription": "Wees uiterst voorzichtig bij interactie met dit token. Het kan schadelijk zijn.",
+    "likelySpamHelp": "Wat zijn naar alle waarschijnlijkheid spamtokens?",
+    "likelySpamInfo": "Token die waarschijnlijk spam zijn, zijn door openbare gemeenschappen of een van onze partners gemarkeerd als spam, frauduleus of schadelijk.",
+    "likelySpamTitle": "Waarschijnlijk spam",
+    "notListed": "Niet opgenomen",
+    "openDocs": "Open documenten",
+    "tokenLists": "Tokenlijsten",
+    "tokens": "{tokenListCount} tokens",
+    "unverified": "Niet opgenomen",
+    "unverifiedDescription": "Dit token staat niet op een van de ondersteunde tokenlijsten. Wees voorzichtig.",
+    "unverifiedHelp": "Waarom staat het niet in de lijst?",
+    "verified": "Opgenomen",
+    "verifiedDescription": "De hier vermelde tokens zijn geverifieerd en op dit moment beschikbaar op de Kraken-beurs.",
+    "verifiedInfoKraken": "De hier vermelde tokens zijn op dit moment beschikbaar op de Kraken-beurs.",
+    "verifiedKraken": "Tokens op de Kraken-beurs"
+  },
+  "transactionDetails": {
+    "amount": "Hoeveelheid",
+    "confirmation": {
+      "cancel": "Annuleren",
+      "confirm": "Bevestigen",
+      "fee": "Netwerkkosten:"
+    },
+    "contractAddress": "Contractadres",
+    "copyToClipboard": "Naar klembord gekopieerd",
+    "description": {
+      "approval": {
+        "failed": "{amount} is niet goedgekeurd op {address}",
+        "pending": "{amount} is in afwachting van goedkeuring op {address}",
+        "succeeded": "{amount} is goedgekeurd op {address}"
+      },
+      "approvals": {
+        "failed": "{amount} is niet goedgekeurd op {address}",
+        "pending": "{amount} is in afwachting van goedkeuring op {address}",
+        "succeeded": "{amount} is goedgekeurd op {address}",
+        "success": "{amount} is goedgekeurd op {address}"
+      },
+      "contractInteraction": {
+        "failed": "Interactie met {address} is mislukt",
+        "pending": "Interactie met {address} is in behandeling",
+        "succeeded": "Interactie met {address}"
+      },
+      "contractInteractionFundsReceived": {
+        "pending": "Geld worden ontvangen van {address}",
+        "succeeded": "Geld werd via {address} ontvangen"
+      },
+      "contractInteractions": {
+        "failed": "Interactie met {address} is mislukt",
+        "pending": "Interactie met {address} is in behandeling",
+        "succeeded": "Interactie met {address}"
+      },
+      "deposit": {
+        "failed": "{amount} is niet gestort naar {address}",
+        "pending": "{amount} wordt gestort naar {address}",
+        "succeeded": "{amount} is gestort naar {address}"
+      },
+      "nftBuy": {
+        "failed": "{nftName} is niet gekocht via {address}",
+        "pending": "{nftName} wordt gekocht via {address}",
+        "succeeded": "{nftName} is gekocht via {address}"
+      },
+      "nftMint": {
+        "failed": "{nftName} is niet gemint via {address}",
+        "pending": "{nftName} wordt gemint via {address}",
+        "succeeded": "{nftName} is gemint via {address}"
+      },
+      "nftReceive": {
+        "pending": "{nftName} wordt ontvangen van {address}",
+        "succeeded": "{nftName} is ontvangen van {address}"
+      },
+      "nftSell": {
+        "failed": "{nftName} is niet verkocht via {address}",
+        "pending": "{nftName} wordt verkocht via {address}",
+        "succeeded": "{nftName} is verkocht via {address}"
+      },
+      "nftSend": {
+        "failed": "{nftName} is niet verzonden naar {address}",
+        "pending": "{nftName} wordt verzonden naar {address}",
+        "succeeded": "{nftName} is verzonden naar {address}"
+      },
+      "receive": {
+        "pending": "{amount} wordt ontvangen van {address}",
+        "succeeded": "{amount} is ontvangen van {address}"
+      },
+      "receiveUtxo": {
+        "pending": "{amount} wordt ontvangen",
+        "succeeded": "{amount} is ontvangen"
+      },
+      "send": {
+        "failed": "{amount} is niet verzonden naar {address}",
+        "pending": "{amount} wordt verzonden naar {address}",
+        "succeeded": "{amount} is verzonden naar {address}"
+      },
+      "sendUtxo": {
+        "failed": "{amount} is niet verzonden",
+        "pending": "{amount} wordt verzonden",
+        "succeeded": "{amount} is verzonden"
+      },
+      "swap": {
+        "failed": "{amountSent} is niet omgewisseld naar {amountReceived} via {address}",
+        "pending": "{amountSent} wordt omgewisseld voor {amountReceived} via {address}",
+        "succeeded": "{amountSent} is omgewisseld voor {amountReceived} via {address}"
+      }
+    },
+    "free": "Gratis",
+    "from": "Van",
+    "genericNetworkFee": "Netwerkkosten",
+    "input": "Invoer",
+    "inputs": "Invoer",
+    "networkFee": "{network} Netwerkkosten",
+    "networkFee_": "Netwerkkosten",
+    "notes": "Beschrijving",
+    "notes_edit": "Bewerk",
+    "notes_empty": "Geen beschrijving",
+    "notesCaption": "Beschrijvingen worden lokaal op uw apparaat opgeslagen",
+    "open_explorer": "In explorer weergeven",
+    "openExplorer": "In explorer weergeven",
+    "output": "Uitvoer",
+    "outputs": "Uitvoer",
+    "recipient": "Verzenden naar",
+    "saveNotes": "Opslaan",
+    "state": {
+      "failed": "Mislukt",
+      "pending": "In behandeling",
+      "success": "Succes"
+    },
+    "status": "Status",
+    "status_confirmed": "Bevestigd",
+    "status_pending": "In behandeling",
+    "time": "Tijd",
+    "title": "Details van transactie",
+    "to": "Naar",
+    "toBTC": "Naar:",
+    "transaction_id": "Transactie-ID",
+    "unlimited": "Onbeperkt"
+  },
+  "transactions": {
+    "activity": "Activiteit",
+    "no_transactions_yet": "Nog geen transacties. Trek om te vernieuwen",
+    "pending": "Wordt verzonden...",
+    "receive": "Ontvangen",
+    "send": "Verzenden",
+    "transactions": "Transacties"
+  },
+  "transactionTile": {
+    "activity": "Activiteit",
+    "address": {
+      "from": "Van: ",
+      "to": "Naar: "
+    },
+    "nativeAssetView": {
+      "approval": "Goedkeuring",
+      "contractInteraction": "Contractinteractie",
+      "send": "Verzenden {assetSymbol}"
+    },
+    "networkFee": "Netwerkkosten",
+    "no_transactions_description": "Voeg activa toe aan uw portemonnee",
+    "no_transactions_title": "Transacties worden hier weergegeven",
+    "no_transactions_yet": "Nog geen transacties. Trek om te vernieuwen",
+    "noTransactionsDescription": "Voeg {0} toe aan uw portemonnee",
+    "noTransactionsTitle": "Transacties worden hier weergegeven",
+    "pending": "Wordt verzonden...",
+    "transactions": "Transacties",
+    "type": {
+      "contractInteraction": "Contractinteractie",
+      "contractInteractionAffected": "Tegoed ontvangen",
+      "deposit": "Storten",
+      "mint": "NFT minten",
+      "NFTBuy": "NFT kopen",
+      "NFTReceive": "NFT ontvangen",
+      "NFTSell": "NFT verkopen",
+      "NFTsend": "NFT verzenden",
+      "receive": "Ontvangen",
+      "send": "Verzenden",
+      "swap": "Swap",
+      "tokenApproval": "Goedkeuring"
+    }
+  },
+  "universalReceive": {
+    "buttonTitle": "Ontvangen",
+    "copied": "Adres gekopieerd",
+    "crypto": "Crypto",
+    "cryptoAndNft": "NFT's en crypto",
+    "ethereumAddressLabel": "Omvat Layer 2-netwerken",
+    "ethereumExplainerBody": "Het adressysteem van Ethereum breidt zich uit naar Layer 2-netwerken zoals Polygon, Arbitrum, Optimism en Base. Dit zorgt ervoor dat uw ene adres overal werkt",
+    "ethereumExplainerHeading": "Uw Ethereum-adres",
+    "tokenAddress": "{token} adres"
+  },
+  "universalSend": {
+    "assetBTCEmptyDesc": "Uw huidige portemonnee bevat geen Bitcoin",
+    "assetBTCEmptyTitle": "Geen Bitcoin beschikbaar",
+    "assetDogeEmptyDesc": "Uw huidige portemonnee bevat geen Dogecoin",
+    "assetDogeEmptyTitle": "Geen Dogecoin beschikbaar",
+    "assetEthereumaEmptyDesc": "Uw portemonnee bevat geen beschikbare activa op Ethereum of Layer 2-netwerken",
+    "assetEthereumEmptyTitle": "Geen Ethereum beschikbaar",
+    "assetsEmptyDesc": "Uw huidige portemonnee bevat geen activa, probeer uw portemonnee te financieren",
+    "assetsEmptyTitle": "Geen activa beschikbaar",
+    "assetSolanaEmptyDesc": "Uw huidige portemonnee bevat geen beschikbare Solana-activa",
+    "assetSolanaEmptyTitle": "Geen Solana-activa beschikbaar",
+    "buttonTitle": "Versturen",
+    "clearSearch": "Zoekopdracht verwijderen",
+    "continue": "Doorgaan",
+    "goBack": "Ga terug",
+    "myWallets": "Mijn portemonnees",
+    "searchEmptyDesc": "Probeer uw zoekopdracht uit te breiden",
+    "searchEmptyTitle": "Geen resultaten",
+    "searchPlaceholder": "Selecteer wat u wilt verzenden",
+    "sendAsset": "Verzend activum",
+    "sendTo": "Verzend naar"
+  },
+  "url": {
+    "licenses": "https://www.kraken.com/legal",
+    "privacyPolicy": "https://www.kraken.com/wallet/privacy",
+    "releaseNotes": "https://blog.kraken.com",
+    "termsOfService": "https://kraken.com"
+  },
+  "view_nft": {
+    "gallery": "Galerij",
+    "lives_on": "Leeft op:"
+  },
+  "view_token": {
+    "lives_on": "Leeft op:"
+  },
+  "walletConnect": {
+    "account_not_found": "WalletConnect: account niet gevonden",
+    "action_cancelled": "Actie geannuleerd",
+    "action_in_progress": "Uw WalletConnect-actie wordt verwerkt...",
+    "app_details": {
+      "disconnect": "Verbindingen verbreken",
+      "disconnect_decscription": "Als u de verbinding met deze app verbreekt, wordt alle toegang tot uw portemonnee verwijderd",
+      "error": "Fout bij het verbreken van de verbinding",
+      "open": "Open"
+    },
+    "auth": {
+      "cancel": "Annuleren",
+      "connect": "Verbinden"
+    },
+    "failedToConnect": "De applicatie heeft geen verbinding gemaakt",
+    "failedToDisconnect": "De applicatie heeft de verbinding niet verbroken",
+    "feeEstimate": "Geschatte kosten",
+    "invalid_request_params": "WalletConnect: ongeldige request.params",
+    "list": {
+      "disconnect_all": "Alle verbindingen verbreken ({0})",
+      "error_all": "Fout bij het verbreken van de verbinding met alle apps",
+      "title": "Apps"
+    },
+    "method_not_implemented": "WalletConnect: methode {method} niet geïmplementeerd",
+    "request_fulfilled": "WalletConnect: aan verzoek voldaan",
+    "response_rejected": "WalletConnect: Toepassingsverzoek afgewezen",
+    "response_rejected_prepare_transaction_failure": "WalletConnect: antwoord afgewezen, mislukte transactie voorbereiden",
+    "title": "WalletConnect",
+    "topic_not_found": "WalletConnect: onderwerp niet gevonden",
+    "unsupported_network": "Dit netwerk wordt niet ondersteund",
+    "wallet_no_account": "WalletConnect: gerelateerde portemonnee heeft geen gekoppeld rekeningnummer",
+    "wallet_not_found": "WalletConnect: gerelateerde portemonnee kan niet worden gevonden"
+  },
+  "walletConnectExplainer": {
+    "firstPage": {
+      "boldDescription": "Met uw portemonnee kunt u {boldDescription} WalletConnect gebruiken.",
+      "buttonText": "Klinkt goed",
+      "description": "Met uw portemonnee kunt u {boldDescription} WalletConnect gebruiken.",
+      "title": "Meer dan alleen crypto-opslag!"
+    },
+    "fourthPage": {
+      "aaveDescription": "Crypto lenen en uitlenen op Aave",
+      "buttonText": "Sluiten",
+      "ensDescription": "Registreer uw on-chain-naam voordat deze weg is",
+      "mintDescription": "Gebruik uw portemonnee om gratis NFT's te claimen op {url}",
+      "title": "Probeer nu:",
+      "website": "Website: "
+    },
+    "secondPage": {
+      "buttonText": "Doorgaan",
+      "part1": "Tik op Portemonnee koppelen",
+      "part2": "WalletConnect selecteren",
+      "part3": "Tik op uw telefoon op",
+      "part4": "QR-code scannen",
+      "title": "Om uw portemonnee met Web3-apps te verbinden",
+      "titlePart1": "1. Klik op Portemonnee koppelen",
+      "titlePart2": "2. WalletConnect selecteren",
+      "titlePart3": "3. Tik op uw telefoon op",
+      "titlePart4": "4. QR-code scannen",
+      "titleWithEllipsis": "Om uw portemonnee met Web3-apps te verbinden..."
+    },
+    "thirdPage": {
+      "buttonText": "Doorgaan",
+      "description1": "Tik op WalletConnect",
+      "description2": "Kraken-portemonnee selecteren",
+      "subtitle": "In plaats van te scannen:",
+      "title": "Wanneer u Web3-apps op uw telefoon gebruikt"
+    }
+  },
+  "walletConnectTutorialPrompt": {
+    "firstPage": {
+      "boldDescription": "Veilig toegang tot duizenden gedecentraliseerde apps",
+      "buttonText": "Klinkt goed",
+      "description": "Met uw portemonnee kunt u {boldDescription} WalletConnect gebruiken.",
+      "title": "Meer dan alleen crypto-opslag!"
+    },
+    "fourthPage": {
+      "aaveDescription": "Crypto lenen en uitlenen op Aave",
+      "aaveWebsite": "app.aave.com",
+      "buttonText": "Sluiten",
+      "ensDescription": "Registreer uw on-chain-naam voordat deze weg is",
+      "ensWebsite": "app.ens.domains",
+      "mintDescription": "Gebruik uw portemonnee om gratis NFT's te claimen op {website}",
+      "mintWebsite": "mint.fun",
+      "title": "Probeer nu:",
+      "website": "Website: "
+    },
+    "secondPage": {
+      "buttonText": "Doorgaan",
+      "step1": "Tik op Portemonnee koppelen",
+      "step1title": "1. Klik op Portemonnee koppelen",
+      "step2": "WalletConnect selecteren",
+      "step2title": "2. WalletConnect selecteren",
+      "step3": "Tik op uw telefoon op",
+      "step3title": "3. Tik op uw telefoon op",
+      "step4": "QR-code scannen",
+      "step4title": "4. QR-code scannen",
+      "title": "Om uw portemonnee met Web3-apps te verbinden"
+    },
+    "thirdPage": {
+      "buttonText": "Doorgaan",
+      "description1": "Kopieer de WalletConnect-link",
+      "description2": "Plak het adres in uw portemonnee",
+      "subtitle": "In plaats van te scannen:",
+      "title": "Wanneer u Web3-apps op uw telefoon gebruikt"
+    }
+  },
+  "walletDetails": {
+    "derivationPath": "Derivatiepad",
+    "title": "Meer informatie",
+    "type": "Type",
+    "wallet_information": "Portemonneegegevens",
+    "xpub": "Extended public key",
+    "xpubKeyCopied": "Naar klembord gekopieerd"
+  },
+  "wallets": {
+    "import_title": "Importeren",
+    "list_tryagain": "Probeer het opnieuw",
+    "pending": "In behandeling"
+  }
+}

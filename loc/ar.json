@@ -1,0 +1,12 @@
+{
+  "walletConnectExplainer": {
+    "firstPage": {
+      "boldDescription": "[strings-key:96ab6c0eedfdd0816cd05bc43137a53e]"
+    }
+  },
+  "walletConnectTutorialPrompt": {
+    "firstPage": {
+      "description": "[strings-key:96ab6c0eedfdd0816cd05bc43137a53e]"
+    }
+  }
+}

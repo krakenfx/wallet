@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Kraken Wallet</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>krakenwallet</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>krakenwallet</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>112</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.finance</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This alert should not show up as we do not require this data</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This alert should not show up as we do not require this data</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This alert should not show up as we do not require this data</string>
+	<key>NSCameraUsageDescription</key>
+	<string>In order to quickly scan the recipient's address, we need your permission to use the camera to scan their QR Code.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>$(PRODUCT_NAME) requires FaceID access to allows you quick and secure access.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This alert should not show up as we do not require this data</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This alert should not show up as we do not require this data</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This alert should not show up as we do not require this data</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This alert should not show up as we do not require this data</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Your authorization is required to save this image.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>In order to import an image for scanning, we need your permission to access your photo library.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This alert should not show up as we do not require this data</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>IBM-Plex-Mono-Bold.otf</string>
+		<string>IBM-Plex-Mono-Regular.otf</string>
+		<string>IBM-Plex-Mono-SemiBold.otf</string>
+		<string>IBM-Plex-Sans-Bold.otf</string>
+		<string>IBM-Plex-Sans-Regular.otf</string>
+		<string>IBM-Plex-Sans-SemiBold.otf</string>
+		<string>Celias.otf</string>
+		<string>Celias-Bold.otf</string>
+		<string>Celias-Light.otf</string>
+		<string>Celias-Medium.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>SplashScreen.storyboard</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>
