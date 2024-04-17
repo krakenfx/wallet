@@ -24,7 +24,7 @@ This repo functions as a mirror of the main private development repo. Its main p
 ## Official Channels
 
 * [Website](https://kraken.com/wallet) 
-* [Support and Documentation](https://support.kraken.com/hc/en-us/categories/kraken-wallet) 
+* [Support and Documentation](https://support.kraken.com/hc/en-us/categories/Kraken-Wallet) 
 * [Apple App Store](https://apps.apple.com/app/kraken-wallet/id1626327149) 
 * [Google Play Store](https://play.google.com/store/apps/details?id=com.kraken.superwallet) 
 
