@@ -33,6 +33,8 @@ export const omitNetworkIcons = {
 
   [ChainAgnostic.COIN_SOLANA]: 'solana',
 
+  [ChainAgnostic.COIN_POCKET]: 'pocket',
+
   'eip155:42161/erc20:0x912ce59144191c1204e64559fe8253a0e49e6548': 'arbitrum',
 
   'eip155:10/erc20:0x4200000000000000000000000000000000000042': 'optimism',
