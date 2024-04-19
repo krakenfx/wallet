@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal.js";
-import { Any } from "./google/protobuf/any.js";
+import { Any } from "./google/protobuf/any";
 
 export const protobufPackage = "pocketjs";
 

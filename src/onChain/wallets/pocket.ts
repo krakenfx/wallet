@@ -1,6 +1,5 @@
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 import * as ed25519 from 'ed25519-hd-key';
-import crypto from 'crypto';
 
 import { Buffer } from 'buffer';
 import nacl from 'tweetnacl';
@@ -26,7 +25,6 @@ import {
   AnyWalletKind,
   BalanceResponse,
   FeeOptions,
-  NotSupportedError,
 } from './base';
 
 import { ChainAgnostic } from './utils/ChainAgnostic';
@@ -38,6 +36,8 @@ import { superFetch } from '@/api/base/superFetch';
 import { ProtoStdSignature, ProtoStdTx } from './pocket/generated/tx-signer';
 import { varintEncode } from './pocket/varintEncode';
 import { MsgProtoSend } from './pocket/msg-proto-send';
+
+import createHash = require('create-hash');
 
 const POKT_BIP44_COINTYPE = 635;
 
@@ -63,24 +63,27 @@ type PocketTransaction = {
   msg: MsgProtoSend;
 };
 
-// function hexStringToByteArray(str: string): Uint8Array {
-//   const bytes: number[] = [];
-//   for (let i = 0; i < str.length; i += 2) {
-//     bytes.push(parseInt(str.substr(i, 2), 16));
-//   }
+function getPocketKeyPair(derivationPath: string, seedHex: string) {
+  const { key } = ed25519.derivePath(derivationPath, seedHex);
 
-//   return new Uint8Array(bytes);
-// }
+  return nacl.sign.keyPair.fromSeed(key);
+}
 
-async function getAddressFromPublicKey(publicKey: ArrayBuffer): Promise<string> {
-  const hash = await crypto.subtle.digest(
-    {
-      name: 'SHA-256',
-    },
-    publicKey,
-  );
+function getPublicKeyFromPrivateKey(privateKey: Buffer): Buffer {
+  const publicKey = ed25519.getPublicKey(privateKey);
 
-  return Buffer.from(new Uint8Array(hash)).toString('hex').slice(0, 40);
+  // remove left padding (1 byte)
+  return Buffer.from(publicKey.subarray(1));
+}
+
+async function getAddressFromPublicKey(publicKey: Buffer): Promise<string> {
+  return createHash('sha256').update(publicKey).digest().toString('hex').slice(0, 40);
+}
+
+export class Poktscan implements BlockExplorer {
+  transactionUri(txId: string): string {
+    return `https://poktscan.com/tx/${txId}`;
+  }
 }
 
 export class PocketNetwork implements Network<PocketTransaction> {
@@ -90,11 +93,7 @@ export class PocketNetwork implements Network<PocketTransaction> {
   nativeTokenDecimals: number = 6;
   nativeTokenSymbol: NativeTokenSymbol = 'POKT';
   paymentUriPrefix = 'pokt';
-  blockExplorer: BlockExplorer = {
-    transactionUri(txId: string) {
-      return `https://poktscan.com/tx/${txId}`;
-    },
-  };
+  blockExplorer = new Poktscan();
   icon: NetworkIcon = ({ opacity }) => ({
     id: 'pokt',
     fgColor: '#2d7df7',
@@ -115,26 +114,18 @@ export class PocketNetwork implements Network<PocketTransaction> {
     throw new Error('not supported');
   }
 
-  getPrivateKey(data: WalletDataWithSeed) {
-    const { key } = ed25519.derivePath(this.getDerivationPath(data.accountIdx) + "/0'", Buffer.from(data.seed.data).toString('hex'));
-
-    return key;
-  }
-
   getExtendedPublicKey(seed: ArrayBuffer, accountIdx: number): ExtendedPublicKeyAndChainCode {
-    const { key } = ed25519.derivePath(this.getDerivationPath(accountIdx) + "/0'", Buffer.from(seed).toString('hex'));
-
-    const publicKey = ed25519.getPublicKey(key);
-
-    // @todo: Do we need to remove zero bytes (left padding)?
+    const { publicKey } = getPocketKeyPair(this.getDerivationPath(accountIdx) + "/0'", Buffer.from(seed).toString('hex'));
 
     return {
       extendedPublicKey: publicKey,
     };
   }
 
-  async deriveAddress(data: WalletData): Promise<string> {
-    return getAddressFromPublicKey(data.extendedPublicKey);
+  async deriveAddress(wallet: WalletData): Promise<string> {
+    const publicKey = Buffer.from(wallet.extendedPublicKey);
+
+    return getAddressFromPublicKey(publicKey);
   }
 
   async deriveAllAddresses(data: WalletDataWithSeed): Promise<string[]> {
@@ -153,26 +144,9 @@ export class PocketNetwork implements Network<PocketTransaction> {
   async signTransaction(data: WalletDataWithSeed, tx: PocketTransaction): Promise<string> {
     const { msg, fee } = tx;
 
-    const privateKey = await this.getPrivateKey(data);
-
-    const publicKey = ed25519.getPublicKey(privateKey);
+    const { publicKey, secretKey } = getPocketKeyPair(this.getDerivationPath(data.accountIdx) + "/0'", Buffer.from(data.seed.data).toString('hex'));
 
     const entropy = Number(BigInt(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)).toString()).toString();
-
-    /**
-    public marshalStdSignDoc(): Buffer {
-        const stdSignDoc = {
-        chain_id: this.chainID,
-        entropy: this.entropy,
-        fee: this.getFeeObj(),
-        memo: this.memo,
-        msg: this.msg.toStdSignDocMsgObj(),
-        }
-
-        // Use stringifyObject instead JSON.stringify to get a deterministic result.
-        return Buffer.from(stringifyObjectWithSort(stdSignDoc), 'utf-8')
-    }
-     */
 
     // important! we need to keep the order of the fields in the object
     const docToSign = {
@@ -181,7 +155,7 @@ export class PocketNetwork implements Network<PocketTransaction> {
       fee: [
         {
           amount: fee.amount || '10000',
-          denom: 'Upokt',
+          denom: 'upokt',
         },
       ],
       memo: 'Kraken Wallet',
@@ -190,7 +164,7 @@ export class PocketNetwork implements Network<PocketTransaction> {
 
     const bytesToSign = Buffer.from(JSON.stringify(docToSign), 'utf-8');
 
-    const signatureBytes = nacl.sign.detached(bytesToSign, privateKey);
+    const signatureBytes = nacl.sign.detached(bytesToSign, secretKey);
 
     const txSig: ProtoStdSignature = {
       publicKey: publicKey,
@@ -223,12 +197,18 @@ export class PocketNetwork implements Network<PocketTransaction> {
 }
 
 export class PocketTransport implements Transport<PocketTransaction, SendRequest, unknown, PocketNetwork> {
-  estimateTransactionCost(_network: PocketNetwork, _wallet: WalletData, _tx: PreparedTransaction<PocketTransaction>, _fee: unknown): Promise<TotalFee> {
-    throw new NotSupportedError();
+  async estimateTransactionCost(_network: PocketNetwork, _wallet: WalletData, _tx: PreparedTransaction<PocketTransaction>, _fee: unknown): Promise<TotalFee> {
+    return {
+      amount: '10000',
+      token: 'POKT',
+    };
   }
 
-  estimateDefaultTransactionCost(_network: PocketNetwork, _wallet: WalletData, _store: WalletStorage<unknown>, _fee: unknown): Promise<TotalFee> {
-    throw new NotSupportedError();
+  async estimateDefaultTransactionCost(_network: PocketNetwork, _wallet: WalletData, _store: WalletStorage<unknown>, _fee: unknown): Promise<TotalFee> {
+    return {
+      amount: '10000',
+      token: 'POKT',
+    };
   }
 
   async prepareTransaction(
@@ -271,7 +251,7 @@ export class PocketTransport implements Transport<PocketTransaction, SendRequest
 
     const data = await res.json();
 
-    return data.txHash;
+    return data.txhash;
   }
 
   async getTransactionStatus(network: PocketNetwork, txid: string): Promise<boolean> {
@@ -282,7 +262,7 @@ export class PocketTransport implements Transport<PocketTransaction, SendRequest
 
     const data = await res.json();
 
-    return data.tx_result.code === 0;
+    return data.tx_result?.code === 0;
   }
 
   async getFeesEstimate(_network: PocketNetwork): Promise<FeeOptions> {
@@ -328,12 +308,72 @@ export class PocketTransport implements Transport<PocketTransaction, SendRequest
     ];
   }
 
-  async fetchTransactions(network: PocketNetwork, wallet: AnyWalletKind, _store: WalletStorage<unknown>, handle: (txs: Transaction[]) => Promise<boolean>) {}
-}
-
-export class Poktscan implements BlockExplorer {
-  transactionUri(txId: string): string {
-    return `https://poktscan.com/tx/${txId}`;
+  async fetchTransactions(network: PocketNetwork, wallet: AnyWalletKind, _store: WalletStorage<unknown>, handle: (txs: Transaction[]) => Promise<boolean>) {
+    // @todo: implement tgus properly
+    // let address;
+    // if ('address' in wallet) {
+    //   address = wallet.address;
+    // } else {
+    //   address = await network.deriveAddress(wallet);
+    // }
+    // let page = 1;
+    // while (true) {
+    //   const res: Response = await superFetch(`${POCKET_RPC_ENDPOINT}/v1/query/accounttxs`, {
+    //     method: 'POST',
+    //     body: JSON.stringify({ address, page, per_page: 20 }),
+    //   });
+    //   const data = await res.json();
+    //   const blockTimes = data.txs.reduce((acc: any, tx: any) => {
+    //     if (!acc[tx.height]) {
+    //       const blockres = superFetch(`${POCKET_RPC_ENDPOINT}/v1/query/block`, {
+    //         method: 'POST',
+    //         body: JSON.stringify({ height: tx.height }),
+    //       })
+    //         .then(res => res.json())
+    //         .then(data => Math.round(new Date(data.block.header.time).getTime() / 1000));
+    //       acc[tx.height] = blockres;
+    //     }
+    //     return acc;
+    //   }, {});
+    //   const txs: Transaction[] = await Promise.all(
+    //     data.txs.map(async (tx: any) => {
+    //       const effect =
+    //         tx.stdTx.msg.value.from_address === address
+    //           ? {
+    //               amount: tx.stdTx.msg.value.amount,
+    //               assetId: '',
+    //               receiver: tx.stdTx.msg.value.to_address,
+    //               type: 'send',
+    //             }
+    //           : {
+    //               amount: tx.stdTx.msg.value.amount,
+    //               assetId: '',
+    //               sender: tx.stdTx.msg.value.from_address,
+    //               type: 'receive',
+    //             };
+    //       return {
+    //         protocolInfo: {
+    //           projectId: 'pocket',
+    //         },
+    //         id: tx.hash,
+    //         kind: 'sent',
+    //         status: tx.tx_result.code === 0 ? 'succeeded' : 'failed',
+    //         timestamp: await blockTimes[tx.height],
+    //         effects: [effect],
+    //         fee: {
+    //           amount: tx.stdTx.fee[0].amount,
+    //           token: 'POKT',
+    //         },
+    //       };
+    //     }),
+    //   );
+    //   handle(txs);
+    //   if (data.page_count <= page) {
+    //     break;
+    //   }
+    //   page++;
+    //   break;
+    // }
   }
 }
 
