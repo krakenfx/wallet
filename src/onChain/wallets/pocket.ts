@@ -1,6 +1,4 @@
 /* eslint @typescript-eslint/no-unused-vars: 0 */
-import { IsomorphicProvider } from '@pokt-foundation/pocketjs-isomorphic-provider'
-import { CoinDenom, MsgProtoSend, TxEncoderFactory, TxSignature } from '@pokt-foundation/pocketjs-transaction-builder';
 import * as ed25519 from 'ed25519-hd-key';
 import crypto from 'crypto';
 
@@ -35,15 +33,20 @@ import { ChainAgnostic } from './utils/ChainAgnostic';
 
 import loc from '/loc';
 import { POCKET_RPC_ENDPOINT } from '/config';
+import { superFetch } from '@/api/base/superFetch';
+
+import { ProtoStdSignature, ProtoStdTx } from './pocket/generated/tx-signer';
+import { varintEncode } from './pocket/varintEncode';
+import { MsgProtoSend } from './pocket/msg-proto-send';
 
 const POKT_BIP44_COINTYPE = 635;
 
-const TX_TYPE_SEND = 'pos/Send';
+const TX_TYPE_SEND_AMINO_KEY = 'pos/Send';
 
 type SendRequest = {
   amount: bigint;
   to: string;
-  messageType: typeof TX_TYPE_SEND;
+  messageType: typeof TX_TYPE_SEND_AMINO_KEY;
 };
 
 type RawTxRequestBase = {
@@ -104,7 +107,7 @@ export class PocketNetwork implements Network<PocketTransaction> {
       amount: BigInt(amount),
 
       // explicit type for tx
-      messageType: TX_TYPE_SEND,
+      messageType: TX_TYPE_SEND_AMINO_KEY,
     };
   }
 
@@ -156,15 +159,61 @@ export class PocketNetwork implements Network<PocketTransaction> {
 
     const entropy = Number(BigInt(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)).toString()).toString();
 
-    const encoder = TxEncoderFactory.createEncoder(entropy, 'mainnet', msg, fee.amount || '10000', CoinDenom.Upokt, 'Kraken Wallet');
+    /**
+    public marshalStdSignDoc(): Buffer {
+        const stdSignDoc = {
+        chain_id: this.chainID,
+        entropy: this.entropy,
+        fee: this.getFeeObj(),
+        memo: this.memo,
+        msg: this.msg.toStdSignDocMsgObj(),
+        }
 
-    const bytesToSign = encoder.marshalStdSignDoc();
+        // Use stringifyObject instead JSON.stringify to get a deterministic result.
+        return Buffer.from(stringifyObjectWithSort(stdSignDoc), 'utf-8')
+    }
+     */
+
+    // important! we need to keep the order of the fields in the object
+    const docToSign = {
+      chain_id: 'mainnet',
+      entropy: entropy,
+      fee: [
+        {
+          amount: fee.amount || '10000',
+          denom: 'Upokt',
+        },
+      ],
+      memo: 'Kraken Wallet',
+      msg: msg.toStdSignDocMsgObj(),
+    };
+
+    const bytesToSign = Buffer.from(JSON.stringify(docToSign), 'utf-8');
 
     const signatureBytes = nacl.sign.detached(bytesToSign, privateKey);
 
-    const marshalledTx = new TxSignature(publicKey, Buffer.from(signatureBytes));
+    const txSig: ProtoStdSignature = {
+      publicKey: publicKey,
+      Signature: signatureBytes,
+    };
 
-    const rawHexBytes = encoder.marshalStdTx(marshalledTx).toString('hex');
+    const stdTx: ProtoStdTx = {
+      msg: msg.toStdTxMsgObj(),
+      fee: docToSign.fee,
+      signature: txSig,
+      memo: docToSign.memo,
+      entropy: parseInt(docToSign.entropy, 10),
+    };
+
+    // Create the Proto Std Tx bytes
+    const protoStdTxBytes: Buffer = Buffer.from(ProtoStdTx.encode(stdTx).finish());
+
+    // Create the prefix
+    const prefixBytes = varintEncode(protoStdTxBytes.length);
+    const prefix = Buffer.from(prefixBytes);
+
+    // Concatenate for the result
+    const rawHexBytes = Buffer.concat([prefix, protoStdTxBytes]).toString('hex');
 
     return JSON.stringify({
       address: await getAddressFromPublicKey(publicKey),
@@ -174,14 +223,6 @@ export class PocketNetwork implements Network<PocketTransaction> {
 }
 
 export class PocketTransport implements Transport<PocketTransaction, SendRequest, unknown, PocketNetwork> {
-  rpcProvider: IsomorphicProvider;
-
-  constructor() {
-    this.rpcProvider = new IsomorphicProvider({
-      rpcUrl: POCKET_RPC_ENDPOINT,
-    });
-  }
-
   estimateTransactionCost(_network: PocketNetwork, _wallet: WalletData, _tx: PreparedTransaction<PocketTransaction>, _fee: unknown): Promise<TotalFee> {
     throw new NotSupportedError();
   }
@@ -223,15 +264,25 @@ export class PocketTransport implements Transport<PocketTransaction, SendRequest
       },
     };
 
-    const r = await this.rpcProvider.sendTransaction(rawTxRequest);
+    const res: Response = await superFetch(`${POCKET_RPC_ENDPOINT}/v1/client/rawtx`, {
+      method: 'POST',
+      body: JSON.stringify(rawTxRequest),
+    });
 
-    return r.txHash;
+    const data = await res.json();
+
+    return data.txHash;
   }
 
   async getTransactionStatus(network: PocketNetwork, txid: string): Promise<boolean> {
-    const tx = await this.rpcProvider.getTransaction(txid);
+    const res: Response = await superFetch(`${POCKET_RPC_ENDPOINT}/v1/query/tx`, {
+      method: 'POST',
+      body: JSON.stringify({ hash: txid }),
+    });
 
-    return tx.tx_result.code === 0;
+    const data = await res.json();
+
+    return data.tx_result.code === 0;
   }
 
   async getFeesEstimate(_network: PocketNetwork): Promise<FeeOptions> {
@@ -255,13 +306,18 @@ export class PocketTransport implements Transport<PocketTransaction, SendRequest
       address = await network.deriveAddress(wallet);
     }
 
-    const balance = await this.rpcProvider.getBalance(address);
+    const res: Response = await superFetch(`${POCKET_RPC_ENDPOINT}/v1/query/balance`, {
+      method: 'POST',
+      body: JSON.stringify({ address }),
+    });
+
+    const data = await res.json();
 
     return [
       {
         balance: {
           token: network.nativeTokenCaipId,
-          value: balance.toString(),
+          value: data.balance.toString(),
         },
         metadata: {
           symbol: network.nativeTokenSymbol,
@@ -272,60 +328,7 @@ export class PocketTransport implements Transport<PocketTransaction, SendRequest
     ];
   }
 
-  async fetchTransactions(network: PocketNetwork, wallet: AnyWalletKind, _store: WalletStorage<unknown>, handle: (txs: Transaction[]) => Promise<boolean>) {
-    let address;
-
-    if ('address' in wallet) {
-      address = wallet.address;
-    } else {
-      address = await network.deriveAddress(wallet);
-    }
-
-    let page = 1;
-
-    console.log(`[fetchTransactions] ${network.caipId}`);
-
-    while (true) {
-      console.log(`[fetchTransactions]  ${network.caipId} fetching from server, with page`, page);
-
-      const accountWithTxs = await this.rpcProvider.getAccountWithTransactions(address, {
-        page,
-      });
-
-      const { transactions } = accountWithTxs;
-
-      if (transactions.length === 0) {
-        console.log(`[fetchTransactions] ${network.caipId} stopping at empty`);
-        break;
-      }
-
-      console.log(`[fetchTransactions] ${network.caipId} got results count`, transactions.length);
-
-      // we only filter pos/Send txs
-      const mapped: Transaction[] = transactions.filter(tx => tx.stdTx.msg.type === TX_TYPE_SEND).map((tx) => ({
-        fee: {
-            amount: tx.stdTx.fee.amount as string,
-            token: 'POKT',
-        },
-        kind: 'sent', // or affected?
-        status: tx.tx_result.code === 0 ? 'succeeded' : 'failed',
-        id: tx.hash as string,
-
-        // @todo: Send/Receive effects based on tx.stdTx.msg.to_address
-        effects: [],
-
-        // @todo: do we need to map tx height to block time here?
-        timestamp: Date.now(),
-      }));
-
-      if (await handle(mapped)) {
-        console.log(`[fetchTransactions] ${network.caipId} stopping at known tx`);
-        break;
-      }
-
-      page++;
-    }
-  }
+  async fetchTransactions(network: PocketNetwork, wallet: AnyWalletKind, _store: WalletStorage<unknown>, handle: (txs: Transaction[]) => Promise<boolean>) {}
 }
 
 export class Poktscan implements BlockExplorer {
