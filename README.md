@@ -46,10 +46,22 @@ Trail of Bits - [[link]](https://github.com/krakenfx/wallet/files/14999557/Krake
 All bug and vulnerability disclosures must go through the properly defined channels.
 
 * Contact: [bugbounty@kraken.com](mailto:bugbounty@kraken.com)
-* Review the [[bug bounty policy]](https://www.kraken.com/features/security/bug-bounty) first before submitting your findings.
+* Review the [bug bounty policy](https://www.kraken.com/features/security/bug-bounty) first before submitting your findings.
 
 ## Contributing
 
-See the [Responsible Disclosure](#responsible-disclosure) section for any security-related bugs, fixes, reports, disclosures, and etc.
+We welcome contributions from the community. Here are a few guidelines to help you get started:
 
-If you wish to request new features, or submit a patch use [bugbounty@kraken.com](mailto:bugbounty@kraken.com). Pull requests will be reviewed internally and are welcomed.
+Security-Related Bugs and Disclosures
+For any security-related issues, please refer to our [Responsible Disclosure policy](https://www.kraken.com/features/security/bug-bounty). It's crucial that these matters are handled sensitively to protect all users.
+
+Feature Requests
+If you're interested in suggesting a new feature, please submit a detailed issue on Github. Include the purpose of the feature, its potential impact, and any ideas you have for how it might be implemented. This will help us understand and evaluate your proposal more effectively.
+
+Pull Requests
+Please note that our repository is a point-in-time mirror of our internal repository, which means we cannot directly merge pull requests. However, every pull request is valuable and will be reviewed by our team. Contributions considered suitable will be manually integrated into our internal repo and reflected in future releases.
+
+Upcoming Improvements
+We are currently working on providing build files and developer documentation that are necessary for quality PRs. We expect to roll out these resources soon and will keep the community updated on our progress.
+
+
