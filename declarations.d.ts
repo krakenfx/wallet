@@ -26,6 +26,7 @@ declare module 'react-native-config' {
     WALLETCONNECT_PROJECT_ID: string;
     DISABLE_SCREEN_CAPTURE?: boolean;
     INTERNAL_RELEASE?: string;
+    POCKET_RPC_ENDPOINT: string;
   }
 
   export const Config: NativeConfig;

@@ -58,7 +58,7 @@ export const UniversalReceiveScreen = ({ navigation }: NavigationProps<'Universa
       {
         key: 'crypto',
         label: loc.universalReceive.crypto,
-        data: tokens.filtered('assetId IN $0', [ChainAgnostic.COIN_BITCOIN, ChainAgnostic.COIN_DOGECOIN]),
+        data: tokens.filtered('assetId IN $0', [ChainAgnostic.COIN_BITCOIN, ChainAgnostic.COIN_DOGECOIN, ChainAgnostic.COIN_POCKET]),
       },
     ];
   }, [tokens]);

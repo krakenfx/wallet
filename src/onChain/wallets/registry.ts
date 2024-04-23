@@ -11,6 +11,7 @@ import { arbitrumNetwork, baseNetwork, ethereumNetwork, ethereumSepoliaNetwork, 
 import { SolanaNetwork } from './solana';
 import { solanaDevnet, solanaDevnetTransport } from './solanaDevnet';
 import { solanaMainnet, solanaRpcNetwork } from './solanaMainnet';
+import { PocketNetwork, pocketNetwork, pocketTransport } from './pocket';
 
 export const Networks = {
   HDsegwitBech32: hdSegwitBech32Network,
@@ -21,6 +22,7 @@ export const Networks = {
   polygon: polygonNetwork,
   solana: solanaMainnet,
   dogecoin: dogecoinNetwork,
+  pocket: pocketNetwork,
 
   ethereumTestnetSepolia: ethereumSepoliaNetwork,
 
@@ -51,6 +53,8 @@ const Transports = {
   dogecoin: dogecoinTransport,
   ethereum: evmHarmonyTransport,
   ethereumTestnetSepolia: evmHarmonyTransport,
+
+  pocket: pocketTransport,
 } satisfies { [x in keyof typeof Networks]: Transport<any, any, any, any, any> };
 
 export type WalletType = keyof typeof Networks;
@@ -80,6 +84,8 @@ export function getNetworkName<TType, TRequest, TFeeOption>(network: Network<TTy
       return 'SolanaNetwork';
     case network instanceof DogecoinNetwork:
       return 'DogecoinNetwork';
+    case network instanceof PocketNetwork:
+      return 'PocketNetwork';
     default:
       return 'unknown';
   }

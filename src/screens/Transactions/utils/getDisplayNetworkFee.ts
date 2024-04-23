@@ -40,6 +40,13 @@ export const getDisplayNetworkFee = ({
       };
     }
 
+    case 'POKT': {
+      return {
+        amount: networkFee ? smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10) + ' POKT' : '',
+        price: '',
+      };
+    }
+
     default: {
       return {
         amount: networkFee ? amountStringShortened(smallUnit2TokenUnit(networkFee, 9).toString(10), 0) + ' Gwei' : '',

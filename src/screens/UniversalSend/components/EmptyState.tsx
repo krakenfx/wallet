@@ -49,6 +49,13 @@ export const EmptyState = ({ hasSearchValue, supportedNetworks, clearSearch, goB
           desc: loc.universalSend.assetDogeEmptyDesc,
           image: require('@/assets/images/assetGroup/asset-group-dogecoin.png'),
         };
+        case flattenedNetworks[0] === 'PocketNetwork':
+          return {
+            title: loc.universalSend.assetPoktEmptyTitle,
+            desc: loc.universalSend.assetPoktEmptyDesc,
+            // @todo: replace with pokt image
+            image: require('@/assets/images/assetGroup/asset-group.png'),
+          };
       case flattenedNetworks[0] === 'SolanaNetwork':
         return {
           title: loc.universalSend.assetSolanaEmptyTitle,

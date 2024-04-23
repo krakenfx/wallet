@@ -15,6 +15,7 @@ export const useRefreshingFeeOptions = (wallet: RealmWallet, refreshInBackground
     switch (wallet.type) {
       case 'HDsegwitBech32':
       case 'dogecoin':
+      case 'pocket':
         return 60;
       case 'ethereum':
       case 'polygon':

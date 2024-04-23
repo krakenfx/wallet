@@ -3675,6 +3675,7 @@ const mapNetworkNameToTokenSymbol: Record<string, string> = {
   ethereumTestnetSepolia: 'eth',
   HDsegwitBech32: 'btc',
   optimism: 'op',
+  pocket: 'pokt',
   polygon: 'matic',
   solana: 'sol',
   solanaDevnet: 'sol'

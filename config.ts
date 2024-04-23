@@ -24,3 +24,5 @@ export const URLs = {
 };
 
 export const DISABLE_SCREEN_CAPTURE = Config.DISABLE_SCREEN_CAPTURE;
+
+export const POCKET_RPC_ENDPOINT = Config.POCKET_RPC_ENDPOINT;

@@ -49,7 +49,7 @@ export type ExtendedPublicKeyAndChainCode = {
   chainCode?: ArrayBuffer;
 };
 
-export type NativeTokenSymbol = 'BTC' | 'DOGE' | 'ETH' | 'MATIC' | 'SOL' | 'TEZ';
+export type NativeTokenSymbol = 'BTC' | 'DOGE' | 'ETH' | 'MATIC' | 'POKT' | 'SOL' | 'TEZ';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface Network<TransactionType = unknown, TransactionRequest = unknown, TFeeOption = unknown> {

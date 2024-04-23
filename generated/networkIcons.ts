@@ -23,6 +23,7 @@ import i19 from 'kraken-wallet-network-icons/src/optimism.svg';
 import i20 from 'kraken-wallet-network-icons/src/polygon.svg';
 import i21 from 'kraken-wallet-network-icons/src/solana-devnet.svg';
 import i22 from 'kraken-wallet-network-icons/src/solana.svg';
+import i23 from 'kraken-wallet-network-icons/src/pokt.svg';
 
 export const networkIcons = {
   arbitrum: i1,
@@ -44,6 +45,7 @@ export const networkIcons = {
   hydra: i17,
   moonriver: i18,
   optimism: i19,
+  pokt: i23,
   polygon: i20,
   'solana-devnet': i21,
   solana: i22,
@@ -65,6 +67,9 @@ const mapNetworkNameToNetworkIconName = (networkName: string) => {
       break;
     case 'dogecoin':
       networkIconName = 'doge';
+      break;
+    case 'pocket':
+      networkIconName = 'pokt';
       break;
   }
 

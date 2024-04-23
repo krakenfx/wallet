@@ -140,6 +140,7 @@ const config: Record<
   },
   HDsegwitBech32: undefined,
   dogecoin: undefined,
+  pocket: undefined,
 };
 
 export const NFTLinks: React.FC<NFTLinksProps> = ({ nft: { metadata }, walletType }) => {

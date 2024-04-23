@@ -17,6 +17,7 @@ import { NavigationProps } from '@/Routes';
 import { BitcoinPanel } from './components/BitcoinPanel';
 import { DogePanel } from './components/DogePanel';
 import { EvmPanel } from './components/EvmPanel';
+import { PoktPanel } from './components/PoktPanel';
 import { SolanaPanel } from './components/SolanaPanel';
 
 import loc from '/loc';
@@ -37,6 +38,7 @@ export const AdvancedAccountInfoScreen = ({ route, navigation }: NavigationProps
       ethereum: '',
       solana: '',
       dogecoin: '',
+      pocket: '',
     };
 
     account.wallets.map(wallet => {
@@ -64,6 +66,7 @@ export const AdvancedAccountInfoScreen = ({ route, navigation }: NavigationProps
           <SolanaPanel derivationPath={derivationPaths.solana} />
           <BitcoinPanel accountNumber={route.params.accountNumber} derivationPath={derivationPaths.HDsegwitBech32} />
           <DogePanel derivationPath={derivationPaths.dogecoin} />
+          <PoktPanel derivationPath={derivationPaths.pocket} />
         </View>
       </BottomSheetScrollView>
     </BottomSheet>
