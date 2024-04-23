@@ -69,13 +69,6 @@ function getPocketKeyPair(derivationPath: string, seedHex: string) {
   return nacl.sign.keyPair.fromSeed(key);
 }
 
-function getPublicKeyFromPrivateKey(privateKey: Buffer): Buffer {
-  const publicKey = ed25519.getPublicKey(privateKey);
-
-  // remove left padding (1 byte)
-  return Buffer.from(publicKey.subarray(1));
-}
-
 async function getAddressFromPublicKey(publicKey: Buffer): Promise<string> {
   return createHash('sha256').update(publicKey).digest().toString('hex').slice(0, 40);
 }
