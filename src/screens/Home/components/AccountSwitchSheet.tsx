@@ -16,7 +16,7 @@ import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useManageAccount } from '@/hooks/useManageAccount';
 import { RealmAccount, useAccounts, useCurrentAccountNumber } from '@/realm/accounts';
 import { Routes } from '@/Routes';
-import { BackupWalletWarning } from '@/screens/Settings/backupWallet';
+import { WalletBackupWarning } from '@/screens/Settings/walletBackup';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 import loc from '/loc';
@@ -109,7 +109,7 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
           <Label>{loc.accountSwitch.wallets}</Label>
           <Button text={loc.accountSwitch.manage} onPress={handleManagePress} testID="EditAccountManageButton" />
         </View>
-        <BackupWalletWarning />
+        <WalletBackupWarning />
         <BottomSheetFlatList
           style={{ maxHeight: WALLET_ITEM_HEIGHT * 9 }}
           data={accounts}

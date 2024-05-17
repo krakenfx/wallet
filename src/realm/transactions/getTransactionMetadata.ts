@@ -68,20 +68,24 @@ function assetIsNFT(assetId: string) {
   return assetId.includes(TYPE_ERC721) || assetId.includes(TYPE_ERC1155);
 }
 
-export const TransactionTypeTitles: { [key in TRANSACTION_TYPES]: string } = {
-  [TRANSACTION_TYPES.CONTRACT_INTERACTION]: loc.transactionTile.type.contractInteraction,
-  [TRANSACTION_TYPES.RECEIVE]: loc.transactionTile.type.receive,
-  [TRANSACTION_TYPES.SEND]: loc.transactionTile.type.send,
-  [TRANSACTION_TYPES.NFT_RECEIVE]: loc.transactionTile.type.NFTReceive,
-  [TRANSACTION_TYPES.NFT_SEND]: loc.transactionTile.type.NFTsend,
-  [TRANSACTION_TYPES.TOKEN_APPROVAL]: loc.transactionTile.type.tokenApproval,
-  [TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED]: loc.transactionTile.type.tokenApproval,
-  [TRANSACTION_TYPES.MINT]: loc.transactionTile.type.mint,
-  [TRANSACTION_TYPES.DEPOSIT]: loc.transactionTile.type.deposit,
-  [TRANSACTION_TYPES.NFT_MINT]: loc.transactionTile.type.mint,
-  [TRANSACTION_TYPES.NFT_BUY]: loc.transactionTile.type.NFTBuy,
-  [TRANSACTION_TYPES.NFT_SELL]: loc.transactionTile.type.NFTSell,
-  [TRANSACTION_TYPES.SWAP]: loc.transactionTile.type.swap,
+export const getTransactionTitle = (transactionType: TRANSACTION_TYPES) => {
+  return (
+    {
+      [TRANSACTION_TYPES.CONTRACT_INTERACTION]: loc.transactionTile.type.contractInteraction,
+      [TRANSACTION_TYPES.RECEIVE]: loc.transactionTile.type.receive,
+      [TRANSACTION_TYPES.SEND]: loc.transactionTile.type.send,
+      [TRANSACTION_TYPES.NFT_RECEIVE]: loc.transactionTile.type.NFTReceive,
+      [TRANSACTION_TYPES.NFT_SEND]: loc.transactionTile.type.NFTsend,
+      [TRANSACTION_TYPES.TOKEN_APPROVAL]: loc.transactionTile.type.tokenApproval,
+      [TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED]: loc.transactionTile.type.tokenApproval,
+      [TRANSACTION_TYPES.MINT]: loc.transactionTile.type.mint,
+      [TRANSACTION_TYPES.DEPOSIT]: loc.transactionTile.type.deposit,
+      [TRANSACTION_TYPES.NFT_MINT]: loc.transactionTile.type.mint,
+      [TRANSACTION_TYPES.NFT_BUY]: loc.transactionTile.type.NFTBuy,
+      [TRANSACTION_TYPES.NFT_SELL]: loc.transactionTile.type.NFTSell,
+      [TRANSACTION_TYPES.SWAP]: loc.transactionTile.type.swap,
+    }[transactionType] || loc.transactionTile.type.contractInteraction
+  );
 };
 
 const isTokenApprovalUnlimited = (amount?: string) => {

@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { PushNotifications } from '@/api/PushNotifications';
 import { TokenConfigurationType } from '@/api/types';
 import { GradientScreenView } from '@/components/Gradients';
+import { useGetSubscribeNotifications } from '@/hooks/useGetSubscribeNotifications';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { useSettingsMutations } from '@/realm/settings';
 import { SettingsCheckItem, SettingsCheckItemsBox, SettingsInfoBox, SettingsSwitch } from '@/screens/Settings/components';
@@ -22,6 +23,7 @@ export const NotificationsScreen = () => {
   const [tokenConfig, setTokenConfig] = useState<TokenConfigurationType>();
   const isOnline = useIsOnline();
   const { setPushPromptNeeded } = useSettingsMutations();
+  const { subscribeToNotifications } = useGetSubscribeNotifications();
 
   useHeaderTitle(loc.settings.notifications);
 
@@ -56,6 +58,9 @@ export const NotificationsScreen = () => {
     }
     if (!token) {
       await PushNotifications.getInstance().registerRemoteNotifications();
+    }
+    if (newValue) {
+      subscribeToNotifications();
     }
 
     await PushNotifications.getInstance().changeSubscriptionLevel(levelName, newValue);

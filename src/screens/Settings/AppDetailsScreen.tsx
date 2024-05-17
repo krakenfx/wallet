@@ -15,7 +15,7 @@ import { ActivityIndicatorView } from './components/ActivityIndicatorView';
 
 import confirm from '/helpers/confirm';
 import loc from '/loc';
-import { removeWWWSubdomain } from '/modules/text-utils';
+import { sanitizeUrl } from '/modules/text-utils';
 
 export type AppDetailsParams = {
   onDisconnect: (confirmed: boolean) => Promise<void>;
@@ -54,7 +54,7 @@ export const AppDetailsScreen = ({ navigation, route }: NavigationProps<'AppDeta
           )}
           {content.url && (
             <Label color="light75" type="regularCaption1">
-              {removeWWWSubdomain(content.url)}
+              {sanitizeUrl(content.url)}
             </Label>
           )}
         </View>

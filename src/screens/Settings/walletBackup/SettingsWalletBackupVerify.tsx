@@ -5,7 +5,7 @@ import navigationStyle from '@/components/navigationStyle';
 
 import { SettingsNavigationProps } from '../SettingsRouter';
 
-import { BackupWalletVerify } from './components';
+import { WalletBackupVerify } from './components';
 
 export const SettingsBackupVerifyScreen = ({ navigation }: SettingsNavigationProps<'SettingsBackupVerify'>) => {
   const handleVerifySuccess = useCallback(() => {
@@ -14,7 +14,7 @@ export const SettingsBackupVerifyScreen = ({ navigation }: SettingsNavigationPro
 
   return (
     <GradientScreenView>
-      <BackupWalletVerify onVerifySuccess={handleVerifySuccess} />
+      <WalletBackupVerify onVerifySuccess={handleVerifySuccess} />
     </GradientScreenView>
   );
 };

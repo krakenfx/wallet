@@ -12,7 +12,7 @@ interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-export const BackupWalletWarning = ({ style }: Props) => {
+export const WalletBackupWarning = ({ style }: Props) => {
   const isWalletBackupDone = useIsWalletBackupDone();
 
   const { navigate } = useNavigation();
@@ -22,16 +22,16 @@ export const BackupWalletWarning = ({ style }: Props) => {
   }
 
   const handlePress = () => {
-    navigate(Routes.Settings, { screen: Routes.SettingsBackupWallet, initial: false });
+    navigate(Routes.Settings, { screen: Routes.SettingsWalletBackup, initial: false });
   };
 
   return (
     <View style={[styles.container, style]}>
       <CardWarning
-        title={loc.backupWallet.backupYourWallet}
-        description={loc.backupWallet.backupYourWalletDescription}
+        title={loc.walletBackup.backupYourWallet}
+        description={loc.walletBackup.backupYourWalletDescription}
         type="negative"
-        buttonText={loc.backupWallet.backup}
+        buttonText={loc.walletBackup.backup}
         onPress={handlePress}
       />
     </View>

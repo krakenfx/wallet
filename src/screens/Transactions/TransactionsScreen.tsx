@@ -75,7 +75,7 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
     requestRefresh(false);
   }, [requestRefresh]);
 
-  const { dataSource, keyExtractor, renderItem } = useTransactionsDataSource({
+  const { dataSource, keyExtractor, renderItem, loadNextPage, renderFooter } = useTransactionsDataSource({
     tokenId,
     pendingTransactionIds: token?.pendingTransactions.sorted('time', true).map(({ id }) => id) ?? [],
     walletId,
@@ -149,6 +149,9 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
             keyExtractor={keyExtractor}
             contentContainerStyle={styles.container}
             estimatedItemSize={60}
+            onEndReached={loadNextPage}
+            onEndReachedThreshold={0.4}
+            ListFooterComponent={renderFooter}
           />
         </FadingElement>
       </BottomSheet>

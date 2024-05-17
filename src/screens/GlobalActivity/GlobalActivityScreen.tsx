@@ -7,6 +7,7 @@ import { FadingElement } from '@/components/FadingElement';
 import { GradientScreenView } from '@/components/Gradients';
 import navigationStyle from '@/components/navigationStyle';
 import { NetworkFilter, useNetworkFilter } from '@/components/NetworkFilter';
+import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { refreshAllTransactions } from '@/realm/refreshManagerHooks';
 import { useTransactionsFetch } from '@/realm/transactions';
 import { NavigationProps } from '@/Routes';
@@ -18,6 +19,8 @@ import { GlobalActivityEmptyAll, GlobalActivityEmptyNetworkSelection } from './c
 import loc from '/loc';
 
 export const GlobalActivityScreen = ({ navigation }: NavigationProps<'GlobalActivity'>) => {
+  useHeaderTitle(loc.globalActivity.title);
+
   const [networkFilter, setNetworkFilter] = useNetworkFilter();
   const isOnline = useIsOnline();
   const { fetchAllTransactionsForAllNetworks } = useTransactionsFetch();
@@ -33,7 +36,7 @@ export const GlobalActivityScreen = ({ navigation }: NavigationProps<'GlobalActi
     refreshAllTransactions();
   }, []);
 
-  const { dataSource, keyExtractor, renderItem, getItemType } = useTransactionsDataSource({
+  const { dataSource, keyExtractor, renderItem, renderFooter, getItemType, loadNextPage } = useTransactionsDataSource({
     onPendingTxSucceed,
     navigation,
     networkFilter,
@@ -80,6 +83,9 @@ export const GlobalActivityScreen = ({ navigation }: NavigationProps<'GlobalActi
           estimatedItemSize={60}
           keyExtractor={keyExtractor}
           contentContainerStyle={styles.container}
+          onEndReached={loadNextPage}
+          onEndReachedThreshold={0.4}
+          ListFooterComponent={renderFooter}
         />
       </FadingElement>
     </GradientScreenView>

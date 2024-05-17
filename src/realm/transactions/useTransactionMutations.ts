@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import Realm from 'realm';
 
 import { Transaction } from '@/api/types';
+import { tokenUnit2SmallestUnit } from '@/utils/unitConverter';
 
 import { useRealm } from '../RealmContext';
 
@@ -30,7 +31,8 @@ export const useTransactionMutations = () => {
             foundExistingTransaction = true;
           }
 
-          // @ts-ignore not supported on BE yet
+          // @ts-ignore
+
           if (tx.status === 'pending') {
             if (!pendingTxExist) {
               const effect = tx.effects[0];
@@ -51,6 +53,7 @@ export const useTransactionMutations = () => {
                     from: 'sender' in effect ? effect.sender : null,
                     to: 'recipient' in effect ? effect.recipient : null,
                     time: null,
+                    fee: tx.fee?.amount ? tokenUnit2SmallestUnit(tx.fee.amount, wallet.nativeTokenDecimals).toFixed() : null,
                   },
                   Realm.UpdateMode.Modified,
                 );
@@ -132,7 +135,7 @@ export const useTransactionMutations = () => {
     [realm],
   );
 
-  const cleanupConfirmedTransactions = useCallback(async () => {
+  const dangerouslyCleanupConfirmedTransactions = useCallback(async () => {
     const confirmedTransactions = realm
       .objects<RealmPendingTransaction>(REALM_TYPE_PENDING_TRANSACTION)
       .filtered('confirmed == true OR additionalStatus == "invalidated"');
@@ -163,7 +166,7 @@ export const useTransactionMutations = () => {
     savePendingTransaction,
     removePendingTransaction,
     confirmPendingTransaction,
-    cleanupConfirmedTransactions,
+    dangerouslyCleanupConfirmedTransactions,
     invalidatePendingTransaction,
   };
 };

@@ -107,6 +107,7 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
         ref(sheetRef.current);
       } else {
         // @ts-ignore
+
         ref.current = sheetRef.current;
       }
     }

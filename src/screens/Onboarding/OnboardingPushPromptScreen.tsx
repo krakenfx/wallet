@@ -29,12 +29,12 @@ export const OnboardingPushPromptScreen = ({ navigation, route }: OnboardingNavi
     continueOnboarding();
   };
 
-  const onSubscribed = () => {
+  const onAllow = () => {
     setPushPromptNeeded(false);
     continueOnboarding();
   };
 
-  const onError = (error: unknown, permissionDenied: boolean) => {
+  const onError = (error: unknown, permissionDenied?: boolean) => {
     if (permissionDenied) {
       setPushPromptNeeded(false);
       continueOnboarding();
@@ -47,7 +47,7 @@ export const OnboardingPushPromptScreen = ({ navigation, route }: OnboardingNavi
     <GradientScreenView>
       <PushNotificationPrompt
         onDisallow={onDisallow}
-        onSubscribed={onSubscribed}
+        onAllow={onAllow}
         onError={onError}
         allowButtonText={loc.pushNotificationsPrompt.allow}
         disallowButtonText={loc.pushNotificationsPrompt.skip}

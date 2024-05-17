@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BottomSheetModalRef } from '@/components/BottomSheet';
 import { CardWarning } from '@/components/CardWarning';
@@ -21,6 +22,7 @@ const BIOMETRIC_DELAY = 800;
 
 export const PasswordProtectionScreen = ({ navigation }: SettingsNavigationProps<'PasswordProtection'>) => {
   const { navigate } = navigation;
+  const insets = useSafeAreaInsets();
   const passwordChangeInfoSheet = useRef<BottomSheetModalRef>(null);
 
   useHeaderTitle(loc.passwordProtection.title);
@@ -52,7 +54,7 @@ export const PasswordProtectionScreen = ({ navigation }: SettingsNavigationProps
 
   return (
     <GradientScreenView>
-      <View style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: insets.bottom }}>
         <SettingsSwitch
           testID="PasswordProtection"
           text={loc.passwordProtection.enablePasswordProtection}
@@ -91,7 +93,7 @@ export const PasswordProtectionScreen = ({ navigation }: SettingsNavigationProps
             />
           </View>
         )}
-      </View>
+      </ScrollView>
       <PasswordChangeInfoSheet
         onConfirm={() => {
           passwordChangeInfoSheet.current?.close();

@@ -11,7 +11,7 @@ export const useIgnoredTransactions = () => {
       () => {
         setIgnoredIds(Array.from(hiddenTransactions.current));
       },
-      200,
+      250,
       { leading: false },
     ),
     [],

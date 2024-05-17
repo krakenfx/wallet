@@ -6,7 +6,6 @@ import navigationStyle from '@/components/navigationStyle';
 import { RefreshControlScrollView } from '@/components/RefreshControlScrollView';
 import { useAppInitTasks } from '@/hooks/useAppInitTasks';
 import { usePushNotificationsRegisterRemoteNotification } from '@/hooks/usePushNotificationsRegisterRemoteNotifications';
-import { RealmFlipperPlugin } from '@/realm/RealmFlipperPlugin';
 import { useRefreshStateActions } from '@/realm/refreshManagerHooks';
 import { NavigationProps } from '@/Routes';
 import { useIsOnline } from '@/utils/useConnectionManager';
@@ -38,8 +37,6 @@ export const HomeScreen = ({ navigation }: NavigationProps<'Home'>) => {
 
   return (
     <GradientScreenView>
-      {__DEV__ && <RealmFlipperPlugin />}
-
       <View style={styles.rootView} testID="HomeScreen">
         <RefreshControlScrollView onRefresh={pullToRefresh}>
           <HomeBalance />

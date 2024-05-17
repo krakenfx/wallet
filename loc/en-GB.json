@@ -20,12 +20,15 @@
     "showLess": "Show less",
     "showMore": "Show more",
     "TEST_KEY": "deleteMeLaterModifiedTest",
+    "today": "Today",
     "updating": "Updating",
     "upToDate": "Up to date",
     "view": "View",
-    "yes": "Yes"
+    "yes": "Yes",
+    "yesterday": "Yesterday"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Licences",
     "privacyPolicy": "Privacy Policy",
     "releaseNotes": "Release notes",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Make sure that you can recover your crypto if you lose your device or switch to another wallet.",
     "secretRecoveryPhrase": "Secret recovery phrase",
     "tapHereToView": "Tap here to view"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Back up now",
+    "body": "You haven't backed up your Secret Recovery Phrase. We recommend backing up to avoid losing access to your funds.",
+    "header": "Before receiving funds in this wallet, back it up"
   },
   "broadcast": {
     "sent": "Sent"
@@ -658,7 +666,7 @@
     "biometricDescriptionIOS": "even if you've setup FaceID, or TouchID via App Lock",
     "confirm": "Confirm",
     "confirmPassword": "Confirm password",
-    "confirmResetApp": "Confirm that you want to reset the app",
+    "confirmResetApp": "Confirm reset app",
     "connectedApps": "Auth & sign connected apps",
     "createPassword": "Create password",
     "dataLoss1": "I understand that resetting the app will completely restore it to a fresh install state.",
@@ -884,6 +892,15 @@
     "testnetDescription": "When turned on, you can select your testnet network and assets from the manage assets screen.",
     "view_list_of_connected_dapps": "View List of connected DApps",
     "wallets": "Wallets"
+  },
+  "storeReview": {
+    "alertMessage": "We'd love to know if you're having a great experience.",
+    "alertTitle": "Are you enjoying the Kraken Wallet App?",
+    "nagativeAlertTitle": "We're sorry that you're not having a good time with this app.",
+    "negativeAlertMessage": "Would you like to let us know how we can improve your experience?",
+    "notReally": "Not really",
+    "sendFeedback": "Send feedback",
+    "yes": "Yes"
   },
   "support": {
     "contactUs": "Contact us",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Lives on:"
   },
+  "walletBackup": {
+    "backup": "Back up",
+    "backupYourWallet": "Back up your wallet",
+    "backupYourWalletDescription": "Make sure that you can recover your crypto if you lose your device or switch to another wallet.",
+    "secretRecoveryPhrase": "Secret recovery phrase",
+    "tapHereToView": "Tap here to view"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Back up now",
+    "body": "You haven't backed up your Secret Recovery Phrase. We recommend backing up to avoid losing access to your funds.",
+    "header": "Before receiving funds in this wallet, back it up"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: account not found",
     "action_cancelled": "Action cancelled",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "With your wallet, you can {boldDescription} using WalletConnect.",
+      "boldDescription": "safely access thousands of decentralised apps",
       "buttonText": "Sounds good",
       "description": "With your wallet, you can {boldDescription} using WalletConnect.",
       "title": "More than just crypto storage!"

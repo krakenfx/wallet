@@ -157,7 +157,7 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
   );
 
   useLayoutEffect(() => {
-    navigation.getParent()?.setOptions({ headerTitle: headerTitleComponent });
+    navigation.setOptions({ headerTitle: headerTitleComponent });
   }, [headerTitleComponent, navigation]);
 
   const onChangeAddress = useCallback(
@@ -371,7 +371,7 @@ export const SendScreen = (props: SendNavigationProps<'Send'>) => {
   );
 };
 
-export const navigationOptions: NativeStackNavigationOptions = { headerShown: false };
+export const navigationOptions: NativeStackNavigationOptions = { headerTransparent: true, headerBackVisible: false };
 
 const styles = StyleSheet.create({
   flex: {

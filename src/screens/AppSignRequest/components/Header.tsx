@@ -6,7 +6,7 @@ import { Label } from '@/components/Label';
 import { WalletType } from '@/onChain/wallets/registry';
 
 import loc from '/loc';
-import { removeWWWSubdomain } from '/modules/text-utils';
+import { sanitizeUrl } from '/modules/text-utils';
 
 type Props = {
   coinType?: WalletType;
@@ -29,7 +29,7 @@ export const Header = ({ url, coinType, icon, name, heading, subheading }: Props
         {name}
       </Label>
       <Label type="regularCaption1" color="light75" style={styles.url} numberOfLines={1}>
-        {removeWWWSubdomain(url)}
+        {sanitizeUrl(url)}
       </Label>
       <Label type="boldDisplay4" numberOfLines={1}>
         {heading}

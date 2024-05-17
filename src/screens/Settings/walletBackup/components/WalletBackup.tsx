@@ -14,7 +14,7 @@ interface Props {
   seedVisible?: boolean;
 }
 
-export const BackupWallet = ({ onContinue, seedVisible }: Props) => {
+export const WalletBackup = ({ onContinue, seedVisible }: Props) => {
   const header = useCallback(
     () => (
       <OnboardingHeader
@@ -53,7 +53,7 @@ export const BackupWallet = ({ onContinue, seedVisible }: Props) => {
     [onContinue],
   );
 
-  return <SeedDisplay testID="BackupWalletSeedDisplay" style={styles.seedDisplay} header={header} footer={footer} initiallyRevealed={seedVisible} />;
+  return <SeedDisplay testID="WalletBackupSeedDisplay" style={styles.seedDisplay} header={header} footer={footer} initiallyRevealed={seedVisible} />;
 };
 
 const styles = StyleSheet.create({

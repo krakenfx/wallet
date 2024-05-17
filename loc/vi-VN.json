@@ -1,7 +1,7 @@
 {
   "_": {
     "add": "Thêm",
-    "appName": "Ví Kraken",
+    "appName": "Kraken Wallet",
     "balance": "Số dư {0}",
     "cancel": "Hủy",
     "confirm": "Xác nhận",
@@ -20,12 +20,15 @@
     "showLess": "Ẩn bớt",
     "showMore": "Xem thêm",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Hôm nay",
     "updating": "Đang cập nhật",
     "upToDate": "Cập nhật",
     "view": "Xem",
-    "yes": "Có"
+    "yes": "Có",
+    "yesterday": "Hôm qua"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Giấy phép",
     "privacyPolicy": "Chính sách bảo mật",
     "releaseNotes": "Ghi chú phát hành",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Đảm bảo bạn có thể khôi phục tiền điện tử của mình nếu bạn mất thiết bị hoặc chuyển sang ví khác.",
     "secretRecoveryPhrase": "Cụm từ khôi phục bí mật",
     "tapHereToView": "Nhấn vào đây để xem"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Sao lưu ngay bây giờ",
+    "body": "Bạn chưa sao lưu Cụm từ khôi phục bí mật của mình. Chúng tôi khuyên bạn nên sao lưu để tránh mất quyền truy cập vào khoản tiền của mình.",
+    "header": "Trước khi nhận tiền vào ví này, hãy sao lưu cụm từ khôi phục"
   },
   "broadcast": {
     "sent": "Đã gửi"
@@ -298,8 +306,8 @@
     "request_approval": "Yêu cầu phê duyệt giao dịch",
     "see_balance": "Xem số dư và hoạt động của bạn",
     "unsupportedNetwork": "Mạng không được hỗ trợ",
-    "unsupportedNetworkDescription": "Ứng dụng này sử dụng mạng {unsupportedNetwork} không được hỗ trợ tại thời điểm này. Ví Kraken hiện hỗ trợ các ứng dụng trên mạng Ethereum, Polygon, Optimism, Arbitrum và Solana.",
-    "unsupportedNetworksDescription": "Ứng dụng này sử dụng các mạng {unsupportedNetworks} không được hỗ trợ tại thời điểm này. Ví Kraken hiện hỗ trợ các ứng dụng trên mạng Ethereum, Polygon, Optimism, Arbitrum và Solana."
+    "unsupportedNetworkDescription": "Ứng dụng này sử dụng mạng {unsupportedNetwork} không được hỗ trợ tại thời điểm này. Kraken Wallet hiện hỗ trợ các ứng dụng trên mạng Ethereum, Polygon, Optimism, Arbitrum và Solana.",
+    "unsupportedNetworksDescription": "Ứng dụng này sử dụng các mạng {unsupportedNetworks} không được hỗ trợ tại thời điểm này. Kraken Wallet hiện hỗ trợ các ứng dụng trên mạng Ethereum, Polygon, Optimism, Arbitrum và Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -551,7 +559,7 @@
     "import_wallet": "Nhập",
     "intro_pages": {
       "1": {
-        "subtitle": "Ví Kraken",
+        "subtitle": "Kraken Wallet",
         "text": "Sở hữu tiền điện tử của bạn, khám phá blockchain và đảm bảo tương lai tài chính của bạn.",
         "title": "Chào mừng đến với"
       },
@@ -562,7 +570,7 @@
       },
       "3": {
         "subtitle": "blockchain",
-        "text": "Ví Kraken hỗ trợ Bitcoin, Ethereum, Polygon, Doge, v.v. ",
+        "text": "Kraken Wallet hỗ trợ Bitcoin, Ethereum, Polygon, Doge, v.v. ",
         "title": "Khám phá thêm"
       },
       "4": {
@@ -608,8 +616,8 @@
   "onboardingOutro": {
     "button": "Đồng ý & Tiếp tục",
     "caption": "Ví này hỗ trợ Bitcoin, Ethereum, Polygon, Solana, v.v.",
-    "footer": "Bằng việc tiếp tục, bạn đồng ý với\n",
-    "termsOfService": "các điều khoản dịch vụ của Ví Kraken",
+    "footer": "Khi tiếp tục, bạn đồng ý với\n",
+    "termsOfService": "các điều khoản dịch vụ của Kraken Wallet",
     "title": "Ví của bạn đã sẵn sàng"
   },
   "onboardingPushNotifications": {
@@ -737,14 +745,14 @@
     "warning_nft": "Đây là địa chỉ {networkName} của bạn. Sử dụng địa chỉ đó để nhận tiền điện tử và NFT tương thích trên mạng này."
   },
   "reputation": {
-    "likelySpam": "Có thể là token rác",
+    "likelySpam": "Có khả năng là lừa đảo",
     "likelySpamDescription": "Token này được niêm yết trong danh sách đen. Hãy thận trọng khi tương tác với bất kỳ token nào bạn không thể xác minh. Đừng tin tưởng, hãy xác minh.",
     "likelySpamHelp": "Token nằm trong danh sách đen là gì?",
     "openDocs": "Mở tài liệu",
     "tokenLists": "Danh sách token",
     "tokenListsDescription": "Danh sách token là một sáng kiến dựa vào cộng đồng nhằm cải thiện khả năng khám phá, danh tiếng và độ tin cậy đối với token ERC20.",
     "tokenListsHelp": "Danh sách token là gì?",
-    "unverified": "Không được niêm yết",
+    "unverified": "Không được liệt kê",
     "unverifiedDescription": "Token này không được niêm yết. Hãy thận trọng khi tương tác với bất kỳ token nào bạn không thể xác minh. Đừng tin tưởng, hãy xác minh.",
     "unverifiedHelp": "Tại sao token đó không được niêm yết?",
     "verified": "Niêm yết theo",
@@ -885,6 +893,15 @@
     "view_list_of_connected_dapps": "Xem danh sách các Dapp được kết nối",
     "wallets": "Ví"
   },
+  "storeReview": {
+    "alertMessage": "Chúng tôi muốn biết liệu bạn có trải nghiệm tuyệt vời hay không.",
+    "alertTitle": "Bạn có thích Ứng dụng Kraken Wallet không?",
+    "nagativeAlertTitle": "Chúng tôi rất tiếc vì bạn không có trải nghiệm tốt với ứng dụng này.",
+    "negativeAlertMessage": "Bạn có muốn cho chúng tôi biết cách chúng tôi có thể cải thiện trải nghiệm của bạn không?",
+    "notReally": "Không hẳn",
+    "sendFeedback": "Gửi phản hồi",
+    "yes": "Có"
+  },
   "support": {
     "contactUs": "Liên hệ chúng tôi",
     "getInTouch": "Liên hệ",
@@ -899,16 +916,16 @@
     "blacklisted": "Danh sách chặn",
     "description": "Danh sách token là danh sách dựa trên danh tiếng nhằm xác định các token được các sàn giao dịch khác nhau và những người tham gia Web3 khác tin cậy.",
     "help": "Danh sách token là gì?",
-    "likelySpam": "Có thể là token rác",
+    "likelySpam": "Có khả năng là lừa đảo",
     "likelySpamDescription": "Hãy hết sức thận trọng khi tương tác với token này. Token đó có thể có hại.",
     "likelySpamHelp": "Token có thể là token rác là gì?",
     "likelySpamInfo": "Các token có thể là token rác có khả năng đã bị cộng đồng công cộng hoặc một trong các đối tác của chúng tôi cảnh báo là token rác, lừa đảo hoặc có hại.",
-    "likelySpamTitle": "Có thể là token rác",
-    "notListed": "Không được niêm yết",
+    "likelySpamTitle": "Có khả năng là lừa đảo",
+    "notListed": "Không được liệt kê",
     "openDocs": "Mở tài liệu",
     "tokenLists": "Danh sách token",
     "tokens": "{tokenListCount} token",
-    "unverified": "Không được niêm yết",
+    "unverified": "Không được liệt kê",
     "unverifiedDescription": "Token này không được niêm yết trên bất kỳ Danh sách token được hỗ trợ nào. Sử dụng thận trọng.",
     "unverifiedHelp": "Tại sao token đó không được niêm yết?",
     "verified": "Được niêm yết",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Hoạt động trên:"
   },
+  "walletBackup": {
+    "backup": "Hỗ trợ",
+    "backupYourWallet": "Sao lưu ví của bạn",
+    "backupYourWalletDescription": "Đảm bảo bạn có thể khôi phục tiền điện tử của mình nếu bạn mất thiết bị hoặc chuyển sang ví khác.",
+    "secretRecoveryPhrase": "Cụm từ khôi phục bí mật",
+    "tapHereToView": "Nhấn vào đây để xem"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Sao lưu ngay bây giờ",
+    "body": "Bạn chưa sao lưu Cụm từ khôi phục bí mật của mình. Chúng tôi khuyên bạn nên sao lưu để tránh mất quyền truy cập vào khoản tiền của mình.",
+    "header": "Trước khi nhận tiền vào ví này, hãy sao lưu cụm từ khôi phục"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: không tìm thấy tài khoản",
     "action_cancelled": "Đã hủy hành động",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Với ví của mình, bạn có thể {boldDescription} sử dụng WalletConnect.",
+      "boldDescription": "truy cập an toàn hàng ngàn ứng dụng phi tập trung",
       "buttonText": "Nghe hay đấy",
       "description": "Với ví của mình, bạn có thể {boldDescription} sử dụng WalletConnect.",
       "title": "Không chỉ là lưu trữ tiền điện tử!"
@@ -1187,7 +1216,7 @@
     "thirdPage": {
       "buttonText": "Tiếp tục",
       "description1": "Chạm vào WalletConnect",
-      "description2": "Chọn Ví Kraken",
+      "description2": "Chọn Kraken Wallet",
       "subtitle": "Thay vì quét:",
       "title": "Khi sử dụng ứng dụng Web3 trên điện thoại"
     }

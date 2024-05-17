@@ -44,7 +44,7 @@ export const languages = [
     tag: 'uk-UA',
   },
   {
-    label: 'Vietnamese',
+    label: 'Ngôn ngữ',
     tag: 'vi-VN',
   },
 ] as const;

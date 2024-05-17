@@ -14,13 +14,18 @@ interface SettingsCheckItemProps {
 export const SettingsCheckItem = ({ name, enabled, onPress }: SettingsCheckItemProps) => (
   <Touchable disabled={!onPress} onPress={onPress}>
     <View style={styles.lockItem}>
-      <Label color="light50">{name}</Label>
+      <Label color="light50" style={styles.label}>
+        {name}
+      </Label>
       <TickIcon enabled={enabled} />
     </View>
   </Touchable>
 );
 
 const styles = StyleSheet.create({
+  label: {
+    flexShrink: 1,
+  },
   lockItem: {
     paddingVertical: 16,
     flexDirection: 'row',

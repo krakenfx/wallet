@@ -6,20 +6,20 @@ import { Routes } from '@/Routes';
 
 import { SettingsNavigationProps } from '../SettingsRouter';
 
-import { BackupWallet } from './components';
+import { WalletBackup } from './components';
 
-export const SettingsBackupWalletScreen = ({ navigation }: SettingsNavigationProps<'SettingsBackupWallet'>) => {
+export const SettingsWalletBackupScreen = ({ navigation }: SettingsNavigationProps<'SettingsWalletBackup'>) => {
   const onContinue = useCallback(() => {
     navigation.navigate(Routes.SettingsBackupVerify);
   }, [navigation]);
   return (
     <GradientScreenView>
-      <BackupWallet onContinue={onContinue} />
+      <WalletBackup onContinue={onContinue} />
     </GradientScreenView>
   );
 };
 
-SettingsBackupWalletScreen.navigationOptions = navigationStyle({
+SettingsWalletBackupScreen.navigationOptions = navigationStyle({
   title: '',
   headerTransparent: true,
 });

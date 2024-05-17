@@ -8,8 +8,6 @@ import { Buffer } from 'buffer';
 
 import { RealmToken } from '@/realm/tokens';
 
-import { StringNumber } from '../../../entities';
-
 import { BlockExplorer, ExtendedPublicKeyAndChainCode, NativeTokenSymbol, Network, NetworkIcon, WalletData, WalletDataWithSeed } from './base';
 import { HarmonyTransport } from './HarmonyTransport';
 import { ChainAgnostic } from './utils/ChainAgnostic';

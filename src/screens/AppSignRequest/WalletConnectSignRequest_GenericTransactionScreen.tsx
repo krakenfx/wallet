@@ -4,6 +4,7 @@ import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import { FeeOption } from '@/api/types';
 import { BlockScreenSheet } from '@/components/BlockScreen';
 import { CardWarningFromWarning } from '@/components/CardWarning';
+import { Label } from '@/components/Label';
 import navigationStyle from '@/components/navigationStyle';
 import { ExpandableSheet } from '@/components/Sheets';
 import { PreparedTransaction } from '@/onChain/wallets/base';
@@ -92,28 +93,35 @@ export const WalletConnectSignRequest_GenericTransactionScreen = ({ route, navig
   }, [detailsContent]);
 
   const renderFooter = () => {
+    const showFeeSelector = !!(!hideFeeSelector && selectedFee && feeEstimates);
+
     return (
       <ConfirmationFooter
         content={
           <View style={styles.infoContainer}>
             <Info
-              cells={[
-                <AccountName accountIdx={wallet.accountIdx ?? -1} key="info_0" />,
-                !hideFeeSelector && selectedFee && feeEstimates ? (
-                  <FeeSelector
-                    compact
-                    wallet={wallet}
-                    selected={selectedFee}
-                    onChange={setSelectedFee}
-                    options={fees}
-                    feeEstimates={feeEstimates}
-                    showTitle={false}
-                    inputInFiat
-                    price={price}
-                    key="info_1"
-                  />
-                ) : undefined,
-              ]}
+              cells={
+                showFeeSelector
+                  ? [
+                      <Label type="boldCaption1" color="light75">
+                        {loc.send.network_fee}
+                      </Label>,
+                      <FeeSelector
+                        compact
+                        wallet={wallet}
+                        selected={selectedFee}
+                        onChange={setSelectedFee}
+                        options={fees}
+                        feeEstimates={feeEstimates}
+                        showEstimatedTime={false}
+                        showTitle={false}
+                        inputInFiat
+                        price={price}
+                        key="info_1"
+                      />,
+                    ]
+                  : [<AccountName accountIdx={wallet.accountIdx ?? -1} key="info_0" />]
+              }
             />
           </View>
         }

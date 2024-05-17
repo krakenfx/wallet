@@ -46,6 +46,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     AdvancedSettings: undefined;
     AppDetails: AppDetailsParams;
     AppLock: undefined;
+    WalletBackupPrompt: undefined;
     CoinsList: undefined;
     ConnectApp: ConnectAppParams;
     ConnectAppQRScan: ScanQRCodeParams | undefined;
@@ -77,7 +78,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     SendStack: NavigatorScreenParams<SendStackParams>;
     Settings: NavigatorScreenParams<SettingsStackParams> | undefined;
     SettingsBackupVerify: undefined;
-    SettingsBackupWallet: undefined;
+    SettingsWalletBackup: undefined;
     SettingsDisplaySeed: undefined;
     TokenLists: TokenListsParams;
     TransactionDetails: TransactionDetailsParams;
@@ -97,6 +98,7 @@ export enum Routes {
   AdvancedAccountInfo = 'AdvancedAccountInfo',
   AdvancedSettings = 'AdvancedSettings',
   AppDetails = 'AppDetails',
+  WalletBackupPrompt = 'WalletBackupPrompt',
   CoinsList = 'CoinsList',
   ConnectApp = 'ConnectApp',
   ConnectedApps = 'ConnectedApps',
@@ -154,7 +156,7 @@ export enum Routes {
   PasswordProtection = 'PasswordProtection',
   PasswordProtectionForm = 'PasswordProtectionForm',
   SettingsBackupVerify = 'SettingsBackupVerify',
-  SettingsBackupWallet = 'SettingsBackupWallet',
+  SettingsWalletBackup = 'SettingsWalletBackup',
   SettingsDisplaySeed = 'SettingsDisplaySeed',
 
   Send = 'Send',

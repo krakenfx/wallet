@@ -13,6 +13,8 @@ declare module 'coinselect';
 
 declare type RequestCredentials = RequestCredentials_;
 
+declare type StringNumber = string;
+
 declare module 'react-native-config' {
   export interface NativeConfig {
     DEFAULT_HARMONY_BASE_URI: string;

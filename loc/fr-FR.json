@@ -20,12 +20,15 @@
     "showLess": "Afficher moins",
     "showMore": "Afficher plus",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Aujourd’hui",
     "updating": "Mise à jour en cours",
     "upToDate": "À jour",
     "view": "Afficher",
-    "yes": "Oui"
+    "yes": "Oui",
+    "yesterday": "Hier"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Licences",
     "privacyPolicy": "Politique de confidentialité",
     "releaseNotes": "Notes de version",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Assurez-vous de pouvoir récupérer votre crypto si vous perdez votre appareil ou si vous changez de portefeuille.",
     "secretRecoveryPhrase": "Phrase de récupération secrète",
     "tapHereToView": "Appuyez ici pour afficher"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Sauvegardez vos données",
+    "body": "Vous n’avez pas sauvegardé votre Phrase de récupération secrète. Nous vous conseillons de procéder à une sauvegarde pour éviter de perdre l’accès à vos fonds.",
+    "header": "Avant de recevoir des fonds dans ce portefeuille, faites-en une sauvegarde"
   },
   "broadcast": {
     "sent": "Envoyé"
@@ -551,7 +559,7 @@
     "import_wallet": "Importer",
     "intro_pages": {
       "1": {
-        "subtitle": "Portefeuille Kraken",
+        "subtitle": "Kraken Wallet",
         "text": "Gérez votre crypto, découvrez les blockchains et assurez votre avenir financier.",
         "title": "Bienvenue sur"
       },
@@ -658,7 +666,7 @@
     "biometricDescriptionIOS": "même si vous avez configuré FaceID ou TouchID via App Lock",
     "confirm": "Confirmer",
     "confirmPassword": "Confirmer le mot de passe",
-    "confirmResetApp": "Confirmer la réinitialisation de l’application",
+    "confirmResetApp": "Réinitialiser l’application",
     "connectedApps": "Applications d’authentification et de signature connectées",
     "createPassword": "Créer un mot de passe",
     "dataLoss1": "Je comprends qu’en réinitialisant l’application, son état d’installation initiale sera complètement restauré.",
@@ -884,6 +892,15 @@
     "testnetDescription": "Lorsqu’elle est activée, vous pouvez sélectionner votre réseau testnet et vos actifs à partir de l’écran de gestion des actifs.",
     "view_list_of_connected_dapps": "Afficher la liste des DApp connectées",
     "wallets": "Portefeuilles"
+  },
+  "storeReview": {
+    "alertMessage": "Nous aimerions beaucoup savoir si l’expérience vous satisfait.",
+    "alertTitle": "Vous appréciez l’application Kraken Wallet ?",
+    "nagativeAlertTitle": "Nous sommes désolés d’apprendre que l’application ne vous plaît pas.",
+    "negativeAlertMessage": "Pourriez-vous nous faire savoir ce qu’il faudrait améliorer ?",
+    "notReally": "Pas vraiment",
+    "sendFeedback": "Envoyer des commentaires",
+    "yes": "Oui"
   },
   "support": {
     "contactUs": "Contactez-nous",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Enregistré sur :"
   },
+  "walletBackup": {
+    "backup": "Sauvegarder",
+    "backupYourWallet": "Sauvegardez votre portefeuille",
+    "backupYourWalletDescription": "Assurez-vous de pouvoir récupérer votre crypto si vous perdez votre appareil ou si vous changez de portefeuille.",
+    "secretRecoveryPhrase": "Phrase de récupération secrète",
+    "tapHereToView": "Appuyez ici pour afficher"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Sauvegardez vos données",
+    "body": "Vous n’avez pas sauvegardé votre Phrase de récupération secrète. Nous vous conseillons de procéder à une sauvegarde pour éviter de perdre l’accès à vos fonds.",
+    "header": "Avant de recevoir des fonds dans ce portefeuille, faites-en une sauvegarde"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect : compte introuvable",
     "action_cancelled": "Action annulée",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Avec votre portefeuille, vous pouvez {boldDescription} à l’aide de WalletConnect.",
+      "boldDescription": "accéder en toute sécurité à des milliers d'applications décentralisées",
       "buttonText": "Cela me semble bien",
       "description": "Avec votre portefeuille, vous pouvez {boldDescription} à l’aide de WalletConnect.",
       "title": "Bien plus qu’une simple solution de stockage de crypto !"

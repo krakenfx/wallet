@@ -9,6 +9,9 @@ import { Utxo } from './BlueElectrum';
 
 const ElectrumClient = require('electrum-client');
 
+const net = require('net');
+const tls = require('tls');
+
 export const electrumConnectionEmitter = new EventEmitter();
 
 export enum ConnectionEmitter {
@@ -125,16 +128,9 @@ export async function connectMain() {
 
   try {
     console.log('begin connection:', JSON.stringify(usingPeer));
-    const globalAny = global as any;
-    ElectrumState.mainClient = new ElectrumClient(
-      globalAny.net,
-      globalAny.tls,
-      usingPeer.ssl || usingPeer.tcp,
-      usingPeer.host,
-      'ssl' in usingPeer ? 'tls' : 'tcp',
-    );
+    ElectrumState.mainClient = new ElectrumClient(net, tls, usingPeer.ssl || usingPeer.tcp, usingPeer.host, usingPeer.ssl ? 'tls' : 'tcp');
 
-    ElectrumState.mainClient.onError = function (e: any) {
+    ElectrumState.mainClient.onError = function (e: Error) {
       console.log('electrum mainClient.onError():', e.message);
       if (ElectrumState.mainConnected) {
         ElectrumState.mainClient.close();

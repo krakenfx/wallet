@@ -1,7 +1,7 @@
 {
   "_": {
     "add": "Toevoegen",
-    "appName": "Kraken-portemonnee",
+    "appName": "Kraken Wallet",
     "balance": "Tegoed {0}",
     "cancel": "Annuleren",
     "confirm": "Bevestigen",
@@ -20,12 +20,15 @@
     "showLess": "Minder weergeven",
     "showMore": "Meer weergeven",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Vandaag",
     "updating": "Wordt bijgewerkt",
     "upToDate": "Bijgewerkt",
     "view": "Bekijken",
-    "yes": "Ja"
+    "yes": "Ja",
+    "yesterday": "Gisteren"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Licenties",
     "privacyPolicy": "Privacybeleid",
     "releaseNotes": "Opmerkingen bij release",
@@ -55,19 +58,19 @@
     "title": "{walletName} - info",
     "type": "Type",
     "wallet_information": "Portemonneegegevens",
-    "xpub": "Extended public key",
+    "xpub": "Uitgebreide publieke sleutel",
     "xpub_key_copied": "Naar klembord gekopieerd"
   },
   "advancedAccountInfo": {
     "derivationPath": "Derivatiepad",
     "ethereumDerivationPath": "Derivatiepad van Ethereum",
     "ethereumDerivationPathContent": "Het derivatiepad van Ethereum wordt gedeeld met Layer 2-netwerken zoals Polygon, Arbitrum, Optimism en Base, wat betekent dat hetzelfde derivatiepad voor al deze netwerken wordt gebruikt.",
-    "extendedPublicKey": "Extended public key",
+    "extendedPublicKey": "Uitgebreide publieke sleutel",
     "includesLayer2Networks": "Omvat Layer 2-netwerken",
     "pathCopied": "Pad gekopieerd",
     "title": "{walletName} - info",
     "walletInformation": "Portemonneegegevens",
-    "xpub": "Extended public key",
+    "xpub": "Uitgebreide publieke sleutel",
     "xpubCopied": "xPub gekopieerd",
     "xpubHidden": "xPub verborgen",
     "xpubKeyCopied": "Naar klembord gekopieerd"
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Zorg ervoor dat u uw crypto kunt herstellen als u uw apparaat verliest of naar een andere portemonnee overschakelt.",
     "secretRecoveryPhrase": "Geheime herstelzin",
     "tapHereToView": "Tik hier om weer te geven"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Maak nu een back-up",
+    "body": "Je hebt geen back-up gemaakt van je geheime herstelzin. We raden aan om een back-up te maken om te voorkomen dat je de toegang tot je geld verliest.",
+    "header": "Maak een back-up voordat je geld ontvangt in deze portemonnee"
   },
   "broadcast": {
     "sent": "Verzonden"
@@ -298,8 +306,8 @@
     "request_approval": "Goedkeuringsverzoek voor transacties",
     "see_balance": "Uw tegoed en activiteit bekijken",
     "unsupportedNetwork": "Niet ondersteund netwerk",
-    "unsupportedNetworkDescription": "Deze app gebruikt het {unsupportedNetwork}-netwerk dat op dit moment niet ondersteund wordt. Kraken-portemonnee ondersteunt momenteel apps op de Ethereum-, Polygon-, Optimism-, Arbitrum- en Solana-netwerken.",
-    "unsupportedNetworksDescription": "Deze app gebruikt {unsupportedNetworks}-netwerken die op dit moment niet ondersteund worden. Kraken-portemonnee ondersteunt momenteel apps op de Ethereum-, Polygon-, Optimism-, Arbitrum- en Solana-netwerken."
+    "unsupportedNetworkDescription": "Deze app gebruikt het {unsupportedNetwork}-netwerk dat op dit moment niet ondersteund wordt. Kraken Wallet ondersteunt momenteel apps op de Ethereum-, Polygon-, Optimism-, Arbitrum- en Solana-netwerken.",
+    "unsupportedNetworksDescription": "Deze app gebruikt {unsupportedNetworks}-netwerken die op dit moment niet ondersteund worden. Kraken Wallet ondersteunt momenteel apps op de Ethereum-, Polygon-, Optimism-, Arbitrum- en Solana-netwerken."
   },
   "connectedApps": {
     "app_details": {
@@ -380,7 +388,7 @@
     "bitcoinXpub": "Bitcoin xPub",
     "copyXpub": "Copy xPub",
     "summary": "Dit is uw {summaryEmphasis}, het is de master public key die is gebruikt om alle openbare bitcoinadressen voor deze portemonnee te genereren.",
-    "summaryEmphasis": "Bitcoin Extended Public Key (xPub)",
+    "summaryEmphasis": "Bitcoin Uitgebreide publieke sleutel (xPub)",
     "type": "Type: {type}"
   },
   "floatingTransactionActivityButtons": {
@@ -551,7 +559,7 @@
     "import_wallet": "Importeren",
     "intro_pages": {
       "1": {
-        "subtitle": "Kraken-portemonnee",
+        "subtitle": "Kraken Wallet",
         "text": "Word crypto-eigenaar, ontdek blockchains en stel uw financiële toekomst veilig.",
         "title": "Welkom bij"
       },
@@ -562,7 +570,7 @@
       },
       "3": {
         "subtitle": "blockchains",
-        "text": "Kraken-portemonnee ondersteunt Bitcoin, Ethereum, Polygon, Doge en meer. ",
+        "text": "Kraken Wallet ondersteunt Bitcoin, Ethereum, Polygon, Doge en meer. ",
         "title": "Ontdek meer"
       },
       "4": {
@@ -608,7 +616,7 @@
   "onboardingOutro": {
     "button": "Geef akkoord en ga verder",
     "caption": "Deze Kraken-portemonnee ondersteunt Bitcoin, Ethereum, Polygon, Solana, en meer.",
-    "footer": "Door verder te gaan, gaat u akkoord met de portemonnee van Kraken\n",
+    "footer": "Door verder te gaan, gaat u akkoord met de Kraken Wallet servicevoorwaarden\n",
     "termsOfService": "servicevoorwaarden",
     "title": "Uw portemonnee is klaar"
   },
@@ -885,6 +893,15 @@
     "view_list_of_connected_dapps": "Lijst met verbonden Dapps weergeven",
     "wallets": "Portemonnees"
   },
+  "storeReview": {
+    "alertMessage": "We horen graag of je een geweldige ervaring hebt.",
+    "alertTitle": "Geniet je van de Kraken Wallet App?",
+    "nagativeAlertTitle": "Het spijt ons dat je geen plezier beleeft aan deze app.",
+    "negativeAlertMessage": "Wil je ons laten weten hoe we je ervaring kunnen verbeteren?",
+    "notReally": "Niet echt",
+    "sendFeedback": "Feedback versturen",
+    "yes": "Ja"
+  },
   "support": {
     "contactUs": "Neem contact met ons op",
     "getInTouch": "Neem contact op",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Leeft op:"
   },
+  "walletBackup": {
+    "backup": "Back-up",
+    "backupYourWallet": "Maak een back-up van uw portemonnee",
+    "backupYourWalletDescription": "Zorg ervoor dat u uw crypto kunt herstellen als u uw apparaat verliest of naar een andere portemonnee overschakelt.",
+    "secretRecoveryPhrase": "Geheime herstelzin",
+    "tapHereToView": "Tik hier om weer te geven"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Maak nu een back-up",
+    "body": "Je hebt geen back-up gemaakt van je geheime herstelzin. We raden aan om een back-up te maken om te voorkomen dat je de toegang tot je geld verliest.",
+    "header": "Maak een back-up voordat je geld ontvangt in deze portemonnee"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: account niet gevonden",
     "action_cancelled": "Actie geannuleerd",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Met uw portemonnee kunt u {boldDescription} WalletConnect gebruiken.",
+      "boldDescription": "veilig toegang tot duizenden gedecentraliseerde apps",
       "buttonText": "Klinkt goed",
       "description": "Met uw portemonnee kunt u {boldDescription} WalletConnect gebruiken.",
       "title": "Meer dan alleen crypto-opslag!"
@@ -1187,7 +1216,7 @@
     "thirdPage": {
       "buttonText": "Doorgaan",
       "description1": "Tik op WalletConnect",
-      "description2": "Kraken-portemonnee selecteren",
+      "description2": "Kraken Wallet selecteren",
       "subtitle": "In plaats van te scannen:",
       "title": "Wanneer u Web3-apps op uw telefoon gebruikt"
     }
@@ -1196,7 +1225,7 @@
     "firstPage": {
       "boldDescription": "Veilig toegang tot duizenden gedecentraliseerde apps",
       "buttonText": "Klinkt goed",
-      "description": "Met uw portemonnee kunt u {boldDescription} WalletConnect gebruiken.",
+      "description": "Met je portemonnee kun je {boldDescription} door WalletConnect te gebruiken.",
       "title": "Meer dan alleen crypto-opslag!"
     },
     "fourthPage": {
@@ -1235,7 +1264,7 @@
     "title": "Meer informatie",
     "type": "Type",
     "wallet_information": "Portemonneegegevens",
-    "xpub": "Extended public key",
+    "xpub": "Uitgebreide publieke sleutel",
     "xpubKeyCopied": "Naar klembord gekopieerd"
   },
   "wallets": {

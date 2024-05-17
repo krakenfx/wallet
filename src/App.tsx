@@ -1,6 +1,5 @@
 import '@ethersproject/shims';
 
-import '@walletconnect/react-native-compat';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { NavigationContainer } from '@react-navigation/native';
 import React, { PropsWithChildren, useEffect, useState } from 'react';
@@ -21,7 +20,7 @@ import { SecuredKeychainProvider } from './secureStore/SecuredKeychainProvider';
 import { SuperDarkTheme } from './theme/themes';
 import { runMigrations } from './utils/migrations';
 
-import { appendLog, handleError } from '/helpers/errorHandler';
+import { appendLog, applogFilePath, handleError } from '/helpers/errorHandler';
 
 LogBox.ignoreLogs([
   'Require cycle:',
@@ -32,6 +31,7 @@ LogBox.ignoreLogs([
   'socketDidDisconnect with nil clientDelegate for 0',
 ]);
 
+console.log('applogFilePath:', applogFilePath);
 if (!__DEV__) {
   const _log = (...args: unknown[]) => appendLog(args, 'log');
   console.log = console.warn = console.error = _log;

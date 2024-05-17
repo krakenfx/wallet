@@ -9,14 +9,14 @@ import { useTheme } from '@/theme/themes';
 import { AboutScreen } from './about';
 import { AdvancedSettingsScreen } from './AdvancedSettingsScreen';
 import { AppLockScreen } from './appLock';
-import { SettingsBackupVerifyScreen, SettingsBackupWalletScreen } from './backupWallet';
-import { SettingsDisplaySeedScreen } from './backupWallet/SettingsDisplaySeedScreen';
 import { CurrencyScreen } from './CurrencyScreen';
 import { DeleteAllDataWarningScreen } from './DeleteAllDataWarningScreen';
 import { ManageWalletsScreen } from './manageWallets';
 import { DisablePasswordProtectionScreen, PasswordProtectionFormScreen, PasswordProtectionScreen } from './passwordProtection';
 import { SettingsScreen } from './SettingsScreen';
 import { SupportScreen } from './support';
+import { SettingsBackupVerifyScreen, SettingsWalletBackupScreen } from './walletBackup';
+import { SettingsDisplaySeedScreen } from './walletBackup/SettingsDisplaySeedScreen';
 
 export type SettingsStackParams = {
   About: undefined;
@@ -29,7 +29,7 @@ export type SettingsStackParams = {
   PasswordProtectionForm: undefined;
   DeleteAllDataWarningScreen: undefined;
   DisablePasswordProtection: undefined;
-  SettingsBackupWallet: undefined;
+  SettingsWalletBackup: undefined;
   SettingsBackupVerify: undefined;
   SettingsDisplaySeed: undefined;
   Support: undefined;
@@ -55,9 +55,9 @@ export const SettingsRouter = () => {
         options={PasswordProtectionFormScreen.navigationOptions(theme)}
       />
       <SettingsStack.Screen
-        name={Routes.SettingsBackupWallet}
-        component={SettingsBackupWalletScreen}
-        options={SettingsBackupWalletScreen.navigationOptions(theme)}
+        name={Routes.SettingsWalletBackup}
+        component={SettingsWalletBackupScreen}
+        options={SettingsWalletBackupScreen.navigationOptions(theme)}
       />
       <SettingsStack.Screen
         name={Routes.SettingsBackupVerify}

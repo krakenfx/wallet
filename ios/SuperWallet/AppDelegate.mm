@@ -1,4 +1,3 @@
-#import "RNNotifications.h"
 #import "AppDelegate.h"
 #import "RNBootSplash.h"
 #import "SDImageCodersManager.h"
@@ -10,22 +9,9 @@
 
 @implementation AppDelegate
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-  [RNNotifications didFailToRegisterForRemoteNotificationsWithError:error];
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
-  [RNNotifications didReceiveBackgroundNotification:userInfo withCompletionHandler:completionHandler];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [RNNotifications startMonitorNotifications];
-
   
   self.moduleName = @"SuperWallet";
   // You can add your custom initial props in the dictionary below.

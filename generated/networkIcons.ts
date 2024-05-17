@@ -17,7 +17,6 @@ import i13 from 'kraken-wallet-network-icons/src/evmos.svg';
 import i14 from 'kraken-wallet-network-icons/src/fantom.svg';
 import i15 from 'kraken-wallet-network-icons/src/gnosis.svg';
 import i16 from 'kraken-wallet-network-icons/src/harmony.svg';
-import i17 from 'kraken-wallet-network-icons/src/hydra.svg';
 import i18 from 'kraken-wallet-network-icons/src/moonriver.svg';
 import i19 from 'kraken-wallet-network-icons/src/optimism.svg';
 import i20 from 'kraken-wallet-network-icons/src/polygon.svg';
@@ -41,7 +40,6 @@ export const networkIcons = {
   fantom: i14,
   gnosis: i15,
   harmony: i16,
-  hydra: i17,
   moonriver: i18,
   optimism: i19,
   polygon: i20,

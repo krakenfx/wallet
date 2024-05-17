@@ -1,17 +1,17 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { startOfDay } from 'date-fns';
 import { groupBy } from 'lodash';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { FadeOut } from 'react-native-reanimated';
 
 import { Transaction } from '@/api/types';
+import { ActivityIndicator } from '@/components/ActivityIndicator';
 import { Label } from '@/components/Label';
 import { NETWORK_FILTERS } from '@/components/NetworkFilter/types';
 import { omitNetworkIcons } from '@/components/TokenIcon';
 import { useRealmQueue } from '@/realm/hooks/useRealmQueue';
-import { useFilterInBlacklistedAssets } from '@/realm/settings/useFilterInBlacklistedAssets';
-import { useFilterInUnverifiedAssets } from '@/realm/settings/useFilterInUnverifiedAssets';
+import { useFilterInBlacklistedAssets, useFilterInUnverifiedAssets, useLanguage } from '@/realm/settings';
 import { useTokenById } from '@/realm/tokens';
 import {
   REALM_TYPE_PENDING_TRANSACTION,
@@ -29,10 +29,10 @@ import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types
 
 import { TransactionPendingRow } from '../components/TransactionPendingRow';
 
+import { formatTransactionGroupDate } from './formatTransactionGroupDate';
 import { useIgnoredTransactions } from './useIgnoredTransactions';
 
 import loc from '/loc';
-import { formatTransactionGroupDate } from '/loc/date';
 
 type SectionLabel = {
   type: 'sectionLabel';
@@ -52,6 +52,7 @@ interface Props {
   skipTimeHeader?: boolean;
   networkFilter?: NETWORK_FILTERS[];
   isRecentActivityView?: boolean;
+  pageSize?: number;
 }
 
 const isSectionLabel = (item: TransactionListItem): item is SectionLabel => {
@@ -99,10 +100,13 @@ export const useTransactionsDataSource = ({
   skipTimeHeader,
   networkFilter,
   isRecentActivityView,
+  pageSize = 100,
 }: Props) => {
   const allPendingTransactions = usePendingTransactions(networkFilter);
   const filterInUnverifiedAssets = useFilterInUnverifiedAssets();
   const filterInBlacklistedAssets = useFilterInBlacklistedAssets();
+  const language = useLanguage();
+  const [page, setPage] = useState(1);
 
   const { ignoredIds, onTransactionHide, resetIgnoredIds } = useIgnoredTransactions();
 
@@ -117,6 +121,10 @@ export const useTransactionsDataSource = ({
   const pendingNftTransactions = usePendingNftTransactions(token?.assetId, walletId, networkFilter);
 
   const { commitRealmTransactionQueue } = useRealmQueue();
+
+  const loadNextPage = useCallback(() => {
+    setPage(p => p + 1);
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -151,7 +159,7 @@ export const useTransactionsDataSource = ({
     }
 
     if (transactions.length > 0) {
-      let txs = transactions;
+      let txs = transactions.slice(0, page * pageSize);
       if (limit) {
         txs = transactions.slice(0, limit - alreadyAddedTransactionCount);
       }
@@ -161,7 +169,7 @@ export const useTransactionsDataSource = ({
           .map(([date, items]) => {
             const sectionLabel = {
               type: 'sectionLabel',
-              label: formatTransactionGroupDate(date),
+              label: formatTransactionGroupDate(date, language),
             } satisfies SectionLabel;
             return [sectionLabel, ...items];
           })
@@ -172,7 +180,12 @@ export const useTransactionsDataSource = ({
       }
     }
     return data;
-  }, [limit, pendingTransactions, skipTimeHeader, transactions]);
+  }, [language, limit, page, pageSize, pendingTransactions, skipTimeHeader, transactions]);
+
+  const renderFooter = useCallback(
+    () => (page * pageSize < transactions.length ? <ActivityIndicator style={styles.loadMore} /> : null),
+    [page, pageSize, transactions.length],
+  );
 
   const renderTransaction = useCallback(
     (item: RealmTransaction) => {
@@ -242,13 +255,19 @@ export const useTransactionsDataSource = ({
   return {
     dataSource,
     renderItem,
+    renderFooter,
     keyExtractor,
     getItemType,
+    loadNextPage,
   };
 };
 const styles = StyleSheet.create({
   sectionHeader: {
     marginVertical: 4,
+  },
+  loadMore: {
+    alignSelf: 'center',
+    marginVertical: 16,
   },
   rowContainer: {
     paddingHorizontal: 12,

@@ -12,7 +12,7 @@ const MAX_SOLANA_TX_DURATION = 2 * 60 * 1000;
 export const useMonitorPendingTransactions = () => {
   const interval = useRef<NodeJS.Timer>();
   const pendingTransactions = usePendingTransactions();
-  const { confirmPendingTransaction, cleanupConfirmedTransactions, invalidatePendingTransaction } = useTransactionMutations();
+  const { confirmPendingTransaction, dangerouslyCleanupConfirmedTransactions, invalidatePendingTransaction } = useTransactionMutations();
   const { fetchBalance } = useTokensFetch();
 
   const checkTransaction = useCallback(
@@ -63,6 +63,6 @@ export const useMonitorPendingTransactions = () => {
   }, [checkTransaction, pendingTransactions]);
 
   useEffect(() => {
-    cleanupConfirmedTransactions();
-  }, [cleanupConfirmedTransactions]);
+    dangerouslyCleanupConfirmedTransactions();
+  }, [dangerouslyCleanupConfirmedTransactions]);
 };

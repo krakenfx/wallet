@@ -37,10 +37,11 @@ export const refreshTokenPrices = debounce(() => {
   refreshEmitter.emit(RefreshEmitter.refreshTokenPrices);
 }, DEBOUNCE_FETCH_TIME);
 
+const DELAY_REFRESH_TRANSACTION_FIRST_CALL = 3000;
+const DELAY_REFRESH_TRANSACTION_ADDITIONAL_CALL = 15000;
 export const refreshAllTransactions = debounce(() => {
-  refreshEmitter.emit(RefreshEmitter.refreshAllTransactions);
-
-  setTimeout(() => refreshEmitter.emit(RefreshEmitter.refreshAllTransactions), 10000);
+  setTimeout(() => refreshEmitter.emit(RefreshEmitter.refreshAllTransactions), DELAY_REFRESH_TRANSACTION_FIRST_CALL);
+  setTimeout(() => refreshEmitter.emit(RefreshEmitter.refreshAllTransactions), DELAY_REFRESH_TRANSACTION_ADDITIONAL_CALL);
 }, DEBOUNCE_FETCH_TIME);
 
 export const useRegisterRefreshManager = () => {

@@ -10,12 +10,12 @@ import { Routes } from '@/Routes';
 import { CurrencyBadge } from '@/screens/Settings/currency';
 
 import { AppLockBadge } from './appLock';
-import { BackupWalletWarning } from './backupWallet';
 import { BuildInfo } from './BuildInfo';
 import { SettingsItem, SettingsSectionHeader } from './components';
 import { ManageWalletsBadge } from './manageWallets';
 import { PasswordProtectionBadge } from './passwordProtection';
 import { SettingsNavigationProps } from './SettingsRouter';
+import { WalletBackupWarning } from './walletBackup';
 
 import loc from '/loc';
 
@@ -33,7 +33,7 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
         <LargeHeader title={loc.settings.header} style={styles.header} testID="Settings" />
 
         <SettingsSectionHeader title={loc.settings.wallets} />
-        <BackupWalletWarning />
+        <WalletBackupWarning />
 
         <SettingsItem
           title={loc.settings.manageWallets}

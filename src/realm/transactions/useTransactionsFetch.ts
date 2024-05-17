@@ -37,7 +37,7 @@ export function useTransactionsFetch() {
     isFetchingAll.current = true;
     const accountWallets = getWalletsForMutations(realm);
 
-    const results = await Promise.allSettled(accountWallets.map(wallet => fetchTransactions(wallet, false)));
+    const results = await Promise.allSettled(accountWallets.map(wallet => fetchTransactions(wallet, true)));
     results.filter(isPromiseRejected).forEach(({ reason }) => handleError(reason, 'ERROR_CONTEXT_PLACEHOLDER'));
     isFetchingAll.current = false;
   }, [fetchTransactions, realm]);

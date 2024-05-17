@@ -1,7 +1,7 @@
 {
   "_": {
     "add": "Додати",
-    "appName": "Гаманець Кракен",
+    "appName": "Kraken Wallet",
     "balance": "Баланс {0}",
     "cancel": "Скасування",
     "confirm": "Підтвердити",
@@ -20,12 +20,15 @@
     "showLess": "Показати менше",
     "showMore": "Показати більше",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Сьогодні",
     "updating": "Оновлення",
     "upToDate": "Оновлено",
     "view": "Показати",
-    "yes": "Так"
+    "yes": "Так",
+    "yesterday": "Учора"
   },
   "about": {
+    "blog": "Блог",
     "licenses": "Ліцензії",
     "privacyPolicy": "Політика конфіденційності",
     "releaseNotes": "Примітки до випуску",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Переконайтеся в тому, що ви зможете відновити свою криптовалюту, якщо втратите пристрій або перейдете на інший гаманець.",
     "secretRecoveryPhrase": "Секретна фраза для відновлення",
     "tapHereToView": "Торкніться тут для перегляду"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Негайне резервне копіювання",
+    "body": "Ви не створили резервну копію секретної фрази для відновлення. Ми рекомендуємо створити резервну копію, щоб уникнути втрати доступу до ваших коштів.",
+    "header": "Перш ніж отримати кошти на цей гаманець, зробіть його резервну копію"
   },
   "broadcast": {
     "sent": "Надіслано"
@@ -298,8 +306,8 @@
     "request_approval": "Надіслати запит на схвалення транзакцій",
     "see_balance": "Перегляньте свої баланси й активність",
     "unsupportedNetwork": "Непідтримувана мережа",
-    "unsupportedNetworkDescription": "Цей застосунок використовує мережу {unsupportedNetwork}, що наразі не підтримується. Наразі гаманець Kraken підтримує застосунки в мережах Ethereum, Polygon, Optimism, Arbitrum і Solana.",
-    "unsupportedNetworksDescription": "Цей застосунок використовує мережі {unsupportedNetworks}, що наразі не підтримуються. Наразі гаманець Kraken підтримує застосунки в мережах Ethereum, Polygon, Optimism, Arbitrum і Solana."
+    "unsupportedNetworkDescription": "Цей застосунок використовує мережу {unsupportedNetwork}, що наразі не підтримується. Наразі Kraken Wallet підтримує застосунки в мережах Ethereum, Polygon, Optimism, Arbitrum і Solana.",
+    "unsupportedNetworksDescription": "Цей застосунок використовує мережі {unsupportedNetworks}, що наразі не підтримуються. Наразі Kraken Wallet підтримує застосунки в мережах Ethereum, Polygon, Optimism, Arbitrum і Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -551,7 +559,7 @@
     "import_wallet": "Імпорт",
     "intro_pages": {
       "1": {
-        "subtitle": "Гаманець Кракен",
+        "subtitle": "Kraken Wallet",
         "text": "Володійте своєю криптовалютою, відкривайте для себе blockchain-мережі й забезпечуйте своє фінансове майбутнє.",
         "title": "Ласкаво просимо до"
       },
@@ -562,7 +570,7 @@
       },
       "3": {
         "subtitle": "blockchain-мережі",
-        "text": "Гаманець Kraken підтримує Bitcoin, Ethereum, Polygon, Doge тощо. ",
+        "text": "Kraken Wallet підтримує Bitcoin, Ethereum, Polygon, Doge тощо. ",
         "title": "Переглянути більше"
       },
       "4": {
@@ -608,8 +616,8 @@
   "onboardingOutro": {
     "button": "Погодитись і продовжити",
     "caption": "Цей гаманець підтримує Bitcoin, Ethereum, Polygon, Solana тощо.",
-    "footer": "Продовжуючи, ви погоджуєтеся з умовами надання послуг\n",
-    "termsOfService": "гаманця Kraken",
+    "footer": "Продовжуючи, ви погоджуєтеся з Умовами надання послуг\n",
+    "termsOfService": "Kraken Wallet",
     "title": "Ваш гаманець готовий"
   },
   "onboardingPushNotifications": {
@@ -885,6 +893,15 @@
     "view_list_of_connected_dapps": "Перегляд списку підключених DApp",
     "wallets": "Гаманці"
   },
+  "storeReview": {
+    "alertMessage": "Ми хотіли б знати, чи все вам подобається.",
+    "alertTitle": "Вам подобається застосунок Kraken Wallet?",
+    "nagativeAlertTitle": "Нам шкода, що цей застосунок вам не подобається.",
+    "negativeAlertMessage": "Бажаєте розповісти нам, як ми можемо його покращити?",
+    "notReally": "Аж ніяк",
+    "sendFeedback": "Надіслати відгук",
+    "yes": "Так"
+  },
   "support": {
     "contactUs": "Зверніться до нас",
     "getInTouch": "Зв’язатися",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Проживає на:"
   },
+  "walletBackup": {
+    "backup": "Резервне копіювання",
+    "backupYourWallet": "Створіть резервну копію свого гаманця",
+    "backupYourWalletDescription": "Переконайтеся в тому, що ви зможете відновити свою криптовалюту, якщо втратите пристрій або перейдете на інший гаманець.",
+    "secretRecoveryPhrase": "Секретна фраза для відновлення",
+    "tapHereToView": "Торкніться тут для перегляду"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Негайне резервне копіювання",
+    "body": "Ви не створили резервну копію секретної фрази для відновлення. Ми рекомендуємо створити резервну копію, щоб уникнути втрати доступу до ваших коштів.",
+    "header": "Перш ніж отримати кошти на цей гаманець, зробіть його резервну копію"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: обліковий запис не знайдено",
     "action_cancelled": "Дію скасовано",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "З вашим гаманцем ви можете {boldDescription}, використовуючи WalletConnect.",
+      "boldDescription": "безпечний доступ до тисяч децентралізованих застосунків",
       "buttonText": "Звучить непогано",
       "description": "З вашим гаманцем ви можете {boldDescription}, використовуючи WalletConnect.",
       "title": "Більше, ніж просто криптосховище!"
@@ -1187,7 +1216,7 @@
     "thirdPage": {
       "buttonText": "Продовжити",
       "description1": "Торкніться WalletConnect",
-      "description2": "Виберіть гаманець Kraken",
+      "description2": "Виберіть Kraken Wallet",
       "subtitle": "Замість сканування:",
       "title": "Використовуючи застосунки Web3 на своєму телефоні,"
     }

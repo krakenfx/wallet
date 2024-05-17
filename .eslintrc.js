@@ -9,6 +9,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "warn",
     "sort-imports": ["error", { "ignoreDeclarationSort": true }],
     "import/newline-after-import": ["error", { "count": 1 }],
+    'import/no-extraneous-dependencies': 'error',
     'import/order': [
       'error',
       {

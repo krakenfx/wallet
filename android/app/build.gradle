@@ -170,19 +170,12 @@ dependencies {
 
     implementation "com.google.firebase:firebase-messaging:23.1.2"
 
-    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
-    debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
-        exclude group:'com.squareup.okhttp3', module:'okhttp'
-    }
-
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
     }
 
-    implementation project(':react-native-notifications')
     implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation 'com.google.android.gms:play-services-base:18.2.0'
     implementation 'androidx.work:work-runtime:2.8.1'

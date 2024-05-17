@@ -4,6 +4,8 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { Button, ButtonProps } from '@/components/Button';
 import { Label } from '@/components/Label';
+
+import { useIsWalletBackupPromptNeeded } from '@/realm/settings';
 import { NavigationProps, Routes } from '@/Routes';
 
 import loc from '/loc';
@@ -12,9 +14,13 @@ interface Props {
   navigation: NavigationProps<'Home'>['navigation'];
 }
 
-export const UniversalSendReceiveButtons = ({ navigation: { navigate } }: Props) => {
-  const onReceivePress = () => navigate(Routes.UniversalReceive);
-  const onSendPress = () => navigate(Routes.UniversalSend);
+export const UniversalSendReceiveButtons = ({ navigation }: Props) => {
+  const isWalletBackupPromptNeeded = useIsWalletBackupPromptNeeded();
+  const onReceivePress = () => {
+    navigation.push(Routes.UniversalReceive);
+    isWalletBackupPromptNeeded && navigation.push(Routes.WalletBackupPrompt);
+  };
+  const onSendPress = () => navigation.navigate(Routes.UniversalSend);
 
   const renderButton = (label: string, btnProps: ButtonProps) => {
     return (

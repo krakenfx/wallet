@@ -51,6 +51,10 @@ export async function superFetch(url: RequestInfo, opts: RequestInit = {}, timeo
     console.log(`warning: API call to ${uri2print} took ${(endTime - startTime) / 1000} sec; x-request-id: ${requestId}`);
   }
 
+  if (!response.headers.has('x-request-id')) {
+    response.headers.append('x-request-id', requestId);
+  }
+
   return response;
 }
 

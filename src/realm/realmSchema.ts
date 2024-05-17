@@ -52,6 +52,6 @@ export const RealmSchema = [
 ];
 
 export const realmConfig: Configuration = {
-  schemaVersion: 17,
+  schemaVersion: 19,
   schema: RealmSchema,
 };

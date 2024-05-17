@@ -1,7 +1,7 @@
 {
   "_": {
     "add": "Добавить",
-    "appName": "Кошелек Kraken",
+    "appName": "Kraken Wallet",
     "balance": "Баланс {0}",
     "cancel": "Отмена",
     "confirm": "Подтвердить",
@@ -20,12 +20,15 @@
     "showLess": "Показать меньше",
     "showMore": "Показать больше",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Сегодня",
     "updating": "Обновление",
     "upToDate": "Обновлено",
     "view": "Просмотр",
-    "yes": "Да"
+    "yes": "Да",
+    "yesterday": "Вчера"
   },
   "about": {
+    "blog": "Блог",
     "licenses": "Лицензии",
     "privacyPolicy": "Политика конфиденциальности",
     "releaseNotes": "Примечания к выпуску",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Убедитесь, что вы сможете восстановить свою криптовалюту, если потеряете устройство или перейдете на другой кошелек.",
     "secretRecoveryPhrase": "Секретная фраза для восстановления",
     "tapHereToView": "Нажмите здесь для просмотра"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Выполнить резервное копирование",
+    "body": "Вы не выполнили резервное копирование секретной фразы для восстановления. Рекомендуем вам выполнить резервное копирование, чтобы избежать потери доступа к своим средствам.",
+    "header": "Выполните резервное копирование, прежде чем получать средства на этот кошелек"
   },
   "broadcast": {
     "sent": "Отправлено"
@@ -298,8 +306,8 @@
     "request_approval": "Запрос подтверждения для транзакций",
     "see_balance": "Просмотрите свои балансы и активность",
     "unsupportedNetwork": "Неподдерживаемая сеть",
-    "unsupportedNetworkDescription": "Приложение использует сеть {unsupportedNetwork}, которая не поддерживается в данный момент. Кошелек Kraken в настоящее время поддерживает приложения в сетях Ethereum, Polygon, Optimism, Arbitrum и Solana.",
-    "unsupportedNetworksDescription": "Приложение использует сети {unsupportedNetworks}, которые не поддерживаются в данный момент. Кошелек Kraken в настоящее время поддерживает приложения в сетях Ethereum, Polygon, Optimism, Arbitrum и Solana."
+    "unsupportedNetworkDescription": "Приложение использует сеть {unsupportedNetwork}, которая не поддерживается в данный момент. Kraken Wallet в настоящее время поддерживает приложения в сетях Ethereum, Polygon, Optimism, Arbitrum и Solana.",
+    "unsupportedNetworksDescription": "Приложение использует сети {unsupportedNetworks}, которые не поддерживаются в данный момент. Kraken Wallet в настоящее время поддерживает приложения в сетях Ethereum, Polygon, Optimism, Arbitrum и Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -551,7 +559,7 @@
     "import_wallet": "Импортировать",
     "intro_pages": {
       "1": {
-        "subtitle": "Кошелек Kraken",
+        "subtitle": "Kraken Wallet",
         "text": "Владейте криптовалютой, открывайте для себя блокчейны и обеспечьте свое финансовое будущее.",
         "title": "Добро пожаловать в"
       },
@@ -562,7 +570,7 @@
       },
       "3": {
         "subtitle": "блокчейны",
-        "text": "Кошелек Kraken поддерживает Bitcoin, Ethereum, Polygon, Doge и другие криптовалюты. ",
+        "text": "Kraken Wallet поддерживает Bitcoin, Ethereum, Polygon, Doge и другие криптовалюты. ",
         "title": "Узнать больше"
       },
       "4": {
@@ -609,7 +617,7 @@
     "button": "Принять и продолжить",
     "caption": "Кошелек поддерживает Bitcoin, Ethereum, Polygon, Solana и другие криптовалюты.",
     "footer": "Продолжая, вы соглашаетесь с\n",
-    "termsOfService": "условиями предоставления услуг кошелька Kraken",
+    "termsOfService": "условиями предоставления услуг Kraken Wallet",
     "title": "Ваш кошелек готов"
   },
   "onboardingPushNotifications": {
@@ -885,6 +893,15 @@
     "view_list_of_connected_dapps": "Просмотр списка подключенных приложений dApp",
     "wallets": "Кошельки"
   },
+  "storeReview": {
+    "alertMessage": "Мы хотели бы убедиться, что у вас остались хорошие впечатления.",
+    "alertTitle": "Вам нравится приложение Kraken Wallet?",
+    "nagativeAlertTitle": "Сожалеем, что опыт использования этого приложения не принес вам хороших впечатлений.",
+    "negativeAlertMessage": "Не могли бы вы рассказать, что мы можем улучшить?",
+    "notReally": "Не совсем",
+    "sendFeedback": "Отправить отзыв",
+    "yes": "Да"
+  },
   "support": {
     "contactUs": "Связаться с нами",
     "getInTouch": "Связаться",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Lives on:"
   },
+  "walletBackup": {
+    "backup": "Резервное копирование",
+    "backupYourWallet": "Выполнить резервное копирование кошелька",
+    "backupYourWalletDescription": "Убедитесь, что вы сможете восстановить свою криптовалюту, если потеряете устройство или перейдете на другой кошелек.",
+    "secretRecoveryPhrase": "Секретная фраза для восстановления",
+    "tapHereToView": "Нажмите здесь для просмотра"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Выполнить резервное копирование",
+    "body": "Вы не выполнили резервное копирование секретной фразы для восстановления. Рекомендуем вам выполнить резервное копирование, чтобы избежать потери доступа к своим средствам.",
+    "header": "Выполните резервное копирование, прежде чем получать средства на этот кошелек"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: аккаунт не найден",
     "action_cancelled": "Действие отменено",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Ваш кошелек позволяет получать {boldDescription} с помощью WalletConnect.",
+      "boldDescription": "безопасный доступ ко множеству децентрализованных приложений",
       "buttonText": "Отлично",
       "description": "Ваш кошелек позволяет получать {boldDescription} с помощью WalletConnect.",
       "title": "Не просто хранилище криптовалюты!"
@@ -1187,7 +1216,7 @@
     "thirdPage": {
       "buttonText": "Продолжить",
       "description1": "Нажмите «WalletConnect»",
-      "description2": "Выберите «Кошелек Kraken»",
+      "description2": "Выберите Kraken Wallet",
       "subtitle": "Вместо сканирования:",
       "title": "При использовании приложений Web3 на вашем телефоне"
     }

@@ -11,7 +11,7 @@ import { useNftMetadata } from '@/realm/nftMetadata';
 import { RealmToken, useTokenByAssetId } from '@/realm/tokens';
 import { RealmTransaction, usePendingTransactionById } from '@/realm/transactions';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { NFTTransactionData, TransactionTypeTitles } from '@/realm/transactions/getTransactionMetadata';
+import { NFTTransactionData, getTransactionTitle } from '@/realm/transactions/getTransactionMetadata';
 import { NavigationProps, Routes } from '@/Routes';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 
@@ -82,7 +82,7 @@ export const TransactionNftRow = React.memo(
       return descriptionDefault;
     }, [classifiedTx, nftAssetMetadata, descriptionDefault]);
 
-    const title = TransactionTypeTitles[classifiedTx.type];
+    const title = getTransactionTitle(classifiedTx.type);
 
     const symbol = useMemo(() => {
       if (classifiedTx.type === TRANSACTION_TYPES.NFT_RECEIVE) {
@@ -113,7 +113,7 @@ export const TransactionNftRow = React.memo(
       });
     }, [item, navigation, contextToken?.assetId, transactionDetailsMetadata]);
 
-    const showRow = !(pendingTx !== undefined && pendingTx.isValid());
+    const showRow = !(pendingTx !== undefined && pendingTx.isValid() && !pendingTx.confirmed);
 
     const hideAmount = useMemo(
       () => isGlobalView && ![TRANSACTION_TYPES.NFT_BUY, TRANSACTION_TYPES.NFT_SELL].includes(classifiedTx.type),

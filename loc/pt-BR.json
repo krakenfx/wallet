@@ -1,7 +1,7 @@
 {
   "_": {
     "add": "Adicionar",
-    "appName": "Carteira da Kraken",
+    "appName": "Kraken Wallet",
     "balance": "Saldo {0}",
     "cancel": "Cancelar",
     "confirm": "Confirmar",
@@ -20,12 +20,15 @@
     "showLess": "Mostrar menos",
     "showMore": "Mostrar mais",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Hoje",
     "updating": "Atualizando",
     "upToDate": "No acumulado do ano",
     "view": "Visualizar",
-    "yes": "Sim"
+    "yes": "Sim",
+    "yesterday": "Ontem"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Licenças",
     "privacyPolicy": "Política de privacidade",
     "releaseNotes": "Notas de lançamento",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Você pode recuperar a criptografia caso perca seu dispositivo ou mude para outra carteira.",
     "secretRecoveryPhrase": "Frase secreta de recuperação",
     "tapHereToView": "Toque aqui para visualizar"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Fazer backup agora",
+    "body": "Você não fez backup da sua frase secreta de recuperação. Recomendamos fazer backup para evitar perder acesso ao seus fundos.",
+    "header": "Faça o backup antes de receber os fundos nesta carteira"
   },
   "broadcast": {
     "sent": "Enviado"
@@ -298,8 +306,8 @@
     "request_approval": "Solicitar aprovação para transações",
     "see_balance": "Visualizar saldos e atividades",
     "unsupportedNetwork": "Rede não compatível",
-    "unsupportedNetworkDescription": "Este aplicativo usa a rede{unsupportedNetwork}, que não é compatível no momento. A Carteira da Kraken atualmente oferece suporte a aplicativos nas redes Ethereum, Polygon, Optimism, Arbitrum e Solana.",
-    "unsupportedNetworksDescription": "Este aplicativo usa as redes {unsupportedNetworks}, que não são compatíveis no momento. A Carteira da Kraken atualmente oferece suporte a aplicativos nas redes Ethereum, Polygon, Optimism, Arbitrum e Solana."
+    "unsupportedNetworkDescription": "Este aplicativo usa a rede {unsupportedNetwork}, que não é compatível no momento. A Kraken Wallet atualmente oferece suporte a aplicativos nas redes Ethereum, Polygon, Optimism, Arbitrum e Solana.",
+    "unsupportedNetworksDescription": "Este aplicativo usa as redes {unsupportedNetworks}, que não são compatíveis no momento. A Kraken Wallet atualmente oferece suporte a aplicativos nas redes Ethereum, Polygon, Optimism, Arbitrum e Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -551,7 +559,7 @@
     "import_wallet": "Importar",
     "intro_pages": {
       "1": {
-        "subtitle": "Carteira da Kraken",
+        "subtitle": "Kraken Wallet",
         "text": "Adquira criptomoedas, descubra blockchains e proteja seu futuro financeiro.",
         "title": "Boas-vindas à"
       },
@@ -562,7 +570,7 @@
       },
       "3": {
         "subtitle": "blockchains",
-        "text": "A Carteira da Kraken é compatível com Bitcoin, Ethereum, Polygon, Doge e muito mais. ",
+        "text": "A Kraken Wallet é compatível com Bitcoin, Ethereum, Polygon, Doge e muito mais. ",
         "title": "Explore mais"
       },
       "4": {
@@ -609,7 +617,7 @@
     "button": "Concordar e continuar",
     "caption": "Esta carteira é compatível com Bitcoin, Ethereum, Polygon, Solana e muito mais.",
     "footer": "Ao continuar, você concorda com os\n",
-    "termsOfService": "Termos de Serviço da Carteira da Kraken",
+    "termsOfService": "Termos de Serviço da Kraken Wallet",
     "title": "Sua carteira está pronta"
   },
   "onboardingPushNotifications": {
@@ -885,6 +893,15 @@
     "view_list_of_connected_dapps": "Visualizar lista de DApps conectados",
     "wallets": "Carteiras"
   },
+  "storeReview": {
+    "alertMessage": "Adoraríamos saber se você está aproveitando a experiência.",
+    "alertTitle": "Você está gostando do Aplicativo Kraken Wallet?",
+    "nagativeAlertTitle": "Lamentamos que você não esteja curtindo este aplicativo.",
+    "negativeAlertMessage": "Gostaríamos de saber como podemos melhorar a sua experiência?",
+    "notReally": "Não necessariamente",
+    "sendFeedback": "Enviar feedback",
+    "yes": "Sim"
+  },
   "support": {
     "contactUs": "Entre em contato conosco",
     "getInTouch": "Entre em contato",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Fica em:"
   },
+  "walletBackup": {
+    "backup": "Cópia de segurança",
+    "backupYourWallet": "Faça uma cópia de segurança de sua carteira",
+    "backupYourWalletDescription": "Você pode recuperar a criptografia caso perca seu dispositivo ou mude para outra carteira.",
+    "secretRecoveryPhrase": "Frase secreta de recuperação",
+    "tapHereToView": "Toque aqui para visualizar"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Fazer backup agora",
+    "body": "Você não fez backup da sua frase secreta de recuperação. Recomendamos fazer backup para evitar perder acesso ao seus fundos.",
+    "header": "Faça o backup antes de receber os fundos nesta carteira"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: conta não encontrada",
     "action_cancelled": "Ação cancelada",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Com sua carteira, você pode {boldDescription}, usando o WalletConnect.",
+      "boldDescription": "acesse milhares de aplicativos decentralizados com segurança",
       "buttonText": "Ótimo",
       "description": "Com sua carteira, você pode {boldDescription}, usando o WalletConnect.",
       "title": "Mais do que apenas armazenar criptomoeda!"
@@ -1187,7 +1216,7 @@
     "thirdPage": {
       "buttonText": "Continuar",
       "description1": "Toque no WalletConnect",
-      "description2": "Selecione Carteira da Kraken",
+      "description2": "Selecione Kraken Wallet",
       "subtitle": "Ao invés de digitalizar:",
       "title": "Ao usar os aplicativos da Web3 no seu telefone"
     }

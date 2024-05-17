@@ -9,7 +9,7 @@ import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import loc from '/loc';
 
 export const SettingsDisplaySeedScreen = () => {
-  useHeaderTitle(loc.backupWallet.secretRecoveryPhrase);
+  useHeaderTitle(loc.walletBackup.secretRecoveryPhrase);
 
   return (
     <GradientScreenView>
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-SettingsDisplaySeedScreen.navigationOptions = navigationStyle({ title: loc.backupWallet.secretRecoveryPhrase, headerTransparent: true });
+SettingsDisplaySeedScreen.navigationOptions = navigationStyle({ title: loc.walletBackup.secretRecoveryPhrase, headerTransparent: true });

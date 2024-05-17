@@ -114,7 +114,7 @@ export const SeedDisplay = ({ style, header, footer, initiallyRevealed, testID }
                 </Animated.View>
                 <View style={styles.tapInfo} testID="TapHereToView">
                   <SvgIcon name="eye" />
-                  <Label color="light50">{loc.backupWallet.tapHereToView}</Label>
+                  <Label color="light50">{loc.walletBackup.tapHereToView}</Label>
                 </View>
               </View>
             </GestureDetector>

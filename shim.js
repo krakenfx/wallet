@@ -1,6 +1,8 @@
 import 'react-native-get-random-values';
 import 'react-native-url-polyfill/auto';
 
+import '@walletconnect/react-native-compat';
+
 if (typeof __dirname === 'undefined') {
   global.__dirname = '/';
 }
@@ -22,9 +24,6 @@ process.browser = false;
 if (typeof Buffer === 'undefined') {
   global.Buffer = require('buffer').Buffer;
 }
-
-global.net = require('./src/onChain/blueElectrumModules/net');
-global.tls = require('./src/onChain/blueElectrumModules/tls');
 
 const isDev = typeof __DEV__ === 'boolean' && __DEV__;
 process.env.NODE_ENV = isDev ? 'development' : 'production';

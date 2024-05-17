@@ -24,8 +24,6 @@ import {
 import { HarmonyTransport } from './HarmonyTransport';
 import { WalletStorage } from './walletState';
 
-import { StringNumber } from '/entities';
-
 function getSolanaKeyPair(seedHex: string, derivationPath: string): web3.Keypair {
   const privateKey = ed25519.derivePath(derivationPath, seedHex).key;
   return web3.Keypair.fromSeed(privateKey);

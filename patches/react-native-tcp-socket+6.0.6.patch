@@ -1,0 +1,15 @@
+diff --git a/node_modules/react-native-tcp-socket/android/src/main/java/com/asterinet/react/tcpsocket/TcpSocketClient.java b/node_modules/react-native-tcp-socket/android/src/main/java/com/asterinet/react/tcpsocket/TcpSocketClient.java
+index d08fc1b..a32681f 100644
+--- a/node_modules/react-native-tcp-socket/android/src/main/java/com/asterinet/react/tcpsocket/TcpSocketClient.java
++++ b/node_modules/react-native-tcp-socket/android/src/main/java/com/asterinet/react/tcpsocket/TcpSocketClient.java
+@@ -187,6 +187,10 @@ class TcpSocketClient extends TcpSocket {
+         public void run() {
+             int socketId = clientSocket.getId();
+             Socket socket = clientSocket.getSocket();
++            if (socket == null) {
++                receiverListener.onError(socketId, new IOException("Attempted to read data from closed socket"));
++                return;
++            }
+             byte[] buffer = new byte[16384];
+             try {
+                 BufferedInputStream in = new BufferedInputStream(socket.getInputStream());

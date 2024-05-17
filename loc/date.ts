@@ -1,22 +1,11 @@
-import { format, isToday, isYesterday } from 'date-fns';
 import { de, enGB, enUS, es, fr, it, nl, ptBR, ru, tr, uk, vi } from 'date-fns/locale';
 
-import { getCurrentLanguage } from './';
+import { LanguageTag, getCurrentLanguage } from './';
 
-export const formatTransactionGroupDate = (time: Date | string) => {
-  const date = new Date(time);
+export const getDateLocale = (currentLanguage?: LanguageTag) => {
+  const _currentLanguage = currentLanguage || getCurrentLanguage();
 
-  if (isToday(date)) {
-    return 'Today';
-  } else if (isYesterday(date)) {
-    return 'Yesterday';
-  }
-
-  return format(date, 'd MMMM yyyy');
-};
-
-export const getDateLocale = () => {
-  switch (getCurrentLanguage()) {
+  switch (_currentLanguage) {
     case 'en-US':
       return enUS;
     case 'en-GB':

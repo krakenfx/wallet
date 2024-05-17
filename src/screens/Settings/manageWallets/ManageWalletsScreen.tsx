@@ -10,9 +10,9 @@ import { useAccounts } from '@/realm/accounts';
 import { useIsWalletBackupDone } from '@/realm/settings';
 import { Routes } from '@/Routes';
 
-import { BackupWalletWarning } from '../backupWallet';
 import { SettingsItem, SettingsSectionHeader, TickIcon } from '../components';
 import { SettingsNavigationProps } from '../SettingsRouter';
+import { WalletBackupWarning } from '../walletBackup';
 
 import loc from '/loc';
 
@@ -32,7 +32,7 @@ export const ManageWalletsScreen = ({ navigation }: SettingsNavigationProps<'Man
 
   const handleSecretRecoveryPhrasePress = () => {
     if (!isWalletBackupDone) {
-      navigate(Routes.SettingsBackupWallet);
+      navigate(Routes.SettingsWalletBackup);
     } else {
       navigate(Routes.SettingsDisplaySeed);
     }
@@ -42,7 +42,7 @@ export const ManageWalletsScreen = ({ navigation }: SettingsNavigationProps<'Man
     <GradientScreenView>
       <ScrollView style={styles.scroll}>
         <SettingsSectionHeader title={loc.settings.wallets} />
-        <BackupWalletWarning />
+        <WalletBackupWarning />
         <SettingsItem
           isHighlighted
           isFirst

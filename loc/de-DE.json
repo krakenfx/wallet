@@ -13,19 +13,22 @@
     "done": "Fertig",
     "ok": "OK",
     "plus": "+{count}",
-    "receive": "Erhalte",
+    "receive": "Erhalten",
     "reconnecting": "Verbindung wird wiederhergestellt ...",
     "remove": "Entfernen",
     "send": "Senden",
     "showLess": "Weniger zeigen",
     "showMore": "Mehr anzeigen",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Heute",
     "updating": "Aktualisierung läuft",
     "upToDate": "Aktualisiert",
     "view": "Anzeigen",
-    "yes": "Ja"
+    "yes": "Ja",
+    "yesterday": "Gestern"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Lizenzen",
     "privacyPolicy": "Datenschutzrichtlinie",
     "releaseNotes": "Hinweise zur Veröffentlichung",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Stelle sicher, dass du deine Kryptowährung wiederherstellen kannst, wenn du dein Gerät verlierst oder zu einer anderen Wallet wechselst.",
     "secretRecoveryPhrase": "Secret Recovery Phrase",
     "tapHereToView": "Tippe hier zur Ansicht"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Jetzt absichern",
+    "body": "Du hast deine Secret Recovery Phrase nicht abgesichert. Wir empfehlen dir, ein Backup durchzuführen, damit du den Zugang zu deinen Mitteln nicht verlierst.",
+    "header": "Sichere deine Wallet ab, bevor du Mittel dafür erhalten kannst."
   },
   "broadcast": {
     "sent": "Gesendet"
@@ -384,7 +392,7 @@
     "type": "Typ: {type}"
   },
   "floatingTransactionActivityButtons": {
-    "receive": "Erhalte",
+    "receive": "Erhalten",
     "send": "Senden"
   },
   "globalActivity": {
@@ -885,6 +893,15 @@
     "view_list_of_connected_dapps": "Liste der verbundenen DApps anzeigen",
     "wallets": "Wallets"
   },
+  "storeReview": {
+    "alertMessage": "Wir würden gerne wissen, ob du bei uns ein gutes Benutzererlebnis hast.",
+    "alertTitle": "Gefällt dir die Kraken Wallet App?",
+    "nagativeAlertTitle": "Es tut uns leid, dass dir diese App nicht gefällt.",
+    "negativeAlertMessage": "Möchtest du uns verraten, wie wir dein Benutzererlebnis verbessern können?",
+    "notReally": "Nicht wirklich",
+    "sendFeedback": "Feedback senden",
+    "yes": "Ja"
+  },
   "support": {
     "contactUs": "Kontaktiere uns",
     "getInTouch": "Kontakt aufnehmen",
@@ -1040,7 +1057,7 @@
     "activity": "Aktivität",
     "no_transactions_yet": "Noch keine Transaktionen. Zum Aktualisieren ziehen",
     "pending": "Wird gesendet...",
-    "receive": "Erhalte",
+    "receive": "Erhalten",
     "send": "Senden",
     "transactions": "Transaktionen"
   },
@@ -1079,7 +1096,7 @@
     }
   },
   "universalReceive": {
-    "buttonTitle": "Erhalte",
+    "buttonTitle": "Erhalten",
     "copied": "Adresse kopiert",
     "crypto": "Krypto",
     "cryptoAndNft": "NFTs und Krypto",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Lebt auf:"
   },
+  "walletBackup": {
+    "backup": "Absicherung",
+    "backupYourWallet": "Sichere deine Wallet ab",
+    "backupYourWalletDescription": "Stelle sicher, dass du deine Kryptowährung wiederherstellen kannst, wenn du dein Gerät verlierst oder zu einer anderen Wallet wechselst.",
+    "secretRecoveryPhrase": "Secret Recovery Phrase",
+    "tapHereToView": "Tippe hier zur Ansicht"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Jetzt absichern",
+    "body": "Du hast deine Secret Recovery Phrase nicht abgesichert. Wir empfehlen dir, ein Backup durchzuführen, damit du den Zugang zu deinen Mitteln nicht verlierst.",
+    "header": "Sichere deine Wallet ab, bevor du Mittel dafür erhalten kannst."
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: Konto nicht gefunden",
     "action_cancelled": "Aktion abgebrochen",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Mit deiner Wallet kannst du mit WalletConnect {boldDescription}.",
+      "boldDescription": "sicherer Zugang zu Tausenden von dezentralen Apps",
       "buttonText": "Hört sich gut an",
       "description": "Mit deiner Wallet kannst du mit WalletConnect {boldDescription}.",
       "title": "Mehr als nur Krypto-Aufbewahrung!"

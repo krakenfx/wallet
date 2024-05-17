@@ -9,8 +9,6 @@ import { RealmToken } from '@/realm/tokens';
 import { WalletType } from './registry';
 import { IWalletStorage } from './walletState';
 
-import { StringNumber } from '/entities';
-
 export interface PreparedTransaction<T = unknown> {
   data: T;
   effects?: TransactionEffect[];

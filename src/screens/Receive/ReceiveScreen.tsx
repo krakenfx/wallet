@@ -1,6 +1,6 @@
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useIsFocused } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
@@ -15,10 +15,9 @@ import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { useIsPushPromptNeeded } from '@/realm/settings/useIsPushPromptNeeded';
 import { useResolvedAssetBalance } from '@/realm/tokens';
 import { useRealmWalletById } from '@/realm/wallets';
-import { NavigationProps, Routes } from '@/Routes';
+import { NavigationProps } from '@/Routes';
 import { AssetBalanceId } from '@/types';
 import { getWalletName } from '@/utils/getWalletName';
 import { useIsOnline } from '@/utils/useConnectionManager';
@@ -36,20 +35,8 @@ export type ReceiveRouteProps = {
 
 export const ReceiveScreen = ({ route, navigation }: NavigationProps<'Receive'>) => {
   const params = route.params;
-  const isPushPromptNeeded = useIsPushPromptNeeded();
-
   const { bottomSheetProps, close } = useBottomSheetScreenProps(navigation);
   const sheetIndex = useSharedValue(0);
-
-  useEffect(() => {
-    const pushPromptTimeout = setTimeout(() => {
-      if (isPushPromptNeeded && sheetIndex.value === 0) {
-        navigation.navigate(Routes.TriggeredPushPrompt);
-      }
-    }, 2000);
-    return () => clearTimeout(pushPromptTimeout);
-  }, [isPushPromptNeeded, navigation, sheetIndex.value]);
-
   const [walletId] = useResolvedAssetBalance(params.assetBalanceId);
 
   const wallet = useRealmWalletById(walletId!);

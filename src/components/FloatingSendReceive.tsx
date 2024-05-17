@@ -2,7 +2,8 @@ import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { NavigationProps, Routes } from '@/Routes';
+import { useIsWalletBackupPromptNeeded } from '@/realm/settings';
+import { NavigationProps, RouteProps, Routes } from '@/Routes';
 import { AssetBalanceId } from '@/types';
 
 import { Button } from './Button';
@@ -11,13 +12,16 @@ import loc from '/loc';
 
 interface FloatingSendReceiveProps {
   assetBalanceId: AssetBalanceId;
-  navigation: NavigationProps<any>['navigation'];
+  navigation: NavigationProps<keyof RouteProps>['navigation'];
 }
 
 export const FloatingSendReceive = ({ assetBalanceId, navigation }: FloatingSendReceiveProps) => {
+  const isWalletBackupPromptNeeded = useIsWalletBackupPromptNeeded();
+
   const onReceive = useCallback(() => {
-    navigation.navigate(Routes.Receive, { assetBalanceId });
-  }, [navigation, assetBalanceId]);
+    navigation.push(Routes.Receive, { assetBalanceId });
+    isWalletBackupPromptNeeded && navigation.push(Routes.WalletBackupPrompt);
+  }, [isWalletBackupPromptNeeded, navigation, assetBalanceId]);
 
   const onSend = useCallback(() => {
     navigation.navigate(Routes.SendStack, { screen: 'Send', params: { assetBalanceId } });

@@ -51,7 +51,6 @@ function makeFetchAPI() {
     const url = request;
 
     const init = _init || {};
-    // @ts-ignore
 
     const headers = new Headers(init.headers);
     init.headers = headers;

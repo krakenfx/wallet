@@ -1,460 +1,205 @@
 {
   "_": {
-    "add": "Add",
-    "appName": "Kraken Wallet",
-    "balance": "Balance {0}",
-    "cancel": "Cancel",
-    "confirm": "Confirm",
     "continue": "Continue",
-    "copied": "Copied",
-    "copy": "Copy",
-    "copyToClipboard": "Copied to clipboard",
-    "details": "Details",
     "done": "Done",
     "ok": "OK",
-    "plus": "+{count}",
-    "receive": "Receive",
     "reconnecting": "Reconnecting",
-    "remove": "Remove",
     "send": "Send",
-    "showLess": "Show less",
-    "showMore": "Show more",
-    "TEST_KEY": "deleteMeLaterMOdifiedTest",
     "updating": "Updating",
     "upToDate": "Up-to-date",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "plus": "+{count}",
+    "appName": "Kraken Wallet",
+    "copyToClipboard": "Copied to clipboard",
+    "copy": "Copy",
+    "copied": "Copied",
     "view": "View",
-    "yes": "Yes"
+    "today": "Today",
+    "yesterday": "Yesterday"
   },
   "about": {
-    "blog": "Blog",
-    "licenses": "Licenses",
     "privacyPolicy": "Privacy policy",
-    "releaseNotes": "Release notes",
-    "termsOfService": "Terms of service"
-  },
-  "accountSwitch": {
-    "createWallet": "Create wallet",
-    "createWalletError": "The wallet was not created, please try again",
-    "createWalletSuccess": "Wallet created successfully",
-    "creatingNewWallet": "Creating new wallet",
-    "manage": "Manage",
-    "menu": {
-      "advanced_info": "Advanced info",
-      "connected_apps": "Connected apps",
-      "delete": "Remove",
-      "edit": "Edit"
-    },
-    "walletDelete": {
-      "error": "The wallet was not removed, please try again",
-      "success": "Your wallet was removed"
-    },
-    "wallets": "Wallets"
-  },
-  "advanced_account_info": {
-    "derivation_path": "Derivation path",
-    "path_copied": "Path copied",
-    "title": "{walletName} - info",
-    "type": "Type",
-    "wallet_information": "Wallet information",
-    "xpub": "Extended public key",
-    "xpub_key_copied": "Copied to clipboard"
-  },
-  "advancedAccountInfo": {
-    "derivationPath": "Derivation path",
-    "ethereumDerivationPath": "Ethereum derivation path",
-    "ethereumDerivationPathContent": "Ethereum's derivation path is shared with Layer 2 networks like Polygon, Arbitrum, Optimism and Base, meaning the same derivation path is used for all of them.",
-    "extendedPublicKey": "Extended public key",
-    "includesLayer2Networks": "Includes Layer 2 networks",
-    "pathCopied": "Path copied",
-    "title": "{walletName} - info",
-    "walletInformation": "Wallet information",
-    "xpub": "Extended public key",
-    "xpubCopied": "xPub copied",
-    "xpubHidden": "xPub hidden",
-    "xpubKeyCopied": "Copied to clipboard"
-  },
-  "appLock": {
-    "appLockIsRequiredWhen": "App Lock is required when:",
-    "authenticationCancelled": "Authentication Cancelled",
-    "authenticationCancelledDescription": "Biometric authentication cancelled.",
-    "authSignConnectedApps": "Auth & sign connected apps",
-    "authType": {
-      "faceId": "Face ID",
-      "generic": "privacy settings like PIN Code, or Biometric Unlock",
-      "passcode": "passcode",
-      "touchId": "Touch ID"
-    },
-    "description": "App Lock gives you extra security by using your device’s {authType} to allow the following actions:",
-    "missingAuth": {
-      "biometrics": "Biometrics or PIN lock",
-      "description": "To secure your wallet, you’ll need to setup {authType} in you device Settings.",
-      "faceId": "Face ID or Passcode",
-      "ok": "Ok",
-      "settings": "Open Settings App",
-      "setupPin": "Setup PIN or Biometric Unlock",
-      "tapFaceId": "Tap Face ID & Passcode”",
-      "tapSecurityPivacy": "Tap “Security & privacy”",
-      "tapTouchId": "Tap “Touch ID & Passcode”",
-      "title": "First, enable {authType} in Settings",
-      "touchId": "Touch ID or Passcode",
-      "turnOn": "Turn on {authType}"
-    },
-    "openTheApp": "Open the app",
-    "sendCryptoAndNfts": "Send crypto and NFTs",
-    "signTransactions": "Sign transactions",
-    "title": "App lock",
-    "turnOnAppLock": "Turn on App Lock",
-    "viewSecret": "View secret recovery phrase",
-    "whatIs": "What is App Lock? "
+    "termsOfService": "Terms of service",
+    "blog": "Blog"
   },
   "appSignRequest": {
+    "amount": "Amount",
+    "approveSpendingCap": "Approve spending cap",
     "allowAccess": "Allow access to your {tokenSymbol}?",
     "allowAccessDescription": "This will allow {dappName} to automate transactions and spend your {tokenSymbol}.",
-    "amount": "Amount",
-    "approve": "Approve",
-    "approveSpendingCap": "Approve spending cap",
-    "balance": "Balance",
     "cancel": "Cancel",
-    "claim": "Claim",
     "confirm": "Confirm",
     "contractAddress": "Contract address",
     "contractInteraction": "Contract Interaction",
     "deposit": "Deposit",
     "from": "From",
     "message": "Message",
-    "message_signing_request": "Message Signing Request",
     "messageSigningRequest": "Sign",
     "mint": "Mint",
     "nonce": "Nonce",
     "scrollToBottomToConfirm": "Scroll to bottom to confirm",
-    "setSpendingCap": "Set spending cap",
     "sign": "Sign",
     "swap": "Swap",
     "to": "To",
-    "typed_message_signing_request": "{type} Signing Request",
     "typedMessageSigningRequest": "{type} Signing Request",
     "withdrawal": "Withdrawal"
   },
-  "backupWallet": {
-    "backup": "Back up",
-    "backupYourWallet": "Back up your wallet",
-    "backupYourWalletDescription": "Make sure you can recover your crypto if you lose your device or switch to another wallet.",
-    "secretRecoveryPhrase": "Secret recovery phrase",
-    "tapHereToView": "Tap here to view"
-  },
-  "broadcast": {
-    "sent": "Sent"
-  },
-  "coins": {
-    "allNetworks": "All networks",
-    "filterAssets": "Filter assets",
-    "search_placeholder": "Search assets",
-    "showAssets": "Show assets",
-    "testnet": "Testnet"
-  },
-  "collection": {
-    "title": "Collection"
-  },
-  "config": {
-    "contract-approved-failed": {
-      "title": "👎 Approval failed"
+  "accountSwitch": {
+    "wallets": "Wallets",
+    "manage": "Manage",
+    "createWallet": "Create wallet",
+    "createWalletSuccess": "Wallet created successfully",
+    "createWalletError": "The wallet was not created, please try again",
+    "creatingNewWallet": "Creating new wallet",
+    "menu": {
+      "edit": "Edit",
+      "connected_apps": "Connected apps",
+      "delete": "Remove",
+      "advanced_info": "Advanced info"
     },
-    "contract-approved": {
-      "body": "{amount} {symbol} was approved on {contractAddress}",
-      "title": "🤝 Contract approved"
-    },
-    "contract-interaction-failed": {
-      "body": "Interaction with {contractAddress} failed",
-      "title": "👎 Interaction failed"
-    },
-    "contract-interaction": {
-      "body": "Interaction with {contractAddress}",
-      "title": "🤝 Contract interaction"
-    },
-    "funds-deposited-failed": {
-      "title": "👎 Deposit failed"
-    },
-    "funds-deposited": {
-      "body": "{amount} {symbol} was deposited to {address}",
-      "title": "🤝 {symbol} deposited"
-    },
-    "funds-withdrawn-failed": {
-      "title": "👎 Withdrawal failed"
-    },
-    "funds-withdrawn": {
-      "body": "Withdrawn to {address}",
-      "title": "+ {amount} {symbol}"
-    },
-    "generic-transaction": {
-      "body": "Recent transaction was processed successfully on {network}",
-      "title": "✅ Transaction successful!"
-    },
-    "nft-failed": {
-      "title": "👎 NFT send failed"
-    },
-    "nft-received": {
-      "body": "Received on {address}",
-      "title": "NFT received: {symbol}"
-    },
-    "nft-sent": {
-      "body": "{nftName} was sent to {address}",
-      "title": "🖼️ {nftName} sent!"
-    },
-    "payment-debited": {
-      "body": "Debited on {address}",
-      "title": "- {amount} {symbol}"
-    },
-    "payment-failed": {
-      "title": "👎 Send failed"
-    },
-    "payment-pending": {
-      "body": "Pending on {address}"
-    },
-    "payment-received-pending": {
-      "bitcoin": {
-        "body": "{amount} {symbol} is being received",
-        "title": "🤌 On its way"
-      },
-      "body": "{amount} {symbol} is being received",
-      "dogecoin": {
-        "body": "{amount} {symbol} is being received",
-        "title": "🤌 On its way"
-      },
-      "title": "🤌 On its way"
-    },
-    "payment-received": {
-      "bitcoin": {
-        "body": "{amount} {symbol} was received"
-      },
-      "body": "Received on {address}",
-      "dogecoin": {
-        "body": "{amount} {symbol} was received"
-      },
-      "title": "+ {amount} {symbol}"
-    },
-    "payment-sent": {
-      "bitcoin": {
-        "body": "{amount} {symbol} was sent"
-      },
-      "body": "{amount} {symbol} was sent to {address}",
-      "dogecoin": {
-        "body": "{amount} {symbol} was sent"
-      },
-      "title": "{symbol} sent"
-    },
-    "swap-complete": {
-      "body": "{amountOut} {symbolOut} was swapped for {amountIn} {symbolIn} via {facilitator}",
-      "title": "🫡 Aye Aye!"
-    },
-    "swap-failed": {
-      "title": "👎 Swap failed"
-    },
-    "token-approved": {
-      "body": "{symbol} was approved on {operator}",
-      "title": "🫡 Aye Aye!"
-    },
-    "transaction-confirmed": {
-      "body": "Your transaction was successful.",
-      "title": "🫡 Aye Aye!"
-    },
-    "transaction-failed": {
-      "body": "Your transaction failed.",
-      "title": "👎 Arrrrgggghhhh.."
-    },
-    "utxo-payment-failed": {
-      "title": "👎 Send failed"
-    },
-    "utxo-payment-received-pending": {
-      "body": "{amount} {symbol} is being received",
-      "title": "🤌 On its way"
-    },
-    "utxo-payment-received": {
-      "body": "{amount} {symbol} was received",
-      "title": "🙌 {symbol} received!"
-    },
-    "utxo-payment-sent-pending": {
-      "body": "{amount} {symbol} is being sent",
-      "title": "🤌 On its way"
-    },
-    "utxo-payment-sent": {
-      "body": "{amount} {symbol} was sent",
-      "title": "🙌 {symbol} sent!"
+    "walletDelete": {
+      "success": "Your wallet was removed",
+      "error": "The wallet was not removed, please try again"
     }
   },
-  "confirm": {
-    "no": "Cancel",
-    "title": "Are you sure?",
-    "yes": "Yes"
-  },
-  "connect_app_auth": {
-    "app_has_access_to": "{app} has access to:",
-    "connect_app": "Connect app",
-    "network": "Network"
+  "appLock": {
+    "title": "App lock",
+    "turnOnAppLock": "Turn on App Lock",
+    "whatIs": "What is App Lock? ",
+    "description": "App Lock gives you extra security by using your device’s {authType} to allow the following actions:",
+    "authType": {
+      "passcode": "passcode",
+      "faceId": "Face ID",
+      "touchId": "Touch ID",
+      "generic": "privacy settings like PIN Code, or Biometric Unlock"
+    },
+    "sendCryptoAndNfts": "Send crypto and NFTs",
+    "viewSecret": "View secret recovery phrase",
+    "signTransactions": "Sign transactions",
+    "authSignConnectedApps": "Auth & sign connected apps",
+    "openTheApp": "Open the app",
+    "appLockIsRequiredWhen": "App Lock is required when:",
+    "authenticationCancelled": "Authentication Cancelled",
+    "authenticationCancelledDescription": "Biometric authentication cancelled.",
+    "missingAuth": {
+      "ok": "Ok",
+      "title": "First, enable {authType} in Settings",
+      "description": "To secure your wallet, you’ll need to setup {authType} in you device Settings.",
+      "settings": "Open Settings App",
+      "tapSecurityPivacy": "Tap “Security & privacy”",
+      "tapTouchId": "Tap “Touch ID & Passcode”",
+      "tapFaceId": "Tap Face ID & Passcode”",
+      "setupPin": "Setup PIN or Biometric Unlock",
+      "turnOn": "Turn on {authType}",
+      "biometrics": "Biometrics or PIN lock",
+      "touchId": "Touch ID or Passcode",
+      "faceId": "Face ID or Passcode"
+    }
   },
   "connectApp": {
     "all_networks": "All networks",
     "cancel": "Cancel",
     "connect": "Connect",
     "connect_wallet": "Connect wallet",
-    "request_approval": "Request approval for transactions",
     "see_balance": "See your balances and activity",
+    "request_approval": "Request approval for transactions",
     "unsupportedNetwork": "Unsupported network",
     "unsupportedNetworkDescription": "This app uses the {unsupportedNetwork} network which is not supported at this time. Kraken Wallet currently supports apps on the Ethereum, Polygon, Optimism, Arbitrum and Solana networks.",
     "unsupportedNetworksDescription": "This app uses {unsupportedNetworks} networks which are not supported at this time. Kraken Wallet currently supports apps on the Ethereum, Polygon, Optimism, Arbitrum and Solana networks."
   },
-  "connectedApps": {
-    "app_details": {
-      "disconnect": "Disconnect",
-      "disconnect_decscription": "Disconnecting this app will remove all access to your wallet",
-      "error": "Error disconnecting",
-      "open": "Open"
-    },
-    "list": {
-      "connect_to_app": "Connect to app",
-      "disconnect_all": "Disconnect all ({0})",
-      "error_all": "Error disconnecting all apps",
-      "instructions": "Scan QR codes to connect apps with WalletConnect",
-      "title": "Connected apps",
-      "tutorial": "How does it work?"
-    }
-  },
-  "currency": {
-    "australianDollar": "Australian Dollar",
-    "bitcoin": "Bitcoin",
-    "britishPound": "British Pound",
-    "canadianDollar": "Canadian Dollar",
-    "ether": "Ether",
-    "euro": "Euro",
-    "japaneseYen": "Japanese Yen",
-    "russianRuble": "Russian Ruble",
-    "satoshis": "Satoshis",
-    "southKoreanWon": "South Korean Won",
-    "swissFranc": "Swiss Franc",
-    "usDollar": "US Dollar"
-  },
-  "defi": {
-    "claimable": "Claimable",
-    "debt": "Debt",
-    "dept": "Dept",
-    "network": "network",
-    "onePosition": "1 position",
-    "positions": "{numberOfPositions} positions",
-    "rewards": "Rewards",
-    "vaults": "Vaults"
+  "editAccount": {
+    "title": "Edit wallet",
+    "walletName": "Wallet name",
+    "save": "Save"
   },
   "deleteAccountConfirm": {
-    "cancel": "Cancel",
-    "caption": "You can recover your wallet with your secret recovery phrase",
-    "delete": "Remove",
+    "title": "Delete wallet",
     "header": "Are you sure you want to remove this wallet?",
-    "title": "Delete wallet"
+    "caption": "You can recover your wallet with your secret recovery phrase",
+    "cancel": "Cancel",
+    "delete": "Remove"
   },
   "deleteAccountVerifyBalance": {
+    "header": "Your wallet has a balance",
+    "caption": "Please enter your wallet balance before deleting, you can recover your wallet with your secret recovery phrase",
+    "inputLabel": "Enter wallet balance",
     "balanceLabel": "Balance",
     "cancel": "Cancel",
-    "caption": "Please enter your wallet balance before deleting, you can recover your wallet with your secret recovery phrase",
-    "delete": "Remove",
-    "header": "Your wallet has a balance",
-    "inputLabel": "Enter wallet balance"
+    "delete": "Remove"
+  },
+  "coins": {
+    "search_placeholder": "Search assets",
+    "allNetworks": "All networks",
+    "showAssets": "Show assets"
+  },
+  "confirm": {
+    "no": "Cancel",
+    "title": "Are you sure?",
+    "yes": "Yes"
+  },
+  "defi": {
+    "onePosition": "1 position",
+    "positions": "{numberOfPositions} positions",
+    "network": "network",
+    "debt": "Debt",
+    "claimable": "Claimable"
   },
   "diagnostics": {
     "running": "Running diagnostics..."
-  },
-  "editAccount": {
-    "save": "Save",
-    "title": "Edit wallet",
-    "walletName": "Wallet name"
   },
   "editNote": {
     "title": "Description"
   },
   "errors": {
-    "connectionError": "Connection error",
-    "generalFetchError": "Error, please try again",
     "generic": "Something went wrong",
     "genericTryAgainLater": "Something went wrong, please try again later",
-    "network": "Network Error",
-    "offline": "Offline",
-    "seedMissing": "Critical error! Seed is not available."
-  },
-  "extendedPublicKey": {
-    "bitcoinXpub": "Bitcoin xPub",
-    "copyXpub": "Copy xPub",
-    "summary": "This is your {summaryEmphasis}, it is the master public key that was used to generate all of the public bitcoin addresses for this wallet.",
-    "summaryEmphasis": "Bitcoin Extended Public Key (xPub)",
-    "type": "Type: {type}"
-  },
-  "floatingTransactionActivityButtons": {
-    "receive": "Receive",
-    "send": "Send"
+    "connectionError": "Connection error",
+    "generalFetchError": "Error, please try again",
+    "offline": "Offline"
   },
   "globalActivity": {
-    "addAssets": "Add some assets to your Wallet",
-    "allActivity": "All activity",
-    "emptySelection": {
-      "description": "Your wallet contains 0 assets on the selected network",
-      "title": "No assets on selected network"
-    },
-    "noActivity": {
-      "description": "Add some assets to your wallet",
-      "title": "Transactions will appear here"
-    },
-    "recentActivity": "Recent activity",
     "title": "Activity",
-    "transactionFailedInfo": "Recent {network} transaction failed",
-    "transactionsWillAppearHere": "Transactions will appear here"
+    "allActivity": "All activity",
+    "recentActivity": "Recent activity",
+    "transactionsWillAppearHere": "Transactions will appear here",
+    "addAssets": "Add some assets to your Wallet",
+    "noActivity": {
+      "title": "Transactions will appear here",
+      "description": "Add some assets to your wallet"
+    },
+    "emptySelection": {
+      "title": "No assets on selected network",
+      "description": "Your wallet contains 0 assets on the selected network"
+    },
+    "transactionFailedInfo": "Recent {network} transaction failed"
   },
   "home": {
     "assets": "Assets",
     "collection": "NFTs",
     "collection_see_all": "View all",
-    "deposits": "Deposits",
     "manage": "Manage",
-    "total_balance": "Balance"
+    "total_balance": "Balance",
+    "deposits": "Deposits"
   },
   "manageWallets": {
     "title": "Manage wallets"
   },
   "network": {
+    "bitcoin": "Bitcoin",
+    "polygon": "Polygon",
     "arbitrum": "Arbitrum",
     "base": "Base",
-    "bitcoin": "Bitcoin",
-    "dogecoin": "Dogecoin",
-    "ethereum": "Ethereum",
-    "ethereum_goerli": "Ethereum - Goerli testnet",
-    "ethereum_sepolia": "Ethereum - Sepolia testnet",
-    "matic": "Matic",
     "optimism": "Optimism",
-    "polygon": "Polygon",
+    "ethereum": "Ethereum",
+    "ethereum_sepolia": "Ethereum - Sepolia testnet",
     "solana": "Solana",
     "solana_devnet": "Solana - Devnet",
-    "tezos": "Tezos",
-    "unknown": "Unknown"
-  },
-  "nftCollection": {
-    "archiveCollectionDetailsSubtitle": "All Archived NFTs",
-    "archiveCollectionDetailsTitle": "Archive",
-    "archiveCollectionSubtitle": "All Archived NFTs",
-    "archiveCollectionTitle": "Archived NFTs",
-    "archivedDaysInfo": "{days} days ago",
-    "archivedOneDayInfo": "1 day ago",
-    "heading": "Items"
-  },
-  "nftGallery": {
-    "favorite": "Favorite"
+    "dogecoin": "Dogecoin",
+    "tezos": "Tezos"
   },
   "nftList": {
-    "collections": "Collections",
-    "collectionsEmptyState": {
-      "allNetworks": {
-        "heading": "No collections yet in this wallet",
-        "subheading": "Your wallet contains 0 collections on all of the supported networks"
-      },
-      "selectedNetworks": {
-        "heading": "No collections on selected networks",
-        "subheading": "Your wallet contains 0 NFT collections on the selected networks"
-      }
-    },
+    "title": "NFTs",
     "everything": "Everything",
     "everythingEmptyState": {
       "allNetworks": {
@@ -466,170 +211,171 @@
         "subheading": "Your wallet contains 0 NFTs on the selected networks"
       }
     },
-    "title": "NFTs"
+    "collections": "Collections",
+    "collectionsEmptyState": {
+      "allNetworks": {
+        "heading": "No collections yet in this wallet",
+        "subheading": "Your wallet contains 0 collections on all of the supported networks"
+      },
+      "selectedNetworks": {
+        "heading": "No collections on selected networks",
+        "subheading": "Your wallet contains 0 NFT collections on the selected networks"
+      }
+    }
   },
-  "nftManage": {
-    "archive": "Archive",
-    "copy_id": "Copy ID",
-    "favorite": "Favorite",
-    "title": "Manage NFT",
-    "unArchive": "Unarchive",
-    "unArchiveSuccess": "NFT Unarchived"
+  "nftCollection": {
+    "heading": "Items",
+    "archiveCollectionTitle": "Archived NFTs",
+    "archiveCollectionDetailsTitle": "Archive",
+    "archiveCollectionDetailsSubtitle": "All Archived NFTs",
+    "archivedOneDayInfo": "1 day ago",
+    "archivedDaysInfo": "{days} days ago"
   },
   "nftView": {
+    "noName": "No name",
     "about": "About",
+    "properties": "Properties",
+    "show_more": "Show more",
+    "show_less": "Show less",
+    "manage": "Manage",
     "ens": {
       "description": "Ethereum Name Service (ENS) domains are secure domains names for the decentralized world. ENS domains provide a way for user to map human readable names to blockchain and non-blockchain resources, like Ethereum addresses, IPFS hashes, or website URLs. ENS domains can be bought and sold on secondary markets.",
-      "links": {
-        "label": "View on"
-      },
       "ownership": {
         "label": "Ownership",
-        "manager": "Manager",
-        "owner": "Owner"
+        "owner": "Owner",
+        "manager": "Manager"
       },
       "traits": {
         "created": "Created date",
         "expiration": "Expires on"
       }
     },
-    "failedMedia": {
-      "desc": "Media type may not yet be supported.",
-      "title": "Media couldn’t be loaded"
-    },
     "links": {
       "label": "View on"
     },
-    "manage": "Manage",
-    "noName": "No name",
-    "properties": "Properties",
-    "show_less": "Show less",
-    "show_more": "Show more"
+    "failedMedia": {
+      "title": "Media couldn’t be loaded",
+      "desc": "Media type may not yet be supported."
+    }
   },
-  "onboarding_backup_prompt": {
-    "caption": "You need your {recoveryPhrase} to recover your crypto if you lose your device or switch to another wallet.\n{neverShare}",
-    "continue": "Reveal phrase",
-    "recovery_phrase": "secret recovery phrase",
-    "skip": "Skip",
-    "subtitle": "your wallet",
-    "title": "Back up"
+  "nftManage": {
+    "title": "Manage NFT",
+    "favorite": "Favorite",
+    "copy_id": "Copy ID",
+    "archive": "Archive",
+    "unArchive": "Unarchive",
+    "unArchiveSuccess": "NFT Unarchived"
   },
-  "onboarding_backup_verify": {
-    "caption": "Tap the words below in the correct numerical order to verify you saved your secret recovery phrase.",
-    "failed": "Phrase not valid",
-    "paste": "Paste",
-    "retry": "Please try again",
-    "title": "Verify you saved it correctly",
-    "verified": "Verified",
-    "verify": "Verify"
-  },
-  "onboarding_backup": {
-    "caption": "Write down these 12 words in numerical order and keep them in a secure place.\n{neverShare}",
-    "continue": "Next",
-    "copy": "Copy",
-    "title": "Your secret recovery phrase"
-  },
-  "onboarding_import_wallet": {
-    "caption": "Enter your secret recovery phrase or private key to import your wallet.",
-    "import": "Import",
-    "paste": "Paste",
-    "title": "Import your wallet"
-  },
-  "onboarding_secure_wallet": {
-    "authBiometric": "Biometric Authentication",
-    "authFaceID": "FaceID",
-    "authPasscode": "Passcode",
-    "authTouchID": "TouchID",
-    "caption": "Use {authType} to prevent someone with your phone from accessing your crypto.",
-    "secureWallet": "Secure wallet",
-    "skip": "Skip",
-    "subtitle": "your wallet",
-    "title": "Secure"
+  "nftGallery": {
+    "favorite": "Favorite"
   },
   "onboarding": {
-    "create_wallet": "Create wallet",
-    "import_error": "The wallet could not be imported",
-    "import_wallet": "Import",
-    "intro_pages": {
-      "1": {
-        "subtitle": "Kraken Wallet",
-        "text": "Own your crypto, discover blockchains, and secure your financial future.",
-        "title": "Welcome to"
-      },
-      "2": {
-        "subtitle": "your custody",
-        "text": "Safely guard your crypto in a self-custody wallet only you can access.",
-        "title": "Your crypto"
-      },
-      "3": {
-        "subtitle": "blockchains",
-        "text": "Kraken Wallet supports Bitcoin, Ethereum, Polygon, Doge, and more. ",
-        "title": "Explore more"
-      },
-      "4": {
-        "subtitle": "& store NFTs",
-        "text": "Buy, sell, swap crypto and store NFTs from your favorite collections.",
-        "title": "Buy crypto"
-      },
-      "settingUp": {
-        "subtitle": "your wallet...",
-        "text": "This should only take a moment",
-        "title": "Setting up"
-      }
-    },
     "never_share": "Never share it with anyone.",
-    "scroll_note": "Scroll for more"
+    "create_wallet": "Create wallet",
+    "import_wallet": "Import",
+    "import_error": "The wallet could not be imported"
+  },
+  "onboarding_backup_prompt": {
+    "title": "Back up",
+    "subtitle": "your wallet",
+    "caption": "You need your {recoveryPhrase} to recover your crypto if you lose your device or switch to another wallet.\n{neverShare}",
+    "recovery_phrase": "secret recovery phrase",
+    "skip": "Skip",
+    "continue": "Reveal phrase"
+  },
+  "onboarding_backup": {
+    "title": "Your secret recovery phrase",
+    "caption": "Write down these 12 words in numerical order and keep them in a secure place.\n{neverShare}",
+    "continue": "Next"
+  },
+  "onboarding_secure_wallet": {
+    "title": "Secure",
+    "subtitle": "your wallet",
+    "caption": "Use {authType} to prevent someone with your phone from accessing your crypto.",
+    "authPasscode": "Passcode",
+    "authTouchID": "TouchID",
+    "authFaceID": "FaceID",
+    "authBiometric": "Biometric Authentication",
+    "skip": "Skip",
+    "secureWallet": "Secure wallet"
   },
   "onboardingBackupVerify": {
+    "title": "Verify you saved it correctly",
     "caption": "Tap the words below in the correct numerical order to verify you saved your secret recovery phrase.",
-    "failed": "Phrase not valid",
     "paste": "Paste",
+    "verify": "Verify",
+    "failed": "Phrase not valid",
+    "verified": "Verified",
+    "retry": "Please try again",
     "pasteWarning": {
-      "back": "Back",
+      "title": "Confirm you saved it somewhere safe",
       "checkOne": "I understand that if I lose my phone or delete the app, I will need the secret recovery phrase to restore my wallet.",
       "checkTwo": "I understand that if I lose my recovery phrase, I'm solely responsible for any loss of assets.",
       "confirm": "Confirm",
-      "title": "Confirm you saved it somewhere safe"
-    },
-    "retry": "Please try again",
-    "title": "Verify you saved it correctly",
-    "verified": "Verified",
-    "verify": "Verify"
+      "back": "Back"
+    }
   },
   "onboardingImportWallet": {
     "caption": "Enter your secret recovery phrase to import your wallet.",
-    "header": "Import your wallet",
-    "headerInvalid": "Check your secret phrase",
     "import": "Import",
-    "invalid": "Phrase not valid",
     "loading": "Importing wallet...",
+    "invalid": "Phrase not valid",
+    "valid": "Imported",
     "paste": "Paste",
-    "valid": "Imported"
+    "header": "Import your wallet",
+    "headerInvalid": "Check your secret phrase"
   },
-  "onboardingOutro": {
-    "button": "Agree & Continue",
-    "caption": "This wallet supports Bitcoin, Ethereum, Polygon, Solana, and more.",
-    "footer": "By continuing you agree to Kraken Wallet’s\n",
-    "termsOfService": "terms of service",
-    "title": "Your wallet is ready"
-  },
-  "onboardingPushNotifications": {
+  "pushNotificationsPrompt": {
     "allow": "Allow",
     "content": "Get crucial alerts about transactions and other important wallet interactions. To enable, allow notifications.",
     "skip": "Ask me later",
-    "title": "To stay informed, allow notifications",
-    "titleEnd": "allow notifications",
-    "titleStart": "To stay informed, "
+    "disallow": "Don't allow",
+    "title": "To stay informed,\nallow notifications"
+  },
+  "walletConnectExplainer": {
+    "firstPage": {
+      "title": "More than just crypto storage!",
+      "description": "With your wallet, you can {boldDescription} using WalletConnect.",
+      "boldDescription": "safely access thousands of decentralized apps",
+      "buttonText": "Sounds good"
+    },
+    "secondPage": {
+      "titleWithEllipsis": "To connect your wallet with Web3 apps...",
+      "titlePart1": "1. Click Connect Wallet",
+      "titlePart2": "2. Select WalletConnect",
+      "titlePart3": "3. On your phone, tap",
+      "titlePart4": "4. Scan QR Code",
+      "title": "To connect your wallet with Web3 apps",
+      "part1": "Tap Connect Wallet",
+      "part2": "Select WalletConnect",
+      "part3": "On your phone, tap",
+      "part4": "Scan QR Code",
+      "buttonText": "Continue"
+    },
+    "thirdPage": {
+      "title": "When using Web3 apps on your phone",
+      "subtitle": "Instead of scanning:",
+      "description1": "Tap on WalletConnect",
+      "description2": "Select Kraken Wallet",
+      "buttonText": "Continue"
+    },
+    "fourthPage": {
+      "title": "Try it out:",
+      "mintDescription": "Use your wallet to claim Free NFTs on {url}",
+      "website": "Website: ",
+      "ensDescription": "Register your on-chain name before it's gone",
+      "aaveDescription": "Borrow and lend crypto on Aave",
+      "buttonText": "Close"
+    }
+  },
+  "onboardingOutro": {
+    "title": "Your wallet is ready",
+    "caption": "This wallet supports Bitcoin, Ethereum, Polygon, Solana, and more.",
+    "footer": "By continuing you agree to Kraken Wallet’s\n",
+    "termsOfService": "terms of service",
+    "button": "Agree & Continue"
   },
   "onChainSecurity": {
-    "appConnectCriticalWarning": "We believe this app is malicious and connecting would be unsafe. Approving may lead to loss of funds.",
-    "appConnectMediumWarning": "The app sending the request cannot be verified.",
-    "appFlagged": "App Flagged!",
-    "appSignMessageCriticalWarning": "We believe this app is malicious and message unsafe to sign. Approving may lead to loss of funds.",
-    "appSignMessageMediumWarning": "The app sending the request cannot be verified.",
-    "appSignTransactionCriticalWarning": "We believe this app is malicious and transaction unsafe to sign. Approving may lead to loss of funds.",
-    "appSignTransactionMediumWarning": "The app sending the request cannot be verified.",
-    "appWarning": "We believe this app is malicious and connecting would be unsafe. Approving may lead to loss of funds",
     "criticalWarning": "Critical Warning",
     "domainMatch": "Domain match",
     "domainMatchInfo": "The domain linked to this request has been verified as this application's domain.",
@@ -639,8 +385,6 @@
     "domainMismatchWarning": "Warning - domain mismatch",
     "ignoreWarningAndProceed": "Ignore warning & proceed",
     "knownSecurityRisk": "Known security risk",
-    "knownSecurityRisk!": "Known security risk!",
-    "knownSecurityRiskExclaimed": "Known security risk!",
     "knownSecurityRiskExclamation": "Known security risk!",
     "knownSecurityRiskInfo": "This website is flagged as unsafe by multiple security providers. To protect your assets, do NOT connect to it.",
     "knownSecurityRiskMessage": "This website is flagged as unsafe by multiple security providers. Leave immediately to protect your assets from being drained",
@@ -648,600 +392,423 @@
     "returnToSafety": "Return to safety",
     "signTransactionCriticalWarning": "We believe this transaction is malicious and unsafe to sign. Approving may lead to loss of funds.",
     "transactionFlagged": "Transaction Flagged!",
-    "transactionWarning": "We believe this transaction is malicious and unsafe to sign. Approving may lead to loss of funds",
-    "unverifiedApp": "The app sending the request cannot be verified.",
     "warning": "Warning"
   },
   "passwordProtection": {
+    "title": "Password protection",
+    "whatIs": "What is password protection? ",
+    "whatIsDescription": "It adds extra security by requiring a password to allow the following actions:",
+    "sendCrypto": "Send crypto and NFTs",
+    "viewPhrase": "View secret recovery phrase",
+    "signTransactions": "Sign transactions",
+    "connectedApps": "Auth & sign connected apps",
+    "openApp": "Open the app (optional)",
+    "passwordSupersedesAppLock": "App Lock won’t replace password",
+    "passwordSupersedesAppLockDescription": "If you create a password, it will be required to make transactions, {biometricDescription}. For security both will be required.",
+    "biometricDescriptionIOS": "even if you’ve setup FaceID, or TouchID via App Lock",
+    "biometricDescriptionAndroid": "even if you’ve setup Biometrics via App Lock",
+    "resetHintModalTitle": "Reset password to change settings",
+    "resetHintModalDesc": "To adjust password options, you’ll need to disable password protection, and re-enable it again with the added change.",
+    "resetHintModalConfirm": "Okay",
+    "password": "Password",
+    "typePassword": "Type password",
+    "confirmPassword": "Confirm password",
+    "passwordLengthError": "Minimum of 6 characters required",
+    "passwordHintLetters": "Try using upper and lowercase letters",
+    "passwordHintNumbers": "Try using letters and numbers",
+    "passwordHintSpecialChars": "Try using special characters: !@#$%^&*?_~",
+    "passwordHintLonger": "Try using a longer password",
+    "passwordStrength": "Password strength:",
+    "passwordStrengthVeryWeak": "Very weak",
+    "passwordStrengthWeak": "Weak",
+    "passwordStrengthAverage": "Average",
+    "passwordStrengthStrong": "Strong",
+    "passwordStrengthSecure": "Secure",
+    "passwordMatchError": "Passwords do not match",
+    "requireOnOpen": "Require each time you open app?",
+    "requireOnOpenDesc": "Adds security by double-encrypting your app data, but you’ll need to enter the password each app open",
+    "warning": "Warning: do not lose password",
+    "warningDescription": "Store your password in a secure place. It is encrypted locally on your device, so it cannot be retrieved by Kraken if lost or forgotten.",
+    "confirm": "Confirm",
+    "enablePasswordProtection": "Enable password protection",
+    "protectYourData": "Protect your data with extra encryption",
+    "disablePassword": "Disable password",
+    "disablePasswordDescription": "Enter password to turn-off password protection",
+    "disable": "Disable",
+    "wrongPassword": "That didn't work",
+    "lockout": "Too many failed attempts, try again later",
+    "wrongPasswordDescription": "Check your password and try again",
+    "passwordIncorrect": "Password incorrect",
+    "walletLocked": "Wallet locked",
+    "walletLockedDescription": "Enter your password to unlock it",
+    "enterPassword": "Enter password",
+    "unlock": "Unlock",
+    "rationaleSignTransaction": "Your password is required to sign transactions",
+    "rationaleCreateWallet": "Your password is required to create a new wallet",
+    "rationaleSeeRecoveryPhrase": "to view your Secrete Recovery Phrase",
+    "rationaleGetXPub": "Your password is required to see your extended public key",
     "authFailed": "Authentication Failed",
     "authFailedDescription": "You can try again, or you may completely wipe and reset the app",
-    "biometricDescriptionAndroid": "even if you’ve setup Biometrics via App Lock",
-    "biometricDescriptionIOS": "even if you’ve setup FaceID, or TouchID via App Lock",
-    "confirm": "Confirm",
-    "confirmPassword": "Confirm password",
+    "retry": "Retry",
+    "wipeAndReset": "Wipe and Reset App",
     "confirmResetApp": "Confirm reset app",
-    "connectedApps": "Auth & sign connected apps",
-    "createPassword": "Create password",
+    "dataLossWarning": "Data Loss Warning!",
     "dataLoss1": "I understand that reseting the app will completely restore it to a fresh install state.",
     "dataLoss2": "I understand that after the app is restored, I will need my secret recovery phrase(s) to access my wallet(s).",
     "dataLoss3": "I understand that if I reset the app and don’t have my wallet secret recovery phrase(s), it will be impossible to restore my wallet(s).",
-    "dataLoss4": "I understand that if I lose my recovery phrase(s), I’m solely responsible for any loss of assets.",
-    "dataLossWarning": "Data Loss Warning!",
-    "disable": "Disable",
-    "disablePassword": "Disable password",
-    "disablePasswordDescription": "Enter password to turn-off password protection",
-    "doubleEncryptsData": "Double encrypts your app data",
-    "enablePasswordProtection": "Enable password protection",
-    "enterPassword": "Enter password",
-    "lockout": "Too many failed attempts, try again later",
-    "openApp": "Open the app (optional)",
-    "password": "Password",
-    "passwordHintLetters": "Try using upper and lowercase letters",
-    "passwordHintLonger": "Try using a longer password",
-    "passwordHintNumbers": "Try using letters and numbers",
-    "passwordHintSpecialChars": "Try using special characters: !@#$%^&*?_~",
-    "passwordIncorrect": "Password incorrect",
-    "passwordLengthError": "Minimum of 6 characters required",
-    "passwordMatchError": "Passwords do not match",
-    "passwordStrength": "Password strength:",
-    "passwordStrengthAverage": "Average",
-    "passwordStrengthSecure": "Secure",
-    "passwordStrengthStrong": "Strong",
-    "passwordStrengthVeryWeak": "Very weak",
-    "passwordStrengthWeak": "Weak",
-    "passwordSupersedesAppLock": "App Lock won’t replace password",
-    "passwordSupersedesAppLockDescription": "If you create a password, it will be required to make transactions, {biometricDescription}. For security both will be required.",
-    "protectYourData": "Protect your data with extra encryption",
-    "rationaleCreateWallet": "Your password is required to create a new wallet",
-    "rationaleGetXPub": "Your password is required to see your extended public key",
-    "rationaleSeeRecoveryPhrase": "to view your Secrete Recovery Phrase",
-    "rationaleSignTransaction": "Your password is required to sign transactions",
-    "requiredToAccess": "Required to access your wallet",
-    "requireOnOpen": "Require each time you open app?",
-    "requireOnOpenDesc": "Adds security by double-encrypting your app data, but you’ll need to enter the password each app open",
-    "resetHintModalConfirm": "Okay",
-    "resetHintModalDesc": "To adjust password options, you’ll need to disable password protection, and re-enable it again with the added change.",
-    "resetHintModalTitle": "Reset password to change settings",
-    "retry": "Retry",
-    "sendCrypto": "Send crypto and NFTs",
-    "signTransactions": "Sign transactions",
-    "title": "Password protection",
-    "typePassword": "Type password",
-    "unlock": "Unlock",
-    "viewPhrase": "View secret recovery phrase",
-    "walletLocked": "Wallet locked",
-    "walletLockedDescription": "Enter your password to unlock it",
-    "warning": "Warning: do not lose password",
-    "warningDescription": "Store your password in a secure place. It is encrypted locally on your device, so it cannot be retrieved by Kraken if lost or forgotten.",
-    "whatIs": "What is password protection? ",
-    "whatIsDescription": "It adds extra security by requiring a password to allow the following actions:",
-    "wipeAndReset": "Wipe and Reset App",
-    "wrongPassword": "That didn't work",
-    "wrongPasswordDescription": "Check your password and try again"
-  },
-  "pushNotificationsPrompt": {
-    "allow": "Allow",
-    "content": "Get crucial alerts about transactions and other important wallet interactions. To enable, allow notifications.",
-    "disallow": "Don't allow",
-    "skip": "Ask me later",
-    "title": "To stay informed,\nallow notifications",
-    "titleEnd": "allow notifications",
-    "titleStart": "To stay informed, "
+    "dataLoss4": "I understand that if I lose my recovery phrase(s), I’m solely responsible for any loss of assets."
   },
   "receive": {
     "addressCopied": "Address copied",
-    "addressError": "The receiving address may not be up-to-date, please refresh and try again",
-    "copied": "Copied",
-    "copy": "Copy",
     "share": "Share",
     "warning": "This is your {networkName} address.",
-    "warning_nft": "This is your {networkName} address. Use it to receive crypto and NFTs that are compatible on this network."
+    "warning_nft": "This is your {networkName} address. Use it to receive crypto and NFTs that are compatible on this network.",
+    "addressError": "The receiving address may not be up-to-date, please refresh and try again"
   },
-  "reputation": {
-    "likelySpam": "Likely spam",
-    "likelySpamDescription": "This token is listed on a blacklist. Take caution when interacting with any token you can not verify. Don't trust, verify.",
-    "likelySpamHelp": "What are blacklisted tokens?",
-    "openDocs": "Open docs",
-    "tokenLists": "Token lists",
-    "tokenListsDescription": "Token Lists are a community-led initiative to improve discoverability, reputation, and trust in ERC20 tokens.",
-    "tokenListsHelp": "What are token lists?",
-    "unverified": "Not listed",
-    "unverifiedDescription": "This token is not listed. Take caution when interacting with any token you can not verify. Don't trust, verify.",
-    "unverifiedHelp": "Why is it not listed?",
-    "verified": "Listed by",
-    "verifiedDescription": "Token Lists are reputation based lists aimed at identifying and highlighting trusted, high-quality tokens for you.",
-    "verifiedHelp": "What are token lists?"
+  "universalSend": {
+    "buttonTitle": "Send",
+    "myWallets": "My wallets",
+    "sendTo": "Send to",
+    "sendAsset": "Send asset",
+    "continue": "Continue",
+    "searchPlaceholder": "Select what you want to send",
+    "searchEmptyTitle": "No results",
+    "searchEmptyDesc": "Try expading your search",
+    "assetsEmptyTitle": "No assets available",
+    "assetsEmptyDesc": "Your current wallet does not have any assets, try funding your wallet",
+    "assetBTCEmptyTitle": "No Bitcoin available",
+    "assetBTCEmptyDesc": "Your current wallet does not have any Bitcoin",
+    "assetDogeEmptyTitle": "No Dogecoin available",
+    "assetDogeEmptyDesc": "Your current wallet does not have any Dogecoin",
+    "assetSolanaEmptyTitle": "No Solana assets available",
+    "assetSolanaEmptyDesc": "Your current wallet does not have any available Solana assets",
+    "assetEthereumEmptyTitle": "No Ethereum available",
+    "assetEthereumaEmptyDesc": "Your wallet does not have any available assets on Ethereum or Layer 2 networks",
+    "goBack": "Go back",
+    "clearSearch": "Clear search"
+  },
+  "universalReceive": {
+    "tokenAddress": "{token} address",
+    "buttonTitle": "Receive",
+    "cryptoAndNft": "NFTs and crypto",
+    "crypto": "Crypto",
+    "copied": "Address copied",
+    "ethereumAddressLabel": "Includes Layer 2 networks",
+    "ethereumExplainerHeading": "Your Ethereum address",
+    "ethereumExplainerBody": "Ethereum's address system extends to Layer 2 networks like Polygon, Arbitrum, Optimism and Base, ensuring your one address works everywhere"
   },
   "scan": {
     "apps": "Apps",
     "connected_to": "Connected to {appName}",
     "instructions": "Connect to dapps by scanning a QR code",
     "manage": "Manage",
-    "missingPermission": "To use the camera go to your phone settings and activate your camera permissions for the Super Wallet app",
     "paste": "Paste address",
+    "missingPermission": "To use the camera go to your phone settings and activate your camera permissions for the Super Wallet app",
     "wallet_connect_failed": "The QR code did not scan, please try again",
-    "wallet_connect_initialization_failure": "WalletConnect initialization failure",
     "wallet_connect_invalid_qr_code": "This is an invalid QR code",
     "wallet_connect_previously_submitted_qr_code": "This is an invalid QR code, please refresh the page and try again",
     "wallet_connect_version_deprecated": "This application is incompatible"
   },
   "send": {
-    "address": "Enter address...",
     "addressHeader": "Sending to",
-    "addressOrENS": "Enter address or ENS domain...",
     "amountHeader": "Amount",
-    "balance": "Balance {0}",
-    "confirm": "Confirm",
-    "confirmSend": "Confirm Send",
-    "create": "Create",
     "enterAmount": "Enter amount",
-    "evm_fee_fast": "Fast",
-    "evm_fee_normal": "Normal",
-    "evm_fee_urgent": "Urgent",
     "exceedsBalance": "Amount entered exceeds available balance",
     "exceedsFee": "Not enough {token} for network fee",
-    "failed": "Failed",
-    "failedPriceAlert": {
-      "desc": "We are unable to fetch price data for this token at this time.",
-      "title": "USD price for {token} is not available"
-    },
+    "invalidAddress": "Invalid address, please check and try again",
+    "technicalIssues": "We are experiencing an issue, please try again later",
+    "address": "Enter address...",
+    "addressOrENS": "Enter address or ENS domain...",
+    "max": "Max",
+    "balance": "Balance {0}",
+    "network_fee": "Network Fee",
     "fee": "Fee",
     "fee_fast": "Fast",
     "fee_medium": "Medium",
     "fee_slow": "Slow",
-    "feeWarning": "Current Network Fee is {feeAmount} which is more than {percentage}% of what you are sending.",
-    "invalidAddress": "Invalid address, please check and try again",
-    "max": "Max",
-    "network_fee": "Network Fee",
-    "networkWarning": {
-      "alertBody": "Make sure that the person you're sending to has a wallet that supports {networkName}",
-      "alertTitle": "Sending on the {networkName} network"
-    },
-    "no_note": "No note",
-    "note": "Note",
-    "note_to_self": "Note to self",
-    "pending": "Pending",
-    "polygonWarning": {
-      "alertBody": "Make sure that the person you’re sending to has a wallet that supports Polygon",
-      "alertTitle": "Sending on the Polygon network",
-      "label": "Sending on the Polygon network"
-    },
-    "priority": "Priority",
-    "recipient": "Recipient",
-    "scan": "Scan",
-    "send": "Send",
-    "sendError": "The transaction could not be completed, please try again",
-    "sending": "Sending...",
-    "sent": "Sent",
-    "successEstimation": "Estimated time to complete: ~{time}",
-    "successLabel": "Transaction initiated!",
-    "suspiciousCharWarning": {
-      "desc": "This address contains non-ASCII characters. Please be aware that there are characters that look identical or very similar to English letters.",
-      "title": "Attention:"
-    },
-    "technicalIssues": "We are experiencing an issue, please try again later",
-    "timeStampabbreviation": {
-      "day": "day",
-      "days": "days",
-      "hour": "hour",
-      "hours": "hours",
-      "minute": "min",
-      "minutes": "mins",
-      "second": "sec",
-      "seconds": "secs"
-    },
+    "evm_fee_urgent": "Urgent",
+    "evm_fee_fast": "Fast",
+    "evm_fee_normal": "Normal",
     "title": "Send {ticker}",
     "title_nft": "Send NFT",
-    "transaction_id": "Transaction id",
-    "transfer_token": "Transfer token",
-    "undo": "Undo",
+    "confirmSend": "Confirm Send",
+    "sendError": "The transaction could not be completed, please try again",
+    "successLabel": "Transaction initiated!",
+    "successEstimation": "Estimated time to complete: ~{time}",
     "warning": {
-      "firstTimeSending": "First time sending to this address",
-      "nthTimeSending": "{count} previous sends to this address",
       "title": "Warning",
-      "titleCritical": "Critical Warning"
-    }
+      "titleCritical": "Critical Warning",
+      "firstTimeSending": "First time sending to this address",
+      "nthTimeSending": "{count} previous sends to this address"
+    },
+    "failedPriceAlert": {
+      "title": "USD price for {token} is not available",
+      "desc": "We are unable to fetch price data for this token at this time."
+    },
+    "networkWarning": {
+      "alertTitle": "Sending on the {networkName} network",
+      "alertBody": "Make sure that the person you're sending to has a wallet that supports {networkName}"
+    },
+    "suspiciousCharWarning": {
+      "title": "Attention:",
+      "desc": "This address contains non-ASCII characters. Please be aware that there are characters that look identical or very similar to English letters."
+    },
+    "feeWarning": "Current Network Fee is {feeAmount} which is more than {percentage}% of what you are sending."
   },
   "settings": {
     "about": "About",
-    "about_release_notes": "Release notes",
-    "about_selftest": "Run diagnostics",
     "advanced": "Advanced",
-    "appLock": "App Lock",
-    "backup": "Backup",
-    "backup_mnemonic_seed": "Backup mnemonic seed",
-    "currency": "Currency",
     "deleteAll": "Delete all data",
-    "electrum_error_connect": "Can’t connect to the provided Electrum server",
-    "electrum_reset": "Reset to default",
-    "electrum_reset_to_default": "Are you sure to want to reset your Electrum settings to default?",
-    "electrum_saved": "Your changes have been saved successfully. Restarting the app may be required for the changes to take effect.",
-    "electrum_unable_to_connect": "Unable to connect to {server}.",
-    "general": "General",
-    "header": "Settings",
-    "language": "Language",
-    "manageWallets": "Manage wallets",
-    "notifications": "Push notifications",
-    "passwordProtection": "Password protection",
-    "pn_account_activity": "Account activity",
-    "pn_auth_n_sign_connected_apps": "Auth & sign connected apps",
-    "pn_connected_app_interactions": "Connected app interactions",
-    "pn_incoming_transactions": "Incoming transactions",
-    "pn_incoming_transactions_pending": "Incoming transactions pending",
-    "pn_levelAll": "Enable account activity",
-    "pn_outgoing_transactions": "Outgoing transactions",
-    "pn_outgoing_transactions_complete": "Outgoing transactions complete",
-    "pn_outgoing_transactions_pending": "Outgoing transactions pending",
-    "pn_types_of_notifications_youll_receive": "Types of notifications you will receive:",
-    "pn_would_you_like_to_receive_notifications": "Would you like to receive notifications?",
-    "privacy": "Privacy",
-    "pushNotifications": "Push notifications",
     "refreshAll": "Refresh metadata",
     "refreshAllDesc": "Clears cache for all NFTs and assets",
+    "header": "Settings",
+    "language": "Language",
+    "notifications": "Push notifications",
+    "pn_types_of_notifications_youll_receive": "Types of notifications you will receive:",
+    "pn_levelAll": "Enable account activity",
+    "pn_incoming_transactions": "Incoming transactions",
+    "pn_outgoing_transactions": "Outgoing transactions",
+    "testnet": "Testnet",
+    "testnetDescription": "When turned on, you can select your testnet network and assets from the manage assets screen.",
+    "appLock": "App Lock",
+    "currency": "Currency",
+    "general": "General",
+    "manageWallets": "Manage wallets",
+    "passwordProtection": "Password protection",
+    "pushNotifications": "Push notifications",
     "secretRecoveryPhrase": "Secret recovery phrase",
     "security": "Security",
     "support": "Support",
-    "testnet": "Testnet",
-    "testnetDescription": "When turned on, you can select your testnet network and assets from the manage assets screen.",
-    "view_list_of_connected_dapps": "View List of connected Dapps",
     "wallets": "Wallets"
   },
   "support": {
-    "contactUs": "Contact us",
-    "getInTouch": "Get in touch",
-    "knowledgeBaseDesc": "Search our docs, read our FAQs and get in touch",
     "knowledgeBaseTitle": "Knowledge base",
-    "visitSupportCenter": "Visit support center"
+    "knowledgeBaseDesc": "Search our docs, read our FAQs and get in touch",
+    "visitSupportCenter": "Visit support center",
+    "getInTouch": "Get in touch",
+    "contactUs": "Contact us"
   },
-  "test": {
-    "key": "Testing"
-  },
-  "tokenLists": {
-    "blacklisted": "Blocklist",
-    "description": "Token Lists are reputation based lists aimed at identifying tokens that are trusted by various exchanges and other Web3 participants.",
-    "help": "What are Token Lists?",
-    "likelySpam": "Likely spam",
-    "likelySpamDescription": "Use extreme caution when interacting this token. It could be harmful.",
-    "likelySpamHelp": "What are likely spam tokens?",
-    "likelySpamInfo": "Likely spam tokens have been flagged by public communities or one of our partners as being spam, fraudulent or harmful.",
-    "likelySpamTitle": "Likely Spam",
-    "notListed": "Not listed",
-    "openDocs": "Open docs",
-    "tokenLists": "Token lists",
-    "tokens": "{tokenListCount} tokens",
-    "unverified": "Not listed",
-    "unverifiedDescription": "This token is not listed on any of the supported Token Lists. Use caution.",
-    "unverifiedHelp": "Why is it not listed?",
-    "verified": "Listed",
-    "verifiedDescription": "Tokens listed here have been verified and are currently available on the Kraken exchange.",
-    "verifiedInfoKraken": "Tokens listed here are currently available on the Kraken exchange.",
-    "verifiedKraken": "Kraken Listed Tokens"
+  "currency": {
+    "bitcoin": "Bitcoin",
+    "satoshis": "Satoshis",
+    "ether": "Ether",
+    "usDollar": "US Dollar",
+    "britishPound": "British Pound",
+    "australianDollar": "Australian Dollar",
+    "euro": "Euro",
+    "swissFranc": "Swiss Franc",
+    "canadianDollar": "Canadian Dollar",
+    "japaneseYen": "Japanese Yen",
+    "russianRuble": "Russian Ruble",
+    "southKoreanWon": "South Korean Won"
   },
   "transactionDetails": {
-    "amount": "Amount",
-    "confirmation": {
-      "cancel": "Cancel",
-      "confirm": "Confirm",
-      "fee": "Network Fee:"
-    },
-    "contractAddress": "Contract address",
-    "copyToClipboard": "Copied to clipboard",
-    "description": {
-      "approval": {
-        "failed": "{amount} failed to be approved on {address}",
-        "pending": "{amount} is pending approval on {address}",
-        "succeeded": "{amount} was approved on {address}"
-      },
-      "approvals": {
-        "failed": "{amount} failed to be approved on {address}",
-        "pending": "{amount} is pending approval on {address}",
-        "succeeded": "{amount} was approved on {address}",
-        "success": "{amount} was approved on {address}"
-      },
-      "contractInteraction": {
-        "failed": "Interaction with {address} failed",
-        "pending": "Interaction with {address} is pending",
-        "succeeded": "Interaction with {address}"
-      },
-      "contractInteractionFundsReceived": {
-        "pending": "Funds are being received from {address}",
-        "succeeded": "Funds were received via {address}"
-      },
-      "contractInteractions": {
-        "failed": "Interaction with {address} failed",
-        "pending": "Interaction with {address} is pending",
-        "succeeded": "Interaction with {address}"
-      },
-      "deposit": {
-        "failed": "{amount} failed to be deposited to {address}",
-        "pending": "{amount} is being deposited to {address}",
-        "succeeded": "{amount} was deposited to {address}"
-      },
-      "nftBuy": {
-        "failed": "{nftName} failed to be purchased via {address}",
-        "pending": "{nftName} is being purchased via {address}",
-        "succeeded": "{nftName} was purchased via {address}"
-      },
-      "nftMint": {
-        "failed": "{nftName} failed to be minted via {address}",
-        "pending": "{nftName} is being minted via {address}",
-        "succeeded": "{nftName} was minted via {address}"
-      },
-      "nftReceive": {
-        "pending": "{nftName} is being received from {address}",
-        "succeeded": "{nftName} was received from {address}"
-      },
-      "nftSell": {
-        "failed": "{nftName} failed to be sold via {address}",
-        "pending": "{nftName} is being sold via {address}",
-        "succeeded": "{nftName} was sold via {address}"
-      },
-      "nftSend": {
-        "failed": "{nftName} failed to send to {address}",
-        "pending": "{nftName} is being sent to {address}",
-        "succeeded": "{nftName} was sent to {address}"
-      },
-      "receive": {
-        "pending": "{amount} is being received from {address}",
-        "succeeded": "{amount} was received from {address}"
-      },
-      "receiveUtxo": {
-        "pending": "{amount} is being received",
-        "succeeded": "{amount} was received"
-      },
-      "send": {
-        "failed": "{amount} failed to send to {address}",
-        "pending": "{amount} is being sent to {address}",
-        "succeeded": "{amount} was sent to {address}"
-      },
-      "sendUtxo": {
-        "failed": "{amount} failed to send",
-        "pending": "{amount} is being sent",
-        "succeeded": "{amount} was sent"
-      },
-      "swap": {
-        "failed": "{amountSent} failed to swap to {amountReceived} via {address}",
-        "pending": "{amountSent} is being swapped for {amountReceived} via {address}",
-        "succeeded": "{amountSent} was swapped for {amountReceived} via {address}"
-      }
-    },
-    "free": "Free",
-    "from": "From",
-    "genericNetworkFee": "Network fee",
-    "input": "Input",
-    "inputs": "Inputs",
-    "networkFee": "{network} Network Fee",
-    "networkFee_": "Network fee",
     "notes": "Description",
     "notes_edit": "Edit",
     "notes_empty": "No description",
-    "notesCaption": "Descriptions are saved locally on your device",
-    "open_explorer": "See in explorer",
     "openExplorer": "View in explorer",
-    "output": "Output",
-    "outputs": "Outputs",
-    "recipient": "Sending to",
-    "saveNotes": "Save",
-    "state": {
-      "failed": "Failed",
-      "pending": "Pending",
-      "success": "Success"
-    },
-    "status": "Status",
-    "status_confirmed": "Confirmed",
-    "status_pending": "Pending",
     "time": "Time",
-    "title": "Transaction  details",
+    "transaction_id": "Transaction ID",
+    "recipient": "Sending to",
+    "amount": "Amount",
+    "free": "Free",
+    "unlimited": "Unlimited",
+    "contractAddress": "Contract address",
+    "from": "From",
     "to": "To",
     "toBTC": "To:",
-    "transaction_id": "Transaction ID",
-    "unlimited": "Unlimited"
-  },
-  "transactions": {
-    "activity": "Activity",
-    "no_transactions_yet": "No transactions, yet. Pull to refresh",
-    "pending": "Sending...",
-    "receive": "Receive",
-    "send": "Send",
-    "transactions": "Transactions"
-  },
-  "transactionTile": {
-    "activity": "Activity",
-    "address": {
-      "from": "From: ",
-      "to": "To: "
+    "inputs": "Inputs",
+    "outputs": "Outputs",
+    "saveNotes": "Save",
+    "notesCaption": "Descriptions are saved locally on your device",
+    "networkFee": "{network} Network Fee",
+    "genericNetworkFee": "Network fee",
+    "status": "Status",
+    "state": {
+      "pending": "Pending",
+      "failed": "Failed",
+      "success": "Success"
     },
-    "nativeAssetView": {
-      "approval": "Approval",
-      "contractInteraction": "Contract interaction",
-      "send": "Send {assetSymbol}"
+    "description": {
+      "approval": {
+        "succeeded": "{amount} was approved on {address}",
+        "pending": "{amount} is pending approval on {address}",
+        "failed": "{amount} failed to be approved on {address}"
+      },
+      "contractInteraction": {
+        "succeeded": "Interaction with {address}",
+        "pending": "Interaction with {address} is pending",
+        "failed": "Interaction with {address} failed"
+      },
+      "contractInteractionFundsReceived": {
+        "succeeded": "Funds were received via {address}"
+      },
+      "deposit": {
+        "succeeded": "{amount} was deposited to {address}",
+        "pending": "{amount} is being deposited to {address}",
+        "failed": "{amount} failed to be deposited to {address}"
+      },
+      "nftSend": {
+        "succeeded": "{nftName} was sent to {address}",
+        "pending": "{nftName} is being sent to {address}",
+        "failed": "{nftName} failed to send to {address}"
+      },
+      "nftReceive": {
+        "succeeded": "{nftName} was received from {address}",
+        "pending": "{nftName} is being received from {address}"
+      },
+      "nftBuy": {
+        "succeeded": "{nftName} was purchased via {address}",
+        "pending": "{nftName} is being purchased via {address}",
+        "failed": "{nftName} failed to be purchased via {address}"
+      },
+      "nftSell": {
+        "succeeded": "{nftName} was sold via {address}",
+        "pending": "{nftName} is being sold via {address}",
+        "failed": "{nftName} failed to be sold via {address}"
+      },
+      "nftMint": {
+        "succeeded": "{nftName} was minted via {address}",
+        "pending": "{nftName} is being minted via {address}",
+        "failed": "{nftName} failed to be minted via {address}"
+      },
+      "send": {
+        "succeeded": "{amount} was sent to {address}",
+        "pending": "{amount} is being sent to {address}",
+        "failed": "{amount} failed to send to {address}"
+      },
+      "receive": {
+        "succeeded": "{amount} was received from {address}",
+        "pending": "{amount} is being received from {address}"
+      },
+      "sendUtxo": {
+        "succeeded": "{amount} was sent",
+        "pending": "{amount} is being sent",
+        "failed": "{amount} failed to send"
+      },
+      "receiveUtxo": {
+        "succeeded": "{amount} was received",
+        "pending": "{amount} is being received"
+      },
+      "swap": {
+        "succeeded": "{amountSent} was swapped for {amountReceived} via {address}",
+        "pending": "{amountSent} is being swapped for {amountReceived} via {address}",
+        "failed": "{amountSent} failed to swap to {amountReceived} via {address}"
+      }
     },
-    "networkFee": "Network fee",
-    "no_transactions_description": "Add some assets to your Wallet",
-    "no_transactions_title": "Transactions will appear here",
-    "no_transactions_yet": "No transactions, yet. Pull to refresh",
-    "noTransactionsDescription": "Add some {0} to your wallet",
-    "noTransactionsTitle": "Transactions will appear here",
-    "pending": "Sending...",
-    "transactions": "Transactions",
-    "type": {
-      "contractInteraction": "Contract Interaction",
-      "contractInteractionAffected": "Funds Received",
-      "deposit": "Deposit",
-      "mint": "NFT mint",
-      "NFTBuy": "NFT buy",
-      "NFTReceive": "NFT receive",
-      "NFTSell": "NFT sell",
-      "NFTsend": "NFT send",
-      "receive": "Receive",
-      "send": "Send",
-      "swap": "Swap",
-      "tokenApproval": "Approval"
+    "confirmation": {
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "fee": "Network Fee:"
     }
   },
-  "universalReceive": {
-    "buttonTitle": "Receive",
-    "copied": "Address copied",
-    "crypto": "Crypto",
-    "cryptoAndNft": "NFTs and crypto",
-    "ethereumAddressLabel": "Includes Layer 2 networks",
-    "ethereumExplainerBody": "Ethereum's address system extends to Layer 2 networks like Polygon, Arbitrum, Optimism and Base, ensuring your one address works everywhere",
-    "ethereumExplainerHeading": "Your Ethereum address",
-    "tokenAddress": "{token} address"
-  },
-  "universalSend": {
-    "assetBTCEmptyDesc": "Your current wallet does not have any Bitcoin",
-    "assetBTCEmptyTitle": "No Bitcoin available",
-    "assetDogeEmptyDesc": "Your current wallet does not have any Dogecoin",
-    "assetDogeEmptyTitle": "No Dogecoin available",
-    "assetEthereumaEmptyDesc": "Your wallet does not have any available assets on Ethereum or Layer 2 networks",
-    "assetEthereumEmptyTitle": "No Ethereum available",
-    "assetsEmptyDesc": "Your current wallet does not have any assets, try funding your wallet",
-    "assetsEmptyTitle": "No assets available",
-    "assetSolanaEmptyDesc": "Your current wallet does not have any available Solana assets",
-    "assetSolanaEmptyTitle": "No Solana assets available",
-    "buttonTitle": "Send",
-    "clearSearch": "Clear search",
-    "continue": "Continue",
-    "goBack": "Go back",
-    "myWallets": "My wallets",
-    "searchEmptyDesc": "Try expading your search",
-    "searchEmptyTitle": "No results",
-    "searchPlaceholder": "Select what you want to send",
-    "sendAsset": "Send asset",
-    "sendTo": "Send to"
-  },
-  "url": {
-    "licenses": "https://www.kraken.com/legal",
-    "privacyPolicy": "https://www.kraken.com/wallet/privacy",
-    "releaseNotes": "https://blog.kraken.com",
-    "termsOfService": "https://kraken.com"
-  },
-  "view_nft": {
-    "gallery": "Gallery",
-    "lives_on": "Lives on:"
-  },
-  "view_token": {
-    "lives_on": "Lives on:"
-  },
-  "walletConnect": {
-    "account_not_found": "WalletConnect: account not found",
-    "action_cancelled": "Action cancelled",
-    "action_in_progress": "Working on your WalletConnect action...",
+  "connectedApps": {
+    "list": {
+      "title": "Connected apps",
+      "disconnect_all": "Disconnect all ({0})",
+      "error_all": "Error disconnecting all apps",
+      "instructions": "Scan QR codes to connect apps with WalletConnect",
+      "tutorial": "How does it work?",
+      "connect_to_app": "Connect to app"
+    },
     "app_details": {
       "disconnect": "Disconnect",
       "disconnect_decscription": "Disconnecting this app will remove all access to your wallet",
       "error": "Error disconnecting",
       "open": "Open"
-    },
-    "auth": {
-      "cancel": "Cancel",
-      "connect": "Connect"
-    },
+    }
+  },
+  "walletConnect": {
+    "unsupported_network": "This network is not supported",
     "failedToConnect": "The application did not connect",
     "failedToDisconnect": "The application did not disconnect",
-    "feeEstimate": "Fee Estimate",
-    "invalid_request_params": "WalletConnect: invalid request.params",
-    "list": {
-      "disconnect_all": "Disconnect all ({0})",
-      "error_all": "Error disconnecting all apps",
-      "title": "Apps"
-    },
-    "method_not_implemented": "WalletConnect: method {method} not implemented",
     "request_fulfilled": "WalletConnect: request fulfilled",
     "response_rejected": "WalletConnect: Application request denied",
-    "response_rejected_prepare_transaction_failure": "WalletConnect: response rejected, prepare transaction failure",
-    "title": "Wallet Connect",
-    "topic_not_found": "WalletConnect: topic not found",
-    "unsupported_network": "This network is not supported",
-    "wallet_no_account": "WalletConnect: related wallet has no associated account number",
-    "wallet_not_found": "WalletConnect: related wallet could not be found"
+    "action_in_progress": "Working on your WalletConnect action..."
   },
-  "walletConnectExplainer": {
-    "firstPage": {
-      "boldDescription": "With your wallet, you can {boldDescription} using WalletConnect.",
-      "buttonText": "Sounds good",
-      "description": "With your wallet, you can {boldDescription} using WalletConnect.",
-      "title": "More than just crypto storage!"
-    },
-    "fourthPage": {
-      "aaveDescription": "Borrow and lend crypto on Aave",
-      "buttonText": "Close",
-      "ensDescription": "Register your on-chain name before it's gone",
-      "mintDescription": "Use your wallet to claim Free NFTs on {url}",
-      "title": "Try it out:",
-      "website": "Website: "
-    },
-    "secondPage": {
-      "buttonText": "Continue",
-      "part1": "Tap Connect Wallet",
-      "part2": "Select WalletConnect",
-      "part3": "On your phone, tap",
-      "part4": "Scan QR Code",
-      "title": "To connect your wallet with Web3 apps",
-      "titlePart1": "1. Click Connect Wallet",
-      "titlePart2": "2. Select WalletConnect",
-      "titlePart3": "3. On your phone, tap",
-      "titlePart4": "4. Scan QR Code",
-      "titleWithEllipsis": "To connect your wallet with Web3 apps..."
-    },
-    "thirdPage": {
-      "buttonText": "Continue",
-      "description1": "Tap on WalletConnect",
-      "description2": "Select Kraken Wallet",
-      "subtitle": "Instead of scanning:",
-      "title": "When using Web3 apps on your phone"
-    }
-  },
-  "walletConnectTutorialPrompt": {
-    "firstPage": {
-      "boldDescription": "safely access thousands of decentralised apps",
-      "buttonText": "Sounds good",
-      "description": "With your wallet, you can {boldDescription} using WalletConnect.",
-      "title": "More than just crypto storage!"
-    },
-    "fourthPage": {
-      "aaveDescription": "Borrow and lend crypto on Aave",
-      "aaveWebsite": "app.aave.com",
-      "buttonText": "Close",
-      "ensDescription": "Register your on-chain name before its gone",
-      "ensWebsite": "app.ens.domains",
-      "mintDescription": "Use your wallet to claim Free NFTs on {website}",
-      "mintWebsite": "mint.fun",
-      "title": "Try it out:",
-      "website": "Website: "
-    },
-    "secondPage": {
-      "buttonText": "Continue",
-      "step1": "Tap Connect Wallet",
-      "step1title": "1. Click Connect Wallet",
-      "step2": "Select WalletConnect",
-      "step2title": "2. Select WalletConnect",
-      "step3": "On your phone, tap",
-      "step3title": "3. On your phone, tap",
-      "step4": "Scan QR Code",
-      "step4title": "4. Scan QR Code",
-      "title": "To connect your wallet with Web3 apps"
-    },
-    "thirdPage": {
-      "buttonText": "Continue",
-      "description1": "Copy the WalletConnect link",
-      "description2": "Paste the address in your wallet",
-      "subtitle": "Instead of scanning:",
-      "title": "When using Web3 apps on your phone"
-    }
-  },
-  "walletDetails": {
+  "advancedAccountInfo": {
     "derivationPath": "Derivation path",
-    "title": "More information",
-    "type": "Type",
-    "wallet_information": "Wallet information",
-    "xpub": "Extended public key",
-    "xpubKeyCopied": "Copied to clipboard"
+    "ethereumDerivationPath": "Ethereum derivation path",
+    "ethereumDerivationPathContent": "Ethereum's derivation path is shared with Layer 2 networks like Polygon, Arbitrum, Optimism and Base, meaning the same derivation path is used for all of them.",
+    "extendedPublicKey": "Extended public key",
+    "includesLayer2Networks": "Includes Layer 2 networks",
+    "pathCopied": "Path copied",
+    "title": "{walletName} - info",
+    "walletInformation": "Wallet information",
+    "xpubCopied": "xPub copied",
+    "xpubHidden": "xPub hidden"
   },
-  "wallets": {
-    "import_title": "Import",
-    "list_tryagain": "Try again",
-    "pending": "Pending"
+  "extendedPublicKey": {
+    "bitcoinXpub": "Bitcoin xPub",
+    "copyXpub": "Copy xPub",
+    "summary": "This is your {summaryEmphasis}, it is the master public key that was used to generate all of the public bitcoin addresses for this wallet.",
+    "summaryEmphasis": "Bitcoin Extended Public Key (xPub)",
+    "type": "Type: {type}"
+  },
+  "transactionTile": {
+    "nativeAssetView": {
+      "send": "Send {assetSymbol}",
+      "approval": "Approval",
+      "contractInteraction": "Contract interaction"
+    },
+    "networkFee": "Network fee",
+    "noTransactionsTitle": "Transactions will appear here",
+    "noTransactionsDescription": "Add some {0} to your wallet",
+    "activity": "Activity",
+    "type": {
+      "receive": "Receive",
+      "send": "Send",
+      "mint": "NFT mint",
+      "swap": "Swap",
+      "NFTBuy": "NFT buy",
+      "NFTSell": "NFT sell",
+      "NFTsend": "NFT send",
+      "NFTReceive": "NFT receive",
+      "deposit": "Deposit",
+      "contractInteraction": "Contract Interaction",
+      "contractInteractionAffected": "Funds Received",
+      "tokenApproval": "Approval"
+    },
+    "address": {
+      "from": "From: ",
+      "to": "To: "
+    }
+  },
+  "reputation": {
+    "verified": "Listed by",
+    "likelySpam": "Likely spam",
+    "unverified": "Not listed"
+  },
+  "floatingTransactionActivityButtons": {
+    "send": "Send",
+    "receive": "Receive"
+  },
+  "tokenLists": {
+    "tokens": "{tokenListCount} tokens",
+    "tokenLists": "Token lists",
+    "description": "Token Lists are reputation based lists aimed at identifying tokens that are trusted by various exchanges and other Web3 participants.",
+    "help": "What are Token Lists?",
+    "likelySpam": "Likely spam",
+    "likelySpamTitle": "Likely Spam",
+    "likelySpamDescription": "Use extreme caution when interacting this token. It could be harmful.",
+    "likelySpamHelp": "What are likely spam tokens?",
+    "likelySpamInfo": "Likely spam tokens have been flagged by public communities or one of our partners as being spam, fraudulent or harmful.",
+    "unverified": "Not listed",
+    "unverifiedDescription": "This token is not listed on any of the supported Token Lists. Use caution.",
+    "verified": "Listed",
+    "verifiedKraken": "Kraken Listed Tokens",
+    "verifiedInfoKraken": "Tokens listed here are currently available on the Kraken exchange."
+  },
+  "walletBackup": {
+    "backupYourWallet": "Back up your wallet",
+    "backupYourWalletDescription": "Make sure you can recover your crypto if you lose your device or switch to another wallet.",
+    "backup": "Back up",
+    "secretRecoveryPhrase": "Secret recovery phrase",
+    "tapHereToView": "Tap here to view"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Back up now",
+    "body": "You haven't backed up your Secret Recovery Phrase. We recommend backing up to avoid losing access to your funds.",
+    "header": "Before receiving funds in this wallet, back it up"
   }
 }

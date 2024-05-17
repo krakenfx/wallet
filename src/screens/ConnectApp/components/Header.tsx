@@ -12,7 +12,7 @@ import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 import { Verification } from '../types';
 
 import loc from '/loc';
-import { removeWWWSubdomain } from '/modules/text-utils';
+import { sanitizeUrl } from '/modules/text-utils';
 
 type Props = {
   icon: string;
@@ -36,12 +36,12 @@ const getExplainerContentType = (verification: Verification) => {
 };
 
 const Icon = ({ verification }: { verification: Verification }) => {
-  if (verification.isDomainMatch) {
-    return <SvgIcon name="check-circle" color="green400" size={15} />;
-  }
-
   if (verification.isScam || verification.warning?.severity === 'critical') {
     return <SvgIcon name="warning-filled" color="red400" size={15} />;
+  }
+
+  if (verification.isDomainMatch) {
+    return <SvgIcon name="check-circle" color="green400" size={15} />;
   }
 
   return null;
@@ -66,7 +66,7 @@ export const Header = ({ url, icon, name, verification }: Props) => {
       </Label>
       <Touchable style={styles.info} onPress={showExplainer} disabled={!shouldShowExplainer}>
         <Label type="regularCaption1" color="light75" style={styles.url} numberOfLines={1}>
-          {removeWWWSubdomain(url)}
+          {sanitizeUrl(url)}
         </Label>
         {shouldShowExplainer && <Icon verification={verification} />}
       </Touchable>

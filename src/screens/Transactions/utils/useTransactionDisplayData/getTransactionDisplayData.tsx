@@ -12,7 +12,7 @@ import { AssetMetadata } from '@/realm/assetMetadata';
 import { RealmToken } from '@/realm/tokens';
 import { RealmTransaction } from '@/realm/transactions';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { TransactionData, TransactionTypeTitles } from '@/realm/transactions/getTransactionMetadata';
+import { TransactionData, getTransactionTitle } from '@/realm/transactions/getTransactionMetadata';
 import { RealmWallet } from '@/realm/wallets';
 import { unitConverter } from '@/utils/unitConverter';
 
@@ -206,7 +206,7 @@ export const getTransactionDisplayData = ({
           .toString(10)
       : undefined;
 
-  title = title === '' ? TransactionTypeTitles[classifiedTx.type] : title;
+  title = title === '' ? getTransactionTitle(classifiedTx.type) : title;
   description =
     description ||
     ('description' in classifiedTx

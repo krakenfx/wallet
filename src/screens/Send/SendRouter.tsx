@@ -36,7 +36,7 @@ export const SendRouter = () => {
 };
 
 SendRouter.navigationOptions = {
-  headerTransparent: true,
+  headerShown: false,
 };
 
 export type SendNavigationProps<T extends keyof SendStackParams> = CompositeScreenProps<

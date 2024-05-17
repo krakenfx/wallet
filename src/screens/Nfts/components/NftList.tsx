@@ -9,6 +9,8 @@ import { UINetworkFilters } from '@/components/NetworkFilter/types';
 import { RealmNft } from '@/realm/nfts';
 import { NavigationProps } from '@/Routes';
 
+import { realmListToFlashListData } from '@/utils/realmListToFlashListData';
+
 import { NFT_SIZE, NftItem } from './NftItem';
 import { NftListEmptyState } from './NftListEmptyState';
 
@@ -36,7 +38,7 @@ export const NftList = ({ data, networkFilter, refreshControl }: Props) => {
 
   return (
     <FlashList
-      data={data}
+      data={realmListToFlashListData(data)}
       refreshControl={refreshControl}
       contentContainerStyle={StyleSheet.flatten([styles.contentContainer, { paddingBottom: insets.bottom }])}
       estimatedItemSize={NFT_SIZE}

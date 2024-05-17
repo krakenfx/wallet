@@ -19,15 +19,15 @@ interface Props {
 const TX_MAX_COUNT = 3;
 
 export const RecentActivity = ({ navigation }: Props) => {
-  const { cleanupConfirmedTransactions } = useTransactionMutations();
+  const { dangerouslyCleanupConfirmedTransactions } = useTransactionMutations();
   const [canRenderSafeContent, setCanRenderSafeContent] = useState(false);
 
   useEffect(() => {
     (async () => {
-      await cleanupConfirmedTransactions();
+      await dangerouslyCleanupConfirmedTransactions();
       setCanRenderSafeContent(true);
     })();
-  }, [cleanupConfirmedTransactions]);
+  }, [dangerouslyCleanupConfirmedTransactions]);
 
   const onAllActivityPress = () => {
     navigation.navigate(Routes.GlobalActivity);

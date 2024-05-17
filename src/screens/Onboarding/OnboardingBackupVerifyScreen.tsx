@@ -4,7 +4,7 @@ import { GradientScreenView } from '@/components/Gradients';
 import navigationStyle from '@/components/navigationStyle';
 
 import { Routes } from '@/Routes';
-import { BackupWalletVerify } from '@/screens/Settings/backupWallet';
+import { WalletBackupVerify } from '@/screens/Settings/walletBackup';
 
 import { OnboardingNavigationProps } from './OnboardingRouter';
 
@@ -15,7 +15,7 @@ export const OnboardingBackupVerifyScreen = ({ navigation }: OnboardingNavigatio
 
   return (
     <GradientScreenView>
-      <BackupWalletVerify onVerifySuccess={handleVerifySuccess} />
+      <WalletBackupVerify onVerifySuccess={handleVerifySuccess} />
     </GradientScreenView>
   );
 };

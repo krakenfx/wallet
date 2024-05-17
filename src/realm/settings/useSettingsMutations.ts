@@ -70,6 +70,13 @@ export const useSettingsMutations = () => {
     [setSettings],
   );
 
+  const setHasViewedWalletBackupPrompt = useCallback(
+    (value: boolean) => {
+      setSettings(RealmSettingsKey.hasViewedWalletBackupPrompt, value);
+    },
+    [setSettings],
+  );
+
   return {
     setSettings,
     setAccountNumber,
@@ -77,5 +84,6 @@ export const useSettingsMutations = () => {
     setPushPromptNeeded,
     setAppCurrency,
     setWalletConnectExplainerNeeded,
+    setHasViewedWalletBackupPrompt,
   };
 };

@@ -30,7 +30,7 @@ type WordElement = {
   id: number;
 };
 
-export const BackupWalletVerify = ({ onVerifySuccess }: Props) => {
+export const WalletBackupVerify = ({ onVerifySuccess }: Props) => {
   const { colors } = useTheme();
   const [selectedWords, setSelectedWords] = useState<WordElement[]>([]);
   const [availableWords, setAvailableWords] = useState<WordElement[]>([]);
@@ -134,7 +134,7 @@ export const BackupWalletVerify = ({ onVerifySuccess }: Props) => {
   };
 
   return (
-    <View style={styles.flex} testID="BackupWalletVerifyScreen">
+    <View style={styles.flex} testID="WalletBackupVerifyScreen">
       <OnboardingHeader
         testID={validator.wasInvalid ? 'TryAgainHeader' : 'VerifyBackupHeader'}
         title={validator.wasInvalid ? loc.onboardingBackupVerify.retry : loc.onboardingBackupVerify.title}

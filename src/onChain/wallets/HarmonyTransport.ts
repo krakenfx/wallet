@@ -146,6 +146,7 @@ export class HarmonyTransport<TTransaction, TTransactionRequest, TWalletState, T
       let metadata = token.metadata;
       if (!isMetadataComplete(metadata)) {
         // @ts-ignore
+
         metadata = await getMetadataFunc(token, harmony);
         if (!metadata) {
           continue;

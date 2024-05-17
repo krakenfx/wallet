@@ -10,7 +10,6 @@ import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 
 import { GradientItemBackground } from '../GradientItemBackground';
 
-import { StringNumber } from '/entities';
 import { formatAppCurrencyValue } from '/modules/text-utils';
 
 export type TransactionAmountProps = {

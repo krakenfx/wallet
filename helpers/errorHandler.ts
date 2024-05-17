@@ -85,7 +85,7 @@ export const handleError = async function (
   context: BabelErrorContext,
   toast?: Omit<ToastConfigProps, 'type' | 'blackListRoutes'> | 'generic',
 ): Promise<void> {
-  console.log('exception caught:', context, error);
+  console.log('exception caught:', context, unwrapError(error));
   recentErrors.push({
     error: serializeError(unwrapError(error)),
     context,

@@ -20,12 +20,15 @@
     "showLess": "Mostra meno",
     "showMore": "Mostra di più",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Oggi",
     "updating": "Aggiornamento",
     "upToDate": "Aggiornato",
     "view": "Visualizza",
-    "yes": "Sì"
+    "yes": "Sì",
+    "yesterday": "Ieri"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Licenze",
     "privacyPolicy": "Informativa sulla privacy",
     "releaseNotes": "Note di rilascio",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Assicurati di poter recuperare la tua criptovaluta, se perdi il dispositivo o passi a un altro wallet.",
     "secretRecoveryPhrase": "Frase di recupero segreta",
     "tapHereToView": "Per visualizzarla, tocca qui"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Esegui subito il backup",
+    "body": "Non hai eseguito il backup della tua Frase di recupero segreta. Ti consigliamo di farlo per evitare di perdere l’accesso ai tuoi fondi.",
+    "header": "Esegui il backup prima di ricevere fondi in questo wallet"
   },
   "broadcast": {
     "sent": "Inviate"
@@ -885,11 +893,20 @@
     "view_list_of_connected_dapps": "Visualizza elenco DApp connesse",
     "wallets": "Wallet"
   },
+  "storeReview": {
+    "alertMessage": "Ci piacerebbe ricevere un feedback sulla tua esperienza.",
+    "alertTitle": "Qual è il tuo giudizio sull’app Kraken Wallet?",
+    "nagativeAlertTitle": "Ci dispiace sapere che questa app non soddisfa le tue esigenze.",
+    "negativeAlertMessage": "Desideri farci sapere come possiamo migliorare la tua esperienza?",
+    "notReally": "Non molto",
+    "sendFeedback": "Invia feedback",
+    "yes": "Sì"
+  },
   "support": {
     "contactUs": "Contattaci",
     "getInTouch": "Mettiti in contatto",
     "knowledgeBaseDesc": "Cerca nei nostri documenti, leggi le nostre FAQ e contattaci",
-    "knowledgeBaseTitle": "Knowledge base",
+    "knowledgeBaseTitle": "Conoscenza di base",
     "visitSupportCenter": "Visita il Centro di supporto"
   },
   "test": {
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Lives on"
   },
+  "walletBackup": {
+    "backup": "Backup",
+    "backupYourWallet": "Esegui il backup del wallet",
+    "backupYourWalletDescription": "Assicurati di poter recuperare la tua criptovaluta, se perdi il dispositivo o passi a un altro wallet.",
+    "secretRecoveryPhrase": "Frase di recupero segreta",
+    "tapHereToView": "Per visualizzarla, tocca qui"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Esegui subito il backup",
+    "body": "Non hai eseguito il backup della tua Frase di recupero segreta. Ti consigliamo di farlo per evitare di perdere l’accesso ai tuoi fondi.",
+    "header": "Esegui il backup prima di ricevere fondi in questo wallet"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: account non trovato",
     "action_cancelled": "Azione annullata",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Con il tuo wallet, puoi {boldDescription} utilizzare WalletConnect.",
+      "boldDescription": "accedi in sicurezza a migliaia di app decentralizzate",
       "buttonText": "Perfetto",
       "description": "Con il tuo wallet, puoi {boldDescription} utilizzare WalletConnect.",
       "title": "Molto più che un semplice deposito di crypto!"
@@ -1196,7 +1225,7 @@
     "firstPage": {
       "boldDescription": "accedi in sicurezza a migliaia di app decentralizzate",
       "buttonText": "Perfetto",
-      "description": "Con il tuo wallet, puoi {boldDescription} utilizzare WalletConnect.",
+      "description": "Con il tuo wallet, puoi {boldDescription} utilizzando WalletConnect.",
       "title": "Molto più che un semplice deposito di crypto!"
     },
     "fourthPage": {

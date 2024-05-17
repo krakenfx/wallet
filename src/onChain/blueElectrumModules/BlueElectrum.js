@@ -5,6 +5,9 @@ const ElectrumClient = require('electrum-client');
 const reverse = require('buffer-reverse');
 const BigNumber = require('bignumber.js');
 
+const net = require('net');
+const tls = require('tls');
+
 module.exports.getBalanceByAddress = async function (address) {
   if (!ElectrumState.mainClient) throw new Error('Electrum client is not connected');
   const script = bitcoin.address.toOutputScript(address);
@@ -185,7 +188,7 @@ module.exports.calculateBlockTime = function (height) {
 };
 
 module.exports.testConnection = async function (host, tcpPort, sslPort) {
-  const client = new ElectrumClient(global.net, global.tls, sslPort || tcpPort, host, sslPort ? 'tls' : 'tcp');
+  const client = new ElectrumClient(net, tls, sslPort || tcpPort, host, sslPort ? 'tls' : 'tcp');
 
   client.onError = () => {};
   let timeoutId = false;

@@ -1,7 +1,7 @@
 {
   "_": {
     "add": "Añadir",
-    "appName": "Monedero de Kraken",
+    "appName": "Kraken Wallet",
     "balance": "Balance {0}",
     "cancel": "Cancelar",
     "confirm": "Confirmar",
@@ -20,12 +20,15 @@
     "showLess": "Mostrar menos",
     "showMore": "Mostrar más",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Hoy",
     "updating": "Actualizando",
     "upToDate": "Actualizado",
     "view": "Ver",
-    "yes": "Sí"
+    "yes": "Sí",
+    "yesterday": "Ayer"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Licencias",
     "privacyPolicy": "Política de privacidad",
     "releaseNotes": "Notas de lanzamiento",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Asegúrese de poder recuperar sus cripto si pierde su dispositivo o cambia a otro monedero.",
     "secretRecoveryPhrase": "Frase de recuperación secreta",
     "tapHereToView": "Pulse aquí para ver"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Realizar copia de seguridad ahora",
+    "body": "Aún no has hecho una copia de seguridad de tu frase de recuperación secreta. Te recomendamos que hagas una copia de seguridad para que no pierdas el acceso a tus fondos.",
+    "header": "Antes de recibir fondos en este monedero, haz una copia de seguridad"
   },
   "broadcast": {
     "sent": "Enviado"
@@ -298,8 +306,8 @@
     "request_approval": "Solicitar aprobación para transacciones",
     "see_balance": "Ver sus balances y actividad",
     "unsupportedNetwork": "Red no admitida",
-    "unsupportedNetworkDescription": "Esta aplicación usa la red {unsupportedNetwork} que no se admite en este momento. El monedero de Kraken admite actualmente las aplicaciones de las redes Ethereum, Polygon, Optimism, Arbitrum y Solana.",
-    "unsupportedNetworksDescription": "Esta aplicación usa las redes {unsupportedNetworks} que no se admiten en este momento. El monedero de Kraken admite actualmente las aplicaciones de las redes Ethereum, Polygon, Optimism, Arbitrum y Solana."
+    "unsupportedNetworkDescription": "Esta aplicación usa la red {unsupportedNetwork} que no se admite en este momento. Kraken Wallet admite actualmente las aplicaciones de las redes Ethereum, Polygon, Optimism, Arbitrum y Solana.",
+    "unsupportedNetworksDescription": "Esta aplicación usa las redes {unsupportedNetworks} que no se admiten en este momento. Kraken Wallet admite actualmente las aplicaciones de las redes Ethereum, Polygon, Optimism, Arbitrum y Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -510,7 +518,7 @@
     "continue": "Desvelar frase",
     "recovery_phrase": "frase de recuperación secreta",
     "skip": "Omitir",
-    "subtitle": "su monedero",
+    "subtitle": "tu monedero",
     "title": "Respaldar"
   },
   "onboarding_backup_verify": {
@@ -532,18 +540,18 @@
     "caption": "Introduzca su frase de recuperación secreta o clave privada para importar su monedero.",
     "import": "Importar",
     "paste": "Pegar",
-    "title": "Importar su monedero"
+    "title": "Importar tu monedero"
   },
   "onboarding_secure_wallet": {
     "authBiometric": "Autenticación biométrica",
     "authFaceID": "FaceID",
     "authPasscode": "Código de acceso",
     "authTouchID": "TouchID",
-    "caption": "Use {authType} para evitar que alguien que tenga su teléfono pueda acceder a sus criptomonedas.",
+    "caption": "Use {authType} para evitar que alguien que tenga tu teléfono pueda acceder a tus criptomonedas.",
     "secureWallet": "Proteger monedero",
     "skip": "Omitir",
-    "subtitle": "su monedero",
-    "title": "Segura"
+    "subtitle": "tu monedero",
+    "title": "Protege"
   },
   "onboarding": {
     "create_wallet": "Crear monedero",
@@ -551,7 +559,7 @@
     "import_wallet": "Importar",
     "intro_pages": {
       "1": {
-        "subtitle": "Monedero de Kraken",
+        "subtitle": "Kraken Wallet",
         "text": "Adquiera criptomonedas, descubra blockchains y proteja su futuro financiero.",
         "title": "Le damos la bienvenida a"
       },
@@ -562,7 +570,7 @@
       },
       "3": {
         "subtitle": "blockchains",
-        "text": "El monedero de Kraken admite Bitcoin, Ethereum, Polygon, Doge y muchas más. ",
+        "text": "Kraken Wallet admite Bitcoin, Ethereum, Polygon, Doge y muchas más. ",
         "title": "Explorar más"
       },
       "4": {
@@ -571,7 +579,7 @@
         "title": "Comprar cripto"
       },
       "settingUp": {
-        "subtitle": "su monedero...",
+        "subtitle": "tu monedero...",
         "text": "Debería tardar solo un momento",
         "title": "Configurando"
       }
@@ -885,6 +893,15 @@
     "view_list_of_connected_dapps": "Ver lista de aplicaciones descentralizadas conectadas",
     "wallets": "Monederos"
   },
+  "storeReview": {
+    "alertMessage": "Nos gustaría saber si tu experiencia está siendo buena.",
+    "alertTitle": "¿Te gusta la aplicación de Kraken Wallet?",
+    "nagativeAlertTitle": "Sentimos que tu experiencia en la aplicación no esté siendo positiva.",
+    "negativeAlertMessage": "¿Te gustaría contarnos cómo podríamos mejorarla?",
+    "notReally": "No realmente",
+    "sendFeedback": "Enviar comentarios",
+    "yes": "Sí"
+  },
   "support": {
     "contactUs": "Contáctenos",
     "getInTouch": "Contacto",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Lives on:"
   },
+  "walletBackup": {
+    "backup": "Respaldar",
+    "backupYourWallet": "Respalde su monedero",
+    "backupYourWalletDescription": "Asegúrese de poder recuperar sus cripto si pierde su dispositivo o cambia a otro monedero.",
+    "secretRecoveryPhrase": "Frase de recuperación secreta",
+    "tapHereToView": "Pulse aquí para ver"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Realizar copia de seguridad ahora",
+    "body": "Aún no has hecho una copia de seguridad de tu frase de recuperación secreta. Te recomendamos que hagas una copia de seguridad para que no pierdas el acceso a tus fondos.",
+    "header": "Antes de recibir fondos en este monedero, haz una copia de seguridad"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: cuenta no encontrada",
     "action_cancelled": "Acción cancelada",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Con tu monedero puedes {boldDescription} usar WalletConnect.",
+      "boldDescription": "accede de forma segura a miles de aplicaciones descentralizadas",
       "buttonText": "Me gusta",
       "description": "Con tu monedero puedes {boldDescription} usar WalletConnect.",
       "title": "¡Sirve para mucho más que para almacenar cripto!"
@@ -1187,7 +1216,7 @@
     "thirdPage": {
       "buttonText": "Continuar",
       "description1": "Toca en WalletConnect",
-      "description2": "Selecciona Monedero de Kraken",
+      "description2": "Selecciona Kraken Wallet",
       "subtitle": "No hace falta escanear:",
       "title": "A la hora de usar aplicaciones Web3 en tu teléfono"
     }

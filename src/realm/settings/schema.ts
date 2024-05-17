@@ -6,28 +6,30 @@ import { LanguageTag } from '/loc';
 
 export enum RealmSettingsKey {
   accountNumber = 'accountNumber',
-  language = 'language',
-  isWalletBackupDone = 'isWalletBackupDone',
-  deviceFontScale = 'deviceFontScale',
-  isTestnetEnabled = 'isTestnetEnabled',
-  filterInUnverifiedAssets = 'filterInUnverifiedAssets',
-  filterInBlacklistedAssets = 'filterInBlacklistedAssets',
-  isPushPromptNeeded = 'isPushPromptNeeded',
-  walletConnectExplainerNeeded = 'walletConnectExplainerNeeded',
   currency = 'currency',
+  deviceFontScale = 'deviceFontScale',
+  filterInBlacklistedAssets = 'filterInBlacklistedAssets',
+  filterInUnverifiedAssets = 'filterInUnverifiedAssets',
+  hasViewedWalletBackupPrompt = 'isWalletBackupPromptNeeded',
+  isPushPromptNeeded = 'isPushPromptNeeded',
+  isTestnetEnabled = 'isTestnetEnabled',
+  isWalletBackupDone = 'isWalletBackupDone',
+  language = 'language',
+  walletConnectExplainerNeeded = 'walletConnectExplainerNeeded',
 }
 
 export type SettingsType = {
   [RealmSettingsKey.accountNumber]: number;
-  [RealmSettingsKey.language]: LanguageTag;
-  [RealmSettingsKey.isWalletBackupDone]: boolean;
-  [RealmSettingsKey.deviceFontScale]: number;
-  [RealmSettingsKey.isTestnetEnabled]: boolean;
-  [RealmSettingsKey.filterInUnverifiedAssets]: boolean;
-  [RealmSettingsKey.filterInBlacklistedAssets]: boolean;
-  [RealmSettingsKey.isPushPromptNeeded]: boolean;
-  [RealmSettingsKey.walletConnectExplainerNeeded]: boolean;
   [RealmSettingsKey.currency]: Currency;
+  [RealmSettingsKey.deviceFontScale]: number;
+  [RealmSettingsKey.filterInBlacklistedAssets]: boolean;
+  [RealmSettingsKey.filterInUnverifiedAssets]: boolean;
+  [RealmSettingsKey.hasViewedWalletBackupPrompt]: boolean;
+  [RealmSettingsKey.isPushPromptNeeded]: boolean;
+  [RealmSettingsKey.isTestnetEnabled]: boolean;
+  [RealmSettingsKey.isWalletBackupDone]: boolean;
+  [RealmSettingsKey.language]: LanguageTag;
+  [RealmSettingsKey.walletConnectExplainerNeeded]: boolean;
 };
 
 export type Settings = {

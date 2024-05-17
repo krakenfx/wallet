@@ -1,5 +1,5 @@
 import LottieView from 'lottie-react-native';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
 import { SequencedTransition } from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
@@ -15,8 +15,9 @@ import loc from '/loc';
 export interface Props {
   allowButtonText: string;
   disallowButtonText: string;
-  onSubscribed: () => void;
-  onError: (error: unknown, permissionDenied: boolean) => void;
+  onAllow: () => void;
+  onSubscribed?: () => void;
+  onError: (error: unknown, permissionDenied?: boolean) => void;
   onDisallow: () => void;
   containerStyle?: StyleProp<ViewStyle>;
   containerProps?: ViewProps;
@@ -27,28 +28,31 @@ export const PushNotificationPrompt: React.FC<Props> = ({
   disallowButtonText,
   onError,
   onSubscribed,
+  onAllow,
   onDisallow,
   containerStyle,
   containerProps,
 }) => {
   const { subscribeToNotifications } = useGetSubscribeNotifications();
-  const [loading, setLoading] = useState(false);
 
   const subscribe = useCallback(async () => {
+    const pn = PushNotifications.getInstance();
     try {
-      setLoading(true);
-
-      const pn = PushNotifications.getInstance();
+      await pn.requestPermissions();
+      onAllow();
+    } catch (error) {
+      onError(error, error instanceof Error && error.message === ERROR_CODE.PERMISSION_DENIED);
+      return;
+    }
+    try {
       await pn.registerRemoteNotifications();
       await pn.saveTokenConfiguration();
       await subscribeToNotifications();
-      onSubscribed();
+      onSubscribed?.();
     } catch (error) {
-      onError(error, (error as any).message === ERROR_CODE.PERMISSION_DENIED);
-    } finally {
-      setLoading(false);
+      onError(error);
     }
-  }, [onError, onSubscribed, subscribeToNotifications]);
+  }, [onAllow, onError, onSubscribed, subscribeToNotifications]);
 
   const { width } = useSafeAreaFrame();
 
@@ -68,22 +72,16 @@ export const PushNotificationPrompt: React.FC<Props> = ({
         noAbsolutePosition
         style={styles.buttonContainer}
         primary={{
-          loading,
-          style: [loading && styles.buttonLoadingStyle],
           text: allowButtonText,
           onPress: subscribe,
           testID: 'PushNotificationsPromptAllowButton',
           layout: SequencedTransition.duration(1000),
         }}
-        secondary={
-          loading
-            ? undefined
-            : {
-                text: disallowButtonText,
-                onPress: onDisallow,
-                testID: 'PushNotificationsPromptDisallowButton',
-              }
-        }
+        secondary={{
+          text: disallowButtonText,
+          onPress: onDisallow,
+          testID: 'PushNotificationsPromptDisallowButton',
+        }}
       />
     </View>
   );

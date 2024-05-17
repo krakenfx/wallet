@@ -36,6 +36,7 @@ import { TokenListsScreen } from '@/screens/TokenLists';
 import { TransactionDetailsScreen, TransactionsScreen } from '@/screens/Transactions';
 import { TriggeredPushPromptScreen } from '@/screens/TriggerredPushPromptScreen';
 import { UniversalSendScreen } from '@/screens/UniversalSend';
+import { WalletBackupPromptScreen } from '@/screens/WalletBackupPrompt';
 import { WalletConnectExplainerScreen } from '@/screens/WalletConnectExplainer';
 import { useConnectionManager } from '@/utils/useConnectionManager';
 
@@ -80,6 +81,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="AccountStack" component={AccountRouter} options={AccountRouter.navigationOptions} />
       <DefaultStack.Screen name="AdvancedAccountInfo" component={AdvancedAccountInfoScreen} options={AdvancedAccountInfoScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="AppDetails" component={AppDetailsScreen} options={AppDetailsScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="WalletBackupPrompt" component={WalletBackupPromptScreen} options={WalletBackupPromptScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="CoinsList" component={CoinsListScreen} options={CoinsListScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ConnectApp" component={ConnectAppScreen} options={ConnectAppScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ConnectedApps" component={ConnectedAppsScreen} options={ConnectedAppsScreen.navigationOptions(theme)} />

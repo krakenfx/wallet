@@ -18,6 +18,7 @@ import vi_VN from './vi-VN.json';
 export type LanguageTag = (typeof languages)[number]['tag'];
 
 type BackendSupportedLanguages = 'en' | 'de' | 'es' | 'fr' | 'it' | 'pt' | 'ru' | 'vi';
+
 export const getIanaLanguage = (): BackendSupportedLanguages => {
   switch (getCurrentLanguage()) {
     case 'en-US':

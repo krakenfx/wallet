@@ -2617,7 +2617,6 @@ export const icons = {
   'hush': i780,
   'hvn': i781,
   'hxro': i782,
-  'hydra': i783,
   'hydro': i784,
   'hyn': i785,
   'hyve': i786,

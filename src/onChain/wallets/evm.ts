@@ -12,7 +12,6 @@ import { RealmNft } from '@/realm/nfts';
 import { RealmToken } from '@/realm/tokens';
 import { SuperBigNumber } from '@/utils/SuperBigNumber';
 
-import { StringNumber } from '../../../entities';
 import { getEVMNFTProtocolType, getNFTTransferCall, getTokenTransferCall } from '../protocols/ethereum';
 
 import {

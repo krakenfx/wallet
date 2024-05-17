@@ -43,7 +43,6 @@ import { IWalletStorage } from '../wallets/walletState';
 
 import { ChainAgnostic } from './utils/ChainAgnostic';
 
-import { StringNumber } from '/entities';
 import loc from '/loc';
 
 const tinysecp: TinySecp256k1Interface = require('tiny-secp256k1');
@@ -611,7 +610,16 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
 
         let kind;
 
-        if (unownedOutAddresses.length === 0) {
+        if (totalOwnedChange.gt(0)) {
+          kind = 'affected' as const;
+          let effect: ReceiveAsset = {
+            assetId: network.nativeTokenCaipId,
+            sender: '',
+            amount: totalOwnedChange.multipliedBy(ELECTRUM_BTC_TO_INT_MULTIPLIER).toString(),
+            type: 'receive',
+          };
+          effects.push(effect);
+        } else if (unownedOutAddresses.length === 0) {
           kind = 'sent' as const;
 
           const receiveOutput = data.vout.filter(vout => (getAddressFromVOut(vout) ?? '') in receiveAddresses)?.[0];
@@ -629,15 +637,6 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
             recipient: recipient ?? '',
             amount,
             type: 'send',
-          };
-          effects.push(effect);
-        } else if (totalOwnedChange.gt(0)) {
-          kind = 'affected' as const;
-          let effect: ReceiveAsset = {
-            assetId: network.nativeTokenCaipId,
-            sender: '',
-            amount: totalOwnedChange.multipliedBy(ELECTRUM_BTC_TO_INT_MULTIPLIER).toString(),
-            type: 'receive',
           };
           effects.push(effect);
         } else {

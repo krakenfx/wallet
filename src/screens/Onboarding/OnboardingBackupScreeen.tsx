@@ -4,7 +4,7 @@ import { GradientScreenView } from '@/components/Gradients';
 import navigationStyle from '@/components/navigationStyle';
 
 import { Routes } from '@/Routes';
-import { BackupWallet } from '@/screens/Settings/backupWallet';
+import { WalletBackup } from '@/screens/Settings/walletBackup';
 
 import { OnboardingNavigationProps } from './OnboardingRouter';
 
@@ -14,7 +14,7 @@ export const OnboardingBackupScreeen = ({ navigation }: OnboardingNavigationProp
   }, [navigation]);
   return (
     <GradientScreenView>
-      <BackupWallet onContinue={onContinue} seedVisible />
+      <WalletBackup onContinue={onContinue} seedVisible />
     </GradientScreenView>
   );
 };

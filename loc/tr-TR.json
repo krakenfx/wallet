@@ -20,12 +20,15 @@
     "showLess": "Daha az göster",
     "showMore": "Daha fazla göster",
     "TEST_KEY": "deleteMeLaterMOdifiedTest",
+    "today": "Bugün",
     "updating": "Güncelleniyor",
     "upToDate": "Güncel",
     "view": "Görüntüle",
-    "yes": "Evet"
+    "yes": "Evet",
+    "yesterday": "Dün"
   },
   "about": {
+    "blog": "Blog",
     "licenses": "Lisanslar",
     "privacyPolicy": "Gizlilik politikası",
     "releaseNotes": "Sürüm notları",
@@ -140,6 +143,11 @@
     "backupYourWalletDescription": "Cihazınızı kaybederseniz veya başka bir cüzdana geçerseniz kripto para birimlerinizi kurtarabileceğinizden emin olun.",
     "secretRecoveryPhrase": "Gizli kurtarma ifadesi",
     "tapHereToView": "Görüntülemek için buraya dokunun"
+  },
+  "backupWalletPrompt": {
+    "backUpNow": "Şimdi yedekle",
+    "body": "Gizli Kurtarma İfadenizi yedeklemediniz. Fonlarınıza erişimi kaybetmemek için yedekleme yapmanızı öneririz.",
+    "header": "Bu cüzdana fon almadan önce yedekleme yapın"
   },
   "broadcast": {
     "sent": "Verilen"
@@ -298,8 +306,8 @@
     "request_approval": "İşlemler için onay iste",
     "see_balance": "Bakiyelerinizi ve faaliyetlerinizi görüntüleyin",
     "unsupportedNetwork": "Desteklenmeyen ağ",
-    "unsupportedNetworkDescription": "Bu uygulama şu anda desteklenmeyen {unsupportedNetwork} ağını kullanıyor. Kraken Cüzdan şu anda Ethereum, Polygon, Optimism, Arbitrum ve Solana ağlarındaki uygulamaları desteklemektedir.",
-    "unsupportedNetworksDescription": "Bu uygulama şu anda desteklenmeyen {unsupportedNetworks} ağlarını kullanıyor. Kraken Cüzdan şu anda Ethereum, Polygon, Optimism, Arbitrum ve Solana ağlarındaki uygulamaları desteklemektedir."
+    "unsupportedNetworkDescription": "Bu uygulama, şu anda desteklenmeyen {unsupportedNetwork} ağını kullanıyor. Kraken Wallet şu anda Ethereum, Polygon, Optimism, Arbitrum ve Solana ağlarındaki uygulamaları desteklemektedir.",
+    "unsupportedNetworksDescription": "Bu uygulama şu anda desteklenmeyen {unsupportedNetworks} ağlarını kullanıyor. Kraken Wallet şu anda Ethereum, Polygon, Optimism, Arbitrum ve Solana ağlarındaki uygulamaları desteklemektedir."
   },
   "connectedApps": {
     "app_details": {
@@ -562,7 +570,7 @@
       },
       "3": {
         "subtitle": "blockchain'leriniz",
-        "text": "Kraken Cüzdan Bitcoin, Ethereum, Polygon, Doge ve daha fazlasını destekler. ",
+        "text": "Kraken Wallet; Bitcoin, Ethereum, Polygon, Doge ve daha fazlasını destekler. ",
         "title": "Daha fazlasını keşfedin"
       },
       "4": {
@@ -608,7 +616,7 @@
   "onboardingOutro": {
     "button": "Onayla ve Devam Et",
     "caption": "Bu cüzdan Bitcoin, Ethereum, Polygon, Solana ve daha fazlasını destekler.",
-    "footer": "Devam ederek Kraken Cüzdan hizmet kullanım şartlarını\n",
+    "footer": "Devam ederek Kraken Wallet hizmet kullanım şartlarını\n",
     "termsOfService": "kabul etmiş olursunuz",
     "title": "Cüzdanınız hazır"
   },
@@ -885,6 +893,15 @@
     "view_list_of_connected_dapps": "Bağlı Dapp'lar Listesini görüntüle",
     "wallets": "Cüzdanlar"
   },
+  "storeReview": {
+    "alertMessage": "İyi bir deneyim yaşıyorsanız bunu duymaktan memnuniyet duyarız.",
+    "alertTitle": "Kraken Wallet Uygulamasından memnun musunuz?",
+    "nagativeAlertTitle": "Bu uygulamadan memnun olmadığınız için üzgünüz.",
+    "negativeAlertMessage": "Deneyiminizi nasıl geliştirebileceğimizi bize bildirmek ister misiniz?",
+    "notReally": "Pek değil",
+    "sendFeedback": "Geri bildirim gönder",
+    "yes": "Evet"
+  },
   "support": {
     "contactUs": "Bize ulaşın",
     "getInTouch": "İletişime geçin",
@@ -1123,6 +1140,18 @@
   "view_token": {
     "lives_on": "Konum:"
   },
+  "walletBackup": {
+    "backup": "Yedekle",
+    "backupYourWallet": "Cüzdanınızı yedekleyin",
+    "backupYourWalletDescription": "Cihazınızı kaybederseniz veya başka bir cüzdana geçerseniz kripto para birimlerinizi kurtarabileceğinizden emin olun.",
+    "secretRecoveryPhrase": "Gizli kurtarma ifadesi",
+    "tapHereToView": "Görüntülemek için buraya dokunun"
+  },
+  "walletBackupPrompt": {
+    "backUpNow": "Şimdi yedekle",
+    "body": "Gizli Kurtarma İfadenizi yedeklemediniz. Fonlarınıza erişimi kaybetmemek için yedekleme yapmanızı öneririz.",
+    "header": "Bu cüzdana fon almadan önce yedekleme yapın"
+  },
   "walletConnect": {
     "account_not_found": "WalletConnect: Hesap bulunamadı",
     "action_cancelled": "Eylem iptal edildi",
@@ -1158,7 +1187,7 @@
   },
   "walletConnectExplainer": {
     "firstPage": {
-      "boldDescription": "Cüzdanınızla WalletConnect'i kullanarak {boldDescription} işlemi gerçekleştirebilirsiniz.",
+      "boldDescription": "binlerce merkeziyetsiz uygulamaya güvenle erişin",
       "buttonText": "Kulağa hoş geliyor",
       "description": "Cüzdanınızla WalletConnect'i kullanarak {boldDescription} işlemi gerçekleştirebilirsiniz.",
       "title": "Kripto depolamadan daha fazlası!"
@@ -1187,7 +1216,7 @@
     "thirdPage": {
       "buttonText": "Devam",
       "description1": "WalletConnect'e dokunun",
-      "description2": "Kraken Cüzdan'ı seçin",
+      "description2": "Kraken Wallet'ı seçin",
       "subtitle": "Tarama yapmak yerine:",
       "title": "Telefonunuzda Web3 uygulamalarını kullanırken"
     }

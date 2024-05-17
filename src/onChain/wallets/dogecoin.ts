@@ -12,8 +12,6 @@ import { getHarmony } from '@/api/base/apiFactory';
 import { BaseFeeOption, FeeOption } from '@/api/types';
 import { RealmToken } from '@/realm/tokens';
 
-import { StringNumber } from '../../../entities';
-
 import {
   BlockExplorer,
   ExtendedPublicKeyAndChainCode,

@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { PermissionsAndroid, Platform } from 'react-native';
-import { Notification, Notifications, RegistrationError } from 'react-native-notifications';
+import * as Notifications from 'expo-notifications';
+import { pick } from 'lodash';
+import { Platform } from 'react-native';
+import { getVersion } from 'react-native-device-info';
 
 import { getGroundControl } from './base/apiFactory';
 import { TokenConfigurationType } from './types';
@@ -8,19 +10,43 @@ import { TokenConfigurationType } from './types';
 import { showGeneralFetchError } from '/helpers/errorHandler';
 import { getIanaLanguage } from '/loc';
 
-const pckg = require('/package.json');
+import pckg from '/package.json';
 
 export enum ERROR_CODE {
   PERMISSION_DENIED = 'PERMISSION_DENIED',
 }
 
-const DEFAULT_NOTIFICATION_CHANNEL = 'channel-default';
+if (Platform.OS === 'android') {
+  Notifications.setNotificationChannelAsync('channel-default', {
+    name: 'Miscellaneous',
+    importance: Notifications.AndroidImportance.HIGH,
+  });
 
-Notifications.setNotificationChannel({
-  channelId: DEFAULT_NOTIFICATION_CHANNEL,
-  name: 'Miscellaneous',
-  importance: 5,
-});
+  Notifications.setNotificationHandler({
+    handleNotification: async n => {
+      if (n.request.identifier.startsWith('local:')) {
+        return {
+          shouldShowAlert: true,
+          shouldPlaySound: true,
+          shouldSetBadge: false,
+        };
+      }
+      return {
+        shouldShowAlert: false,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+      };
+    },
+  });
+} else {
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+  });
+}
 
 export class PushNotifications {
   private static instance: PushNotifications;
@@ -49,56 +75,64 @@ export class PushNotifications {
     return PushNotifications.instance;
   }
 
-  async requestToken(): Promise<string> {
-    if (Platform.OS === 'android' && Platform.Version >= 33) {
-      const res = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
-      if (res !== PermissionsAndroid.RESULTS.GRANTED) {
-        throw Error(ERROR_CODE.PERMISSION_DENIED);
-      }
+  async requestToken() {
+    const deviceToken = await Notifications.getDevicePushTokenAsync();
+    if (!deviceToken) {
+      throw Error('Empty device token');
     }
-    Notifications.registerRemoteNotifications();
-    return new Promise((resolve, reject) => {
-      Notifications.events().registerRemoteNotificationsRegistered(event => {
-        console.log('Device Token Received', event.deviceToken);
-        this.deviceToken = event.deviceToken;
-
-        AsyncStorage.setItem(PushNotifications.STORAGE_KEY_DEVICE_TOKEN, String(this.deviceToken));
-        resolve(event.deviceToken);
-      });
-
-      Notifications.events().registerRemoteNotificationsRegistrationFailed((event: RegistrationError) => {
-        console.log(event.code, event.localizedDescription, event.domain);
-      });
-
-      Notifications.events().registerRemoteNotificationsRegistrationDenied(() => {
-        console.log('Notification permissions not granted');
-        reject(new Error(ERROR_CODE.PERMISSION_DENIED));
-      });
-    });
+    if (!(deviceToken.type === 'android' || deviceToken.type === 'ios')) {
+      throw Error('Invalid device token');
+    }
+    this.deviceToken = deviceToken.data;
+    AsyncStorage.setItem(PushNotifications.STORAGE_KEY_DEVICE_TOKEN, String(this.deviceToken));
   }
 
   async registerRemoteNotifications() {
-    await Promise.race([this.requestToken(), new Promise((_, reject) => setTimeout(() => reject(new Error('Failed to retrieve token')), 10000))]);
-    if (PushNotifications.hasRegisteredEventListeners) {
-      return;
-    }
+    await this.requestPermissions();
+    await this.requestToken();
 
-    Notifications.events().registerNotificationReceivedForeground((notification: Notification, completion) => {
-      console.log(`Notification received in foreground : ${JSON.stringify(notification, null, 2)}`);
-      if (Platform.OS === 'android') {
-        if (!notification.payload || (!notification.payload.android_channel_id && !notification.payload['gcm.notification.android_channel_id'])) {
-          notification.payload.android_channel_id = DEFAULT_NOTIFICATION_CHANNEL;
-          Notifications.postLocalNotification(notification.payload);
+    if (!PushNotifications.hasRegisteredEventListeners) {
+      Notifications.addNotificationReceivedListener(notification => {
+        const { trigger, identifier } = notification.request;
+        if (Platform.OS === 'android') {
+          if (identifier.startsWith('local:')) {
+            return;
+          }
+          if (trigger.type === 'push' && trigger.remoteMessage?.notification) {
+            const content = pick(trigger.remoteMessage?.notification, [
+              'body',
+              'title',
+              'titleLocalizationArgs',
+              'titleLocalizationKey',
+              'bodyLocalizationArgs',
+              'bodyLocalizationKey',
+            ]);
+            Notifications.scheduleNotificationAsync({
+              content: { ...content, data: trigger.remoteMessage.data },
+              identifier: 'local:' + identifier,
+              trigger: null,
+            });
+          }
         }
-      }
-      completion({ alert: true, sound: true, badge: false });
-    });
+        console.log('notification received', notification);
+      });
+      PushNotifications.hasRegisteredEventListeners = true;
+    }
+  }
 
-    Notifications.events().registerNotificationOpened((notification: Notification, completion) => {
-      console.log(`Notification opened: ${notification.payload}`);
-      completion();
+  async requestPermissions() {
+    const settings = await Notifications.requestPermissionsAsync({
+      ios: {
+        allowAlert: true,
+        allowBadge: false,
+        allowSound: true,
+      },
     });
-    PushNotifications.hasRegisteredEventListeners = true;
+    const isGranted = settings.granted || settings.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL;
+
+    if (!isGranted) {
+      throw Error(ERROR_CODE.PERMISSION_DENIED);
+    }
   }
 
   async getDeviceToken() {
@@ -113,7 +147,8 @@ export class PushNotifications {
   }
 
   async hasPermission() {
-    return Notifications.isRegisteredForRemoteNotifications();
+    const settings = await Notifications.getPermissionsAsync();
+    return settings.granted || settings.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL;
   }
 
   async getTokenConfiguration(): Promise<TokenConfigurationType> {
@@ -148,7 +183,7 @@ export class PushNotifications {
         token: this.deviceToken,
         os: Platform.OS,
         lang: getIanaLanguage(),
-        app_version: pckg.version,
+        app_version: getVersion(),
         [levelName]: newValue,
       }),
     };
@@ -220,9 +255,5 @@ export class PushNotifications {
     } catch (e) {
       showGeneralFetchError('ERROR_CONTEXT_PLACEHOLDER', e);
     }
-  }
-
-  static setBadgeCount(count: number) {
-    Notifications.ios.setBadgeCount(count);
   }
 }
