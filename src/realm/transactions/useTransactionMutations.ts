@@ -6,8 +6,7 @@ import { tokenUnit2SmallestUnit } from '@/utils/unitConverter';
 
 import { useRealm } from '../RealmContext';
 
-import { REALM_TYPE_TOKEN, RealmToken } from '../tokens';
-import { getAvailableTokenBalance } from '../tokens/getAvailableTokenBalance';
+import { REALM_TYPE_TOKEN, RealmToken, getAvailableTokenBalance } from '../tokens';
 import { REALM_TYPE_TRANSACTION_NOTES, RealmTransactionNotes } from '../transactionNotes';
 import { RealmWallet } from '../wallets';
 

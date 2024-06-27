@@ -35,7 +35,9 @@ export const OnboardingWordButton = React.memo(({ word, prefix, testID, containe
 
   return (
     <Touchable style={[styles.button, containerStyle]} disabled={!props.onPress} onPress={handlePress}>
-      <View testID={testID} style={[{ backgroundColor: colors.light8 }, styles.container, prefix ? styles.small : styles.large, buttonStyle]}>
+      <View
+        testID={testID ?? `${prefix}${word}`}
+        style={[{ backgroundColor: colors.light8 }, styles.container, prefix ? styles.small : styles.large, buttonStyle]}>
         {!!prefix && (
           <Label type="boldMonospace" color="light50" style={styles.prefix}>
             {prefix}

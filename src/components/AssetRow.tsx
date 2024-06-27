@@ -6,14 +6,15 @@ import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyVal
 import { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useRealmWalletById } from '@/realm/wallets';
+import { Currency } from '@/screens/Settings/currency';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
 import { getWalletName } from '@/utils/getWalletName';
 
 import { GradientItemBackground } from './GradientItemBackground';
 import { Label } from './Label';
 import { TokenIcon } from './TokenIcon';
 import { Touchable } from './Touchable';
-
-import { formatAppCurrencyValue, tokenAmountShortenedDisplay } from '/modules/text-utils';
 
 type CommonAssetProps = {
   assetId: string;
@@ -48,8 +49,10 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
   const wallet = useRealmWalletById(walletId);
   const isNative = token.assetId.includes('slip44:');
   const label = wallet && wallet.nativeTokenLabel && isNative ? getWalletName(wallet.nativeTokenLabel.toLowerCase() as WalletType) : token.metadata.label;
-  const amountShortened = tokenAmountShortenedDisplay(token);
-  const amount = hideZeroAmount && amountShortened === '0' ? '' : `${amountShortened}${symbolUnderLabel ? '' : ' ' + token.metadata.symbol}`;
+  const { currency } = useAppCurrency();
+  const tokenAmountFormatted = formatTokenAmountFromToken(token, { compact: true, currency });
+
+  const amount = hideZeroAmount && tokenAmountFormatted === '0' ? '' : `${tokenAmountFormatted}${symbolUnderLabel ? '' : ' ' + token.metadata.symbol}`;
 
   const content = (
     <>
@@ -72,7 +75,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
         </View>
       </View>
       <View style={styles.rightContentContainer}>
-        {showAmountInFiat && <AssetRowAmountInFiat token={token} />}
+        {showAmountInFiat && <AssetRowAmountInFiat currency={currency} token={token} />}
         {}
         <Label
           type={symbolUnderLabel ? 'boldMonospace' : 'regularMonospace'}
@@ -104,14 +107,12 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
   }
 };
 
-const AssetRowAmountInFiat = ({ token }: Pick<AssetRowProps, 'token'>) => {
+const AssetRowAmountInFiat = ({ currency, token }: Pick<AssetRowProps, 'token'> & { currency: Currency }) => {
   const amountInAppCurrency = useTokenBalanceConvertedToAppCurrency(token);
-
-  const { currency } = useAppCurrency();
 
   return (
     <Label entering={FadeIn} style={styles.animatedNumbers} type="boldLargeMonospace">
-      {formatAppCurrencyValue(amountInAppCurrency, currency, true, false)}
+      {formatCurrency(amountInAppCurrency, { currency })}
     </Label>
   );
 };

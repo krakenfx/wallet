@@ -1,12 +1,14 @@
 import * as splToken from '@solana/spl-token';
 import * as web3 from '@solana/web3.js';
+import { ComputeBudgetProgram } from '@solana/web3.js';
+import BigNumber from 'bignumber.js';
 import bs58 from 'bs58';
 import * as ed25519 from 'ed25519-hd-key';
 import nacl from 'tweetnacl';
 
 import { Buffer } from 'buffer';
 
-import { FeeOption, SolanaSimulationInput, SolanaSimulationResult } from '@/api/types';
+import { SolanaFeeOption, SolanaSimulationInput, SolanaSimulationResult } from '@/api/types';
 import { Nft } from '@/realm/nfts';
 import { RealmToken } from '@/realm/tokens';
 
@@ -70,26 +72,39 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
     walletData: WalletData,
     store: WalletStorage<unknown>,
     transaction: SolanaTransactionPlan | { dAppOrigin: string; transaction: string },
-    _feeOption?: FeeOption,
+    feeOption?: SolanaFeeOption,
   ): Promise<PreparedTransaction<SolanaPreparedTransaction>> {
     const harmony = await this.getHarmony();
     const payer = await network.deriveAddress(walletData);
-    const txPayload: SolanaSimulationInput =
-      'transaction' in transaction
-        ? { ...transaction, signatory: payer }
-        : {
-            atas: transaction.atas?.map(ata => {
-              return {
-                address: ata.address.toString(),
 
-                instruction: serializeInstruction(
-                  splToken.createAssociatedTokenAccountInstruction(new web3.PublicKey(payer), ata.address, ata.owner, ata.mint),
-                ),
-              };
+    let txPayload: SolanaSimulationInput;
+    if ('transaction' in transaction) {
+      txPayload = { ...transaction, signatory: payer };
+    } else {
+      const instructions = transaction.instructions.map(inst => serializeInstruction(inst));
+
+      if (feeOption) {
+        instructions.unshift(
+          serializeInstruction(
+            ComputeBudgetProgram.setComputeUnitPrice({
+              microLamports: feeOption?.computeUnitPriceMicroLamports,
             }),
-            instructions: transaction.instructions.map(inst => serializeInstruction(inst)),
-            feePayer: payer.toString(),
+          ),
+        );
+      }
+
+      txPayload = {
+        atas: transaction.atas?.map(ata => {
+          return {
+            address: ata.address.toString(),
+
+            instruction: serializeInstruction(splToken.createAssociatedTokenAccountInstruction(new web3.PublicKey(payer), ata.address, ata.owner, ata.mint)),
           };
+        }),
+        instructions,
+        feePayer: payer.toString(),
+      };
+    }
 
     const result = (
       await harmony.POST('/v1/simulate', {
@@ -100,19 +115,12 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
       })
     ).content as unknown as SolanaSimulationResult;
 
-    const { fee, compiledTransaction, preventativeAction, status, warnings } = result;
-
-    let transaction_: web3.Transaction | web3.VersionedTransaction;
-    try {
-      transaction_ = web3.Transaction.from(Buffer.from(compiledTransaction, 'base64'));
-    } catch (e) {
-      transaction_ = web3.VersionedTransaction.deserialize(Buffer.from(compiledTransaction, 'base64'));
-    }
+    const { fee: baseFee, compiledTransaction, preventativeAction, status, warnings } = result;
 
     return {
       data: {
-        tx: transaction_,
-        fee,
+        tx: web3.VersionedTransaction.deserialize(Buffer.from(compiledTransaction, 'base64')),
+        fee: baseFee,
       },
       isError: status === 'failure',
       preventativeAction,
@@ -124,11 +132,15 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
     network: SolanaNetwork,
     wallet: WalletData,
     tx: PreparedTransaction<SolanaPreparedTransaction>,
-    _fee: FeeOption,
+    fee: SolanaFeeOption,
   ): Promise<TotalFee> {
+    const computeUnitBudget = 200_000;
+    const totalFeeMicroLamports = fee.computeUnitPriceMicroLamports * computeUnitBudget;
+    const totalFeeLamports = Math.floor(totalFeeMicroLamports / 1000 / 1000);
+
     return {
       token: network.nativeTokenCaipId,
-      amount: tx.data.fee,
+      amount: BigNumber.sum(tx.data.fee, totalFeeLamports).toFixed(),
     };
   }
 
@@ -149,7 +161,7 @@ export class Solscan implements BlockExplorer {
   }
 }
 
-export class SolanaNetwork implements Network<SolanaPreparedTransaction, SolanaTransactionPlan> {
+export class SolanaNetwork implements Network<SolanaPreparedTransaction, SolanaTransactionPlan, SolanaFeeOption> {
   label: string;
   blockExplorer: BlockExplorer;
   caipId: string;

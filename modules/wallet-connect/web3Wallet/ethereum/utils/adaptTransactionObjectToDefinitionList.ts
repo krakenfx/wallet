@@ -1,3 +1,5 @@
+import BigNumber from 'bignumber.js';
+
 import { Network } from '@/onChain/wallets/base';
 import { smallUnit2TokenUnit } from '@/utils/unitConverter';
 
@@ -6,7 +8,10 @@ import { hexToDecimal } from '../../../utils';
 import { TransactionObject } from '../types';
 
 import loc from '/loc';
-import { checkForNaN } from '/modules/text-utils';
+
+function checkForNaN(bigNumber: BigNumber, fallback: string): string {
+  return bigNumber.isNaN() ? fallback : bigNumber.toString(10);
+}
 
 export function adaptTransactionObjectToDefinitionList(transaction: TransactionObject, network: Network): DefinitionList {
   const amount = hexToDecimal(transaction.value);

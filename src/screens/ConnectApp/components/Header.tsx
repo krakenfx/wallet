@@ -8,11 +8,11 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
+import { sanitizeUrl } from '@/utils/stringUtils';
 
 import { Verification } from '../types';
 
 import loc from '/loc';
-import { sanitizeUrl } from '/modules/text-utils';
 
 type Props = {
   icon: string;
@@ -65,7 +65,7 @@ export const Header = ({ url, icon, name, verification }: Props) => {
         {name}
       </Label>
       <Touchable style={styles.info} onPress={showExplainer} disabled={!shouldShowExplainer}>
-        <Label type="regularCaption1" color="light75" style={styles.url} numberOfLines={1}>
+        <Label type="regularCaption1" color="light75" style={styles.url} adjustsFontSizeToFit>
           {sanitizeUrl(url)}
         </Label>
         {shouldShowExplainer && <Icon verification={verification} />}

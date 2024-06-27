@@ -18,10 +18,13 @@ import { BTCTransaction } from '@/onChain/wallets/bitcoin';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { AssetMetadata } from '@/realm/assetMetadata';
 import { NftMetadata } from '@/realm/nftMetadata';
+import { useAppCurrency } from '@/realm/settings';
 import { usePendingTransactionById, useTransactionById } from '@/realm/transactions';
 import { TRANSACTION_PENDING_TYPES, TRANSACTION_TYPES } from '@/realm/transactions/const';
 import { memoizedJSONParseTx } from '@/realm/transactions/utils';
 import { NavigationProps, Routes } from '@/Routes';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
+import { isBtc } from '@/utils/isBtc';
 import { smallUnit2TokenUnit } from '@/utils/unitConverter';
 
 import { TransactionDetailsNetworkFee } from './components/TransactionDetailsNetworkFee';
@@ -33,7 +36,6 @@ import { openExplorer } from './utils/openExplorer';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
-import { amountStringShortened, checkForNaN } from '/modules/text-utils';
 
 export type TransactionDetailsType = {
   title: string;
@@ -83,6 +85,7 @@ const LabeledAddress = ({ label, address }: { label: string; address?: string })
 
 export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<'TransactionDetails'>) => {
   const { params } = route;
+  const { currency } = useAppCurrency();
   const existingTransaction = useTransactionById(route.params.id);
   const pendingTransaction = usePendingTransactionById(route.params.id);
   const transaction = existingTransaction || pendingTransaction;
@@ -284,7 +287,7 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
             <TransactionNftPreview nft={{ metadata: transactionDetailsMetadata.nftMetadata! }} />
             <TransactionAmount
               tokenIconProps={{ wallet: transaction.wallet, tokenId: params.assetId, tokenSymbol: transactionDetailsMetadata.symbol }}
-              assetAmount={amountStringShortened(transactionDetailsMetadata.tokenAmount)}
+              assetAmount={transactionDetailsMetadata.tokenAmount}
               assetFiatAmount={transactionDetailsMetadata.appCurrencyValue}
               assetNetwork={transaction.wallet.type}
               assetSymbol={transactionDetailsMetadata.symbol}
@@ -341,7 +344,10 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
                     tokenId: params.assetId,
                     tokenSymbol: transactionDetailsMetadata.symbol,
                   }}
-                  assetAmount={amountStringShortened(transactionDetailsMetadata.tokenAmount)}
+                  assetAmount={formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+                    compact: true,
+                    currency,
+                  })}
                   assetFiatAmount={transactionDetailsMetadata.appCurrencyValue}
                   assetNetwork={transaction.wallet.type}
                   assetSymbol={transactionDetailsMetadata.symbol}
@@ -378,7 +384,10 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           <>
             <TransactionAmount
               tokenIconProps={{ wallet: transaction.wallet, tokenId: params.assetId, tokenSymbol: transactionDetailsMetadata.symbol }}
-              assetAmount={amountStringShortened(transactionDetailsMetadata.tokenAmount)}
+              assetAmount={formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+                compact: true,
+                currency,
+              })}
               assetFiatAmount={transactionDetailsMetadata.appCurrencyValue}
               assetNetwork={transaction.wallet.type}
               assetSymbol={transactionDetailsMetadata.symbol}
@@ -409,9 +418,12 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
         const { sent, receive } = transactionDetailsMetadata.swapMetadata!;
         const { spent, receive: receive_ } = effect;
 
-        const formatAssetAmount = (assetAmount: string, decimals: number) => {
+        const formatAssetAmount = (assetAmount: string, assetId: string, decimals: number) => {
           const assetAmountInTokenUnit = smallUnit2TokenUnit(assetAmount, decimals);
-          const assetAmountFormatted = amountStringShortened(checkForNaN(assetAmountInTokenUnit.absoluteValue(), assetAmount));
+          const assetAmountFormatted = formatTokenAmount(assetAmountInTokenUnit.absoluteValue().toString(10), {
+            compact: true,
+            currency,
+          });
 
           return assetAmountFormatted;
         };
@@ -426,7 +438,7 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
                   decimals={sent.decimals}
                   balance={spent.amount}
                   tokenIconProps={{ wallet: transaction.wallet, tokenId: sent.assetId, tokenSymbol: sent.symbol }}
-                  assetAmount={'-' + formatAssetAmount(spent.amount, sent.decimals)}
+                  assetAmount={'-' + formatAssetAmount(spent.amount, sent.assetId, sent.decimals)}
                   assetNetwork={transaction.wallet.type}
                   assetSymbol={sent.symbol}
                   containerStyle={containerStyle}
@@ -438,7 +450,7 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
                   decimals={receive.decimals}
                   balance={receive_.amount}
                   tokenIconProps={{ wallet: transaction.wallet, tokenId: receive.assetId, tokenSymbol: receive.symbol }}
-                  assetAmount={formatAssetAmount(receive_.amount, receive.decimals)}
+                  assetAmount={formatAssetAmount(receive_.amount, receive.assetId, receive.decimals)}
                   assetNetwork={transaction.wallet.type}
                   assetSymbol={receive.symbol}
                   containerStyle={containerStyle}
@@ -462,7 +474,10 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           <>
             <TransactionAmount
               tokenIconProps={{ wallet: transaction.wallet, tokenId: params.assetId, tokenSymbol: transactionDetailsMetadata.symbol }}
-              assetAmount={amountStringShortened(transactionDetailsMetadata.tokenAmount === '' ? '0' : transactionDetailsMetadata.tokenAmount)}
+              assetAmount={formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+                compact: true,
+                currency,
+              })}
               assetFiatAmount={transactionDetailsMetadata.appCurrencyValue}
               assetNetwork={transaction.wallet.type}
               assetSymbol={transactionDetailsMetadata.symbol}
@@ -484,7 +499,10 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           <>
             <TransactionAmount
               tokenIconProps={{ wallet: transaction.wallet, tokenId: params.assetId, tokenSymbol: transactionDetailsMetadata.symbol }}
-              assetAmount={amountStringShortened(transactionDetailsMetadata.tokenAmount === '' ? '0' : transactionDetailsMetadata.tokenAmount)}
+              assetAmount={formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+                compact: true,
+                currency,
+              })}
               assetFiatAmount={transactionDetailsMetadata.appCurrencyValue}
               assetNetwork={transaction.wallet.type}
               assetSymbol={transactionDetailsMetadata.symbol}
@@ -507,7 +525,10 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           <>
             <TransactionAmount
               tokenIconProps={{ wallet: transaction.wallet, tokenId: params.assetId, tokenSymbol: transactionDetailsMetadata.symbol }}
-              assetAmount={amountStringShortened(transactionDetailsMetadata.tokenAmount)}
+              assetAmount={formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+                compact: true,
+                currency,
+              })}
               assetFiatAmount={transactionDetailsMetadata.appCurrencyValue}
               assetNetwork={transaction.wallet.type}
               assetSymbol={transactionDetailsMetadata.symbol}
@@ -541,6 +562,7 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
       }
     }
   }, [
+    currency,
     transaction,
     transactionWalletAddress,
     params.assetId,
@@ -620,7 +642,13 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           const { from, to } = transactionDetailsMetadata.pendingMetadata ?? {};
           const defaultNotes = getDefaultTransactionNotes({
             address: isReceive ? from : to,
-            assetAmount: amountStringShortened(transactionDetailsMetadata.tokenAmount),
+            assetAmount: transactionDetailsMetadata.isNft
+              ? transactionDetailsMetadata.tokenAmount
+              : formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+                  currency,
+                  highPrecision: true,
+                  isBtc: isBtc({ walletType: transaction.wallet.type }),
+                }),
             assetSymbol: transactionDetailsMetadata.symbol,
             isUtxo: isBtcOrDoge_,
             transactionType: transactionDetailsMetadata.transactionType,
@@ -652,7 +680,11 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           const [from, to] = isReceive ? [sender, transactionWalletAddress] : [transactionWalletAddress, recipient];
           const defaultNotes = getDefaultTransactionNotes({
             address: isReceive ? from : to,
-            assetAmount: amountStringShortened(transactionDetailsMetadata.tokenAmount),
+            assetAmount: formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+              currency,
+              highPrecision: true,
+              isBtc: isBtc({ walletType: transaction.wallet.type }),
+            }),
             assetSymbol: transactionDetailsMetadata.symbol,
             isUtxo: isBtcOrDoge_,
             transactionType: transactionDetailsMetadata.transactionType,
@@ -681,17 +713,21 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           const { target } = getAddressesFromParsedTransaction(parsedTransaction);
           const { spent, receive: receive_ } = effect;
           const { sent, receive } = transactionDetailsMetadata.swapMetadata!;
-          const formatAssetAmount = (assetAmount: string, decimals: number) => {
+          const formatAssetAmount = (assetAmount: string, assetId: string, decimals: number) => {
             const assetAmountInTokenUnit = smallUnit2TokenUnit(assetAmount, decimals);
-            const assetAmountFormatted = amountStringShortened(checkForNaN(assetAmountInTokenUnit.absoluteValue(), assetAmount));
+            const assetAmountFormatted = formatTokenAmount(assetAmountInTokenUnit.absoluteValue().toString(10), {
+              currency,
+              highPrecision: true,
+              isBtc: isBtc({ assetId }),
+            });
 
             return assetAmountFormatted;
           };
           const defaultNotes = getDefaultTransactionNotes({
             address: spent.recipient,
-            assetAmount: '-' + formatAssetAmount(spent.amount, sent.decimals),
+            assetAmount: '-' + formatAssetAmount(spent.amount, sent.assetId, sent.decimals),
             assetSymbol: sent.symbol,
-            assetAmountReceived: formatAssetAmount(receive_.amount, receive.decimals),
+            assetAmountReceived: formatAssetAmount(receive_.amount, receive.assetId, receive.decimals),
             assetSymbolReceived: receive.symbol,
             transactionType: transactionDetailsMetadata.transactionType,
             transactionState: parsedTransaction.status,
@@ -718,7 +754,11 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           const { target } = getAddressesFromParsedTransaction(parsedTransaction);
           const defaultNotes = getDefaultTransactionNotes({
             address: target,
-            assetAmount: amountStringShortened(transactionDetailsMetadata.tokenAmount),
+            assetAmount: formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+              currency,
+              highPrecision: true,
+              isBtc: isBtc({ walletType: transaction.wallet.type }),
+            }),
             assetSymbol: transactionDetailsMetadata.symbol,
             transactionType: transactionDetailsMetadata.transactionType,
             transactionState: parsedTransaction.status,
@@ -770,7 +810,11 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
           const { target } = getAddressesFromParsedTransaction(parsedTransaction);
           const defaultNotes = getDefaultTransactionNotes({
             address: target,
-            assetAmount: amountStringShortened(transactionDetailsMetadata.tokenAmount),
+            assetAmount: formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+              currency,
+              highPrecision: true,
+              isBtc: isBtc({ walletType: transaction.wallet.type }),
+            }),
             assetSymbol: transactionDetailsMetadata.symbol,
             transactionType: transactionDetailsMetadata.transactionType,
             transactionState: parsedTransaction.status,
@@ -856,12 +900,14 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
       </ScrollView>
     );
   }, [
+    currency,
     pendingTransaction,
     existingTransaction,
     transaction,
     network.nativeTokenCaipId,
     network.nativeTokenDecimals,
     network.nativeTokenSymbol,
+    transactionDetailsMetadata.isNft,
     transactionDetailsMetadata.networkFee,
     transactionDetailsMetadata.transactionType,
     transactionDetailsMetadata.nftMetadata?.name,

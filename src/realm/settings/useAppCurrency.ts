@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import { Platform } from 'react-native';
+import * as RNLocalize from 'react-native-localize';
 import Realm from 'realm';
 
 import { Currency, CurrencyInfo, getCurrencyInfo } from '@/screens/Settings/currency';
@@ -11,11 +13,26 @@ type AppCurrency = {
   currencyInfo: CurrencyInfo;
 };
 
+export const getDeviceCurrency = () => {
+  const deviceCurrencies = RNLocalize.getCurrencies();
+  let deviceCurrency;
+
+  if (Platform.OS === 'ios') {
+    deviceCurrency = [...deviceCurrencies].reverse().find(dc => {
+      return dc in Currency;
+    });
+  } else {
+    deviceCurrency = deviceCurrencies[0];
+  }
+
+  return Currency[deviceCurrency as Currency] || Currency.USD;
+};
+
 export const useAppCurrency = (): AppCurrency => {
   const appCurrency = useSettingsByKey(RealmSettingsKey.currency);
 
   return useMemo(() => {
-    const currency = appCurrency ? appCurrency : Currency.USD;
+    const currency = appCurrency || getDeviceCurrency();
     const currencyInfo = getCurrencyInfo(currency);
     return {
       currency,
@@ -26,8 +43,10 @@ export const useAppCurrency = (): AppCurrency => {
 
 export const getAppCurrency = (realm: Realm) => {
   const results = realm.objects<RealmSettings>(REALM_TYPE_SETTINGS).filtered(`name = "${RealmSettingsKey.currency}"`);
+
   if (results.isEmpty()) {
-    return Currency.USD;
+    return getDeviceCurrency();
   }
+
   return results[0].value as SettingsType[RealmSettingsKey.currency];
 };

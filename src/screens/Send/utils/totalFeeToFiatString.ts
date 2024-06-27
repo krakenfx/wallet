@@ -2,8 +2,9 @@ import { RealmishWallet, TotalFee } from '@/onChain/wallets/base';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { Currency } from '@/screens/Settings/currency';
 import { calculateBalance } from '@/utils/calculateBalance';
-
-import { formatAppCurrencyValue, tokenAmountShortened } from '/modules/text-utils';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
+import { isBtc } from '@/utils/isBtc';
 
 export const totalFeeToFiatString = (currency: Currency, fee?: TotalFee, wallet?: RealmishWallet, price?: number): string => {
   if (!fee || !wallet || !price) {
@@ -12,7 +13,7 @@ export const totalFeeToFiatString = (currency: Currency, fee?: TotalFee, wallet?
 
   const { network } = getImplForWallet(wallet);
 
-  return formatAppCurrencyValue(
+  return formatCurrency(
     String(
       calculateBalance({
         balance: fee.amount,
@@ -20,7 +21,7 @@ export const totalFeeToFiatString = (currency: Currency, fee?: TotalFee, wallet?
         price,
       }),
     ),
-    currency,
+    { currency },
   );
 };
 
@@ -29,13 +30,15 @@ export function totalFeeToFiatStringSafe(currency: Currency, fee?: TotalFee, wal
     const { network } = getImplForWallet(wallet);
 
     if (network.nativeTokenCaipId === fee.token) {
-      const formattedAmount = tokenAmountShortened({
+      const token = {
         balance: fee.amount,
         metadata: {
           decimals: network.nativeTokenDecimals,
         },
-      });
-      return `${formattedAmount} ${network.nativeTokenSymbol}`;
+      };
+      const tokenAmountFormatted = formatTokenAmountFromToken(token, { currency, highPrecision: true, isBtc: isBtc({ walletType: wallet.type }) });
+
+      return `${tokenAmountFormatted} ${network.nativeTokenSymbol}`;
     }
   }
 

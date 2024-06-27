@@ -26,7 +26,7 @@ declare module 'react-native-config' {
     ALT_GROUNDCONTROL_BASE_URIS_1?: string;
     ALT_GROUNDCONTROL_BASE_URIS_2?: string;
     WALLETCONNECT_PROJECT_ID: string;
-    DISABLE_SCREEN_CAPTURE?: boolean;
+    DISABLE_PREVENT_SCREEN_CAPTURE?: boolean;
     INTERNAL_RELEASE?: string;
   }
 

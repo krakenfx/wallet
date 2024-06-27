@@ -1,9 +1,9 @@
 import { ObjectSchema } from 'realm';
 
-import { REALM_TYPE_PENDING_TRANSACTION, RealmPendingTransaction } from '@/realm/transactions';
-
+import { REALM_TYPE_ASSET_MARKET_DATA, RealmAssetMarketData } from '../assetMarketData';
 import { REALM_TYPE_ASSET_METADATA, RealmAssetMetadata } from '../assetMetadata';
 import { REALM_TYPE_TOKEN_PRICE, RealmTokenPrice } from '../tokenPrice';
+import { REALM_TYPE_PENDING_TRANSACTION, RealmPendingTransaction } from '../transactions';
 import { REALM_TYPE_WALLET, RealmWallet } from '../wallets';
 
 export type Token = {
@@ -20,6 +20,7 @@ export type RealmToken = RealmTypeOf<
     wallet: RealmWallet;
     price: RealmTokenPrice;
     metadata: RealmAssetMetadata;
+    marketData: RealmAssetMarketData;
     pendingTransactions: Realm.List<RealmPendingTransaction>;
   }
 >;
@@ -44,6 +45,10 @@ export const TokenSchema: ObjectSchema = {
     metadata: {
       type: 'object',
       objectType: REALM_TYPE_ASSET_METADATA,
+    },
+    marketData: {
+      type: 'object',
+      objectType: REALM_TYPE_ASSET_MARKET_DATA,
     },
     pendingTransactions: {
       type: 'list',

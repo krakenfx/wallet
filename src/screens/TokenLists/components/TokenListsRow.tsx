@@ -1,8 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import noop from 'lodash/noop';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Linking } from 'react-native';
+import { Linking, StyleSheet, View, ViewStyle } from 'react-native';
 import Svg from 'react-native-svg';
 
 import { Label } from '@/components/Label';
@@ -23,48 +22,53 @@ type RowProps = {
   tokenListName: TokenListNames | string;
   tokenListCount: string;
   reputation: REPUTATION;
+  showOnlyWhiteListed?: boolean;
+  style?: ViewStyle;
 };
 
 const navigateTo = (url: string) => () => Linking.openURL(url);
 
-export const TokenListsRow = ({ tokenListName, tokenListCount, reputation }: RowProps) => {
+export const TokenListsRow = ({ tokenListName, tokenListCount, reputation, showOnlyWhiteListed, style }: RowProps) => {
   const isTokenListName_ = isTokenListName(tokenListName);
   const ImageSource = isTokenListName_ ? tokenListNameToImageSource[tokenListName] : tokenListNameToImageSource.fallback;
   const uiLabel = isTokenListName_ ? tokenListNameToUILabel[tokenListName] : tokenListName;
   const navigation = useNavigation();
   const onPress = isTokenListName_ ? navigateTo(tokenListNameToURL[tokenListName]) : noop;
 
+  if (showOnlyWhiteListed && reputation !== REPUTATION.WHITELISTED) {
+    return null;
+  }
+
   return (
-    <Touchable style={styles.container} onPress={onPress} testID="TokenListRow">
+    <Touchable style={[styles.container, style]} onPress={onPress} testID="TokenListRow">
       <View style={styles.iconContainer}>
         <Svg viewBox="0 0 250 250" style={styles.icon}>
           <ImageSource />
         </Svg>
         <View style={styles.assetRow}>
           <View style={styles.header}>
-            <Label type="boldTitle2" color="light100" style={styles.uiLabel} numberOfLines={1}>
+            <Label type="boldTitle2" color="light100" numberOfLines={1}>
               {uiLabel}
             </Label>
             {uiLabel === tokenListNameToUILabel.Kraken && (
-              <View style={styles.infoIcon}>
-                <SvgIcon
-                  hitSlop={20}
-                  name="info-circle"
-                  color="light50"
-                  size={18}
-                  onPress={() => {
-                    navigation.navigate(Routes.Explainer, { contentType: EXPLAINER_CONTENT_TYPES.WHITELISTED_KRAKEN });
-                  }}
-                />
-              </View>
+              <SvgIcon
+                hitSlop={20}
+                name="info-circle"
+                color="light50"
+                style={styles.infoIcon}
+                size={18}
+                onPress={() => {
+                  navigation.navigate(Routes.Explainer, { contentType: EXPLAINER_CONTENT_TYPES.WHITELISTED_KRAKEN });
+                }}
+              />
             )}
           </View>
-          <Label type="regularCaption1" color="light50">
+          <Label type="regularCaption1" color="light75">
             {tokenListCount ? loc.formatString(loc.tokenLists.tokens, { tokenListCount: new Intl.NumberFormat().format(Number(tokenListCount)) }) : ' '}
           </Label>
         </View>
       </View>
-      {reputation === REPUTATION.WHITELISTED && <TokenListsPillWhitelisted />}
+      {showOnlyWhiteListed ? <SvgIcon name="checkmark" size={20} color="light75" /> : reputation === REPUTATION.WHITELISTED && <TokenListsPillWhitelisted />}
       {reputation === REPUTATION.BLACKLISTED && <TokenListsPillBlacklisted />}
       {reputation === REPUTATION.UNVERIFIED && <TokenListsPillUnverified />}
     </Touchable>
@@ -81,17 +85,15 @@ const styles = StyleSheet.create({
     gap: 12,
     alignItems: 'center',
     paddingVertical: 6,
-    marginBottom: 6,
+    marginBottom: 8,
+    minHeight: 20,
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   infoIcon: {
     marginLeft: 4,
-    marginTop: 2,
-    position: 'relative',
-    justifyContent: 'center',
   },
   iconContainer: {
     flexDirection: 'row',
@@ -102,11 +104,5 @@ const styles = StyleSheet.create({
   icon: {
     width: 40,
     height: 40,
-  },
-  uiLabel: {
-    fontSize: 15,
-    lineHeight: 22,
-    flex: 1,
-    flexGrow: 1,
   },
 });

@@ -15,7 +15,11 @@ export enum RealmSettingsKey {
   isTestnetEnabled = 'isTestnetEnabled',
   isWalletBackupDone = 'isWalletBackupDone',
   language = 'language',
-  walletConnectExplainerNeeded = 'walletConnectExplainerNeeded',
+  appOpenedCounter = 'appOpenedCounter',
+  walletConnectTaskCompleted = 'walletConnectTaskCompleted',
+  storeReviewTaskCompleted = 'storeReviewTaskCompleted',
+  storeReviewSubmitted = 'storeReviewSubmitted',
+  isBlastModalCompleted = 'isBlastModalCompleted',
 }
 
 export type SettingsType = {
@@ -29,7 +33,11 @@ export type SettingsType = {
   [RealmSettingsKey.isTestnetEnabled]: boolean;
   [RealmSettingsKey.isWalletBackupDone]: boolean;
   [RealmSettingsKey.language]: LanguageTag;
-  [RealmSettingsKey.walletConnectExplainerNeeded]: boolean;
+  [RealmSettingsKey.walletConnectTaskCompleted]: boolean;
+  [RealmSettingsKey.appOpenedCounter]: number;
+  [RealmSettingsKey.storeReviewTaskCompleted]: boolean;
+  [RealmSettingsKey.storeReviewSubmitted]: boolean;
+  [RealmSettingsKey.isBlastModalCompleted]: boolean;
 };
 
 export type Settings = {

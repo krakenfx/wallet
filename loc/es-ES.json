@@ -422,10 +422,61 @@
   "manageWallets": {
     "title": "Gestionar monederos"
   },
+  "marketData": {
+    "allTimeHigh": {
+      "details": "El precio más alto al que se ha se ha operado con una criptomoneda desde su creación.",
+      "title": "Máximo histórico:"
+    },
+    "allTimeLow": {
+      "details": "El precio más bajo al que se ha se ha operado con una criptomoneda desde su creación.",
+      "title": "Mínimo histórico:"
+    },
+    "circulatingSupply": {
+      "details": "El número de monedas o tokens que están disponibles activamente en el mercado y en manos del público en general.",
+      "title": "Suministro en circulación:"
+    },
+    "contract": "Contrato",
+    "contractAddressCopied": "Dirección del contrato copiada.",
+    "explorers": "Exploradores",
+    "fullyDilutedValuation": {
+      "details": "El market cap si el suministro máximo estuviera en circulación, calculado multiplicando el precio actual por el suministro máximo.",
+      "short": "FDV",
+      "title": "Valoración totalmente diluida:"
+    },
+    "links": "Enlaces",
+    "marketCap": {
+      "details": "El valor total de mercado de una criptomoneda, calculado multiplicando el precio actual por el suministro en circulación.",
+      "short": "Market Cap",
+      "title": "Market cap:"
+    },
+    "maxSupply": {
+      "details": "El número máximo de monedas o tokens que existirán para una criptomoneda, según lo definido por el protocolo del proyecto.",
+      "title": "Suministro máximo:"
+    },
+    "showLess": "Mostrar menos",
+    "terminology": "Terminología",
+    "tokenContract": "Contrato de token",
+    "tokenContractWarning": {
+      "boldDescription": "Nunca envíes fondos a direcciones que hayas copiado.",
+      "description": "{boldDescription} NO es tu dirección para recibir fondos. Es la dirección de contrato inteligente utilizada para identificar el token en la blockchain.",
+      "header": "Acabas de copiar una dirección de contrato de token"
+    },
+    "totalSupply": {
+      "details": "El número de monedas o tokens que existen actualmente, incluidas las que pueden estar bloqueadas, reservadas o aún no liberadas.",
+      "title": "Suministro total:"
+    },
+    "volume24h": {
+      "details": "El valor total de una criptomoneda con la que se ha operado en las últimas 24 horas en todas los exchanges.",
+      "short": "Volumen 24h",
+      "title": "Volumen de 24 horas:"
+    },
+    "website": "Sitio web"
+  },
   "network": {
     "arbitrum": "Arbitrum",
     "base": "Base",
     "bitcoin": "Bitcoin",
+    "blast": "Blast",
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
@@ -748,7 +799,9 @@
     "likelySpam": "Spam probable",
     "likelySpamDescription": "Este token está incluido en una lista negra. Tenga cuidado al interactuar con cualquier token que no pueda verificar. No confíe, verifique.",
     "likelySpamHelp": "¿Qué son los token incluidos en una lista negra?",
+    "onTokenLists": "En {count} listas de token",
     "openDocs": "Open docs",
+    "title": "Reputación",
     "tokenLists": "Listas de token",
     "tokenListsDescription": "Las listas de token son una iniciativa liderada por la comunidad para mejorar la detección, reputación y fiabilidad de los token ERC20.",
     "tokenListsHelp": "¿Qué son las listas de token?",
@@ -921,13 +974,17 @@
     "likelySpamHelp": "¿Qué son los token spam?",
     "likelySpamInfo": "Es probable que las comunidades públicas o uno de nuestros socios haya alertado de que los token spam son spam, fraudulentos o dañinos.",
     "likelySpamTitle": "Spam probable",
+    "likelySpamUseCaution": "Actúa con la máxima precaución posible",
     "notListed": "No en lista",
     "openDocs": "Open docs",
     "tokenLists": "Listas de token",
     "tokens": "{tokenListCount} token",
     "unverified": "No en lista",
+    "unverifiedButtonLink": "¿Por qué no está en la lista?",
     "unverifiedDescription": "Este token no está en ninguna de las listas de token admitidos. Tenga precaución.",
+    "unverifiedExplainerDescription": "En esta lista se incluirán los tokens que no aparezcan en la lista de alguno de los proyectos admitidos ni se hayan marcado como spam.",
     "unverifiedHelp": "¿Por qué no está en la lista?",
+    "unverifiedWarning": "Actúa con precaución",
     "verified": "Incluido en lista",
     "verifiedDescription": "Los token que se incluyen en esta lista se han verificado y están disponibles actualmente en el exchange de Kraken.",
     "verifiedInfoKraken": "Los token que se incluyen en esta lista están disponibles actualmente en el exchange de Kraken.",
@@ -1067,6 +1124,7 @@
       "from": "De: ",
       "to": "A: "
     },
+    "balance": "balance",
     "nativeAssetView": {
       "approval": "Aprobación",
       "contractInteraction": "Interacción del contrato",

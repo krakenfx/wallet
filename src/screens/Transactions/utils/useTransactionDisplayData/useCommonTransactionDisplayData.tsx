@@ -5,12 +5,12 @@ import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { TransactionData } from '@/realm/transactions/getTransactionMetadata';
 import { DisplayData } from '@/screens/Transactions/components/types';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { unitConverter } from '@/utils/unitConverter';
 
 import { formatTransactionValueAsNegativeOrPositive } from '../formatTransactionValueAsNegativeOrPositive';
 
 import { getTransactionDisplayData } from './getTransactionDisplayData';
-
-import { amountInTokenUnitShortened, formatAppCurrencyValue } from '/modules/text-utils';
 
 type Props = ReturnType<typeof getTransactionDisplayData>;
 export const useCommonTransactionDisplayData = (props: Props, classifiedTx: TransactionData): DisplayData => {
@@ -41,15 +41,15 @@ export const useCommonTransactionDisplayData = (props: Props, classifiedTx: Tran
   );
 
   const assetAppCurrencyValue = useMemo(() => {
-    const formattedInAppCurrencyValue = formatAppCurrencyValue(appCurrencyValue, currency);
+    const formattedInAppCurrencyValue = formatCurrency(appCurrencyValue, { currency });
 
     return formatTransactionValueAsNegativeOrPositive(formattedInAppCurrencyValue, classifiedTx.type, { isNetworkFee, isSwapSent });
   }, [appCurrencyValue, currency, classifiedTx.type, isNetworkFee, isSwapSent]);
 
   const assetAmount = useMemo(() => {
-    const amountShortened_ = displayAssetAmount ? amountInTokenUnitShortened(displayAssetAmount, displayAssetMetadata?.decimals ?? 18) : '';
+    const tokenAmount = displayAssetAmount ? unitConverter.smallUnit2TokenUnit(displayAssetAmount, displayAssetMetadata?.decimals ?? 18).toString(10) : '';
 
-    return formatTransactionValueAsNegativeOrPositive(amountShortened_, classifiedTx.type, { isNetworkFee, isSwapSent });
+    return formatTransactionValueAsNegativeOrPositive(tokenAmount, classifiedTx.type, { isNetworkFee, isSwapSent });
   }, [classifiedTx.type, displayAssetAmount, displayAssetMetadata?.decimals, isNetworkFee, isSwapSent]);
 
   const detailsAssetAmountInCurrency = useAppCurrencyValue(
@@ -62,22 +62,22 @@ export const useCommonTransactionDisplayData = (props: Props, classifiedTx: Tran
   );
 
   const detailsAssetAmountInCurrencyFormatted = useMemo(() => {
-    const formattedInAppCurrencyValue = formatAppCurrencyValue(detailsAssetAmountInCurrency, currency);
+    const formattedInAppCurrencyValue = formatCurrency(detailsAssetAmountInCurrency, { currency });
 
     return formatTransactionValueAsNegativeOrPositive(formattedInAppCurrencyValue, classifiedTx.type, { isNetworkFee, isSwapSent });
   }, [classifiedTx.type, currency, detailsAssetAmountInCurrency, isNetworkFee, isSwapSent]);
 
-  const detailsAssetAmountFormatted = useMemo(() => {
-    const amountShortened_ = detailsAssetAmount ? amountInTokenUnitShortened(detailsAssetAmount, displayAssetMetadata?.decimals ?? 18) : '';
+  const detailsAssetAmountInTokenUnit = useMemo(() => {
+    const tokenAmount = detailsAssetAmount ? unitConverter.smallUnit2TokenUnit(detailsAssetAmount, displayAssetMetadata?.decimals ?? 18).toString(10) : '';
 
-    return formatTransactionValueAsNegativeOrPositive(amountShortened_, classifiedTx.type, { isNetworkFee, isSwapSent });
+    return formatTransactionValueAsNegativeOrPositive(tokenAmount, classifiedTx.type, { isNetworkFee, isSwapSent });
   }, [detailsAssetAmount, displayAssetMetadata?.decimals, classifiedTx.type, isNetworkFee, isSwapSent]);
 
-  const assetAmountAndNetworkFeeFormatted = useMemo(() => {
+  const assetAmountAndNetworkFee = useMemo(() => {
     if (tokenAmountAndNetworkFee) {
-      const amountShortened_ = amountInTokenUnitShortened(tokenAmountAndNetworkFee, displayAssetMetadata?.decimals ?? 18);
+      const tokenAmount = unitConverter.smallUnit2TokenUnit(tokenAmountAndNetworkFee, displayAssetMetadata?.decimals ?? 18).toString(10);
 
-      return formatTransactionValueAsNegativeOrPositive(amountShortened_, classifiedTx.type, { isNetworkFee, isSwapSent });
+      return formatTransactionValueAsNegativeOrPositive(tokenAmount, classifiedTx.type, { isNetworkFee, isSwapSent });
     }
 
     return undefined;
@@ -93,18 +93,18 @@ export const useCommonTransactionDisplayData = (props: Props, classifiedTx: Tran
   );
 
   const assetAmountAndNetworkFeeInCurrencyFormatted = useMemo(() => {
-    const formattedInAppCurrencyValue = formatAppCurrencyValue(tokenAmountAndNetworkFeeInCurrency, currency);
+    const formattedInAppCurrencyValue = formatCurrency(tokenAmountAndNetworkFeeInCurrency, { currency });
 
     return formatTransactionValueAsNegativeOrPositive(formattedInAppCurrencyValue, classifiedTx.type, { isNetworkFee, isSwapSent });
   }, [classifiedTx.type, currency, isNetworkFee, isSwapSent, tokenAmountAndNetworkFeeInCurrency]);
 
   return {
     assetAmount,
-    assetAmountAndNetworkFeeFormatted,
+    assetAmountAndNetworkFee,
     assetAmountAndNetworkFeeInCurrencyFormatted,
     assetSymbol: displayAssetMetadata?.symbol,
     appCurrencyValue: assetAppCurrencyValue,
-    detailsAssetAmount: detailsAssetAmount ? detailsAssetAmountFormatted : undefined,
+    detailsAssetAmount: detailsAssetAmount ? detailsAssetAmountInTokenUnit : undefined,
     detailsAssetAmountInCurrency: detailsAssetAmount ? detailsAssetAmountInCurrencyFormatted : undefined,
     description: description ?? '',
     descriptionIcon,

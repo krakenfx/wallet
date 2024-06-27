@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
-import { UINetworkFilters } from '@/components/NetworkFilter/types';
+import { NETWORK_FILTERS, UINetworkFilters } from '@/components/NetworkFilter/types';
 
 import imageSource from './images/noNftPlaceholder.png';
 
@@ -37,10 +37,15 @@ const TEXT_CONTENT = {
 };
 
 export const NftListEmptyState = ({ nftList, networkFilter }: NftListEmptyStateProps) => {
-  const { heading, subheading } = useMemo(
-    () => TEXT_CONTENT[nftList][networkFilter.length === 0 ? 'allNetworks' : 'selectedNetworks'],
-    [nftList, networkFilter],
-  );
+  const { heading, subheading } = useMemo(() => {
+    if (networkFilter.length === 1 && networkFilter.includes(NETWORK_FILTERS.blast)) {
+      return {
+        heading: loc.nftList.everythingEmptyState.selectedNetworks.blastHeading,
+        subheading: loc.nftList.everythingEmptyState.selectedNetworks.blastSubheading,
+      };
+    }
+    return TEXT_CONTENT[nftList][networkFilter.length === 0 ? 'allNetworks' : 'selectedNetworks'];
+  }, [nftList, networkFilter]);
 
   return (
     <View style={styles.container}>

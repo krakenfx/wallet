@@ -4,6 +4,7 @@ import Realm from 'realm';
 import { Currency } from '@/screens/Settings/currency';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
+import { useAssetMarketDataMutations } from '../assetMarketData';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useWalletsMutations } from '../wallets';
 
@@ -12,6 +13,7 @@ import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey, SettingsType } fr
 export const useSettingsMutations = () => {
   const { runInTransaction } = useRealmTransaction();
   const { enableTestnetWallets, disableTestnetWallets } = useWalletsMutations();
+  const { deleteAllAssetMarketData } = useAssetMarketDataMutations();
   const { getSeed } = useSecuredKeychain();
   const setSettings = useCallback(
     <T extends keyof SettingsType>(name: T, value: SettingsType[T]) => {
@@ -56,23 +58,28 @@ export const useSettingsMutations = () => {
     [setSettings],
   );
 
-  const setWalletConnectExplainerNeeded = useCallback(
-    (value: boolean) => {
-      setSettings(RealmSettingsKey.walletConnectExplainerNeeded, value);
-    },
-    [setSettings],
-  );
+  const setWalletConnectExplainerTaskCompleted = useCallback(() => {
+    setSettings(RealmSettingsKey.walletConnectTaskCompleted, true);
+  }, [setSettings]);
 
   const setAppCurrency = useCallback(
     (value: Currency) => {
       setSettings(RealmSettingsKey.currency, value);
+      deleteAllAssetMarketData();
     },
-    [setSettings],
+    [deleteAllAssetMarketData, setSettings],
   );
 
   const setHasViewedWalletBackupPrompt = useCallback(
     (value: boolean) => {
       setSettings(RealmSettingsKey.hasViewedWalletBackupPrompt, value);
+    },
+    [setSettings],
+  );
+
+  const setIsBlastModalCompleted = useCallback(
+    (value: boolean) => {
+      setSettings(RealmSettingsKey.isBlastModalCompleted, value);
     },
     [setSettings],
   );
@@ -83,7 +90,8 @@ export const useSettingsMutations = () => {
     setIsTestnetEnabled,
     setPushPromptNeeded,
     setAppCurrency,
-    setWalletConnectExplainerNeeded,
+    setWalletConnectExplainerTaskCompleted,
     setHasViewedWalletBackupPrompt,
+    setIsBlastModalCompleted,
   };
 };

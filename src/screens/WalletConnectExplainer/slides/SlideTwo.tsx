@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { AnimationMarkers, SequenceSlide, SequenceSlides } from '@/components/AnimatedSlides';
 
@@ -17,29 +17,37 @@ const animationMarkers: AnimationMarkers = {
   'part-6': { start: 979, end: 1020 },
 };
 
-const titles: SequenceSlide[] = [
-  { title: loc.walletConnectExplainer.secondPage.titlePart1 },
-  { title: loc.walletConnectExplainer.secondPage.titlePart2 },
-  { title: loc.walletConnectExplainer.secondPage.titlePart3, icon: 'scan-walletConnect' },
-  { title: loc.walletConnectExplainer.secondPage.titlePart4 },
-];
+export const SlideTwo: React.FC<Props> = ({ onContinue }) => {
+  const titles: SequenceSlide[] = useMemo(
+    () => [
+      { title: loc.walletConnectExplainer.secondPage.titlePart1 },
+      { title: loc.walletConnectExplainer.secondPage.titlePart2 },
+      { title: loc.walletConnectExplainer.secondPage.titlePart3, icon: 'scan-walletConnect' },
+      { title: loc.walletConnectExplainer.secondPage.titlePart4 },
+    ],
+    [],
+  );
 
-const steps: SequenceSlide[] = [
-  { title: loc.walletConnectExplainer.secondPage.part1 },
-  { title: loc.walletConnectExplainer.secondPage.part2 },
-  { title: loc.walletConnectExplainer.secondPage.part3, icon: 'scan-walletConnect' },
-  { title: loc.walletConnectExplainer.secondPage.part4 },
-];
+  const steps: SequenceSlide[] = useMemo(
+    () => [
+      { title: loc.walletConnectExplainer.secondPage.part1 },
+      { title: loc.walletConnectExplainer.secondPage.part2 },
+      { title: loc.walletConnectExplainer.secondPage.part3, icon: 'scan-walletConnect' },
+      { title: loc.walletConnectExplainer.secondPage.part4 },
+    ],
+    [],
+  );
 
-export const SlideTwo: React.FC<Props> = ({ onContinue }) => (
-  <SequenceSlides
-    title={loc.walletConnectExplainer.secondPage.titleWithEllipsis}
-    animation={require('@/assets/lottie/walletConnect-tutorial-slide2.json')}
-    slides={titles}
-    summaryTitle={loc.walletConnectExplainer.secondPage.title}
-    slidesSummary={steps}
-    animationMarkers={animationMarkers}
-    onButtonPress={onContinue}
-    buttonText={loc.walletConnectExplainer.secondPage.buttonText}
-  />
-);
+  return (
+    <SequenceSlides
+      title={loc.walletConnectExplainer.secondPage.titleWithEllipsis}
+      animation={require('@/assets/lottie/walletConnect-tutorial-slide2.json')}
+      slides={titles}
+      summaryTitle={loc.walletConnectExplainer.secondPage.title}
+      slidesSummary={steps}
+      animationMarkers={animationMarkers}
+      onButtonPress={onContinue}
+      buttonText={loc.walletConnectExplainer.secondPage.buttonText}
+    />
+  );
+};

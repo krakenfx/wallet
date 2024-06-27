@@ -4,8 +4,9 @@ import React from 'react';
 import { CardWarning } from '@/components/CardWarning';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 
+import { formatCurrency } from '@/utils/formatCurrency';
+
 import loc from '/loc';
-import { formatAppCurrencyValue } from '/modules/text-utils';
 
 const feePercentageThreshold = 0.1;
 const feeLimit = 30;
@@ -25,7 +26,7 @@ export const FeeAmountWarning = React.memo(({ transferToAmount, feeAmount }: Fee
   }
 
   const args = {
-    feeAmount: formatAppCurrencyValue(feeAmount.toString(10), currency),
+    feeAmount: formatCurrency(feeAmount.toString(10), { currency }),
     percentage: feePercentageThreshold * 100,
   };
 

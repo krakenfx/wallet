@@ -1,27 +1,16 @@
 import { clamp } from 'lodash';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  InteractionManager,
-  LayoutChangeEvent,
-  LayoutRectangle,
-  NativeSyntheticEvent,
-  StyleProp,
-  StyleSheet,
-  TextLayoutEventData,
-  View,
-  ViewStyle,
-} from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { LayoutChangeEvent, LayoutRectangle, NativeSyntheticEvent, StyleProp, StyleSheet, TextLayoutEventData, View, ViewStyle } from 'react-native';
 import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { Label, LabelProps, TypographyKey } from '@/components/Label';
 import { Theme } from '@/theme/themes';
-import { runAfterUISync } from '@/utils/runAfterUISync';
 
 import { Tick } from './Tick';
 
 export type AnimatedNumbersProps = Omit<LabelProps, 'numberOfLines' | 'children' | 'type'> & {
   value: number | string;
-  type: 'headerBalance' | 'boldLargeMonospace';
+  type: 'headerBalance' | 'boldLargeMonospace' | 'boldTitleMarketDataPercentageLarge' | 'boldTitleMarketDataPercentage';
   height?: number;
   fontSize: number;
 
@@ -52,25 +41,13 @@ export const AnimatedNumbers = React.memo(
     testID,
     style,
     color,
+    ...containerProps
   }: AnimatedNumbersProps) => {
     const [containerLayout, setContainerLayout] = useState<LayoutRectangle>();
     const [measured, setMeasured] = useState(false);
     const scale = useSharedValue(1);
     const glyphMargin = (fontSize - glyphSize) / 2;
     const lineHeight = fontSize + glyphMargin;
-    const interactionHandle = useRef<number>();
-
-    useEffect(() => {
-      if (!measured) {
-        interactionHandle.current = InteractionManager.createInteractionHandle();
-      } else {
-        runAfterUISync(() => {
-          if (interactionHandle.current) {
-            InteractionManager.clearInteractionHandle(interactionHandle.current);
-          }
-        });
-      }
-    }, [measured]);
 
     const handleTextLayout = useCallback(
       ({ nativeEvent: { lines } }: NativeSyntheticEvent<TextLayoutEventData>) => {
@@ -89,9 +66,10 @@ export const AnimatedNumbers = React.memo(
     const handleContainerLayout = ({ nativeEvent: { layout } }: LayoutChangeEvent) => setContainerLayout(layout);
 
     const renderValues = useCallback(() => {
+      const numbers = /\d/;
       const partsOfValue: string[] = String(value).split('');
       return partsOfValue.map((valuePart, index) => {
-        return !['.', ',', '-'].includes(valuePart) ? (
+        return numbers.test(valuePart) ? (
           <Tick color={color} type={type} key={index} fontSize={fontSize} lineHeight={lineHeight} value={valuePart} />
         ) : (
           <Label color={color} type={type} key={index} entering={FadeIn} allowFontScaling={false} style={{ lineHeight, fontSize }}>
@@ -155,7 +133,7 @@ export const AnimatedNumbers = React.memo(
     );
 
     return (
-      <Animated.View style={[styles.container, scaleStyle, { height }, style]} testID={testID} accessibilityValue={{ text: String(value) }}>
+      <Animated.View style={[styles.container, scaleStyle, { height }, style]} testID={testID} accessibilityValue={{ text: String(value) }} {...containerProps}>
         <View style={styles.widthMeasure} onLayout={handleContainerLayout} />
         {containerLayout && renderShadowNode()}
         {measured && (

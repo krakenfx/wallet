@@ -26,6 +26,7 @@ export type SolanaSimulationInput = components['schemas']['SolanaSimulationInput
 export type SolanaSimulationResult = components['schemas']['SolanaSimulationResult'];
 export type TokenReputation = components['schemas']['TokenReputation'];
 export type FeeOption = components['schemas']['FeeOption'];
+export type SolanaFeeOption = components['schemas']['SolanaFeeOption'];
 export type BaseFeeOption = components['schemas']['DefaultFeeOption'];
 export type TokenApproval = components['schemas']['TokenApproval'];
 export type AnalyseAddressResult = components['schemas']['AnalyseAddressResult'];

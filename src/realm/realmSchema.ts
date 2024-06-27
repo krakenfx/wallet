@@ -1,7 +1,10 @@
 import { Configuration } from 'realm';
 
+import { onMigration } from '@/realm/migrations';
+
 import { AccountSchema } from './accounts';
-import { AssetMetadataSchema, AssetReputationSchema } from './assetMetadata';
+import { AssetMarketDataPercentageChangeSchema, AssetMarketDataSchema } from './assetMarketData';
+import { AssetExplorerSchema, AssetLinksSchema, AssetMetadataSchema, AssetReputationSchema } from './assetMetadata';
 import {
   DefiAncillaryStatSchema,
   DefiPositionMetadataSchema,
@@ -15,7 +18,15 @@ import {
 import { NftMetadataSchema } from './nftMetadata';
 import { NftSchema, NftTraitsSchema } from './nfts';
 import { SettingsSchema } from './settings';
-import { TokenPriceFiatCurrencySchema, TokenPriceFiatValueSchema, TokenPriceSchema } from './tokenPrice';
+import {
+  TokenPriceFiatCurrencySchema,
+  TokenPriceFiatValueSchema,
+  TokenPriceHighLow,
+  TokenPriceHighLowItem,
+  TokenPriceHistoryItemSchema,
+  TokenPriceHistorySchema,
+  TokenPriceSchema,
+} from './tokenPrice';
 import { TokenSchema } from './tokens';
 import { TransactionNotesSchema } from './transactionNotes';
 import { PendingTransactionsSchema, WalletTransactionsSchema } from './transactions';
@@ -34,6 +45,7 @@ export const RealmSchema = [
   TokenPriceFiatValueSchema,
   TokenPriceFiatCurrencySchema,
   TransactionNotesSchema,
+  AssetExplorerSchema,
   AssetMetadataSchema,
   AssetReputationSchema,
   SettingsSchema,
@@ -49,9 +61,17 @@ export const RealmSchema = [
   DefiSchema,
   PendingTransactionsSchema,
   UsdFiatRatesSchema,
+  AssetMarketDataSchema,
+  AssetMarketDataPercentageChangeSchema,
+  AssetLinksSchema,
+  TokenPriceHistoryItemSchema,
+  TokenPriceHistorySchema,
+  TokenPriceHighLowItem,
+  TokenPriceHighLow,
 ];
 
 export const realmConfig: Configuration = {
-  schemaVersion: 19,
+  schemaVersion: 25,
   schema: RealmSchema,
+  onMigration,
 };

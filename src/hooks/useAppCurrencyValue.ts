@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import { useTokenPrice } from '@/realm/tokenPrice';
-import { getAvailableTokenBalance } from '@/realm/tokens/getAvailableTokenBalance';
+import { getAvailableTokenBalance } from '@/realm/tokens';
 import { RealmPendingTransaction } from '@/realm/transactions';
 import { calculateBalance } from '@/utils/calculateBalance';
 

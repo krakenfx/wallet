@@ -46,6 +46,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     AdvancedSettings: undefined;
     AppDetails: AppDetailsParams;
     AppLock: undefined;
+    BlastWelcoming: undefined;
     WalletBackupPrompt: undefined;
     CoinsList: undefined;
     ConnectApp: ConnectAppParams;
@@ -65,6 +66,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     ManageAssetsGlobalFilter: ManageAssetsGlobalFilterParams;
     ManageNft: ManageNftParams;
     ManageWallets: undefined;
+    MarketDataInfo: undefined;
     NftCollection: NftCollectionParams;
     NftImageGallery: NftImageGalleryRouteParams;
     Nfts: undefined;
@@ -98,6 +100,7 @@ export enum Routes {
   AdvancedAccountInfo = 'AdvancedAccountInfo',
   AdvancedSettings = 'AdvancedSettings',
   AppDetails = 'AppDetails',
+  BlastWelcoming = 'BlastWelcoming',
   WalletBackupPrompt = 'WalletBackupPrompt',
   CoinsList = 'CoinsList',
   ConnectApp = 'ConnectApp',
@@ -116,6 +119,7 @@ export enum Routes {
   ManageAssetsGlobalFilter = 'ManageAssetsGlobalFilter',
   ManageNft = 'ManageNft',
   ManageWallets = 'ManageWallets',
+  MarketDataInfo = 'MarketDataInfo',
   NftCollection = 'NftCollection',
   NftImageGallery = 'NftImageGallery',
   Nfts = 'Nfts',

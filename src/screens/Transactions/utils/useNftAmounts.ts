@@ -10,28 +10,31 @@ import { NFTTransactionData } from '@/realm/transactions/getTransactionMetadata'
 
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 
+import { formatCurrency } from '@/utils/formatCurrency';
+
 import { formatNftAmount } from './formatNftAmount';
 import { formatTransactionValueAsNegativeOrPositive } from './formatTransactionValueAsNegativeOrPositive';
 
-import { formatAppCurrencyValue } from '/modules/text-utils';
-
 export const useNftAmounts = (classifiedTx: NFTTransactionData, item: RealmTransaction, contextToken: RealmToken, isGlobalView?: boolean) => {
+  const { currency } = useAppCurrency();
+
   const assetAmountFormatted = useMemo(() => {
     const formatted = formatNftAmount(classifiedTx.type, {
+      currency,
       decimals: contextToken?.metadata.decimals,
       tokenAmount: classifiedTx?.paymentToken?.amount ?? item.fee ?? '0',
+      assetId: classifiedTx?.paymentToken?.assetId ?? '',
     });
 
     return formatted === '' ? '0' : formatted;
-  }, [classifiedTx, contextToken?.metadata.decimals, item.fee]);
+  }, [classifiedTx, contextToken?.metadata.decimals, currency, item.fee]);
   const assetAmountInCurrency = useAppCurrencyValue(contextToken, classifiedTx?.paymentToken?.amount ?? item.fee ?? '0', TRANSACTIONS_REALM_QUEUE_KEY);
-  const { currency } = useAppCurrency();
   const assetAmountInCurrencyFormatted = useMemo(() => {
     if (classifiedTx.type === TRANSACTION_TYPES.NFT_RECEIVE) {
       return '';
     }
 
-    const formattedInAppCurrencyValue = formatAppCurrencyValue(assetAmountInCurrency, currency);
+    const formattedInAppCurrencyValue = formatCurrency(assetAmountInCurrency, { currency });
 
     return formatTransactionValueAsNegativeOrPositive(formattedInAppCurrencyValue, classifiedTx.type);
   }, [assetAmountInCurrency, classifiedTx, currency]);
@@ -51,10 +54,12 @@ export const useNftAmounts = (classifiedTx: NFTTransactionData, item: RealmTrans
   const assetAmountAndNetworkFeeFormatted = useMemo(
     () =>
       formatNftAmount(classifiedTx.type, {
+        currency,
         decimals: contextToken?.metadata.decimals,
         tokenAmount: tokenAmountAndNetworkFee,
+        assetId: contextToken?.assetId ?? '',
       }),
-    [classifiedTx.type, contextToken?.metadata.decimals, tokenAmountAndNetworkFee],
+    [classifiedTx.type, contextToken?.assetId, contextToken?.metadata?.decimals, currency, tokenAmountAndNetworkFee],
   );
   const assetAmountAndNetworkFeeInCurrency = useAppCurrencyValue(contextToken, tokenAmountAndNetworkFee, TRANSACTIONS_REALM_QUEUE_KEY);
   const assetAmountAndNetworkFeeInCurrencyFormatted = useMemo(() => {
@@ -62,7 +67,7 @@ export const useNftAmounts = (classifiedTx: NFTTransactionData, item: RealmTrans
       return '';
     }
 
-    const formattedInAppCurrencyValue = formatAppCurrencyValue(assetAmountAndNetworkFeeInCurrency, currency);
+    const formattedInAppCurrencyValue = formatCurrency(assetAmountAndNetworkFeeInCurrency, { currency });
 
     return formatTransactionValueAsNegativeOrPositive(formattedInAppCurrencyValue, classifiedTx.type);
   }, [assetAmountAndNetworkFeeInCurrency, classifiedTx, currency]);

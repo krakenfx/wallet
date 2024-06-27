@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { AnimationMarkers, LoopSlide, LoopSlides } from '@/components/AnimatedSlides';
 
@@ -19,25 +19,29 @@ const animationMarkers: AnimationMarkers = {
   },
 };
 
-const slides: LoopSlide[] = [
-  {
-    title: loc.walletConnectExplainer.thirdPage.description1,
-    icon: 'walletconnect',
-  },
-  {
-    title: loc.walletConnectExplainer.thirdPage.description2,
-    icon: 'kraken',
-  },
-];
-
-export const SlideThree: React.FC<Props> = ({ onContinue }) => (
-  <LoopSlides
-    title={loc.walletConnectExplainer.thirdPage.title}
-    subtitle={loc.walletConnectExplainer.thirdPage.subtitle}
-    slides={slides}
-    animationMarkers={animationMarkers}
-    animation={require('@/assets/lottie/walletConnect-tutorial-slide3.json')}
-    buttonText={loc.walletConnectExplainer.thirdPage.buttonText}
-    onButtonPress={onContinue}
-  />
-);
+export const SlideThree: React.FC<Props> = ({ onContinue }) => {
+  const slides: LoopSlide[] = useMemo(
+    () => [
+      {
+        title: loc.walletConnectExplainer.thirdPage.description1,
+        icon: 'walletconnect',
+      },
+      {
+        title: loc.walletConnectExplainer.thirdPage.description2,
+        icon: 'kraken',
+      },
+    ],
+    [],
+  );
+  return (
+    <LoopSlides
+      title={loc.walletConnectExplainer.thirdPage.title}
+      subtitle={loc.walletConnectExplainer.thirdPage.subtitle}
+      slides={slides}
+      animationMarkers={animationMarkers}
+      animation={require('@/assets/lottie/walletConnect-tutorial-slide3.json')}
+      buttonText={loc.walletConnectExplainer.thirdPage.buttonText}
+      onButtonPress={onContinue}
+    />
+  );
+};

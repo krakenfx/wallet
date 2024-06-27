@@ -1,7 +1,10 @@
+import { chunk, compact } from 'lodash';
+
 import { DefaultApi, getHarmony } from '@/api/base/apiFactory';
 import { InternalBalance, TokenMetadata, Transaction } from '@/api/types';
 import { AssetMetadata } from '@/realm/assetMetadata';
 import { adaptTokenReputationToRealmAssetReputation } from '@/utils/adaptTokenReputationToRealmAssetReputation';
+import { isPromiseFulfilled } from '@/utils/promise';
 
 import {
   AnyWalletKind,
@@ -136,32 +139,40 @@ export class HarmonyTransport<TTransaction, TTransactionRequest, TWalletState, T
       throw WrappedError.from(e, `Failed to fetch balance for "${address}" on "${network.caipId}": ${e}`);
     }
 
-    const ret: BalanceResponse[] = [];
-
     const isMetadataComplete = (metadata?: TokenMetadata): metadata is TokenMetadata => !!metadata?.symbol && !!metadata?.label;
 
     const getMetadataFunc = getTokenMetadata ? (token: InternalBalance) => getTokenMetadata(token.token) : getTokenMetadataDefaultFetch;
 
-    for (const token of result ?? []) {
-      let metadata = token.metadata;
-      if (!isMetadataComplete(metadata)) {
-        // @ts-ignore
+    const allowedConcurrentRequests = 50;
 
-        metadata = await getMetadataFunc(token, harmony);
-        if (!metadata) {
-          continue;
+    const ret: BalanceResponse[] = [];
+
+    const chunks = chunk(result ?? [], allowedConcurrentRequests);
+    for (const ch of chunks) {
+      const tokenPromises = ch.map(async token => {
+        let metadata = token.metadata;
+        if (!isMetadataComplete(metadata)) {
+          // @ts-ignore
+
+          metadata = await getMetadataFunc(token, harmony);
         }
-      }
 
-      if (!isMetadataComplete(metadata)) {
-        console.log(`skipping token because metadata incomplete: ${metadata}`);
-        continue;
-      }
+        if (!isMetadataComplete(metadata)) {
+          console.log(`skipping token because metadata incomplete: ${metadata}`);
+          throw Error(`Missing metadata for token: ${token.token}`);
+        }
 
-      ret.push({
-        balance: token,
-        metadata,
+        return {
+          balance: token,
+          metadata,
+        };
       });
+
+      const results = await Promise.allSettled(tokenPromises);
+
+      const successResults = compact(results.filter(isPromiseFulfilled).map(({ value }) => value));
+
+      ret.push(...successResults);
     }
 
     return ret;

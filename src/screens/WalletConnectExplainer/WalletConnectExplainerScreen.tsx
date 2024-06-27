@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { BottomSheet } from '@/components/BottomSheet';
 import { IconButton } from '@/components/IconButton';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
+import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { useSettingsMutations } from '@/realm/settings';
 import { NavigationProps } from '@/Routes';
 
@@ -17,11 +18,11 @@ const pages = [SlideOne, SlideTwo, SlideThree, SlideFour];
 
 export const WalletConnectExplainerScreen = ({ navigation }: NavigationProps<'WalletConnectExplainer'>) => {
   const { bottomSheetProps, close } = useBottomSheetScreenProps(navigation);
-  const { setWalletConnectExplainerNeeded } = useSettingsMutations();
+  const { setWalletConnectExplainerTaskCompleted } = useSettingsMutations();
 
   useEffect(() => {
-    setWalletConnectExplainerNeeded(false);
-  }, [setWalletConnectExplainerNeeded]);
+    setWalletConnectExplainerTaskCompleted();
+  }, [setWalletConnectExplainerTaskCompleted]);
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -46,7 +47,7 @@ export const WalletConnectExplainerScreen = ({ navigation }: NavigationProps<'Wa
   const SlideComponent = pages[currentPage];
 
   return (
-    <BottomSheet enablePanDownToClose snapPoints={['100%']} {...bottomSheetProps}>
+    <BottomSheet enablePanDownToClose snapPoints={useCommonSnapPoints('toHeaderTransparent')} {...bottomSheetProps}>
       <View style={styles.container} testID="WalletConnectExplainer">
         <SlideComponent onContinue={onContinue} onClose={close} />
         {currentPage > 0 && <IconButton containerStyle={styles.backButton} name="chevron-left" onPress={onBack} size={20} />}

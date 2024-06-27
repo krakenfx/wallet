@@ -18,13 +18,13 @@ export const ReputationTagUnverified = () => {
 };
 
 type ReputationTagProps = {
-  tokenID?: string;
+  assetId?: string;
   filterOut?: FilterOut;
 };
 
-export const ReputationTag = ({ tokenID = '', filterOut = { reputation: [], coinDesignation: ['network'] } }: ReputationTagProps) => {
-  const reputation = useReputation(tokenID);
-  const shouldFilterOut = useShouldFilterOut({ tokenID, reputation }, filterOut);
+export const ReputationTag = ({ assetId = '', filterOut = { reputation: [], coinDesignation: ['network'] } }: ReputationTagProps) => {
+  const reputation = useReputation(assetId);
+  const shouldFilterOut = useShouldFilterOut({ assetId, reputation }, filterOut);
 
   if (shouldFilterOut) {
     return null;

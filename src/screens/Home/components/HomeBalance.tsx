@@ -7,11 +7,11 @@ import { useAccountsMutations } from '@/realm/accounts';
 import { useCurrentAccount } from '@/realm/accounts/useCurrentAccount';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useTotalWalletBalance } from '@/realm/tokenPrice';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 import { WaitForAccountSwitchSettled } from './WaitForAccountSwitchSettled';
 
 import loc from '/loc';
-import { prettifyFiatValue } from '/modules/text-utils';
 
 const UPDATE_BALANCE_DEBOUNCE = 2000;
 
@@ -25,7 +25,13 @@ export const HomeBalance = () => {
         <BalanceUpdater />
       </WaitForAccountSwitchSettled>
       <LargeHeader testID="TotalBalanceHeader" title={loc.home.total_balance}>
-        <AnimatedNumbers type="headerBalance" value={prettifyFiatValue(currentAccount.balance)} ticker={currency} fontSize={56} glyphSize={41} />
+        <AnimatedNumbers
+          type="headerBalance"
+          value={formatCurrency(currentAccount.balance, { currency, hideCurrencySign: true })}
+          ticker={currency}
+          fontSize={56}
+          glyphSize={41}
+        />
       </LargeHeader>
     </>
   );

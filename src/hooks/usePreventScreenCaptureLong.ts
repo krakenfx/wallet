@@ -4,7 +4,7 @@ import Config from 'react-native-config';
 
 export const usePreventScreenCaptureLong = () => {
   useEffect(() => {
-    if (!Config.DISABLE_SCREEN_CAPTURE) {
+    if (!Config.DISABLE_PREVENT_SCREEN_CAPTURE) {
       ScreenCapture.preventScreenCaptureAsync();
       return () => {
         setTimeout(ScreenCapture.allowScreenCaptureAsync, 1000);

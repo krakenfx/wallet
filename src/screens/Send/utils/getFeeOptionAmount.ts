@@ -7,6 +7,8 @@ export const getFeeOptionAmount = (option: FeeOption): string => {
     } else {
       return option.fee;
     }
+  } else if ('computeUnitPriceMicroLamports' in option) {
+    return option.computeUnitPriceMicroLamports.toString();
   } else {
     return option.amount;
   }

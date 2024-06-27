@@ -12,13 +12,13 @@ import { TokenListsRow } from './TokenListsRow';
 import { useTokenListsCount } from './useTokenListsCount';
 
 type TokenListsListProps = {
-  tokenID: string;
+  assetId: string;
 };
 
 const keyExtractor = (item: { reputation: REPUTATION; tokenListName: string }, index: number) => item.reputation + item.tokenListName + index;
 
-export const TokenListsList = ({ tokenID }: TokenListsListProps) => {
-  const reputationLists = useReputationLists(tokenID);
+export const TokenListsList = ({ assetId }: TokenListsListProps) => {
+  const reputationLists = useReputationLists(assetId);
   const tokenListsCount = useTokenListsCount();
 
   const isBlacklisted = reputationLists.blacklists.length > 0;

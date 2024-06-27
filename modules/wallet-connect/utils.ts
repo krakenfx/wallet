@@ -1,7 +1,7 @@
 import { SessionTypes, Verify } from '@walletconnect/types';
 
 import { SimulationResult } from '@/api/types';
-import { Network, Transport } from '@/onChain/wallets/base';
+import { Network } from '@/onChain/wallets/base';
 import { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
 import { WalletType, networkIdToNetworkName } from '@/onChain/wallets/registry';
 import { SolanaHarmonyTransport, SolanaNetwork } from '@/onChain/wallets/solana';
@@ -50,7 +50,7 @@ export function isSolanaNetwork(network: Network): network is SolanaNetwork {
   return network instanceof SolanaNetwork;
 }
 
-export function isSolanaTransport(transport: Transport<unknown, unknown, unknown, Network<unknown, unknown>>): transport is SolanaHarmonyTransport {
+export function isSolanaTransport(transport: unknown): transport is SolanaHarmonyTransport {
   return transport instanceof SolanaHarmonyTransport;
 }
 

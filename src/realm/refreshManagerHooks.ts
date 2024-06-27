@@ -2,6 +2,7 @@ import EventEmitter from 'eventemitter3';
 import { debounce } from 'lodash';
 import { useCallback, useEffect, useRef } from 'react';
 
+import { useGlobalState } from '@/components/GlobalState';
 import { hideToast, showToast } from '@/components/Toast';
 import { Routes } from '@/Routes';
 
@@ -45,7 +46,7 @@ export const refreshAllTransactions = debounce(() => {
 }, DEBOUNCE_FETCH_TIME);
 
 export const useRegisterRefreshManager = () => {
-  const { fetchAllTokenPrices } = useTokenPriceFetch();
+  const { fetchRelevantTokenPrices } = useTokenPriceFetch();
   const { fetchAndUpdateNfts } = useNftsFetch();
   const { fetchAndUpdateTokens } = useTokensFetch();
   const { fetchAllTransactionsForAllNetworks } = useTransactionsFetch();
@@ -53,16 +54,16 @@ export const useRegisterRefreshManager = () => {
   useEffect(() => {
     refreshEmitter.on(RefreshEmitter.refreshAllTokens, fetchAndUpdateTokens);
     refreshEmitter.on(RefreshEmitter.refreshAllNfts, fetchAndUpdateNfts);
-    refreshEmitter.on(RefreshEmitter.refreshTokenPrices, fetchAllTokenPrices);
+    refreshEmitter.on(RefreshEmitter.refreshTokenPrices, fetchRelevantTokenPrices);
     refreshEmitter.on(RefreshEmitter.refreshAllTransactions, fetchAllTransactionsForAllNetworks);
 
     return () => {
       refreshEmitter.off(RefreshEmitter.refreshAllTokens, fetchAndUpdateTokens);
       refreshEmitter.off(RefreshEmitter.refreshAllNfts, fetchAndUpdateNfts);
-      refreshEmitter.off(RefreshEmitter.refreshTokenPrices, fetchAllTokenPrices);
+      refreshEmitter.off(RefreshEmitter.refreshTokenPrices, fetchRelevantTokenPrices);
       refreshEmitter.off(RefreshEmitter.refreshAllTransactions, fetchAllTransactionsForAllNetworks);
     };
-  }, [fetchAllTokenPrices, fetchAndUpdateNfts, fetchAndUpdateTokens, fetchAllTransactionsForAllNetworks]);
+  }, [fetchRelevantTokenPrices, fetchAndUpdateNfts, fetchAndUpdateTokens, fetchAllTransactionsForAllNetworks]);
 };
 
 export const refreshingAllEvent = 'refreshingAll';
@@ -90,27 +91,30 @@ const showRefreshDataUpToDate = async () =>
   });
 
 export const useRefreshStateActions = () => {
-  const { fetchAllTokenPrices } = useTokenPriceFetch();
+  const { fetchRelevantTokenPrices } = useTokenPriceFetch();
   const { fetchAndUpdateNfts } = useNftsFetch();
   const { fetchAndUpdateTokens } = useTokensFetch();
   const { fetchAndUpdateDefi } = useDefiFetch();
   const { setDidLoadOnce } = useAccountsMutations();
   const { fetchAllTransactionsForAllNetworks } = useTransactionsFetch();
-  const isRefreshing = useRef<boolean>();
+  const [_, setIsRefreshing] = useGlobalState('isRefreshing');
+
   const realm = useRealm();
   const accountNumber = useCurrentAccountNumber();
   const timeoutId = useRef<NodeJS.Timeout>();
+  const preventRefresh = useRef<boolean>();
 
   const refreshAll = useCallback(
     async (showToastImmediately?: boolean) => {
-      if (isRefreshing.current) {
+      if (preventRefresh.current) {
         return;
       }
       const account = realm.objectForPrimaryKey<RealmAccount>(REALM_TYPE_ACCOUNT, accountNumber);
       if (!account) {
         return;
       }
-      isRefreshing.current = true;
+      setIsRefreshing(true);
+      preventRefresh.current = true;
 
       const fetchResults: boolean[] = [];
       if (showToastImmediately) {
@@ -128,27 +132,29 @@ export const useRefreshStateActions = () => {
         if (fetchResults.includes(true)) {
           setDidLoadOnce(account);
         }
-        fetchResults.push(await fetchAllTokenPrices());
+        fetchResults.push(await fetchRelevantTokenPrices());
       } else {
-        fetchResults.push(...(await Promise.all([fetchAndUpdateTokens(), fetchAllTokenPrices()])));
+        fetchResults.push(...(await Promise.all([fetchAndUpdateTokens(), fetchRelevantTokenPrices()])));
       }
 
       clearTimeout(timeoutId.current);
       hideToast({ id: refreshingAllEvent });
-      isRefreshing.current = false;
+      setIsRefreshing(false);
+      preventRefresh.current = false;
 
       if (!fetchResults.includes(false)) {
         showRefreshDataUpToDate();
       }
     },
     [
-      accountNumber,
-      fetchAllTokenPrices,
-      fetchAllTransactionsForAllNetworks,
-      fetchAndUpdateDefi,
-      fetchAndUpdateNfts,
-      fetchAndUpdateTokens,
       realm,
+      accountNumber,
+      setIsRefreshing,
+      fetchAndUpdateNfts,
+      fetchAndUpdateDefi,
+      fetchAllTransactionsForAllNetworks,
+      fetchAndUpdateTokens,
+      fetchRelevantTokenPrices,
       setDidLoadOnce,
     ],
   );

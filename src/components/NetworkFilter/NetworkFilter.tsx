@@ -23,6 +23,7 @@ const UI_FILTER_DATA: UIFilterData[] = [
   { uiLabel: () => loc.network.arbitrum, icon: <NetworkIcon networkName="arbitrum" size={16} />, networkFilter: NETWORK_FILTERS.arbitrum },
   { uiLabel: () => loc.network.optimism, icon: <NetworkIcon networkName="optimism" size={16} />, networkFilter: NETWORK_FILTERS.optimism },
   { uiLabel: () => loc.network.base, icon: <NetworkIcon networkName="base" size={16} />, networkFilter: NETWORK_FILTERS.base },
+  { uiLabel: () => loc.network.blast, icon: <NetworkIcon networkName="blast" size={16} />, networkFilter: NETWORK_FILTERS.blast },
   { uiLabel: () => loc.network.solana, icon: <NetworkIcon networkName="solana" size={16} />, networkFilter: NETWORK_FILTERS.solana },
 ];
 

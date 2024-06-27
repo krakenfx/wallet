@@ -52,9 +52,9 @@ export const TransactionNftRow = React.memo(
     const isGlobalView = !contextToken_;
 
     const nftAssetMetadata = useNftMetadata({ assetId: finalNftAssetId, wallet: item.wallet, realmQueueName: TRANSACTIONS_REALM_QUEUE_KEY });
-    const contextGlobalToken_ = useTokenByAssetId(classifiedTx.paymentToken?.assetId ?? '', item.walletId);
+    const paymentToken = useTokenByAssetId(classifiedTx.paymentToken?.assetId ?? '', item.walletId);
 
-    const contextToken = contextToken_ || contextGlobalToken_;
+    const contextToken = paymentToken || contextToken_;
 
     const shouldFilterOut = nftAssetMetadata?.isSpam && !filterInSpam;
 

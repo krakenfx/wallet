@@ -1,4 +1,5 @@
 import { Transaction, TransactionEffect } from '@/api/types';
+import { CAIP19, parseCAIP19 } from '@/onChain/wallets/utils/ChainAgnostic';
 import { formatTransactionAddress } from '@/screens/Transactions/utils/formatAddress';
 
 import { TRANSACTION_TYPES, TYPE_ERC1155, TYPE_ERC721 } from './const';
@@ -33,7 +34,7 @@ export interface SimpleTransactionData extends TransactionStatus {
 
 export interface NFTTransactionData extends TransactionStatus {
   kind: 'nft';
-  type: TRANSACTION_TYPES.NFT_SEND | TRANSACTION_TYPES.NFT_RECEIVE | TRANSACTION_TYPES.NFT_BUY | TRANSACTION_TYPES.NFT_MINT;
+  type: TRANSACTION_TYPES.NFT_SEND | TRANSACTION_TYPES.NFT_RECEIVE | TRANSACTION_TYPES.NFT_BUY | TRANSACTION_TYPES.NFT_MINT | TRANSACTION_TYPES.NFT_SELL;
   nft: {
     assetId: string;
     amount?: string;
@@ -59,13 +60,14 @@ export interface SwapTransactionData extends TransactionStatus {
 
 export type TransactionData = ContractInteractionData | SimpleTransactionData | SwapTransactionData | NFTTransactionData;
 
-export type MinimalTransaction = Pick<Transaction, 'effects'> & { status?: TransactionStatus['status'] };
+export type MinimalTransaction = Pick<Transaction, 'effects' | 'protocolInfo'> & { status?: TransactionStatus['status'] };
 
 function assetIsNFT(assetId: string) {
-  if (assetId.includes('spl:')) {
-    return assetId.includes('?nft');
+  const parsed: CAIP19 | null = parseCAIP19(assetId);
+  if (!parsed) {
+    return false;
   }
-  return assetId.includes(TYPE_ERC721) || assetId.includes(TYPE_ERC1155);
+  return parsed.assetNamespace === TYPE_ERC721 || parsed.assetNamespace === TYPE_ERC1155 || parsed.assetNamespace === 'nft';
 }
 
 export const getTransactionTitle = (transactionType: TRANSACTION_TYPES) => {
@@ -103,153 +105,142 @@ export const getTransactionMetadata = (tx: MinimalTransaction): TransactionData 
   const effects = tx.effects ?? [];
   const status = tx.status;
 
-  switch (effects.length) {
-    case 0:
-      return { kind: 'contract', type: TRANSACTION_TYPES.CONTRACT_INTERACTION, effects, status };
+  if (effects.length > 1 && effects.find(e => e.type === 'token-approval')) {
+    return getTransactionMetadata({ effects: effects.filter(e => e.type !== 'token-approval'), status });
+  }
 
-    case 1:
-      const effect = effects[0];
+  const effect = effects[0];
 
-      const effectType = effect.type;
-      switch (effectType) {
-        case 'receive':
-          if (assetIsNFT(effect.assetId)) {
-            return {
-              kind: 'nft',
-              type: TRANSACTION_TYPES.NFT_RECEIVE,
-              nft: effect,
-              status,
-            };
-          } else {
-            return {
-              kind: 'simple',
-              type: TRANSACTION_TYPES.RECEIVE,
-              effect,
-              description: formatTransactionAddress(effect.sender, TRANSACTION_TYPES.RECEIVE),
-              status,
-            };
-          }
+  if (!effect) {
+    return {
+      kind: 'contract',
+      type: TRANSACTION_TYPES.CONTRACT_INTERACTION,
+      effects,
+      status,
+    };
+  }
 
-        case 'send':
-          if (assetIsNFT(effect.assetId)) {
-            return {
-              kind: 'nft',
-              type: TRANSACTION_TYPES.NFT_SEND,
-              nft: effect,
-              status,
-            };
-          } else {
-            return {
-              kind: 'simple',
-              type: TRANSACTION_TYPES.SEND,
-              effect,
-              description: formatTransactionAddress(effect.recipient, TRANSACTION_TYPES.SEND),
-              status,
-            };
-          }
-
-        case 'token-approval':
-          return {
-            kind: 'simple',
-            type: isTokenApprovalUnlimited(effect.amount) ? TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED : TRANSACTION_TYPES.TOKEN_APPROVAL,
-            effect: {
-              amount: effect.amount ?? '1',
-              assetId: effect.assetId,
-            },
-            status,
-          };
-
-        case 'swap':
-          const { receive, spent } = effect;
-          return {
-            kind: 'swap',
-            type: TRANSACTION_TYPES.SWAP,
-            receive,
-            sent: spent,
-            status,
-          };
-
-        case 'purchase':
-          if (assetIsNFT(effect.assetId)) {
-            return {
-              kind: 'nft',
-              type: TRANSACTION_TYPES.NFT_BUY,
-              nft: { assetId: effect.assetId, amount: effect.amount },
-              paymentToken: effect.spentToken,
-              status,
-            };
-          } else {
-            return {
-              kind: 'swap',
-              type: TRANSACTION_TYPES.SWAP,
-              receive: effect as { amount: string; assetId: string },
-              sent: effect.spentToken,
-              status,
-            };
-          }
-
-        case 'mint':
-          if (assetIsNFT(effect.assetId)) {
-            if (effect.spentToken) {
-              return {
-                kind: 'nft',
-                type: TRANSACTION_TYPES.NFT_BUY,
-                nft: { assetId: effect.assetId, amount: effect.amount },
-                paymentToken: effect.spentToken,
-                status,
-              };
-            }
-            return {
-              kind: 'nft',
-              type: TRANSACTION_TYPES.NFT_MINT,
-              nft: effect,
-              status,
-            };
-          } else {
-            return {
-              kind: 'simple',
-              type: TRANSACTION_TYPES.MINT,
-              effect: effect as { amount: string; assetId: string },
-              status,
-            };
-          }
-
-        case 'deposit':
-          if (!(effect as any).depositedAmounts) {
-            return { kind: 'contract', type: TRANSACTION_TYPES.CONTRACT_INTERACTION, effects: [], status };
-          }
-          if (effect.depositedAmounts.length == 0) {
-            return { kind: 'contract', type: TRANSACTION_TYPES.CONTRACT_INTERACTION, effects: [], status };
-          }
-
-          return {
-            kind: 'simple',
-            type: TRANSACTION_TYPES.DEPOSIT,
-
-            effect: effect.depositedAmounts[0] as { amount: string; assetId: string },
-            status,
-          };
-
-        default:
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const _exhaustiveCheck: never = effectType;
-          return { kind: 'contract', type: TRANSACTION_TYPES.CONTRACT_INTERACTION, effects, status };
+  const effectType = effect.type;
+  switch (effectType) {
+    case 'receive':
+      if (assetIsNFT(effect.assetId)) {
+        return {
+          kind: 'nft',
+          type: TRANSACTION_TYPES.NFT_RECEIVE,
+          nft: effect,
+          status,
+        };
+      } else {
+        return {
+          kind: 'simple',
+          type: TRANSACTION_TYPES.RECEIVE,
+          effect,
+          description: formatTransactionAddress(effect.sender, TRANSACTION_TYPES.RECEIVE),
+          status,
+        };
       }
-
-    case 2:
-      const nonApprovalEffects = effects.filter(e => e.type !== TRANSACTION_TYPES.TOKEN_APPROVAL);
-      if (nonApprovalEffects.length === 1) {
-        const effect = nonApprovalEffects[0];
-        return getTransactionMetadata({ effects: [effect], status: status });
-      }
-
+    case 'sale':
       return {
-        kind: 'contract',
-        type: TRANSACTION_TYPES.CONTRACT_INTERACTION,
-        effects,
+        kind: 'nft',
+        type: TRANSACTION_TYPES.NFT_SELL,
+        nft: effect,
+        paymentToken: effect.receivedToken,
+        status,
+      };
+    case 'send':
+      if (assetIsNFT(effect.assetId)) {
+        return {
+          kind: 'nft',
+          type: TRANSACTION_TYPES.NFT_SEND,
+          nft: effect,
+          status,
+        };
+      } else {
+        return {
+          kind: 'simple',
+          type: TRANSACTION_TYPES.SEND,
+          effect,
+          description: formatTransactionAddress(effect.recipient, TRANSACTION_TYPES.SEND),
+          status,
+        };
+      }
+    case 'token-approval':
+      return {
+        kind: 'simple',
+        type: isTokenApprovalUnlimited(effect.amount) ? TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED : TRANSACTION_TYPES.TOKEN_APPROVAL,
+        effect: {
+          amount: effect.amount ?? '1',
+          assetId: effect.assetId,
+        },
         status,
       };
 
+    case 'swap':
+      const { receive, spent } = effect;
+      return {
+        kind: 'swap',
+        type: TRANSACTION_TYPES.SWAP,
+        receive,
+        sent: spent,
+        status,
+      };
+
+    case 'purchase':
+      if (assetIsNFT(effect.assetId)) {
+        return {
+          kind: 'nft',
+          type: TRANSACTION_TYPES.NFT_BUY,
+          nft: { assetId: effect.assetId, amount: effect.amount },
+          paymentToken: effect.spentToken,
+          status,
+        };
+      } else {
+        return {
+          kind: 'swap',
+          type: TRANSACTION_TYPES.SWAP,
+          receive: effect as { amount: string; assetId: string },
+          sent: effect.spentToken,
+          status,
+        };
+      }
+    case 'mint':
+      if (assetIsNFT(effect.assetId)) {
+        return {
+          kind: 'nft',
+          type: TRANSACTION_TYPES.NFT_MINT,
+          nft: effect,
+          paymentToken: effect.spentToken,
+          status,
+        };
+      } else {
+        return {
+          kind: 'simple',
+          type: TRANSACTION_TYPES.MINT,
+          effect: {
+            amount: effect.amount ?? '',
+            assetId: effect.assetId,
+          },
+          status,
+        };
+      }
+
+    case 'deposit':
+      if (effect.depositedAmounts.length === 0) {
+        return {
+          kind: 'contract',
+          type: TRANSACTION_TYPES.CONTRACT_INTERACTION,
+          effects: [],
+          status,
+        };
+      }
+
+      return {
+        kind: 'simple',
+        type: TRANSACTION_TYPES.DEPOSIT,
+
+        effect: effect.depositedAmounts[0] as { amount: string; assetId: string },
+        status,
+      };
     default:
       return {
         kind: 'contract',

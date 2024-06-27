@@ -6,12 +6,13 @@ import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyVal
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { RealmToken } from '@/realm/tokens';
 import { RealmWallet } from '@/realm/wallets';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
+import { isBtc } from '@/utils/isBtc';
 
 import { getLabelName } from '../utils/getLabelName';
 
 import { LargeHeader } from './LargeHeader';
-
-import { prettifyFiatValue, tokenAmountShortened } from '/modules/text-utils';
 
 interface LargeCoinHeaderProps {
   pill?: JSX.Element;
@@ -21,9 +22,9 @@ interface LargeCoinHeaderProps {
 }
 
 export const LargeCoinHeader = ({ token, wallet, testID, pill }: LargeCoinHeaderProps) => {
+  const { currency, currencyInfo } = useAppCurrency();
   const fiatValue = useTokenBalanceConvertedToAppCurrency(token);
-  const amountToDisplay = tokenAmountShortened(token);
-  const { currencyInfo } = useAppCurrency();
+  const tokenAmountFormatted = formatTokenAmountFromToken(token, { compact: true, currency, highPrecision: true, isBtc: isBtc({ assetId: token.assetId }) });
 
   const titleName = getLabelName(token, wallet);
 
@@ -31,7 +32,7 @@ export const LargeCoinHeader = ({ token, wallet, testID, pill }: LargeCoinHeader
     <LargeHeader testID={testID} title={titleName}>
       <AnimatedNumbers
         type="headerBalance"
-        value={amountToDisplay}
+        value={tokenAmountFormatted}
         ticker={token.metadata.symbol}
         tickerFontSize={24}
         testID={`AssetBalance-${testID}`}
@@ -41,7 +42,7 @@ export const LargeCoinHeader = ({ token, wallet, testID, pill }: LargeCoinHeader
       {!!fiatValue && (
         <AnimatedNumbers
           type="headerBalance"
-          value={prettifyFiatValue(fiatValue)}
+          value={formatCurrency(fiatValue, { currency, hideCurrencySign: true })}
           ticker={currencyInfo.symbol}
           tickerFontSize={16}
           tickerBottomOffset={2}

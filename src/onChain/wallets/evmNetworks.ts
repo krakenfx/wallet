@@ -44,6 +44,7 @@ export const arbitrumNetwork = new EVMNetwork({
   nativeTokenLabel: 'Ethereum',
   label: loc.network.arbitrum,
   blockExplorer: new Etherscan('arbiscan.io'),
+  defaultGasLimit: 70000,
   icon: ({ opacity }) => ({
     id: 'arb',
     fgColor: ['#6c4dc2', '#99e3ed', -45],
@@ -75,6 +76,21 @@ export const optimismNetwork = new EVMNetwork({
   blockExplorer: new Etherscan('optimistic.etherscan.io'),
   icon: ({ opacity }) => ({
     id: 'op',
+    fgColor: ['#6c4dc2', '#99e3ed', -45],
+    bgColor: `rgba(132, 92, 224, ${opacity})`,
+  }),
+  defaultGasLimit: 21000,
+});
+
+export const blastNetwork = new EVMNetwork({
+  chainId: 81457,
+  nativeTokenSlipId: 60,
+  nativeTokenSymbol: 'ETH',
+  nativeTokenLabel: 'Ethereum',
+  label: loc.network.blast,
+  blockExplorer: new Etherscan('blastscan.io'),
+  icon: ({ opacity }) => ({
+    id: 'blast',
     fgColor: ['#6c4dc2', '#99e3ed', -45],
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),

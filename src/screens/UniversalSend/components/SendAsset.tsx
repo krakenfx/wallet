@@ -10,7 +10,8 @@ import { Label } from '@/components/Label';
 import { SearchInput } from '@/components/SearchInput';
 import { useDebounceEffect } from '@/hooks/useDebounceEffect';
 import { Network } from '@/onChain/wallets/base';
-import { RealmToken, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
+import { useTokenPrices } from '@/realm/tokenPrice';
+import { RealmToken, sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { safelyAnimateLayout } from '@/utils/safeLayoutAnimation';
 
@@ -36,6 +37,8 @@ const itemKeyExtractor = (item: RealmToken, i: number) => {
 };
 
 export const SendAsset = ({ supportedNetworks, onAssetSelected, goBack }: Props) => {
+  const tokenPrices = useTokenPrices();
+
   const tokens = useTokensFilteredByReputationAndNetwork([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>(inputValue);
@@ -47,8 +50,8 @@ export const SendAsset = ({ supportedNetworks, onAssetSelected, goBack }: Props)
 
   const compatibleTokens = useMemo(() => {
     const nativeTokenIds = supportedNetworks.map(n => n.nativeTokenCaipId);
-    return tokens.filtered("wallet.nativeTokenCaipId IN $0 AND balance != '0'", nativeTokenIds);
-  }, [supportedNetworks, tokens]);
+    return sortTokensByFiatValue(tokens.filtered("wallet.nativeTokenCaipId IN $0 AND balance != '0'", nativeTokenIds), tokenPrices);
+  }, [supportedNetworks, tokenPrices, tokens]);
 
   const data = useMemo(() => {
     if (searchQuery) {

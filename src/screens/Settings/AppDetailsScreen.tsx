@@ -10,12 +10,12 @@ import navigationStyle from '@/components/navigationStyle';
 import { showToast } from '@/components/Toast';
 import { WalletType } from '@/onChain/wallets/registry';
 import { NavigationProps } from '@/Routes';
+import { sanitizeUrl } from '@/utils/stringUtils';
 
 import { ActivityIndicatorView } from './components/ActivityIndicatorView';
 
-import confirm from '/helpers/confirm';
+import { showAlert } from '/helpers/showAlert';
 import loc from '/loc';
-import { sanitizeUrl } from '/modules/text-utils';
 
 export type AppDetailsParams = {
   onDisconnect: (confirmed: boolean) => Promise<void>;
@@ -88,7 +88,7 @@ export const AppDetailsScreen = ({ navigation, route }: NavigationProps<'AppDeta
           text: loc.connectedApps.app_details.disconnect,
           textColor: 'red400',
           onPress: async () => {
-            const confirmed = await confirm(
+            const confirmed = await showAlert(
               `${loc.connectedApps.app_details.disconnect} "${content.name ?? ''}"?`,
               loc.connectedApps.app_details.disconnect_decscription,
               loc.connectedApps.app_details.disconnect,

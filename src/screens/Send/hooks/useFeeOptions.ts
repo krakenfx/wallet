@@ -13,7 +13,7 @@ const order: Record<FeeOptionKind, number> = {
   default: 3,
 };
 
-export const useFeeOptions = (wallet: RealmishWallet) => {
+export const useFeeOptions = (wallet: RealmishWallet, disabled?: boolean) => {
   const { network, transport } = useMemo(() => getImplForWallet(wallet), [wallet]);
   const [selectedFee, setSelectedFee] = useState<FeeOptionKind>();
   const [fetchedFees, setFetchedFees] = useState<FeeOptions['options']>([]);
@@ -30,8 +30,10 @@ export const useFeeOptions = (wallet: RealmishWallet) => {
   }, [network, transport]);
 
   useEffect(() => {
-    fetchFeeOptions();
-  }, [fetchFeeOptions]);
+    if (!disabled) {
+      fetchFeeOptions();
+    }
+  }, [disabled, fetchFeeOptions]);
 
   return {
     selectedFee,

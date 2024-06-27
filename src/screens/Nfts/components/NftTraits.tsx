@@ -64,7 +64,7 @@ export const NftTraits: React.FC<{ nft: RealmNft }> = ({ nft }) => {
                 <View
                   style={[styles.traitWrapper, { backgroundColor: colors.dark25 }]}
                   key={trait.traitType + trait.value + row}
-                  testID={`NftTraits-${trait.traitType}`}>
+                  testID={`NftTraits-${trait.traitType.toLowerCase()}`}>
                   <Label type="boldMonospace" numberOfLines={1} color="light75">
                     {trait.traitType.toUpperCase().replace('_', ' ')}
                   </Label>
@@ -77,7 +77,13 @@ export const NftTraits: React.FC<{ nft: RealmNft }> = ({ nft }) => {
           </View>
         ))}
         {nft.traits.length > DEFAULT_TRAIT_COUNT ? (
-          <Button onPress={onShowMorePress} style={styles.traitsShowMore} size="large" text={showMoreTraits ? loc.nftView.show_less : loc.nftView.show_more} />
+          <Button
+            testID="NftTraitsToggleMore"
+            onPress={onShowMorePress}
+            style={styles.traitsShowMore}
+            size="large"
+            text={showMoreTraits ? loc.nftView.show_less : loc.nftView.show_more}
+          />
         ) : null}
       </>
     );
@@ -86,7 +92,7 @@ export const NftTraits: React.FC<{ nft: RealmNft }> = ({ nft }) => {
   return (
     <>
       {traits ? (
-        <Label type="boldTitle2" style={styles.sectionHeading} testID={'NftTraitsAbout'}>
+        <Label type="boldTitle2" style={styles.sectionHeading} testID="NftTraitsHeader">
           {loc.nftView.properties}
         </Label>
       ) : null}

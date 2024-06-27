@@ -3,6 +3,7 @@ import Realm from 'realm';
 
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
+import { REALM_TYPE_TOKEN, RealmToken } from '../tokens/schema';
 
 import { REALM_TYPE_TOKEN_PRICE, RealmTokenPrice, TokenPrice } from './schema';
 
@@ -13,7 +14,11 @@ export const useTokenPriceMutations = () => {
   const setTokenPrice = useCallback(
     (tokenPrice: TokenPrice) => {
       runInTransaction(() => {
-        realm.create<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE, tokenPrice, Realm.UpdateMode.Modified);
+        const price = realm.create<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE, tokenPrice, Realm.UpdateMode.Modified);
+        const tokens = realm.objects<RealmToken>(REALM_TYPE_TOKEN).filtered('assetId in $0', [price.assetId]);
+        tokens.forEach(t => {
+          t.price = price;
+        });
       });
     },
     [realm, runInTransaction],

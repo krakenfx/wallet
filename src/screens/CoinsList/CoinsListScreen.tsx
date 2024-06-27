@@ -22,7 +22,7 @@ import {
   RealmToken,
   getNetworkNameFromAssetId,
   sortTokensAlphabetically,
-  sortTokensByFiatPrice,
+  sortTokensByFiatValue,
   useTokensFilteredByReputationAndNetwork,
 } from '@/realm/tokens';
 import { useTokensGallery } from '@/realm/tokensGallery';
@@ -80,7 +80,7 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
   }, [tokensFromRealm]);
   const tokensFromTokenLists = useFilteredTokensFromTokenLists(networkFilter, searchQuery);
   const tokenGalleryAndNativeTokens: RealmToken[] = useMemo(() => {
-    return sortTokensByFiatPrice(tokensFromRealm.filtered('balance != $0 || inGallery == true || assetId = wallet.nativeTokenCaipId', '0'), tokenPrices);
+    return sortTokensByFiatValue(tokensFromRealm.filtered('balance != $0 || inGallery == true || assetId = wallet.nativeTokenCaipId', '0'), tokenPrices);
   }, [tokensFromRealm, tokenPrices]);
 
   const tokens: Item[] = useMemo(() => {
@@ -132,7 +132,7 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
         hideZeroAmount: true,
         showAmountInFiat: false,
         symbolUnderLabel: true,
-        tag: <ReputationTag tokenID={token.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
+        tag: <ReputationTag assetId={token.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
         walletId: token.walletId,
       };
 

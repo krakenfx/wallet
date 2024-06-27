@@ -1,18 +1,18 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
 
+import { fetchTokenLists } from '@/api/fetchTokenLists';
 import { useDepsChanged } from '@/hooks/useDepsChanged';
 import { TESTNET_COINS, networkIdToNetworkName } from '@/onChain/wallets/registry';
 import { RealmSettingsKey } from '@/realm/settings';
 import { useSettingsByKey } from '@/realm/settings/useSettingsByKey';
 import { useTokensFilteredByReputationAndNetwork } from '@/realm/tokens/useTokensFilteredByReputationAndNetwork';
-import { fetchTokenLists } from '@/utils/fetchTokenLists';
+import { untilFirstBackslash } from '@/utils/stringUtils';
 
 import { RemoteAsset, TokenFromTokenLists } from '../types';
 import { adaptTokenFromTokenListsToRemoteAsset } from '../utils/adaptTokenFromTokenListsToRemoteAsset';
 
 import { handleError } from '/helpers/errorHandler';
-import { untilFirstBackslash } from '/modules/text-utils';
 
 const OMITTED_TOKEN = 'eip155:137/erc20:0x0000000000000000000000000000000000001010';
 

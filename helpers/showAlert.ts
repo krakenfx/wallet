@@ -2,8 +2,8 @@ import { Alert } from 'react-native';
 
 import loc from '/loc';
 
-export default function (title = loc.confirm.title, text = '', yesText = loc.confirm.yes, noText = loc.confirm.no): Promise<boolean> {
-  return new Promise(resolve => {
+export const showAlert = async (title = loc.confirm.title, text = '', yesText = loc.confirm.yes, noText = loc.confirm.no): Promise<boolean> => {
+  const result = await new Promise<boolean>(resolve => {
     Alert.alert(
       title,
       text,
@@ -22,4 +22,5 @@ export default function (title = loc.confirm.title, text = '', yesText = loc.con
       { cancelable: false },
     );
   });
-}
+  return result;
+};

@@ -66,6 +66,71 @@ Please note that our repository is a point-in-time mirror of our internal reposi
 
 Upcoming Improvements
 
-We are currently working on providing build files and developer documentation that are necessary for quality PRs. We expect to roll out these resources soon and will keep the community updated on our progress.
+We are currently working on providing developer documentation that is necessary for quality PRs. We expect to roll out these resources soon and will keep the community updated on our progress.
 
 
+## Build Instructions
+
+This guide will walk you through setting up your development environment and building the app for both Android and iOS.
+
+### Prerequisites
+
+Before you begin, make sure you have the following tools and software installed:
+
+- Node (>= 18)
+- Ruby (>= 2.6.10)
+- Yarn
+- Android Studio (for Android development)
+- Xcode 15 (for iOS development)
+
+For detailed instructions on setting up the environment, refer to the [React Native documentation](https://reactnative.dev/docs/set-up-your-environment).
+
+### Setup
+
+#### Environment Configuration
+
+Create a `.env` file in the root directory of your project and populate it with the following data:
+
+```plaintext
+DEFAULT_HARMONY_BASE_URI=https://wallet.kraken.com/api/data
+DEFAULT_GROUNDCONTROL_BASE_URI=https://wallet.kraken.com/api/push
+WALLETCONNECT_PROJECT_ID=${PROJECT_ID}
+```
+A WalletConnect project ID is required for full functionality. For instructions on how to obtain it, refer to the WalletConnect [documentation](https://docs.walletconnect.com/).
+
+### Android
+
+#### Generate a Debug Keystore
+
+Open a terminal and run the following command to generate a debug keystore
+
+```sh
+keytool -genkey -v -keystore android/app/debug.keystore -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android
+```
+
+#### Build the Android app
+
+```sh
+yarn && yarn android
+```
+
+### iOS
+
+#### Configure Xcode Project
+
+- Open the `ios/.xcworkspace` file in Xcode.
+- Select the target and go to the _Signing & Capabilities_ tab
+- Select your team and create a provisioning profile. If you need help, refer to the [Apple Developer documentation](https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile/).
+
+
+
+#### Build the iOS app
+
+```sh
+sudo gem install bundler
+yarn && yarn ios
+```
+
+### Push Notifications
+
+Please be aware that push notifications are not currently supported in the open-source version of this app.

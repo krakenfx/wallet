@@ -208,6 +208,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
             onPress={addWord}
             containerStyle={styles.suggestedWordContainer}
             buttonStyle={[styles.suggestedWordButton, { backgroundColor: colors.light15 }]}
+            testID={`Suggestion-${word}`}
           />
         </Animated.View>
       ))}

@@ -10,18 +10,18 @@ import { HeaderNavigationTitle } from '@/components/HeaderNavigationTitle';
 import { LargeHeader } from '@/components/LargeHeader';
 import { ListHeader } from '@/components/ListHeader';
 import navigationStyle from '@/components/navigationStyle';
-import { useDefaultSnapPoints } from '@/hooks/useDefaultSnapPoints';
+import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { parseDefiNetworkTypeToWalletType } from '@/onChain/wallets/registry';
 import { RealmDefiPosition, useDefiById } from '@/realm/defi';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 import { NavigationProps } from '@/Routes';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 import { DefiDetailsRow } from './components/DefiDetailsRow';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
-import { prettifyFiatValue } from '/modules/text-utils';
 
 export interface DefiDetailsRouteParams {
   defiId: string;
@@ -89,11 +89,11 @@ export const DefiDetailsScreen = ({ route, navigation }: NavigationProps<'DefiDe
     );
   }, [defi?.products]);
 
-  const snapPoints = useDefaultSnapPoints();
+  const snapPoints = useCommonSnapPoints('toHeaderAndMainContent');
 
   const usdFiatRate = useCurrentUsdFiatRate();
   const protocolBalance = usdFiatRate * defi.protocolUsdBalance;
-  const { currencyInfo } = useAppCurrency();
+  const { currency, currencyInfo } = useAppCurrency();
 
   if (!defi) {
     return null;
@@ -103,7 +103,13 @@ export const DefiDetailsScreen = ({ route, navigation }: NavigationProps<'DefiDe
     <GradientScreenView>
       <View style={styles.container}>
         <LargeHeader title={defi.protocolName}>
-          <AnimatedNumbers type="headerBalance" value={prettifyFiatValue(protocolBalance)} ticker={currencyInfo.symbol} fontSize={56} glyphSize={41} />
+          <AnimatedNumbers
+            type="headerBalance"
+            value={formatCurrency(protocolBalance, { currency, hideCurrencySign: true })}
+            ticker={currencyInfo.symbol}
+            fontSize={56}
+            glyphSize={41}
+          />
         </LargeHeader>
         <BottomSheet snapPoints={snapPoints} index={0} dismissible={false} noSafeInsetTop noBackdrop>
           <BottomSheetSectionList

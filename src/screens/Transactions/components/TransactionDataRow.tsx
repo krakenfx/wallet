@@ -4,18 +4,38 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
+import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { RealmTransaction, TransactionStatus, usePendingTransactionById } from '@/realm/transactions';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
 import loc from '/loc';
 
-const Amounts = ({ amount, amountInCurrency, testID }: { amount: string; amountInCurrency: string; testID?: string }) => {
+const Amounts = ({
+  assetAmount,
+  assetSymbol,
+  amountInCurrency,
+  testID,
+}: {
+  assetAmount: string;
+  assetSymbol: string;
+  amountInCurrency: string;
+  testID?: string;
+}) => {
+  const { currency } = useAppCurrency();
+  const assetAmountFormatted = formatTokenAmount(assetAmount, {
+    compact: true,
+    currency,
+    highPrecision: true,
+    isBtc: assetSymbol === 'BTC',
+  });
+
   return (
     <>
       <Label style={styles.amountsText} type="boldLargeMonospace" numberOfLines={1} testID={testID && `Usd-${testID}`}>
         {amountInCurrency}
       </Label>
       <Label style={styles.amountsText} type="regularMonospace" color="light50" numberOfLines={1} testID={testID && `Amount-${testID}`}>
-        {amount}
+        {`${assetAmountFormatted} ${assetSymbol}`}
       </Label>
     </>
   );
@@ -25,7 +45,7 @@ export type TransactionDataRowProps = {
   onPress: () => void;
   icon?: React.ReactElement;
   shouldShowAmounts: boolean;
-  assetAmountAndNetworkFeeFormatted?: string;
+  assetAmountAndNetworkFee?: string;
   assetAmountAndNetworkFeeInCurrencyFormatted?: string;
   assetSymbol?: string;
   appCurrencyValue: string;
@@ -49,7 +69,7 @@ export const TransactionDataRow = React.memo(
     icon,
     appCurrencyValue,
     shouldShowAmounts,
-    assetAmountAndNetworkFeeFormatted,
+    assetAmountAndNetworkFee,
     descriptionIcon,
     description,
     assetAmountAndNetworkFeeInCurrencyFormatted,
@@ -63,7 +83,7 @@ export const TransactionDataRow = React.memo(
 
     const showRow = !(pendingTx !== undefined && pendingTx.isValid() && !pendingTx.confirmed);
 
-    const shouldShowAssetAmountAndNetworkFees = Boolean(assetAmountAndNetworkFeeFormatted && assetAmountAndNetworkFeeInCurrencyFormatted);
+    const shouldShowAssetAmountAndNetworkFees = Boolean(assetAmountAndNetworkFee && assetAmountAndNetworkFeeInCurrencyFormatted);
     const isTransactionFailed = status === 'failed';
 
     return (
@@ -97,15 +117,16 @@ export const TransactionDataRow = React.memo(
               <View style={styles.spacer} />
               {shouldShowAmounts && (
                 <View style={styles.endContainer}>
-                  {shouldShowAssetAmountAndNetworkFees && (
+                  {shouldShowAssetAmountAndNetworkFees && assetSymbol && (
                     <Amounts
-                      amount={`${assetAmountAndNetworkFeeFormatted} ${assetSymbol}`}
+                      assetAmount={assetAmountAndNetworkFee!}
+                      assetSymbol={assetSymbol}
                       amountInCurrency={assetAmountAndNetworkFeeInCurrencyFormatted!}
                       testID={testID}
                     />
                   )}
-                  {!shouldShowAssetAmountAndNetworkFees && assetAmount && (
-                    <Amounts amount={`${assetAmount} ${assetSymbol}`} amountInCurrency={appCurrencyValue} testID={testID} />
+                  {!shouldShowAssetAmountAndNetworkFees && assetAmount && assetSymbol && (
+                    <Amounts assetAmount={assetAmount} assetSymbol={assetSymbol} amountInCurrency={appCurrencyValue} testID={testID} />
                   )}
                 </View>
               )}

@@ -10,11 +10,13 @@ import { EVMNetwork } from '@/onChain/wallets/evm';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { RealmWallet } from '@/realm/wallets';
 
+import { runAfterUISync } from '@/utils/runAfterUISync';
+
 import { FeeEstimationMap } from '../types';
 
 import { handleError } from '/helpers/errorHandler';
 
-type SimulationData = PreparedTransaction | ((fee: FeeOption) => Promise<PreparedTransaction | void>);
+type SimulationData = PreparedTransaction | ((fee: FeeOption) => Promise<PreparedTransaction | void>) | null;
 
 export const useFeeEstimates = (
   wallet: RealmWallet,
@@ -23,6 +25,7 @@ export const useFeeEstimates = (
   simulation: SimulationData,
   selectedFee?: FeeOptionKind,
   isNFT?: boolean,
+  disabled?: boolean,
 ) => {
   const { network, transport } = useMemo(() => getImplForWallet(wallet), [wallet]);
   const getWalletStorage = useGetWalletStorage();
@@ -37,10 +40,9 @@ export const useFeeEstimates = (
       return simulation;
     } else {
       const fee = options.find(o => o.kind === selectedFee) ?? options[0];
-      if (!fee) {
-        return;
+      if (typeof simulation === 'function') {
+        return await runAfterUISync(() => simulation(fee));
       }
-      return await simulation(fee);
     }
   }, [options, selectedFee, simulation]);
 
@@ -97,12 +99,15 @@ export const useFeeEstimates = (
 
   useFocusEffect(
     useCallback(() => {
+      if (disabled) {
+        return;
+      }
       if (isTxDataValid || !useDefaultTx) {
         fetchEstimates();
       } else if (isDefaultEstimateSupported) {
         fetchDefaultEstimates();
       }
-    }, [isTxDataValid, useDefaultTx, isDefaultEstimateSupported, fetchEstimates, fetchDefaultEstimates]),
+    }, [disabled, isTxDataValid, useDefaultTx, isDefaultEstimateSupported, fetchEstimates, fetchDefaultEstimates]),
   );
 
   return {

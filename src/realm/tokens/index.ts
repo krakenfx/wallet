@@ -1,3 +1,4 @@
+export * from './getAvailableTokenBalance';
 export * from './sortTokens';
 export * from './useTokensMutations';
 export * from './useTokens';

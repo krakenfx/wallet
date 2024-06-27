@@ -7,9 +7,9 @@ import { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 
-import { useTransactionDetailsNetworkFee } from '../utils/useTransactionDetailsNetworkFee';
+import { formatCurrency } from '@/utils/formatCurrency';
 
-import { formatAppCurrencyValue } from '/modules/text-utils';
+import { useTransactionDetailsNetworkFee } from '../utils/useTransactionDetailsNetworkFee';
 
 type Props = {
   assetId: string;
@@ -28,7 +28,7 @@ export const TransactionDetailsNetworkFee = ({ assetId, detached, nativeTokenDec
   const networkFeesInCurrency = useAppCurrencyValue({ assetId, metadata: { decimals: nativeTokenDecimals } }, networkFee ?? '0', TRANSACTIONS_REALM_QUEUE_KEY);
   const fee = NORMAL_USE_AMOUNT.includes(nativeTokenSymbol) ? amount : price;
   const { currency } = useAppCurrency();
-  const feeInCurrency = NORMAL_USE_PRICE.includes(nativeTokenSymbol) ? price : formatAppCurrencyValue(networkFeesInCurrency, currency);
+  const feeInCurrency = NORMAL_USE_PRICE.includes(nativeTokenSymbol) ? price : formatCurrency(networkFeesInCurrency, { currency, highPrecision: true });
 
   return <NetworkFee networkName={networkName} networkFee={fee} networkFeeInCurrency={feeInCurrency} detached={detached} />;
 };

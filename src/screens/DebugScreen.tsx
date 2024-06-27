@@ -48,6 +48,8 @@ import { SettingsBox } from '@/screens/Settings/components/SettingsBox';
 import { isSecureDevice } from '@/secureStore/keychain';
 import { useTheme } from '@/theme/themes';
 
+import { FeatureFlag, useFeatureFlag } from '@/utils/featureFlags';
+
 import { showToast } from '../components/Toast';
 
 import { ALT_GROUNDCONTROL_BASE_URIS, ALT_HARMONY_BASE_URIS, DEFAULT_GROUNDCONTROL_BASE_URI, DEFAULT_HARMONY_BASE_URI } from '/config';
@@ -127,6 +129,8 @@ export const DebugScreen = () => {
   const walletStateRef = useRef<BottomSheetMethods>(null);
   const deviceInfoRef = useRef<BottomSheetMethods>(null);
   const backendConfigRef = useRef<BottomSheetMethods>(null);
+
+  const { toggleFeature: toggleAssetMarketDataEnabled, isFeatureFlagEnabled: isAssetMarketDataEnabled } = useFeatureFlag(FeatureFlag.AssetMarketDataEnabled);
 
   useEffect(() => {
     (async () => {
@@ -254,6 +258,9 @@ export const DebugScreen = () => {
         </SettingsBox>
         <SettingsBox isLast isHighlighted style={styles.spacing}>
           <Label type="regularCaption1">When enabled, all errors will show red toast with initial error message</Label>
+        </SettingsBox>
+        <SettingsBox isFirst isLast isHighlighted style={styles.spacing}>
+          <SettingsSwitch icon="kraken" text="Asset market data" enabled={isAssetMarketDataEnabled} onToggle={toggleAssetMarketDataEnabled} />
         </SettingsBox>
         <Button
           icon="fire"

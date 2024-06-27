@@ -4,9 +4,9 @@ import { StyleSheet, View } from 'react-native';
 import { IconWithCoinIcon } from '@/components/IconWithCoinIcon';
 import { Label } from '@/components/Label';
 import { WalletType } from '@/onChain/wallets/registry';
+import { sanitizeUrl } from '@/utils/stringUtils';
 
 import loc from '/loc';
-import { sanitizeUrl } from '/modules/text-utils';
 
 type Props = {
   coinType?: WalletType;

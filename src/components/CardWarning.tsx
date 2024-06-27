@@ -22,6 +22,7 @@ export type CardWarningProps = TouchableProps & {
   type: 'normal' | 'warning' | 'negative' | 'info';
   elementRight?: React.ReactElement;
   iconSize?: number;
+  hideLeftIcon?: boolean;
 };
 
 type CardWarningColors = Record<'backgroundColor' | 'buttonBackgroundColor' | 'textColor' | 'headerTextColor' | 'iconColor', ColorName>;
@@ -64,7 +65,19 @@ const ICONS: Record<'warning' | 'negative' | 'info', IconName> = {
 };
 
 export const CardWarning = React.memo(
-  ({ title = '', description = '', buttonText = '', numberOfLines, onPress, type, style, iconSize, elementRight, ...touchableProps }: CardWarningProps) => {
+  ({
+    title = '',
+    description = '',
+    buttonText = '',
+    numberOfLines,
+    onPress,
+    type,
+    style,
+    iconSize,
+    elementRight,
+    hideLeftIcon,
+    ...touchableProps
+  }: CardWarningProps) => {
     const theme = useTheme();
 
     const { backgroundColor, buttonBackgroundColor, textColor, headerTextColor, iconColor } = COLORS[type];
@@ -77,7 +90,7 @@ export const CardWarning = React.memo(
         {...touchableProps}>
         {type === 'normal' && <GradientItemBackground />}
         <View style={[styles.row, !title && styles.singleRow]}>
-          {type !== 'normal' && (
+          {type !== 'normal' && !hideLeftIcon && (
             <SvgIcon name={ICONS[type]} size={iconSize} color={iconColor} style={[styles.icon, ICONS[type] === 'warning' && styles.warningIcon]} />
           )}
           <View style={styles.column}>

@@ -54,7 +54,7 @@ const Backdrop = (props: BottomSheetBackdropProps & { dismissible: boolean; onBa
   );
 };
 
-const ANIMATION_CONFIGS = {
+export const ANIMATION_CONFIGS = {
   damping: 500,
   stiffness: 1000,
   mass: 3,

@@ -422,10 +422,61 @@
   "manageWallets": {
     "title": "Quản lý ví"
   },
+  "marketData": {
+    "allTimeHigh": {
+      "details": "Mức giá cao nhất mà một loại tiền điện tử đã được giao dịch kể từ khi ra đời.",
+      "title": "Cao ở mọi thời điểm:"
+    },
+    "allTimeLow": {
+      "details": "Mức giá thấp nhất mà một loại tiền điện tử đã được giao dịch kể từ khi ra đời.",
+      "title": "Thấp ở mọi thời điểm:"
+    },
+    "circulatingSupply": {
+      "details": "Số lượng đồng tiền điện tử hoặc token hiện có sẵn trên thị trường và công chúng đang sở hữu.",
+      "title": "Nguồn cung lưu hành:"
+    },
+    "contract": "Hợp đồng",
+    "contractAddressCopied": "Địa chỉ hợp đồng đã được sao chép!",
+    "explorers": "Công cụ khám phá",
+    "fullyDilutedValuation": {
+      "details": "Vốn hoá thị trường nếu nguồn cung tối đa đang được lưu hành, được tính bằng cách nhân giá hiện tại với nguồn cung tối đa.",
+      "short": "FDV",
+      "title": "Định giá pha loãng hoàn toàn:"
+    },
+    "links": "Liên kết",
+    "marketCap": {
+      "details": "Tổng giá trị thị trường của tiền điện tử, được tính bằng cách nhân giá hiện tại với nguồn cung lưu hành.",
+      "short": "Vốn hóa thị trường",
+      "title": "Vốn hóa thị trường:"
+    },
+    "maxSupply": {
+      "details": "Số lượng đồng tiền điện tử hoặc token tối đa sẽ tồn tại đối với một loại tiền điện tử, như được xác định bởi giao thức của dự án.",
+      "title": "Nguồn cung tối đa:"
+    },
+    "showLess": "Ẩn bớt",
+    "terminology": "Thuật ngữ",
+    "tokenContract": "Hợp đồng token",
+    "tokenContractWarning": {
+      "boldDescription": "Không bao giờ gửi tiền đến địa chỉ bạn đã sao chép.",
+      "description": "{boldDescription} Đây KHÔNG phải là địa chỉ nhận tiền của bạn. Đó là địa chỉ hợp đồng thông minh được sử dụng để xác định token trên blockchain.",
+      "header": "Bạn vừa sao chép địa chỉ hợp đồng token"
+    },
+    "totalSupply": {
+      "details": "Số lượng đồng tiền điện tử hoặc token hiện đang tồn tại, bao gồm cả những loại có thể bị khóa, dự trữ hoặc chưa được phát hành.",
+      "title": "Tổng nguồn cung:"
+    },
+    "volume24h": {
+      "details": "Tổng giá trị của một loại tiền điện tử được giao dịch trong 24 giờ qua trên tất cả các sàn giao dịch.",
+      "short": "Khối lượng trong 24 giờ",
+      "title": "Khối lượng trong 24 giờ:"
+    },
+    "website": "Trang web"
+  },
   "network": {
     "arbitrum": "Arbitrum",
     "base": "Cơ sở",
     "bitcoin": "Bitcoin",
+    "blast": "Blast",
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Mạng thử nghiệm Goerli",
@@ -748,7 +799,9 @@
     "likelySpam": "Có khả năng là lừa đảo",
     "likelySpamDescription": "Token này được niêm yết trong danh sách đen. Hãy thận trọng khi tương tác với bất kỳ token nào bạn không thể xác minh. Đừng tin tưởng, hãy xác minh.",
     "likelySpamHelp": "Token nằm trong danh sách đen là gì?",
+    "onTokenLists": "Trên {count} danh sách token",
     "openDocs": "Mở tài liệu",
+    "title": "Danh tiếng",
     "tokenLists": "Danh sách token",
     "tokenListsDescription": "Danh sách token là một sáng kiến dựa vào cộng đồng nhằm cải thiện khả năng khám phá, danh tiếng và độ tin cậy đối với token ERC20.",
     "tokenListsHelp": "Danh sách token là gì?",
@@ -921,13 +974,17 @@
     "likelySpamHelp": "Token có thể là token rác là gì?",
     "likelySpamInfo": "Các token có thể là token rác có khả năng đã bị cộng đồng công cộng hoặc một trong các đối tác của chúng tôi cảnh báo là token rác, lừa đảo hoặc có hại.",
     "likelySpamTitle": "Có khả năng là lừa đảo",
+    "likelySpamUseCaution": "Sử dụng hết sức thận trọng",
     "notListed": "Không được liệt kê",
     "openDocs": "Mở tài liệu",
     "tokenLists": "Danh sách token",
     "tokens": "{tokenListCount} token",
     "unverified": "Không được liệt kê",
+    "unverifiedButtonLink": "Tại sao token đó không được niêm yết?",
     "unverifiedDescription": "Token này không được niêm yết trên bất kỳ Danh sách token được hỗ trợ nào. Sử dụng thận trọng.",
+    "unverifiedExplainerDescription": "Các token không được niêm yết trong một trong các danh sách dự án được hỗ trợ của chúng tôi và chưa bị cảnh báo là spam sẽ được tìm thấy trong danh sách này.",
     "unverifiedHelp": "Tại sao token đó không được niêm yết?",
+    "unverifiedWarning": "Vui lòng sử dụng thận trọng",
     "verified": "Được niêm yết",
     "verifiedDescription": "Các token được niêm yết ở đây đã được xác minh và hiện khả dụng trên sàn giao dịch Kraken.",
     "verifiedInfoKraken": "Các token được liệt kê ở đây hiện có sẵn trên sàn giao dịch Kraken.",
@@ -1067,6 +1124,7 @@
       "from": "Từ: ",
       "to": "Tới: "
     },
+    "balance": "Số dư",
     "nativeAssetView": {
       "approval": "Phê duyệt",
       "contractInteraction": "Tương tác hợp đồng",

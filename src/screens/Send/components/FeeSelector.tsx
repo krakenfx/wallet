@@ -5,6 +5,7 @@ import Animated, { CurvedTransition, FadeIn, FadeOut } from 'react-native-reanim
 import { FeeOption, FeeOptionKind } from '@/api/types';
 import { Label } from '@/components/Label';
 import { Menu } from '@/components/Menu';
+import { DropdownOptionItem } from '@/components/Menu/DropdownMenu';
 import { NetworkIcon } from '@/components/NetworkIcon';
 import { SvgIcon } from '@/components/SvgIcon';
 import { RealmishWallet } from '@/onChain/wallets/base';
@@ -12,7 +13,7 @@ import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useTheme } from '@/theme/themes';
 
 import { FeeEstimationMap } from '../types';
-import { getOptionsData } from '../utils/getOptionsData';
+import { getFeeOptionsData } from '../utils/getFeeOptionsData';
 
 import loc from '/loc';
 
@@ -50,7 +51,16 @@ export const FeeSelector = React.memo(
     const hasSingleOption = options.length === 1;
     const { currency } = useAppCurrency();
 
-    const data = getOptionsData(options, wallet, feeEstimates, currency, price, inputInFiat);
+    const data = getFeeOptionsData(options, wallet, feeEstimates, currency, price, inputInFiat).map(
+      o =>
+        ({
+          ...o,
+          labelLeft: o.name,
+          labelRight: o.amount,
+          labelBottomLeft: o.duration,
+          labelBottomRight: o.rate,
+        } satisfies DropdownOptionItem<FeeOptionKind>),
+    );
 
     if (!options.length) {
       return null;

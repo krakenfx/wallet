@@ -7,7 +7,7 @@ import { BitcoinNetwork } from './bitcoin';
 import { electrumXTransport, hdSegwitBech32Network } from './bitcoinWallets';
 import { DogecoinNetwork, dogecoinNetwork, dogecoinTransport } from './dogecoin';
 import { EVMHarmonyTransport, EVMNetwork } from './evm';
-import { arbitrumNetwork, baseNetwork, ethereumNetwork, ethereumSepoliaNetwork, optimismNetwork, polygonNetwork } from './evmNetworks';
+import { arbitrumNetwork, baseNetwork, blastNetwork, ethereumNetwork, ethereumSepoliaNetwork, optimismNetwork, polygonNetwork } from './evmNetworks';
 import { SolanaNetwork } from './solana';
 import { solanaDevnet, solanaDevnetTransport } from './solanaDevnet';
 import { solanaMainnet, solanaRpcNetwork } from './solanaMainnet';
@@ -25,6 +25,7 @@ export const Networks = {
   ethereumTestnetSepolia: ethereumSepoliaNetwork,
 
   solanaDevnet: solanaDevnet,
+  blast: blastNetwork,
 };
 
 export const DefiNetworks = [Networks.HDsegwitBech32, Networks.ethereum, Networks.polygon, Networks.base, Networks.arbitrum, Networks.optimism];
@@ -51,6 +52,7 @@ const Transports = {
   dogecoin: dogecoinTransport,
   ethereum: evmHarmonyTransport,
   ethereumTestnetSepolia: evmHarmonyTransport,
+  blast: evmHarmonyTransport,
 } satisfies { [x in keyof typeof Networks]: Transport<any, any, any, any, any> };
 
 export type WalletType = keyof typeof Networks;

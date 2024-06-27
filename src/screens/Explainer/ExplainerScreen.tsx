@@ -17,7 +17,9 @@ import {
   ExplainerEthereumAddress,
   ExplainerEthereumDerivationPath,
   ExplainerKnownSecurityRisk,
+  ExplainerTokenContract,
   ExplainerTokenLists,
+  ExplainerUnverifiedLists,
   ExplainerWhitelistedKraken,
 } from './components/Explainer';
 
@@ -30,6 +32,8 @@ export enum EXPLAINER_CONTENT_TYPES {
   KNOWN_SECURTIY_RISK = 'known_security_risk',
   TOKEN_LISTS = 'token-lists',
   WHITELISTED_KRAKEN = 'whitelisted-kraken',
+  UNVERIFIED_LISTS = 'unverified-lists',
+  CONTRACT_ADDRESS = 'contract-address',
 }
 
 export type ExplainerModalProps = {
@@ -61,6 +65,10 @@ export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explaine
         return <ExplainerKnownSecurityRisk />;
       case EXPLAINER_CONTENT_TYPES.ETHEREUM_DERIVATION_PATH:
         return <ExplainerEthereumDerivationPath />;
+      case EXPLAINER_CONTENT_TYPES.UNVERIFIED_LISTS:
+        return <ExplainerUnverifiedLists />;
+      case EXPLAINER_CONTENT_TYPES.CONTRACT_ADDRESS:
+        return <ExplainerTokenContract />;
     }
   }, [contentType]);
 

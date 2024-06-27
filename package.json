@@ -1,14 +1,15 @@
 {
-  "name": "krakenwallet",
-  "version": "1.3.0",
+  "name": "superwallet",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "bundle install && (cd ios && bundle exec pod install) && react-native run-ios ",
     "start": "react-native start",
     "android-reverse": "adb reverse tcp:8081 tcp:8081",
+    "git2json": "./tools/git-info.sh > git-info.json",
     "cleanstart": "cd android/; ./gradlew clean; cd ..; rm -r -f /tmp/metro-cache/; rm -r -f node_modules/; yarn cache clean; yarn; yarn start --reset-cache",
-    "postinstall": "rn-nodeify --install events,process --hack;  yarn patch-package",
+    "postinstall": "rn-nodeify --install events,process --hack; yarn git2json; yarn patch-package",
     "android:emu:build": "cd android && ./gradlew assembleRelease",
     "android:install": "adb install android/app/build/outputs/apk/release/app-release.apk",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx && tsc",
@@ -17,7 +18,6 @@
     "ts-coverage-report": "typescript-coverage-report --threshold=95 --strict --project ./tsconfig.json"
   },
   "dependencies": {
-    "@cryptowatch/beacon": "git+https://github.com/cryptowatch/beacons.git#dd0ae2993fd8ecd13d70d7e41699c11afda274ff",
     "@ethersproject/bytes": "5.7.0",
     "@ethersproject/shims": "5.7.0",
     "@gorhom/bottom-sheet": "4.4.7",
@@ -32,6 +32,7 @@
     "@react-navigation/native-stack": "6.9.12",
     "@realm/react": "0.6.2",
     "@shopify/flash-list": "1.6.4",
+    "@shopify/react-native-skia": "1.3.2",
     "@solana/buffer-layout": "4.0.1",
     "@solana/spl-token": "0.3.8",
     "@solana/web3.js": "1.91.7",
@@ -70,10 +71,12 @@
     "expo-camera": "13.4.4",
     "expo-constants": "14.4.2",
     "expo-device": "5.4.0",
+    "expo-linking": "5.0.2",
     "expo-local-authentication": "13.4.1",
     "expo-modules-core": "1.5.11",
     "expo-notifications": "0.20.1",
     "expo-screen-capture": "5.3.0",
+    "expo-store-review": "6.4.0",
     "jest-junit": "14.0.1",
     "lodash": "4.17.21",
     "lottie-react-native": "6.4.0",
@@ -116,6 +119,7 @@
     "stream-browserify": "3.0.0",
     "tiny-secp256k1": "1.1.6",
     "tweetnacl": "1.0.3",
+    "victory-native": "41.0.0",
     "web3": "1.10.0"
   },
   "devDependencies": {

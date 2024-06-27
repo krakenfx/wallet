@@ -14,6 +14,7 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.List;
 
+import com.kraken.superwallet.modules.activityLifecycle.ActivityLifecyclePackage;
 import com.kraken.superwallet.modules.boottime.BootTimePackage;
 import com.kraken.superwallet.modules.gradients.WalletGradientViewPackage;
 import com.kraken.superwallet.modules.clipboard.SensitiveClipboardPackage;
@@ -36,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
           packages.add(new SensitiveClipboardPackage());
           packages.add(new BootTimePackage());
           packages.add(new WalletGradientViewPackage());
+          packages.add(new ActivityLifecyclePackage());
           return packages;
         }
 

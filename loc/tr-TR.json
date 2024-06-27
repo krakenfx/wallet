@@ -422,10 +422,61 @@
   "manageWallets": {
     "title": "Cüzdanları yönet"
   },
+  "marketData": {
+    "allTimeHigh": {
+      "details": "Başlangıcından bu yana bir kripto para biriminin işlem gördüğü en yüksek fiyat.",
+      "title": "Şimdiye Kadarki En Yüksek:"
+    },
+    "allTimeLow": {
+      "details": "Başlangıcından bu yana bir kripto para biriminin işlem gördüğü en düşük fiyat.",
+      "title": "Şimdiye Kadarki En Düşük:"
+    },
+    "circulatingSupply": {
+      "details": "Piyasada ve kamunun elinde aktif olarak mevcut olan coin veya token’ların sayısı.",
+      "title": "Dolaşımdaki Arz:"
+    },
+    "contract": "Sözleşme",
+    "contractAddressCopied": "İletişim Adresi kopyalandı!",
+    "explorers": "Kaşifler",
+    "fullyDilutedValuation": {
+      "details": "Maksimum arz dolaşımdaysa maksimum arz ile mevcut fiyatın çarpılmasıyla hesaplanan piyasa değeri.",
+      "short": "FDV",
+      "title": "Tamamen Seyreltilmiş Değer:"
+    },
+    "links": "Bağlantılar",
+    "marketCap": {
+      "details": "Dolaşımda olan arzla mevcut fiyatın çarpılmasıyla elde edilen bir kripto para biriminin toplam piyasa değeri.",
+      "short": "Piyasa Değeri",
+      "title": "Piyasa Değeri:"
+    },
+    "maxSupply": {
+      "details": "Projenin protokolünün tanımladığı üzere bir kripto para birimine ait var olacak maksimum coin veya token sayısı.",
+      "title": "Maksimum Arz:"
+    },
+    "showLess": "Daha az göster",
+    "terminology": "Terminoloji",
+    "tokenContract": "Token sözleşmesi",
+    "tokenContractWarning": {
+      "boldDescription": "Kopyaladığınız adrese hiçbir zaman fon göndermeyin.",
+      "description": "{boldDescription} Bu sizin fon almak için kullanacağınız adres DEĞİŞLLDİR. Blockchain’de token’ı tanımlamak için kullanılan akıllı sözleşme adresidir.",
+      "header": "Bir token sözleşmesi adresi kopyaladınız"
+    },
+    "totalSupply": {
+      "details": "Kilitli, rezervde veya henüz yayınlanmamış olanlar dahil şu anda mevcut olan coin veya token sayısı.",
+      "title": "Toplam Arz:"
+    },
+    "volume24h": {
+      "details": "Tüm borsalarda 24 saat içinde işlem gören kripto para birimlerinin toplam değeri.",
+      "short": "24s Hacim",
+      "title": "24 Saatlik Hacim:"
+    },
+    "website": "Web sitesi"
+  },
   "network": {
     "arbitrum": "Arbitrum",
     "base": "Taban",
     "bitcoin": "Bitcoin",
+    "blast": "Blast",
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Goerli test ağı",
@@ -748,7 +799,9 @@
     "likelySpam": "Olası spam",
     "likelySpamDescription": "Bu token bir kara listede yer almaktadır. Doğrulayamadığınız herhangi bir token ile etkileşim kurarken dikkatli olun. Güvenmeyin, doğrulayın.",
     "likelySpamHelp": "Kara listeye alınan tokenler nelerdir?",
+    "onTokenLists": "{count} token listesinde",
     "openDocs": "Açık dosyalar",
+    "title": "İtibar",
     "tokenLists": "Token listeleri",
     "tokenListsDescription": "Token Listeleri, ERC20 tokenlerinin keşfedilebilirliğini, itibarını ve güvenilirliğini artırmaya yönelik topluluk liderliğindeki bir girişimdir.",
     "tokenListsHelp": "Token listeleri nedir?",
@@ -921,13 +974,17 @@
     "likelySpamHelp": "Olası spam tokenleri nedir?",
     "likelySpamInfo": "Olası spam tokenleri, herkese açık topluluklar veya ortaklarımızdan biri tarafından spam, sahtekarlık veya zararlı olarak işaretlenmiştir.",
     "likelySpamTitle": "Olası Spam",
+    "likelySpamUseCaution": "Son derece dikkatli olun",
     "notListed": "Listede yok",
     "openDocs": "Açık dosyalar",
     "tokenLists": "Token listeleri",
     "tokens": "{tokenListCount} token",
     "unverified": "Listede yok",
+    "unverifiedButtonLink": "Neden listede yok?",
     "unverifiedDescription": "Bu token, desteklenen Token Listelerinin hiçbirinde yer almıyor. Dikkatli olun.",
+    "unverifiedExplainerDescription": "Desteklenen proje listelerimizden biri tarafından listelenmeyen ve spam için işaretlenmemiş tokenlar bu listede bulunacaktır.",
     "unverifiedHelp": "Neden listede yok?",
+    "unverifiedWarning": "Dikkatli olun",
     "verified": "Listede",
     "verifiedDescription": "Burada listelenen tokenler doğrulanmıştır ve şu anda Kraken borsasında mevcuttur.",
     "verifiedInfoKraken": "Burada listelenen tokenler şu anda Kraken borsasında mevcuttur.",
@@ -1067,6 +1124,7 @@
       "from": "Gönderici: ",
       "to": "Alıcı: "
     },
+    "balance": "bakiyesi",
     "nativeAssetView": {
       "approval": "Onay",
       "contractInteraction": "Sözleşme etkileşimi",

@@ -2,8 +2,8 @@ import { isNetworkCoin } from '@/onChain/wallets/registry';
 
 export type FilterOut = { reputation: string[]; coinDesignation: 'network'[] };
 
-export const useShouldFilterOut = ({ tokenID, reputation }: { tokenID: string; reputation: string }, filterOut: FilterOut) => {
-  if (filterOut.coinDesignation.includes('network') && isNetworkCoin(tokenID)) {
+export const useShouldFilterOut = ({ assetId, reputation }: { assetId: string; reputation: string }, filterOut: FilterOut) => {
+  if (filterOut.coinDesignation.includes('network') && isNetworkCoin(assetId)) {
     return true;
   }
 

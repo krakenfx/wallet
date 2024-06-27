@@ -4,10 +4,9 @@ import { FadeIn } from 'react-native-reanimated';
 
 import { Label } from '@/components/Label';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 import { useColorByCategory } from '../utils';
-
-import { formatAppCurrencyValue } from '/modules/text-utils';
 
 interface Props {
   value: number;
@@ -25,7 +24,7 @@ export const DefiPositionValue: FC<Props> = ({ value, category }) => {
   return (
     <View style={styles.amountFiatText}>
       <Label color={textColor} entering={FadeIn} style={styles.numbers} type="boldLargeMonospace">
-        {formatAppCurrencyValue(presentedValue, currency, true)}
+        {formatCurrency(presentedValue, { currency })}
       </Label>
     </View>
   );

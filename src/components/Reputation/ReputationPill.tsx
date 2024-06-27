@@ -11,8 +11,8 @@ import { WhitelistIcons } from './WhitelistIcons';
 
 import loc from '/loc';
 
-export const ReputationPillWhitelisted = memo(({ tokenID = '' }: { tokenID: string }) => {
-  const reputationLists = useReputationLists(tokenID);
+export const ReputationPillWhitelisted = memo(({ assetId = '' }: { assetId: string }) => {
+  const reputationLists = useReputationLists(assetId);
 
   return (
     <Pill backgroundColor="light15">
@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
 });
 
 type ReputationPillProps = {
-  tokenID?: string;
+  assetId?: string;
   filterOut?: FilterOut;
   style?: StyleProp<ViewStyle>;
 };
 
-export const ReputationPill = ({ tokenID = '', filterOut = { reputation: [], coinDesignation: ['network'] }, style }: ReputationPillProps) => {
-  const reputation = useReputation(tokenID);
-  const shouldFilterOut = useShouldFilterOut({ tokenID, reputation }, filterOut);
+export const ReputationPill = ({ assetId = '', filterOut = { reputation: [], coinDesignation: ['network'] }, style }: ReputationPillProps) => {
+  const reputation = useReputation(assetId);
+  const shouldFilterOut = useShouldFilterOut({ assetId, reputation }, filterOut);
 
   if (shouldFilterOut) {
     return null;
@@ -68,7 +68,7 @@ export const ReputationPill = ({ tokenID = '', filterOut = { reputation: [], coi
   let result = null;
 
   if (reputation === REPUTATION.WHITELISTED) {
-    result = <ReputationPillWhitelisted tokenID={tokenID} />;
+    result = <ReputationPillWhitelisted assetId={assetId} />;
   }
 
   if (reputation === REPUTATION.BLACKLISTED) {

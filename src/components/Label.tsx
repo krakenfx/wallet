@@ -70,6 +70,9 @@ export const Typography = {
   headerBalance: { fontSize: 56, fontFamily: Fonts.IBMPlexSans.bold },
   headerWalletConnectTutorial: { fontSize: 36, fontFamily: Fonts.IBMPlexSans.bold, lineHeight: 42 },
   headerBalanceTicker: { fontSize: 24, fontFamily: Fonts.Celias.medium },
+  headerMarketDataPrice: { fontSize: 24, fontFamily: Fonts.IBMPlexSans.bold, lineHeight: 31 },
+  boldTitleMarketDataPercentage: { fontSize: 18, fontFamily: Fonts.IBMPlexSans.bold, letterSpacing: -0.5, lineHeight: 25 },
+  boldTitleMarketDataPercentageLarge: { fontSize: 28, fontFamily: Fonts.IBMPlexSans.bold, letterSpacing: -0.2 },
 };
 
 export const Label = ({ children, color, type, style, testID, ...props }: LabelProps) => {

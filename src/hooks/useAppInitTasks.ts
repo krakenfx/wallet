@@ -1,41 +1,19 @@
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { useCallback, useRef } from 'react';
-
-import { useRealm } from '@/realm/RealmContext';
-import { RealmSettingsKey, useSettingsMutations } from '@/realm/settings';
-import { getSettingsByKey } from '@/realm/settings/getSettingsByKey';
-import { NavigationProps, Routes } from '@/Routes';
+import { useAppInitEffect } from './useAppInitEffect';
+import { useStoreReviewTask } from './useStoreReviewTask';
+import { useWalletConnectExplainerTask } from './useWalletConnectExplainerTask';
 
 export const useAppInitTasks = () => {
-  const { setWalletConnectExplainerNeeded } = useSettingsMutations();
-  const hasRunOnce = useRef(false);
-  const navigation = useNavigation<NavigationProps<'Home'>['navigation']>();
-  const realm = useRealm();
+  const walletConnectExplainerTask = useWalletConnectExplainerTask();
+  const storeReviewTask = useStoreReviewTask();
 
-  const checkWallectConnectExplainerTask = useCallback(() => {
-    const isExplainerNeeded = getSettingsByKey(realm, RealmSettingsKey.walletConnectExplainerNeeded);
-
-    switch (isExplainerNeeded) {
-      case undefined: {
-        setWalletConnectExplainerNeeded(true);
+  useAppInitEffect(count => {
+    switch (count) {
+      case 2:
+        walletConnectExplainerTask.runIfNeeded();
         break;
-      }
-      case true: {
-        setTimeout(() => {
-          navigation.navigate(Routes.WalletConnectExplainer);
-        }, 1000);
+      case 20:
+        storeReviewTask.runIfNeeded();
         break;
-      }
     }
-  }, [navigation, realm, setWalletConnectExplainerNeeded]);
-
-  useFocusEffect(
-    useCallback(() => {
-      if (hasRunOnce.current) {
-        return;
-      }
-      hasRunOnce.current = true;
-      checkWallectConnectExplainerTask();
-    }, [checkWallectConnectExplainerTask]),
-  );
+  });
 };

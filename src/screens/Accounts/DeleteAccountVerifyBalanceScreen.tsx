@@ -13,11 +13,11 @@ import { useManageAccount } from '@/hooks/useManageAccount';
 import { useAccountById } from '@/realm/accounts';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 import { AccountNavigationProps } from './AccountRouter';
 
 import loc from '/loc';
-import { formatAppCurrencyValue } from '/modules/text-utils';
 
 export interface DeleteAccountVerifyBalanceParams {
   accountNumber: number;
@@ -44,12 +44,12 @@ export const DeleteAccountVerifyBalanceScreen = ({ route, navigation }: AccountN
   };
 
   const balanceFooter = useMemo(() => {
-    return `${loc.deleteAccountVerifyBalance.balanceLabel} ${formatAppCurrencyValue(balance, currency)}`;
+    return `${loc.deleteAccountVerifyBalance.balanceLabel} ${formatCurrency(balance, { currency })}`;
   }, [balance, currency]);
 
   const rightElement = useMemo(() => <Label type="boldDisplay4"> {currencyInfo.symbol}</Label>, [currencyInfo.symbol]);
 
-  const deleteEnabled = formatAppCurrencyValue(balance, currency) === formatAppCurrencyValue(Number(userBalance), currency);
+  const deleteEnabled = formatCurrency(balance, { currency }) === formatCurrency(Number(userBalance), { currency });
 
   return (
     <BottomSheet {...bottomSheetProps} snapPoints={['100%']}>

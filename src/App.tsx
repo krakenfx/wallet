@@ -11,8 +11,10 @@ import { useSecureAppLock } from '@/hooks/useSecureAppLock';
 import { RealmQueueProvider } from '@/realm/hooks/useRealmQueue';
 import { SecuredRealmProvider } from '@/realm/SecuredRealmProvider';
 import { AppInBackground } from '@/screens/AppInBackground';
+import '@/utils/featureFlags';
 
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { GlobalStateProvider } from './components/GlobalState';
 import { MenuProvider } from './components/Menu';
 import { ToastManager } from './components/Toast';
 import NavigationStack from './Navigation';
@@ -87,20 +89,22 @@ const App = () => {
         <SafeAreaProvider>
           <NavigationContainer linking={linking} theme={SuperDarkTheme}>
             <SecuredRealmProvider>
-              <RealmQueueProvider>
-                <ErrorBoundary onError={onJSError}>
-                  <MenuProvider>
-                    <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
-                    <BottomSheetModalProvider>
-                      <SecuredKeychainProvider>
-                        <NavigationStack />
-                      </SecuredKeychainProvider>
-                    </BottomSheetModalProvider>
-                  </MenuProvider>
-                </ErrorBoundary>
-                <ToastManager />
-                <AppInBackground />
-              </RealmQueueProvider>
+              <GlobalStateProvider>
+                <RealmQueueProvider>
+                  <ErrorBoundary onError={onJSError}>
+                    <MenuProvider>
+                      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+                      <BottomSheetModalProvider>
+                        <SecuredKeychainProvider>
+                          <NavigationStack />
+                        </SecuredKeychainProvider>
+                      </BottomSheetModalProvider>
+                    </MenuProvider>
+                  </ErrorBoundary>
+                  <ToastManager />
+                  <AppInBackground />
+                </RealmQueueProvider>
+              </GlobalStateProvider>
             </SecuredRealmProvider>
           </NavigationContainer>
         </SafeAreaProvider>

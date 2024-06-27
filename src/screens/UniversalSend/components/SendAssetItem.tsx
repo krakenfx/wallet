@@ -33,7 +33,7 @@ export const SendAssetItem = ({ token, index, shouldAnimateIn, onSelected }: Pro
   const options = useMemo(
     () => ({
       onPress,
-      tag: <ReputationTag tokenID={token.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
+      tag: <ReputationTag assetId={token.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
       testID: `SendAssetRow-${token.assetId}`,
       hideZeroAmount: false,
       showAmountInFiat: true,

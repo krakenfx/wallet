@@ -1,19 +1,20 @@
 import { useRealm } from '@realm/react';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { fetchPriceForToken } from '@/api/fetchPriceForToken';
-import { isNetworkCoin } from '@/onChain/wallets/registry';
+import { useGlobalState } from '@/components/GlobalState';
 import { calculateBalance } from '@/utils/calculateBalance';
 
 import { useDefi } from '../defi';
 import { useLocalCacheState } from '../hooks/useLocalCacheState';
 import { useRealmQueue } from '../hooks/useRealmQueue';
 import { useObject, useQuery } from '../RealmContext';
-import { useAppCurrency, useFilterInBlacklistedAssets } from '../settings';
+import { useAppCurrency } from '../settings';
 import { useTokens } from '../tokens';
 import { getAvailableTokenBalance } from '../tokens/getAvailableTokenBalance';
 import { useCurrentUsdFiatRate } from '../usdFiatRates';
 
+import { useIsTokenRelevant } from './isTokenRelevant';
 import { REALM_TYPE_TOKEN_PRICE, RealmTokenPrice, TokenPrice } from './schema';
 import { useTokenPriceMutations } from './useTokenPriceMutations';
 
@@ -34,6 +35,8 @@ export const useTokenPrice = ({ assetId, realmQueueName, refresh }: Props): numb
   const { setShouldUseCache } = useLocalCacheState(assetId);
   const { addToRealmTransactionQueue, getFromLocalCache, saveInLocalCache } = useRealmQueue();
   const localCacheValue = assetId && realmQueueName ? getFromLocalCache<TokenPrice>(realmQueueName, CACHE_KEY, assetId) : undefined;
+  const [isRefreshing] = useGlobalState('isRefreshing');
+  const didFetch = useRef<boolean>();
 
   useEffect(() => {
     const fetchAndSetTokenPrice = async () => {
@@ -54,10 +57,22 @@ export const useTokenPrice = ({ assetId, realmQueueName, refresh }: Props): numb
         }
       }
     };
-    if ((!tokenPrice || refresh) && !localCacheValue) {
+    if ((!tokenPrice || (refresh && !didFetch.current)) && !localCacheValue && !isRefreshing) {
+      didFetch.current = true;
       fetchAndSetTokenPrice();
     }
-  }, [setTokenPrice, assetId, tokenPrice, refresh, realmQueueName, addToRealmTransactionQueue, saveInLocalCache, localCacheValue, setShouldUseCache]);
+  }, [
+    setTokenPrice,
+    assetId,
+    tokenPrice,
+    refresh,
+    realmQueueName,
+    addToRealmTransactionQueue,
+    saveInLocalCache,
+    localCacheValue,
+    setShouldUseCache,
+    isRefreshing,
+  ]);
 
   return useMemo(() => {
     const value = localCacheValue?.fiatValue[currency]?.value ?? tokenPrice?.fiatValue[currency]?.value;
@@ -114,26 +129,22 @@ export const useTotalWalletBalance = (): number => {
   const tokens = useTokens();
   const totalDefiUsdSum = useDefiNonTokenizedPositionsTotalBalance();
   const usdFiatRate = useCurrentUsdFiatRate();
-  const filterInBlacklistedAssets = useFilterInBlacklistedAssets();
+  const isTokenRelevant = useIsTokenRelevant();
   const totalDefiSum = usdFiatRate * totalDefiUsdSum;
 
   const { currency } = useAppCurrency();
 
   return (
-    tokens.reduce((accumulator, token) => {
+    tokens.filter(isTokenRelevant).reduce((accumulator, token) => {
       const realTokenBalance = getAvailableTokenBalance(token);
-      if (
-        !isNetworkCoin(token.assetId) &&
-        token.metadata.reputation &&
-        token.metadata.reputation.blacklists.length !== 0 &&
-        (!token.inGallery || !filterInBlacklistedAssets)
-      ) {
-        return accumulator;
-      }
       const realmPrice = token.price?.fiatValue[currency]?.value;
       let price: number = realmPrice !== undefined ? parseFloat(realmPrice) : 0;
       price = !isNaN(price) ? price : 0;
-      let balance = calculateBalance({ price, balance: realTokenBalance, decimals: token.metadata.decimals });
+      let balance = calculateBalance({
+        price,
+        balance: realTokenBalance,
+        decimals: token.metadata.decimals,
+      });
 
       balance = balance > 0 ? balance : 0;
 

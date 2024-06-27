@@ -11,6 +11,9 @@ export enum Currency {
 }
 
 export interface CurrencyInfo {
+  decimalSeparator: '.' | ',';
+  groupSeparator: ',' | '.' | "'";
+  minimumFractionDigits: number;
   nameKey: string;
   symbol: string;
   sign: string;
@@ -18,17 +21,65 @@ export interface CurrencyInfo {
 }
 
 const currencyInfoMap: Record<Currency, CurrencyInfo> = {
-  [Currency.USD]: { nameKey: 'usDollar', symbol: 'USD', sign: '$', signPosition: 'prefix' },
-  [Currency.GBP]: { nameKey: 'britishPound', symbol: 'GBP', sign: '£', signPosition: 'prefix' },
-  [Currency.AUD]: { nameKey: 'australianDollar', symbol: 'AUD', sign: '$', signPosition: 'prefix' },
-  [Currency.EUR]: { nameKey: 'euro', symbol: 'EUR', sign: '€', signPosition: 'prefix' },
-  [Currency.CHF]: { nameKey: 'swissFranc', symbol: 'CHF', sign: 'Fr.', signPosition: 'prefix' },
-  [Currency.CAD]: { nameKey: 'canadianDollar', symbol: 'CAD', sign: '$', signPosition: 'prefix' },
-  [Currency.JPY]: { nameKey: 'japaneseYen', symbol: 'JPY', sign: '¥', signPosition: 'prefix' },
+  [Currency.USD]: {
+    minimumFractionDigits: 2,
+    nameKey: 'usDollar',
+    symbol: 'USD',
+    sign: '$',
+    signPosition: 'prefix',
+    decimalSeparator: '.',
+    groupSeparator: ',',
+  },
+  [Currency.GBP]: {
+    minimumFractionDigits: 2,
+    nameKey: 'britishPound',
+    symbol: 'GBP',
+    sign: '£',
+    signPosition: 'prefix',
+    decimalSeparator: '.',
+    groupSeparator: ',',
+  },
+  [Currency.AUD]: {
+    minimumFractionDigits: 2,
+    nameKey: 'australianDollar',
+    symbol: 'AUD',
+    sign: '$',
+    signPosition: 'prefix',
+    decimalSeparator: '.',
+    groupSeparator: ',',
+  },
+  [Currency.EUR]: { minimumFractionDigits: 2, nameKey: 'euro', symbol: 'EUR', sign: '€', signPosition: 'prefix', decimalSeparator: ',', groupSeparator: '.' },
+  [Currency.CHF]: {
+    minimumFractionDigits: 2,
+    nameKey: 'swissFranc',
+    symbol: 'CHF',
+    sign: 'Fr.',
+    signPosition: 'prefix',
+    decimalSeparator: '.',
+    groupSeparator: "'",
+  },
+  [Currency.CAD]: {
+    minimumFractionDigits: 2,
+    nameKey: 'canadianDollar',
+    symbol: 'CAD',
+    sign: '$',
+    signPosition: 'prefix',
+    decimalSeparator: '.',
+    groupSeparator: ',',
+  },
+  [Currency.JPY]: {
+    minimumFractionDigits: 2,
+    nameKey: 'japaneseYen',
+    symbol: 'JPY',
+    sign: '¥',
+    signPosition: 'prefix',
+    decimalSeparator: '.',
+    groupSeparator: ',',
+  },
 };
 
 export function getCurrencyInfo(currency: Currency): CurrencyInfo {
-  return currencyInfoMap[currency];
+  return currencyInfoMap[currency] ?? currencyInfoMap[Currency.USD];
 }
 
 export function getLocalizedCurrencyName(currency: Currency): string {

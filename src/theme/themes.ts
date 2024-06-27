@@ -31,6 +31,7 @@ export const SuperDarkTheme = {
     light100: 'rgba(255, 255, 255, 1)',
     light75: 'rgba(255, 255, 255, 0.75)',
     light50: 'rgba(255, 255, 255, 0.5)',
+    light35: 'rgba(255,255, 2555, 0.35)',
     light15: 'rgba(255, 255, 255, 0.15)',
     light8: 'rgba(255, 255, 255, 0.08)',
 
@@ -52,6 +53,7 @@ export const SuperDarkTheme = {
     swapIconBg: 'rgba(33, 38, 77, 1)',
     coreBackground: '#0E0E35',
     blurBackgroundAndroid: '#302C3E',
+    lavenderIndigo: '#8B58F7',
   },
   gradients: {
     itemBackground: {

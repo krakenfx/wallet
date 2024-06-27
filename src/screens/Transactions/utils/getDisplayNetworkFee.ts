@@ -1,8 +1,8 @@
 import { NativeTokenSymbol } from '@/onChain/wallets/base';
 import { Currency } from '@/screens/Settings/currency';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { smallUnit2TokenUnit, tokenUnit2Fiat, tokenUnit2SmallestUnit } from '@/utils/unitConverter';
-
-import { amountStringShortened, formatAppCurrencyValue } from '/modules/text-utils';
 
 export const getDisplayNetworkFee = ({
   nativeTokenDecimals,
@@ -21,29 +21,35 @@ export const getDisplayNetworkFee = ({
     case 'BTC': {
       return {
         amount: networkFee ? tokenUnit2SmallestUnit(networkFee, nativeTokenDecimals).toString(10) + ' Sats' : '',
-        price: networkFee && tokenPrice ? formatAppCurrencyValue(tokenUnit2Fiat(networkFee, tokenPrice)?.toString(10), currency) : '',
+        price: networkFee && tokenPrice ? formatCurrency(tokenUnit2Fiat(networkFee, tokenPrice)?.toString(10), { currency, highPrecision: true }) : '',
       };
     }
     case 'DOGE': {
       return {
-        amount: networkFee ? smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10) + ' Doge' : '',
+        amount: networkFee
+          ? formatTokenAmount(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10), { currency, highPrecision: true }) + ' Doge'
+          : '',
         price:
           networkFee && tokenPrice
-            ? formatAppCurrencyValue(tokenUnit2Fiat(smallUnit2TokenUnit(networkFee, nativeTokenDecimals), tokenPrice)?.toString(10), currency)
+            ? formatCurrency(tokenUnit2Fiat(smallUnit2TokenUnit(networkFee, nativeTokenDecimals), tokenPrice)?.toString(10), { currency, highPrecision: true })
             : '',
       };
     }
     case 'SOL': {
       return {
-        amount: networkFee ? smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10) + ' Sol' : '',
+        amount: networkFee
+          ? formatTokenAmount(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10), { currency, highPrecision: true }) + ' Sol'
+          : '',
         price: '',
       };
     }
 
     default: {
       return {
-        amount: networkFee ? amountStringShortened(smallUnit2TokenUnit(networkFee, 9).toString(10), 0) + ' Gwei' : '',
-        price: networkFee ? amountStringShortened(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10)) + ' ' + nativeTokenSymbol : '',
+        amount: networkFee ? formatTokenAmount(smallUnit2TokenUnit(networkFee, 9).toString(10), { currency, highPrecision: true }) + ' Gwei' : '',
+        price: networkFee
+          ? formatTokenAmount(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10), { currency, highPrecision: true }) + ' ' + nativeTokenSymbol
+          : '',
       };
     }
   }

@@ -22,7 +22,8 @@ import { ActivityIndicatorView } from '../components/ActivityIndicatorView';
 
 import { ConnectedAppsEmptyState } from './ConnectedAppsEmptyState';
 
-import confirm from '/helpers/confirm';
+import { showAlert } from '/helpers/showAlert';
+
 import loc from '/loc';
 import { WalletConnectSessionsManager } from '/modules/wallet-connect';
 import { useWalletConnectActiveSessions } from '/modules/wallet-connect/hooks/useWalletConnectActiveSessions';
@@ -116,7 +117,7 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
 
   const deleteAll = useCallback(async () => {
     setIsLoading(true);
-    if (!(await confirm())) {
+    if (!(await showAlert())) {
       setIsLoading(false);
       return;
     }

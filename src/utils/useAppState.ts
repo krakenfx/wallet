@@ -1,26 +1,58 @@
 import { useEffect, useState } from 'react';
-import { AppState, AppStateStatus, Platform } from 'react-native';
+import { AppState, Platform } from 'react-native';
 
 import { isAuthenticating } from '/helpers/biometric-unlock';
+import ActivityLifecycle from '/modules/activity-lifecycle';
 
-export function useAppState() {
-  const currentState = AppState.currentState;
-  const [appState, setAppState] = useState(currentState);
+function useAppStateAndroid() {
+  const [appState, setAppState] = useState(AppState.currentState);
 
   useEffect(() => {
-    function onChange(newState: AppStateStatus) {
-      if (Platform.OS === 'android' && Platform.Version < 30 && isAuthenticating) {
-        return;
-      }
-      setAppState(newState);
+    if (Platform.OS !== 'android') {
+      throw Error('useAppStateAndroid not supported on ' + Platform.OS);
     }
-
-    const subscription = AppState.addEventListener('change', onChange);
-
+    const onStoppedListener = ActivityLifecycle.addListener('onActivityStopped', () => setAppState('background'));
+    const onResumedListener = ActivityLifecycle.addListener('onActivityResumed', () => setAppState('active'));
     return () => {
-      subscription.remove();
+      onStoppedListener.remove();
+      onResumedListener.remove();
     };
   }, []);
 
   return appState;
 }
+
+function useAppStateAndroidOldApi() {
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', newState => {
+      if (isAuthenticating) {
+        return;
+      }
+      setAppState(newState);
+    });
+    return () => subscription.remove();
+  }, []);
+
+  return appState;
+}
+
+function useAppStateDefault() {
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', state => setAppState(state));
+    return () => subscription.remove();
+  }, []);
+
+  return appState;
+}
+
+let useAppState = useAppStateDefault;
+
+if (Platform.OS === 'android') {
+  useAppState = Platform.Version >= 30 ? useAppStateAndroid : useAppStateAndroidOldApi;
+}
+
+export { useAppState };

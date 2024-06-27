@@ -55,7 +55,7 @@ export const OnboardingIntroScreen = ({ navigation }: OnboardingNavigationProps<
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="OnboardingIntroScreen">
       {createWalletState ? (
         <LottieView
           source={require('./assets/creatingWalletAnimation.json')}

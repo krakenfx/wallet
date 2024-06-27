@@ -6,17 +6,15 @@ import { GradientMask, GradientScreenView } from '@/components/Gradients';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useTheme } from '@/theme/themes';
 import { useAppState } from '@/utils/useAppState';
-import { useIsAppBlurred } from '@/utils/useIsAppBlurred';
 
 import { biometricUnlock } from '/helpers/biometric-unlock';
 import loc from '/loc';
 import BootTime from '/modules/boot-time';
 
-const maxLockTimeWithoutBioCheck = 1000;
+const maxLockTimeWithoutBioCheck = 1000 * 60;
 
 export const AppInBackground = () => {
   const appState = useAppState();
-  const isBlurred = useIsAppBlurred();
   const { colors } = useTheme();
   const [isLocked, setIsLocked] = useState(false);
 
@@ -74,7 +72,7 @@ export const AppInBackground = () => {
     }
   }, [appState, isLocked, requestLock, requestUnlock]);
 
-  const showPrivacyCover = appState === 'inactive' || isLocked || isBlurred;
+  const showPrivacyCover = appState === 'inactive' || appState === 'background' || isLocked;
 
   const Container = Platform.OS === 'ios' ? FullWindowOverlay : Fragment;
 

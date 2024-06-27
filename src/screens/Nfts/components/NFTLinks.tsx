@@ -31,6 +31,9 @@ const openArbiscan = (collectionId: string, tokenId: string) => {
 const openOptimismExplorer = (collectionId: string, tokenId: string) => {
   return () => Linking.openURL(`https://optimistic.etherscan.io/token/${collectionId}?a=${tokenId}`);
 };
+const openBlastExplorer = (collectionId: string, tokenId: string) => {
+  return () => Linking.openURL(`https://blastscan.io/token/${collectionId}?a=${tokenId}`);
+};
 const openSolscan = (_: string, tokenId: string) => {
   return () => Linking.openURL(`https://solscan.io/token/${tokenId}`);
 };
@@ -105,6 +108,14 @@ const config: Record<
       label: 'OP Mainnet Explorer',
       onPress: openOptimismExplorer,
       icon: 'optimistic-etherscan',
+    },
+    marketplaces: [{ label: 'Opensea', onPress: openOpenseaOptimism, icon: 'opensea' }],
+  },
+  blast: {
+    blockchainExplorer: {
+      label: 'Blastscan',
+      onPress: openBlastExplorer,
+      icon: 'blastscan',
     },
     marketplaces: [{ label: 'Opensea', onPress: openOpenseaOptimism, icon: 'opensea' }],
   },

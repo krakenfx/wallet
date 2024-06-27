@@ -185,6 +185,73 @@
   "manageWallets": {
     "title": "Manage wallets"
   },
+  "marketData": {
+    "about": "About {assetSymbol}",
+    "allTimeLow": {
+      "title": "All Time Low",
+      "details": "The lowest price a cryptocurrency has traded at since its inception."
+    },
+    "allTimeHigh": {
+      "title": "All Time High",
+      "details": "The highest price a cryptocurrency has traded at since its inception."
+    },
+    "circulatingSupply": {
+      "title": "Circulating Supply",
+      "details": "The number of coins or tokens that are actively available in the market and in the general public's hands."
+    },
+    "contractAddressCopied": "Contract Address copied!",
+    "explorers": "Explorers",
+    "fullyDilutedValuation": {
+      "short": "FDV",
+      "title": "Fully Diluted Valuation",
+      "details": "The market cap if the max supply was in circulation, calculated by multiplying the current price by the max supply."
+    },
+    "high": "High:",
+    "links": "Links",
+    "low": "Low:",
+    "marketCap": {
+      "short": "Market Cap",
+      "title": "Market Cap",
+      "details": "The total market value of a cryptocurrency, calculated by multiplying the current price by the circulating supply."
+    },
+    "maxSupply": {
+      "title": "Max Supply",
+      "details": "The maximum number of coins or tokens that will ever exist for a cryptocurrency, as defined by the project's protocol."
+    },
+    "networkFee": {
+      "title": "Network fee",
+      "current": "Current fee",
+      "duration": "Duration"
+    },
+    "period": {
+      "day": "24H",
+      "week": "1W",
+      "month": "1M",
+      "year": "1Y",
+      "all": "ALL"
+    },
+    "price": "Price",
+    "priceNotAvailable": "Price (not available)",
+    "readMore": "Read more",
+    "showLess": "Show less",
+    "terminology": "Terminology",
+    "tokenContract": "Token contract",
+    "tokenContractWarning": {
+      "header": "You just copied a token contract address",
+      "description": "{boldDescription} It is NOT your address for receiving funds. It is the smart contract address used to identify the token on the blockchain.",
+      "boldDescription": "Never send funds to the address you copied."
+    },
+    "totalSupply": {
+      "title": "Total Supply",
+      "details": "The number of coins or tokens that currently exist, including those that may be locked, reserved, or not yet released."
+    },
+    "volume24h": {
+      "short": "24h Volume",
+      "title": "24h Volume",
+      "details": "The total value of a cryptocurrency traded in the last 24 hours across all exchanges."
+    },
+    "website": "Website"
+  },
   "network": {
     "bitcoin": "Bitcoin",
     "polygon": "Polygon",
@@ -196,7 +263,8 @@
     "solana": "Solana",
     "solana_devnet": "Solana - Devnet",
     "dogecoin": "Dogecoin",
-    "tezos": "Tezos"
+    "tezos": "Tezos",
+    "blast": "Blast"
   },
   "nftList": {
     "title": "NFTs",
@@ -208,7 +276,9 @@
       },
       "selectedNetworks": {
         "heading": "No NFTs on selected networks",
-        "subheading": "Your wallet contains 0 NFTs on the selected networks"
+        "subheading": "Your wallet contains 0 NFTs on the selected networks",
+        "blastHeading": "Blast NFTs coming soon",
+        "blastSubheading": "This wallet does not yet support viewing your NFTs on the Blast network"
       }
     },
     "collections": "Collections",
@@ -367,6 +437,13 @@
       "aaveDescription": "Borrow and lend crypto on Aave",
       "buttonText": "Close"
     }
+  },
+  "blastWelcoming": {
+    "title": "Kraken Wallet Welcomes Blast!",
+    "boldBlastNetwork": "Blast Network",
+    "part1": "Your wallet now supports the {boldBlastNetwork}. The Ethereum L2 with native yield for ETH and stablecoins.",
+    "part2": "The Blast integration enables you to view asset balances, broadcast transactions, and connect to dapps on the Blast Network. NFT support is coming soon.",
+    "buttonText": "Sounds good"
   },
   "onboardingOutro": {
     "title": "Your wallet is ready",
@@ -581,6 +658,15 @@
     "support": "Support",
     "wallets": "Wallets"
   },
+  "storeReview": {
+    "alertTitle": "Are you enjoying the Kraken Wallet App?",
+    "alertMessage": "We’d love to know if you’re having a great experience.",
+    "notReally": "Not really",
+    "yes": "Yes",
+    "nagativeAlertTitle": "We’re sorry you’re not having a good time with this app.",
+    "negativeAlertMessage": "Would you like to let us know how we can improve your experience?",
+    "sendFeedback": "Send feedback"
+  },
   "support": {
     "knowledgeBaseTitle": "Knowledge base",
     "knowledgeBaseDesc": "Search our docs, read our FAQs and get in touch",
@@ -746,6 +832,7 @@
     "type": "Type: {type}"
   },
   "transactionTile": {
+    "balance": "balance",
     "nativeAssetView": {
       "send": "Send {assetSymbol}",
       "approval": "Approval",
@@ -777,7 +864,9 @@
   "reputation": {
     "verified": "Listed by",
     "likelySpam": "Likely spam",
-    "unverified": "Not listed"
+    "unverified": "Not listed",
+    "onTokenLists": "On {count} token lists",
+    "title": "Reputation"
   },
   "floatingTransactionActivityButtons": {
     "send": "Send",
@@ -792,9 +881,13 @@
     "likelySpamTitle": "Likely Spam",
     "likelySpamDescription": "Use extreme caution when interacting this token. It could be harmful.",
     "likelySpamHelp": "What are likely spam tokens?",
+    "likelySpamUseCaution": "Use extreme caution",
     "likelySpamInfo": "Likely spam tokens have been flagged by public communities or one of our partners as being spam, fraudulent or harmful.",
     "unverified": "Not listed",
     "unverifiedDescription": "This token is not listed on any of the supported Token Lists. Use caution.",
+    "unverifiedWarning": "Please use caution",
+    "unverifiedButtonLink": "Why is it not listed?",
+    "unverifiedExplainerDescription": "Tokens that are not listed by one of our supported project lists and have not been flagged for spam will be found on this list.",
     "verified": "Listed",
     "verifiedKraken": "Kraken Listed Tokens",
     "verifiedInfoKraken": "Tokens listed here are currently available on the Kraken exchange."

@@ -33,7 +33,13 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
               <Label type="boldTitle2">Ethereum</Label>
               <NetworkIDIcons
                 align="left"
-                networkIDs={[ChainAgnostic.NETWORK_POLYGON, ChainAgnostic.NETWORK_ARBITRUM, ChainAgnostic.NETWORK_BASE, ChainAgnostic.NETWORK_OPTIMISM]}
+                networkIDs={[
+                  ChainAgnostic.NETWORK_POLYGON,
+                  ChainAgnostic.NETWORK_ARBITRUM,
+                  ChainAgnostic.NETWORK_BASE,
+                  ChainAgnostic.NETWORK_OPTIMISM,
+                  ChainAgnostic.NETWORK_BLAST,
+                ]}
               />
             </View>
             <Touchable onPress={showExplainer} style={styles.row}>

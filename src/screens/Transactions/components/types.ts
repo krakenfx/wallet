@@ -27,7 +27,7 @@ export type DisplayData = {
   isNetworkFee: boolean;
   isSwapSent: boolean;
   title: string;
-  assetAmountAndNetworkFeeFormatted?: string;
+  assetAmountAndNetworkFee?: string;
   assetAmountAndNetworkFeeInCurrencyFormatted?: string;
   status?: TransactionStatus['status'];
 };

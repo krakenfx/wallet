@@ -11,12 +11,12 @@ import { ListHeader } from '@/components/ListHeader';
 import { NFTCollectionRow } from '@/components/NFTCollectionRow';
 import { ReputationTag } from '@/components/Reputation';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
-import { useDefaultSnapPoints } from '@/hooks/useDefaultSnapPoints';
+import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { REPUTATION } from '@/hooks/useReputation';
 import { RealmDefi, useDefi } from '@/realm/defi';
 import { NftsCollection, useNftsArchivedCollection, useNftsCollections } from '@/realm/nfts';
 import { useTokenPrices } from '@/realm/tokenPrice';
-import { RealmToken, sortTokensByFiatPrice, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
+import { RealmToken, sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
 import { NavigationProps, Routes } from '@/Routes';
 import { DefiRow } from '@/screens/DefiDetails/components/DefiRow';
 import { isRealmObject } from '@/utils/isRealmObject';
@@ -86,7 +86,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   const stickyHeaderIndex = useSharedValue(0);
 
   const tokensDataSource = useMemo(() => {
-    return sortTokensByFiatPrice(tokens.filtered('inGallery == true'), tokenPrices);
+    return sortTokensByFiatValue(tokens.filtered('inGallery == true'), tokenPrices);
   }, [tokens, tokenPrices]);
 
   const sections = useMemo(() => {
@@ -125,7 +125,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
       const options = {
         onPress: () => navigation.navigate(Routes.Transactions, { assetBalanceId: { assetId: item.assetId, walletId: item.walletId } }),
         showAmountInFiat: true,
-        tag: <ReputationTag tokenID={item.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
+        tag: <ReputationTag assetId={item.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
         testID: `Asset-${item.assetId}`,
         walletId: item.walletId,
       };
@@ -220,7 +220,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
     [stickyHeaderIndex],
   );
 
-  const defaultSnapPoints = useDefaultSnapPoints();
+  const defaultSnapPoints = useCommonSnapPoints('toHeaderAndMainContent');
   const { bottom } = useSafeAreaInsets();
 
   const minBottomSnapPoint = useMemo(() => {

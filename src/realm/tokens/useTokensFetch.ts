@@ -1,9 +1,9 @@
 import { compact } from 'lodash';
 import { useCallback, useRef } from 'react';
 
+import { fetchTokenMetadata } from '@/api/fetchTokenMetadata';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { getWalletStorage } from '@/onChain/wallets/walletState';
-import { fetchTokenMetadata } from '@/utils/fetchTokenMetadata';
 import { isPromiseFulfilled, isPromiseRejected } from '@/utils/promise';
 
 import { AssetMetadata, REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
@@ -73,7 +73,7 @@ export const useTokensFetch = () => {
       const { network, transport } = getImplForWallet(wallet);
 
       const balances = await transport.fetchBalance(network, wallet, await getWalletStorage(realm, wallet, refreshState), getTokenMetadata);
-      return saveTokensToRealm(balances, wallet);
+      return saveTokensToRealm(balances, wallet, false);
     },
     [realm, saveTokensToRealm, getTokenMetadata],
   );

@@ -15,7 +15,7 @@ export const sortTokensAlphabetically = {
   realm: ['metadata.label', 'metadata.symbol', 'wallet.type'],
 };
 
-const sortTokensByFiatPriceDesc = (tokenPrices: ReturnType<typeof useTokenPrices>) => {
+const sortTokensByFiatValueDesc = (tokenPrices: ReturnType<typeof useTokenPrices>) => {
   return (token: RealmToken) => {
     if (token.balance === '0') {
       return 1;
@@ -28,6 +28,6 @@ const sortTokensByFiatPriceDesc = (tokenPrices: ReturnType<typeof useTokenPrices
   };
 };
 
-export const sortTokensByFiatPrice = (tokens: RealmResults<RealmToken>, tokenPrices: ReturnType<typeof useTokenPrices>): RealmToken[] => {
-  return sortBy(tokens.sorted(sortTokensAlphabetically.realm), sortTokensByFiatPriceDesc(tokenPrices));
+export const sortTokensByFiatValue = (tokens: RealmResults<RealmToken>, tokenPrices: ReturnType<typeof useTokenPrices>): RealmToken[] => {
+  return sortBy(tokens.sorted(sortTokensAlphabetically.realm), sortTokensByFiatValueDesc(tokenPrices));
 };

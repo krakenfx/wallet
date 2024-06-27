@@ -10,12 +10,14 @@ import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyVal
 import { Network } from '@/onChain/wallets/base';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useTokenPrice } from '@/realm/tokenPrice';
-import { RealmToken, useTokenByAssetId } from '@/realm/tokens';
-import { getAvailableTokenBalance } from '@/realm/tokens/getAvailableTokenBalance';
+import { RealmToken, getAvailableTokenBalance, useTokenByAssetId } from '@/realm/tokens';
+import { Currency } from '@/screens/Settings/currency';
 import { useTheme } from '@/theme/themes';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
+import { isBtc } from '@/utils/isBtc';
 import { unitConverter } from '@/utils/unitConverter';
 
-import { amountInTokenUnitShortened, amountStringShortened, formatAppCurrencyValue } from '../../../../modules/text-utils';
 import { Input } from '../../../components/Input';
 import { useFormField } from '../utils/sendForm';
 
@@ -47,7 +49,7 @@ const sanitizeValue = (value: string) => {
     newValue = newValue.replace(/^0+/, '');
   }
 
-  newValue = newValue.replace(/[^0-9.]/g, '');
+  newValue = newValue.replace(/[^0-9.]+/g, '').replace(/(\..*?)\.+/g, '$1');
   return newValue;
 };
 
@@ -72,8 +74,12 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
     const feeTokenBalanceAmount = unitConverter.smallUnit2TokenUnit(new BigNumber(feeToken.balance), feeToken.metadata.decimals);
     const balanceAmount = unitConverter.smallUnit2TokenUnit(new BigNumber(getAvailableTokenBalance(token)), token.metadata.decimals);
     const availableAssetAmount = isNativeToken ? balanceAmount.minus(feeAmount) : balanceAmount;
-    const availableAssetAmountFormatted = amountStringShortened(availableAssetAmount.toString(10));
-    const balanceAmountFormatted = amountStringShortened(balanceAmount.toString(10));
+    const availableAssetAmountFormatted = formatTokenAmount(availableAssetAmount.toString(10), {
+      currency,
+      highPrecision: true,
+      isBtc: isBtc({ assetId: token.assetId }),
+    });
+    const balanceAmountFormatted = formatTokenAmount(balanceAmount.toString(10), { currency, highPrecision: true, isBtc: isBtc({ assetId: token.assetId }) });
     return {
       feeAmount,
       feeTokenBalanceAmount,
@@ -82,7 +88,7 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
       availableAssetAmount,
       availableAssetAmountFormatted,
     };
-  }, [currentFeeEstimate, feeToken.balance, feeToken.metadata.decimals, isNativeToken, token]);
+  }, [currentFeeEstimate, currency, feeToken.balance, feeToken.metadata.decimals, isNativeToken, token]);
 
   const setInputFiatCurrency = (value: boolean) => {
     setInputInFiatCurrency(value);
@@ -116,9 +122,15 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
         setAssetAmount('');
         return;
       }
-      setAssetAmount(amountStringShortened(new BigNumber(newFiatAmount).dividedBy(exchangeRate).toFixed(token.metadata.decimals)));
+      setAssetAmount(
+        formatTokenAmount(new BigNumber(newFiatAmount).dividedBy(exchangeRate).toFixed(token.metadata.decimals), {
+          currency: Currency.USD,
+          highPrecision: true,
+          isBtc: isBtc(token),
+        }),
+      );
     },
-    [exchangeRate, token.metadata.decimals],
+    [exchangeRate, token],
   );
 
   const showFeeError = useCallback(() => {
@@ -143,7 +155,7 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
     }),
     [assetAmount, getFiatAmount, isMaxAmount, showFeeError, updateFiatAmount],
   );
-  const inputValue = inputInFiatCurrency ? fiatAmount : assetAmount;
+  const inputValue = (inputInFiatCurrency ? fiatAmount : assetAmount).replace('.', currencyInfo.decimalSeparator);
 
   const onChangeAmount = useCallback(
     (changedValue: string) => {
@@ -224,14 +236,20 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
 
   const footerLeft =
     !!inputValue && !!exchangeRate && assetAmount && fiatAmount
-      ? `${inputInFiatCurrency ? amountInTokenUnitShortened(assetAmount, 0) : formatAppCurrencyValue(fiatAmount, currency)} ${
-          inputInFiatCurrency ? token.metadata.symbol : ''
-        }`
+      ? `${
+          inputInFiatCurrency
+            ? formatTokenAmount(unitConverter.smallUnit2TokenUnit(assetAmount, 0).toString(10), {
+                currency,
+                highPrecision: true,
+                isBtc: isBtc({ assetId: token.assetId }),
+              })
+            : formatCurrency(fiatAmount, { currency })
+        } ${inputInFiatCurrency ? token.metadata.symbol : ''}`
       : undefined;
 
   const fiatTotalBalance = useTokenBalanceConvertedToAppCurrency(token);
   const balanceValue =
-    inputInFiatCurrency && fiatTotalBalance ? formatAppCurrencyValue(fiatTotalBalance, currency) : `${amounts.balanceAmountFormatted} ${token.metadata.symbol}`;
+    inputInFiatCurrency && fiatTotalBalance ? formatCurrency(fiatTotalBalance, { currency }) : `${amounts.balanceAmountFormatted} ${token.metadata.symbol}`;
 
   const footerRight = loc.formatString(
     loc.send.balance,

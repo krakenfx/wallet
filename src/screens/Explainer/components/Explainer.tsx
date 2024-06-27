@@ -61,11 +61,29 @@ const styles = StyleSheet.create({
 export const ExplainerTokenLists = () => (
   <Explainer image={<Image source={checkMarkImage} />} heading={loc.tokenLists.help} body={loc.tokenLists.description} />
 );
+export const ExplainerUnverifiedLists = () => (
+  <Explainer image={<Image source={checkMarkImage} />} heading={loc.tokenLists.unverifiedButtonLink} body={loc.tokenLists.unverifiedExplainerDescription} />
+);
 export const ExplainerWhitelistedKraken = () => (
   <Explainer image={<Image source={checkMarkImage} />} heading={loc.tokenLists.verifiedKraken} body={loc.tokenLists.verifiedInfoKraken} />
 );
 export const ExplainerBlacklisted = () => (
   <Explainer image={<Image source={exclamationImage} style={styles.image} />} heading={loc.tokenLists.likelySpamHelp} body={loc.tokenLists.likelySpamInfo} />
+);
+
+export const ExplainerTokenContract = () => (
+  <Explainer
+    image={<Image source={exclamationImage} style={styles.image} />}
+    heading={loc.marketData.tokenContractWarning.header}
+    // @ts-ignore
+    body={loc.formatString(loc.marketData.tokenContractWarning.description, {
+      boldDescription: (
+        <Label type="regularBody" color="yellow600">
+          {loc.marketData.tokenContractWarning.boldDescription}
+        </Label>
+      ),
+    })}
+  />
 );
 export const ExplainerEthereumAddress = () => (
   <Explainer

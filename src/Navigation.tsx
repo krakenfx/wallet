@@ -15,6 +15,7 @@ import {
   WalletConnectSignRequest_GenericTransactionScreen,
   WalletConnectSignRequest_StructuredTransactionScreen,
 } from '@/screens/AppSignRequest';
+import { BlastWelcomingScreen } from '@/screens/BlastWelcoming';
 import { CoinsListScreen } from '@/screens/CoinsList';
 import { ConnectAppScreen } from '@/screens/ConnectApp';
 import { ConnectAppQRScanScreen } from '@/screens/ConnectAppQRScan';
@@ -26,6 +27,7 @@ import { GlobalActivityScreen } from '@/screens/GlobalActivity';
 import { HomeScreen } from '@/screens/Home';
 import { ManageAssetsGlobalFilterScreen } from '@/screens/ManageAssetsGlobalFilter';
 
+import { MarketDataInfoScreen } from '@/screens/MarketDataInfoScreen';
 import { ManageNftScreen, NftCollectionScreen, NftImageGalleryScreen, NftsScreen, ViewNftScreen } from '@/screens/Nfts';
 import { OnboardingRouter } from '@/screens/Onboarding';
 import { ReceiveScreen, UniversalReceiveScreen } from '@/screens/Receive';
@@ -112,12 +114,14 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="UniversalSend" component={UniversalSendScreen} options={UniversalSendScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Settings" component={SettingsRouter} options={SettingsRouter.navigationOptions} />
       <DefaultStack.Screen name="TokenLists" component={TokenListsScreen} options={TokenListsScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="MarketDataInfo" component={MarketDataInfoScreen} options={MarketDataInfoScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="TransactionDetails" component={TransactionDetailsScreen} options={TransactionDetailsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Transactions" component={TransactionsScreen} options={TransactionsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ViewNft" component={ViewNftScreen} options={ViewNftScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="TriggeredPushPrompt" component={TriggeredPushPromptScreen} options={TriggeredPushPromptScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="SendQRScan" component={SendQRScanScreen} options={SendQRScanScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="WalletConnectExplainer" component={WalletConnectExplainerScreen} options={WalletConnectExplainerScreen.navigationOptions} />
+      <DefaultStack.Screen name="BlastWelcoming" component={BlastWelcomingScreen} options={BlastWelcomingScreen.navigationOptions} />
       <DefaultStack.Screen
         name="WalletConnectSignRequest_GenericMessage"
         component={WalletConnectSignRequest_GenericMessageScreen}

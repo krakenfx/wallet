@@ -1,7 +1,7 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Realm from 'realm';
 
-import { fetchTokenMetadata } from '@/utils/fetchTokenMetadata';
+import { fetchTokenMetadata } from '@/api/fetchTokenMetadata';
 
 import { useLocalCacheState } from '../hooks/useLocalCacheState';
 import { useRealmQueue } from '../hooks/useRealmQueue';
@@ -15,34 +15,47 @@ import { createErrorHandlerWithContext } from '/helpers/errorHandler';
 interface Props {
   assetId: string;
   realmQueueName?: string;
+  refresh?: boolean;
 }
 
 const CACHE_KEY = 'assetMetadata';
 
-export const useAssetMetadata = ({ assetId, realmQueueName }: Props): AssetMetadata | undefined => {
+export const useAssetMetadata = ({ assetId, realmQueueName, refresh }: Props): AssetMetadata | undefined => {
   const currentMetadata = useObject<RealmAssetMetadata, string | undefined>(REALM_TYPE_ASSET_METADATA, assetId, 'assetId');
   const { setAssetItemMetadata } = useAssetMetadataMutations();
   const { setShouldUseCache } = useLocalCacheState(assetId);
   const { addToRealmTransactionQueue, saveInLocalCache, getFromLocalCache } = useRealmQueue();
   const localCacheValue = assetId && realmQueueName ? getFromLocalCache<AssetMetadata>(realmQueueName, CACHE_KEY, assetId) : undefined;
+  const didFetch = useRef<boolean>();
 
   useEffect(() => {
-    const fetchAndSetNftMetadata = async () => {
+    const fetchAndSetAssetMetadata = async () => {
       const tokenMetadata = await fetchTokenMetadata(assetId!);
       if (tokenMetadata) {
         if (realmQueueName) {
           saveInLocalCache<AssetMetadata>(realmQueueName, CACHE_KEY, assetId, tokenMetadata);
-          setShouldUseCache(true);
+          setShouldUseCache(!refresh);
           addToRealmTransactionQueue(realmQueueName, () => setAssetItemMetadata(tokenMetadata));
         } else {
           setAssetItemMetadata(tokenMetadata);
         }
       }
     };
-    if (assetId && (!currentMetadata || currentMetadata?.updateRequired) && !localCacheValue) {
-      fetchAndSetNftMetadata().catch(createErrorHandlerWithContext('ERROR_CONTEXT_PLACEHOLDER'));
+    if ((assetId && (!currentMetadata || currentMetadata?.updateRequired) && !localCacheValue) || (refresh && !didFetch.current)) {
+      didFetch.current = true;
+      fetchAndSetAssetMetadata().catch(createErrorHandlerWithContext('ERROR_CONTEXT_PLACEHOLDER'));
     }
-  }, [setAssetItemMetadata, currentMetadata, assetId, addToRealmTransactionQueue, realmQueueName, saveInLocalCache, localCacheValue, setShouldUseCache]);
+  }, [
+    setAssetItemMetadata,
+    currentMetadata,
+    assetId,
+    addToRealmTransactionQueue,
+    realmQueueName,
+    saveInLocalCache,
+    localCacheValue,
+    setShouldUseCache,
+    refresh,
+  ]);
 
   return useMemo(() => localCacheValue ?? currentMetadata, [currentMetadata, localCacheValue]);
 };

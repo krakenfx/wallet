@@ -52,7 +52,7 @@ export const getShouldFilterOutTransactionByReputation = (
   const txMetadata = getTransactionMetadata(tx);
   const assetNftId = txMetadata.kind === 'nft' ? txMetadata?.nft?.assetId : undefined;
   const nftMetadata = assetNftId ? getNftMetadata(realm, assetNftId) : undefined;
-  const isSpam = nftMetadata?.isSpam;
+  const isSpam = nftMetadata?.isSpam || tx.protocolInfo?.possibleSpam;
   const reputation = getAssetReputation(realm, getAssetIdFromTxMetadata(txMetadata));
   return shouldFilterOutTransactionByReputation(reputation, txMetadata, filterInUnverifiedAssets, filterInBlacklistedAssets, isSpam);
 };

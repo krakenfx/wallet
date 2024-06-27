@@ -1,7 +1,7 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 
-import { fetchTokenLists } from '@/utils/fetchTokenLists';
+import { fetchTokenLists } from '@/api/fetchTokenLists';
 
 import { BLACKLISTED } from '../const';
 

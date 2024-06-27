@@ -208,7 +208,7 @@ export const ViewNftScreen = ({ navigation, route }: NavigationProps<'ViewNft'>)
             <NftTraits nft={nft} />
             {!!nft.metadata.description && (
               <>
-                <Label type="boldTitle2" style={styles.sectionHeading}>
+                <Label type="boldTitle2" style={styles.sectionHeading} testID="NftAbout">
                   {loc.nftView.about}
                 </Label>
                 <Label type="regularBody">{nft.metadata.description}</Label>

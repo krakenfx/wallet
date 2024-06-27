@@ -9,6 +9,7 @@ const timePerBlockInSecondsMap: Partial<Record<WalletType, number>> = {
   polygon: 12,
   arbitrum: 0.25,
   optimism: 2,
+  blast: 2,
   HDsegwitBech32: 10 * 60,
 };
 
@@ -17,7 +18,7 @@ export const getTimeEstimate = (type: WalletType, estimatedTimeBlocks: number) =
 
   if (timePerBlockInSeconds && estimatedTimeBlocks) {
     const now = Date.now();
-    return formatDistanceStrict(addSeconds(now, estimatedTimeBlocks * timePerBlockInSeconds), now, {
+    return formatDistanceStrict(addSeconds(now, Math.max(1, estimatedTimeBlocks * timePerBlockInSeconds)), now, {
       locale: getDateLocale(),
     });
   }

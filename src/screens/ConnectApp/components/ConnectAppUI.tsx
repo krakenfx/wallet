@@ -72,14 +72,14 @@ export const ConnectAppUI = ({ appMetadata, networkIDs, requiredNetworkIDs, uiSt
   const hasSupportedNetworks = supportedNetworks.length > 0;
   const shouldDisableConfirmation = hasUnsupportedRequiredNetworks || !hasSupportedNetworks;
   const { height } = useSafeAreaFrame();
-  const { setWalletConnectExplainerNeeded } = useSettingsMutations();
+  const { setWalletConnectExplainerTaskCompleted } = useSettingsMutations();
   const isCriticalWarning = verification.warning?.severity === 'critical';
   const renderFooter = React.useCallback(
     (props: BottomSheetFooterProps) => {
       const handleApproveSession = async () => {
         if (await biometricUnlock()) {
           approveSession?.();
-          setWalletConnectExplainerNeeded(false);
+          setWalletConnectExplainerTaskCompleted();
         }
       };
       return (
@@ -100,7 +100,7 @@ export const ConnectAppUI = ({ appMetadata, networkIDs, requiredNetworkIDs, uiSt
         </View>
       );
     },
-    [isCriticalWarning, shouldDisableConfirmation, rejectSession, approveSession, setWalletConnectExplainerNeeded],
+    [isCriticalWarning, shouldDisableConfirmation, rejectSession, approveSession, setWalletConnectExplainerTaskCompleted],
   );
 
   useEffect(() => {

@@ -15,13 +15,15 @@ import { RefreshControlScrollView } from '@/components/RefreshControlScrollView'
 import { ReputationPill } from '@/components/Reputation';
 import { hideToast } from '@/components/Toast';
 import { Touchable } from '@/components/Touchable';
-import { useDefaultSnapPoints } from '@/hooks/useDefaultSnapPoints';
+import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { useResolvedAssetBalance, useTokenById, useTokensFetch } from '@/realm/tokens';
 import { useTransactionsFetch } from '@/realm/transactions/useTransactionsFetch';
 import { useRealmWalletById } from '@/realm/wallets';
 import { NavigationProps, Routes } from '@/Routes';
+import { TransactionsScreenV2 } from '@/screens/Transactions/TransactionsScreenV2';
 import { useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
 import { AssetBalanceId } from '@/types';
+import { FeatureFlag, useFeatureFlag } from '@/utils/featureFlags';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { refreshingTransactionsEvent, showRefreshingTransactionsToast } from './utils/showRefreshingTransactionsToast';
@@ -33,7 +35,7 @@ export type TransactionsRouteProps = {
   assetBalanceId: AssetBalanceId;
 };
 
-export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Transactions'>) => {
+export const TransactionsScreenV1 = ({ navigation, route }: NavigationProps<'Transactions'>) => {
   const params = route.params;
   const isRefreshing = useRef<boolean>(false);
 
@@ -128,15 +130,15 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
             wallet={realmWallet}
             testID="TokenScreen"
             pill={
-              <Touchable onPress={() => navigation.navigate(Routes.TokenLists, { tokenID: token.assetId })}>
-                <ReputationPill tokenID={token.assetId} style={styles.reputationPillContainer} />
+              <Touchable onPress={() => navigation.navigate(Routes.TokenLists, { assetId: token.assetId })}>
+                <ReputationPill assetId={token.assetId} style={styles.reputationPillContainer} />
               </Touchable>
             }
           />
         </RefreshControlScrollView>
       ) : null}
 
-      <BottomSheet noBackdrop snapPoints={useDefaultSnapPoints()} noSafeInsetTop dismissible={false}>
+      <BottomSheet noBackdrop snapPoints={useCommonSnapPoints('toHeaderAndMainContent')} noSafeInsetTop dismissible={false}>
         {dataSource && dataSource?.length > 0 && (
           <ListHeader buttonTestID="TokenScreen-BottomSheet-Heading" title={loc.transactionTile.activity} style={styles.header} />
         )}
@@ -158,6 +160,15 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
       <FloatingSendReceive navigation={navigation} assetBalanceId={params.assetBalanceId} />
     </GradientScreenView>
   );
+};
+
+export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Transactions'>) => {
+  const { isFeatureFlagEnabled: isAssetMarketDataEnabled } = useFeatureFlag(FeatureFlag.AssetMarketDataEnabled);
+  if (isAssetMarketDataEnabled) {
+    return <TransactionsScreenV2 navigation={navigation} route={route} />;
+  } else {
+    return <TransactionsScreenV1 navigation={navigation} route={route} />;
+  }
 };
 
 TransactionsScreen.navigationOptions = navigationStyle({

@@ -7,6 +7,7 @@ import { Routes } from '@/Routes';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
 import { REALM_TYPE_ACCOUNT, RealmAccount } from '../accounts';
+import { REALM_TYPE_ASSET_MARKET_DATA } from '../assetMarketData';
 import { REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
 import { REALM_TYPE_DEFI } from '../defi';
 import { useRealmQueue } from '../hooks/useRealmQueue';
@@ -36,6 +37,7 @@ export const useClearAppCache = () => {
           REALM_TYPE_DEFI,
           REALM_TYPE_NFT,
           REALM_TYPE_NFT_METADATA,
+          REALM_TYPE_ASSET_MARKET_DATA,
           REALM_TYPE_TOKEN_PRICE,
         ];
 

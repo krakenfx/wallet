@@ -1,6 +1,6 @@
 import { networkIdToNetworkName } from '@/onChain/wallets/registry';
 
-import { untilFirstBackslash } from '/modules/text-utils';
+import { untilFirstBackslash } from '@/utils/stringUtils';
 
 export const getNetworkNameFromAssetId = (assetId: string) => {
   const networkId = (assetId.match(untilFirstBackslash) || []).join();

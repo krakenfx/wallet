@@ -71,7 +71,12 @@ export const WalletBackupVerify = ({ onVerifySuccess }: Props) => {
   const resetAvailableWords = useCallback(() => setAvailableWords(shuffle(secretElements)), [secretElements]);
 
   const onVerify = useCallback(() => {
-    if (isEqual(secretElements, selectedWords)) {
+    if (
+      isEqual(
+        secretElements.map(e => e.word),
+        selectedWords.map(e => e.word),
+      )
+    ) {
       validator.setState('valid', () => {
         setSettings(RealmSettingsKey.isWalletBackupDone, true);
         onVerifySuccess();

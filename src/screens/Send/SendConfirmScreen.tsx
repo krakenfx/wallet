@@ -32,6 +32,8 @@ import { useRealmWalletById } from '@/realm/wallets';
 import { Routes } from '@/Routes';
 import { showRecentActivity } from '@/screens/Home/components/homeAssetPanelEventEmitter';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { getWalletName } from '@/utils/getWalletName';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 import { tokenUnit2SmallestUnit, unitConverter } from '@/utils/unitConverter';
@@ -51,7 +53,6 @@ import { totalFeeToFiatString } from './utils/totalFeeToFiatString';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
-import { amountStringShortened, formatAppCurrencyValue } from '/modules/text-utils';
 
 export type SendConfirmRouteParams = {
   walletId: string;
@@ -101,7 +102,7 @@ export const SendConfirmScreen = ({ route, navigation }: SendNavigationProps<'Se
     return {
       amountFiat:
         transactionParams.type !== 'nft' && tokenPrice
-          ? formatAppCurrencyValue(unitConverter.tokenUnit2Fiat(new BigNumber(transactionParams.amount), tokenPrice).toFixed(2), currency)
+          ? formatCurrency(unitConverter.tokenUnit2Fiat(new BigNumber(transactionParams.amount), tokenPrice).toFixed(2), { currency })
           : undefined,
       feeFiat: totalFeeToFiatString(currency, feeEstimates[selectedFee], wallet, feePrice),
       fee: feeEstimates[selectedFee],
@@ -193,7 +194,7 @@ export const SendConfirmScreen = ({ route, navigation }: SendNavigationProps<'Se
               renderTop={({ containerStyle }) => (
                 <TransactionAmount
                   tokenIconProps={{ wallet, tokenId: transactionParams.token.assetId, tokenSymbol: transactionParams.token.metadata.symbol }}
-                  assetAmount={`-${amountStringShortened(transactionParams.amount)}`}
+                  assetAmount={`-${formatTokenAmount(transactionParams.amount, { compact: true, currency })}`}
                   assetFiatAmount={amounts?.amountFiat ? `-${amounts.amountFiat}` : undefined}
                   assetNetwork={wallet.type}
                   assetSymbol={transactionParams.token.metadata.symbol}
@@ -206,7 +207,7 @@ export const SendConfirmScreen = ({ route, navigation }: SendNavigationProps<'Se
             <>
               <TransactionAmount
                 tokenIconProps={{ wallet, tokenId: transactionParams.token.assetId, tokenSymbol: transactionParams.token.metadata.symbol }}
-                assetAmount={`-${amountStringShortened(transactionParams.amount)}`}
+                assetAmount={`-${formatTokenAmount(transactionParams.amount, { compact: true, currency })}`}
                 assetFiatAmount={amounts?.amountFiat ? `-${amounts.amountFiat}` : undefined}
                 assetNetwork={wallet.type}
                 assetSymbol={transactionParams.token.metadata.symbol}

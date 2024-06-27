@@ -23,4 +23,4 @@ export const URLs = {
   supportContact: 'https://support.kraken.com/hc/en-us/forms/24835178652180',
 };
 
-export const DISABLE_SCREEN_CAPTURE = Config.DISABLE_SCREEN_CAPTURE;
+export const DISABLE_PREVENT_SCREEN_CAPTURE = Config.DISABLE_PREVENT_SCREEN_CAPTURE;

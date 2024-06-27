@@ -422,10 +422,61 @@
   "manageWallets": {
     "title": "Manage wallets"
   },
+  "marketData": {
+    "allTimeHigh": {
+      "details": "The highest price a cryptocurrency has traded at since its inception.",
+      "title": "All-Time High:"
+    },
+    "allTimeLow": {
+      "details": "The lowest price a cryptocurrency has traded at since its inception.",
+      "title": "All-Time Low:"
+    },
+    "circulatingSupply": {
+      "details": "The number of coins or tokens that are actively available in the market and in the general public's hands.",
+      "title": "Circulating Supply:"
+    },
+    "contract": "Contract",
+    "contractAddressCopied": "Contract Address copied!",
+    "explorers": "Explorers",
+    "fullyDilutedValuation": {
+      "details": "The market cap if the max supply was in circulation, calculated by multiplying the current price by the max supply.",
+      "short": "FDV",
+      "title": "Fully Diluted Valuation:"
+    },
+    "links": "Links",
+    "marketCap": {
+      "details": "The total market value of a cryptocurrency, calculated by multiplying the current price by the circulating supply.",
+      "short": "Market Cap",
+      "title": "Market Cap:"
+    },
+    "maxSupply": {
+      "details": "The maximum number of coins or tokens that will ever exist for a cryptocurrency, as defined by the project's protocol.",
+      "title": "Max Supply:"
+    },
+    "showLess": "Show less",
+    "terminology": "Terminology",
+    "tokenContract": "Token contract",
+    "tokenContractWarning": {
+      "boldDescription": "Never send funds to the address that you copied.",
+      "description": "{boldDescription} It is NOT your address for receiving funds. It is the smart contract address used to identify the token on the blockchain.",
+      "header": "You just copied a token contract address"
+    },
+    "totalSupply": {
+      "details": "The number of coins or tokens that currently exist, including those that may be locked, reserved or not yet released.",
+      "title": "Total Supply:"
+    },
+    "volume24h": {
+      "details": "The total value of a cryptocurrency traded in the last 24 hours across all exchanges.",
+      "short": "24h Volume",
+      "title": "24h Volume:"
+    },
+    "website": "Website"
+  },
   "network": {
     "arbitrum": "Arbitrum",
     "base": "Base",
     "bitcoin": "Bitcoin",
+    "blast": "Blast",
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum — Goerli testnet",
@@ -748,7 +799,9 @@
     "likelySpam": "Likely spam",
     "likelySpamDescription": "This token is listed on a blacklist. Take caution when interacting with any token you cannot verify. Don't trust, verify.",
     "likelySpamHelp": "What are blacklisted tokens?",
+    "onTokenLists": "On {count} token lists",
     "openDocs": "Open docs",
+    "title": "Reputation",
     "tokenLists": "Token lists",
     "tokenListsDescription": "Token Lists are a community-led initiative to improve discoverability, reputation and trust in ERC20 tokens.",
     "tokenListsHelp": "What are token lists?",
@@ -921,13 +974,17 @@
     "likelySpamHelp": "What are likely spam tokens?",
     "likelySpamInfo": "Likely spam tokens have been flagged by public communities or one of our partners as being spam, fraudulent or harmful.",
     "likelySpamTitle": "Likely Spam",
+    "likelySpamUseCaution": "Use extreme caution",
     "notListed": "Not listed",
     "openDocs": "Open docs",
     "tokenLists": "Token lists",
     "tokens": "{tokenListCount} tokens",
     "unverified": "Not listed",
+    "unverifiedButtonLink": "Why is it not listed?",
     "unverifiedDescription": "This token is not listed on any of the supported Token Lists. Use caution.",
+    "unverifiedExplainerDescription": "Tokens that are not listed by one of our supported project lists and have not been flagged for spam will be found on this list.",
     "unverifiedHelp": "Why is it not listed?",
+    "unverifiedWarning": "Please use caution",
     "verified": "Listed",
     "verifiedDescription": "Tokens listed here have been verified and are currently available on the Kraken exchange.",
     "verifiedInfoKraken": "Tokens listed here are currently available on the Kraken exchange.",
@@ -1067,6 +1124,7 @@
       "from": "From: ",
       "to": "To: "
     },
+    "balance": "balance",
     "nativeAssetView": {
       "approval": "Approval",
       "contractInteraction": "Contract interaction",

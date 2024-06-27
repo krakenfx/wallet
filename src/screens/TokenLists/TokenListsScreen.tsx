@@ -21,11 +21,11 @@ import { TokenListsList } from './components/TokenListsList';
 import loc from '/loc';
 
 export type TokenListsParams = {
-  tokenID: string;
+  assetId: string;
 };
 
 export const TokenListsScreen = ({ navigation, route }: NavigationProps<'TokenLists'>) => {
-  const reputation = useReputation(route.params.tokenID);
+  const reputation = useReputation(route.params.assetId);
 
   const { bottomSheetProps, close } = useBottomSheetScreenProps(navigation);
   const headerHeight = useDeafultHeaderHeight();
@@ -63,7 +63,7 @@ export const TokenListsScreen = ({ navigation, route }: NavigationProps<'TokenLi
             type="warning"
           />
         )}
-        <TokenListsList tokenID={route.params.tokenID} />
+        <TokenListsList assetId={route.params.assetId} />
       </KeyboardAvoider>
     </BottomSheet>
   );

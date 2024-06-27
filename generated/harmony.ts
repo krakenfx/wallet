@@ -50,6 +50,10 @@ export interface paths {
     
     get: operations["GetPriceData"];
   };
+  "/v1/priceHistory": {
+    
+    get: operations["GetPriceHistoryData"];
+  };
   "/v1/resolveAddressLabels": {
     
     get: operations["ResolveEnsAddresses"];
@@ -65,6 +69,10 @@ export interface paths {
   "/v1/tokenlist": {
     
     get: operations["GetTokenList"];
+  };
+  "/v1/tokenMarketData": {
+    
+    get: operations["GetTokenMarketData"];
   };
   "/v1/tokenMetadata": {
     
@@ -131,6 +139,14 @@ export interface components {
     Result_AnalyseDomainsResult_: {
       content: components["schemas"]["AnalyseDomainsResult"];
     };
+    BlockChainExplorer: {
+      url: string;
+      name: string;
+    };
+    SocialLink: {
+      url: string;
+      name: string;
+    };
     TokenReputation: {
       tokenLists: string[];
     } | {
@@ -139,6 +155,10 @@ export interface components {
     TokenMetadata: {
       isSpam?: boolean;
       reputation?: components["schemas"]["TokenReputation"];
+      tokenAddress?: string;
+      links?: components["schemas"]["SocialLink"][];
+      explorers?: components["schemas"]["BlockChainExplorer"][];
+      description?: string;
       priceUSD?: string;
       logoUrl?: string;
       subLabels?: string[];
@@ -189,7 +209,14 @@ export interface components {
       fee: string;
     };
     EVMFeeOption: components["schemas"]["EVMFeeOption1559"] | components["schemas"]["EVMFeeOptionPre1559"];
-    FeeOption: components["schemas"]["DefaultFeeOption"] | components["schemas"]["EVMFeeOption"];
+    SolanaFeeOption: {
+      
+      estimatedTimeBlocks?: number;
+      kind: components["schemas"]["FeeOptionKind"];
+      
+      computeUnitPriceMicroLamports: number;
+    };
+    FeeOption: components["schemas"]["DefaultFeeOption"] | components["schemas"]["EVMFeeOption"] | components["schemas"]["SolanaFeeOption"];
     "Result_FeeOption-Array_": {
       content: components["schemas"]["FeeOption"][];
     };
@@ -235,6 +262,8 @@ export interface components {
       ancillaryStats?: components["schemas"]["ProtocolAncillaryStat"][];
     };
     ProtocolPosition: {
+      
+      type: "app-token" | "contract-position";
       network: string;
       address: string;
       category: string;
@@ -302,6 +331,36 @@ export interface components {
     "Result_TokenPrice-or-null_": {
       content: components["schemas"]["TokenPrice"] | null;
     };
+    PriceHistoryItem: {
+      
+      timestamp: number;
+      
+      value: number;
+    };
+    PriceHighLowHistoryItem: {
+      
+      high: number;
+      
+      low: number;
+    };
+    PriceHighLowHistory: {
+      day?: components["schemas"]["PriceHighLowHistoryItem"];
+      week?: components["schemas"]["PriceHighLowHistoryItem"];
+      month?: components["schemas"]["PriceHighLowHistoryItem"];
+      year?: components["schemas"]["PriceHighLowHistoryItem"];
+      all?: components["schemas"]["PriceHighLowHistoryItem"];
+    };
+    PriceHistory: {
+      prices: components["schemas"]["PriceHistoryItem"][];
+      highLow: components["schemas"]["PriceHighLowHistory"];
+    };
+    "Result_PriceHistory-or-null_": {
+      content: components["schemas"]["PriceHistory"] | null;
+    };
+    
+    PriceHistoryGranularity: "DAY" | "WEEK" | "MONTH" | "YEAR" | "ALL";
+    
+    SupportedCurrency: "USD" | "EUR" | "GBP" | "CAD" | "AUD" | "CHF" | "JPY";
     ResolvedAddressLabels: {
       name: string;
       type: string;
@@ -362,6 +421,14 @@ export interface components {
       type: "purchase";
     };
     
+    SoldAsset: {
+      receivedToken?: components["schemas"]["ReceiveAsset"];
+      amount?: string;
+      assetId: string;
+      
+      type: "sale";
+    };
+    
     SwapAssets: {
       spent: components["schemas"]["SendAsset"];
       receive: components["schemas"]["ReceiveAsset"];
@@ -386,7 +453,7 @@ export interface components {
       
       type: "token-approval";
     };
-    TransactionEffect: components["schemas"]["ReceiveAsset"] | components["schemas"]["SendAsset"] | components["schemas"]["MintAsset"] | components["schemas"]["PurchaseAsset"] | components["schemas"]["SwapAssets"] | components["schemas"]["Deposit"] | components["schemas"]["TokenApproval"];
+    TransactionEffect: components["schemas"]["ReceiveAsset"] | components["schemas"]["SendAsset"] | components["schemas"]["MintAsset"] | components["schemas"]["PurchaseAsset"] | components["schemas"]["SoldAsset"] | components["schemas"]["SwapAssets"] | components["schemas"]["Deposit"] | components["schemas"]["TokenApproval"];
     
     PreventativeAction: "BLOCK" | "WARN" | "NONE";
     SimulationWarning: {
@@ -519,6 +586,48 @@ export interface components {
         tokenCount: components["schemas"]["TokenCountType"];
       };
     };
+    PriceChangePercentage: {
+      
+      hour: number;
+      
+      day: number;
+      
+      week: number;
+      
+      month: number;
+      
+      year: number;
+      
+      all: number;
+    };
+    TokenMarketData: {
+      
+      allTimeHigh: number;
+      
+      allTimeLow: number;
+      
+      fullyDilutedValuation: number;
+      
+      marketCap: number;
+      
+      circulatingSupply: number;
+      
+      maxSupply: number;
+      
+      totalSupply: number;
+      
+      priceChange24HR: number;
+      
+      priceHigh24HR: number;
+      
+      priceLow24HR: number;
+      
+      volume24HR: number;
+      priceChangePercentage: components["schemas"]["PriceChangePercentage"];
+    };
+    "Result_TokenMarketData-or-null_": {
+      content: components["schemas"]["TokenMarketData"] | null;
+    };
     NFTTrait: {
       value?: string | number | boolean;
       name: string;
@@ -543,12 +652,17 @@ export interface components {
       
       isNFT: true;
     };
-    "Result_TokenMetadata-or-NFTMetadata-or-null_": {
-      content: (components["schemas"]["TokenMetadata"] | components["schemas"]["NFTMetadata"]) | null;
+    TokenMetadataResponse: (components["schemas"]["TokenMetadata"] | components["schemas"]["NFTMetadata"]) | null;
+    Result_TokenMetadataResponse_: {
+      content: components["schemas"]["TokenMetadataResponse"];
     };
+    
+    TransactionCategory: "send" | "receive" | "token_receive" | "token_send" | "token_swap" | "nft_sale" | "nft_purchase" | "nft_send" | "nft_receive" | "airdrop" | "mint" | "deposit" | "withdraw" | "contract_interaction";
     
     Transaction: {
       protocolInfo?: {
+        possibleSpam?: boolean;
+        category?: components["schemas"]["TransactionCategory"];
         projectId: string;
       };
       effects: components["schemas"]["TransactionEffect"][];
@@ -919,6 +1033,35 @@ export interface operations {
     };
   };
   
+  GetPriceHistoryData: {
+    parameters: {
+      query: {
+        
+        token: string;
+        
+        granularity: components["schemas"]["PriceHistoryGranularity"];
+        
+        currency?: components["schemas"]["SupportedCurrency"];
+        
+        backend?: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_PriceHistory-or-null_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
   ResolveEnsAddresses: {
     parameters: {
       query: {
@@ -1011,6 +1154,33 @@ export interface operations {
     };
   };
   
+  GetTokenMarketData: {
+    parameters: {
+      query: {
+        
+        token: string;
+        
+        currency?: components["schemas"]["SupportedCurrency"];
+        
+        backend?: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_TokenMarketData-or-null_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
   GetTokenMetadata: {
     parameters: {
       query: {
@@ -1024,7 +1194,7 @@ export interface operations {
       
       200: {
         content: {
-          "application/json": components["schemas"]["Result_TokenMetadata-or-NFTMetadata-or-null_"];
+          "application/json": components["schemas"]["Result_TokenMetadataResponse_"];
         };
       };
       

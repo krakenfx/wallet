@@ -10,9 +10,9 @@ import { parseDefiNetworkTypeToWalletType } from '@/onChain/wallets/registry';
 import { RealmDefi } from '@/realm/defi';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 import loc from '/loc';
-import { formatAppCurrencyValue } from '/modules/text-utils';
 
 const IMG_SIZE = 40;
 
@@ -46,7 +46,7 @@ export const DefiRow: FC<Props> = ({ item: { network, protocolImageUrl, protocol
       <View style={styles.rightContentContainer}>
         <View style={styles.protocolBalanceInFiat}>
           <Label entering={FadeIn} style={styles.numbers} type="boldLargeMonospace">
-            {formatAppCurrencyValue(protocolBalance, currency, true)}
+            {formatCurrency(protocolBalance, { currency })}
           </Label>
         </View>
         <Label type="regularCaption1" color="light50" style={styles.positionLabel}>

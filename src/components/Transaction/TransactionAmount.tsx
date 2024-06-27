@@ -7,10 +7,9 @@ import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 
 import { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 import { GradientItemBackground } from '../GradientItemBackground';
-
-import { formatAppCurrencyValue } from '/modules/text-utils';
 
 export type TransactionAmountProps = {
   attached?: boolean;
@@ -127,7 +126,7 @@ type TransactionAmountWithAppCurrencyProps = {
 export const TransactionAmountWithAppCurrency = ({ assetId, decimals, balance, ...props }: TransactionAmountWithAppCurrencyProps) => {
   const assetFiatAmount = useAppCurrencyValue({ assetId, metadata: { decimals } }, balance);
   const { currency } = useAppCurrency();
-  const formatted = assetFiatAmount ? formatAppCurrencyValue(assetFiatAmount, currency) : '';
+  const formatted = assetFiatAmount ? formatCurrency(assetFiatAmount, { currency }) : '';
 
   return <TransactionAmount assetFiatAmount={formatted} {...props} />;
 };

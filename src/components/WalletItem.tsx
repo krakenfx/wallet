@@ -9,13 +9,13 @@ import { RealmAccount } from '@/realm/accounts';
 import { useAppCurrency } from '@/realm/settings';
 import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 import { GradientItemBackground, GradientItemBackgroundProps } from './GradientItemBackground';
 import { Menu } from './Menu';
 import { Touchable } from './Touchable';
 
 import loc from '/loc';
-import { formatAppCurrencyValue } from '/modules/text-utils';
 
 export const WALLET_ITEM_HEIGHT = 68;
 interface Props extends GradientItemBackgroundProps {
@@ -68,7 +68,7 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
         <Label type="boldTitle2">{accountCustomName}</Label>
         {}
         <Label type="boldMonospace" color="light75" style={styles.balance}>
-          {formatAppCurrencyValue(balance, currency)}
+          {formatCurrency(balance, { currency })}
         </Label>
       </View>
 

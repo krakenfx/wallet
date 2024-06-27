@@ -422,10 +422,61 @@
   "manageWallets": {
     "title": "Wallets verwalten"
   },
+  "marketData": {
+    "allTimeHigh": {
+      "details": "Der höchste Preis, zu dem eine Kryptowährung seit ihrer Einführung getradet wurde.",
+      "title": "Rekordhoch:"
+    },
+    "allTimeLow": {
+      "details": "Der niedrigste Preis, zu dem eine Kryptowährung seit ihrer Einführung getradet wurde.",
+      "title": "Rekordtief:"
+    },
+    "circulatingSupply": {
+      "details": "Die Anzahl an Coins oder Tokens, die auf dem Markt und für die Öffentlichkeit aktiv verfügbar sind.",
+      "title": "Umlaufmenge:"
+    },
+    "contract": "Vertrag",
+    "contractAddressCopied": "Vertragsadresse kopiert!",
+    "explorers": "Explorer",
+    "fullyDilutedValuation": {
+      "details": "Die Marktkapitalisierung, wenn das maximale Angebot im Umlauf wäre, berechnet durch die Multiplikation des aktuellen Preises mit dem maximalen Angebot.",
+      "short": "FDV",
+      "title": "Vollständig verwässerter Wert:"
+    },
+    "links": "Links",
+    "marketCap": {
+      "details": "Der gesamte Marktwert einer Kryptowährung, berechnet durch die Multiplikation des aktuellen Preises mit der Umlaufmenge.",
+      "short": "Marktkapitalisierung",
+      "title": "Marktkapitalisierung:"
+    },
+    "maxSupply": {
+      "details": "Die maximale Anzahl an Coins oder Tokens, die jemals für eine Kryptowährung existieren werden, gemäß der Definition des Projektprotokolls.",
+      "title": "Maximales Angebot:"
+    },
+    "showLess": "Weniger zeigen",
+    "terminology": "Terminologie",
+    "tokenContract": "Token-Kontrakt",
+    "tokenContractWarning": {
+      "boldDescription": "Sende niemals Mittel an die kopierte Adresse.",
+      "description": "{boldDescription} Diese Adresse ist NICHT für den Empfang von Mitteln gedacht. Es ist die Adresse des Smart Contracts zur Identifizierung des Tokens auf der Blockchain.",
+      "header": "Du hast die Adresse eines Token-Kontrakts kopiert"
+    },
+    "totalSupply": {
+      "details": "Die Anzahl der aktuell existierenden Coins oder Tokens, einschließlich derjenigen, die möglicherweise gesperrt, reserviert oder noch nicht freigegeben sind.",
+      "title": "Gesamtes Angebot:"
+    },
+    "volume24h": {
+      "details": "Der Gesamtwert einer Kryptowährung, die in den letzten 24 Stunden an allen Börsen getradet wurde.",
+      "short": "24Std.Volumen",
+      "title": "24-Std.-Volumen:"
+    },
+    "website": "Website"
+  },
   "network": {
     "arbitrum": "Arbitrum",
     "base": "Basis",
     "bitcoin": "Bitcoin",
+    "blast": "Blast",
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – Goerli Testnet",
@@ -748,7 +799,9 @@
     "likelySpam": "Wahrscheinlich Spam",
     "likelySpamDescription": "Dieser Token ist auf einer schwarzen Liste aufgeführt. Sei vorsichtig, wenn du mit Token interagierst, die du nicht verifizieren kannst. Nicht vertrauen, sondern überprüfen.",
     "likelySpamHelp": "Was sind Token auf der schwarzen Liste?",
+    "onTokenLists": "Auf {count} Token Lists",
     "openDocs": "Dokumente öffnen",
+    "title": "Reputation",
     "tokenLists": "Token Lists",
     "tokenListsDescription": "Token Lists sind eine von der Community geführte Initiative, um die Auffindbarkeit, die Reputation und das Vertrauen in ERC20-Token zu verbessern.",
     "tokenListsHelp": "Was sind Token Lists?",
@@ -921,13 +974,17 @@
     "likelySpamHelp": "Was sind mögliche Spam-Token?",
     "likelySpamInfo": "Wahrscheinliche Spam-Token wurden von öffentlichen Communities oder einem unserer Partner als Spam, betrügerisch oder schädlich gekennzeichnet.",
     "likelySpamTitle": "Wahrscheinlich Spam",
+    "likelySpamUseCaution": "Sei besonders vorsichtig",
     "notListed": "Nicht gelistet",
     "openDocs": "Dokumente öffnen",
     "tokenLists": "Token Lists",
     "tokens": "{tokenListCount} Token",
     "unverified": "Nicht gelistet",
+    "unverifiedButtonLink": "Warum ist er nicht gelistet?",
     "unverifiedDescription": "Dieser Token ist in keiner der unterstützten Token Lists aufgeführt. Sei vorsichtig.",
+    "unverifiedExplainerDescription": "Token, die nicht in einer unserer unterstützten Projektlisten aufgeführt sind und nicht als Spam gekennzeichnet wurden, findest du in dieser Liste.",
     "unverifiedHelp": "Warum ist er nicht auf der Liste?",
+    "unverifiedWarning": "Bitte sei vorsichtig",
     "verified": "Gelistet",
     "verifiedDescription": "Die hier aufgeführten Token wurden verifiziert und sind derzeit auf der Kraken Börse erhältlich.",
     "verifiedInfoKraken": "Die hier aufgeführten Token sind derzeit auf der Kraken Börse erhältlich.",
@@ -1067,6 +1124,7 @@
       "from": "Von: ",
       "to": "An: "
     },
+    "balance": "Guthaben",
     "nativeAssetView": {
       "approval": "Bestätigung",
       "contractInteraction": "Interaktion zwischen Verträgen",

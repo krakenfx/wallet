@@ -10,19 +10,21 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { TokenIcon, TokenIconFallback } from '@/components/TokenIcon';
 import { Touchable } from '@/components/Touchable';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
-import { useAppCurrency } from '@/realm/settings/useAppCurrency';
-import { useTokenById } from '@/realm/tokens';
+import { useAppCurrency } from '@/realm/settings';
+import { getAvailableTokenBalance, useTokenById } from '@/realm/tokens';
 import { RealmPendingTransaction } from '@/realm/transactions';
 import { TRANSACTION_PENDING_TYPES } from '@/realm/transactions/const';
 import { Routes } from '@/Routes';
 import { formatTransactionAddress } from '@/screens/Transactions/utils/formatAddress';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
+import { isBtc as isBtc_ } from '@/utils/isBtc';
 import { smallUnit2TokenUnit } from '@/utils/unitConverter';
 
 import { formatTransactionValueAsNegativeOrPositive } from '../utils/formatTransactionValueAsNegativeOrPositive';
 
 import loc from '/loc';
-import { formatAppCurrencyValue, tokenAmountShortened } from '/modules/text-utils';
 
 interface Props {
   item: RealmPendingTransaction;
@@ -45,6 +47,7 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
   const isNft = item.type === 'nft';
   const isNativeAssetView = contextToken?.assetId === wallet.nativeTokenCaipId;
 
+  const isBtc = isBtc_({ walletType: wallet.type });
   const title = loc.transactionTile.type[kind];
   const subTitle = kind === 'send' ? formatTransactionAddress(to, kind, true) : formatTransactionAddress(from, kind, true);
 
@@ -67,26 +70,29 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
     : { decimals: token?.metadata.decimals ?? 18, symbol: token?.metadata.symbol };
   const appCurrencyValue = formatTransactionValueAsNegativeOrPositive(useAppCurrencyValue(token, amountToShow ?? '0', TRANSACTIONS_REALM_QUEUE_KEY) || 0, kind);
   const { currency } = useAppCurrency();
-  const appCurrencyValuePrettified = formatAppCurrencyValue(appCurrencyValue, currency);
+  const appCurrencyValuePrettified = formatCurrency(appCurrencyValue, { currency });
   const tokenAmount = useMemo(() => {
     if (amountToShow && token) {
-      const amountShortened = tokenAmountShortened({ balance: amountToShow, metadata: { decimals: metadata.decimals } });
+      const token_ = { balance: amountToShow, metadata: { decimals: metadata.decimals } };
+      const tokenAmountFormatted = formatTokenAmountFromToken(token_, { compact: true, currency, highPrecision: true, isBtc });
 
-      return formatTransactionValueAsNegativeOrPositive(amountShortened, kind);
+      return formatTransactionValueAsNegativeOrPositive(tokenAmountFormatted, kind);
     } else {
       return '';
     }
-  }, [amountToShow, kind, metadata.decimals, token]);
+  }, [amountToShow, currency, isBtc, kind, metadata.decimals, token]);
   const tokenAmountWithSymbol = tokenAmount === '' ? '' : `${tokenAmount} ${metadata.symbol}`;
 
   const detailsAmount = (isNft ? fee : amount) ?? '0';
+
   const detailsAmountFormatted = useMemo(() => {
     let result = '0';
 
     if (detailsAmount && token) {
-      const amountShortened = tokenAmountShortened({ balance: detailsAmount, metadata: { decimals: metadata.decimals } });
+      const tokenBalance = getAvailableTokenBalance({ balance: detailsAmount, metadata: { decimals: metadata.decimals } });
+      const amount_ = smallUnit2TokenUnit(tokenBalance, token.metadata.decimals).toString(10);
 
-      result = formatTransactionValueAsNegativeOrPositive(amountShortened, kind);
+      result = formatTransactionValueAsNegativeOrPositive(amount_, kind);
     }
 
     return result === '' ? '0' : result;
@@ -95,9 +101,8 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
     useAppCurrencyValue(token, detailsAmount ?? '0', TRANSACTIONS_REALM_QUEUE_KEY) || 0,
     kind,
   );
-  const detailsAmountInCurrencyFormatted = formatAppCurrencyValue(detailsAmountInCurrency, currency);
+  const detailsAmountInCurrencyFormatted = formatCurrency(detailsAmountInCurrency, { currency });
 
-  const isBtc = wallet.type === 'HDsegwitBech32';
   const networkFee = isBtc && item.fee ? smallUnit2TokenUnit(item.fee, metadata.decimals).toFixed() : item.fee;
 
   const transactionDetailsMetadata = useMemo(() => {
