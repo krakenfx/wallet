@@ -149,6 +149,13 @@
     "body": "Aún no has hecho una copia de seguridad de tu frase de recuperación secreta. Te recomendamos que hagas una copia de seguridad para que no pierdas el acceso a tus fondos.",
     "header": "Antes de recibir fondos en este monedero, haz una copia de seguridad"
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Blast Network",
+    "buttonText": "Me gusta",
+    "part1": "Tu monedero ahora es compatible con la {boldBlastNetwork}. El Ethereum L2 con rendimiento nativo para ETH y criptomonedas estables.",
+    "part2": "Con esta integración, hemos preparado las condiciones para añadir rápidamente más redes de Nivel 2, manteniendo al mismo tiempo la experiencia de monedero móvil más segura.",
+    "title": "¡Kraken Wallet da la bienvenida a Blast!"
+  },
   "broadcast": {
     "sent": "Enviado"
   },
@@ -423,6 +430,7 @@
     "title": "Gestionar monederos"
   },
   "marketData": {
+    "about": "Acerca de {assetSymbol}",
     "allTimeHigh": {
       "details": "El precio más alto al que se ha se ha operado con una criptomoneda desde su creación.",
       "title": "Máximo histórico:"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Valoración totalmente diluida:"
     },
+    "high": "Alto:",
     "links": "Enlaces",
+    "low": "Bajo:",
     "marketCap": {
       "details": "El valor total de mercado de una criptomoneda, calculado multiplicando el precio actual por el suministro en circulación.",
       "short": "Market Cap",
@@ -453,6 +463,21 @@
       "details": "El número máximo de monedas o tokens que existirán para una criptomoneda, según lo definido por el protocolo del proyecto.",
       "title": "Suministro máximo:"
     },
+    "networkFee": {
+      "current": "Tarifa actual",
+      "duration": "Duración",
+      "title": "Tarifa de red"
+    },
+    "period": {
+      "all": "TODO",
+      "day": "24 h",
+      "month": "1M",
+      "week": "1S",
+      "year": "1 año"
+    },
+    "price": "Precio",
+    "priceNotAvailable": "Precio (no disponible)",
+    "readMore": "Leer más",
     "showLess": "Mostrar menos",
     "terminology": "Terminología",
     "tokenContract": "Contrato de token",
@@ -520,6 +545,8 @@
         "subheading": "Tu monedero contiene 0 NFT en todas las redes compatibles"
       },
       "selectedNetworks": {
+        "blastHeading": "NFTs de Blast disponibles próximamente",
+        "blastSubheading": "Este monedero aún no permite ver tus NFT en la red Blast",
         "heading": "No hay NFT en las redes seleccionadas",
         "subheading": "Tu monedero contiene 0 NFT en las redes seleccionadas"
       }

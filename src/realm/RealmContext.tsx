@@ -19,7 +19,7 @@ function useObject<T, K = string>(
   primaryKey: K | undefined,
   primaryKeyName: Extract<keyof T, string>,
 ): K extends undefined ? (T & Realm.Object<T>) | undefined : T & Realm.Object<T> {
-  return useQuery<T>(type).filtered(`${primaryKeyName} = '${primaryKey}'`)?.[0];
+  return useQuery<T>(type, o => o.filtered(`${primaryKeyName} = '${primaryKey}'`), [type, primaryKey, primaryKeyName])?.[0];
 }
 
 export { useRealm, useObject, useQuery };

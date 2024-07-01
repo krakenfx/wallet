@@ -1,4 +1,4 @@
-import React, { Dispatch, useCallback, useRef, useState } from 'react';
+import React, { Dispatch, useCallback, useEffect, useRef, useState } from 'react';
 import { NativeMethods, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -30,11 +30,17 @@ export const GenericSignContent = ({ content, setHasScrolledToEndOfContent }: Pr
     scrollViewRef.current?.scrollToEnd();
   }, []);
 
+  useEffect(() => {
+    scrollViewRef.current?.flashScrollIndicators();
+  }, []);
+
   return (
     <>
       <ScrollView
+        persistentScrollbar
         ref={scrollViewRef}
-        contentContainerStyle={[styles.contentContainer, { backgroundColor: colors.light8 }]}
+        style={[styles.container, { backgroundColor: colors.light8 }]}
+        contentContainerStyle={styles.contentContainer}
         onLayout={({ nativeEvent }) => {
           if (endOfContentRef.current && scrollViewRef.current) {
             endOfContentRef.current.measureLayout(scrollViewRef.current, (left, top, width, height) => {
@@ -71,7 +77,7 @@ export const GenericSignContent = ({ content, setHasScrolledToEndOfContent }: Pr
           return description === '' ? (
             <View key={title + '_' + i} ref={isLast ? endOfContentRef : null} />
           ) : (
-            <View style={styles.listItem} key={title + '_' + i} ref={isLast ? endOfContentRef : null}>
+            <View key={title + '_' + i} ref={isLast ? endOfContentRef : null}>
               <Label type="boldCaption1" color="light50">
                 {title}
               </Label>
@@ -105,14 +111,13 @@ const styles = StyleSheet.create({
   bodyText: {
     lineHeight: 22,
   },
+  container: {
+    borderRadius: 16,
+  },
   contentContainer: {
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderRadius: 16,
     gap: 16,
-  },
-  listItem: {
-    marginBottom: 16,
   },
   scrollToEndOfContentButton: {
     left: 16,

@@ -10,6 +10,7 @@ const timePerBlockInSecondsMap: Partial<Record<WalletType, number>> = {
   arbitrum: 0.25,
   optimism: 2,
   blast: 2,
+  base: 2,
   HDsegwitBech32: 10 * 60,
 };
 

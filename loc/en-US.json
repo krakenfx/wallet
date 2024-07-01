@@ -903,5 +903,13 @@
     "backUpNow": "Back up now",
     "body": "You haven't backed up your Secret Recovery Phrase. We recommend backing up to avoid losing access to your funds.",
     "header": "Before receiving funds in this wallet, back it up"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "title": "Comprehensive asset data at your fingertips",
+      "part1": "You can now track your holdings' an asset's performance and price changes directly in the wallet!",
+      "part2": "Dive into detailed asset insights, get informed of potential threats, and seamlessly access essential information like token contracts and current network fees.",
+      "buttonText": "Check it out"
+    }
   }
 }

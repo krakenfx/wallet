@@ -149,6 +149,13 @@
     "body": "You haven't backed up your Secret Recovery Phrase. We recommend backing up to avoid losing access to your funds.",
     "header": "Before receiving funds in this wallet, back it up"
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Blast Network",
+    "buttonText": "Sounds good",
+    "part1": "Your wallet now supports the {boldBlastNetwork}. The Ethereum L2 with native yield for ETH and stablecoins.",
+    "part2": "With this integration, we've set the stage to add more Level 2 networks rapidly, while maintaining the most secure mobile wallet experience.",
+    "title": "Kraken Wallet Welcomes Blast!"
+  },
   "broadcast": {
     "sent": "Sent"
   },
@@ -423,6 +430,7 @@
     "title": "Manage wallets"
   },
   "marketData": {
+    "about": "About {assetSymbol}",
     "allTimeHigh": {
       "details": "The highest price a cryptocurrency has traded at since its inception.",
       "title": "All-Time High:"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Fully Diluted Valuation:"
     },
+    "high": "High:",
     "links": "Links",
+    "low": "Low:",
     "marketCap": {
       "details": "The total market value of a cryptocurrency, calculated by multiplying the current price by the circulating supply.",
       "short": "Market Cap",
@@ -453,6 +463,21 @@
       "details": "The maximum number of coins or tokens that will ever exist for a cryptocurrency, as defined by the project's protocol.",
       "title": "Max Supply:"
     },
+    "networkFee": {
+      "current": "Current fee",
+      "duration": "Duration",
+      "title": "Network fee"
+    },
+    "period": {
+      "all": "ALL",
+      "day": "24h",
+      "month": "1M",
+      "week": "1W",
+      "year": "1Y"
+    },
+    "price": "Price",
+    "priceNotAvailable": "Price (not available)",
+    "readMore": "Read more",
     "showLess": "Show less",
     "terminology": "Terminology",
     "tokenContract": "Token contract",
@@ -520,6 +545,8 @@
         "subheading": "Your wallet contains 0 NFTs on all of the supported networks"
       },
       "selectedNetworks": {
+        "blastHeading": "Blast NFTs coming soon",
+        "blastSubheading": "This wallet does not yet support viewing your NFTs on the Blast network",
         "heading": "No NFTs on selected networks",
         "subheading": "Your wallet contains 0 NFTs on the selected networks"
       }

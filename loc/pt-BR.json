@@ -149,6 +149,13 @@
     "body": "Você não fez backup da sua frase secreta de recuperação. Recomendamos fazer backup para evitar perder acesso ao seus fundos.",
     "header": "Faça o backup antes de receber os fundos nesta carteira"
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Rede Blast",
+    "buttonText": "Ótimo",
+    "part1": "Sua carteira agora suporta a {boldBlastNetwork}. O Ethereum L2 com rendimento nativo para ETH e stablecoins.",
+    "part2": "Com essa integração, definimos o cenário para adicionar mais redes de nível 2 rapidamente, mantendo a experiência de carteira móvel mais segura.",
+    "title": "A Kraken Wallet dá boas-vindas a Blast!"
+  },
   "broadcast": {
     "sent": "Enviado"
   },
@@ -423,6 +430,7 @@
     "title": "Gerenciar carteiras"
   },
   "marketData": {
+    "about": "Sobre {assetSymbol}",
     "allTimeHigh": {
       "details": "O preço mais alto pelo qual uma criptomoeda foi negociada desde o seu início.",
       "title": "Preço mais alto:"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Avaliação totalmente diluída:"
     },
+    "high": "Alto:",
     "links": "Links",
+    "low": "Baixo:",
     "marketCap": {
       "details": "O valor total de mercado de uma criptomoeda, calculado multiplicando o preço atual pela oferta circulante.",
       "short": "Capitalização de mercado",
@@ -453,6 +463,21 @@
       "details": "O número máximo de moedas ou tokens que existirão para uma criptomoeda, conforme definido pelo protocolo do projeto.",
       "title": "Oferta máxima:"
     },
+    "networkFee": {
+      "current": "Taxa atual",
+      "duration": "Duração",
+      "title": "Taxa de rede"
+    },
+    "period": {
+      "all": "TUDO",
+      "day": "24H",
+      "month": "1M",
+      "week": "1S",
+      "year": "1A"
+    },
+    "price": "Preço",
+    "priceNotAvailable": "Preço (indisponível)",
+    "readMore": "Saiba mais",
     "showLess": "Mostrar menos",
     "terminology": "Terminologia",
     "tokenContract": "Contrato de token",
@@ -520,6 +545,8 @@
         "subheading": "Sua carteira contém 0 NFTs em todas as redes compatíveis"
       },
       "selectedNetworks": {
+        "blastHeading": "Blast NFTs em breve",
+        "blastSubheading": "Esta carteira ainda não suporta a visualização dos seus NFTs na rede Blast",
         "heading": "Sem NFTs nas redes selecionadas",
         "subheading": "Sua carteira contém 0 NFTs em todas as redes selecionadas"
       }

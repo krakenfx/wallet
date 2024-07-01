@@ -1,29 +1,30 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
-import { Image, InteractionManager, StyleSheet, View } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Image, InteractionManager, RefreshControl, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BottomSheet, BottomSheetFlashList } from '@/components/BottomSheet';
 import { CoinHeader } from '@/components/CoinHeader';
 import { FadingElement } from '@/components/FadingElement';
-import { FloatingSendReceive } from '@/components/FloatingSendReceive';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
-import { LargeCoinHeader } from '@/components/LargeCoinHeader';
 import { ListHeader } from '@/components/ListHeader';
 import navigationStyle from '@/components/navigationStyle';
-import { RefreshControlScrollView } from '@/components/RefreshControlScrollView';
-import { ReputationPill } from '@/components/Reputation';
+import { SvgIcon } from '@/components/SvgIcon';
 import { hideToast } from '@/components/Toast';
+import { SheetPosition } from '@/components/TokenMarketData/utils';
 import { Touchable } from '@/components/Touchable';
-import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
+import { TransactionsTokenHeader } from '@/components/TransactionsTokenHeader';
+import { useAssetMarketdataFetch } from '@/realm/assetMarketData';
+import { useAssetMetadataFetch } from '@/realm/assetMetadata';
 import { useResolvedAssetBalance, useTokenById, useTokensFetch } from '@/realm/tokens';
 import { useTransactionsFetch } from '@/realm/transactions/useTransactionsFetch';
 import { useRealmWalletById } from '@/realm/wallets';
-import { NavigationProps, Routes } from '@/Routes';
-import { TransactionsScreenV2 } from '@/screens/Transactions/TransactionsScreenV2';
-import { useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
+import { NavigationProps } from '@/Routes';
+import { SMALL_SHEET_MIN_HEIGHT, TokenMarketDataBottomSheet, defaultSheetPosition } from '@/screens/Transactions/components/TokenMarketDataBottomSheet';
+import { TokenSendReceiveButtons } from '@/screens/Transactions/components/TokenSendReceiveButtons';
+import { TransactionListItem, useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
+import { useTheme } from '@/theme/themes';
 import { AssetBalanceId } from '@/types';
-import { FeatureFlag, useFeatureFlag } from '@/utils/featureFlags';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { refreshingTransactionsEvent, showRefreshingTransactionsToast } from './utils/showRefreshingTransactionsToast';
@@ -35,42 +36,53 @@ export type TransactionsRouteProps = {
   assetBalanceId: AssetBalanceId;
 };
 
-export const TransactionsScreenV1 = ({ navigation, route }: NavigationProps<'Transactions'>) => {
+export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Transactions'>) => {
   const params = route.params;
-  const isRefreshing = useRef<boolean>(false);
+  const isRequestInProgress = useRef<boolean>(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const flashListRef = useRef<FlashList<TransactionListItem>>(null);
 
   const [walletId, _, tokenId] = useResolvedAssetBalance(params.assetBalanceId);
   const realmWallet = useRealmWalletById(walletId)!;
   const token = useTokenById(tokenId);
+  const { colors } = useTheme();
 
   const isOnline = useIsOnline();
 
   const { fetchTransactions } = useTransactionsFetch();
+  const { fetchAndSetData: fetchMarketdata } = useAssetMarketdataFetch(token?.assetId);
+  const { fetchAndSetData: fetchMetadata } = useAssetMetadataFetch(token?.assetId);
   const { fetchBalance } = useTokensFetch();
+  const [sheetPosition, setSheetPosition] = useState<SheetPosition>(defaultSheetPosition);
 
   const requestRefresh = useCallback(
-    async (showIndicator = true) => {
+    async (showIndicator = true, withMetadata = false) => {
       console.log('[Transactions/Balance] requestRefresh', realmWallet.id);
       if (!realmWallet || !isOnline) {
         return;
       }
-      if (isRefreshing.current) {
+      if (isRequestInProgress.current) {
         return;
       }
-      isRefreshing.current = true;
+      isRequestInProgress.current = true;
       showIndicator && showRefreshingTransactionsToast();
       try {
         console.log('[Transactions & Balance] fetching');
 
-        await Promise.all([fetchTransactions(realmWallet, true), fetchBalance(realmWallet, false)]);
+        await Promise.all([
+          fetchTransactions(realmWallet, true),
+          fetchBalance(realmWallet, false),
+          withMetadata && fetchMarketdata(),
+          withMetadata && fetchMetadata(),
+        ]);
       } catch (error) {
         handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
       } finally {
-        isRefreshing.current = false;
+        isRequestInProgress.current = false;
         hideToast({ id: refreshingTransactionsEvent });
       }
     },
-    [fetchBalance, fetchTransactions, isOnline, realmWallet],
+    [fetchBalance, fetchMarketdata, fetchMetadata, fetchTransactions, isOnline, realmWallet],
   );
 
   const refreshAfterPendingTxSucceed = useCallback(() => {
@@ -105,70 +117,81 @@ export const TransactionsScreenV1 = ({ navigation, route }: NavigationProps<'Tra
     });
   }, [requestRefresh]);
 
+  const onTransactionHistoryPress = useCallback(() => {
+    if (flashListRef.current) {
+      setSheetPosition(SheetPosition.SMALL);
+      flashListRef.current.scrollToIndex({ index: 0, animated: true, viewOffset: 50 });
+    }
+  }, []);
+
   const headerTitleComponent = useCallback(() => <CoinHeader assetBalanceId={params.assetBalanceId} />, [params.assetBalanceId]);
+  const headerRightComponent = useCallback(
+    () => (
+      <Touchable onPress={onTransactionHistoryPress} testID="TxHistory" style={[styles.transactionHeaderButton, { backgroundColor: colors.purple_40 }]}>
+        <SvgIcon name="clock" size={18} />
+      </Touchable>
+    ),
+    [onTransactionHistoryPress, colors.purple_40],
+  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: headerTitleComponent,
+      headerRight: headerRightComponent,
     });
-  }, [headerTitleComponent, navigation]);
+  }, [headerRightComponent, headerTitleComponent, navigation]);
 
-  const pullToRefresh = () => {
+  const pullToRefresh = async () => {
     if (isOnline) {
-      requestRefresh();
+      setIsRefreshing(true);
+      await requestRefresh(false, true);
+      setIsRefreshing(false);
     }
   };
 
   const insets = useSafeAreaInsets();
 
+  const onScrollBeginDrag = () => {
+    if (sheetPosition !== SheetPosition.SMALL) {
+      setSheetPosition(SheetPosition.SMALL);
+    }
+  };
+
+  const onSheetPositionChange = (position: SheetPosition) => {
+    setSheetPosition(position);
+  };
+
   return (
     <GradientScreenView>
-      {token ? (
-        <RefreshControlScrollView onRefresh={pullToRefresh}>
-          <LargeCoinHeader
-            token={token}
-            wallet={realmWallet}
-            testID="TokenScreen"
-            pill={
-              <Touchable onPress={() => navigation.navigate(Routes.TokenLists, { assetId: token.assetId })}>
-                <ReputationPill assetId={token.assetId} style={styles.reputationPillContainer} />
-              </Touchable>
-            }
-          />
-        </RefreshControlScrollView>
-      ) : null}
+      <FadingElement containerStyle={{ marginBottom: insets.bottom + SMALL_SHEET_MIN_HEIGHT }}>
+        <FlashList
+          ListHeaderComponent={
+            <>
+              {token ? <TransactionsTokenHeader token={token} testID="TokenScreen" /> : null}
 
-      <BottomSheet noBackdrop snapPoints={useCommonSnapPoints('toHeaderAndMainContent')} noSafeInsetTop dismissible={false}>
-        {dataSource && dataSource?.length > 0 && (
-          <ListHeader buttonTestID="TokenScreen-BottomSheet-Heading" title={loc.transactionTile.activity} style={styles.header} />
-        )}
-        <FadingElement>
-          <BottomSheetFlashList
-            ListEmptyComponent={emptyListMessage}
-            data={dataSource}
-            contentInset={{ top: 0, left: 0, bottom: insets.bottom, right: 0 }}
-            renderItem={renderItem}
-            keyExtractor={keyExtractor}
-            contentContainerStyle={styles.container}
-            estimatedItemSize={60}
-            onEndReached={loadNextPage}
-            onEndReachedThreshold={0.4}
-            ListFooterComponent={renderFooter}
-          />
-        </FadingElement>
-      </BottomSheet>
-      <FloatingSendReceive navigation={navigation} assetBalanceId={params.assetBalanceId} />
+              <TokenSendReceiveButtons navigation={navigation} assetBalanceId={params.assetBalanceId} />
+              {dataSource && dataSource?.length > 0 && (
+                <ListHeader buttonTestID="TokenScreen-BottomSheet-Heading" title={loc.transactionTile.activity} style={styles.header} />
+              )}
+            </>
+          }
+          ListEmptyComponent={emptyListMessage}
+          data={dataSource}
+          ref={flashListRef}
+          refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={pullToRefresh} />}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          contentContainerStyle={styles.container}
+          estimatedItemSize={60}
+          onEndReached={loadNextPage}
+          onEndReachedThreshold={0.4}
+          ListFooterComponent={renderFooter}
+          onScrollBeginDrag={onScrollBeginDrag}
+        />
+      </FadingElement>
+      {tokenId && <TokenMarketDataBottomSheet tokenId={tokenId} onPositionChange={onSheetPositionChange} positionIndex={sheetPosition} />}
     </GradientScreenView>
   );
-};
-
-export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Transactions'>) => {
-  const { isFeatureFlagEnabled: isAssetMarketDataEnabled } = useFeatureFlag(FeatureFlag.AssetMarketDataEnabled);
-  if (isAssetMarketDataEnabled) {
-    return <TransactionsScreenV2 navigation={navigation} route={route} />;
-  } else {
-    return <TransactionsScreenV1 navigation={navigation} route={route} />;
-  }
 };
 
 TransactionsScreen.navigationOptions = navigationStyle({
@@ -183,7 +206,7 @@ const styles = StyleSheet.create({
     paddingBottom: 150,
   },
   header: {
-    paddingHorizontal: 24,
+    marginTop: 46,
     paddingBottom: 4,
   },
   sectionHeader: {
@@ -208,6 +231,11 @@ const styles = StyleSheet.create({
   text: {
     marginVertical: 2,
   },
+  transactionHeaderButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 64,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
-
-export default TransactionsScreen;

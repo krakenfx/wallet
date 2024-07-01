@@ -15,6 +15,8 @@ export interface EIP712 {
   types: { [key: string]: { type: string; name: string }[] };
 }
 
+export type EIP712TypeDefinitions = EIP712['types'][keyof EIP712['types']];
+
 export type TransactionObject = {
   data: string;
   from: string;

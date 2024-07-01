@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import Realm from 'realm';
 
 import { useCurrentAccountNumber } from '../accounts';
@@ -10,11 +9,14 @@ import { REALM_TYPE_WALLET, RealmWallet } from './schema';
 export const useRealmWallets = (showAllWallets = false, accountNumber?: number) => {
   const currentAccountNumber = useCurrentAccountNumber();
 
-  const wallets = useQuery<RealmWallet>(REALM_TYPE_WALLET);
-  return useMemo(() => {
-    const targetAccountNumber = accountNumber ?? currentAccountNumber;
-    return showAllWallets ? wallets : wallets.filtered(`accountIdx = ${targetAccountNumber}`);
-  }, [accountNumber, currentAccountNumber, showAllWallets, wallets]);
+  return useQuery<RealmWallet>(
+    REALM_TYPE_WALLET,
+    wallets => {
+      const targetAccountNumber = accountNumber ?? currentAccountNumber;
+      return showAllWallets ? wallets : wallets.filtered(`accountIdx = ${targetAccountNumber}`);
+    },
+    [accountNumber, currentAccountNumber, showAllWallets],
+  );
 };
 
 export const getWalletsForMutations = (realm: Realm, showAllWallets = false) => {

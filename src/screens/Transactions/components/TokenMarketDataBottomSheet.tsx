@@ -1,11 +1,11 @@
-import { BottomSheetScrollView, useBottomSheetTimingConfigs } from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import Animated, { Easing, FadeIn, FadeOut, runOnJS, useAnimatedReaction, useSharedValue } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOut, runOnJS, useAnimatedReaction, useSharedValue } from 'react-native-reanimated';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { ANIMATION_CONFIGS, BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
+import { BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
 import { ReputationInfo } from '@/components/Reputation';
 import {
   AboutAsset,
@@ -40,8 +40,6 @@ interface Props {
 }
 
 export const defaultSheetPosition = SheetPosition.MEDIUM;
-const INITIAL_SHEET_ANIMATION_TIME = 800;
-const DEFAULT_SHEET_ANIMATION_TIME = 300;
 
 export const TokenMarketDataBottomSheet = ({ tokenId, onPositionChange, positionIndex }: Props) => {
   const defaultSnapPoints = useCommonSnapPoints('toHeaderAndMainContent');
@@ -58,7 +56,6 @@ export const TokenMarketDataBottomSheet = ({ tokenId, onPositionChange, position
     ],
     [bottom, defaultSnapPoints],
   );
-  const [isInitialised, setIsInitialised] = useState(false);
   const sheetAnimatedIn = useSharedValue(false);
   const [sheetPosition, setSheetPosition] = useState<SheetPosition>(defaultSheetPosition);
 
@@ -71,10 +68,6 @@ export const TokenMarketDataBottomSheet = ({ tokenId, onPositionChange, position
   const handleSheetPositionChange = (index: SheetPosition) => {
     onPositionChange?.(index);
   };
-
-  useEffect(() => {
-    setTimeout(() => setIsInitialised(true), INITIAL_SHEET_ANIMATION_TIME);
-  }, []);
 
   useEffect(() => {
     if (positionIndex !== undefined && positionIndex === SheetPosition.SMALL) {
@@ -107,12 +100,6 @@ export const TokenMarketDataBottomSheet = ({ tokenId, onPositionChange, position
     },
   );
 
-  const animationConfigs = useBottomSheetTimingConfigs({
-    ...ANIMATION_CONFIGS,
-    duration: isInitialised ? DEFAULT_SHEET_ANIMATION_TIME : INITIAL_SHEET_ANIMATION_TIME,
-    easing: isInitialised ? undefined : Easing.inOut(Easing.quad),
-  });
-
   const paddingBottom = useBottomElementSpacing(24);
 
   return (
@@ -120,7 +107,6 @@ export const TokenMarketDataBottomSheet = ({ tokenId, onPositionChange, position
       animatedIndex={aIndex}
       snapPoints={snapPoints}
       animateOnMount
-      animationConfigs={animationConfigs}
       index={defaultSheetPosition}
       dismissible={false}
       noSafeInsetTop

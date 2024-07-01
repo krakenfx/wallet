@@ -1,6 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { StyleProp, StyleSheet, TextProps, View, ViewStyle } from 'react-native';
 
+import { useDeviceSize } from '@/hooks/useDeviceSize';
+
 import { GradientLabel } from './Gradients';
 
 export interface LargeHeaderProps {
@@ -10,8 +12,9 @@ export interface LargeHeaderProps {
 }
 
 export const LargeHeader: React.FC<PropsWithChildren & LargeHeaderProps> = ({ title, testID, style, children }) => {
+  const { size } = useDeviceSize();
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, style, size === 'small' && styles.smallDeviceContainer]}>
       <GradientLabel
         containerStyle={styles.mainLabelContainer}
         style={styles.mainLabel}
@@ -30,6 +33,9 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 52,
     paddingHorizontal: 24,
+  },
+  smallDeviceContainer: {
+    marginTop: 32,
   },
   mainLabel: {
     lineHeight: 64,

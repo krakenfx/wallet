@@ -19,31 +19,35 @@ interface Props {
 }
 
 export const useTransactions = ({ walletId, assetId, networkFilter, ignoredIds }: Props) => {
-  const allTransactions = useQuery<RealmTransaction>(REALM_TYPE_WALLET_TRANSACTION);
   const accountNumber = useCurrentAccountNumber();
   const realm = useRealm();
   const filterInUnverifiedAssets = useFilterInUnverifiedAssets();
   const filterInBlacklistedAssets = useFilterInBlacklistedAssets();
 
+  const sortedTransactions = useQuery<RealmTransaction>(
+    REALM_TYPE_WALLET_TRANSACTION,
+    allTransactions => {
+      let filteredTransactions = allTransactions.filtered('wallet.accountIdx = $0', accountNumber);
+
+      if (networkFilter && networkFilter.length > 0) {
+        filteredTransactions = filterTransactionsByNetwork(filteredTransactions, networkFilter);
+      }
+
+      if (walletId) {
+        filteredTransactions = filteredTransactions.filtered(`walletId = "${walletId}"`);
+      }
+
+      filteredTransactions = filteredTransactions.filtered('NOT id IN $0', ignoredIds);
+
+      return filteredTransactions.sorted('time', true);
+    },
+    [networkFilter, ignoredIds, accountNumber, walletId],
+  );
+
   return useMemo(() => {
-    let filteredTransactions = allTransactions.filtered('wallet.accountIdx = $0', accountNumber);
-
-    if (networkFilter && networkFilter.length > 0) {
-      filteredTransactions = filterTransactionsByNetwork<RealmTransaction>(filteredTransactions, networkFilter);
-    }
-
-    if (walletId) {
-      filteredTransactions = filteredTransactions.filtered(`walletId = "${walletId}"`);
-    }
-
-    filteredTransactions = filteredTransactions.filtered('NOT id IN $0', ignoredIds);
-
-    let sortedTransactions = filteredTransactions.sorted('time', true);
-
-    let transactionsFilteredByReputation = sortedTransactions.filter(
+    const transactionsFilteredByReputation = sortedTransactions.filter(
       tx => !getShouldFilterOutTransactionByReputation(realm, memoizedJSONParseTx(tx.data), filterInUnverifiedAssets, filterInBlacklistedAssets),
     );
-
     return filterTransactionsByAssetInvolvement(transactionsFilteredByReputation, assetId);
-  }, [allTransactions, accountNumber, ignoredIds, networkFilter, walletId, assetId, realm, filterInUnverifiedAssets, filterInBlacklistedAssets]);
+  }, [sortedTransactions, assetId, realm, filterInUnverifiedAssets, filterInBlacklistedAssets]);
 };

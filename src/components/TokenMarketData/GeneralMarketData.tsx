@@ -30,7 +30,7 @@ export const GeneralMarketData = ({ marketData }: Props) => {
     }
 
     if (isCurrency) {
-      return formatCurrency(value, { compact: true, currency: currency });
+      return formatCurrency(value, { compact: true, currency: currency, findFirstNonZeroDigits: true });
     } else {
       return formatTokenAmount(String(value), { compact: true, currency: currency });
     }

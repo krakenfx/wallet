@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { AnimatedNumbers } from '@/components/AnimatedNumbers';
 import { Label } from '@/components/Label';
 import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
+import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useAppCurrency } from '@/realm/settings';
 import { RealmToken } from '@/realm/tokens';
 import { getAvailableTokenBalance } from '@/realm/tokens/getAvailableTokenBalance';
@@ -26,26 +27,25 @@ export const TransactionsTokenHeader = ({ token, testID }: Props) => {
   const tokenBalance = getAvailableTokenBalance(token);
   const tokenAmount = unitConverter.smallUnit2TokenUnit(tokenBalance, token.metadata.decimals).toString(10);
   const tokenAmountFormatted = formatTokenAmount(tokenAmount, { compact: true, currency, highPrecision: true, isBtc: isBtc({ assetId: token.assetId }) });
+  const { size } = useDeviceSize();
 
   return (
-    <View testID={testID} style={styles.container}>
+    <View testID={testID} style={[styles.container, size === 'small' && styles.smallDeviceContainer]}>
       <Label type="boldCaption2" color="light50" style={styles.label}>
         {loc.transactionTile.balance.toUpperCase()}
       </Label>
-      {!!fiatValue && (
-        <AnimatedNumbers
-          type="headerBalance"
-          value={formatCurrency(fiatValue, { currency, hideCurrencySign: true })}
-          ticker={currencyInfo.symbol}
-          tickerFontSize={16}
-          tickerBottomOffset={4}
-          fontSize={36}
-          height={42}
-          glyphSize={28}
-          color="lavenderIndigo"
-          testID={`FiatBalance-${testID}`}
-        />
-      )}
+      <AnimatedNumbers
+        type="headerBalance"
+        value={formatCurrency(fiatValue, { currency, hideCurrencySign: true })}
+        ticker={currencyInfo.symbol}
+        tickerFontSize={16}
+        tickerBottomOffset={4}
+        fontSize={36}
+        height={42}
+        glyphSize={28}
+        color="lavenderIndigo"
+        testID={`FiatBalance-${testID}`}
+      />
       <AnimatedNumbers
         type="headerBalance"
         value={tokenAmountFormatted}
@@ -62,6 +62,9 @@ export const TransactionsTokenHeader = ({ token, testID }: Props) => {
 const styles = StyleSheet.create({
   container: {
     marginTop: 36,
+  },
+  smallDeviceContainer: {
+    marginTop: 16,
   },
   label: {
     marginBottom: 4,

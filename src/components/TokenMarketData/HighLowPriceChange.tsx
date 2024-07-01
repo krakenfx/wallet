@@ -64,7 +64,7 @@ export const HighLowPriceChange = ({ highLow, currentPrice, color, period }: Pro
             {`${loc.marketData.low} `}
           </Label>
           <Label type="boldCaption1" color="light100">
-            {formatCurrency(low, { currency, highPrecision: true })}
+            {formatCurrency(low, { currency, findFirstNonZeroDigits: true })}
           </Label>
         </View>
         <View style={styles.priceLabel}>
@@ -72,7 +72,7 @@ export const HighLowPriceChange = ({ highLow, currentPrice, color, period }: Pro
             {`${loc.marketData.high} `}
           </Label>
           <Label type="boldCaption1" color="light100">
-            {formatCurrency(high, { currency, highPrecision: true })}
+            {formatCurrency(high, { currency, findFirstNonZeroDigits: true })}
           </Label>
         </View>
       </View>

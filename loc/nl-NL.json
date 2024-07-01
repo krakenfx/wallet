@@ -149,6 +149,13 @@
     "body": "Je hebt geen back-up gemaakt van je geheime herstelzin. We raden aan om een back-up te maken om te voorkomen dat je de toegang tot je geld verliest.",
     "header": "Maak een back-up voordat je geld ontvangt in deze wallet"
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Blast-netwerk",
+    "buttonText": "Klinkt goed",
+    "part1": "Je wallet ondersteunt nu de {boldBlastNetwork}. De Ethereum L2 met native yield voor ETH en stablecoins.",
+    "part2": "Met deze integratie zorgen we op korte tijd voor meer Level 2-netwerken en behouden we de veiligste mobiele wallet-ervaring.",
+    "title": "Kraken Wallet verwelkomt Blast!"
+  },
   "broadcast": {
     "sent": "Verzonden"
   },
@@ -423,6 +430,7 @@
     "title": "Wallets beheren"
   },
   "marketData": {
+    "about": "Over {assetSymbol}",
     "allTimeHigh": {
       "details": "De hoogste prijs waartegen een cryptovaluta sinds zijn oprichting is verhandeld.",
       "title": "Historisch hoogtepunt:"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Volledige verwaterde waardering:"
     },
+    "high": "Hoog:",
     "links": "Koppelingen",
+    "low": "Laag:",
     "marketCap": {
       "details": "De totale marktwaarde van een cryptovaluta, berekend door de huidige koers te vermenigvuldigen met de circulerende voorraad.",
       "short": "Marktplafond",
@@ -453,6 +463,21 @@
       "details": "Het maximale aantal munten of tokens dat ooit zal bestaan voor een cryptovaluta, zoals gedefinieerd door het protocol van het project.",
       "title": "Max. voorraad:"
     },
+    "networkFee": {
+      "current": "Huidig tarief",
+      "duration": "Duur",
+      "title": "Netwerkkosten"
+    },
+    "period": {
+      "all": "ALLES",
+      "day": "24u",
+      "month": "1M",
+      "week": "1W",
+      "year": "1J"
+    },
+    "price": "Koers",
+    "priceNotAvailable": "Prijs (niet beschikbaar)",
+    "readMore": "Meer weergeven",
     "showLess": "Minder weergeven",
     "terminology": "Terminologie",
     "tokenContract": "Token-contract",
@@ -520,6 +545,8 @@
         "subheading": "Je wallet bevat 0 NFT's op alle ondersteunde netwerken"
       },
       "selectedNetworks": {
+        "blastHeading": "Binnenkort Blast NFT's",
+        "blastSubheading": "Deze wallet ondersteunt nog niet het bekijken van je NFT's op het Blast-netwerk",
         "heading": "Geen NFT's op geselecteerde netwerken",
         "subheading": "Je wallet bevat 0 NFT's op de geselecteerde netwerken"
       }

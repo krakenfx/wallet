@@ -16,9 +16,10 @@ export const useDefiMutations = () => {
   const saveDefis = useCallback(
     (records: DeFiProtocol[], wallet: RealmWallet) => {
       realm.write(() => {
-        const newRecordsIds = records.map(r => `"${r.id}"`).join(',');
-
-        const toDelete = getDefisForMutations(realm).filtered(`walletId = "${wallet.id}" AND NOT id IN {${newRecordsIds}}`);
+        const toDelete = getDefisForMutations(realm).filtered(
+          `walletId = "${wallet.id}" AND NOT id IN $0`,
+          records.map(r => r.id),
+        );
         realm.delete(toDelete);
 
         for (const record of records) {

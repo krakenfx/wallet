@@ -5,7 +5,7 @@ import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-nati
 import Animated, { FadeInUp, FadeOut } from 'react-native-reanimated';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
-import { Label } from '@/components/Label';
+import { Label, TypographyKey } from '@/components/Label';
 import { useBottomSheetPadding } from '@/hooks/useBottomSheetPadding';
 
 import { FadingElement } from '../FadingElement';
@@ -17,9 +17,19 @@ type Props = {
   animation: LottieViewProps['source'];
   animationHeight?: number;
   contentOffset?: number;
+  typeTitle?: TypographyKey;
 };
 
-export const SimpleSlide: React.FC<PropsWithChildren & Props> = ({ title, animation, onButtonPress, buttonText, children, animationHeight, contentOffset }) => {
+export const SimpleSlide: React.FC<PropsWithChildren & Props> = ({
+  title,
+  animation,
+  onButtonPress,
+  buttonText,
+  children,
+  animationHeight,
+  contentOffset,
+  typeTitle,
+}) => {
   const [lottieLayout, setLottieLayout] = useState<LayoutRectangle>();
 
   const onAnimationLayout = (e: LayoutChangeEvent) => {
@@ -36,7 +46,7 @@ export const SimpleSlide: React.FC<PropsWithChildren & Props> = ({ title, animat
             <LottieView source={animation} autoPlay loop={false} style={styles.flex} onLayout={onAnimationLayout} resizeMode="cover" />
           </View>
           <Animated.View style={contentOffset ? { ...styles.body, transform: [{ translateY: contentOffset }] } : styles.body}>
-            <Label style={styles.labelContainer} type="headerWalletConnectTutorial" entering={FadeInUp.delay(300)}>
+            <Label style={styles.labelContainer} type={typeTitle ?? 'headerWalletConnectTutorial'} entering={FadeInUp.delay(300)}>
               {title}
             </Label>
             {lottieLayout ? children : undefined}

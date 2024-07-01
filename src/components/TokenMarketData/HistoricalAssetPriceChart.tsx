@@ -1,5 +1,5 @@
 import { LinearGradient, vec } from '@shopify/react-native-skia';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { CurvedTransition } from 'react-native-reanimated';
 import { CartesianChart, Line } from 'victory-native';
@@ -7,6 +7,7 @@ import { CartesianChart, Line } from 'victory-native';
 import { AnimatedNumbers } from '@/components/AnimatedNumbers';
 import { Label, Typography } from '@/components/Label';
 import { CHART_PLACEHOLDER, HIGH_LOW_PRICE_PLACEHOLDER, PRICE_PLACEHOLDER, SheetPosition, getPercentageLabel } from '@/components/TokenMarketData/utils';
+import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useAppCurrency } from '@/realm/settings';
 import {
   PriceHistoryPeriod,
@@ -41,6 +42,9 @@ const convertRealmArrayToChartData = (prices: Realm.List<RealmTokenPriceHistoryI
   return prices.toJSON() as TokenPriceHistoryItem[];
 };
 
+const STANDARD_DEVICE_HEIGHT_FOR_CHART = 850;
+const DEFAULT_CHART_HEIGHT = 120;
+
 export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Props) => {
   const [period, setPeriod] = useState<PriceHistoryPeriod>('DAY');
   const data = useTokenPriceHistory(assetId, period);
@@ -50,6 +54,13 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
   const token = useTokenById(tokenId);
   const { currency } = useAppCurrency();
   const priceNotAvailable = !price;
+
+  const { height, size: deviceSize } = useDeviceSize();
+  const chartHeight = useMemo(() => {
+    const diff = height - STANDARD_DEVICE_HEIGHT_FOR_CHART;
+    const chartHeightOffset = diff > 0 ? diff : 0;
+    return deviceSize === 'small' ? 100 : DEFAULT_CHART_HEIGHT + chartHeightOffset;
+  }, [height, deviceSize]);
 
   useEffect(() => {
     if (data) {
@@ -86,7 +97,7 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
 
   const priceChange = getPriceChange(period);
   const { label: percentageLabel, color } = getPercentageLabel(getPriceChange(period), currency);
-  const priceLabel = priceNotAvailable || !price ? PRICE_PLACEHOLDER : formatCurrency(price, { currency, highPrecision: true });
+  const priceLabel = priceNotAvailable || !price ? PRICE_PLACEHOLDER : formatCurrency(price, { currency, findFirstNonZeroDigits: true });
 
   const { colors } = useTheme();
 
@@ -97,9 +108,10 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
   };
 
   const isHigh = size === SheetPosition.HIGH;
+  const style = deviceSize === 'small' ? styles.smallDeviceContainer : styles.container;
 
   return (
-    <View style={styles.container}>
+    <View style={style}>
       <Label type="boldCaption2" color="light50">
         {priceNotAvailable ? loc.marketData.priceNotAvailable : loc.marketData.price}
       </Label>
@@ -128,7 +140,7 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
 
       {!(priceNotAvailable && size === SheetPosition.HIGH) && (
         <>
-          <Animated.View style={styles.chart} layout={CurvedTransition}>
+          <Animated.View style={[styles.chart, { height: chartHeight }]} layout={CurvedTransition}>
             <CartesianChart data={chartData} xKey="timestamp" yKeys={['value']}>
               {({ points }) => (
                 <Line
@@ -157,9 +169,11 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
   },
+  smallDeviceContainer: {
+    marginTop: 0,
+  },
   chart: {
     marginLeft: -16,
-    height: 120,
   },
   row: {
     flexDirection: 'row',

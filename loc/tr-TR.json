@@ -149,6 +149,13 @@
     "body": "Gizli Kurtarma İfadenizi yedeklemediniz. Fonlarınıza erişimi kaybetmemek için yedekleme yapmanızı öneririz.",
     "header": "Bu cüzdana fon almadan önce yedekleme yapın"
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Blast Ağı",
+    "buttonText": "Kulağa hoş geliyor",
+    "part1": "Cüzdanınız artık {boldBlastNetwork} desteği de sunuyor. ETH ve stabil coin’ler için yerel getiriye sahip Ethereum L2.",
+    "part2": "Bu entegrasyonla, en güvenli mobil cüzdan deneyimini korurken daha fazla Seviye 2 ağını hızla eklemek için zemin hazırladık.",
+    "title": "Kraken Wallet’a Blast Geliyor!"
+  },
   "broadcast": {
     "sent": "Verilen"
   },
@@ -423,6 +430,7 @@
     "title": "Cüzdanları yönet"
   },
   "marketData": {
+    "about": "{assetSymbol} hakkında",
     "allTimeHigh": {
       "details": "Başlangıcından bu yana bir kripto para biriminin işlem gördüğü en yüksek fiyat.",
       "title": "Şimdiye Kadarki En Yüksek:"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Tamamen Seyreltilmiş Değer:"
     },
+    "high": "Yüksek:",
     "links": "Bağlantılar",
+    "low": "Düşük:",
     "marketCap": {
       "details": "Dolaşımda olan arzla mevcut fiyatın çarpılmasıyla elde edilen bir kripto para biriminin toplam piyasa değeri.",
       "short": "Piyasa Değeri",
@@ -453,6 +463,21 @@
       "details": "Projenin protokolünün tanımladığı üzere bir kripto para birimine ait var olacak maksimum coin veya token sayısı.",
       "title": "Maksimum Arz:"
     },
+    "networkFee": {
+      "current": "Mevcut ücret",
+      "duration": "Süre",
+      "title": "Ağ ücreti"
+    },
+    "period": {
+      "all": "TÜMÜ",
+      "day": "24 Saat",
+      "month": "1A",
+      "week": "1H",
+      "year": "1Y"
+    },
+    "price": "Fiyat",
+    "priceNotAvailable": "Fiyat (yok)",
+    "readMore": "Daha fazla oku",
     "showLess": "Daha az göster",
     "terminology": "Terminoloji",
     "tokenContract": "Token sözleşmesi",
@@ -520,6 +545,8 @@
         "subheading": "Cüzdanınız desteklenen tüm ağlarda 0 NFT içeriyor"
       },
       "selectedNetworks": {
+        "blastHeading": "Blast NFT’ler çok yakında geliyor",
+        "blastSubheading": "Bu cüzdan henüz Blast ağındaki NFT'lerinizi görüntülemeyi desteklemiyor",
         "heading": "Seçili ağlarda NFT yok",
         "subheading": "Cüzdanınız seçilen ağlarda 0 NFT içeriyor"
       }

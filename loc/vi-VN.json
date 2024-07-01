@@ -149,6 +149,13 @@
     "body": "Bạn chưa sao lưu Cụm từ khôi phục bí mật của mình. Chúng tôi khuyên bạn nên sao lưu để tránh mất quyền truy cập vào khoản tiền của mình.",
     "header": "Trước khi nhận tiền vào ví này, hãy sao lưu cụm từ khôi phục"
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Blast Network",
+    "buttonText": "Nghe hay đấy",
+    "part1": "Ví của bạn hiện hỗ trợ {boldBlastNetwork}. Ethereum L2 với lợi suất gốc cho ETH và stablecoin.",
+    "part2": "Với sự tích hợp này, chúng tôi đã tạo tiền đề để nhanh chóng bổ sung thêm nhiều mạng Cấp 2 hơn, đồng thời duy trì trải nghiệm ví di động an toàn nhất.",
+    "title": "Kraken Wallet chào đón Blast!"
+  },
   "broadcast": {
     "sent": "Đã gửi"
   },
@@ -423,6 +430,7 @@
     "title": "Quản lý ví"
   },
   "marketData": {
+    "about": "Giới thiệu về {assetSymbol}",
     "allTimeHigh": {
       "details": "Mức giá cao nhất mà một loại tiền điện tử đã được giao dịch kể từ khi ra đời.",
       "title": "Cao ở mọi thời điểm:"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Định giá pha loãng hoàn toàn:"
     },
+    "high": "Cao:",
     "links": "Liên kết",
+    "low": "Thấp:",
     "marketCap": {
       "details": "Tổng giá trị thị trường của tiền điện tử, được tính bằng cách nhân giá hiện tại với nguồn cung lưu hành.",
       "short": "Vốn hóa thị trường",
@@ -453,6 +463,21 @@
       "details": "Số lượng đồng tiền điện tử hoặc token tối đa sẽ tồn tại đối với một loại tiền điện tử, như được xác định bởi giao thức của dự án.",
       "title": "Nguồn cung tối đa:"
     },
+    "networkFee": {
+      "current": "Phí hiện tại",
+      "duration": "Thời hạn",
+      "title": "Phí mạng"
+    },
+    "period": {
+      "all": "TẤT CẢ",
+      "day": "24 GIỜ",
+      "month": "1 THÁNG",
+      "week": "1 tuần",
+      "year": "1 năm"
+    },
+    "price": "Giá",
+    "priceNotAvailable": "Giá (không khả dụng)",
+    "readMore": "Đọc thêm",
     "showLess": "Ẩn bớt",
     "terminology": "Thuật ngữ",
     "tokenContract": "Hợp đồng token",
@@ -520,6 +545,8 @@
         "subheading": "Ví của bạn chứa 0 NFT trên tất cả các mạng được hỗ trợ"
       },
       "selectedNetworks": {
+        "blastHeading": "NFT Blast sắp ra mắt",
+        "blastSubheading": "Ví này chưa hỗ trợ xem NFT của bạn trên Blast Network",
         "heading": "Không có NFT trên các mạng đã chọn",
         "subheading": "Ví của bạn chứa 0 NFT trên các mạng đã chọn"
       }

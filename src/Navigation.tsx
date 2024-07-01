@@ -15,7 +15,6 @@ import {
   WalletConnectSignRequest_GenericTransactionScreen,
   WalletConnectSignRequest_StructuredTransactionScreen,
 } from '@/screens/AppSignRequest';
-import { BlastWelcomingScreen } from '@/screens/BlastWelcoming';
 import { CoinsListScreen } from '@/screens/CoinsList';
 import { ConnectAppScreen } from '@/screens/ConnectApp';
 import { ConnectAppQRScanScreen } from '@/screens/ConnectAppQRScan';
@@ -40,6 +39,7 @@ import { TriggeredPushPromptScreen } from '@/screens/TriggerredPushPromptScreen'
 import { UniversalSendScreen } from '@/screens/UniversalSend';
 import { WalletBackupPromptScreen } from '@/screens/WalletBackupPrompt';
 import { WalletConnectExplainerScreen } from '@/screens/WalletConnectExplainer';
+import { WhatsNewAssetMarketDataScreen, WhatsNewBlastScreen } from '@/screens/WhatsNew';
 import { useConnectionManager } from '@/utils/useConnectionManager';
 
 import { DefaultBackButton } from './components/BackButton';
@@ -121,7 +121,8 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="TriggeredPushPrompt" component={TriggeredPushPromptScreen} options={TriggeredPushPromptScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="SendQRScan" component={SendQRScanScreen} options={SendQRScanScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="WalletConnectExplainer" component={WalletConnectExplainerScreen} options={WalletConnectExplainerScreen.navigationOptions} />
-      <DefaultStack.Screen name="BlastWelcoming" component={BlastWelcomingScreen} options={BlastWelcomingScreen.navigationOptions} />
+      <DefaultStack.Screen name="WhatsNewBlast" component={WhatsNewBlastScreen} options={WhatsNewBlastScreen.navigationOptions} />
+      <DefaultStack.Screen name="WhatsNewAssetMarketData" component={WhatsNewAssetMarketDataScreen} options={WhatsNewAssetMarketDataScreen.navigationOptions} />
       <DefaultStack.Screen
         name="WalletConnectSignRequest_GenericMessage"
         component={WalletConnectSignRequest_GenericMessageScreen}

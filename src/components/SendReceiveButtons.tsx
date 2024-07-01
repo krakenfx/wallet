@@ -6,6 +6,8 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 import { Button, ButtonProps } from '@/components/Button';
 import { Label } from '@/components/Label';
 
+import { useDeviceSize } from '@/hooks/useDeviceSize';
+
 import loc from '/loc';
 
 interface Props {
@@ -15,6 +17,7 @@ interface Props {
 }
 
 export const SendReceiveButtons = ({ onReceivePress, onSendPress, style }: Props) => {
+  const { size } = useDeviceSize();
   const renderButton = (label: string, btnProps: ButtonProps) => {
     return (
       <View style={styles.btnContainer}>
@@ -27,7 +30,7 @@ export const SendReceiveButtons = ({ onReceivePress, onSendPress, style }: Props
   };
 
   return (
-    <Animated.View style={[styles.container, style]} entering={FadeIn}>
+    <Animated.View style={[styles.container, style, size === 'small' && styles.smallDeviceContainer]} entering={FadeIn}>
       {renderButton(loc.universalSend.buttonTitle, { icon: 'send', onPress: onSendPress, testID: 'UniversalSendBtn' })}
       {renderButton(loc.universalReceive.buttonTitle, { icon: 'receive', onPress: onReceivePress, testID: 'UniversalReceiveBtn' })}
     </Animated.View>
@@ -39,6 +42,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 12,
     marginTop: 40,
+  },
+  smallDeviceContainer: {
+    marginTop: 28,
   },
   btnContainer: {
     flex: 1,

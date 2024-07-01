@@ -77,13 +77,6 @@ export const useSettingsMutations = () => {
     [setSettings],
   );
 
-  const setIsBlastModalCompleted = useCallback(
-    (value: boolean) => {
-      setSettings(RealmSettingsKey.isBlastModalCompleted, value);
-    },
-    [setSettings],
-  );
-
   return {
     setSettings,
     setAccountNumber,
@@ -92,6 +85,5 @@ export const useSettingsMutations = () => {
     setAppCurrency,
     setWalletConnectExplainerTaskCompleted,
     setHasViewedWalletBackupPrompt,
-    setIsBlastModalCompleted,
   };
 };

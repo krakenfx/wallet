@@ -149,6 +149,13 @@
     "body": "Vous n’avez pas sauvegardé votre Phrase de récupération secrète. Nous vous conseillons de procéder à une sauvegarde pour éviter de perdre l’accès à vos fonds.",
     "header": "Avant de recevoir des fonds dans ce portefeuille, faites-en une sauvegarde"
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Réseau Blast",
+    "buttonText": "Cela me semble bien",
+    "part1": "Votre portefeuille prend désormais en charge {boldBlastNetwork}. L’Ethereum L2 avec un rendement natif pour l’ETH et les stablecoins.",
+    "part2": "Avec cette intégration, nous sommes prêts à ajouter rapidement d’autres réseaux de niveau 2, tout en conservant l’expérience de portefeuille mobile la plus sécurisée.",
+    "title": "Kraken Wallet accueille Blast !"
+  },
   "broadcast": {
     "sent": "Envoyé"
   },
@@ -423,6 +430,7 @@
     "title": "Gérer les portefeuilles"
   },
   "marketData": {
+    "about": "À propos de {assetSymbol}",
     "allTimeHigh": {
       "details": "Le cours le plus élevé jamais atteint par une crypto-monnaie depuis son lancement.",
       "title": "Plus-haut historique :"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Valorisation après effet de dilution :"
     },
+    "high": "Élevé :",
     "links": "Liens",
+    "low": "Bas :",
     "marketCap": {
       "details": "La valeur totale du marché d’une crypto-monnaie, calculée en multipliant le cours actuel et l’offre en circulation.",
       "short": "Capitalisation boursière",
@@ -453,6 +463,21 @@
       "details": "Le nombre maximum de coins ou tokens qui existeront pour une crypto-monnaie, tel que défini par le protocole du projet.",
       "title": "Offre maximale :"
     },
+    "networkFee": {
+      "current": "Frais actuel",
+      "duration": "Durée",
+      "title": "Frais de réseau"
+    },
+    "period": {
+      "all": "TOUT",
+      "day": "24 h",
+      "month": "1M",
+      "week": "1S",
+      "year": "1A"
+    },
+    "price": "Prix",
+    "priceNotAvailable": "Prix (non disponible)",
+    "readMore": "En savoir plus",
     "showLess": "Afficher moins",
     "terminology": "Terminologie",
     "tokenContract": "Contrat de tokens",
@@ -520,6 +545,8 @@
         "subheading": "Votre portefeuille contient 0 NFT sur tous les réseaux pris en charge"
       },
       "selectedNetworks": {
+        "blastHeading": "NFT Blast bientôt disponibles",
+        "blastSubheading": "Ce portefeuille ne permet pas encore de visualiser vos NFT sur le réseau Blast",
         "heading": "Aucun NFT sur les réseaux sélectionnés",
         "subheading": "Votre portefeuille contient 0 NFT sur les réseaux sélectionnés"
       }

@@ -1,3 +1,5 @@
+import Realm from 'realm';
+
 import { Transaction } from '@/api/types';
 import { NETWORK_FILTERS } from '@/components/NetworkFilter/types';
 import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
@@ -28,7 +30,7 @@ export function isNativeAssetInvolvedInTransaction(obj: Transaction, assetId: st
   }
   return true;
 }
-export function filterTransactionsByNetwork<T>(transactions: RealmResults<T>, networkFilter: NETWORK_FILTERS[]) {
+export function filterTransactionsByNetwork<T>(transactions: Realm.Results<T>, networkFilter: NETWORK_FILTERS[]) {
   const phrases = networkFilter.map((item, index) => `wallet.nativeTokenCaipId BEGINSWITH $${index}`);
   const filterPhrase = phrases.join(' OR ');
   return transactions.filtered(filterPhrase, ...networkFilter);

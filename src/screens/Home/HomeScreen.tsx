@@ -4,7 +4,6 @@ import { StyleSheet, View } from 'react-native';
 import { GradientScreenView } from '@/components/Gradients';
 import navigationStyle from '@/components/navigationStyle';
 import { RefreshControlScrollView } from '@/components/RefreshControlScrollView';
-import { useAppInitBlastWelcoming } from '@/hooks/useAppInitBlastWelcoming';
 import { useAppInitTasks } from '@/hooks/useAppInitTasks';
 import { usePushNotificationsRegisterRemoteNotification } from '@/hooks/usePushNotificationsRegisterRemoteNotifications';
 import { useRefreshStateActions } from '@/realm/refreshManagerHooks';
@@ -28,7 +27,6 @@ export const HomeScreen = ({ navigation }: NavigationProps<'Home'>) => {
   usePushNotificationsRegisterRemoteNotification();
   useInitWalletConnect();
   useAppInitTasks();
-  useAppInitBlastWelcoming();
 
   const { refreshAll } = useRefreshStateActions();
   const pullToRefresh = () => {

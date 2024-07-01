@@ -149,6 +149,13 @@
     "body": "Du hast deine Secret Recovery Phrase nicht abgesichert. Wir empfehlen dir, ein Backup durchzuführen, damit du den Zugang zu deinen Mitteln nicht verlierst.",
     "header": "Sichere deine Wallet ab, bevor du Mittel dafür erhalten kannst."
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Blast Network",
+    "buttonText": "Hört sich gut an",
+    "part1": "Deine Wallet unterstützt nun {boldBlastNetwork}. Ethereum L2 mit nativer Rendite für ETH und Stablecoins.",
+    "part2": "Mit dieser Integration haben wir den Weg dafür bereitet, schnell weitere Level-2-Netzwerke hinzufügen zu können, und gleichzeitig weiterhin die sicherste Erfahrung mit mobilen Wallets zu bieten.",
+    "title": "Kraken Wallet heißt Blast herzlich willkommen!"
+  },
   "broadcast": {
     "sent": "Gesendet"
   },
@@ -423,6 +430,7 @@
     "title": "Wallets verwalten"
   },
   "marketData": {
+    "about": "Über {assetSymbol}",
     "allTimeHigh": {
       "details": "Der höchste Preis, zu dem eine Kryptowährung seit ihrer Einführung getradet wurde.",
       "title": "Rekordhoch:"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Vollständig verwässerter Wert:"
     },
+    "high": "Hoch:",
     "links": "Links",
+    "low": "Niedrig:",
     "marketCap": {
       "details": "Der gesamte Marktwert einer Kryptowährung, berechnet durch die Multiplikation des aktuellen Preises mit der Umlaufmenge.",
       "short": "Marktkapitalisierung",
@@ -453,6 +463,21 @@
       "details": "Die maximale Anzahl an Coins oder Tokens, die jemals für eine Kryptowährung existieren werden, gemäß der Definition des Projektprotokolls.",
       "title": "Maximales Angebot:"
     },
+    "networkFee": {
+      "current": "Aktuelle Gebühr",
+      "duration": "Dauer",
+      "title": "Netzwerkgebühr"
+    },
+    "period": {
+      "all": "ALLE",
+      "day": "24 Std.",
+      "month": "1 M",
+      "week": "1 W.",
+      "year": "1 J."
+    },
+    "price": "Preis",
+    "priceNotAvailable": "Preis (nicht verfügbar)",
+    "readMore": "Mehr lesen",
     "showLess": "Weniger zeigen",
     "terminology": "Terminologie",
     "tokenContract": "Token-Kontrakt",
@@ -520,6 +545,8 @@
         "subheading": "Deine Wallet enthält 0 NFTs in allen unterstützten Netzwerken"
       },
       "selectedNetworks": {
+        "blastHeading": "Blast NFTs sind in Kürze verfügbar",
+        "blastSubheading": "Mit dieser Wallet kannst du noch nicht deine NFTs im Blast Network einsehen",
         "heading": "Keine NFTs in ausgewählten Netzwerken",
         "subheading": "Deine Wallet enthält 0 NFTs in den ausgewählten Netzwerken"
       }

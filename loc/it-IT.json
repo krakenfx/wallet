@@ -149,6 +149,13 @@
     "body": "Non hai eseguito il backup della tua Frase di recupero segreta. Ti consigliamo di farlo per evitare di perdere l’accesso ai tuoi fondi.",
     "header": "Esegui il backup prima di ricevere fondi in questo wallet"
   },
+  "blastWelcoming": {
+    "boldBlastNetwork": "Rete Blast",
+    "buttonText": "Perfetto",
+    "part1": "Il tuo wallet ora supporta la {boldBlastNetwork}. Ethereum L2 con rendimento native per ETH e stablecoin.",
+    "part2": "Con questa integrazione, abbiamo posto le basi per aggiungere rapidamente altre reti di livello 2, mantenendo più sicura possibile l’esperienza del wallet mobile.",
+    "title": "Kraken Wallet dà il benvenuto a Blast!"
+  },
   "broadcast": {
     "sent": "Inviate"
   },
@@ -423,6 +430,7 @@
     "title": "Gestisci wallet"
   },
   "marketData": {
+    "about": "Informazioni su {assetSymbol}",
     "allTimeHigh": {
       "details": "il prezzo massimo a cui una criptovaluta è stata scambiata dal suo lancio.",
       "title": "Massimo storico:"
@@ -443,7 +451,9 @@
       "short": "FDV",
       "title": "Valutazione completamente diluita:"
     },
+    "high": "Massimo:",
     "links": "Link",
+    "low": "Minimo:",
     "marketCap": {
       "details": "il valore totale di mercato di una criptovaluta, calcolato moltiplicando il prezzo attuale per la fornitura circolante.",
       "short": "Market cap",
@@ -453,6 +463,21 @@
       "details": "il numero massimo possibile di crypto o token per una criptovaluta, così come definito nel protocollo del progetto.",
       "title": "Fornitura massima:"
     },
+    "networkFee": {
+      "current": "Commissione corrente",
+      "duration": "Durata",
+      "title": "Commissione del network"
+    },
+    "period": {
+      "all": "TUTTI",
+      "day": "24 ore",
+      "month": "1M",
+      "week": "1W",
+      "year": "1 anno"
+    },
+    "price": "Prezzo",
+    "priceNotAvailable": "Prezzo (non disponibile)",
+    "readMore": "Maggiori informazioni",
     "showLess": "Mostra meno",
     "terminology": "Terminologia",
     "tokenContract": "Contratto token",
@@ -520,6 +545,8 @@
         "subheading": "Il wallet contiene 0 NFT in tutti i network supportati"
       },
       "selectedNetworks": {
+        "blastHeading": "Gli NFT di Blast stanno arrivando",
+        "blastSubheading": "Questo wallet non supporta ancora la visualizzazione dei tuoi NFT sulla rete Blast",
         "heading": "Nessun NFT nel wallet selezionato",
         "subheading": "Il wallet contiene 0 NFT nei network selezionati"
       }

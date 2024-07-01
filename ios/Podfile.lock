@@ -373,7 +373,7 @@ PODS:
     - glog
   - react-native-blur (4.3.2):
     - React-Core
-  - react-native-compat (2.12.2):
+  - react-native-compat (2.13.3):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - react-native-config (1.5.1):
@@ -908,7 +908,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 194e32c6aab382d88713ad3dd0025c5f5c4ee072
   React-logger: cebf22b6cf43434e471dc561e5911b40ac01d289
   react-native-blur: cfdad7b3c01d725ab62a8a729f42ea463998afa2
-  react-native-compat: c741279b875109d2d9fc8da22e80c00ef91311a6
+  react-native-compat: d4cbc6baa534b34984808b9224e5a4b6293af236
   react-native-config: 86038147314e2e6d10ea9972022aa171e6b1d4d8
   react-native-get-random-values: dee677497c6a740b71e5612e8dbd83e7539ed5bb
   react-native-netinfo: fefd4e98d75cbdd6e85fc530f7111a8afdf2b0c5

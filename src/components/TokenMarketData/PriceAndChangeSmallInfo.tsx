@@ -21,17 +21,17 @@ export const PriceAndChangeSmallInfo = ({ tokenId, price }: Props) => {
   const { currency } = useAppCurrency();
   const { label, color } = getPercentageLabel(token?.marketData?.priceChangePercentage.day, currency);
   const priceNotAvailable = !price;
-  const priceLabel = priceNotAvailable ? PRICE_PLACEHOLDER : formatCurrency(price, { currency });
+  const priceLabel = priceNotAvailable ? PRICE_PLACEHOLDER : formatCurrency(price, { currency, findFirstNonZeroDigits: true });
   return (
     <View style={[commonStyles.infoContainer, commonStyles.small, { justifyContent: 'space-evenly' }]}>
       <GradientItemBackground />
       <View style={styles.firstRow}>
         <TokenIcon forceOmitNetworkIcon tokenId={token.assetId} wallet={token.wallet} tokenSymbol={token.metadata.symbol} size={16} style={styles.icon} />
-        <Label type="boldCaption1" color={color}>
+        <Label type="boldBody" color={color}>
           {label}
         </Label>
       </View>
-      <Label type="boldCaption1" color={priceNotAvailable ? 'light50' : 'light100'} style={styles.label}>
+      <Label type="boldBody" color={priceNotAvailable ? 'light50' : 'light100'} style={styles.label}>
         {priceLabel}
       </Label>
     </View>

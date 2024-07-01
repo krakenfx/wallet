@@ -9,18 +9,18 @@ import { BottomSheet } from '@/components/BottomSheet';
 import { Label } from '@/components/Label';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
-import { useSettingsMutations } from '@/realm/settings';
+import { RealmSettingsKey, useSettingsMutations } from '@/realm/settings';
 import { NavigationProps } from '@/Routes';
 
 import loc from '/loc';
 
-export const BlastWelcomingScreen = ({ navigation }: NavigationProps<'BlastWelcoming'>) => {
+export const WhatsNewBlastScreen = ({ navigation }: NavigationProps<'WhatsNewBlast'>) => {
   const { bottomSheetProps, close } = useBottomSheetScreenProps(navigation);
-  const { setIsBlastModalCompleted } = useSettingsMutations();
+  const { setSettings } = useSettingsMutations();
 
   useEffect(() => {
-    setIsBlastModalCompleted(true);
-  }, [setIsBlastModalCompleted]);
+    setSettings(RealmSettingsKey.isBlastModalCompleted, true);
+  }, [setSettings]);
 
   const handleButtonPress = useCallback(() => {
     close();
@@ -73,4 +73,4 @@ const navigationOptions: NativeStackNavigationOptions = {
   },
 };
 
-BlastWelcomingScreen.navigationOptions = navigationOptions;
+WhatsNewBlastScreen.navigationOptions = navigationOptions;
