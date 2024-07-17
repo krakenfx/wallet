@@ -19,6 +19,7 @@ export enum RealmSettingsKey {
   walletConnectTaskCompleted = 'walletConnectTaskCompleted',
   storeReviewTaskCompleted = 'storeReviewTaskCompleted',
   storeReviewSubmitted = 'storeReviewSubmitted',
+  hideBalances = 'hideBalances',
 
   isBlastModalCompleted = 'isBlastModalCompleted',
   whatsNewIsAssetMarketDataCompleted = 'whatsNewIsAssetMarketDataCompleted',
@@ -39,6 +40,7 @@ export type SettingsType = {
   [RealmSettingsKey.appOpenedCounter]: number;
   [RealmSettingsKey.storeReviewTaskCompleted]: boolean;
   [RealmSettingsKey.storeReviewSubmitted]: boolean;
+  [RealmSettingsKey.hideBalances]: boolean;
   [RealmSettingsKey.isBlastModalCompleted]: boolean;
   [RealmSettingsKey.whatsNewIsAssetMarketDataCompleted]: boolean;
 };

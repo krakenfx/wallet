@@ -20,7 +20,9 @@ import loc from '/loc';
 export const NetworkFeeEstimate: React.FC<Props> = ({ data, size }) => {
   if (size !== 'big') {
     return (
-      <Animated.View style={[commonStyles.infoContainer, styles.spaceEvenly, size === 'small' && commonStyles.small, size === 'medium' && commonStyles.medium]}>
+      <Animated.View
+        testID={`NetworkFeeEstimate-${size}`}
+        style={[commonStyles.infoContainer, styles.spaceEvenly, size === 'small' && commonStyles.small, size === 'medium' && commonStyles.medium]}>
         <GradientItemBackground />
         {size === 'medium' && (
           <Label type="boldCaption2" color="light75">
@@ -34,7 +36,7 @@ export const NetworkFeeEstimate: React.FC<Props> = ({ data, size }) => {
   }
 
   return (
-    <Animated.View style={styles.containerBig} entering={FadeIn}>
+    <Animated.View style={styles.containerBig} entering={FadeIn} testID={`NetworkFeeEstimate-${size}`}>
       <GradientItemBackground />
       <View style={styles.column}>
         <Label type="boldBody">{loc.marketData.networkFee.title}</Label>

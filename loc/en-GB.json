@@ -398,6 +398,31 @@
     "summaryEmphasis": "Bitcoin Extended Public Key (xPub)",
     "type": "Type: {type}"
   },
+  "extension": {
+    "home": {
+      "addWallet": "Add wallet",
+      "manage": "Manage",
+      "selectWallet": "Select wallet"
+    },
+    "lockWallet": "Lock wallet",
+    "navigation": {
+      "activity": "Activity",
+      "assets": "Assets",
+      "nfts": "NFTs"
+    },
+    "nft": {
+      "addNfts": "Add NFTs to you wallet"
+    },
+    "onboarding": {
+      "typeYourSecretRecoveryPhrase": "Type your secret recovery phrase",
+      "walletSupports": "This wallet supports, Ethereum, Polygon, Optimism, Arbitrum and more"
+    },
+    "receive": {
+      "receiveCryptoOrNft": "Receive crypto or NFTs"
+    },
+    "skip": "Skip",
+    "walletSettings": "Wallet settings"
+  },
   "floatingTransactionActivityButtons": {
     "receive": "Receive",
     "send": "Send"
@@ -433,15 +458,15 @@
     "about": "About {assetSymbol}",
     "allTimeHigh": {
       "details": "The highest price a cryptocurrency has traded at since its inception.",
-      "title": "All-Time High:"
+      "title": "All-Time High"
     },
     "allTimeLow": {
       "details": "The lowest price a cryptocurrency has traded at since its inception.",
-      "title": "All-Time Low:"
+      "title": "All-Time Low"
     },
     "circulatingSupply": {
       "details": "The number of coins or tokens that are actively available in the market and in the general public's hands.",
-      "title": "Circulating Supply:"
+      "title": "Circulating Supply"
     },
     "contract": "Contract",
     "contractAddressCopied": "Contract Address copied!",
@@ -449,7 +474,7 @@
     "fullyDilutedValuation": {
       "details": "The market cap if the max supply was in circulation, calculated by multiplying the current price by the max supply.",
       "short": "FDV",
-      "title": "Fully Diluted Valuation:"
+      "title": "Fully Diluted Valuation"
     },
     "high": "High:",
     "links": "Links",
@@ -457,11 +482,11 @@
     "marketCap": {
       "details": "The total market value of a cryptocurrency, calculated by multiplying the current price by the circulating supply.",
       "short": "Market Cap",
-      "title": "Market Cap:"
+      "title": "Market Cap"
     },
     "maxSupply": {
       "details": "The maximum number of coins or tokens that will ever exist for a cryptocurrency, as defined by the project's protocol.",
-      "title": "Max Supply:"
+      "title": "Max Supply"
     },
     "networkFee": {
       "current": "Current fee",
@@ -488,12 +513,12 @@
     },
     "totalSupply": {
       "details": "The number of coins or tokens that currently exist, including those that may be locked, reserved or not yet released.",
-      "title": "Total Supply:"
+      "title": "Total Supply"
     },
     "volume24h": {
       "details": "The total value of a cryptocurrency traded in the last 24 hours across all exchanges.",
       "short": "24h Volume",
-      "title": "24h Volume:"
+      "title": "24h Volume"
     },
     "website": "Website"
   },
@@ -946,6 +971,7 @@
     "electrum_unable_to_connect": "Unable to connect to {server}.",
     "general": "General",
     "header": "Settings",
+    "hideBalances": "Hide balances",
     "language": "Language",
     "manageWallets": "Manage wallets",
     "notifications": "Push notifications",
@@ -1356,5 +1382,13 @@
     "import_title": "Import",
     "list_tryagain": "Try again",
     "pending": "Pending"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "buttonText": "Check it out",
+      "part1": "You can now track your holdings' and asset's performance and price changes directly in the wallet!",
+      "part2": "Dive into detailed asset insights, get informed of potential threats and seamlessly access essential information like token contracts and current network fees.",
+      "title": "Comprehensive asset data at your fingertips"
+    }
   }
 }

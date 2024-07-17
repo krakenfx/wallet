@@ -398,6 +398,31 @@
     "summaryEmphasis": "Bitcoin Extended Public Key (xPub)",
     "type": "Type: {type}"
   },
+  "extension": {
+    "home": {
+      "addWallet": "Wallet toevoegen",
+      "manage": "Beheren",
+      "selectWallet": "Selecteer wallet"
+    },
+    "lockWallet": "Wallet vergrendelen",
+    "navigation": {
+      "activity": "Activiteit",
+      "assets": "Assets",
+      "nfts": "NFT's"
+    },
+    "nft": {
+      "addNfts": "Voeg NFT's toe aan je wallet"
+    },
+    "onboarding": {
+      "typeYourSecretRecoveryPhrase": "Typ jouw geheime herstelzin",
+      "walletSupports": "Deze wallet ondersteunt Ethereum, Polygon, Optimism, Arbitrum en meer"
+    },
+    "receive": {
+      "receiveCryptoOrNft": "Ontvang crypto of NFT's"
+    },
+    "skip": "Overslaan",
+    "walletSettings": "Wallet-instellingen"
+  },
   "floatingTransactionActivityButtons": {
     "receive": "Ontvangen",
     "send": "Versturen"
@@ -433,15 +458,15 @@
     "about": "Over {assetSymbol}",
     "allTimeHigh": {
       "details": "De hoogste prijs waartegen een cryptovaluta sinds zijn oprichting is verhandeld.",
-      "title": "Historisch hoogtepunt:"
+      "title": "Historisch hoogtepunt"
     },
     "allTimeLow": {
       "details": "De laagste prijs waartegen een cryptovaluta sinds zijn oprichting is verhandeld.",
-      "title": "Historisch laagtepunt:"
+      "title": "Historisch laagtepunt"
     },
     "circulatingSupply": {
       "details": "Het aantal munten of tokens dat actief beschikbaar is op de markt en in handen is van het grote publiek.",
-      "title": "Circulerende voorraad:"
+      "title": "Circulerend aanbod"
     },
     "contract": "Contract",
     "contractAddressCopied": "Contractadres gekopieerd!",
@@ -449,7 +474,7 @@
     "fullyDilutedValuation": {
       "details": "De marktkapitalisatie als de maximale voorraad in omloop zou zijn, berekend door de huidige koers te vermenigvuldigen met de maximale voorraad.",
       "short": "FDV",
-      "title": "Volledige verwaterde waardering:"
+      "title": "Volledige verwaterde waardering"
     },
     "high": "Hoog:",
     "links": "Koppelingen",
@@ -457,11 +482,11 @@
     "marketCap": {
       "details": "De totale marktwaarde van een cryptovaluta, berekend door de huidige koers te vermenigvuldigen met de circulerende voorraad.",
       "short": "Marktplafond",
-      "title": "Marktkapitalisatie:"
+      "title": "Marktplafond"
     },
     "maxSupply": {
       "details": "Het maximale aantal munten of tokens dat ooit zal bestaan voor een cryptovaluta, zoals gedefinieerd door het protocol van het project.",
-      "title": "Max. voorraad:"
+      "title": "Max. voorraad"
     },
     "networkFee": {
       "current": "Huidig tarief",
@@ -488,12 +513,12 @@
     },
     "totalSupply": {
       "details": "Het aantal munten of tokens dat momenteel bestaat, inclusief de munten of tokens die mogelijk vergrendeld, gereserveerd of nog niet vrijgegeven zijn.",
-      "title": "Totale voorraad:"
+      "title": "Totale voorraad"
     },
     "volume24h": {
       "details": "De totale waarde van een cryptovaluta die de afgelopen 24 uur op alle beurzen is verhandeld.",
       "short": "24h Volume",
-      "title": "24-uurs volume:"
+      "title": "24h Volume"
     },
     "website": "Website"
   },
@@ -946,6 +971,7 @@
     "electrum_unable_to_connect": "Kan geen verbinding maken met {server}.",
     "general": "Algemeen",
     "header": "Instellingen",
+    "hideBalances": "Tegoeden verbergen",
     "language": "Taal",
     "manageWallets": "Wallets beheren",
     "notifications": "Pushmeldingen",
@@ -1356,5 +1382,13 @@
     "import_title": "Importeren",
     "list_tryagain": "Probeer het opnieuw",
     "pending": "In behandeling"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "buttonText": "Probeer het",
+      "part1": "Je kunt nu de prestaties en prijswijzigingen van je bezittingen en assets direct in je wallet volgen!",
+      "part2": "Duik in gedetailleerde inzichten, blijf op de hoogte van potentiële beleggingen en krijg naadloos toegang tot essentiële informatie zoals tokencontracten en huidige netwerkkosten.",
+      "title": "Uitgebreide assetgegevens binnen handbereik"
+    }
   }
 }

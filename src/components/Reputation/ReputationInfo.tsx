@@ -40,7 +40,7 @@ export const ReputationInfo = ({ assetId = '', filterOut = { reputation: [], coi
 
   if (accordion) {
     return (
-      <View>
+      <View testID="ReputationInfo">
         <Label type="boldTitle2" style={styles.label}>
           {loc.reputation.title}
         </Label>

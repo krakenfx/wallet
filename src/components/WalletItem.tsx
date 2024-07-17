@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { IconButton } from '@/components/IconButton';
 import { Label } from '@/components/Label';
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { RealmAccount } from '@/realm/accounts';
 import { useAppCurrency } from '@/realm/settings';
 import { Routes } from '@/Routes';
@@ -38,6 +39,7 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
   const borderTopRadius = isFirst ? { borderTopLeftRadius: 16, borderTopRightRadius: 16 } : {};
   const borderBottomRadius = isLast ? { borderBottomLeftRadius: 16, borderBottomRightRadius: 16 } : {};
   const style = [styles.container, borderTopRadius, borderBottomRadius, { backgroundColor: containerBackgroundColor }];
+  const balanceDisplay = useBalanceDisplay(formatCurrency(balance, { currency }));
 
   const handlePress = () => {
     if (onPress) {
@@ -68,7 +70,7 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
         <Label type="boldTitle2">{accountCustomName}</Label>
         {}
         <Label type="boldMonospace" color="light75" style={styles.balance}>
-          {formatCurrency(balance, { currency })}
+          {balanceDisplay}
         </Label>
       </View>
 

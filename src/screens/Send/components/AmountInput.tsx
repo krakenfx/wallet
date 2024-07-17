@@ -7,6 +7,7 @@ import { Button } from '@/components/Button';
 import { Label } from '@/components/Label';
 import { Toggle } from '@/components/Toggle';
 import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { Network } from '@/onChain/wallets/base';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useTokenPrice } from '@/realm/tokenPrice';
@@ -250,11 +251,13 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
   const fiatTotalBalance = useTokenBalanceConvertedToAppCurrency(token);
   const balanceValue =
     inputInFiatCurrency && fiatTotalBalance ? formatCurrency(fiatTotalBalance, { currency }) : `${amounts.balanceAmountFormatted} ${token.metadata.symbol}`;
+  const balanceValueFormatted = useBalanceDisplay(balanceValue);
+  const balanceDisplay = useBalanceDisplay(loc.send.balance);
 
   const footerRight = loc.formatString(
-    loc.send.balance,
+    balanceDisplay,
     <Label type="mediumBody" color={errorMessage ? 'red400' : 'light50'}>
-      {balanceValue}
+      {balanceValueFormatted}
     </Label>,
   );
 

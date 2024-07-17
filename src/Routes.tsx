@@ -75,6 +75,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     Onboarding: NavigatorScreenParams<OnboardingStackParams>;
     PasswordProtection: undefined;
     PasswordProtectionForm: undefined;
+    Privacy: undefined;
     Receive: ReceiveRouteProps;
     UniversalReceive: undefined;
     UniversalSend: UniversalSendRouteParams | undefined;
@@ -137,6 +138,7 @@ export enum Routes {
   OnboardingOutro = 'OnboardingOutro',
   OnboardingSecureWallet = 'OnboardingSecureWallet',
   OnboardingPushPrompt = 'OnboardingPushPrompt',
+  Privacy = 'Privacy',
   Receive = 'Receive',
   UniversalReceive = 'UniversalReceive',
   UniversalSend = 'UniversalSend',

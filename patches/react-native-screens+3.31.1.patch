@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-screens/ios/RNSFullWindowOverlay.mm b/node_modules/react-native-screens/ios/RNSFullWindowOverlay.mm
+index ca1278a..6fee130 100644
+--- a/node_modules/react-native-screens/ios/RNSFullWindowOverlay.mm
++++ b/node_modules/react-native-screens/ios/RNSFullWindowOverlay.mm
+@@ -18,7 +18,7 @@ @implementation RNSFullWindowOverlayContainer
+ - (instancetype)initWithFrame:(CGRect)frame
+ {
+   if (self = [super initWithFrame:frame]) {
+-    self.accessibilityViewIsModal = YES;
++    self.accessibilityViewIsModal = NO;
+   }
+   return self;
+ }

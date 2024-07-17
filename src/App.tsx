@@ -31,6 +31,7 @@ LogBox.ignoreLogs([
   'Importing FullWindowOverlay is only valid on iOS devices',
   '"n" is not a valid color or brush',
   'socketDidDisconnect with nil clientDelegate for 0',
+  '`useBottomSheetDynamicSnapPoints` will be deprecated in the next major release!',
 ]);
 
 console.log('applogFilePath:', applogFilePath);

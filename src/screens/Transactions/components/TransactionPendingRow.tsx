@@ -10,7 +10,9 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { TokenIcon, TokenIconFallback } from '@/components/TokenIcon';
 import { Touchable } from '@/components/Touchable';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings';
+import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
 import { getAvailableTokenBalance, useTokenById } from '@/realm/tokens';
 import { RealmPendingTransaction } from '@/realm/transactions';
 import { TRANSACTION_PENDING_TYPES } from '@/realm/transactions/const';
@@ -51,6 +53,8 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
   const title = loc.transactionTile.type[kind];
   const subTitle = kind === 'send' ? formatTransactionAddress(to, kind, true) : formatTransactionAddress(from, kind, true);
 
+  const balancesHidden = useIsHideBalancesEnabled();
+
   const amountToShow = useMemo(() => {
     if (isNft) {
       return fee ?? '0';
@@ -71,6 +75,7 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
   const appCurrencyValue = formatTransactionValueAsNegativeOrPositive(useAppCurrencyValue(token, amountToShow ?? '0', TRANSACTIONS_REALM_QUEUE_KEY) || 0, kind);
   const { currency } = useAppCurrency();
   const appCurrencyValuePrettified = formatCurrency(appCurrencyValue, { currency });
+  const currencyDisplay = useBalanceDisplay(appCurrencyValuePrettified, 7);
   const tokenAmount = useMemo(() => {
     if (amountToShow && token) {
       const token_ = { balance: amountToShow, metadata: { decimals: metadata.decimals } };
@@ -82,6 +87,7 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
     }
   }, [amountToShow, currency, isBtc, kind, metadata.decimals, token]);
   const tokenAmountWithSymbol = tokenAmount === '' ? '' : `${tokenAmount} ${metadata.symbol}`;
+  const tokenDisplay = useBalanceDisplay(tokenAmountWithSymbol);
 
   const detailsAmount = (isNft ? fee : amount) ?? '0';
 
@@ -184,11 +190,15 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
       </View>
 
       <View style={styles.amountContainer}>
-        <Label style={styles.amountFiatText} type="boldLargeMonospace" numberOfLines={1}>
-          {appCurrencyValuePrettified}
+        <Label
+          style={[styles.amountFiatText, balancesHidden && styles.hiddenBalance]}
+          type="boldLargeMonospace"
+          numberOfLines={1}
+          color={balancesHidden ? 'light50' : 'light100'}>
+          {currencyDisplay}
         </Label>
         <Label style={styles.amountText} type="regularMonospace" color="light50" numberOfLines={1}>
-          {tokenAmountWithSymbol}
+          {tokenDisplay}
         </Label>
       </View>
     </Touchable>
@@ -234,5 +244,9 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     alignSelf: 'flex-start',
+  },
+  hiddenBalance: {
+    paddingTop: 1,
+    marginBottom: -1,
   },
 });

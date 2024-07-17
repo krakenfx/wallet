@@ -398,6 +398,31 @@
     "summaryEmphasis": "Clé publique étendue Bitcoin (xPub)",
     "type": "Type : {type}"
   },
+  "extension": {
+    "home": {
+      "addWallet": "Ajouter un portefeuille",
+      "manage": "Gérer",
+      "selectWallet": "Sélectionner le portefeuille"
+    },
+    "lockWallet": "Verrouiller le portefeuille",
+    "navigation": {
+      "activity": "Activité",
+      "assets": "Actifs",
+      "nfts": "NFT"
+    },
+    "nft": {
+      "addNfts": "Ajoutez des NFT à votre portefeuille"
+    },
+    "onboarding": {
+      "typeYourSecretRecoveryPhrase": "Saisissez votre phrase de récupération secrète",
+      "walletSupports": "Ce portefeuille prend en charge les technologies Ethereum, Polygon, Optimism, Arbitrum et plus encore."
+    },
+    "receive": {
+      "receiveCryptoOrNft": "Recevez des crypto-monnaies ou des NFT"
+    },
+    "skip": "Ignorer",
+    "walletSettings": "Paramètres du portefeuille"
+  },
   "floatingTransactionActivityButtons": {
     "receive": "Recevoir",
     "send": "Envoyer"
@@ -433,15 +458,15 @@
     "about": "À propos de {assetSymbol}",
     "allTimeHigh": {
       "details": "Le cours le plus élevé jamais atteint par une crypto-monnaie depuis son lancement.",
-      "title": "Plus-haut historique :"
+      "title": "Plus-haut historique"
     },
     "allTimeLow": {
       "details": "Le cours le plus bas jamais atteint par une crypto-monnaie depuis son lancement.",
-      "title": "Cours le plus bas historique :"
+      "title": "Plus bas historique"
     },
     "circulatingSupply": {
       "details": "Nombre de coins ou tokens disponibles activement sur le marché et détenus par le grand public.",
-      "title": "Offre en circulation :"
+      "title": "Volume en circulation"
     },
     "contract": "Contrat",
     "contractAddressCopied": "Adresse du contrat copiée !",
@@ -449,7 +474,7 @@
     "fullyDilutedValuation": {
       "details": "La capitalisation boursière si l’offre maximale était en circulation, calculée en multipliant le cours actuel par l’offre maximale.",
       "short": "FDV",
-      "title": "Valorisation après effet de dilution :"
+      "title": "Valorisation après effet de dilution"
     },
     "high": "Élevé :",
     "links": "Liens",
@@ -457,11 +482,11 @@
     "marketCap": {
       "details": "La valeur totale du marché d’une crypto-monnaie, calculée en multipliant le cours actuel et l’offre en circulation.",
       "short": "Capitalisation boursière",
-      "title": "Capitalisation boursière :"
+      "title": "Capitalisation boursière"
     },
     "maxSupply": {
       "details": "Le nombre maximum de coins ou tokens qui existeront pour une crypto-monnaie, tel que défini par le protocole du projet.",
-      "title": "Offre maximale :"
+      "title": "Offre maximale"
     },
     "networkFee": {
       "current": "Frais actuel",
@@ -488,12 +513,12 @@
     },
     "totalSupply": {
       "details": "Le nombre de coins ou tokens qui existent actuellement, y compris ceux qui sont verrouillés, réservés ou qui ne sont pas encore émis.",
-      "title": "Offre totale :"
+      "title": "Offre totale"
     },
     "volume24h": {
       "details": "La valeur totale d’une crypto-monnaie tradée au cours des dernières 24 heures sur toutes les plateformes d'échange.",
       "short": "Volume sur 24 h",
-      "title": "Volume sur 24 h :"
+      "title": "Volume sur 24 h"
     },
     "website": "Site Web"
   },
@@ -946,6 +971,7 @@
     "electrum_unable_to_connect": "Impossible de se connecter à {server}.",
     "general": "Général",
     "header": "Paramètres",
+    "hideBalances": "Masquer les soldes",
     "language": "Langue",
     "manageWallets": "Gérer les portefeuilles",
     "notifications": "Alertes instantanées",
@@ -1356,5 +1382,13 @@
     "import_title": "Importer",
     "list_tryagain": "Veuillez réessayer",
     "pending": "En attente"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "buttonText": "En savoir plus",
+      "part1": "Désormais, vous pouvez suivre les performances et les variations des cours de vos actifs directement dans votre portefeuille !",
+      "part2": "Bénéficiez d’analyses détaillées sur les actifs, restez à l’affût des menaces potentielles et accédez aisément à des informations essentielles comme les contrats de token et les frais de réseau actuels.",
+      "title": "Des données complètes sur vos actifs à portée de main"
+    }
   }
 }

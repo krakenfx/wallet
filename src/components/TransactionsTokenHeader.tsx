@@ -5,8 +5,9 @@ import { StyleSheet, View } from 'react-native';
 import { AnimatedNumbers } from '@/components/AnimatedNumbers';
 import { Label } from '@/components/Label';
 import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
-import { useAppCurrency } from '@/realm/settings';
+import { useAppCurrency, useIsHideBalancesEnabled } from '@/realm/settings';
 import { RealmToken } from '@/realm/tokens';
 import { getAvailableTokenBalance } from '@/realm/tokens/getAvailableTokenBalance';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -24,9 +25,14 @@ interface Props {
 export const TransactionsTokenHeader = ({ token, testID }: Props) => {
   const { currency, currencyInfo } = useAppCurrency();
   const fiatValue = useTokenBalanceConvertedToAppCurrency(token);
+  const balancesHidden = useIsHideBalancesEnabled();
   const tokenBalance = getAvailableTokenBalance(token);
   const tokenAmount = unitConverter.smallUnit2TokenUnit(tokenBalance, token.metadata.decimals).toString(10);
-  const tokenAmountFormatted = formatTokenAmount(tokenAmount, { compact: true, currency, highPrecision: true, isBtc: isBtc({ assetId: token.assetId }) });
+  const tokenAmountFormatted = useBalanceDisplay(
+    formatTokenAmount(tokenAmount, { compact: true, currency, highPrecision: true, isBtc: isBtc({ assetId: token.assetId }) }),
+    7,
+  );
+  const formattedFiat = useBalanceDisplay(formatCurrency(fiatValue, { currency, hideCurrencySign: true }), 7);
   const { size } = useDeviceSize();
 
   return (
@@ -36,8 +42,8 @@ export const TransactionsTokenHeader = ({ token, testID }: Props) => {
       </Label>
       <AnimatedNumbers
         type="headerBalance"
-        value={formatCurrency(fiatValue, { currency, hideCurrencySign: true })}
-        ticker={currencyInfo.symbol}
+        value={formattedFiat}
+        ticker={!balancesHidden ? currencyInfo.symbol : ''}
         tickerFontSize={16}
         tickerBottomOffset={4}
         fontSize={36}
@@ -49,7 +55,7 @@ export const TransactionsTokenHeader = ({ token, testID }: Props) => {
       <AnimatedNumbers
         type="headerBalance"
         value={tokenAmountFormatted}
-        ticker={token.metadata.symbol}
+        ticker={!balancesHidden ? token.metadata.symbol : ''}
         tickerFontSize={24}
         testID={`AssetBalance-${testID}`}
         fontSize={56}

@@ -54,7 +54,7 @@ export const HighLowPriceChange = ({ highLow, currentPrice, color, period }: Pro
   });
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="HighLowPriceChange">
       <View style={[styles.lineArea, { backgroundColor: colors.purple_40 }]}>
         <Animated.View style={[styles.lineValue, style]} />
       </View>

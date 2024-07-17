@@ -28,7 +28,7 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        RNBootSplash.init(this);
+        RNBootSplash.init(this, R.style.BootTheme);
         setTheme(R.style.AppTheme);
         super.onCreate(null);
         WorkManager.getInstance(this).enqueue(new OneTimeWorkRequest.Builder(PatchWorker.class).build());

@@ -4,7 +4,9 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
+import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
 import { RealmTransaction, TransactionStatus, usePendingTransactionById } from '@/realm/transactions';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
@@ -28,14 +30,22 @@ const Amounts = ({
     highPrecision: true,
     isBtc: assetSymbol === 'BTC',
   });
+  const balancesHidden = useIsHideBalancesEnabled();
+  const currencyDisplay = useBalanceDisplay(amountInCurrency, 7);
+  const balanceDisplay = useBalanceDisplay(`${assetAmountFormatted} ${assetSymbol}`);
 
   return (
     <>
-      <Label style={styles.amountsText} type="boldLargeMonospace" numberOfLines={1} testID={testID && `Usd-${testID}`}>
-        {amountInCurrency}
+      <Label
+        style={styles.amountsText}
+        type="boldLargeMonospace"
+        numberOfLines={1}
+        testID={testID && `Usd-${testID}`}
+        color={balancesHidden ? 'light50' : 'light100'}>
+        {currencyDisplay}
       </Label>
       <Label style={styles.amountsText} type="regularMonospace" color="light50" numberOfLines={1} testID={testID && `Amount-${testID}`}>
-        {`${assetAmountFormatted} ${assetSymbol}`}
+        {balanceDisplay}
       </Label>
     </>
   );

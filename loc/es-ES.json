@@ -398,6 +398,31 @@
     "summaryEmphasis": "Clave pública extendida (xPub) de Bitcoin",
     "type": "Tipo: {type}"
   },
+  "extension": {
+    "home": {
+      "addWallet": "Añadir monedero",
+      "manage": "Gestionar",
+      "selectWallet": "Seleccionar monedero"
+    },
+    "lockWallet": "Bloquear monedero",
+    "navigation": {
+      "activity": "Actividad",
+      "assets": "Activos",
+      "nfts": "NFT"
+    },
+    "nft": {
+      "addNfts": "Añadir NFT a tu monedero"
+    },
+    "onboarding": {
+      "typeYourSecretRecoveryPhrase": "Introduce tu frase de recuperación secreta",
+      "walletSupports": "Este monedero admite Ethereum, Polygon, Optimism, Arbitrum y más"
+    },
+    "receive": {
+      "receiveCryptoOrNft": "Recibir cripto o NFT"
+    },
+    "skip": "Omitir",
+    "walletSettings": "Configuración del monedero"
+  },
   "floatingTransactionActivityButtons": {
     "receive": "Recibir",
     "send": "Enviar"
@@ -433,15 +458,15 @@
     "about": "Acerca de {assetSymbol}",
     "allTimeHigh": {
       "details": "El precio más alto al que se ha se ha operado con una criptomoneda desde su creación.",
-      "title": "Máximo histórico:"
+      "title": "Máximo histórico"
     },
     "allTimeLow": {
       "details": "El precio más bajo al que se ha se ha operado con una criptomoneda desde su creación.",
-      "title": "Mínimo histórico:"
+      "title": "Mínimo histórico"
     },
     "circulatingSupply": {
       "details": "El número de monedas o tokens que están disponibles activamente en el mercado y en manos del público en general.",
-      "title": "Suministro en circulación:"
+      "title": "Suministro en circulación"
     },
     "contract": "Contrato",
     "contractAddressCopied": "Dirección del contrato copiada.",
@@ -449,7 +474,7 @@
     "fullyDilutedValuation": {
       "details": "El market cap si el suministro máximo estuviera en circulación, calculado multiplicando el precio actual por el suministro máximo.",
       "short": "FDV",
-      "title": "Valoración totalmente diluida:"
+      "title": "Valoración totalmente diluida"
     },
     "high": "Alto:",
     "links": "Enlaces",
@@ -457,11 +482,11 @@
     "marketCap": {
       "details": "El valor total de mercado de una criptomoneda, calculado multiplicando el precio actual por el suministro en circulación.",
       "short": "Market Cap",
-      "title": "Market cap:"
+      "title": "Market Cap"
     },
     "maxSupply": {
       "details": "El número máximo de monedas o tokens que existirán para una criptomoneda, según lo definido por el protocolo del proyecto.",
-      "title": "Suministro máximo:"
+      "title": "Suministro máximo"
     },
     "networkFee": {
       "current": "Tarifa actual",
@@ -488,12 +513,12 @@
     },
     "totalSupply": {
       "details": "El número de monedas o tokens que existen actualmente, incluidas las que pueden estar bloqueadas, reservadas o aún no liberadas.",
-      "title": "Suministro total:"
+      "title": "Suministro total"
     },
     "volume24h": {
       "details": "El valor total de una criptomoneda con la que se ha operado en las últimas 24 horas en todas los exchanges.",
       "short": "Volumen 24h",
-      "title": "Volumen de 24 horas:"
+      "title": "Volumen 24h"
     },
     "website": "Sitio web"
   },
@@ -946,6 +971,7 @@
     "electrum_unable_to_connect": "No se puede conectar a {server}.",
     "general": "General",
     "header": "Configuración",
+    "hideBalances": "Ocultar saldos",
     "language": "Idioma",
     "manageWallets": "Gestionar monederos",
     "notifications": "Notificaciones push",
@@ -1356,5 +1382,13 @@
     "import_title": "Importar",
     "list_tryagain": "Intentarlo de nuevo",
     "pending": "Pendiente"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "buttonText": "Compruébalo",
+      "part1": "Ya puedes hacer un seguimiento de tus inversiones, el rendimiento de los activos y los cambios de precio directamente desde el monedero.",
+      "part2": "Ahonda en la información detallada de los activos, infórmate de las posibles amenazas y accede fácilmente a la información esencial, como los contratos de token y las tarifas de red actuales.",
+      "title": "Información exhaustiva sobre los activos al alcance de tu mano"
+    }
   }
 }

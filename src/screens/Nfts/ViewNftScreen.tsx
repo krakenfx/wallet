@@ -1,9 +1,9 @@
 import BottomSheetView, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { useIsFocused } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useEffect } from 'react';
 import { useRef } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
-import Animated, { Extrapolate, interpolate, runOnJS, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
+import Animated, { Extrapolation, interpolate, runOnJS, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BackButton } from '@/components/BackButton';
@@ -68,7 +68,6 @@ export const ViewNftScreen = ({ navigation, route }: NavigationProps<'ViewNft'>)
     }
   }, [navigation, nft]);
 
-  const isInFocus = useIsFocused();
   const controlsVisibility = useSharedValue(1);
   const imagePreviewVisibity = useSharedValue(1);
 
@@ -110,12 +109,12 @@ export const ViewNftScreen = ({ navigation, route }: NavigationProps<'ViewNft'>)
     sheetRef.current?.close();
   };
 
-  useEffect(() => {
-    if (isInFocus) {
+  useFocusEffect(
+    useCallback(() => {
       imagePreviewVisibity.value = 1;
       controlsVisibility.value = withTiming(1);
-    }
-  }, [controlsVisibility, imagePreviewVisibity, isInFocus]);
+    }, [controlsVisibility, imagePreviewVisibity]),
+  );
 
   const bottomSheetSnapPoint = screenHeight - imageData.containedSize.height;
 
@@ -134,7 +133,7 @@ export const ViewNftScreen = ({ navigation, route }: NavigationProps<'ViewNft'>)
             bottomSheetPosition.value,
             [imageData.containedSize.height, screenHeight],
             [0, insets.bottom + SEND_BUTTON_HIDDEN_OFFSET],
-            Extrapolate.CLAMP,
+            Extrapolation.CLAMP,
           ),
         },
       ],
@@ -158,7 +157,7 @@ export const ViewNftScreen = ({ navigation, route }: NavigationProps<'ViewNft'>)
             bottomSheetPosition.value,
             [0, containedSize.height, screenHeight],
             [0, 0, screenHeight / 2 - originalSize.height / 2],
-            Extrapolate.CLAMP,
+            Extrapolation.CLAMP,
           ),
         },
         {

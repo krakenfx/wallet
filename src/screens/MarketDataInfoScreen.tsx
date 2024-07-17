@@ -41,7 +41,7 @@ export const MarketDataInfoScreen = ({ navigation }: NavigationProps<'MarketData
     <BottomSheet {...bottomSheetProps} snapPoints={['100%']}>
       <BottomSheetScrollView style={{ marginBottom: insets.bottom }}>
         <ModalNavigationHeader title={loc.marketData.terminology} onClosePress={close} />
-        <View style={styles.container}>
+        <View style={styles.container} testID="MarketDataTerminology">
           <View style={styles.section}>
             <GradientItemBackground />
             <SectionItem title={loc.marketData.marketCap.title} details={loc.marketData.marketCap.details} />

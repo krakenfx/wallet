@@ -26,9 +26,13 @@ export const Tick = ({ type, value, fontSize, lineHeight, color }: TickProps) =>
   const lastValue = useRef('0');
 
   const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: animation.value }],
-    };
+    if (global._WORKLET) {
+      return {
+        transform: [{ translateY: animation.value }],
+      };
+    } else {
+      return {};
+    }
   });
 
   useEffect(() => {

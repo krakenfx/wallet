@@ -45,7 +45,7 @@ export const ContractAddress = ({ contractAddress, networkName }: Props) => {
   }, [contractAddress, navigation]);
 
   return (
-    <Animated.View entering={FadeIn} exiting={FadeOut}>
+    <Animated.View entering={FadeIn} exiting={FadeOut} testID="ContractAddress">
       <Label type="boldTitle2" style={styles.header}>
         {loc.marketData.tokenContract}
       </Label>

@@ -1,4 +1,5 @@
 import * as LocalAuthentication from 'expo-local-authentication';
+import { Platform } from 'react-native';
 import Keychain from 'react-native-keychain';
 
 import crypto from 'crypto';
@@ -8,6 +9,8 @@ import { KeychainKey, getFromKeychain, setInKeychain } from '@/secureStore/keych
 import { decryptValue, encryptValue } from '@/secureStore/utils';
 
 export let isAuthenticating = false;
+
+const noStrongAuthCombination = Platform.OS === 'android' && Platform.Version < 30;
 
 export async function biometricUnlock(useKeychain = true): Promise<boolean> {
   if (!(await isBiometricEnabled())) {
@@ -28,7 +31,9 @@ export async function biometricUnlock(useKeychain = true): Promise<boolean> {
 async function checkBiometrics(): Promise<boolean> {
   try {
     isAuthenticating = true;
-    const { success } = await LocalAuthentication.authenticateAsync();
+    const { success } = await LocalAuthentication.authenticateAsync({
+      biometricsSecurityLevel: noStrongAuthCombination ? undefined : 'strong',
+    });
     return success;
   } catch (e) {
     console.warn('Biometrics authentication failed: ', e);

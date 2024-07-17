@@ -85,9 +85,15 @@ export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explaine
       onDismiss={navigation.goBack}
       handleStyle={styles.handle}
       style={styles.modal}>
-      <BottomSheetScrollView bounces={false} contentContainerStyle={styles.container} onLayout={handleContentLayout}>
+      <BottomSheetScrollView bounces={false} contentContainerStyle={styles.container} onLayout={handleContentLayout} testID={`Explainer-${contentType}`}>
         {content}
-        <SvgIcon name="close" size={32} onPress={navigation.goBack} style={[styles.closeIcon, { backgroundColor: theme.colors.light15 }]} />
+        <SvgIcon
+          testID="CloseExplainer"
+          name="close"
+          size={32}
+          onPress={navigation.goBack}
+          style={[styles.closeIcon, { backgroundColor: theme.colors.light15 }]}
+        />
       </BottomSheetScrollView>
     </BottomSheet>
   );
@@ -103,7 +109,7 @@ ExplainerScreen.navigationOptions = navigationStyle({
 const styles = StyleSheet.create({
   modal: {
     borderRadius: 48,
-    borderBottompRightRadius: 48,
+    borderBottomRightRadius: 48,
     overflow: 'hidden',
     marginHorizontal: 24,
   },

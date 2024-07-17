@@ -1,5 +1,5 @@
 module.exports = function (api) {
-  const presets = [['module:metro-react-native-babel-preset', { unstable_transformProfile: 'hermes-stable' }]];
+  const presets = [['module:@react-native/babel-preset', { unstable_transformProfile: 'hermes-stable' }]];
   const plugins = [
     [
       'react-native-reanimated/plugin',

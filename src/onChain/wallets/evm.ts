@@ -2,8 +2,7 @@ import { arrayify, isHexString as isEthersHexString } from '@ethersproject/bytes
 import { SignTypedDataVersion, TypedMessage, signTypedData } from '@metamask/eth-sig-util';
 import { isValidAddress, toBuffer, toChecksumAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
-import { TransactionRequest as EthersTransactionRequest, JsonRpcProvider, Wallet, keccak256 } from 'ethers';
-import { BigNumberish } from 'ethers/src.ts/utils/maths';
+import { BigNumberish, TransactionRequest as EthersTransactionRequest, JsonRpcProvider, Wallet, keccak256 } from 'ethers';
 import { omit, startsWith } from 'lodash';
 
 import { EVMFeeOption, EVMMessageSimulationInput, EVMSimulationInput, SimulationInput, Transaction } from '@/api/types';

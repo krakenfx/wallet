@@ -28,7 +28,7 @@ const WhitelistReputationInfo = ({ assetId, size }: Props) => {
   const isSmall = size === 'small';
 
   return (
-    <View style={[commonStyles.infoContainer, commonStyles[size], styles.row, !isSmall && styles.mediumWhitelisted]}>
+    <View testID={`WhitelistReputationInfo-${size}`} style={[commonStyles.infoContainer, commonStyles[size], styles.row, !isSmall && styles.mediumWhitelisted]}>
       <GradientItemBackground />
       <View style={styles.row}>
         <SvgIcon style={styles.separator} name="verified" color="kraken" size={20} bgColor="light100" />
@@ -44,7 +44,7 @@ const WhitelistReputationInfo = ({ assetId, size }: Props) => {
 
 const UnverifiedReputationInfo = ({ size }: SizeProps) => {
   return (
-    <View style={[commonStyles.infoContainer, commonStyles[size], styles.container]}>
+    <View testID={`UnverifiedReputationInfo-${size}`} style={[commonStyles.infoContainer, commonStyles[size], styles.container]}>
       <GradientItemBackground />
       <View style={styles.row}>
         <SvgIcon style={styles.separator} name="error" color="yellow500" size={16} />
@@ -65,7 +65,9 @@ const UnverifiedReputationInfo = ({ size }: SizeProps) => {
 const BlackListedReputationInfo = ({ size }: SizeProps) => {
   const { colors } = useTheme();
   return (
-    <View style={[commonStyles.infoContainer, commonStyles[size], styles.container, size === 'medium' && { backgroundColor: colors.red400_15 }]}>
+    <View
+      testID={`BlackListedReputationInfo-${size}`}
+      style={[commonStyles.infoContainer, commonStyles[size], styles.container, size === 'medium' && { backgroundColor: colors.red400_15 }]}>
       <GradientItemBackground />
       <View style={styles.row}>
         <SvgIcon style={styles.separator} name="warning-filled" color="red400" size={16} />

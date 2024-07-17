@@ -1,4 +1,5 @@
 import Clipboard from '@react-native-clipboard/clipboard';
+import { useCameraPermissions } from 'expo-camera';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -13,7 +14,7 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { useKeyboardEvent } from '@/hooks/useKeyboardEvent';
 import { Network } from '@/onChain/wallets/base';
 import { EVMNetwork } from '@/onChain/wallets/evm';
-import { requestCameraPermission, showPermissionDeniedAlert } from '@/utils/cameraPermissions';
+import { showPermissionDeniedAlert } from '@/utils/cameraPermissions';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
 import { AddressAnalysis } from '../hooks/useAddressAnalysis';
@@ -44,6 +45,7 @@ export const AddressSelector: React.FC<Props> = React.memo(
     const touched = useRef(false);
     const [errorMessage, setErrorMessage] = useState('');
     const formField = useFormField('address');
+    const [_, requestPermission] = useCameraPermissions();
 
     const evmNetwork = useMemo(() => networks.find(n => n instanceof EVMNetwork), [networks]);
     const nameResolver = useNameResolver(evmNetwork ?? networks[0], address);
@@ -95,8 +97,8 @@ export const AddressSelector: React.FC<Props> = React.memo(
     }, [addressAnalysis?.result, onSuccess]);
 
     const onScanPress = async () => {
-      const canUseCamera = await requestCameraPermission();
-      if (canUseCamera) {
+      const result = await requestPermission();
+      if (result.granted) {
         setErrorMessage('');
         setTouched();
         onScanRequest();

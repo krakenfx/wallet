@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LayoutChangeEvent, LayoutRectangle, Platform } from 'react-native';
-import { Extrapolate, KeyboardState, interpolate, useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
+import { Extrapolation, KeyboardState, interpolate, useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const BOTTOM_BUTTON_SPACE = 80;
@@ -20,9 +20,12 @@ export const useImportScreenAnimatedValues = () => {
   const containerHeight = containerLayout?.height ?? 0;
 
   const inputAreaStyle = useAnimatedStyle(() => {
+    if (!headerHeight || !containerHeight) {
+      return {};
+    }
     const keyboardHeight = keyboard.height.value;
     const bottomElementSpace = interpolate(keyboard.height.value, [0, 100], [spaceBottomWhenCollapsed, spaceBottomWhenExpanded], {
-      extrapolateRight: Extrapolate.CLAMP,
+      extrapolateRight: Extrapolation.CLAMP,
     });
     const occupiedSpace = keyboardHeight + bottomElementSpace + headerHeight;
     const maxHeight = containerHeight - occupiedSpace - 2 * INPUT_AREA_MARGIN;
@@ -31,7 +34,7 @@ export const useImportScreenAnimatedValues = () => {
       minHeight: Math.min(maxHeight, INPUT_AREA_DEFAULT_HEIGHT),
       margin: INPUT_AREA_MARGIN,
     };
-  }, [containerLayout, headerLayout]);
+  }, [containerHeight, headerLayout, keyboard, insets]);
 
   const suggestedWordsStyle = useAnimatedStyle(() => {
     switch (keyboard.state.value) {

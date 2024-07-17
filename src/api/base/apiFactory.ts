@@ -1,6 +1,6 @@
 import createClient, { BodySerializer, FetchOptions, HeadersOptions, QuerySerializer } from 'openapi-fetch';
 
-import { getApiKey } from '@/secureStore';
+import { getApiKey } from '@/secureStore/domains/apiKey';
 
 import { ErrorResult } from '../types';
 

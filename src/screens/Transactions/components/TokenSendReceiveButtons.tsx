@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 import { SendReceiveButtons } from '@/components/SendReceiveButtons';
 import { useIsWalletBackupPromptNeeded } from '@/realm/settings';

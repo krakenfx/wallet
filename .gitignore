@@ -21,7 +21,7 @@ DerivedData
 *.ipa
 *.hprof
 *.xcuserstate
-ios/.xcode.env.local
+**/.xcode.env.local
 .cxx/
 
 # Android/IntelliJ
@@ -62,7 +62,7 @@ ios/SuperWallet.app.dSYM.zip
 *.jsbundle
 
 # Ruby / CocoaPods
-/ios/Pods/
+**/Pods/
 /vendor/bundle/
 
 #
@@ -84,6 +84,15 @@ default.realm
 default.realm.lock
 default.realm.note
 /default.realm.management/
+
+ 
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # typescript-coverage-report
 coverage-ts

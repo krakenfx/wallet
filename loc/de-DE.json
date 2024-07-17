@@ -398,6 +398,31 @@
     "summaryEmphasis": "Erweiterter Public Key (XPUB) für Bitcoin",
     "type": "Typ: {type}"
   },
+  "extension": {
+    "home": {
+      "addWallet": "Wallet hinzufügen",
+      "manage": "Verwalte",
+      "selectWallet": "Wallet auswählen"
+    },
+    "lockWallet": "Wallet sperren",
+    "navigation": {
+      "activity": "Aktivität",
+      "assets": "Assets",
+      "nfts": "NFTs"
+    },
+    "nft": {
+      "addNfts": "NFTs zur Wallet hinzufügen"
+    },
+    "onboarding": {
+      "typeYourSecretRecoveryPhrase": "Gib deine Secret Recovery Phrase ein",
+      "walletSupports": "Diese Wallet unterstützt Ethereum, Polygon, Optimism, Arbitrum und mehr"
+    },
+    "receive": {
+      "receiveCryptoOrNft": "Krypto oder NFT erhalten"
+    },
+    "skip": "Überspr.",
+    "walletSettings": "Wallet-Einstellungen"
+  },
   "floatingTransactionActivityButtons": {
     "receive": "Erhalten",
     "send": "Senden"
@@ -433,15 +458,15 @@
     "about": "Über {assetSymbol}",
     "allTimeHigh": {
       "details": "Der höchste Preis, zu dem eine Kryptowährung seit ihrer Einführung getradet wurde.",
-      "title": "Rekordhoch:"
+      "title": "Rekordhoch"
     },
     "allTimeLow": {
       "details": "Der niedrigste Preis, zu dem eine Kryptowährung seit ihrer Einführung getradet wurde.",
-      "title": "Rekordtief:"
+      "title": "Rekordtief"
     },
     "circulatingSupply": {
       "details": "Die Anzahl an Coins oder Tokens, die auf dem Markt und für die Öffentlichkeit aktiv verfügbar sind.",
-      "title": "Umlaufmenge:"
+      "title": "Umlaufmenge"
     },
     "contract": "Vertrag",
     "contractAddressCopied": "Vertragsadresse kopiert!",
@@ -449,7 +474,7 @@
     "fullyDilutedValuation": {
       "details": "Die Marktkapitalisierung, wenn das maximale Angebot im Umlauf wäre, berechnet durch die Multiplikation des aktuellen Preises mit dem maximalen Angebot.",
       "short": "FDV",
-      "title": "Vollständig verwässerter Wert:"
+      "title": "Vollständig verwässerter Wert"
     },
     "high": "Hoch:",
     "links": "Links",
@@ -457,11 +482,11 @@
     "marketCap": {
       "details": "Der gesamte Marktwert einer Kryptowährung, berechnet durch die Multiplikation des aktuellen Preises mit der Umlaufmenge.",
       "short": "Marktkapitalisierung",
-      "title": "Marktkapitalisierung:"
+      "title": "Marktkapitalisierung"
     },
     "maxSupply": {
       "details": "Die maximale Anzahl an Coins oder Tokens, die jemals für eine Kryptowährung existieren werden, gemäß der Definition des Projektprotokolls.",
-      "title": "Maximales Angebot:"
+      "title": "Maximales Angebot"
     },
     "networkFee": {
       "current": "Aktuelle Gebühr",
@@ -488,12 +513,12 @@
     },
     "totalSupply": {
       "details": "Die Anzahl der aktuell existierenden Coins oder Tokens, einschließlich derjenigen, die möglicherweise gesperrt, reserviert oder noch nicht freigegeben sind.",
-      "title": "Gesamtes Angebot:"
+      "title": "Gesamtes Angebot"
     },
     "volume24h": {
       "details": "Der Gesamtwert einer Kryptowährung, die in den letzten 24 Stunden an allen Börsen getradet wurde.",
       "short": "24Std.Volumen",
-      "title": "24-Std.-Volumen:"
+      "title": "24-Std.-Volumen"
     },
     "website": "Website"
   },
@@ -946,6 +971,7 @@
     "electrum_unable_to_connect": "Keine Verbindung zu {server} möglich.",
     "general": "Allgemein",
     "header": "Einstellungen",
+    "hideBalances": "Guthaben ausblenden",
     "language": "Sprache",
     "manageWallets": "Wallets verwalten",
     "notifications": "Push-Benachrichtigungen",
@@ -1356,5 +1382,13 @@
     "import_title": "Importieren",
     "list_tryagain": "Erneut versuchen",
     "pending": "Ausstehend"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "buttonText": "Jetzt entdecken",
+      "part1": "Du kannst jetzt die Performance eines Assets sowie Preisänderungen direkt in deiner Wallet verfolgen!",
+      "part2": "Sichere dir detaillierte Einblicke in deine Assets, halte dich zu potenziellen Bedrohungen auf dem Laufenden und erhalte nahtlosen Zugang zu wichtigen Informationen wie Token-Verträgen und aktuellen Netzwerkgebühren.",
+      "title": "Umfassende Asset-Daten auf einen Blick"
+    }
   }
 }

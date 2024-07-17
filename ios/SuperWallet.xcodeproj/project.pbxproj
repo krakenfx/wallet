@@ -21,9 +21,10 @@
 		5D70A27C297EB442006A5A50 /* Celias-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D70A27B297EB442006A5A50 /* Celias-Bold.otf */; };
 		5D70A27F297EB4E5006A5A50 /* Celias-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D70A27D297EB4E5006A5A50 /* Celias-Light.otf */; };
 		5D70A280297EB4E5006A5A50 /* Celias-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D70A27E297EB4E5006A5A50 /* Celias-Medium.otf */; };
-		8157629A29BF7F3800C5F183 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8157629929BF7F3800C5F183 /* SplashScreen.storyboard */; };
-		8157629B29BF7F3800C5F183 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8157629929BF7F3800C5F183 /* SplashScreen.storyboard */; };
+		8157629A29BF7F3800C5F183 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8157629929BF7F3800C5F183 /* BootSplash.storyboard */; };
+		8157629B29BF7F3800C5F183 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8157629929BF7F3800C5F183 /* BootSplash.storyboard */; };
 		81AF3A652BAAD55B0094A86E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 81AF3A642BAAD55B0094A86E /* PrivacyInfo.xcprivacy */; };
+		B6B8DD0CC752DB4DED5A3F9F /* libPods-SuperWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E41AAECF5DF464753490346 /* libPods-SuperWallet.a */; };
 		D37417BB2B19FB54002724D7 /* BootTimeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37417BA2B19FB54002724D7 /* BootTimeModule.swift */; };
 		D37417BC2B19FB54002724D7 /* BootTimeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37417BA2B19FB54002724D7 /* BootTimeModule.swift */; };
 		D37417BE2B19FB72002724D7 /* BootTimeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = D37417BD2B19FB72002724D7 /* BootTimeModule.m */; };
@@ -32,7 +33,6 @@
 		D3C8A2F42B8D4F8B00A8A59C /* SwiftUIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8A2F32B8D4F8B00A8A59C /* SwiftUIWrapper.swift */; };
 		D3C8A2F92B8E77E600A8A59C /* MainGradientViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8A2F82B8E77E600A8A59C /* MainGradientViewManager.swift */; };
 		D3C8A2FB2B8E782C00A8A59C /* SheetGradientViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8A2FA2B8E782C00A8A59C /* SheetGradientViewManager.swift */; };
-		E0EFBFF2F72832FB2257E5FF /* libPods-SuperWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1E87AE604A67B5EB4C5673 /* libPods-SuperWallet.a */; };
 		E5F5FAAE28181BE60076D6DA /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = E5F5FAAD28181BE60076D6DA /* AppDelegate.mm */; };
 /* End PBXBuildFile section */
 
@@ -50,13 +50,12 @@
 		00E356EE1AD99517003FC87E /* SuperWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SuperWalletTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperWalletTests.m; sourceTree = "<group>"; };
-		1116A28736D0851606340C39 /* Pods-SuperWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperWallet.release.xcconfig"; path = "Target Support Files/Pods-SuperWallet/Pods-SuperWallet.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SuperWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SuperWallet/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SuperWallet/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SuperWallet/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SuperWallet/main.m; sourceTree = "<group>"; };
-		20B46AD73BA79161B841730D /* Pods-SuperWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperWallet.debug.xcconfig"; path = "Target Support Files/Pods-SuperWallet/Pods-SuperWallet.debug.xcconfig"; sourceTree = "<group>"; };
+		2A5E47A94EDD8F53A5E72134 /* Pods-SuperWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperWallet.release.xcconfig"; path = "Target Support Files/Pods-SuperWallet/Pods-SuperWallet.release.xcconfig"; sourceTree = "<group>"; };
 		5D70A267297EA9AA006A5A50 /* IBM-Plex-Mono-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "IBM-Plex-Mono-Bold.otf"; path = "../src/assets/fonts/IBM-Plex-Mono-Bold.otf"; sourceTree = "<group>"; };
 		5D70A268297EA9AB006A5A50 /* IBM-Plex-Sans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "IBM-Plex-Sans-Bold.otf"; path = "../src/assets/fonts/IBM-Plex-Sans-Bold.otf"; sourceTree = "<group>"; };
 		5D70A269297EA9AB006A5A50 /* IBM-Plex-Sans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "IBM-Plex-Sans-Regular.otf"; path = "../src/assets/fonts/IBM-Plex-Sans-Regular.otf"; sourceTree = "<group>"; };
@@ -67,10 +66,11 @@
 		5D70A27B297EB442006A5A50 /* Celias-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Celias-Bold.otf"; path = "../src/assets/fonts/Celias-Bold.otf"; sourceTree = "<group>"; };
 		5D70A27D297EB4E5006A5A50 /* Celias-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Celias-Light.otf"; path = "../src/assets/fonts/Celias-Light.otf"; sourceTree = "<group>"; };
 		5D70A27E297EB4E5006A5A50 /* Celias-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Celias-Medium.otf"; path = "../src/assets/fonts/Celias-Medium.otf"; sourceTree = "<group>"; };
-		8157629929BF7F3800C5F183 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = SuperWallet/SplashScreen.storyboard; sourceTree = "<group>"; };
+		5E41AAECF5DF464753490346 /* libPods-SuperWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8157629929BF7F3800C5F183 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = SuperWallet/BootSplash.storyboard; sourceTree = "<group>"; };
 		81AF3A642BAAD55B0094A86E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		839A1BB01AF8D2E3EABAD942 /* Pods-SuperWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperWallet.debug.xcconfig"; path = "Target Support Files/Pods-SuperWallet/Pods-SuperWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		B249D6612940A49100073CAE /* SuperWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SuperWallet.entitlements; path = SuperWallet/SuperWallet.entitlements; sourceTree = "<group>"; };
-		BE1E87AE604A67B5EB4C5673 /* libPods-SuperWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F0133CEF9F890610EC0F23 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-SuperWallet/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		D37417B92B19FB54002724D7 /* SuperWalletTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperWalletTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		D37417BA2B19FB54002724D7 /* BootTimeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootTimeModule.swift; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0EFBFF2F72832FB2257E5FF /* libPods-SuperWallet.a in Frameworks */,
+				B6B8DD0CC752DB4DED5A3F9F /* libPods-SuperWallet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +139,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				8157629929BF7F3800C5F183 /* SplashScreen.storyboard */,
+				8157629929BF7F3800C5F183 /* BootSplash.storyboard */,
 				D37417B92B19FB54002724D7 /* SuperWalletTests-Bridging-Header.h */,
 			);
 			name = SuperWallet;
@@ -149,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				BE1E87AE604A67B5EB4C5673 /* libPods-SuperWallet.a */,
+				5E41AAECF5DF464753490346 /* libPods-SuperWallet.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -215,8 +215,8 @@
 		B72B9E19D87DB54FD0FE7BD3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				20B46AD73BA79161B841730D /* Pods-SuperWallet.debug.xcconfig */,
-				1116A28736D0851606340C39 /* Pods-SuperWallet.release.xcconfig */,
+				839A1BB01AF8D2E3EABAD942 /* Pods-SuperWallet.debug.xcconfig */,
+				2A5E47A94EDD8F53A5E72134 /* Pods-SuperWallet.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -266,15 +266,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SuperWallet" */;
 			buildPhases = (
-				5F3B0D19E90C3F180855143C /* [CP] Check Pods Manifest.lock */,
+				F4BA7332E81E7C04772DB75B /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
-				D02D4CE302A41E117E30F5C3 /* [Expo] Configure project */,
+				1E495878561826DB700DD66D /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				C94426AED24331DE0849303F /* [CP] Copy Pods Resources */,
-				F911913A8BFA29D83DCBD0A7 /* [CP] Embed Pods Frameworks */,
+				652D4726EE539F73D256CB36 /* [CP] Embed Pods Frameworks */,
+				C8EF1CC4A9B2278FB29FCB27 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -327,7 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8157629B29BF7F3800C5F183 /* SplashScreen.storyboard in Resources */,
+				8157629B29BF7F3800C5F183 /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +337,7 @@
 			files = (
 				5D70A26F297EA9AB006A5A50 /* IBM-Plex-Sans-Bold.otf in Resources */,
 				5D70A27A297EB3C5006A5A50 /* Celias.otf in Resources */,
-				8157629A29BF7F3800C5F183 /* SplashScreen.storyboard in Resources */,
+				8157629A29BF7F3800C5F183 /* BootSplash.storyboard in Resources */,
 				81AF3A652BAAD55B0094A86E /* PrivacyInfo.xcprivacy in Resources */,
 				5D70A27C297EB442006A5A50 /* Celias-Bold.otf in Resources */,
 				5D70A27F297EB4E5006A5A50 /* Celias-Light.otf in Resources */,
@@ -366,9 +366,62 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		5F3B0D19E90C3F180855143C /* [CP] Check Pods Manifest.lock */ = {
+		1E495878561826DB700DD66D /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-SuperWallet/expo-configure-project.sh\"\n";
+		};
+		652D4726EE539F73D256CB36 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8EF1CC4A9B2278FB29FCB27 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4BA7332E81E7C04772DB75B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -388,59 +441,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C94426AED24331DE0849303F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D02D4CE302A41E117E30F5C3 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-SuperWallet/expo-configure-project.sh\"\n";
-		};
-		F911913A8BFA29D83DCBD0A7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperWallet/Pods-SuperWallet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -573,7 +573,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20B46AD73BA79161B841730D /* Pods-SuperWallet.debug.xcconfig */;
+			baseConfigurationReference = 839A1BB01AF8D2E3EABAD942 /* Pods-SuperWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -583,7 +583,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 112;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SuperWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -613,7 +613,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1116A28736D0851606340C39 /* Pods-SuperWallet.release.xcconfig */;
+			baseConfigurationReference = 2A5E47A94EDD8F53A5E72134 /* Pods-SuperWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -652,8 +652,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -680,6 +681,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CXX = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphoneos15.5]" = i386;
@@ -701,6 +703,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD = "";
+				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -721,6 +725,7 @@
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -728,8 +733,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -756,6 +762,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				CXX = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
@@ -774,6 +781,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD = "";
+				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -794,6 +803,7 @@
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;

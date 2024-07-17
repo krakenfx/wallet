@@ -59,7 +59,7 @@ export const AboutAsset = ({ description, assetSymbol }: Props) => {
   const descriptionWithoutHtml = stripHtmlTags(description);
 
   return (
-    <Animated.View entering={FadeIn} exiting={FadeOut}>
+    <Animated.View entering={FadeIn} exiting={FadeOut} testID="AboutAsset">
       <Label type="boldTitle2" style={styles.header}>
         {loc.formatString(loc.marketData.about, { assetSymbol })}
       </Label>
@@ -81,7 +81,7 @@ export const AboutAsset = ({ description, assetSymbol }: Props) => {
         </Label>
 
         {hasMore && (
-          <Touchable style={styles.readMore} onPress={toggle}>
+          <Touchable style={styles.readMore} onPress={toggle} testID="ReadMore">
             <Label type="boldBody" color="light50" style={styles.readMoreLabel}>
               {label}
             </Label>

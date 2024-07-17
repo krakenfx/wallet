@@ -53,7 +53,7 @@ ManageAssetsGlobalFilterScreen.navigationOptions = navigationStyle({
 const styles = StyleSheet.create({
   modal: {
     borderRadius: 48,
-    borderBottompRightRadius: 48,
+    borderBottomRightRadius: 48,
     overflow: 'hidden',
     marginHorizontal: 12,
   },

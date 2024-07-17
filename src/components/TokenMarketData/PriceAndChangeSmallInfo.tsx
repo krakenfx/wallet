@@ -23,7 +23,7 @@ export const PriceAndChangeSmallInfo = ({ tokenId, price }: Props) => {
   const priceNotAvailable = !price;
   const priceLabel = priceNotAvailable ? PRICE_PLACEHOLDER : formatCurrency(price, { currency, findFirstNonZeroDigits: true });
   return (
-    <View style={[commonStyles.infoContainer, commonStyles.small, { justifyContent: 'space-evenly' }]}>
+    <View testID="PriceAndChangeSmallInfo" style={[commonStyles.infoContainer, commonStyles.small, { justifyContent: 'space-evenly' }]}>
       <GradientItemBackground />
       <View style={styles.firstRow}>
         <TokenIcon forceOmitNetworkIcon tokenId={token.assetId} wallet={token.wallet} tokenSymbol={token.metadata.symbol} size={16} style={styles.icon} />

@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
 import navigationStyle from '@/components/navigationStyle';
-import { RefreshControlScrollView } from '@/components/RefreshControlScrollView';
+import { ScrollViewWithRefreshControl } from '@/components/ScrollerWithRefreshControl';
 import { useAppInitTasks } from '@/hooks/useAppInitTasks';
 import { usePushNotificationsRegisterRemoteNotification } from '@/hooks/usePushNotificationsRegisterRemoteNotifications';
 import { useRefreshStateActions } from '@/realm/refreshManagerHooks';
@@ -38,13 +38,13 @@ export const HomeScreen = ({ navigation }: NavigationProps<'Home'>) => {
   return (
     <GradientScreenView>
       <View style={styles.rootView} testID="HomeScreen">
-        <RefreshControlScrollView onRefresh={pullToRefresh}>
+        <ScrollViewWithRefreshControl onRefresh={pullToRefresh}>
           <HomeBalance />
           <UniversalSendReceiveButtons navigation={navigation} />
           <WaitForAccountSwitchSettled>
             <RecentActivity navigation={navigation} />
           </WaitForAccountSwitchSettled>
-        </RefreshControlScrollView>
+        </ScrollViewWithRefreshControl>
       </View>
       <HomeAssetsPanel navigation={navigation} />
     </GradientScreenView>

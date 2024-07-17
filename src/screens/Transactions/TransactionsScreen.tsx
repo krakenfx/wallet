@@ -1,6 +1,7 @@
 import { FlashList } from '@shopify/flash-list';
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Image, InteractionManager, RefreshControl, StyleSheet, View } from 'react-native';
+import { Image, InteractionManager, NativeScrollEvent, StyleSheet, View } from 'react-native';
+import { runOnJS } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { CoinHeader } from '@/components/CoinHeader';
@@ -9,6 +10,7 @@ import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
 import { ListHeader } from '@/components/ListHeader';
 import navigationStyle from '@/components/navigationStyle';
+import { FlashListWithRefreshControl } from '@/components/ScrollerWithRefreshControl';
 import { SvgIcon } from '@/components/SvgIcon';
 import { hideToast } from '@/components/Toast';
 import { SheetPosition } from '@/components/TokenMarketData/utils';
@@ -39,7 +41,6 @@ export type TransactionsRouteProps = {
 export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Transactions'>) => {
   const params = route.params;
   const isRequestInProgress = useRef<boolean>(false);
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const flashListRef = useRef<FlashList<TransactionListItem>>(null);
 
   const [walletId, _, tokenId] = useResolvedAssetBalance(params.assetBalanceId);
@@ -143,32 +144,36 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
 
   const pullToRefresh = async () => {
     if (isOnline) {
-      setIsRefreshing(true);
-      await requestRefresh(false, true);
-      setIsRefreshing(false);
+      requestRefresh(true, true);
     }
   };
 
   const insets = useSafeAreaInsets();
 
-  const onScrollBeginDrag = () => {
-    if (sheetPosition !== SheetPosition.SMALL) {
-      setSheetPosition(SheetPosition.SMALL);
-    }
-  };
-
   const onSheetPositionChange = (position: SheetPosition) => {
     setSheetPosition(position);
   };
 
+  const onScrollEvent = useCallback(
+    (e: NativeScrollEvent) => {
+      'worklet';
+      if (sheetPosition !== SheetPosition.SMALL) {
+        if (e.contentOffset.y > 30) {
+          runOnJS(setSheetPosition)(SheetPosition.SMALL);
+        }
+      }
+    },
+    [sheetPosition],
+  );
+
   return (
     <GradientScreenView>
       <FadingElement containerStyle={{ marginBottom: insets.bottom + SMALL_SHEET_MIN_HEIGHT }}>
-        <FlashList
+        <FlashListWithRefreshControl
+          onRefresh={pullToRefresh}
           ListHeaderComponent={
             <>
               {token ? <TransactionsTokenHeader token={token} testID="TokenScreen" /> : null}
-
               <TokenSendReceiveButtons navigation={navigation} assetBalanceId={params.assetBalanceId} />
               {dataSource && dataSource?.length > 0 && (
                 <ListHeader buttonTestID="TokenScreen-BottomSheet-Heading" title={loc.transactionTile.activity} style={styles.header} />
@@ -178,7 +183,6 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
           ListEmptyComponent={emptyListMessage}
           data={dataSource}
           ref={flashListRef}
-          refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={pullToRefresh} />}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           contentContainerStyle={styles.container}
@@ -186,7 +190,7 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
           onEndReached={loadNextPage}
           onEndReachedThreshold={0.4}
           ListFooterComponent={renderFooter}
-          onScrollBeginDrag={onScrollBeginDrag}
+          onScrollEvent={onScrollEvent}
         />
       </FadingElement>
       {tokenId && <TokenMarketDataBottomSheet tokenId={tokenId} onPositionChange={onSheetPositionChange} positionIndex={sheetPosition} />}

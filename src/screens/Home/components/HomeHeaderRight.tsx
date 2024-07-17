@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import { useCameraPermissions } from 'expo-camera';
 import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -6,21 +7,23 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { useIsWalletBackupDone } from '@/realm/settings/useIsWalletBackupDone';
 import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
-import { requestCameraPermission, showPermissionDeniedAlert } from '@/utils/cameraPermissions';
+import { showPermissionDeniedAlert } from '@/utils/cameraPermissions';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 export const HomeHeaderRight = () => {
   const navigation = useNavigation();
   const isOnline = useIsOnline();
-  const onScanPress = useCallback(async () => {
-    const canUseCamera = await requestCameraPermission();
+  const [_, requestPermission] = useCameraPermissions();
 
-    if (canUseCamera) {
+  const onScanPress = useCallback(async () => {
+    const response = await requestPermission();
+
+    if (response.granted) {
       navigation.navigate(Routes.ConnectAppQRScan);
     } else {
       showPermissionDeniedAlert();
     }
-  }, [navigation]);
+  }, [navigation, requestPermission]);
 
   const onSettingsPress = useCallback(() => {
     navigation.navigate(Routes.Settings);

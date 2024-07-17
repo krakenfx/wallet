@@ -4,17 +4,18 @@ import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
+
 import { Label } from '@/components/Label';
 import { AssetMarketDataPercentageChange } from '@/realm/assetMarketData';
 import { useAppCurrency } from '@/realm/settings';
+
+import { useTheme } from '@/theme/themes';
 
 import { getPercentageLabel } from './utils';
 
 interface ItemProps {
   time: keyof AssetMarketDataPercentageChange;
   percentageChange: number | undefined;
-  isFirst?: boolean;
-  isLast?: boolean;
 }
 
 const parsePercentageKeyLabel = (key: keyof AssetMarketDataPercentageChange): string | undefined => {
@@ -30,13 +31,12 @@ const parsePercentageKeyLabel = (key: keyof AssetMarketDataPercentageChange): st
   }
 };
 
-const PercentageChangeItem = ({ time, percentageChange, isLast, isFirst }: ItemProps) => {
+const PercentageChangeItem = ({ time, percentageChange }: ItemProps) => {
   const { currency } = useAppCurrency();
   const { label, color } = getPercentageLabel(percentageChange, currency);
 
   return (
-    <View style={[styles.itemContainer, isFirst && styles.itemFirst, isLast && styles.itemLast]}>
-      <GradientItemBackground />
+    <View style={styles.itemContainer}>
       <Label type="regularCaption1" color="light75">
         {parsePercentageKeyLabel(time)}
       </Label>
@@ -58,14 +58,24 @@ const defaultPercentageChange: Partial<AssetMarketDataPercentageChange> = {
   month: undefined,
 };
 
+const Separator = () => {
+  const { colors } = useTheme();
+  return <View style={[styles.bar, { backgroundColor: colors.background }]} />;
+};
+
 export const PercentageChange = ({ priceChangePercentage }: Props) => {
   const priceChange = defaults(priceChangePercentage, defaultPercentageChange);
+
   return (
     <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.container}>
-      <PercentageChangeItem key="hour" time="hour" percentageChange={priceChange.hour} isFirst />
+      <GradientItemBackground />
+      <PercentageChangeItem key="hour" time="hour" percentageChange={priceChange.hour} />
+      <Separator />
       <PercentageChangeItem key="day" time="day" percentageChange={priceChange.day} />
+      <Separator />
       <PercentageChangeItem key="week" time="week" percentageChange={priceChange.week} />
-      <PercentageChangeItem key="month" time="month" percentageChange={priceChange.month} isLast />
+      <Separator />
+      <PercentageChangeItem key="month" time="month" percentageChange={priceChange.month} />
     </Animated.View>
   );
 };
@@ -74,7 +84,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    borderRadius: 16,
+    overflow: 'hidden',
     gap: 1,
+  },
+  bar: {
+    width: 1,
+    opacity: 0.4,
   },
   itemContainer: {
     height: 52,
@@ -84,13 +100,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-  },
-  itemFirst: {
-    borderTopLeftRadius: 16,
-    borderBottomLeftRadius: 16,
-  },
-  itemLast: {
-    borderTopRightRadius: 16,
-    borderBottomRightRadius: 16,
   },
 });

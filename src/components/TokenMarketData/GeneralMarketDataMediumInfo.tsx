@@ -28,7 +28,7 @@ export const GeneralMarketDataMediumInfo = ({ tokenId }: Props) => {
   };
 
   return (
-    <Animated.View layout={CurvedTransition} style={[commonStyles.infoContainer, commonStyles.medium, styles.container]}>
+    <Animated.View testID="GeneralMarketDataMedium" layout={CurvedTransition} style={[commonStyles.infoContainer, commonStyles.medium, styles.container]}>
       <GradientItemBackground />
       <GeneralMarketDataItem isRow label={loc.marketData.volume24h.short} value={formatValue(token?.marketData?.volume24HR)} />
       <GeneralMarketDataItem isRow label={loc.marketData.marketCap.short} value={formatValue(token?.marketData?.marketCap)} />

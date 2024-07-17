@@ -77,6 +77,13 @@ export const useSettingsMutations = () => {
     [setSettings],
   );
 
+  const setHideBalances = useCallback(
+    (value: boolean) => {
+      setSettings(RealmSettingsKey.hideBalances, value);
+    },
+    [setSettings],
+  );
+
   return {
     setSettings,
     setAccountNumber,
@@ -85,5 +92,6 @@ export const useSettingsMutations = () => {
     setAppCurrency,
     setWalletConnectExplainerTaskCompleted,
     setHasViewedWalletBackupPrompt,
+    setHideBalances,
   };
 };

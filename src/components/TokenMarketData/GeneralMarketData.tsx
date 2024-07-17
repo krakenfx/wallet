@@ -41,8 +41,8 @@ export const GeneralMarketData = ({ marketData }: Props) => {
   };
 
   return (
-    <Animated.View entering={FadeIn} exiting={FadeOut}>
-      <SvgIcon size={16} name="info-circle" style={styles.info} color="light35" onPress={handleInfoPress} />
+    <Animated.View entering={FadeIn} exiting={FadeOut} testID="GeneralMarketData">
+      <SvgIcon testID="InfoIcon" size={16} name="info-circle" style={styles.info} color="light35" onPress={handleInfoPress} />
       <View style={[styles.container, styles.isFirst]}>
         <GradientItemBackground />
         <GeneralMarketDataItem label={loc.marketData.marketCap.title} value={formatValue(marketData?.marketCap, true)} />

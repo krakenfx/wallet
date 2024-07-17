@@ -83,7 +83,7 @@ const LinkItem = ({ url, skipLabel }: ItemProps) => {
   };
 
   return (
-    <Touchable style={[styles.item, !!label && styles.itemWithLabel]} onPress={onPress}>
+    <Touchable style={[styles.item, !!label && styles.itemWithLabel]} onPress={onPress} testID={`Link-${icon}`}>
       <GradientItemBackground />
       <SvgIcon name={icon} size={24} color="light75" />
       {!!label && (
@@ -102,7 +102,7 @@ export const Links = ({ links }: Props) => {
   const skipWebsiteLabel = links.length > 4;
 
   return (
-    <Animated.View entering={FadeIn} exiting={FadeOut}>
+    <Animated.View entering={FadeIn} exiting={FadeOut} testID="LinksSection">
       <Label type="boldTitle2" style={styles.header}>
         {loc.marketData.links}
       </Label>

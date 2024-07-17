@@ -1,7 +1,7 @@
 import { BottomSheetFooter, BottomSheetFooterProps } from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useFocusEffect } from '@react-navigation/native';
-import { BarCodeEvent, BarCodeScanner, PermissionStatus } from 'expo-barcode-scanner';
+import { BarcodeScanningResult, PermissionStatus, useCameraPermissions } from 'expo-camera';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -54,7 +54,7 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
   const { getSeed } = useSecuredKeychain();
   const { height } = useSafeAreaFrame();
   const bottomSheetModalRef = useRef<BottomSheetModalRef>(null);
-  const [permissionResponse, requestPermission] = BarCodeScanner.usePermissions();
+  const [permissionResponse, requestPermission] = useCameraPermissions();
 
   const handleData = useCallback(
     (data: string) => {
@@ -73,7 +73,7 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
     [navigation, realm, route.params, getSeed],
   );
 
-  const handleBarCodeScanned = ({ data }: BarCodeEvent) => handleData(data);
+  const handleBarCodeScanned = ({ data }: BarcodeScanningResult) => handleData(data);
 
   useEffect(() => {
     requestPermission();
@@ -127,7 +127,7 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
       ) : (
         <>
           {hasDeepLinkWcUri && <UseDeepLinkWcUri wcUri={route.path} handleData={handleData} />}
-          <Camera onBarCodeScanned={handleBarCodeScanned} style={StyleSheet.absoluteFill} />
+          <Camera onBarcodeScanned={handleBarCodeScanned} style={StyleSheet.absoluteFill} />
           <View
             style={[
               styles.overlay,

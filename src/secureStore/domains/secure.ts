@@ -1,7 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Keychain, { ACCESSIBLE } from 'react-native-keychain';
+import Realm from 'realm';
 
 import crypto from 'crypto';
+
+import { RealmSchema } from '@/realm/realmSchema';
+
+import { retryPromise } from '@/utils/retryPromise';
 
 import { isRealmInAppEverInitialisedKey } from '../asyncStorageKeys';
 import { clearAllKeychainValues, getFromKeychain, removeFromKeychain, setInKeychain } from '../keychain';
@@ -11,10 +16,15 @@ import { Encoding, arrayBufferToHexString, decryptBuffer, decryptValue, encryptB
 import { isBiometricEnabled } from '/helpers/biometric-unlock';
 
 export async function validateCleanKeychainOnInstall() {
-  const isRealmInAppEverInitialised = await AsyncStorage.getItem(isRealmInAppEverInitialisedKey);
+  const isRealmInAppEverInitialised = await retryPromise(async () => await AsyncStorage.getItem(isRealmInAppEverInitialisedKey));
+  const hasRealmKey = await retryPromise(async () => !!(await getFromKeychain(KeychainKey.realmEncryptionKey, false, true)));
 
   if (!isRealmInAppEverInitialised) {
     await clearAllKeychainValues();
+  } else if (!hasRealmKey) {
+    await clearAllKeychainValues();
+    await AsyncStorage.clear();
+    Realm.deleteFile({ schema: RealmSchema });
   }
 }
 
@@ -32,7 +42,7 @@ export async function getRealmEncryptionKey(encryptionPassword?: string): Promis
       service: KeychainKey.realmEncryptionKey,
       accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
     });
-    AsyncStorage.setItem(isRealmInAppEverInitialisedKey, 'true');
+    await AsyncStorage.setItem(isRealmInAppEverInitialisedKey, 'true');
   }
 
   const ret = hexStringToInt8Array(password);

@@ -398,6 +398,31 @@
     "summaryEmphasis": "Chave pública estendida para bitcoin (xPub)",
     "type": "Tipo: {type}"
   },
+  "extension": {
+    "home": {
+      "addWallet": "Adicionar carteira",
+      "manage": "Gerenciar",
+      "selectWallet": "Selecionar carteira"
+    },
+    "lockWallet": "Bloquear carteira",
+    "navigation": {
+      "activity": "Atividade",
+      "assets": "Ativos",
+      "nfts": "NFTs"
+    },
+    "nft": {
+      "addNfts": "Adicionar NFTs a sua carteira"
+    },
+    "onboarding": {
+      "typeYourSecretRecoveryPhrase": "Digite sua frase secreta de recuperação",
+      "walletSupports": "Essa carteira é compatível com Ethereum, Polygon, Optimism, Arbitrum e mais"
+    },
+    "receive": {
+      "receiveCryptoOrNft": "Receber cripto ou NFTs"
+    },
+    "skip": "Pular",
+    "walletSettings": "Configurações da carteira"
+  },
   "floatingTransactionActivityButtons": {
     "receive": "Receber",
     "send": "Enviar"
@@ -433,15 +458,15 @@
     "about": "Sobre {assetSymbol}",
     "allTimeHigh": {
       "details": "O preço mais alto pelo qual uma criptomoeda foi negociada desde o seu início.",
-      "title": "Preço mais alto:"
+      "title": "Preço mais alto"
     },
     "allTimeLow": {
       "details": "O preço mais baixo pelo qual uma criptomoeda foi negociada desde o seu início.",
-      "title": "Preço mais baixo:"
+      "title": "Preço mais baixo"
     },
     "circulatingSupply": {
       "details": "O número de moedas ou tokens que estão ativamente disponíveis no mercado e nas mãos do público em geral.",
-      "title": "Oferta em circulação:"
+      "title": "Oferta em circulação"
     },
     "contract": "Contrato",
     "contractAddressCopied": "Endereço do contrato copiado!",
@@ -449,7 +474,7 @@
     "fullyDilutedValuation": {
       "details": "A capitalização de mercado, se a oferta máxima estivesse em circulação, calculada multiplicando o preço atual pela oferta máxima.",
       "short": "FDV",
-      "title": "Avaliação totalmente diluída:"
+      "title": "Avaliação totalmente diluída"
     },
     "high": "Alto:",
     "links": "Links",
@@ -457,11 +482,11 @@
     "marketCap": {
       "details": "O valor total de mercado de uma criptomoeda, calculado multiplicando o preço atual pela oferta circulante.",
       "short": "Capitalização de mercado",
-      "title": "Capitalização de mercado:"
+      "title": "Capitalização de mercado"
     },
     "maxSupply": {
       "details": "O número máximo de moedas ou tokens que existirão para uma criptomoeda, conforme definido pelo protocolo do projeto.",
-      "title": "Oferta máxima:"
+      "title": "Oferta máxima"
     },
     "networkFee": {
       "current": "Taxa atual",
@@ -488,12 +513,12 @@
     },
     "totalSupply": {
       "details": "O número de moedas ou tokens que existem atualmente, incluindo aqueles que podem estar bloqueados, reservados ou ainda não liberados.",
-      "title": "Oferta total:"
+      "title": "Oferta total"
     },
     "volume24h": {
       "details": "O valor total de uma criptomoeda negociada nas últimas 24 horas em todas as exchanges.",
       "short": "Volume 24h",
-      "title": "Volume 24h:"
+      "title": "Volume 24h"
     },
     "website": "Site"
   },
@@ -946,6 +971,7 @@
     "electrum_unable_to_connect": "Não é possível conectar a {server}.",
     "general": "Geral",
     "header": "Configurações",
+    "hideBalances": "Ocultar saldos",
     "language": "Idioma",
     "manageWallets": "Gerenciar carteiras",
     "notifications": "Notificações push",
@@ -1356,5 +1382,13 @@
     "import_title": "Importar",
     "list_tryagain": "Tentar novamente",
     "pending": "Pendente"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "buttonText": "Confira",
+      "part1": "Agora, você pode monitorar o desempenho de suas participações e ativos, e as alterações de preço diretamente na sua carteira!",
+      "part2": "Confira insights detalhados de ativos, receba informação sobre ameaças potenciais e acesse facilmente informações essenciais como contratos de token e taxas de rede atuais.",
+      "title": "Dados abrangentes de ativos na ponta dos dedos"
+    }
   }
 }

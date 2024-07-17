@@ -7,3 +7,4 @@ export * from './SettingsCheckItem';
 export * from './SettingsInfoBox';
 export * from './SettingsCheckItemsBox';
 export * from './SettingsSwitch';
+export * from './SettingsBox';

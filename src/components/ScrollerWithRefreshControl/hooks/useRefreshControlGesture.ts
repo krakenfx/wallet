@@ -1,29 +1,31 @@
-import React, { useMemo, useState } from 'react';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, {
-  runOnJS,
-  useAnimatedReaction,
-  useAnimatedRef,
-  useAnimatedStyle,
-  useScrollViewOffset,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
+import { useMemo, useState } from 'react';
+import { NativeScrollEvent } from 'react-native/types';
+import { Gesture } from 'react-native-gesture-handler';
+import { runOnJS, useAnimatedReaction, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
-type Props = Animated.AnimatedScrollViewProps & {
-  onRefresh: () => void;
-  refreshThreshold?: number;
-  stiffness?: number;
-};
-
-export const RefreshControlScrollViewAndroid: React.FC<Props> = ({ children, style, stiffness = 20, refreshThreshold = 30, onRefresh, ...props }) => {
-  const animatedRef = useAnimatedRef<Animated.ScrollView>();
-  const scrollOffset = useScrollViewOffset(animatedRef);
+export const useRefreshControlGesture = (onRefresh: () => void, onScrollEvent?: (e: NativeScrollEvent) => void, refreshThreshold = 30, stiffness = 50) => {
+  const scrollOffset = useSharedValue(0);
 
   const panValue = useSharedValue(0);
   const hasTriggered = useSharedValue(false);
 
-  const translateStyle = useAnimatedStyle(() => ({ transform: [{ translateY: panValue.value }] }), []);
+  const translateStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ translateY: panValue.value }],
+    }),
+    [],
+  );
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: event => {
+      scrollOffset.value = event.contentOffset.y;
+      if (event.contentOffset.y < -refreshThreshold && !hasTriggered.value) {
+        runOnJS(onRefresh)();
+        hasTriggered.value = true;
+      }
+      onScrollEvent?.(event);
+    },
+  });
 
   const [panEnabled, setPanEnabled] = useState(true);
 
@@ -60,11 +62,10 @@ export const RefreshControlScrollViewAndroid: React.FC<Props> = ({ children, sty
     [panValue, hasTriggered, stiffness, onRefresh, panEnabled, refreshThreshold],
   );
 
-  return (
-    <Animated.ScrollView ref={animatedRef} style={[style, translateStyle]} {...props}>
-      <GestureDetector gesture={gesture}>
-        <Animated.View>{children}</Animated.View>
-      </GestureDetector>
-    </Animated.ScrollView>
-  );
+  return {
+    translateStyle,
+    gesture,
+    scrollOffset,
+    scrollHandler,
+  };
 };

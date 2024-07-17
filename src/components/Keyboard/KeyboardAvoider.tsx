@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StyleSheet, ViewProps } from 'react-native';
-import Animated, { AnimateProps, Extrapolate, interpolate, useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { AnimateProps, Extrapolation, interpolate, useAnimatedKeyboard, useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
@@ -21,18 +21,19 @@ export const KeyboardAvoider: React.FC<AnimateProps<ViewProps> & Props> = ({
   const keyboard = useAnimatedKeyboard({ isStatusBarTranslucentAndroid: true });
   const insets = useSafeAreaInsets();
 
-  const defaultOffset = useBottomInset ? insets.bottom : 0;
+  const defaultOffset = useDerivedValue(() => (useBottomInset ? insets.bottom : 0), [insets]);
 
   const paddingStyle = useAnimatedStyle(() => {
     const negativeOffset = offsetBottomInsetWhenOpen
       ? interpolate(keyboard.height.value, [0, insets.bottom], [0, insets.bottom], {
-          extrapolateRight: Extrapolate.CLAMP,
+          extrapolateRight: Extrapolation.CLAMP,
         })
       : 0;
+
     return {
-      paddingBottom: defaultOffset + keyboard.height.value - negativeOffset + extraOffset,
+      paddingBottom: defaultOffset.value + keyboard.height.value - negativeOffset + extraOffset,
     };
-  }, [defaultOffset]);
+  }, [insets]);
 
   return (
     <Animated.View style={[absolutePosition && styles.absolute, style, paddingStyle]} {...viewProps}>

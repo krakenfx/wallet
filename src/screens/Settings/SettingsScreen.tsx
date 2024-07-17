@@ -73,7 +73,7 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
           <CurrencyBadge />
         </SettingsItem>
         <SettingsItem title={loc.settings.language} icon="language" onPress={() => navigate(Routes.Language)} testID="LanguagesList" />
-        {}
+        <SettingsItem title={loc.settings.privacy} icon="user" onPress={() => navigate(Routes.Privacy)} testID="PrivacyList" />
         <SettingsItem title={loc.settings.advanced} icon="tool" onPress={() => navigate(Routes.AdvancedSettings)} testID="AdvancedList" />
         <SettingsItem title={loc.settings.support} icon="help" onPress={() => navigate(Routes.Support)} testID="SupportButton" />
         <SettingsItem title={loc.settings.about} icon="info-circle" onPress={() => navigate(Routes.About)} testID="AboutButton" />

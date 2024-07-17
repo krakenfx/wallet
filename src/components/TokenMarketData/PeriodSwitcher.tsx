@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
-import Animated, { CurvedTransition, Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { StyleSheet, View } from 'react-native';
+import Animated, { CurvedTransition, Extrapolation, interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
@@ -30,10 +30,10 @@ export const PeriodSwitcher = ({ onChange, disabled }: Props) => {
   const style = useAnimatedStyle(() => {
     const realWidth = fullWidth.value - 2 * padding;
     return {
-      width: interpolate(fullWidth.value, [0, 1], [animation.value, realWidth / PERIOD_COUNT], { extrapolateRight: Extrapolate.CLAMP }),
+      width: interpolate(fullWidth.value, [0, 1], [animation.value, realWidth / PERIOD_COUNT], { extrapolateRight: Extrapolation.CLAMP }),
       left: interpolate(animation.value, [0, PERIOD_COUNT - 1], [0, fullWidth.value - realWidth / PERIOD_COUNT], {
-        extrapolateRight: Extrapolate.CLAMP,
-        extrapolateLeft: Extrapolate.CLAMP,
+        extrapolateRight: Extrapolation.CLAMP,
+        extrapolateLeft: Extrapolation.CLAMP,
       }),
     };
   });
@@ -50,6 +50,7 @@ export const PeriodSwitcher = ({ onChange, disabled }: Props) => {
   const renderItem = (value: number, text: string, period: PriceHistoryPeriod) => {
     return (
       <Touchable
+        testID={`Period-${period}`}
         activeOpacity={1}
         onPress={() => handleTap(value, period)}
         style={styles.itemWrapper}
@@ -63,19 +64,17 @@ export const PeriodSwitcher = ({ onChange, disabled }: Props) => {
 
   return (
     <Animated.View style={[styles.toggleWrapper]} layout={CurvedTransition}>
-      <TouchableWithoutFeedback>
-        <Animated.View style={[styles.container]}>
-          <GradientItemBackground />
-          <View style={styles.periods} onLayout={e => (fullWidth.value = e.nativeEvent.layout.width)}>
-            {!disabled && <Animated.View style={[style, styles.slider, { backgroundColor: colors.purple_40 }]} />}
-            {renderItem(0, loc.marketData.period.day, 'DAY')}
-            {renderItem(1, loc.marketData.period.week, 'WEEK')}
-            {renderItem(2, loc.marketData.period.month, 'MONTH')}
-            {renderItem(3, loc.marketData.period.year, 'YEAR')}
-            {renderItem(4, loc.marketData.period.all, 'ALL')}
-          </View>
-        </Animated.View>
-      </TouchableWithoutFeedback>
+      <Animated.View style={[styles.container]}>
+        <GradientItemBackground />
+        <View style={styles.periods} onLayout={e => (fullWidth.value = e.nativeEvent.layout.width)}>
+          {!disabled && <Animated.View style={[style, styles.slider, { backgroundColor: colors.purple_40 }]} />}
+          {renderItem(0, loc.marketData.period.day, 'DAY')}
+          {renderItem(1, loc.marketData.period.week, 'WEEK')}
+          {renderItem(2, loc.marketData.period.month, 'MONTH')}
+          {renderItem(3, loc.marketData.period.year, 'YEAR')}
+          {renderItem(4, loc.marketData.period.all, 'ALL')}
+        </View>
+      </Animated.View>
     </Animated.View>
   );
 };

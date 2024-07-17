@@ -111,12 +111,13 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
   const style = deviceSize === 'small' ? styles.smallDeviceContainer : styles.container;
 
   return (
-    <View style={style}>
+    <View style={style} testID="AssetPriceChartArea">
       <Label type="boldCaption2" color="light50">
         {priceNotAvailable ? loc.marketData.priceNotAvailable : loc.marketData.price}
       </Label>
       <View style={isHigh ? styles.column : styles.row}>
         <ScalableLabel
+          testID="PriceLabel"
           scale={isHigh ? 1.5 : 1}
           style={[isHigh && styles.pricePosHigh]}
           color={priceNotAvailable ? 'light15' : 'light100'}
@@ -125,6 +126,7 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
         </ScalableLabel>
         {!priceNotAvailable ? (
           <AnimatedNumbers
+            testID="PriceChangeLabel"
             layout={CurvedTransition}
             value={percentageLabel}
             type={isHigh ? 'boldTitleMarketDataPercentageLarge' : 'boldTitleMarketDataPercentage'}

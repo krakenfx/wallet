@@ -398,6 +398,31 @@
     "summaryEmphasis": "Bitcoin Extended Public Key (xPub)",
     "type": "Tipo: {type}"
   },
+  "extension": {
+    "home": {
+      "addWallet": "Aggiungi wallet",
+      "manage": "Gestisci",
+      "selectWallet": "Seleziona wallet"
+    },
+    "lockWallet": "Blocca wallet",
+    "navigation": {
+      "activity": "Attività",
+      "assets": "Asset",
+      "nfts": "NFT"
+    },
+    "nft": {
+      "addNfts": "Aggiungi NFT al wallet"
+    },
+    "onboarding": {
+      "typeYourSecretRecoveryPhrase": "Digita la tua frase di recupero segreta",
+      "walletSupports": "Questo wallet supporta Ethereum, Polygon, Optimism, Arbitrum e altri"
+    },
+    "receive": {
+      "receiveCryptoOrNft": "Ricevi crypto o NFT"
+    },
+    "skip": "Salta",
+    "walletSettings": "Impostazioni wallet"
+  },
   "floatingTransactionActivityButtons": {
     "receive": "Ricevi",
     "send": "Invia"
@@ -433,15 +458,15 @@
     "about": "Informazioni su {assetSymbol}",
     "allTimeHigh": {
       "details": "il prezzo massimo a cui una criptovaluta è stata scambiata dal suo lancio.",
-      "title": "Massimo storico:"
+      "title": "Massimo storico"
     },
     "allTimeLow": {
       "details": "il prezzo minimo a cui una criptovaluta è stata scambiata dal suo lancio.",
-      "title": "Minimo storico:"
+      "title": "Minimo storico"
     },
     "circulatingSupply": {
       "details": "il numero di crypto o token attivamente disponibili sul mercato e in mano al pubblico generico.",
-      "title": "Fornitura circolante:"
+      "title": "Fornitura circolante"
     },
     "contract": "Contratto",
     "contractAddressCopied": "Indirizzo del contratto copiato!",
@@ -449,7 +474,7 @@
     "fullyDilutedValuation": {
       "details": "il valore di market cap con fornitura massima circolante, calcolato moltiplicando il prezzo attuale per la fornitura massima.",
       "short": "FDV",
-      "title": "Valutazione completamente diluita:"
+      "title": "Valutazione completamente diluita"
     },
     "high": "Massimo:",
     "links": "Link",
@@ -457,11 +482,11 @@
     "marketCap": {
       "details": "il valore totale di mercato di una criptovaluta, calcolato moltiplicando il prezzo attuale per la fornitura circolante.",
       "short": "Market cap",
-      "title": "Market cap:"
+      "title": "Market cap"
     },
     "maxSupply": {
       "details": "il numero massimo possibile di crypto o token per una criptovaluta, così come definito nel protocollo del progetto.",
-      "title": "Fornitura massima:"
+      "title": "Fornitura massima"
     },
     "networkFee": {
       "current": "Commissione corrente",
@@ -488,12 +513,12 @@
     },
     "totalSupply": {
       "details": "il numero di crypto e token attualmente esistenti, inclusi quelli che possono essere bloccati, riservati o non ancora rilasciati.",
-      "title": "Fornitura totale:"
+      "title": "Fornitura totale"
     },
     "volume24h": {
       "details": "il valore totale di una criptovaluta negoziata nelle ultime 24 ore su tutti gli exchange.",
       "short": "Volume 24h",
-      "title": "Volume 24h:"
+      "title": "Volume 24h"
     },
     "website": "Sito web"
   },
@@ -946,6 +971,7 @@
     "electrum_unable_to_connect": "Impossibile connettersi a {server}.",
     "general": "Generale",
     "header": "Impostazioni",
+    "hideBalances": "Nascondi saldo",
     "language": "Lingua",
     "manageWallets": "Gestisci wallet",
     "notifications": "Notifiche push",
@@ -1356,5 +1382,13 @@
     "import_title": "Importa",
     "list_tryagain": "Riprova",
     "pending": "In sospeso"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "buttonText": "Dai un'occhiata",
+      "part1": "Ora puoi monitorare le prestazioni e le variazioni di prezzo degli asset che detieni direttamente dal wallet!",
+      "part2": "Scopri dati approfonditi sui tuoi asset, ricevi avvisi su potenziali minacce e accedi senza problemi a informazioni importanti, quali contratti con token e commissioni del network correnti.",
+      "title": "Dati completi sugli asset a portata di mano"
+    }
   }
 }

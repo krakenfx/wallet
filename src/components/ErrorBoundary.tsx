@@ -3,9 +3,8 @@ import React from 'react';
 interface ErrorBoundaryProps {
   children: React.ReactElement | React.ReactElement[];
   onError?: (error: Error) => void;
-  fallback?: React.ReactElement | React.ComponentType<{ error: Error }> | null;
+  fallback?: React.FunctionComponent<{ error: Error }> | React.ComponentClass<{ error: Error }> | null;
 }
-
 interface ErrorBoundaryState {
   error?: Error;
 }

@@ -141,6 +141,7 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
     overDragResistanceFactor: 5,
     containerStyle: styles.shadow,
     ref: sheetRef,
+    accessible: false,
     ...rest,
   };
 }

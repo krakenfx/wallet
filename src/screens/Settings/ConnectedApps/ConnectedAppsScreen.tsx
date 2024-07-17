@@ -1,4 +1,5 @@
 import { SessionTypes } from '@walletconnect/types';
+import { useCameraPermissions } from 'expo-camera';
 import React, { useCallback, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
@@ -15,7 +16,7 @@ import { useManageAccount } from '@/hooks/useManageAccount';
 import { useAccountById } from '@/realm/accounts/useAccountById';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { NavigationProps, Routes } from '@/Routes';
-import { requestCameraPermission, showPermissionDeniedAlert } from '@/utils/cameraPermissions';
+import { showPermissionDeniedAlert } from '@/utils/cameraPermissions';
 
 import { AppDetailsParams } from '../AppDetailsScreen';
 import { ActivityIndicatorView } from '../components/ActivityIndicatorView';
@@ -45,6 +46,7 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
   const account = useAccountById(route.params.accountNumber);
   const { switchAccount } = useManageAccount();
   const accountWallets = useRealmWallets(false, route.params.accountNumber);
+  const [_, requestPermission] = useCameraPermissions();
 
   useHeaderTitle(loc.connectedApps.list.title);
 
@@ -143,14 +145,14 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
   }, [accountWallets, activeSessions, setActiveSessions]);
 
   const onConnectToAppPress = useCallback(async () => {
-    const canUseCamera = await requestCameraPermission();
-    if (canUseCamera) {
+    const result = await requestPermission();
+    if (result.granted) {
       switchAccount(route.params.accountNumber);
       navigation.navigate(Routes.ConnectAppQRScan, { successRoute: Routes.Home });
     } else {
       showPermissionDeniedAlert();
     }
-  }, [navigation, route.params.accountNumber, switchAccount]);
+  }, [navigation, requestPermission, route.params.accountNumber, switchAccount]);
 
   const content = isLoading ? (
     <ActivityIndicatorView />

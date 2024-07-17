@@ -1,46 +1,47 @@
 diff --git a/node_modules/react-native-svg/lib/typescript/xml.d.ts b/node_modules/react-native-svg/lib/typescript/xml.d.ts
-index 98f4d35..ea322f6 100644
+index c44c83e..f1d2258 100644
 --- a/node_modules/react-native-svg/lib/typescript/xml.d.ts
 +++ b/node_modules/react-native-svg/lib/typescript/xml.d.ts
-@@ -26,7 +26,7 @@ export interface JsxAST extends AST {
+@@ -27,7 +27,7 @@ export interface JsxAST extends AST {
  export type AdditionalProps = {
      onError?: (error: Error) => void;
-     override?: Object;
+     override?: object;
 -    onLoad?: () => void;
 +    onLoad?: (xml: string) => void;
+     fallback?: JSX.Element;
  };
  export type UriProps = SvgProps & {
-     uri: string | null;
 diff --git a/node_modules/react-native-svg/src/xml.tsx b/node_modules/react-native-svg/src/xml.tsx
-index ff9b02e..f27e579 100644
+index 9e2352a..c69a448 100644
 --- a/node_modules/react-native-svg/src/xml.tsx
 +++ b/node_modules/react-native-svg/src/xml.tsx
-@@ -80,7 +80,7 @@ export interface JsxAST extends AST {
+@@ -81,7 +81,7 @@ export interface JsxAST extends AST {
  export type AdditionalProps = {
    onError?: (error: Error) => void;
-   override?: Object;
+   override?: object;
 -  onLoad?: () => void;
 +  onLoad?: (xml: string) => void;
+   fallback?: JSX.Element;
  };
  
- export type UriProps = SvgProps & { uri: string | null } & AdditionalProps;
-@@ -123,7 +123,8 @@ export function SvgXml(props: XmlProps) {
+@@ -124,8 +124,9 @@ export function SvgXml(props: XmlProps) {
+ 
  export async function fetchText(uri: string) {
    const response = await fetch(uri);
 -  if (response.ok || (response.status === 0 && uri.startsWith('file://'))) {
-+  if ((response.ok && response.headers.get('content-type') === 'image/svg+xml') || (response.status === 0 && uri.startsWith('file://'))) {
 -    return await response.text();
++  if ((response.ok && response.headers.get('content-type') === 'image/svg+xml') || (response.status === 0 && uri.startsWith('file://'))) {
 +    const result = await response.text();
-+    return result?.replace(/&#.+?;/g, '') ?? null;
++    return result?.replace(/&#.+?;/g, '') ?? null;  
    }
    throw new Error(`Fetching ${uri} failed with status ${response.status}`);
  }
-@@ -136,7 +137,7 @@ export function SvgUri(props: UriProps) {
-       ? fetchText(uri)
+@@ -140,7 +141,7 @@ export function SvgUri(props: UriProps) {
            .then((data) => {
              setXml(data);
+             isError && setIsError(false);
 -            onLoad?.();
 +            onLoad?.(data);
            })
-           .catch(onError)
-       : setXml(null);
+           .catch((e) => {
+             onError(e);

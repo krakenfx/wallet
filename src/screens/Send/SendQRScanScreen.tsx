@@ -1,4 +1,4 @@
-import { BarCodeEvent, BarCodeScanner, PermissionStatus } from 'expo-barcode-scanner';
+import { BarcodeScanningResult, PermissionStatus, useCameraPermissions } from 'expo-camera';
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { View } from 'react-native';
@@ -23,9 +23,9 @@ type UniversalSendParams = UniversalSendRouteParams & { routeBack: Routes.Univer
 export type SendQRScanRouteParams = SendParams | UniversalSendParams;
 
 export const SendQRScanScreen = ({ navigation, route }: NavigationProps<'SendQRScan'>) => {
-  const [permissionResponse, requestPermission] = BarCodeScanner.usePermissions();
+  const [permissionResponse, requestPermission] = useCameraPermissions();
 
-  const handleBarCodeScanned = ({ data }: BarCodeEvent) => {
+  const handleBarCodeScanned = ({ data }: BarcodeScanningResult) => {
     if (route.params.routeBack === Routes.Send) {
       navigation.navigate(Routes.Send, { ...route.params, qrCode: data });
     } else {
@@ -43,7 +43,7 @@ export const SendQRScanScreen = ({ navigation, route }: NavigationProps<'SendQRS
         <Label style={styles.missingPermission}>{loc.scan.missingPermission}</Label>
       ) : (
         <>
-          <Camera onBarCodeScanned={handleBarCodeScanned} style={StyleSheet.absoluteFill} />
+          <Camera onBarcodeScanned={handleBarCodeScanned} style={StyleSheet.absoluteFill} />
           <View style={[styles.overlay]}>
             <Svg viewBox="0 0 330 330" width={'100%'} height={'100%'} fillOpacity={0}>
               <Path

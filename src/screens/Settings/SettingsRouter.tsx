@@ -13,6 +13,7 @@ import { CurrencyScreen } from './CurrencyScreen';
 import { DeleteAllDataWarningScreen } from './DeleteAllDataWarningScreen';
 import { ManageWalletsScreen } from './manageWallets';
 import { DisablePasswordProtectionScreen, PasswordProtectionFormScreen, PasswordProtectionScreen } from './passwordProtection';
+import { PrivacyScreen } from './PrivacyScreen';
 import { SettingsScreen } from './SettingsScreen';
 import { SupportScreen } from './support';
 import { SettingsBackupVerifyScreen, SettingsWalletBackupScreen } from './walletBackup';
@@ -27,6 +28,7 @@ export type SettingsStackParams = {
   ManageWallets: undefined;
   PasswordProtection: undefined;
   PasswordProtectionForm: undefined;
+  Privacy: undefined;
   DeleteAllDataWarningScreen: undefined;
   DisablePasswordProtection: undefined;
   SettingsWalletBackup: undefined;
@@ -49,6 +51,7 @@ export const SettingsRouter = () => {
       <SettingsStack.Screen name={Routes.AppLock} component={AppLockScreen} options={AppLockScreen.navigationOptions(theme)} />
       <SettingsStack.Screen name={Routes.ManageWallets} component={ManageWalletsScreen} options={ManageWalletsScreen.navigationOptions(theme)} />
       <SettingsStack.Screen name={Routes.PasswordProtection} component={PasswordProtectionScreen} options={PasswordProtectionScreen.navigationOptions(theme)} />
+      <SettingsStack.Screen name={Routes.Privacy} component={PrivacyScreen} options={PrivacyScreen.navigationOptions(theme)} />
       <SettingsStack.Screen
         name={Routes.PasswordProtectionForm}
         component={PasswordProtectionFormScreen}

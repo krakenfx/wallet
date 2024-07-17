@@ -3,8 +3,10 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { FadeIn } from 'react-native-reanimated';
 
 import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
+import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
 import { useRealmWalletById } from '@/realm/wallets';
 import { Currency } from '@/screens/Settings/currency';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -53,6 +55,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
   const tokenAmountFormatted = formatTokenAmountFromToken(token, { compact: true, currency });
 
   const amount = hideZeroAmount && tokenAmountFormatted === '0' ? '' : `${tokenAmountFormatted}${symbolUnderLabel ? '' : ' ' + token.metadata.symbol}`;
+  const balanceDisplay = useBalanceDisplay(amount);
 
   const content = (
     <>
@@ -83,7 +86,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
           style={[styles.amount, symbolUnderLabel && { fontSize: 15 }]}
           numberOfLines={1}
           ellipsizeMode="tail">
-          {amount}
+          {balanceDisplay}
         </Label>
       </View>
     </>
@@ -109,10 +112,15 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
 
 const AssetRowAmountInFiat = ({ currency, token }: Pick<AssetRowProps, 'token'> & { currency: Currency }) => {
   const amountInAppCurrency = useTokenBalanceConvertedToAppCurrency(token);
-
+  const balancesHidden = useIsHideBalancesEnabled();
+  const amountFormatted = useBalanceDisplay(formatCurrency(amountInAppCurrency, { currency }), 7);
   return (
-    <Label entering={FadeIn} style={styles.animatedNumbers} type="boldLargeMonospace">
-      {formatCurrency(amountInAppCurrency, { currency })}
+    <Label
+      entering={FadeIn}
+      style={[styles.animatedNumbers, balancesHidden && styles.balanceHidden]}
+      type="boldLargeMonospace"
+      color={balancesHidden ? 'light50' : 'light100'}>
+      {amountFormatted}
     </Label>
   );
 };
@@ -159,4 +167,5 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: 4,
   },
+  balanceHidden: { paddingTop: 5, marginBottom: -5 },
 });

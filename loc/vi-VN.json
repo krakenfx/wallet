@@ -398,6 +398,31 @@
     "summaryEmphasis": "Khóa công khai mở rộng Bitcoin (xPub)",
     "type": "Loại: {type}"
   },
+  "extension": {
+    "home": {
+      "addWallet": "Thêm ví",
+      "manage": "Quản lý",
+      "selectWallet": "Chọn ví"
+    },
+    "lockWallet": "Khóa ví",
+    "navigation": {
+      "activity": "Hoạt động",
+      "assets": "Tài sản",
+      "nfts": "NFT"
+    },
+    "nft": {
+      "addNfts": "Thêm NFT vào ví của bạn"
+    },
+    "onboarding": {
+      "typeYourSecretRecoveryPhrase": "Nhập cụm từ khôi phục bí mật của bạn",
+      "walletSupports": "Ví này hỗ trợ Ethereum, Polygon, Optimism, Arbitrum, v.v."
+    },
+    "receive": {
+      "receiveCryptoOrNft": "Nhận tiền điện tử hoặc NFT"
+    },
+    "skip": "Bỏ qua",
+    "walletSettings": "Cài đặt ví"
+  },
   "floatingTransactionActivityButtons": {
     "receive": "Nhận",
     "send": "Gửi"
@@ -433,15 +458,15 @@
     "about": "Giới thiệu về {assetSymbol}",
     "allTimeHigh": {
       "details": "Mức giá cao nhất mà một loại tiền điện tử đã được giao dịch kể từ khi ra đời.",
-      "title": "Cao ở mọi thời điểm:"
+      "title": "Cao ở mọi thời điểm"
     },
     "allTimeLow": {
       "details": "Mức giá thấp nhất mà một loại tiền điện tử đã được giao dịch kể từ khi ra đời.",
-      "title": "Thấp ở mọi thời điểm:"
+      "title": "Thấp ở mọi thời điểm"
     },
     "circulatingSupply": {
       "details": "Số lượng đồng tiền điện tử hoặc token hiện có sẵn trên thị trường và công chúng đang sở hữu.",
-      "title": "Nguồn cung lưu hành:"
+      "title": "Nguồn cung lưu hành"
     },
     "contract": "Hợp đồng",
     "contractAddressCopied": "Địa chỉ hợp đồng đã được sao chép!",
@@ -449,7 +474,7 @@
     "fullyDilutedValuation": {
       "details": "Vốn hoá thị trường nếu nguồn cung tối đa đang được lưu hành, được tính bằng cách nhân giá hiện tại với nguồn cung tối đa.",
       "short": "FDV",
-      "title": "Định giá pha loãng hoàn toàn:"
+      "title": "Định giá pha loãng hoàn toàn"
     },
     "high": "Cao:",
     "links": "Liên kết",
@@ -457,11 +482,11 @@
     "marketCap": {
       "details": "Tổng giá trị thị trường của tiền điện tử, được tính bằng cách nhân giá hiện tại với nguồn cung lưu hành.",
       "short": "Vốn hóa thị trường",
-      "title": "Vốn hóa thị trường:"
+      "title": "Vốn hóa thị trường"
     },
     "maxSupply": {
       "details": "Số lượng đồng tiền điện tử hoặc token tối đa sẽ tồn tại đối với một loại tiền điện tử, như được xác định bởi giao thức của dự án.",
-      "title": "Nguồn cung tối đa:"
+      "title": "Nguồn cung tối đa"
     },
     "networkFee": {
       "current": "Phí hiện tại",
@@ -488,12 +513,12 @@
     },
     "totalSupply": {
       "details": "Số lượng đồng tiền điện tử hoặc token hiện đang tồn tại, bao gồm cả những loại có thể bị khóa, dự trữ hoặc chưa được phát hành.",
-      "title": "Tổng nguồn cung:"
+      "title": "Tổng nguồn cung"
     },
     "volume24h": {
       "details": "Tổng giá trị của một loại tiền điện tử được giao dịch trong 24 giờ qua trên tất cả các sàn giao dịch.",
       "short": "Khối lượng trong 24 giờ",
-      "title": "Khối lượng trong 24 giờ:"
+      "title": "Khối lượng trong 24 giờ"
     },
     "website": "Trang web"
   },
@@ -946,6 +971,7 @@
     "electrum_unable_to_connect": "Không thể kết nối với {server}.",
     "general": "Tổng quan",
     "header": "Cài đặt",
+    "hideBalances": "Ẩn số dư",
     "language": "Ngôn ngữ",
     "manageWallets": "Quản lý ví",
     "notifications": "Thông báo đẩy",
@@ -1356,5 +1382,13 @@
     "import_title": "Nhập",
     "list_tryagain": "Thử lại",
     "pending": "Đang chờ xử lý"
+  },
+  "whatsNew": {
+    "assetMarketData": {
+      "buttonText": "Hãy kiểm tra",
+      "part1": "Bây giờ, bạn có thể theo dõi sự thay đổi về giá và hiệu suất của tài sản nắm giữ của mình trực tiếp trong ví!",
+      "part2": "Tìm hiểu thêm thông tin chi tiết về tài sản, nhận thông báo về các mối đe dọa tiềm ẩn và truy cập liền mạch các thông tin cần thiết như hợp đồng token và phí mạng hiện tại.",
+      "title": "Dữ liệu tài sản toàn diện trong tầm tay bạn"
+    }
   }
 }
