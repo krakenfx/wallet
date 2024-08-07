@@ -97,6 +97,15 @@
       "faceId": "Face ID or Passcode"
     }
   },
+  "assetOptions": {
+    "viewDetails": "View details",
+    "send": "Send",
+    "receive": "Receive",
+    "copyContractAddress": "Copy contract address",
+    "viewOn": "View on {explorer}",
+    "hideAsset": "Hide asset",
+    "copied": "Contract address copied!"
+  },
   "connectApp": {
     "all_networks": "All networks",
     "cancel": "Cancel",
@@ -331,6 +340,7 @@
   "nftManage": {
     "title": "Manage NFT",
     "favorite": "Favorite",
+    "unfavorite": "Unfavorite",
     "copy_id": "Copy ID",
     "archive": "Archive",
     "unArchive": "Unarchive",
@@ -338,6 +348,15 @@
   },
   "nftGallery": {
     "favorite": "Favorite"
+  },
+  "nftOptions": {
+    "viewDetails": "View details",
+    "send": "Send",
+    "favorite": "Favorite",
+    "unfavorite": "Unfavorite",
+    "viewOn": "View on {explorer}",
+    "archive": "Archive",
+    "unarchive": "Unarchive"
   },
   "onboarding": {
     "never_share": "Never share it with anyone.",
@@ -912,6 +931,12 @@
       "part1": "You can now track your holdings' an asset's performance and price changes directly in the wallet!",
       "part2": "Dive into detailed asset insights, get informed of potential threats, and seamlessly access essential information like token contracts and current network fees.",
       "buttonText": "Check it out"
+    },
+    "longPress": {
+      "title": "Quick actions for your convenience",
+      "part1": "We're excited to introduce Long Press actions for your assets and NFTs! Perform tasks like sending, receiving, and hiding with ease, without navigating multiple screens.",
+      "part2": "Enjoy a smoother, more intuitive wallet experience today.",
+      "buttonText": "Sounds good"
     }
   }
 }

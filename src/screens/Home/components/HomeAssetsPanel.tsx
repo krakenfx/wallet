@@ -108,8 +108,8 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   }, [nftsCollection, tokensDataSource, defiDeposits, archivedCollection]);
 
   const renderNftRow = useCallback(
-    (item: NftsCollection, index: number) => (
-      <ListAnimatedItem index={index}>
+    (item: NftsCollection) => (
+      <ListAnimatedItem>
         <NFTCollectionRow collection={item} onPress={() => navigation.navigate(Routes.NftCollection, { collectionId: item.id })} />
       </ListAnimatedItem>
     ),
@@ -117,7 +117,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   );
 
   const renderTokenRow = useCallback(
-    (item: RealmToken, index: number) => {
+    (item: RealmToken) => {
       if (!item.isValid()) {
         return null;
       }
@@ -131,7 +131,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
       };
 
       return (
-        <ListAnimatedItem index={index}>
+        <ListAnimatedItem>
           <AssetRow token={item} options={options} />
         </ListAnimatedItem>
       );
@@ -140,9 +140,9 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   );
 
   const renderDefiRow = useCallback(
-    (item: RealmDefi, index: number) => {
+    (item: RealmDefi) => {
       return (
-        <ListAnimatedItem index={index}>
+        <ListAnimatedItem>
           <DefiRow item={item} onPress={() => navigation.navigate(Routes.DefiDetails, { defiId: item.id })} />
         </ListAnimatedItem>
       );
@@ -151,14 +151,14 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   );
 
   const renderSectionItem = useCallback(
-    ({ item, index, section }: { item: SectionItem; index: number; section: SectionType }) => {
+    ({ item, section }: { item: SectionItem; index: number; section: SectionType }) => {
       switch (section.key) {
         case SectionName.Collection:
-          return renderNftRow(item as NftsCollection, index);
+          return renderNftRow(item as NftsCollection);
         case SectionName.Assets:
-          return renderTokenRow(item as RealmToken, index);
+          return renderTokenRow(item as RealmToken);
         case SectionName.Defi:
-          return renderDefiRow(item as RealmDefi, index);
+          return renderDefiRow(item as RealmDefi);
       }
     },
     [renderDefiRow, renderNftRow, renderTokenRow],

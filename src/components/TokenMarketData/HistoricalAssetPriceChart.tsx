@@ -6,6 +6,7 @@ import { CartesianChart, Line } from 'victory-native';
 
 import { AnimatedNumbers } from '@/components/AnimatedNumbers';
 import { Label, Typography } from '@/components/Label';
+import { ScalableLabel } from '@/components/ScalableLabel';
 import { CHART_PLACEHOLDER, HIGH_LOW_PRICE_PLACEHOLDER, PRICE_PLACEHOLDER, SheetPosition, getPercentageLabel } from '@/components/TokenMarketData/utils';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useAppCurrency } from '@/realm/settings';
@@ -20,8 +21,6 @@ import {
 import { useTokenById } from '@/realm/tokens';
 import { useTheme } from '@/theme/themes';
 import { formatCurrency } from '@/utils/formatCurrency';
-
-import { ScalableLabel } from '../ScalableLabel';
 
 import { HighLowPriceChange } from './HighLowPriceChange';
 import { PeriodSwitcher } from './PeriodSwitcher';

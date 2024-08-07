@@ -9,13 +9,13 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
 import { KeyboardAvoider, KeyboardDoneInputAccessoryView } from '@/components/Keyboard';
 import { Label, Typography } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { Touchable } from '@/components/Touchable';
 import { useDebounceEffect } from '@/hooks/useDebounceEffect';
 import { usePreventScreenCaptureLong } from '@/hooks/usePreventScreenCaptureLong';
 import { Routes } from '@/Routes';
 import { useValidationState } from '@/screens/Onboarding/hooks/useValidationState';
 import { useTheme } from '@/theme/themes';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
 import { OnboardingHeader } from './components/OnboardingHeader';

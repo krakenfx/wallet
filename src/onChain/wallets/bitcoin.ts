@@ -1,11 +1,11 @@
+import * as secp256k1 from '@bitcoinerlab/secp256k1';
 import BigNumber from 'bignumber.js';
 import BIP32Factory, { BIP32Interface } from 'bip32';
 import * as bitcoin from 'bitcoinjs-lib';
 import coinSelect from 'coinselect';
 import coinSelectSplit from 'coinselect/split';
-import { ECPairAPI, ECPairFactory, TinySecp256k1Interface } from 'ecpair';
+import { ECPairAPI, ECPairFactory } from 'ecpair';
 import { flatMap, reverse } from 'lodash';
-import * as ecc from 'tiny-secp256k1';
 
 import { Buffer } from 'buffer';
 
@@ -45,11 +45,9 @@ import { ChainAgnostic } from './utils/ChainAgnostic';
 
 import loc from '/loc';
 
-const tinysecp: TinySecp256k1Interface = require('tiny-secp256k1');
+const ECPair: ECPairAPI = ECPairFactory(secp256k1);
 
-const ECPair: ECPairAPI = ECPairFactory(tinysecp);
-
-const bip32 = BIP32Factory(ecc);
+const bip32 = BIP32Factory(secp256k1);
 const ELECTRUM_BTC_TO_INT_MULTIPLIER = 100000000;
 
 type SegwitType = 'p2wpkh' | 'p2sh(p2wpkh)';

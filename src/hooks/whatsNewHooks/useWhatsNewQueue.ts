@@ -8,8 +8,9 @@ import { useWhatsNewTask } from './useWhatsNewTask';
 export const useWhatsNewQueue = () => {
   const blastTask = useWhatsNewTask(RealmSettingsKey.isBlastModalCompleted, Routes.WhatsNewBlast);
   const assetMarketDataTask = useWhatsNewTask(RealmSettingsKey.whatsNewIsAssetMarketDataCompleted, Routes.WhatsNewAssetMarketData);
+  const longPressTask = useWhatsNewTask(RealmSettingsKey.whatsNewIsLongPressCompleted, Routes.WhatsNewLongPress);
   const isInitialised = useRef(false);
-  const queue = useMemo(() => [blastTask, assetMarketDataTask], [blastTask, assetMarketDataTask]);
+  const queue = useMemo(() => [blastTask, assetMarketDataTask, longPressTask], [assetMarketDataTask, blastTask, longPressTask]);
 
   useEffect(() => {
     if (isInitialised.current) {

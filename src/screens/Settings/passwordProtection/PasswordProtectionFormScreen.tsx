@@ -7,9 +7,9 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
 import { Input } from '@/components/Input';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { encryptRealmEncryptionKey, encryptSeedWithUserPassword } from '@/secureStore';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsSwitch } from '../components';
 import { SettingsBox } from '../components/SettingsBox';

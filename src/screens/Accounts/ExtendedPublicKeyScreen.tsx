@@ -11,11 +11,11 @@ import { BottomSheet } from '@/components/BottomSheet';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { showToast } from '@/components/Toast';
 import { TokenIcon } from '@/components/TokenIcon';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { NavigationProps } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { ExtendedPublicKeyQRCode } from './components/ExtendedPublicKeyQRCode';
 

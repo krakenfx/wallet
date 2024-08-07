@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SequencedTransition } from 'react-native-reanimated';
 
+import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
+import { Label } from '@/components/Label';
+import { ExpandableSheetMethods } from '@/components/Sheets';
 import { ColorName } from '@/theme/themes';
 import { runAfterUISync } from '@/utils/runAfterUISync';
-
-import { FloatingBottomButtons } from '../FloatingBottomButtons';
-import { Label } from '../Label';
-import { ExpandableSheetMethods } from '../Sheets';
 
 import loc from '/loc';
 

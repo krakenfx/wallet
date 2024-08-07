@@ -9,10 +9,10 @@ import { Input } from '@/components/Input';
 import { KeyboardAvoider } from '@/components/Keyboard';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useTransactionNotes, useTransactionNotesMutations } from '@/realm/transactionNotes';
 import { NavigationProps } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import loc from '/loc';
 

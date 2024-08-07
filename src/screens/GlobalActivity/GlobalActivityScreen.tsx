@@ -5,13 +5,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { FadingElement } from '@/components/FadingElement';
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { NetworkFilter, useNetworkFilter } from '@/components/NetworkFilter';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { refreshAllTransactions } from '@/realm/refreshManagerHooks';
 import { useTransactionsFetch } from '@/realm/transactions';
 import { NavigationProps } from '@/Routes';
 import { TransactionListItem, useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { GlobalActivityEmptyAll, GlobalActivityEmptyNetworkSelection } from './components/GlobalActivityEmptyInfo';

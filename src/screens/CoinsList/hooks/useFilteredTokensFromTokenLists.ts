@@ -7,9 +7,10 @@ import { TESTNET_COINS, networkIdToNetworkName } from '@/onChain/wallets/registr
 import { RealmSettingsKey } from '@/realm/settings';
 import { useSettingsByKey } from '@/realm/settings/useSettingsByKey';
 import { useTokensFilteredByReputationAndNetwork } from '@/realm/tokens/useTokensFilteredByReputationAndNetwork';
+import { RemoteAsset } from '@/types';
 import { untilFirstBackslash } from '@/utils/stringUtils';
 
-import { RemoteAsset, TokenFromTokenLists } from '../types';
+import { TokenFromTokenLists } from '../types';
 import { adaptTokenFromTokenListsToRemoteAsset } from '../utils/adaptTokenFromTokenListsToRemoteAsset';
 
 import { handleError } from '/helpers/errorHandler';

@@ -7,13 +7,13 @@ import { BottomSheet } from '@/components/BottomSheet';
 import { CardWarning } from '@/components/CardWarning';
 import { KeyboardAvoider } from '@/components/Keyboard';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
-import navigationStyle from '@/components/navigationStyle';
 
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useDeafultHeaderHeight } from '@/hooks/useDefaultHeaderHeight';
 import { REPUTATION, useReputation } from '@/hooks/useReputation';
 import { NavigationProps, Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { TokenListsDescription } from './components/TokenListsDescription';
 import { TokenListsList } from './components/TokenListsList';

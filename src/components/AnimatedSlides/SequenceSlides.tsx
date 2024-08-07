@@ -6,9 +6,8 @@ import Animated, { FadeIn, FadeInUp, FadeOutDown, SlideOutLeft } from 'react-nat
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
 import { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { StepItem } from '@/screens/WalletConnectExplainer/components/StepItem';
-
-import { SvgIcon } from '../SvgIcon';
 
 import { AnimationMarkers } from './types';
 

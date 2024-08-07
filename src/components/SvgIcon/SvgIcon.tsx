@@ -5,10 +5,10 @@ import Animated from 'react-native-reanimated';
 import { Path, Svg } from 'react-native-svg';
 
 import { GradientIconBackground } from '@/components/GradientIconBackground';
-import { ColorName, useTheme } from '@/theme/themes';
 
-import { Label } from '../Label';
-import { Touchable, TouchableProps } from '../Touchable';
+import { Label } from '@/components/Label';
+import { Touchable, TouchableProps } from '@/components/Touchable';
+import { ColorName, useTheme } from '@/theme/themes';
 
 import iconSet from './selection.json';
 import { IconName } from './types';

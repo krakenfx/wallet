@@ -1,4 +1,6 @@
-import { RemoteAsset, TokenFromTokenLists } from '../types';
+import { RemoteAsset } from '@/types';
+
+import { TokenFromTokenLists } from '../types';
 
 export function adaptTokenFromTokenListsToRemoteAsset(tokenFromTokenLists: TokenFromTokenLists): RemoteAsset {
   const { decimals } = tokenFromTokenLists;

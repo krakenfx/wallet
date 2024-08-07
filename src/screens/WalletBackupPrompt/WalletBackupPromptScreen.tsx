@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
 import { BottomSheetRef } from '@/components/BottomSheet';
-import navigationStyle from '@/components/navigationStyle';
 import { PromptSheet } from '@/components/Sheets';
 import { useSettingsMutations } from '@/realm/settings';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { WalletBackupPrompt } from './components/WalletBackupPrompt';
 

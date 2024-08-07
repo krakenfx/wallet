@@ -3,12 +3,12 @@ import React, { useCallback, useMemo } from 'react';
 import { RefreshControl } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { NetworkFilter, useNetworkFilter } from '@/components/NetworkFilter';
 import { ViewPager } from '@/components/ViewPager';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 
 import { useNfts } from '@/realm/nfts';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { NftCollectionList } from './components/NftCollectionList';
 import { NftList } from './components/NftList';

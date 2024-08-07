@@ -1,9 +1,10 @@
 /* eslint-disable radix */
 
+import { secp256k1 } from '@noble/curves/secp256k1';
+import { ripemd160 } from '@noble/hashes/ripemd160';
 import BigNumber from 'bignumber.js';
 import BIP32Factory, { BIP32Interface } from 'bip32';
 import bs58check from 'bs58check';
-import * as ecc from 'tiny-secp256k1';
 
 import { Buffer } from 'buffer';
 import crypto from 'crypto';
@@ -26,13 +27,12 @@ import {
 import { HarmonyTransport } from './HarmonyTransport';
 import { ChainAgnostic } from './utils/ChainAgnostic';
 import CompactSize from './utils/CompactSize';
+import { nobleAdapter } from './utils/nobleToTinySecpInterface.ts';
 import { WalletStorage } from './walletState';
 
 import loc from '/loc';
 
-const bip32 = BIP32Factory(ecc);
-const RIPEMD160 = require('ripemd160');
-const secp256k1 = require('secp256k1');
+const bip32 = BIP32Factory(nobleAdapter);
 
 type SendRequest = {
   amount: bigint;
@@ -182,7 +182,7 @@ function serializePayToPubkeyHashScript(address: string): Buffer {
 
 function pubkeyToAddress(pubkey: Buffer, networkByte: any) {
   let hash = crypto.createHash('sha256').update(pubkey).digest();
-  const pubKeyHash = new RIPEMD160().update(hash).digest();
+  const pubKeyHash = ripemd160.create().update(hash).digest();
   networkByte = Buffer.from(networkByte, 'hex');
 
   return bs58check.encode(Buffer.concat([networkByte, pubKeyHash]));
@@ -281,10 +281,8 @@ async function signTransaction(transaction: DogecoinTransaction, key: BIP32Inter
   const rawUnsignedTransaction = prepareTransactionToSign(transaction, index, hashCodeType);
   const rawTransactionHash = doubleHash(rawUnsignedTransaction);
 
-  let signature = secp256k1.ecdsaSign(rawTransactionHash, key.privateKey!);
-  signature = secp256k1.signatureExport(signature.signature);
-
-  return { signature: Buffer.from(signature), publicKey: key.publicKey };
+  const signature = secp256k1.sign(rawTransactionHash, key.privateKey!);
+  return { signature: Buffer.from(signature.toDERRawBytes()), publicKey: key.publicKey };
 }
 
 function addP2KHSignature(transaction: DogecoinTransaction, signature: Buffer, publicKey: Buffer, index: number) {

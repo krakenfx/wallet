@@ -5,8 +5,8 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { BottomSheetModalRef } from '@/components/BottomSheet';
 import { GradientScreenView } from '@/components/Gradients';
 import { MissingBiometricsSheet } from '@/components/MissingBiometricsSheet';
-import navigationStyle from '@/components/navigationStyle';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsCheckItem, SettingsCheckItemsBox, SettingsInfoBox, SettingsSwitch } from '../components';
 

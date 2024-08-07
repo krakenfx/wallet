@@ -2,13 +2,13 @@ import React, { useCallback } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { SvgIcon } from '@/components/SvgIcon';
 import { WalletItem } from '@/components/WalletItem';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { useAccounts } from '@/realm/accounts';
 import { useIsWalletBackupDone } from '@/realm/settings';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsItem, SettingsSectionHeader, TickIcon } from '../components';
 import { SettingsNavigationProps } from '../SettingsRouter';

@@ -6,12 +6,12 @@ import { Button } from '@/components/Button';
 import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useManageAccount } from '@/hooks/useManageAccount';
 import { useAccountById } from '@/realm/accounts/useAccountById';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AccountNavigationProps } from './AccountRouter';
 

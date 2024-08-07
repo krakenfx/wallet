@@ -5,12 +5,12 @@ import { StyleSheet, View } from 'react-native';
 import { GradientScreenView } from '@/components/Gradients';
 import { HeaderNavigationTitle } from '@/components/HeaderNavigationTitle';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { useNftsCollectionById } from '@/realm/nfts';
 import { ARCHIVED_NFT } from '@/realm/nfts/consts';
 import { useRealmWalletById } from '@/realm/wallets';
 import { NavigationProps } from '@/Routes';
 import { useTheme } from '@/theme/themes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { NftList } from './components/NftList';
 

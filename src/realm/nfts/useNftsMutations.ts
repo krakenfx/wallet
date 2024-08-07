@@ -88,6 +88,9 @@ export const useNftsMutations = () => {
       realm.write(() => {
         nft.isArchived = true;
         nft.archivedAt = new Date();
+        if (nft.inGallery) {
+          nft.inGallery = false;
+        }
       });
     },
     [realm],
@@ -107,6 +110,10 @@ export const useNftsMutations = () => {
     (nft: RealmNft) => {
       realm.write(() => {
         nft.inGallery = true;
+        if (nft.isArchived) {
+          nft.isArchived = false;
+          nft.archivedAt = null;
+        }
       });
     },
     [realm],

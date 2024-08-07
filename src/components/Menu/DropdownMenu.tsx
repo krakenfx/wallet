@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
+import { Label, TypographyKey } from '@/components/Label';
+import { IconName, SvgIcon } from '@/components/SvgIcon';
+import { Touchable } from '@/components/Touchable';
 import { useTheme } from '@/theme/themes';
-
-import { Label, TypographyKey } from '../Label';
-import { IconName, SvgIcon } from '../SvgIcon';
-import { Touchable } from '../Touchable';
 
 export type DropdownOptionItem<T> = {
   id: T;

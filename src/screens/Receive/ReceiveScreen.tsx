@@ -20,9 +20,8 @@ import { useRealmWalletById } from '@/realm/wallets';
 import { NavigationProps } from '@/Routes';
 import { AssetBalanceId } from '@/types';
 import { getWalletName } from '@/utils/getWalletName';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
-
-import navigationStyle from '../../components/navigationStyle';
 
 import AddressQRCode from './components/AddressQRCode';
 import { useReceiveAddress } from './hooks';

@@ -17,8 +17,6 @@ PODS:
     - ExpoModulesCore
     - ZXingObjC/OneD
     - ZXingObjC/PDF417
-  - ExpoDevice (6.0.2):
-    - ExpoModulesCore
   - ExpoFileSystem (17.0.1):
     - ExpoModulesCore
   - ExpoFont (12.0.6):
@@ -1311,9 +1309,6 @@ PODS:
     - React-logger (= 0.74.2)
     - React-perflogger (= 0.74.2)
     - React-utils (= 0.74.2)
-  - ReactNativeWebPFormat (1.2.0):
-    - React-Core
-    - SDWebImageWebPCoder
   - RealmJS (12.11.1):
     - React
   - RNArgon2 (2.0.1):
@@ -1366,7 +1361,7 @@ PODS:
     - React-Core
   - RNReactNativeHapticFeedback (1.14.0):
     - React-Core
-  - RNReanimated (3.10.1):
+  - RNReanimated (3.12.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1436,7 +1431,6 @@ DEPENDENCIES:
   - Expo (from `../node_modules/expo`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
   - ExpoCamera (from `../node_modules/expo-camera/ios`)
-  - ExpoDevice (from `../node_modules/expo-device/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
@@ -1506,7 +1500,6 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - ReactNativeWebPFormat (from `../node_modules/react-native-webp-format`)
   - RealmJS (from `../node_modules/realm`)
   - RNArgon2 (from `../node_modules/react-native-argon2`)
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
@@ -1556,8 +1549,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-asset/ios"
   ExpoCamera:
     :path: "../node_modules/expo-camera/ios"
-  ExpoDevice:
-    :path: "../node_modules/expo-device/ios"
   ExpoFileSystem:
     :path: "../node_modules/expo-file-system/ios"
   ExpoFont:
@@ -1693,8 +1684,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  ReactNativeWebPFormat:
-    :path: "../node_modules/react-native-webp-format"
   RealmJS:
     :path: "../node_modules/realm"
   RNArgon2:
@@ -1747,7 +1736,6 @@ SPEC CHECKSUMS:
   Expo: 6381470c669c3f31c8ac0ebd8e88686f925146ad
   ExpoAsset: 9b7433ecc5f1b608ccbb823492e062bde944abd2
   ExpoCamera: 11129a52e17fea1701ce923db49b08de8494145a
-  ExpoDevice: fc94f0e42ecdfd897e7590f2874fc64dfa7e9b1c
   ExpoFileSystem: 80bfe850b1f9922c16905822ecbf97acd711dc51
   ExpoFont: c84702079267ae51161c20bb8b925670907ffa2f
   ExpoKeepAwake: 3b8815d9dd1d419ee474df004021c69fdd316d08
@@ -1817,7 +1805,6 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 56b642bf605ba5afa500d35790928fc1d51565ad
   React-utils: 4476b7fcbbd95cfd002f3e778616155241d86e31
   ReactCommon: ecad995f26e0d1e24061f60f4e5d74782f003f12
-  ReactNativeWebPFormat: f5f043cc9ded052e535c3869ec341f91ba5a67c5
   RealmJS: ecd23895a68689ce2c048d28df3d699cf76cedb7
   RNArgon2: 1481820722fd4af1575c09f7fc9ad67c00ee8a42
   RNBootSplash: e025d4ee98d942ee6c8b495a6fe66339a6b5f6dd
@@ -1833,7 +1820,7 @@ SPEC CHECKSUMS:
   RNKeychain: a65256b6ca6ba6976132cc4124b238a5b13b3d9c
   RNLocalize: d4b8af4e442d4bcca54e68fc687a2129b4d71a81
   RNReactNativeHapticFeedback: 1e3efeca9628ff9876ee7cdd9edec1b336913f8c
-  RNReanimated: 35f9ac9c3ac42d0497ebd1cce5c39d7687a8493e
+  RNReanimated: f9192536fa8a312c737eaf15c905f78831193ef1
   RNScreens: b32a9ff15bea7fcdbe5dff6477bc503f792b1208
   RNShare: da6d90b6dc332f51f86498041d6e34211f96b630
   RNSVG: 43b64ed39c14ce830d840903774154ca0c1f27ec

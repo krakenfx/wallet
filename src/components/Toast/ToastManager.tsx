@@ -5,10 +5,10 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { Easing, runOnJS, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import { FullWindowOverlay } from 'react-native-screens';
 
+import { HideToastProps, Toast, ToastConfigProps, ToastState } from '@/components/Toast';
 import { Routes } from '@/Routes';
 
 import { ToastEmitter, toastEmitter } from './events';
-import { HideToastProps, Toast, ToastConfigProps, ToastState } from './Toast';
 
 const defaultProps: Partial<ToastConfigProps> = {
   duration: 4000,

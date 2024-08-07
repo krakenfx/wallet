@@ -7,13 +7,13 @@ import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 import { Input } from '@/components/Input';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useManageAccount } from '@/hooks/useManageAccount';
 import { useAccountById } from '@/realm/accounts';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { formatCurrency } from '@/utils/formatCurrency';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AccountNavigationProps } from './AccountRouter';
 

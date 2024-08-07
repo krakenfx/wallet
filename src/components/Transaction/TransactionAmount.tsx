@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
+import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { TokenIcon, TokenIconProps } from '@/components/TokenIcon';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
@@ -8,8 +9,6 @@ import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 import { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { formatCurrency } from '@/utils/formatCurrency';
-
-import { GradientItemBackground } from '../GradientItemBackground';
 
 export type TransactionAmountProps = {
   attached?: boolean;

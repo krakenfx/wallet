@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsNavigationProps } from '../SettingsRouter';
 

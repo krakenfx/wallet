@@ -137,6 +137,15 @@
     "typedMessageSigningRequest": "{type} Anfrage zur Unterzeichnung",
     "withdrawal": "Auszahlung"
   },
+  "assetOptions": {
+    "copied": "Vertragsadresse kopiert!",
+    "copyContractAddress": "Vertragsadresse kopieren",
+    "hideAsset": "Asset ausblenden",
+    "receive": "Erhalten",
+    "send": "Senden",
+    "viewDetails": "Details anzeigen",
+    "viewOn": "Anzeigen auf {explorer}"
+  },
   "backupWallet": {
     "backup": "Absicherung",
     "backupYourWallet": "Sichere deine Wallet ab",
@@ -374,6 +383,9 @@
   "diagnostics": {
     "running": "Diagnose läuft ..."
   },
+  "discovery": {
+    "explore": "Entdecken"
+  },
   "editAccount": {
     "save": "Speichern",
     "title": "Wallet bearbeiten",
@@ -399,28 +411,79 @@
     "type": "Typ: {type}"
   },
   "extension": {
+    "_": {
+      "off": "Aus",
+      "on": "Ein"
+    },
+    "ariaLabel": {
+      "icon": "Symbol"
+    },
+    "assets": {
+      "logoAlt": "Asset-Logo",
+      "manageAssets": "Assets verwalten"
+    },
     "home": {
       "addWallet": "Wallet hinzufügen",
       "manage": "Verwalte",
       "selectWallet": "Wallet auswählen"
     },
     "lockWallet": "Wallet sperren",
+    "manageAssets": {
+      "filter": "Assets filtern",
+      "hiddenAssets": "Ausgeblendete Assets",
+      "manageAssets": "Assets verwalten",
+      "search": "Über 5.000 Assets durchsuchen",
+      "unhideAll": "Alle einblenden",
+      "visibleAssets": "Sichtbare Assets"
+    },
     "navigation": {
       "activity": "Aktivität",
       "assets": "Assets",
       "nfts": "NFTs"
     },
     "nft": {
-      "addNfts": "NFTs zur Wallet hinzufügen"
+      "about": "Über",
+      "addNfts": "NFTs zur Wallet hinzufügen",
+      "send": "Senden"
     },
     "onboarding": {
+      "skip": "Überspr.",
       "typeYourSecretRecoveryPhrase": "Gib deine Secret Recovery Phrase ein",
       "walletSupports": "Diese Wallet unterstützt Ethereum, Polygon, Optimism, Arbitrum und mehr"
     },
     "receive": {
       "receiveCryptoOrNft": "Krypto oder NFT erhalten"
     },
+    "send": {
+      "continue": "Fortfahren",
+      "sendingTo": {
+        "search": "Wähle aus, was du senden möchtest",
+        "title": "Wird gesendet an"
+      },
+      "sendInput": {
+        "label": "Wird gesendet an",
+        "paste": "Einfügen",
+        "placeholder": "Adresse oder ENS-Domäne eingeben ..."
+      },
+      "sendOn": {
+        "network": "Netzwerk",
+        "title": "Senden am"
+      }
+    },
+    "settings": {
+      "build": "Build {0}",
+      "changePassword": "Passwort ändern",
+      "lockWallet": "Wallet sperren",
+      "privacy": "Datenschutz",
+      "version": "Kraken Wallet-Erweiterung {0}",
+      "walletSettings": "Wallet-Einstellungen"
+    },
     "skip": "Überspr.",
+    "walletBackup": {
+      "couldNotRetrieveState": "Der Verifizierungsstatus der Recovery Phrase konnte nicht abgerufen werden",
+      "unverified": "Recovery Phrase ist nicht verifiziert",
+      "verified": "Recovery Phrase ist verifiziert"
+    },
     "walletSettings": "Wallet-Einstellungen"
   },
   "floatingTransactionActivityButtons": {
@@ -584,7 +647,17 @@
     "favorite": "Favorit",
     "title": "NFT verwalten",
     "unArchive": "Archivierung aufheben",
-    "unArchiveSuccess": "Archivierung des NFT aufgehoben"
+    "unArchiveSuccess": "Archivierung des NFT aufgehoben",
+    "unfavorite": "Aus Favoriten entfernen"
+  },
+  "nftOptions": {
+    "archive": "Archiv",
+    "favorite": "Favorit",
+    "send": "Senden",
+    "unarchive": "Archivierung aufheben",
+    "unfavorite": "Aus Favoriten entfernen",
+    "viewDetails": "Details anzeigen",
+    "viewOn": "Anzeigen auf {explorer}"
   },
   "nftView": {
     "about": "Über",
@@ -1389,6 +1462,12 @@
       "part1": "Du kannst jetzt die Performance eines Assets sowie Preisänderungen direkt in deiner Wallet verfolgen!",
       "part2": "Sichere dir detaillierte Einblicke in deine Assets, halte dich zu potenziellen Bedrohungen auf dem Laufenden und erhalte nahtlosen Zugang zu wichtigen Informationen wie Token-Verträgen und aktuellen Netzwerkgebühren.",
       "title": "Umfassende Asset-Daten auf einen Blick"
+    },
+    "longPress": {
+      "buttonText": "Hört sich gut an",
+      "part1": "Wir präsentieren – „Berühren und Halten“-Aktionen für deine Assets und NFTs! Aktionen wie Versenden, Erhalten oder Ausblenden sind jetzt ganz einfach und ohne die Nutzung mehrerer Bildschirme möglich.",
+      "part2": "Profitiere von einer reibungsloseren und intuitiveren Wallet-Erfahrung.",
+      "title": "Schnelle Aktionen für deinen Komfort"
     }
   }
 }

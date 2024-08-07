@@ -16,7 +16,7 @@ interface Props {
 
 const VISIBLE_EXPLORERS_COUNT = 2;
 
-const getExplorerIcon = (label: string): IconName => {
+export const getExplorerIcon = (label: string): IconName => {
   const lowerCaseLabel = label.toLowerCase();
   if (label === '3pxl') {
     return 'threexpl';

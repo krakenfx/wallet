@@ -39,7 +39,7 @@ import { TriggeredPushPromptScreen } from '@/screens/TriggerredPushPromptScreen'
 import { UniversalSendScreen } from '@/screens/UniversalSend';
 import { WalletBackupPromptScreen } from '@/screens/WalletBackupPrompt';
 import { WalletConnectExplainerScreen } from '@/screens/WalletConnectExplainer';
-import { WhatsNewAssetMarketDataScreen, WhatsNewBlastScreen } from '@/screens/WhatsNew';
+import { WhatsNewAssetMarketDataScreen, WhatsNewBlastScreen, WhatsNewLongPressScreen } from '@/screens/WhatsNew';
 import { useConnectionManager } from '@/utils/useConnectionManager';
 
 import { DefaultBackButton } from './components/BackButton';
@@ -123,6 +123,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="WalletConnectExplainer" component={WalletConnectExplainerScreen} options={WalletConnectExplainerScreen.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewBlast" component={WhatsNewBlastScreen} options={WhatsNewBlastScreen.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewAssetMarketData" component={WhatsNewAssetMarketDataScreen} options={WhatsNewAssetMarketDataScreen.navigationOptions} />
+      <DefaultStack.Screen name="WhatsNewLongPress" component={WhatsNewLongPressScreen} options={WhatsNewLongPressScreen.navigationOptions} />
       <DefaultStack.Screen
         name="WalletConnectSignRequest_GenericMessage"
         component={WalletConnectSignRequest_GenericMessageScreen}

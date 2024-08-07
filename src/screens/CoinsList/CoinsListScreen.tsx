@@ -8,7 +8,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomSheet, BottomSheetFlashList } from '@/components/BottomSheet';
 import { FadingElement } from '@/components/FadingElement';
 import { KeyboardAvoider } from '@/components/Keyboard';
-import navigationStyle from '@/components/navigationStyle';
 import { NetworkFilter, useNetworkFilter } from '@/components/NetworkFilter';
 import { ReputationTag } from '@/components/Reputation';
 import { SearchInput } from '@/components/SearchInput';
@@ -28,14 +27,16 @@ import {
 import { useTokensGallery } from '@/realm/tokensGallery';
 import { useRealmWallets } from '@/realm/wallets';
 import { NavigationProps } from '@/Routes';
+import { RemoteAsset } from '@/types';
 import { isRealmObject } from '@/utils/isRealmObject';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { safelyAnimateLayout } from '@/utils/safeLayoutAnimation';
 
 import { GlobalFilter } from './GlobalFilter';
 import { useFilteredTokensFromTokenLists } from './hooks/useFilteredTokensFromTokenLists';
 import { ReputationFilter } from './ReputationFilter';
-import { Item, RemoteAsset } from './types';
+import { Item } from './types';
 import { SEARCH_SCORE_TO_SORTING_INDEX, getSearchScore } from './utils/getSearchScore';
 import { isRemoteAsset } from './utils/isRemoteAsset';
 

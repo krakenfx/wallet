@@ -137,6 +137,15 @@
     "typedMessageSigningRequest": "{type} Solicitud de firma",
     "withdrawal": "Retiro"
   },
+  "assetOptions": {
+    "copied": "Dirección del contrato copiada.",
+    "copyContractAddress": "Copiar dirección del contrato",
+    "hideAsset": "Ocultar activo",
+    "receive": "Recibir",
+    "send": "Enviar",
+    "viewDetails": "Ver detalles",
+    "viewOn": "Ver en {explorer}"
+  },
   "backupWallet": {
     "backup": "Respaldar",
     "backupYourWallet": "Respalde su monedero",
@@ -374,6 +383,9 @@
   "diagnostics": {
     "running": "Ejecutando diagnóstico..."
   },
+  "discovery": {
+    "explore": "Explorar"
+  },
   "editAccount": {
     "save": "Guardar",
     "title": "Editar monedero",
@@ -399,28 +411,79 @@
     "type": "Tipo: {type}"
   },
   "extension": {
+    "_": {
+      "off": "Apagado",
+      "on": "Encendido"
+    },
+    "ariaLabel": {
+      "icon": "Icon"
+    },
+    "assets": {
+      "logoAlt": "logotipo del activo",
+      "manageAssets": "Gestionar activos"
+    },
     "home": {
       "addWallet": "Añadir monedero",
       "manage": "Gestionar",
       "selectWallet": "Seleccionar monedero"
     },
     "lockWallet": "Bloquear monedero",
+    "manageAssets": {
+      "filter": "Filtrar activos",
+      "hiddenAssets": "Activos ocultos",
+      "manageAssets": "Gestionar activos",
+      "search": "Buscar + de 5000 activos",
+      "unhideAll": "Mostrar todo",
+      "visibleAssets": "Activos visibles"
+    },
     "navigation": {
       "activity": "Actividad",
       "assets": "Activos",
       "nfts": "NFT"
     },
     "nft": {
-      "addNfts": "Añadir NFT a tu monedero"
+      "about": "Acerca de",
+      "addNfts": "Añadir NFT a tu monedero",
+      "send": "Enviar"
     },
     "onboarding": {
+      "skip": "Omitir",
       "typeYourSecretRecoveryPhrase": "Introduce tu frase de recuperación secreta",
       "walletSupports": "Este monedero admite Ethereum, Polygon, Optimism, Arbitrum y más"
     },
     "receive": {
       "receiveCryptoOrNft": "Recibir cripto o NFT"
     },
+    "send": {
+      "continue": "Continuar",
+      "sendingTo": {
+        "search": "Selecciona lo que quieras enviar.",
+        "title": "Enviando a"
+      },
+      "sendInput": {
+        "label": "Enviando a",
+        "paste": "Pegar",
+        "placeholder": "Dirección o dominio ENS..."
+      },
+      "sendOn": {
+        "network": "red",
+        "title": "Enviar en"
+      }
+    },
+    "settings": {
+      "build": "Versión {0}",
+      "changePassword": "Cambiar contraseña",
+      "lockWallet": "Bloquear monedero",
+      "privacy": "Privacidad",
+      "version": "Extensión {0} de Kraken Wallet",
+      "walletSettings": "Configuración del monedero"
+    },
     "skip": "Omitir",
+    "walletBackup": {
+      "couldNotRetrieveState": "No se ha podido obtener el estado de verificación de la frase de recuperación",
+      "unverified": "La frase de recuperación no está verificada",
+      "verified": "La frase de recuperación está verificada"
+    },
     "walletSettings": "Configuración del monedero"
   },
   "floatingTransactionActivityButtons": {
@@ -584,7 +647,17 @@
     "favorite": "Favorito",
     "title": "Gestionar NFT",
     "unArchive": "Desarchivar",
-    "unArchiveSuccess": "NFT desarchivado"
+    "unArchiveSuccess": "NFT desarchivado",
+    "unfavorite": "Suprimir de favoritos"
+  },
+  "nftOptions": {
+    "archive": "Archivo",
+    "favorite": "Favorito",
+    "send": "Enviar",
+    "unarchive": "Desarchivar",
+    "unfavorite": "Suprimir de favoritos",
+    "viewDetails": "Ver detalles",
+    "viewOn": "Ver en {explorer}"
   },
   "nftView": {
     "about": "Acerca de",
@@ -1389,6 +1462,12 @@
       "part1": "Ya puedes hacer un seguimiento de tus inversiones, el rendimiento de los activos y los cambios de precio directamente desde el monedero.",
       "part2": "Ahonda en la información detallada de los activos, infórmate de las posibles amenazas y accede fácilmente a la información esencial, como los contratos de token y las tarifas de red actuales.",
       "title": "Información exhaustiva sobre los activos al alcance de tu mano"
+    },
+    "longPress": {
+      "buttonText": "Me gusta",
+      "part1": "¡Nos hace mucha ilusión presentar las nuevas acciones para tus activos y NFT! Ahora, con tan solo mantener pulsada la pantalla puedes realizar tareas como enviar, recibir y ocultar elementos fácilmente. Ya no tendrás que moverte por distintas pantallas.",
+      "part2": "Disfruta hoy mismo de una experiencia más cómoda e intuitiva en tu monedero.",
+      "title": "Acciones rápidas para facilitar la experiencia"
     }
   }
 }

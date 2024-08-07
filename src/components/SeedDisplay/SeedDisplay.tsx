@@ -6,14 +6,13 @@ import { Gesture, GestureDetector, ScrollView } from 'react-native-gesture-handl
 import Animated, { FadeOut, runOnJS } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Label } from '@/components/Label';
+import { SvgIcon } from '@/components/SvgIcon';
 import { usePreventScreenCaptureLong } from '@/hooks/usePreventScreenCaptureLong';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 import { useTheme } from '@/theme/themes';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 import { useAppState } from '@/utils/useAppState';
-
-import { Label } from '../Label';
-import { SvgIcon } from '../SvgIcon';
 
 import blurImage from './images/BlurredWords.png';
 

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import Realm from 'realm';
 
 import { BalanceResponse } from '@/onChain/wallets/base';
-import { RemoteAsset } from '@/screens/CoinsList/types';
+import { RemoteAsset } from '@/types';
 import { adaptTokenReputationToRealmAssetReputation } from '@/utils/adaptTokenReputationToRealmAssetReputation';
 
 import { REALM_TYPE_ASSET_METADATA, RealmAssetMetadata } from '../assetMetadata';

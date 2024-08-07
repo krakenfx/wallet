@@ -137,6 +137,15 @@
     "typedMessageSigningRequest": "Richiesta di firma {type}",
     "withdrawal": "Prelievo"
   },
+  "assetOptions": {
+    "copied": "Indirizzo del contratto copiato!",
+    "copyContractAddress": "Copia indirizzo del contratto",
+    "hideAsset": "Nascondi asset",
+    "receive": "Ricevi",
+    "send": "Invia",
+    "viewDetails": "Visualizza dettagli",
+    "viewOn": "Visualizza su {explorer}"
+  },
   "backupWallet": {
     "backup": "Backup",
     "backupYourWallet": "Esegui il backup del wallet",
@@ -374,6 +383,9 @@
   "diagnostics": {
     "running": "Esecuzione della diagnostica in corso..."
   },
+  "discovery": {
+    "explore": "Esplora"
+  },
   "editAccount": {
     "save": "Salva",
     "title": "Modifica wallet",
@@ -399,28 +411,79 @@
     "type": "Tipo: {type}"
   },
   "extension": {
+    "_": {
+      "off": "Off",
+      "on": "On"
+    },
+    "ariaLabel": {
+      "icon": "Icona"
+    },
+    "assets": {
+      "logoAlt": "logo dell’asset",
+      "manageAssets": "Gestisci asset"
+    },
     "home": {
       "addWallet": "Aggiungi wallet",
       "manage": "Gestisci",
       "selectWallet": "Seleziona wallet"
     },
     "lockWallet": "Blocca wallet",
+    "manageAssets": {
+      "filter": "Filtra asset",
+      "hiddenAssets": "Nascondi asset",
+      "manageAssets": "Gestisci asset",
+      "search": "Cerca tra oltre 5.000 asset",
+      "unhideAll": "Scopri tutto",
+      "visibleAssets": "Asset visibili"
+    },
     "navigation": {
       "activity": "Attività",
       "assets": "Asset",
       "nfts": "NFT"
     },
     "nft": {
-      "addNfts": "Aggiungi NFT al wallet"
+      "about": "Informazioni",
+      "addNfts": "Aggiungi NFT al wallet",
+      "send": "Invia"
     },
     "onboarding": {
+      "skip": "Salta",
       "typeYourSecretRecoveryPhrase": "Digita la tua frase di recupero segreta",
       "walletSupports": "Questo wallet supporta Ethereum, Polygon, Optimism, Arbitrum e altri"
     },
     "receive": {
       "receiveCryptoOrNft": "Ricevi crypto o NFT"
     },
+    "send": {
+      "continue": "Continua",
+      "sendingTo": {
+        "search": "Seleziona ciò che desideri inviare",
+        "title": "Invio in corso a"
+      },
+      "sendInput": {
+        "label": "Invio in corso a",
+        "paste": "Incolla",
+        "placeholder": "Inserisci un indirizzo o un dominio ENS..."
+      },
+      "sendOn": {
+        "network": "network",
+        "title": "Invia tramite"
+      }
+    },
+    "settings": {
+      "build": "Versione {0}",
+      "changePassword": "Cambia password",
+      "lockWallet": "Blocca wallet",
+      "privacy": "Privacy",
+      "version": "Estensione Kraken Wallet {0}",
+      "walletSettings": "Impostazioni wallet"
+    },
     "skip": "Salta",
+    "walletBackup": {
+      "couldNotRetrieveState": "Impossibile recuperare lo stato di verifica della frase di recupero",
+      "unverified": "Frase di recupero non verificata",
+      "verified": "Frase di recupero verificata"
+    },
     "walletSettings": "Impostazioni wallet"
   },
   "floatingTransactionActivityButtons": {
@@ -584,7 +647,17 @@
     "favorite": "Aggiungi ai Preferiti",
     "title": "Gestisci NFT",
     "unArchive": "Annulla archiviazione",
-    "unArchiveSuccess": "Archiviazione NFT annullata"
+    "unArchiveSuccess": "Archiviazione NFT annullata",
+    "unfavorite": "Rimuovi dai Preferiti"
+  },
+  "nftOptions": {
+    "archive": "Archivio",
+    "favorite": "Aggiungi ai Preferiti",
+    "send": "Invia",
+    "unarchive": "Annulla archiviazione",
+    "unfavorite": "Rimuovi dai Preferiti",
+    "viewDetails": "Visualizza dettagli",
+    "viewOn": "Visualizza su {explorer}"
   },
   "nftView": {
     "about": "Informazioni",
@@ -1389,6 +1462,12 @@
       "part1": "Ora puoi monitorare le prestazioni e le variazioni di prezzo degli asset che detieni direttamente dal wallet!",
       "part2": "Scopri dati approfonditi sui tuoi asset, ricevi avvisi su potenziali minacce e accedi senza problemi a informazioni importanti, quali contratti con token e commissioni del network correnti.",
       "title": "Dati completi sugli asset a portata di mano"
+    },
+    "longPress": {
+      "buttonText": "Perfetto",
+      "part1": "Siamo entusiasti di presentarti le azioni con pressione prolungata per i tuoi asset e NFT! Invia, ricevi e nascondi con facilità, senza dover cambiare schermata.",
+      "part2": "Goditi un'esperienza più fluida e intuitiva del tuo wallet.",
+      "title": "Azioni veloci per la massima comodità"
     }
   }
 }

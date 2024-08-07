@@ -4,10 +4,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { LargeHeader } from '@/components/LargeHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { useLanguage } from '@/realm/settings';
 import { Routes } from '@/Routes';
 import { CurrencyBadge } from '@/screens/Settings/currency';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AppLockBadge } from './appLock';
 import { BuildInfo } from './BuildInfo';

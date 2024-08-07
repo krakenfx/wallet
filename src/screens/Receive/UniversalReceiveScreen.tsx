@@ -10,8 +10,8 @@ import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { RealmToken, useTokens } from '@/realm/tokens';
 import { NavigationProps, Routes } from '@/Routes';
 import { isRealmObject } from '@/utils/isRealmObject';
+import { navigationStyle } from '@/utils/navigationStyle';
 
-import navigationStyle from '../../components/navigationStyle';
 import { EXPLAINER_CONTENT_TYPES } from '../Explainer';
 
 import { ReceiveTokenRow } from './components/ReceiveTokenRow';

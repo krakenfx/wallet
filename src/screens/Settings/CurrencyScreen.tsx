@@ -3,11 +3,11 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { useLocalStateUpdate } from '@/hooks/useLocalStateUpdate';
 import { useSettingsMutations } from '@/realm/settings';
 import { getDeviceCurrency, useAppCurrency, useLanguage } from '@/realm/settings';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { CurrencyItem } from './currency/CurrencyItem';
 import { Currency, getCurrencyInfo, getLocalizedCurrencyName } from './currency/types';

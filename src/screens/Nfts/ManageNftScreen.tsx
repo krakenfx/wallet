@@ -7,13 +7,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomSheet } from '@/components/BottomSheet';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { NftBlock } from '@/components/NftBlock';
 import { showToast } from '@/components/Toast';
 import { useNftById, useNftsMutations } from '@/realm/nfts';
 import { useNftGalleryToggle } from '@/realm/nfts/useNftGalleryToggle';
 import { NavigationProps, Routes } from '@/Routes';
 import { ActionButton } from '@/screens/Nfts/components/ActionButton';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import loc from '/loc';
 
@@ -71,7 +71,7 @@ export const ManageNftScreen = ({ route, navigation }: NavigationProps<'ManageNf
             testID="FavoriteButton"
             onPress={toggleGallery}
             iconName={isInGallery ? 'star-filled' : 'star'}
-            label={loc.nftManage.favorite}
+            label={isInGallery ? loc.nftManage.unfavorite : loc.nftManage.favorite}
             disableEffect
           />
         )}
@@ -79,7 +79,7 @@ export const ManageNftScreen = ({ route, navigation }: NavigationProps<'ManageNf
         <ActionButton
           testID="ArchiveButton"
           onPress={onArchiveTogglePress}
-          iconName="archive"
+          iconName={nft.isArchived ? 'un-archive' : 'archive'}
           label={nft.isArchived ? loc.nftManage.unArchive : loc.nftManage.archive}
         />
       </View>

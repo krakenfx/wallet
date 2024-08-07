@@ -4,10 +4,10 @@ import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BottomSheet } from '@/components/BottomSheet';
-import navigationStyle from '@/components/navigationStyle';
 import { SvgIcon } from '@/components/SvgIcon';
 import { NavigationProps } from '@/Routes';
 import { useTheme } from '@/theme/themes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 export type ManageAssetsGlobalFilterParams = {
   content: React.ReactNode;

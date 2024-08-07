@@ -5,9 +5,9 @@ import { StyleSheet, View } from 'react-native';
 import { BackButton } from '@/components/BackButton';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { useWipeStorage } from '@/hooks/useWipeStorage';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useAndroidBackButton } from '@/utils/useAndroidBackButton';
 
 import { OnboardingIntroPage } from './components/OnboardingIntroPage';

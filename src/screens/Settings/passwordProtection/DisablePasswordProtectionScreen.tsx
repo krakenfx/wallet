@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useState } from 'react';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { decryptRealmEncryptionKey, decryptSeedWithUserPassword } from '@/secureStore';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsNavigationProps } from '../SettingsRouter';
 

@@ -2,13 +2,12 @@ import React, { ComponentProps } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import Animated, { AnimateStyle } from 'react-native-reanimated';
 
+import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
+import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
 import { SvgIcon } from '@/components/SvgIcon';
 import { WalletType } from '@/onChain/wallets/registry';
 import { useTheme } from '@/theme/themes';
-
-import { ImageSvg } from '../ImageSvg';
-import { MaskedElementWithCoin } from '../MaskedElementWithCoin';
 
 import { TransactionBadge } from './TransactionBadge';
 

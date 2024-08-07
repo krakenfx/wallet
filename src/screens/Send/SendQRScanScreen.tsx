@@ -7,8 +7,8 @@ import { Path, Svg } from 'react-native-svg';
 import { Camera } from '@/components/Camera';
 import { CloseButton } from '@/components/CloseButton';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { NavigationProps, Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { UniversalSendRouteParams } from '../UniversalSend';
 

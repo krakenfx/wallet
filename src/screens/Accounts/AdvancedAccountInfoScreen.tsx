@@ -5,7 +5,6 @@ import { StyleSheet, View } from 'react-native';
 import { BottomSheet } from '@/components/BottomSheet';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
@@ -13,6 +12,7 @@ import { getImplForWallet } from '@/onChain/wallets/registry';
 import { useAccountById } from '@/realm/accounts/useAccountById';
 
 import { NavigationProps } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { BitcoinPanel } from './components/BitcoinPanel';
 import { DogePanel } from './components/DogePanel';

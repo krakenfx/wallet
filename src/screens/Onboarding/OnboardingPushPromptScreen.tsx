@@ -5,9 +5,8 @@ import { GradientScreenView } from '@/components/Gradients';
 import { PushNotificationPrompt } from '@/components/PushNotificationPrompt';
 import { useSettingsMutations } from '@/realm/settings';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useNoopAndroidBackButton } from '@/utils/useAndroidBackButton';
-
-import navigationStyle from '../../components/navigationStyle';
 
 import { OnboardingNavigationProps } from './OnboardingRouter';
 

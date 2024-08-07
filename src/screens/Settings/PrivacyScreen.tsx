@@ -2,10 +2,10 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { useSettingsMutations } from '@/realm/settings';
 import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsBox, SettingsSwitch } from './components';
 

@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { TouchableOpacityProps } from 'react-native';
 
-import { Label } from '../Label';
-import { Touchable } from '../Touchable';
+import { Label } from '@/components/Label';
+import { Touchable } from '@/components/Touchable';
 
 interface ButtonLinkProps extends TouchableOpacityProps {
   title: string;

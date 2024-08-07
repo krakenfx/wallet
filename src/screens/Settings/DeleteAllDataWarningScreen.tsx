@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { useWipeStorage } from '@/hooks/useWipeStorage';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { DataLossWarning } from './passwordProtection/DataLossWarning';
 

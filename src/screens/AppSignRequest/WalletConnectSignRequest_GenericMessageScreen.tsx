@@ -3,10 +3,10 @@ import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { BlockScreenSheet } from '@/components/BlockScreen';
 import { CardWarningFromWarning } from '@/components/CardWarning';
-import navigationStyle from '@/components/navigationStyle';
 import { ExpandableSheet } from '@/components/Sheets';
 import { NavigationProps } from '@/Routes';
 import { Warning } from '@/types';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AccountName } from './components/AccountName';
 import { ConfirmationFooter } from './components/ConfirmationFooter';

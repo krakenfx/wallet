@@ -6,8 +6,10 @@ import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
 import { Touchable } from '@/components/Touchable';
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { parseDefiNetworkTypeToWalletType } from '@/onChain/wallets/registry';
 import { RealmDefi } from '@/realm/defi';
+import { useIsHideBalancesEnabled } from '@/realm/settings';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -27,6 +29,9 @@ export const DefiRow: FC<Props> = ({ item: { network, protocolImageUrl, protocol
   const usdFiatRate = useCurrentUsdFiatRate();
   const protocolBalance = usdFiatRate * protocolUsdBalance;
   const { currency } = useAppCurrency();
+  const balancesHidden = useIsHideBalancesEnabled();
+  const balanceDisplay = useBalanceDisplay(formatCurrency(protocolBalance, { currency }), 7);
+  const positionDisplay = useBalanceDisplay(positionLabel);
 
   return (
     <Touchable onPress={onPress} style={styles.container} accessibilityLabel="DefiRowLabel">
@@ -45,12 +50,12 @@ export const DefiRow: FC<Props> = ({ item: { network, protocolImageUrl, protocol
       </View>
       <View style={styles.rightContentContainer}>
         <View style={styles.protocolBalanceInFiat}>
-          <Label entering={FadeIn} style={styles.numbers} type="boldLargeMonospace">
-            {formatCurrency(protocolBalance, { currency })}
+          <Label entering={FadeIn} style={styles.numbers} type="boldLargeMonospace" color={balancesHidden ? 'light50' : 'light100'}>
+            {balanceDisplay}
           </Label>
         </View>
         <Label type="regularCaption1" color="light50" style={styles.positionLabel}>
-          {positionLabel}
+          {positionDisplay}
         </Label>
       </View>
     </Touchable>

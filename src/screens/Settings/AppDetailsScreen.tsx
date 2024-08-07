@@ -6,10 +6,10 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
 import { IconWithCoinIcon } from '@/components/IconWithCoinIcon';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { showToast } from '@/components/Toast';
 import { WalletType } from '@/onChain/wallets/registry';
 import { NavigationProps } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { sanitizeUrl } from '@/utils/stringUtils';
 
 import { ActivityIndicatorView } from './components/ActivityIndicatorView';

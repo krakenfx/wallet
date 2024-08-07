@@ -5,7 +5,6 @@ import { FeeOption } from '@/api/types';
 import { BlockScreenSheet } from '@/components/BlockScreen';
 import { CardWarningFromWarning } from '@/components/CardWarning';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { ExpandableSheet } from '@/components/Sheets';
 import { PreparedTransaction } from '@/onChain/wallets/base';
 import { useTokenPrice } from '@/realm/tokenPrice';
@@ -17,6 +16,7 @@ import { useFeeEstimates } from '@/screens/Send/hooks/useFeeEstimates';
 import { useRefreshingFeeOptions } from '@/screens/Send/hooks/useRefreshingFeeOptions';
 import { getDefaultFeeOption } from '@/screens/Send/utils/getDefaultFeeOption';
 import { Warning } from '@/types';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AccountName } from './components/AccountName';
 import { ConfirmationFooter } from './components/ConfirmationFooter';

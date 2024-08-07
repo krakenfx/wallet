@@ -1,11 +1,10 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
+import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useTheme } from '@/theme/themes';
-
-import { GradientItemBackground } from '../GradientItemBackground';
 
 import loc from '/loc';
 

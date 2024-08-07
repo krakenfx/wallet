@@ -33,7 +33,6 @@ import { Input } from '@/components/Input';
 import { Label, TypographyKey } from '@/components/Label';
 import { Menu } from '@/components/Menu';
 import { DropdownOptionItem } from '@/components/Menu/DropdownMenu';
-import navigationStyle from '@/components/navigationStyle';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useBottomSheetPadding } from '@/hooks/useBottomSheetPadding';
@@ -47,6 +46,7 @@ import { SettingsSwitch } from '@/screens/Settings/components';
 import { SettingsBox } from '@/screens/Settings/components/SettingsBox';
 import { isSecureDevice } from '@/secureStore/keychain';
 import { useTheme } from '@/theme/themes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { showToast } from '../components/Toast';
 

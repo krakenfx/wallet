@@ -5,4 +5,5 @@ export * from './useNftsCollections';
 export * from './useNftsCollectionById';
 export * from './useNftsArchivedCollection';
 export * from './useNftsFetch';
+export * from './useNftGalleryToggle';
 export * from './schema';

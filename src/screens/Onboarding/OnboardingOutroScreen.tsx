@@ -8,9 +8,8 @@ import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useNoopAndroidBackButton } from '@/utils/useAndroidBackButton';
-
-import navigationStyle from '../../components/navigationStyle';
 
 import { OnboardingNavigationProps } from './OnboardingRouter';
 

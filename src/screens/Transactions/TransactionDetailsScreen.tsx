@@ -11,7 +11,6 @@ import { CopyToClipBoard } from '@/components/CopyToClipboard';
 import { DoubleRow } from '@/components/DoubleRow';
 import { Label } from '@/components/Label';
 import { LabeledField } from '@/components/LabeledField';
-import navigationStyle from '@/components/navigationStyle';
 import { ExpandableSheet } from '@/components/Sheets';
 import { TransactionAmount, TransactionAmountWithAppCurrency, TransactionHeader, TransactionNftPreview, TransactionPath } from '@/components/Transaction';
 import { BTCTransaction } from '@/onChain/wallets/bitcoin';
@@ -25,6 +24,7 @@ import { memoizedJSONParseTx } from '@/realm/transactions/utils';
 import { NavigationProps, Routes } from '@/Routes';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { isBtc } from '@/utils/isBtc';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { smallUnit2TokenUnit } from '@/utils/unitConverter';
 
 import { TransactionDetailsNetworkFee } from './components/TransactionDetailsNetworkFee';

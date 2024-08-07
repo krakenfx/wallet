@@ -137,6 +137,15 @@
     "typedMessageSigningRequest": "Yêu cầu ký {type}",
     "withdrawal": "Rút"
   },
+  "assetOptions": {
+    "copied": "Đã sao chép địa chỉ hợp đồng!",
+    "copyContractAddress": "Sao chép địa chỉ hợp đồng",
+    "hideAsset": "Ẩn tài sản",
+    "receive": "Nhận",
+    "send": "Gửi",
+    "viewDetails": "Xem chi tiết",
+    "viewOn": "Xem trên {explorer}"
+  },
   "backupWallet": {
     "backup": "Hỗ trợ",
     "backupYourWallet": "Sao lưu ví của bạn",
@@ -374,6 +383,9 @@
   "diagnostics": {
     "running": "Đang chạy chẩn đoán..."
   },
+  "discovery": {
+    "explore": "Khám phá"
+  },
   "editAccount": {
     "save": "Lưu",
     "title": "Chỉnh sửa ví",
@@ -399,28 +411,79 @@
     "type": "Loại: {type}"
   },
   "extension": {
+    "_": {
+      "off": "Tắt",
+      "on": "Bật"
+    },
+    "ariaLabel": {
+      "icon": "Icon"
+    },
+    "assets": {
+      "logoAlt": "logo tài sản",
+      "manageAssets": "Quản lý tài sản"
+    },
     "home": {
       "addWallet": "Thêm ví",
       "manage": "Quản lý",
       "selectWallet": "Chọn ví"
     },
     "lockWallet": "Khóa ví",
+    "manageAssets": {
+      "filter": "Lọc tài sản",
+      "hiddenAssets": "Tài sản đã bị ẩn",
+      "manageAssets": "Quản lý tài sản",
+      "search": "Tìm kiếm hơn 5.000 tài sản",
+      "unhideAll": "Bỏ ẩn tất cả",
+      "visibleAssets": "Tài sản đang hiển thị"
+    },
     "navigation": {
       "activity": "Hoạt động",
       "assets": "Tài sản",
       "nfts": "NFT"
     },
     "nft": {
-      "addNfts": "Thêm NFT vào ví của bạn"
+      "about": "Về",
+      "addNfts": "Thêm NFT vào ví của bạn",
+      "send": "Gửi"
     },
     "onboarding": {
+      "skip": "Bỏ qua",
       "typeYourSecretRecoveryPhrase": "Nhập cụm từ khôi phục bí mật của bạn",
       "walletSupports": "Ví này hỗ trợ Ethereum, Polygon, Optimism, Arbitrum, v.v."
     },
     "receive": {
       "receiveCryptoOrNft": "Nhận tiền điện tử hoặc NFT"
     },
+    "send": {
+      "continue": "Tiếp tục",
+      "sendingTo": {
+        "search": "Chọn tài sản bạn muốn gửi",
+        "title": "Đang gửi tới"
+      },
+      "sendInput": {
+        "label": "Đang gửi tới",
+        "paste": "Dán",
+        "placeholder": "Nhập địa chỉ hoặc tên miền ENS..."
+      },
+      "sendOn": {
+        "network": "mạng",
+        "title": "Gửi vào"
+      }
+    },
+    "settings": {
+      "build": "Xây dựng {0}",
+      "changePassword": "Đổi mật khẩu",
+      "lockWallet": "Khóa ví",
+      "privacy": "Bảo mật",
+      "version": "Tiện ích mở rộng Kraken Wallet {0}",
+      "walletSettings": "Cài đặt ví"
+    },
     "skip": "Bỏ qua",
+    "walletBackup": {
+      "couldNotRetrieveState": "Không thể truy xuất trạng thái xác minh cụm từ khôi phục",
+      "unverified": "Cụm từ khôi phục chưa được xác minh",
+      "verified": "Cụm từ khôi phục đã được xác minh"
+    },
     "walletSettings": "Cài đặt ví"
   },
   "floatingTransactionActivityButtons": {
@@ -584,7 +647,17 @@
     "favorite": "Yêu thích",
     "title": "Quản lý NFT",
     "unArchive": "Hủy lưu trữ",
-    "unArchiveSuccess": "NFT đã bị hủy lưu trữ"
+    "unArchiveSuccess": "NFT đã bị hủy lưu trữ",
+    "unfavorite": "Bỏ yêu thích"
+  },
+  "nftOptions": {
+    "archive": "Lưu trữ",
+    "favorite": "Yêu thích",
+    "send": "Gửi",
+    "unarchive": "Hủy lưu trữ",
+    "unfavorite": "Bỏ yêu thích",
+    "viewDetails": "Xem chi tiết",
+    "viewOn": "Xem trên {explorer}"
   },
   "nftView": {
     "about": "Về",
@@ -1389,6 +1462,12 @@
       "part1": "Bây giờ, bạn có thể theo dõi sự thay đổi về giá và hiệu suất của tài sản nắm giữ của mình trực tiếp trong ví!",
       "part2": "Tìm hiểu thêm thông tin chi tiết về tài sản, nhận thông báo về các mối đe dọa tiềm ẩn và truy cập liền mạch các thông tin cần thiết như hợp đồng token và phí mạng hiện tại.",
       "title": "Dữ liệu tài sản toàn diện trong tầm tay bạn"
+    },
+    "longPress": {
+      "buttonText": "Nghe hay đấy",
+      "part1": "Chúng tôi rất vui được giới thiệu các hành động Long Press cho tài sản và NFT của bạn! Thực hiện các tác vụ như gửi, nhận và ẩn một cách dễ dàng mà không cần điều hướng nhiều màn hình.",
+      "part2": "Tận hưởng trải nghiệm ví mượt mà hơn, trực quan hơn ngay hôm nay.",
+      "title": "Thao tác nhanh chóng để thuận tiện cho bạn"
     }
   }
 }

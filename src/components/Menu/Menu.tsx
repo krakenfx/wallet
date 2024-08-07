@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 import { LayoutChangeEvent, LayoutRectangle, View } from 'react-native';
 import { GestureResponderEvent } from 'react-native';
 
-import { Touchable } from '../Touchable';
+import { Touchable } from '@/components/Touchable';
 
 import { PopupMenuProps } from './MenuOverlay';
 import { useMenu } from './MenuProvider';

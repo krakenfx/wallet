@@ -7,6 +7,7 @@ import { LogBox, Platform, StatusBar, StyleSheet, UIManager } from 'react-native
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { LongPressOverlay, LongPressProvider } from '@/components/LongPress';
 import { useSecureAppLock } from '@/hooks/useSecureAppLock';
 import { RealmQueueProvider } from '@/realm/hooks/useRealmQueue';
 import { SecuredRealmProvider } from '@/realm/SecuredRealmProvider';
@@ -93,14 +94,17 @@ const App = () => {
               <GlobalStateProvider>
                 <RealmQueueProvider>
                   <ErrorBoundary onError={onJSError}>
-                    <MenuProvider>
-                      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
-                      <BottomSheetModalProvider>
-                        <SecuredKeychainProvider>
-                          <NavigationStack />
-                        </SecuredKeychainProvider>
-                      </BottomSheetModalProvider>
-                    </MenuProvider>
+                    <LongPressProvider>
+                      <MenuProvider>
+                        <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+                        <BottomSheetModalProvider>
+                          <SecuredKeychainProvider>
+                            <NavigationStack />
+                          </SecuredKeychainProvider>
+                        </BottomSheetModalProvider>
+                      </MenuProvider>
+                      <LongPressOverlay />
+                    </LongPressProvider>
                   </ErrorBoundary>
                   <ToastManager />
                   <AppInBackground />

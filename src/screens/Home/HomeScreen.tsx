@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { ScrollViewWithRefreshControl } from '@/components/ScrollerWithRefreshControl';
 import { useAppInitTasks } from '@/hooks/useAppInitTasks';
 import { usePushNotificationsRegisterRemoteNotification } from '@/hooks/usePushNotificationsRegisterRemoteNotifications';
 import { useRefreshStateActions } from '@/realm/refreshManagerHooks';
 import { NavigationProps } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { HomeAssetsPanel } from './components/HomeAssetsPanel';

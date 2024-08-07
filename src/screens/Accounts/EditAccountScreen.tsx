@@ -6,9 +6,9 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Input } from '@/components/Input';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useAccountById, useAccountsMutations } from '@/realm/accounts';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AccountNavigationProps } from './AccountRouter';
 

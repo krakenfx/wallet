@@ -4,8 +4,8 @@ import { Image, Linking, StyleSheet, View } from 'react-native';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
 import { LargeHeader } from '@/components/LargeHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { SettingsItem, SettingsSectionHeader } from '@/screens/Settings/components';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsBox } from '../components/SettingsBox';
 

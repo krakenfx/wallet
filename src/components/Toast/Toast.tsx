@@ -6,13 +6,12 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { SharedValue, interpolate, runOnJS, useAnimatedStyle } from 'react-native-reanimated';
 
+import { Label, LabelProps } from '@/components/Label';
+import { IconName, SvgIcon } from '@/components/SvgIcon';
 import { useDeafultHeaderHeight } from '@/hooks/useDefaultHeaderHeight';
 import { Routes } from '@/Routes';
 import { Theme, useTheme } from '@/theme/themes';
 import { SupportedFeedbackType, hapticFeedback } from '@/utils/hapticFeedback';
-
-import { Label, LabelProps } from '../Label';
-import { IconName, SvgIcon } from '../SvgIcon';
 
 type WhiteOrBlackListRoutes =
   | {

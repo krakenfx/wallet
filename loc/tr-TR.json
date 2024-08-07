@@ -137,6 +137,15 @@
     "typedMessageSigningRequest": "{type} İmzalama Talebi",
     "withdrawal": "Para çekme"
   },
+  "assetOptions": {
+    "copied": "İletişim adresi kopyalandı!",
+    "copyContractAddress": "İletişim adresini kopyala",
+    "hideAsset": "Varlığı gizle",
+    "receive": "Teslim Al",
+    "send": "Gönder",
+    "viewDetails": "Ayrıntıları görüntüle",
+    "viewOn": "{explorer} üzerinde görüntüle"
+  },
   "backupWallet": {
     "backup": "Yedekle",
     "backupYourWallet": "Cüzdanınızı yedekleyin",
@@ -399,19 +408,29 @@
     "type": "Tür: {type}"
   },
   "extension": {
+    "assets": {
+      "logoAlt": "varlık logosu",
+      "manageAssets": "Varlıkları yönet"
+    },
     "home": {
       "addWallet": "Cüzdan ekle",
       "manage": "Portföyünüzü",
       "selectWallet": "Cüzdan seç"
     },
     "lockWallet": "Cüzdanı kilitle",
+    "manageAssets": {
+      "manageAssets": "Varlıkları Yönet",
+      "search": "5.000’den fazla varlık ara"
+    },
     "navigation": {
       "activity": "Etkinlik",
       "assets": "Varlıklar",
       "nfts": "NFT'ler"
     },
     "nft": {
-      "addNfts": "Cüzdanınıza NFT ekleyin"
+      "about": "Hakkında",
+      "addNfts": "Cüzdanınıza NFT ekleyin",
+      "send": "Gönder"
     },
     "onboarding": {
       "typeYourSecretRecoveryPhrase": "Gizli kurtarma ifadenizi yazın",
@@ -584,7 +603,17 @@
     "favorite": "Favorilere ekleme",
     "title": "NFT'yi Yönet",
     "unArchive": "Arşivden Kaldır",
-    "unArchiveSuccess": "NFT Arşivden Kaldırıldı"
+    "unArchiveSuccess": "NFT Arşivden Kaldırıldı",
+    "unfavorite": "Favorilerden kaldırma"
+  },
+  "nftOptions": {
+    "archive": "Arşiv",
+    "favorite": "Favorilere ekleme",
+    "send": "Gönder",
+    "unarchive": "Arşivden Kaldır",
+    "unfavorite": "Favorilerden kaldırma",
+    "viewDetails": "Ayrıntıları görüntüle",
+    "viewOn": "{explorer} üzerinde görüntüle"
   },
   "nftView": {
     "about": "Hakkında",

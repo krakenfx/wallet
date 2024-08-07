@@ -63,7 +63,7 @@ const openTensorSolana = (_: string, tokenId: string) => {
 };
 
 type NFTLinkItemConfig = { label: string; onPress: Function; icon?: NonSmallIconName };
-const config: Record<
+export const configNftLinks: Record<
   WalletType,
   | {
       blockchainExplorer: NFTLinkItemConfig;
@@ -154,7 +154,7 @@ const config: Record<
 };
 
 export const NFTLinks: React.FC<NFTLinksProps> = ({ nft: { metadata }, walletType }) => {
-  const nftLinksItems = config[walletType];
+  const nftLinksItems = configNftLinks[walletType];
 
   return nftLinksItems ? (
     <>

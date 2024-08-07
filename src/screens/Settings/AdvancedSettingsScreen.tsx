@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { useSettingsMutations } from '@/realm/settings';
 import { useClearAppCache } from '@/realm/settings/useClearAppCache';
@@ -12,6 +11,7 @@ import { Routes } from '@/Routes';
 import { SettingsItem, SettingsSwitch } from '@/screens/Settings/components';
 import { SettingsBox } from '@/screens/Settings/components/SettingsBox';
 import { SettingsNavigationProps } from '@/screens/Settings/SettingsRouter';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import loc from '/loc';
 

@@ -7,7 +7,6 @@ import { FeeOption } from '@/api/types';
 import { AddressDisplay } from '@/components/AddressDisplay';
 import { DoubleRow } from '@/components/DoubleRow';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { NetworkIcon } from '@/components/NetworkIcon';
 import { ExpandableSheet, ExpandableSheetMethods } from '@/components/Sheets';
 import {
@@ -36,6 +35,7 @@ import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { getWalletName } from '@/utils/getWalletName';
 import { hapticFeedback } from '@/utils/hapticFeedback';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { tokenUnit2SmallestUnit, unitConverter } from '@/utils/unitConverter';
 
 import { AddressAnalysisInfo } from './components/AddressAnalysisInfo';

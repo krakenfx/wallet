@@ -8,10 +8,10 @@ import { useGetSubscribeNotifications } from '@/hooks/useGetSubscribeNotificatio
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { useSettingsMutations } from '@/realm/settings';
 import { SettingsCheckItem, SettingsCheckItemsBox, SettingsInfoBox, SettingsSwitch } from '@/screens/Settings/components';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 import loc from '../../../loc';
-import navigationStyle from '../../components/navigationStyle';
 
 import { ActivityIndicatorView } from './components/ActivityIndicatorView';
 

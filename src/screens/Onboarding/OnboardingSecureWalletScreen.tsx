@@ -8,8 +8,8 @@ import { Button } from '@/components/Button';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
 import { MissingBiometricsSheet } from '@/components/MissingBiometricsSheet';
-import navigationStyle from '@/components/navigationStyle';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { OnboardingIntroPage } from './components/OnboardingIntroPage';
 import { OnboardingNavigationProps } from './OnboardingRouter';

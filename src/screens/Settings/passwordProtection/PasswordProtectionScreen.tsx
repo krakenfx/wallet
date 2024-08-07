@@ -5,9 +5,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomSheetModalRef } from '@/components/BottomSheet';
 import { CardWarning } from '@/components/CardWarning';
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsCheckItem, SettingsCheckItemsBox, SettingsInfoBox, SettingsSwitch } from '../components';
 import { SettingsNavigationProps } from '../SettingsRouter';

@@ -126,6 +126,8 @@ export type IconName =
   | 'link-github'
   | 'link-bitbucket'
   | 'link-zealy'
+  | 'asset-coin'
+  | 'un-archive'
   | 'small-wallet'
   | 'small-shield-tick'
   | 'small-notification'
@@ -251,5 +253,7 @@ export type IconName =
   | 'small-link-medium'
   | 'small-link-substack'
   | 'small-link-github'
+  | 'small-link-bitbucket'
   | 'small-link-zealy'
-  | 'small-link-bitbucket';
+  | 'small-asset-coin'
+  | 'small-un-archive';

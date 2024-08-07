@@ -1,7 +1,8 @@
+import { hdkey } from '@ethereumjs/wallet';
+
 import { arrayify, isHexString as isEthersHexString } from '@ethersproject/bytes';
 import { SignTypedDataVersion, TypedMessage, signTypedData } from '@metamask/eth-sig-util';
 import { isValidAddress, toBuffer, toChecksumAddress } from 'ethereumjs-util';
-import { hdkey } from 'ethereumjs-wallet';
 import { BigNumberish, TransactionRequest as EthersTransactionRequest, JsonRpcProvider, Wallet, keccak256 } from 'ethers';
 import { omit, startsWith } from 'lodash';
 
@@ -100,19 +101,19 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
   }
 
   async getPrivateKey(data: WalletDataWithSeed) {
-    const hdWallet = hdkey.fromMasterSeed(Buffer.from(data.seed.data));
+    const hdWallet = hdkey.EthereumHDKey.fromMasterSeed(Buffer.from(data.seed.data));
     const root = hdWallet.derivePath("m/44'/60'/0'/0");
     const child = root.deriveChild(data.accountIdx ?? 0);
     const wallet = child.getWallet();
-    return wallet.getPrivateKey().toString('hex');
+    return wallet.getPrivateKeyString();
   }
 
   getExtendedPublicKey(seed: ArrayBuffer, accountIdx?: number): ExtendedPublicKeyAndChainCode {
-    const hdWallet = hdkey.fromMasterSeed(Buffer.from(seed));
+    const hdWallet = hdkey.EthereumHDKey.fromMasterSeed(Buffer.from(seed));
     const root = hdWallet.derivePath("m/44'/60'/0'/0");
     const child = root.deriveChild(accountIdx ?? 0);
     const wallet = child.getWallet();
-    return { extendedPublicKey: wallet.getPublicKey() };
+    return { extendedPublicKey: Buffer.from(wallet.getPublicKey()) };
   }
 
   async deriveAddress(data: WalletData) {

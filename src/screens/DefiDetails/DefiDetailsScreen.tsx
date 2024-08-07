@@ -9,7 +9,6 @@ import { GradientScreenView } from '@/components/Gradients';
 import { HeaderNavigationTitle } from '@/components/HeaderNavigationTitle';
 import { LargeHeader } from '@/components/LargeHeader';
 import { ListHeader } from '@/components/ListHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { parseDefiNetworkTypeToWalletType } from '@/onChain/wallets/registry';
 import { RealmDefiPosition, useDefiById } from '@/realm/defi';
@@ -17,6 +16,7 @@ import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 import { NavigationProps } from '@/Routes';
 import { formatCurrency } from '@/utils/formatCurrency';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { DefiDetailsRow } from './components/DefiDetailsRow';
 

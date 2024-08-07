@@ -137,6 +137,15 @@
     "typedMessageSigningRequest": "{type} Ondertekeningsverzoek",
     "withdrawal": "Opname"
   },
+  "assetOptions": {
+    "copied": "Contractadres gekopieerd!",
+    "copyContractAddress": "Contractadres kopiëren",
+    "hideAsset": "Asset verbergen",
+    "receive": "Ontvangen",
+    "send": "Versturen",
+    "viewDetails": "Details weergeven",
+    "viewOn": "Bekijken op {explorer}"
+  },
   "backupWallet": {
     "backup": "Back-up",
     "backupYourWallet": "Maak een back-up van je wallet",
@@ -374,6 +383,9 @@
   "diagnostics": {
     "running": "Diagnose wordt uitgevoerd..."
   },
+  "discovery": {
+    "explore": "Ontdekken"
+  },
   "editAccount": {
     "save": "Opslaan",
     "title": "Wallet wijzigen",
@@ -399,28 +411,79 @@
     "type": "Type: {type}"
   },
   "extension": {
+    "_": {
+      "off": "Uit",
+      "on": "Aan"
+    },
+    "ariaLabel": {
+      "icon": "Icon"
+    },
+    "assets": {
+      "logoAlt": "asset logo",
+      "manageAssets": "Assets beheren"
+    },
     "home": {
       "addWallet": "Wallet toevoegen",
       "manage": "Beheren",
       "selectWallet": "Selecteer wallet"
     },
     "lockWallet": "Wallet vergrendelen",
+    "manageAssets": {
+      "filter": "Assets filteren",
+      "hiddenAssets": "Verborgen assets",
+      "manageAssets": "Assets beheren",
+      "search": "Zoek naar meer dan 5000 assets",
+      "unhideAll": "Alles weergeven",
+      "visibleAssets": "Zichtbare assets"
+    },
     "navigation": {
       "activity": "Activiteit",
       "assets": "Assets",
       "nfts": "NFT's"
     },
     "nft": {
-      "addNfts": "Voeg NFT's toe aan je wallet"
+      "about": "Info",
+      "addNfts": "Voeg NFT's toe aan je wallet",
+      "send": "Verzenden"
     },
     "onboarding": {
+      "skip": "Overslaan",
       "typeYourSecretRecoveryPhrase": "Typ jouw geheime herstelzin",
       "walletSupports": "Deze wallet ondersteunt Ethereum, Polygon, Optimism, Arbitrum en meer"
     },
     "receive": {
       "receiveCryptoOrNft": "Ontvang crypto of NFT's"
     },
+    "send": {
+      "continue": "Doorgaan",
+      "sendingTo": {
+        "search": "Selecteer wat je wilt versturen",
+        "title": "Versturen naar"
+      },
+      "sendInput": {
+        "label": "Versturen naar",
+        "paste": "Plakken",
+        "placeholder": "Adres of ENS-domein invoeren..."
+      },
+      "sendOn": {
+        "network": "netwerk",
+        "title": "Doorsturen"
+      }
+    },
+    "settings": {
+      "build": "Stel {0} samen",
+      "changePassword": "Wachtwoord wijzigen",
+      "lockWallet": "Wallet vergrendelen",
+      "privacy": "Privacy",
+      "version": "Kraken Wallet-uitbreiding {0}",
+      "walletSettings": "Wallet-instellingen"
+    },
     "skip": "Overslaan",
+    "walletBackup": {
+      "couldNotRetrieveState": "Kon de verificatiestatus van de herstelzin niet ophalen",
+      "unverified": "Herstelzin is niet geverifieerd",
+      "verified": "Herstelzin is geverifieerd"
+    },
     "walletSettings": "Wallet-instellingen"
   },
   "floatingTransactionActivityButtons": {
@@ -584,7 +647,17 @@
     "favorite": "Favoriet",
     "title": "NFT beheren",
     "unArchive": "Niet archiveren",
-    "unArchiveSuccess": "NFT niet gearchiveerd"
+    "unArchiveSuccess": "NFT niet gearchiveerd",
+    "unfavorite": "Niet meer favoriet"
+  },
+  "nftOptions": {
+    "archive": "Archief",
+    "favorite": "Favoriet",
+    "send": "Verzenden",
+    "unarchive": "Niet archiveren",
+    "unfavorite": "Niet meer favoriet",
+    "viewDetails": "Details weergeven",
+    "viewOn": "Bekijken op {explorer}"
   },
   "nftView": {
     "about": "Over",
@@ -1389,6 +1462,12 @@
       "part1": "Je kunt nu de prestaties en prijswijzigingen van je bezittingen en assets direct in je wallet volgen!",
       "part2": "Duik in gedetailleerde inzichten, blijf op de hoogte van potentiële beleggingen en krijg naadloos toegang tot essentiële informatie zoals tokencontracten en huidige netwerkkosten.",
       "title": "Uitgebreide assetgegevens binnen handbereik"
+    },
+    "longPress": {
+      "buttonText": "Klinkt goed",
+      "part1": "We zijn verheugd om Long Press-acties te introduceren voor jouw assets en NFT's! Voer eenvoudig taken uit zoals verzenden, ontvangen en verbergen, zonder door meerdere schermen te hoeven navigeren.",
+      "part2": "Geniet vandaag nog van een soepelere, intuïtievere wallet-ervaring.",
+      "title": "Snelle acties voor jouw gemak"
     }
   }
 }

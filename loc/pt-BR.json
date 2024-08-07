@@ -137,6 +137,15 @@
     "typedMessageSigningRequest": "Solicitação de assinatura {type}",
     "withdrawal": "Retirada"
   },
+  "assetOptions": {
+    "copied": "Endereço do contrato copiado!",
+    "copyContractAddress": "Copiar endereço do contrato",
+    "hideAsset": "Ocultar ativo",
+    "receive": "Receber",
+    "send": "Enviar",
+    "viewDetails": "Exibir detalhes",
+    "viewOn": "Visualizar no {explorer}"
+  },
   "backupWallet": {
     "backup": "Cópia de segurança",
     "backupYourWallet": "Faça uma cópia de segurança de sua carteira",
@@ -374,6 +383,9 @@
   "diagnostics": {
     "running": "Executando diagnósticos..."
   },
+  "discovery": {
+    "explore": "Explorar"
+  },
   "editAccount": {
     "save": "Salvar",
     "title": "Editar carteira",
@@ -399,28 +411,79 @@
     "type": "Tipo: {type}"
   },
   "extension": {
+    "_": {
+      "off": "Desligado",
+      "on": "Ligado"
+    },
+    "ariaLabel": {
+      "icon": "Ícone"
+    },
+    "assets": {
+      "logoAlt": "logotipo do ativo",
+      "manageAssets": "Gerenciar ativos"
+    },
     "home": {
       "addWallet": "Adicionar carteira",
       "manage": "Gerenciar",
       "selectWallet": "Selecionar carteira"
     },
     "lockWallet": "Bloquear carteira",
+    "manageAssets": {
+      "filter": "Filtrar ativos",
+      "hiddenAssets": "Ativos ocultos",
+      "manageAssets": "Gerenciar ativos",
+      "search": "Pesquise mais de 5.000 ativos",
+      "unhideAll": "Reexibir tudo",
+      "visibleAssets": "Ativos visíveis"
+    },
     "navigation": {
       "activity": "Atividade",
       "assets": "Ativos",
       "nfts": "NFTs"
     },
     "nft": {
-      "addNfts": "Adicionar NFTs a sua carteira"
+      "about": "Sobre",
+      "addNfts": "Adicionar NFTs a sua carteira",
+      "send": "Enviar"
     },
     "onboarding": {
+      "skip": "Pular",
       "typeYourSecretRecoveryPhrase": "Digite sua frase secreta de recuperação",
       "walletSupports": "Essa carteira é compatível com Ethereum, Polygon, Optimism, Arbitrum e mais"
     },
     "receive": {
       "receiveCryptoOrNft": "Receber cripto ou NFTs"
     },
+    "send": {
+      "continue": "Continuar",
+      "sendingTo": {
+        "search": "Selecione o que você deseja enviar",
+        "title": "Enviando para"
+      },
+      "sendInput": {
+        "label": "Enviando para",
+        "paste": "Colar",
+        "placeholder": "Insira o endereço ou domínio ENS..."
+      },
+      "sendOn": {
+        "network": "rede",
+        "title": "Enviar no"
+      }
+    },
+    "settings": {
+      "build": "Versão {0}",
+      "changePassword": "Alterar senha",
+      "lockWallet": "Bloquear carteira",
+      "privacy": "Privacidade",
+      "version": "Extensão da Kraken Wallet {0}",
+      "walletSettings": "Configurações da carteira"
+    },
     "skip": "Pular",
+    "walletBackup": {
+      "couldNotRetrieveState": "Não foi possível recuperar o estado de verificação da frase de recuperação",
+      "unverified": "Frase de recuperação não verificada",
+      "verified": "Frase de verificação verificada"
+    },
     "walletSettings": "Configurações da carteira"
   },
   "floatingTransactionActivityButtons": {
@@ -584,7 +647,17 @@
     "favorite": "Favorito",
     "title": "Gerenciar NFT",
     "unArchive": "Desarquivar",
-    "unArchiveSuccess": "NFT não arquivado"
+    "unArchiveSuccess": "NFT não arquivado",
+    "unfavorite": "Desmarcar como favorito"
+  },
+  "nftOptions": {
+    "archive": "Arquivo",
+    "favorite": "Favorito",
+    "send": "Enviar",
+    "unarchive": "Desarquivar",
+    "unfavorite": "Desmarcar como favorito",
+    "viewDetails": "Exibir detalhes",
+    "viewOn": "Visualizar no {explorer}"
   },
   "nftView": {
     "about": "Sobre",
@@ -1389,6 +1462,12 @@
       "part1": "Agora, você pode monitorar o desempenho de suas participações e ativos, e as alterações de preço diretamente na sua carteira!",
       "part2": "Confira insights detalhados de ativos, receba informação sobre ameaças potenciais e acesse facilmente informações essenciais como contratos de token e taxas de rede atuais.",
       "title": "Dados abrangentes de ativos na ponta dos dedos"
+    },
+    "longPress": {
+      "buttonText": "Ótimo",
+      "part1": "Apresentamos as ações Pressionamento longo para seus ativos e NFTs! Execute tarefas como enviar, receber e ocultar com tranquilidade sem precisar navegar por muitas páginas.",
+      "part2": "Aproveite uma experiência de carteira mais tranquila e intuitiva hoje mesmo.",
+      "title": "Ações rápidas para sua conveniência"
     }
   }
 }

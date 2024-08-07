@@ -6,8 +6,8 @@ import crypto from 'crypto';
 
 import { Label } from '@/components/Label';
 import { decrypt, encrypt } from '@/utils/encryption';
+import { navigationStyle } from '@/utils/navigationStyle';
 
-import navigationStyle from '../../components/navigationStyle';
 import { useTheme } from '../../theme/themes';
 
 import loc from '/loc';

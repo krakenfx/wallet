@@ -13,12 +13,12 @@ import { CloseButton } from '@/components/CloseButton';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { useRealm } from '@/realm/RealmContext';
 import { REALM_TYPE_WALLET, RealmWallet } from '@/realm/wallets';
 import { NavigationProps, NoParamsRoute } from '@/Routes';
 import { Routes } from '@/Routes';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { ConnectedApps } from './components/ConnectedApps';
 import { handleWalletConnectUri } from './components/handleWalletConnectUri';

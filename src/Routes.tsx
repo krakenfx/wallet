@@ -48,6 +48,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     AppLock: undefined;
     WhatsNewBlast: undefined;
     WhatsNewAssetMarketData: undefined;
+    WhatsNewLongPress: undefined;
     WalletBackupPrompt: undefined;
     CoinsList: undefined;
     ConnectApp: ConnectAppParams;
@@ -103,6 +104,7 @@ export enum Routes {
   AdvancedSettings = 'AdvancedSettings',
   AppDetails = 'AppDetails',
   WhatsNewBlast = 'WhatsNewBlast',
+  WhatsNewLongPress = 'WhatsNewLongPress',
   WhatsNewAssetMarketData = 'WhatsNewAssetMarketData',
   WalletBackupPrompt = 'WalletBackupPrompt',
   CoinsList = 'CoinsList',

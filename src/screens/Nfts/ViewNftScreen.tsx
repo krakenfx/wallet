@@ -20,10 +20,10 @@ import { useNftGalleryToggle } from '@/realm/nfts/useNftGalleryToggle';
 import { NavigationProps, Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 import { hapticFeedback } from '@/utils/hapticFeedback';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 import loc from '../../../loc';
-import navigationStyle from '../../components/navigationStyle';
 import { showToast } from '../../components/Toast';
 
 import { ArchiveBadge } from './components/ArchiveBadge';

@@ -4,11 +4,10 @@ import React, { PropsWithChildren, useState } from 'react';
 import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Animated, { FadeInUp, FadeOut } from 'react-native-reanimated';
 
+import { FadingElement } from '@/components/FadingElement';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label, TypographyKey } from '@/components/Label';
 import { useBottomSheetPadding } from '@/hooks/useBottomSheetPadding';
-
-import { FadingElement } from '../FadingElement';
 
 type Props = {
   onButtonPress: () => void;

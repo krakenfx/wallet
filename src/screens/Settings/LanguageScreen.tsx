@@ -3,11 +3,11 @@ import { ScrollView, StyleSheet } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { ToggleRow } from '@/components/ToggleRow';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { useLocalStateUpdate } from '@/hooks/useLocalStateUpdate';
 import { useLanguage, useLanguageSetMutation } from '@/realm/settings';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { languages } from '../../../loc/languages';
 

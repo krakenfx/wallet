@@ -2,8 +2,8 @@ import { Verify } from '@walletconnect/types';
 import React, { useState } from 'react';
 
 import { BlockScreenSheet } from '@/components/BlockScreen';
-import navigationStyle from '@/components/navigationStyle';
 import { NavigationProps } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { ConnectAppUI } from './components/ConnectAppUI';
 import { useConnectApp3rdPartyAPI } from './hooks/useConnectApp3rdPartyAPI';

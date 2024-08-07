@@ -8,9 +8,8 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientMask } from '@/components/Gradients';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Routes } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
-
-import navigationStyle from '../../components/navigationStyle';
 
 import { useCreateWallet } from './hooks/useCreateWallet';
 import { OnboardingNavigationProps } from './OnboardingRouter';

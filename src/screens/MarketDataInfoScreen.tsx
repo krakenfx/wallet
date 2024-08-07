@@ -10,9 +10,9 @@ import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 
-import navigationStyle from '@/components/navigationStyle';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { NavigationProps } from '@/Routes';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import loc from '/loc';
 

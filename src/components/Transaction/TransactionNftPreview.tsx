@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
+import { NftBlock } from '@/components/NftBlock';
 import { NftMetadata } from '@/realm/nftMetadata';
-
-import { NftBlock } from '../NftBlock';
 
 type Props = {
   nft: { metadata: NftMetadata };

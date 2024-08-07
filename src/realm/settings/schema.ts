@@ -23,6 +23,7 @@ export enum RealmSettingsKey {
 
   isBlastModalCompleted = 'isBlastModalCompleted',
   whatsNewIsAssetMarketDataCompleted = 'whatsNewIsAssetMarketDataCompleted',
+  whatsNewIsLongPressCompleted = 'whatsNewIsLongPressCompleted',
 }
 
 export type SettingsType = {
@@ -43,6 +44,7 @@ export type SettingsType = {
   [RealmSettingsKey.hideBalances]: boolean;
   [RealmSettingsKey.isBlastModalCompleted]: boolean;
   [RealmSettingsKey.whatsNewIsAssetMarketDataCompleted]: boolean;
+  [RealmSettingsKey.whatsNewIsLongPressCompleted]: boolean;
 };
 
 export type Settings = {

@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
 import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
 
+import { Label } from '@/components/Label';
+import { IconName, SvgIcon } from '@/components/SvgIcon';
+import { Touchable } from '@/components/Touchable';
 import { ColorName } from '@/theme/themes';
-
-import { Label } from '../Label';
-import { IconName, SvgIcon } from '../SvgIcon';
-import { Touchable } from '../Touchable';
 
 type ContextMenuItem = {
   title: string;

@@ -2,9 +2,9 @@ import React from 'react';
 import { Linking, StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
-import navigationStyle from '@/components/navigationStyle';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { SettingsItem } from '@/screens/Settings/components';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { URLs } from '/config';
 import loc from '/loc';

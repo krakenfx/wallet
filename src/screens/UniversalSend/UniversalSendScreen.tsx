@@ -14,8 +14,7 @@ import { getReceiveAddress } from '@/screens/Receive/hooks/useReceiveAddress';
 import { useAddressAnalysis } from '@/screens/Send/hooks/useAddressAnalysis';
 import { decodeQrCodeAddress } from '@/screens/Send/utils/decodeQrCodeAddress';
 import { FormProvider } from '@/screens/Send/utils/sendForm';
-
-import navigationStyle from '../../components/navigationStyle';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SendAsset, SendTo } from './components';
 

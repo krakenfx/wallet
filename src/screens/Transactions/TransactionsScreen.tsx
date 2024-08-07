@@ -9,7 +9,6 @@ import { FadingElement } from '@/components/FadingElement';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
 import { ListHeader } from '@/components/ListHeader';
-import navigationStyle from '@/components/navigationStyle';
 import { FlashListWithRefreshControl } from '@/components/ScrollerWithRefreshControl';
 import { SvgIcon } from '@/components/SvgIcon';
 import { hideToast } from '@/components/Toast';
@@ -27,6 +26,7 @@ import { TokenSendReceiveButtons } from '@/screens/Transactions/components/Token
 import { TransactionListItem, useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
 import { useTheme } from '@/theme/themes';
 import { AssetBalanceId } from '@/types';
+import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { refreshingTransactionsEvent, showRefreshingTransactionsToast } from './utils/showRefreshingTransactionsToast';

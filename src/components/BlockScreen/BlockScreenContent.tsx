@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from '@/components/Button';
 import { Label } from '@/components/Label';
 
-import { SvgIcon } from '../SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 
 import loc from '/loc';
 

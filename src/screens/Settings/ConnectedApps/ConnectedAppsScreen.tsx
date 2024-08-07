@@ -8,7 +8,6 @@ import { Button } from '@/components/Button';
 import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
-import navigationStyle from '@/components/navigationStyle';
 import { SvgIcon } from '@/components/SvgIcon';
 import { showToast } from '@/components/Toast';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
@@ -17,6 +16,7 @@ import { useAccountById } from '@/realm/accounts/useAccountById';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { NavigationProps, Routes } from '@/Routes';
 import { showPermissionDeniedAlert } from '@/utils/cameraPermissions';
+import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AppDetailsParams } from '../AppDetailsScreen';
 import { ActivityIndicatorView } from '../components/ActivityIndicatorView';

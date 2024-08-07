@@ -137,6 +137,15 @@
     "typedMessageSigningRequest": "Demande de signature {type}",
     "withdrawal": "Retrait"
   },
+  "assetOptions": {
+    "copied": "Adresse du contrat copiée !",
+    "copyContractAddress": "Copier l’adresse du contrat",
+    "hideAsset": "Masquer l’actif",
+    "receive": "Recevoir",
+    "send": "Envoyer",
+    "viewDetails": "Voir les détails",
+    "viewOn": "Afficher sur {explorer}"
+  },
   "backupWallet": {
     "backup": "Sauvegarder",
     "backupYourWallet": "Sauvegardez votre portefeuille",
@@ -374,6 +383,9 @@
   "diagnostics": {
     "running": "Exécution du diagnostic..."
   },
+  "discovery": {
+    "explore": "Explorer"
+  },
   "editAccount": {
     "save": "Enregistrer",
     "title": "Modifier le portefeuille",
@@ -399,28 +411,79 @@
     "type": "Type : {type}"
   },
   "extension": {
+    "_": {
+      "off": "Désactivé",
+      "on": "Activé"
+    },
+    "ariaLabel": {
+      "icon": "Icône"
+    },
+    "assets": {
+      "logoAlt": "logo d’actif",
+      "manageAssets": "Gérer des actifs"
+    },
     "home": {
       "addWallet": "Ajouter un portefeuille",
       "manage": "Gérer",
       "selectWallet": "Sélectionner le portefeuille"
     },
     "lockWallet": "Verrouiller le portefeuille",
+    "manageAssets": {
+      "filter": "Filtrer les actifs",
+      "hiddenAssets": "Actifs masqués",
+      "manageAssets": "Gérer des actifs",
+      "search": "Rechercher parmi plus de 5 000 actifs",
+      "unhideAll": "Tout afficher",
+      "visibleAssets": "Actifs visibles"
+    },
     "navigation": {
       "activity": "Activité",
       "assets": "Actifs",
       "nfts": "NFT"
     },
     "nft": {
-      "addNfts": "Ajoutez des NFT à votre portefeuille"
+      "about": "À propos",
+      "addNfts": "Ajoutez des NFT à votre portefeuille",
+      "send": "Envoyer"
     },
     "onboarding": {
+      "skip": "Ignorer",
       "typeYourSecretRecoveryPhrase": "Saisissez votre phrase de récupération secrète",
       "walletSupports": "Ce portefeuille prend en charge les technologies Ethereum, Polygon, Optimism, Arbitrum et plus encore."
     },
     "receive": {
       "receiveCryptoOrNft": "Recevez des crypto-monnaies ou des NFT"
     },
+    "send": {
+      "continue": "Continuer",
+      "sendingTo": {
+        "search": "Sélectionnez ce que vous voulez envoyer",
+        "title": "Envoi à"
+      },
+      "sendInput": {
+        "label": "Envoi à",
+        "paste": "Coller",
+        "placeholder": "Saisissez adresse ou domaine ENS…"
+      },
+      "sendOn": {
+        "network": "réseau",
+        "title": "Envoyer sur"
+      }
+    },
+    "settings": {
+      "build": "Version {0}",
+      "changePassword": "Changer le mot de passe",
+      "lockWallet": "Verrouiller le portefeuille",
+      "privacy": "Confidentialité",
+      "version": "Extension Kraken Wallet {0}",
+      "walletSettings": "Paramètres du portefeuille"
+    },
     "skip": "Ignorer",
+    "walletBackup": {
+      "couldNotRetrieveState": "Impossible de récupérer l’état de la vérification de la phrase de récupération",
+      "unverified": "La phrase de récupération n’est pas vérifiée",
+      "verified": "La phrase de récupération est vérifiée"
+    },
     "walletSettings": "Paramètres du portefeuille"
   },
   "floatingTransactionActivityButtons": {
@@ -584,7 +647,17 @@
     "favorite": "Favoris",
     "title": "Gérer le NFT",
     "unArchive": "Désarchiver",
-    "unArchiveSuccess": "NFT désarchivé"
+    "unArchiveSuccess": "NFT désarchivé",
+    "unfavorite": "Supprimer des favoris"
+  },
+  "nftOptions": {
+    "archive": "Archive",
+    "favorite": "Favoris",
+    "send": "Envoyer",
+    "unarchive": "Désarchiver",
+    "unfavorite": "Supprimer des favoris",
+    "viewDetails": "Voir les détails",
+    "viewOn": "Afficher sur {explorer}"
   },
   "nftView": {
     "about": "À propos",
@@ -1389,6 +1462,12 @@
       "part1": "Désormais, vous pouvez suivre les performances et les variations des cours de vos actifs directement dans votre portefeuille !",
       "part2": "Bénéficiez d’analyses détaillées sur les actifs, restez à l’affût des menaces potentielles et accédez aisément à des informations essentielles comme les contrats de token et les frais de réseau actuels.",
       "title": "Des données complètes sur vos actifs à portée de main"
+    },
+    "longPress": {
+      "buttonText": "Cela me semble bien",
+      "part1": "Nous avons le plaisir de vous annoncer que les actions via une pression prolongée sont maintenant disponibles pour vos actifs et NFT ! Effectuez facilement des tâches comme envoyer, recevoir ou masquer des actifs, sans devoir jongler entre plusieurs écrans.",
+      "part2": "Profitez dès aujourd’hui d’une expérience plus fluide et plus intuitive pour la gestion de votre portefeuille.",
+      "title": "Mise en place d’actions rapides pour plus de commodité"
     }
   }
 }
