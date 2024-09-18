@@ -4,9 +4,8 @@ import { getBuildNumber, getVersion } from 'react-native-device-info';
 
 import { Label } from '@/components/Label';
 
+import gitInfo from '/git-info.json';
 import loc from '/loc';
-
-const gitInfo = require('/git-info.json');
 
 export const BuildInfo = () => {
   const branch = __DEV__ ? `(${gitInfo?.currentBranch?.trim()})` : '';

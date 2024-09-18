@@ -4,7 +4,7 @@ import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { SvgIcon } from '@/components/SvgIcon';
-import { useIsWalletBackupDone } from '@/realm/settings/useIsWalletBackupDone';
+import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 import { showPermissionDeniedAlert } from '@/utils/cameraPermissions';
@@ -57,17 +57,25 @@ export const HomeHeaderRight = () => {
 };
 
 const WalletBackupNeededBadge = () => {
-  const isWalletBackupNeeded = !useIsWalletBackupDone();
+  const { isAnyBackupSuggested, isAnyBackupCompleted } = useWalletBackupSettings();
   const { colors } = useTheme();
 
-  return isWalletBackupNeeded ? <View style={[styles.walletBackupNeededBadge, { backgroundColor: colors.red400 }]} /> : null;
+  if (!isAnyBackupCompleted) {
+    return <View style={[styles.walletBackupNeededBadge, { backgroundColor: colors.red400 }]} />;
+  }
+
+  if (isAnyBackupSuggested) {
+    return <View style={[styles.walletBackupNeededBadge, { backgroundColor: colors.yellow500 }]} />;
+  }
+
+  return null;
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-
+    
     marginRight: 28 - 20,
   },
   gap: {

@@ -7,13 +7,16 @@ import { isShowToastOnAllErrorsEnabledKey } from '@/secureStore/asyncStorageKeys
 
 import loc from '/loc';
 
+
 type BabelErrorContext = `ERROR_CONTEXT_${'PLACEHOLDER'}`;
 
 export const applogFilePath = RNFS.DocumentDirectoryPath + '/app.log';
 
 export const recentErrors: { timestamp: Date; error: ErrorObject; context: string }[] = [];
 
-const logfileSizeCutoff = 100 * 1024 * 1024;
+const logfileSizeCutoff = 100 * 1024 * 1024; 
+
+
 
 let loggingTofileEnabled = false;
 export function enableLoggingToFile() {
@@ -30,10 +33,13 @@ export function isLoggingToFileEnabled() {
   return loggingTofileEnabled;
 }
 
+
+
 RNFS.stat(applogFilePath)
   .then(statResult => {
     loggingTofileEnabled = true;
     if (statResult.size >= logfileSizeCutoff) {
+      
       RNFS.writeFile(applogFilePath, '', 'utf8');
     }
   })
@@ -42,11 +48,12 @@ RNFS.stat(applogFilePath)
 export function appendLog(contents: string | unknown[], context: string = 'unknown') {
   if (!loggingTofileEnabled) {
     return;
-  }
+  } 
   try {
     const contents2write = typeof contents === 'string' ? contents : JSON.stringify(contents);
     return RNFS.appendFile(applogFilePath, `${new Date()} context=${context} ${contents2write}\n`, 'utf8');
-  } catch (_) {}
+    /* eslint-disable-next-line no-empty */
+  } catch (_: unknown) {}
 }
 
 let showToastOnAllErrorsEnabled = false;
@@ -75,6 +82,7 @@ export function disableShowToastOnAllErrors() {
 export function isShowToastOnAllErrorsEnabled() {
   return showToastOnAllErrorsEnabled;
 }
+
 
 export function createErrorHandlerWithContext(context: BabelErrorContext) {
   return (reason: unknown) => handleError(reason, context);
@@ -113,11 +121,13 @@ const cleanHTMLTags = (str: string) => {
 export const getErrorMessage = async (err: any): Promise<string> => {
   if (err?.cause?.message) {
     return (err?.message ? `${err.message}: ` : '') + String(err?.cause?.message);
-  } else if (err?.response?.json) {
+  }
+  if (err?.response?.json) {
     try {
       const resolved = jsonToPretty(await err?.response.json());
       return (err?.message ? `${err.message}: ` : '') + String(resolved);
-    } catch {}
+      /* eslint-disable-next-line no-empty */
+    } catch (_: unknown) {}
   } else if (err?.response?.text) {
     const resolved = jsonToPretty(await err?.response.text());
     return (err?.message ? `${err.message}: ` : '') + String(resolved);
@@ -152,6 +162,7 @@ function jsonToPretty(json: any): string {
 
 const GENERAL_FETCH_ERROR = 'GENERAL_FETCH_ERROR';
 
+
 export const showGeneralFetchError = (context: BabelErrorContext, e?: unknown) => {
   handleError(e, context, { text: loc.errors.generalFetchError, id: GENERAL_FETCH_ERROR });
 };
@@ -163,9 +174,12 @@ function unwrapError(error: unknown) {
   return error;
 }
 
-export class WrappedError<T extends unknown> extends Error {
-  constructor(readonly original: T, message: string) {
-    super(message);
+export class WrappedError<T> extends Error {
+  constructor(
+    readonly original: T,
+    message: string,
+  ) {
+    super(message );
   }
 
   static from(e: unknown, message: string) {

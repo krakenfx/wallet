@@ -1,5 +1,6 @@
 /* eslint-disable radix */
 
+
 import { secp256k1 } from '@noble/curves/secp256k1';
 import { ripemd160 } from '@noble/hashes/ripemd160';
 import BigNumber from 'bignumber.js';
@@ -47,6 +48,7 @@ type UTXOIn = {
   sequence: number;
   script: Buffer;
 
+  
   signature?: Buffer;
   signatureSize?: Buffer;
 };
@@ -124,7 +126,7 @@ export class DogecoinNetwork implements Network {
   isAddressValid(address: string): boolean {
     try {
       serializePayToPubkeyHashScript(address);
-    } catch (_) {
+    } catch (_: unknown) {
       return false;
     }
 
@@ -170,9 +172,8 @@ export function deriveRoot(wallet: WalletData) {
   if (wallet.chainCode) {
     const chainCode = Buffer.from(wallet.chainCode);
     return bip32.fromPublicKey(publicKey, chainCode);
-  } else {
-    throw new Error('[dogecoin] missing chainCode in wallet data');
   }
+  throw new Error('[dogecoin] missing chainCode in wallet data');
 }
 
 function serializePayToPubkeyHashScript(address: string): Buffer {
@@ -181,7 +182,7 @@ function serializePayToPubkeyHashScript(address: string): Buffer {
 }
 
 function pubkeyToAddress(pubkey: Buffer, networkByte: any) {
-  let hash = crypto.createHash('sha256').update(pubkey).digest();
+  const hash = crypto.createHash('sha256').update(pubkey).digest();
   const pubKeyHash = ripemd160.create().update(hash).digest();
   networkByte = Buffer.from(networkByte, 'hex');
 
@@ -196,33 +197,46 @@ export class DogecoinTransport extends HarmonyTransport<unknown, unknown, unknow
     tx: SendRequest,
     fee: BaseFeeOption,
   ): Promise<PreparedTransaction<unknown>> {
+    
+    
     const singleAddress = await network.deriveAddress(walletData);
 
+    
     const balances = await this.fetchBalance(network, walletData);
     const balance = BigInt(balances.find(item => item.balance.token === network.nativeTokenCaipId)?.balance?.value ?? 0);
 
-    let transaction = newTx();
-
+    const transaction = newTx();
+    
+    
     transaction.txIns = await this.fetchUtxoFromHarmony(singleAddress, ChainAgnostic.NETWORK_DOGECOIN);
 
-    let pkScript = serializePayToPubkeyHashScript(tx.to);
+    const pkScript = serializePayToPubkeyHashScript(tx.to);
 
     transaction.txOuts[0] = {
       value: BigInt(tx.amount),
-
+      
       pkScriptSize: pkScript.length,
       pkScript,
     };
 
+    
     if (balance > tx.amount) {
       // eslint-disable-next-line @typescript-eslint/no-shadow
       const pkScript = serializePayToPubkeyHashScript(singleAddress);
       const value = balance - tx.amount - BigInt(fee.amount);
 
+      
+      
+      
+      
+      
+      
+      
+      
       if (value > 10000) {
         transaction.txOuts[1] = {
           value: BigInt(value.toString()),
-
+          
           pkScriptSize: pkScript.length,
           pkScript,
         };
@@ -239,6 +253,7 @@ export class DogecoinTransport extends HarmonyTransport<unknown, unknown, unknow
       throw new Error('called with wrong fee type');
     }
 
+    
     return {
       token: network.nativeTokenCaipId,
       amount: fee.amount,
@@ -266,7 +281,7 @@ export class DogecoinTransport extends HarmonyTransport<unknown, unknown, unknow
           hash: Buffer.from(utxo.transactionId, 'hex').reverse().toString('hex'),
           index: utxo.index,
         },
-        sequence: 4294967294,
+        sequence: 4294967294, 
         script: Buffer.from(utxo.script, 'hex'),
       });
     }
@@ -285,6 +300,7 @@ async function signTransaction(transaction: DogecoinTransaction, key: BIP32Inter
   return { signature: Buffer.from(signature.toDERRawBytes()), publicKey: key.publicKey };
 }
 
+
 function addP2KHSignature(transaction: DogecoinTransaction, signature: Buffer, publicKey: Buffer, index: number) {
   const signatureCompactSize = CompactSize.fromSize(signature.length + 1);
   const publicKeyCompactSize = CompactSize.fromSize(publicKey.length);
@@ -296,6 +312,7 @@ function addP2KHSignature(transaction: DogecoinTransaction, signature: Buffer, p
 
   return transaction;
 }
+
 
 function serializeTransaction(transaction: DogecoinTransaction) {
   const txInCount = CompactSize.fromSize(transaction.txIns.length);
@@ -359,7 +376,8 @@ function serializeTransaction(transaction: DogecoinTransaction) {
     }
 
     buffer = Buffer.from(before, 'hex');
-
+    
+    
     offset += 8;
 
     const pkScriptSize = CompactSize.fromSize(transaction.txOuts[txOutIndex].pkScriptSize);
@@ -377,11 +395,17 @@ function serializeTransaction(transaction: DogecoinTransaction) {
   return buffer;
 }
 
+
+
+
+
+
 function prepareTransactionToSign(transaction: DogecoinTransaction, vint: number, hashCodeType: number) {
   const txInCount = CompactSize.fromSize(transaction.txIns.length);
   const txOutCount = CompactSize.fromSize(transaction.txOuts.length);
   let bufSize = 4 + 1;
 
+  
   bufSize += 41 * transaction.txIns.length + transaction.txIns[vint].script.length;
   bufSize += 1;
   for (const txout of transaction.txOuts) {
@@ -438,6 +462,8 @@ function prepareTransactionToSign(transaction: DogecoinTransaction, vint: number
     }
 
     buffer = Buffer.from(before, 'hex');
+    
+    
 
     offset += 8;
 

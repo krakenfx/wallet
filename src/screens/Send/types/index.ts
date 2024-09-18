@@ -25,8 +25,21 @@ export type NftTransactionParams = {
   nft: RealmNft;
 };
 
+export type Amounts = {
+  amountFiat: string | undefined;
+  feeFiat: string;
+  fee: TotalFee;
+  feePrice: number;
+};
+
 export type TransactionParams = NftTransactionParams | TokenTransactionParams | CoinTransactionParams;
 
 export type FeeEstimationMap = Record<FeeOptionKind, TotalFee>;
 
 export type ValidAddress = Branded<string, 'address'>;
+
+export enum ScreenStage {
+  ReadyToBroadcast,
+  Broadcasting,
+  Sent,
+}

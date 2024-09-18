@@ -15,7 +15,7 @@ type Props = {
 export const TransactionBroadcastSuccess = ({ estimatedTime }: Props) => {
   return (
     <Animated.View entering={FadeIn} style={styles.success}>
-      <LottieView source={require('@/assets/lottie/broadcastSent.json')} style={styles.lottie} autoPlay loop={false} />
+      <LottieView source={require('@/assets/lottie/successCheckmark.json')} style={styles.lottie} autoPlay loop={false} />
       <Label type="boldDisplay4">{loc.send.successLabel}</Label>
       {!!estimatedTime && (
         <Label type="regularBody" color="light50" style={styles.estimation}>

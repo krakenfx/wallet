@@ -40,7 +40,7 @@ export const useManageAccount = () => {
 
   const createAccount = useCallback(async () => {
     const seed = await getSeed('createWallet');
-    let accountCustomName: string = '';
+    const accountCustomName: string = '';
     if (!seed) {
       return;
     }
@@ -49,7 +49,7 @@ export const useManageAccount = () => {
       if (lastCreatedAccount === undefined) {
         throw Error('No existing account to increment');
       }
-
+      
       const nextAccountNumber = lastCreatedAccount.accountNumber + 1;
       const wallets: Partial<Record<WalletType, RealmWallet>> = {};
       runInTransaction(async () => {

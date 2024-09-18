@@ -59,7 +59,9 @@ export const DeleteAccountVerifyBalanceScreen = ({ route, navigation }: AccountN
         <Label type="boldDisplay4" style={styles.header}>
           {loc.deleteAccountVerifyBalance.header}
         </Label>
-        <Label type="regularTitle1">{loc.deleteAccountVerifyBalance.caption}</Label>
+        <Label type="regularTitle1" color="light75">
+          {loc.deleteAccountVerifyBalance.caption}
+        </Label>
         <View style={styles.inputContainer}>
           <Label style={styles.inputLabel}>{loc.deleteAccountVerifyBalance.inputLabel}</Label>
           <Input

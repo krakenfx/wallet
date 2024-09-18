@@ -31,6 +31,18 @@ export const useSettingsMutations = () => {
     [runInTransaction],
   );
 
+  const removeSettings = useCallback(
+    <T extends keyof SettingsType>(name: T) => {
+      runInTransaction(realm => {
+        const settings = realm.objectForPrimaryKey(REALM_TYPE_SETTINGS, name);
+        if (settings) {
+          realm.delete(settings);
+        }
+      });
+    },
+    [runInTransaction],
+  );
+
   const setAccountNumber = useCallback(
     (value: number) => {
       setSettings(RealmSettingsKey.accountNumber, value);
@@ -65,7 +77,7 @@ export const useSettingsMutations = () => {
   const setAppCurrency = useCallback(
     (value: Currency) => {
       setSettings(RealmSettingsKey.currency, value);
-      deleteAllAssetMarketData();
+      deleteAllAssetMarketData(); 
     },
     [deleteAllAssetMarketData, setSettings],
   );
@@ -76,6 +88,32 @@ export const useSettingsMutations = () => {
     },
     [setSettings],
   );
+
+  const setCloudBackupCompleted = useCallback(
+    (credentialID: string) => {
+      setSettings(RealmSettingsKey.cloudBackupCredentialID, credentialID);
+    },
+    [setSettings],
+  );
+
+  const removeCloudBackup = useCallback(() => {
+    runInTransaction(() => {
+      removeSettings(RealmSettingsKey.cloudBackupCredentialID);
+      removeSettings(RealmSettingsKey.isCloudBackupDismissed);
+    });
+  }, [removeSettings, runInTransaction]);
+
+  const setCloudBackupDismissed = useCallback(() => {
+    setSettings(RealmSettingsKey.isCloudBackupDismissed, true);
+  }, [setSettings]);
+
+  const setManualBackupDismissed = useCallback(() => {
+    setSettings(RealmSettingsKey.isManualBackupDismissed, true);
+  }, [setSettings]);
+
+  const setManualBackupCompleted = useCallback(() => {
+    setSettings(RealmSettingsKey.isWalletBackupDone, true);
+  }, [setSettings]);
 
   const setHideBalances = useCallback(
     (value: boolean) => {
@@ -93,5 +131,10 @@ export const useSettingsMutations = () => {
     setWalletConnectExplainerTaskCompleted,
     setHasViewedWalletBackupPrompt,
     setHideBalances,
+    setCloudBackupCompleted,
+    setCloudBackupDismissed,
+    setManualBackupDismissed,
+    setManualBackupCompleted,
+    removeCloudBackup,
   };
 };

@@ -14,6 +14,8 @@ export const SuperDarkTheme = {
   colors: {
     ...DarkTheme.colors,
 
+    
+
     kraken: '#7538F5',
     background: '#0D0D2E',
 
@@ -40,6 +42,8 @@ export const SuperDarkTheme = {
     dark25: 'rgba(0, 0, 0, 0.25)',
     dark15: 'rgba(0, 0, 0, 0.15)',
 
+    
+
     purple_40: 'rgba(100, 81, 170, 0.40)',
 
     transparent: 'rgba(0,0,0,0)',
@@ -52,8 +56,9 @@ export const SuperDarkTheme = {
     androidToastBlur: '#1F154F',
     swapIconBg: 'rgba(33, 38, 77, 1)',
     coreBackground: '#0E0E35',
-    blurBackgroundAndroid: '#302C3E',
+    blurBackgroundAndroid: '#302C3E', 
     lavenderIndigo: '#8B58F7',
+    tooltipColor: '#3E367C',
   },
   gradients: {
     itemBackground: {

@@ -1,5 +1,9 @@
 import { isEIP712 } from './isEIP712';
 
+
+
+
+
 export function areMessageRequestParamsValid(requestParams: any): boolean {
   const isArray = Array.isArray(requestParams);
   const firstItemIsString = typeof requestParams?.[0] === 'string';

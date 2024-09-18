@@ -1,6 +1,7 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
-import React, { Fragment, useCallback, useMemo } from 'react';
+
+import React, { useCallback, useMemo } from 'react';
 import { Linking, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { FadeIn } from 'react-native-reanimated';
 
@@ -10,13 +11,13 @@ import { LongPressable } from '@/components/LongPress';
 import { LongPressOptionItemProps } from '@/components/LongPress/LongPressOptionItem';
 import { showToast } from '@/components/Toast';
 import { TokenIcon } from '@/components/TokenIcon';
-import { getExplorerIcon } from '@/components/TokenMarketData';
 import { Touchable } from '@/components/Touchable';
 import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
+import { useTokenPriceChangePercentage } from '@/realm/tokenPrice';
 import { RealmToken } from '@/realm/tokens';
 import { useTokensGalleryMutations } from '@/realm/tokensGallery';
 import { useRealmWalletById } from '@/realm/wallets';
@@ -25,19 +26,23 @@ import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 import { Currency } from '@/screens/Settings/currency';
 import { RemoteAsset } from '@/types';
 import { formatCurrency } from '@/utils/formatCurrency';
+import { getPercentageLabel } from '@/utils/formatPercentage';
 import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
+import { getExplorerIcon } from '@/utils/getExplorerIcon';
 import { getWalletName } from '@/utils/getWalletName';
 import { isRealmToken } from '@/utils/isRealmToken';
 
 import loc from '/loc';
 
+const PRICE_CHANGE_PLACEHOLDER = '--';
+
 export type AssetRowProps = {
   token: RealmToken | RemoteAsset;
   options?: Partial<{
     hideZeroAmount: boolean;
-    isRemoteAsset: boolean;
     networkName: WalletType;
     onPress: () => void;
+    priceChange: boolean;
     showAmountInFiat: boolean;
     style: StyleProp<ViewStyle>;
     selected: boolean;
@@ -51,22 +56,30 @@ export type AssetRowProps = {
 };
 
 export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
-  const { hideZeroAmount, networkName, showAmountInFiat, onPress, style, symbolUnderLabel, tag, testID, walletId, selected } = options;
+  const { hideZeroAmount, networkName, showAmountInFiat, onPress, style, priceChange, symbolUnderLabel, tag, testID, walletId, selected } = options;
   const wallet = useRealmWalletById(walletId);
   const isNative = token.assetId.includes('slip44:');
   const label = wallet && wallet.nativeTokenLabel && isNative ? getWalletName(wallet.nativeTokenLabel.toLowerCase() as WalletType) : token.metadata.label;
   const { currency } = useAppCurrency();
-  const tokenAmountFormatted = formatTokenAmountFromToken(token, { compact: true, currency });
+  const showPriceChangeUnderLabel = priceChange;
+  const showSymbolUnderLabel = !showPriceChangeUnderLabel && symbolUnderLabel;
 
+  const tokenAmountFormatted = formatTokenAmountFromToken(token, { compact: true, currency });
   const amount = hideZeroAmount && tokenAmountFormatted === '0' ? '' : `${tokenAmountFormatted}${symbolUnderLabel ? '' : ' ' + token.metadata.symbol}`;
   const balanceDisplay = useBalanceDisplay(amount);
   const { removeTokenFromGallery } = useTokensGalleryMutations();
+  const priceChangePct = useTokenPriceChangePercentage({ assetId: token.assetId });
 
-  const content = useMemo(
-    () => (
+  const content = useMemo(() => {
+    const priceChangeLabel = getPercentageLabel(priceChangePct, 2, {
+      placeholderColor: 'light50',
+      placeholder: PRICE_CHANGE_PLACEHOLDER,
+      truncateTrailingZeros: true,
+    });
+    return (
       <>
-        <View style={styles.leftContentContainer}>
-          {(wallet || networkName !== undefined) && (
+        <View style={styles.leftContentContainer} testID="AssetRowContentContainer">
+          {(wallet || networkName !== undefined)  && (
             <TokenIcon wallet={wallet} tokenId={token.assetId} tokenSymbol={token.metadata.symbol} networkName={networkName} />
           )}
           <View style={styles.labelAndLabelContainer}>
@@ -76,7 +89,14 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
               </Label>
               {tag !== null && <View>{tag}</View>}
             </View>
-            {symbolUnderLabel && (
+            {showPriceChangeUnderLabel && isRealmToken(token) && (
+              <View style={styles.labelContainer} testID="AssetRowContent">
+                <Label testID={`PriceChangeLabel-${testID}`} type="regularCaption1" color={priceChangeLabel.color} style={[styles.priceChangeLabel]}>
+                  {priceChangeLabel.label}
+                </Label>
+              </View>
+            )}
+            {showSymbolUnderLabel && (
               <Label type="regularMonospace" color="light75">
                 {token.metadata.symbol}
               </Label>
@@ -87,18 +107,30 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
           {showAmountInFiat && <AssetRowAmountInFiat currency={currency} token={token} />}
           {}
           <Label
-            type={symbolUnderLabel ? 'boldMonospace' : 'regularMonospace'}
-            color={symbolUnderLabel ? 'light100' : 'light50'}
-            style={[styles.amount, symbolUnderLabel && { fontSize: 15 }]}
+            type={showSymbolUnderLabel ? 'boldMonospace' : 'regularMonospace'}
+            color={showSymbolUnderLabel ? 'light100' : 'light50'}
+            style={[styles.amount, showSymbolUnderLabel && { fontSize: 15 }]}
             numberOfLines={1}
             ellipsizeMode="tail">
             {balanceDisplay}
           </Label>
         </View>
       </>
-    ),
-    [balanceDisplay, currency, label, networkName, showAmountInFiat, symbolUnderLabel, tag, token, wallet],
-  );
+    );
+  }, [
+    balanceDisplay,
+    priceChangePct,
+    currency,
+    label,
+    networkName,
+    showAmountInFiat,
+    showPriceChangeUnderLabel,
+    showSymbolUnderLabel,
+    tag,
+    testID,
+    token,
+    wallet,
+  ]);
 
   const containerStyle = useMemo(() => [style, styles.container], [style]);
 
@@ -171,16 +203,14 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
           {renderTouchableElement()}
         </LongPressable>
       );
-    } else {
-      return renderTouchableElement();
     }
-  } else {
-    return (
-      <View style={containerStyle} testID={testID}>
-        {content}
-      </View>
-    );
+    return renderTouchableElement();
   }
+  return (
+    <View style={containerStyle} testID={testID}>
+      {content}
+    </View>
+  );
 };
 
 const AssetRowAmountInFiat = ({ currency, token }: Pick<AssetRowProps, 'token'> & { currency: Currency }) => {
@@ -234,6 +264,11 @@ const styles = StyleSheet.create({
   animatedNumbers: {
     alignItems: 'flex-end',
     textAlign: 'right',
+    minWidth: 100,
+  },
+  priceChangeLabel: {
+    alignItems: 'flex-start',
+    textAlign: 'left',
     minWidth: 100,
   },
   amount: {

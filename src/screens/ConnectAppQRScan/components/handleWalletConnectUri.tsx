@@ -8,6 +8,7 @@ import loc from '/loc';
 import { ReactNavigationDispatch, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
 import { isWalletConnectURI, isWalletConnectURIV1, isWalletConnectURIV2 } from '/modules/wallet-connect/utils';
 
+
 const validSubmittedQRCodesCache: string[] = [];
 
 export async function handleWalletConnectUri(result: string = '', realm: Realm, dispatch: ReactNavigationDispatch, getSeed: SecuredKeychainContext['getSeed']) {
@@ -36,8 +37,6 @@ export async function handleWalletConnectUri(result: string = '', realm: Realm, 
       validSubmittedQRCodesCache.push(result);
     } catch (e) {
       return handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
-    } finally {
-      return;
     }
   } else {
     return handleError('Invalid URI', 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.scan.wallet_connect_invalid_qr_code });

@@ -1,3 +1,4 @@
+
 import '@ethersproject/shims';
 
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
@@ -37,6 +38,7 @@ LogBox.ignoreLogs([
 
 console.log('applogFilePath:', applogFilePath);
 if (!__DEV__) {
+  
   const _log = (...args: unknown[]) => appendLog(args, 'log');
   console.log = console.warn = console.error = _log;
 }
@@ -48,6 +50,7 @@ if (Platform.OS === 'android') {
 }
 
 if (Platform.OS === 'android') {
+  
   StatusBar.setTranslucent(true);
 }
 
@@ -77,7 +80,13 @@ const App = () => {
   }
 
   const linking = {
-    prefixes: ['krakenwallet://wc?uri=', 'krakenwallet:wc?uri=', 'wc:', 'wc://'],
+    prefixes: [
+      'krakenwallet://wc?uri=',
+      'krakenwallet:wc?uri=',
+      
+      'wc:',
+      'wc://',
+    ],
     config: {
       screens: {
         ConnectAppQRScan: '*',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { Label } from '@/components/Label';
 import { useTheme } from '@/theme/themes';
@@ -7,16 +7,17 @@ import { useTheme } from '@/theme/themes';
 interface Props {
   text: string;
   isCircle?: boolean;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
 const BADGE_SIZE = 28;
-export const SettingsTextBadge = ({ text, isCircle }: Props) => {
+export const SettingsTextBadge = ({ text, isCircle, containerStyle }: Props) => {
   const { colors } = useTheme();
 
   const style = isCircle ? { width: BADGE_SIZE } : { paddingHorizontal: 14 };
 
   return (
-    <View style={[styles.badge, { backgroundColor: colors.light15 }, style]}>
+    <View style={[styles.badge, { backgroundColor: colors.light15 }, style, containerStyle]}>
       <Label type="boldCaption1" color="light100" style={styles.text}>
         {text}
       </Label>

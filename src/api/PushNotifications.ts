@@ -21,7 +21,9 @@ if (Platform.OS === 'android') {
     name: 'Miscellaneous',
     importance: Notifications.AndroidImportance.HIGH,
   });
-
+  
+  
+  
   Notifications.setNotificationHandler({
     handleNotification: async n => {
       if (n.request.identifier.startsWith('local:')) {
@@ -51,7 +53,7 @@ if (Platform.OS === 'android') {
 export class PushNotifications {
   private static instance: PushNotifications;
   private static STORAGE_KEY_DEVICE_TOKEN = 'STORAGE_KEY_DEVICE_TOKEN';
-  private static api: Awaited<ReturnType<typeof getGroundControl>>;
+  private static api: Awaited<ReturnType<typeof getGroundControl>>; 
   private static hasRegisteredEventListeners: boolean;
 
   private deviceToken: string | undefined | null;
@@ -75,6 +77,7 @@ export class PushNotifications {
     return PushNotifications.instance;
   }
 
+  
   async requestToken() {
     const deviceToken = await Notifications.getDevicePushTokenAsync();
     if (!deviceToken) {
@@ -92,6 +95,7 @@ export class PushNotifications {
     await this.requestToken();
 
     if (!PushNotifications.hasRegisteredEventListeners) {
+      
       Notifications.addNotificationReceivedListener(notification => {
         const { trigger, identifier } = notification.request;
         if (Platform.OS === 'android') {
@@ -151,6 +155,7 @@ export class PushNotifications {
     return settings.granted || settings.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL;
   }
 
+  
   async getTokenConfiguration(): Promise<TokenConfigurationType> {
     if (!this.deviceToken) {
       throw new Error('Token not yet acquired');
@@ -168,6 +173,7 @@ export class PushNotifications {
     return response;
   }
 
+  
   async changeSubscriptionLevel(levelName: string, newValue: boolean) {
     if (!this.deviceToken) {
       throw new Error('Token not yet acquired');
@@ -178,6 +184,7 @@ export class PushNotifications {
       throw new Error('Cant save subscription level change: current configuration is not loaded');
     }
 
+    
     const request = {
       body: Object.assign({}, currentConfig, {
         token: this.deviceToken,
@@ -191,6 +198,7 @@ export class PushNotifications {
     await (await this.getCachedGroundControl()).POST('/setTokenConfiguration', request);
   }
 
+  
   async saveTokenConfiguration() {
     if (!this.deviceToken) {
       throw new Error('Token not yet acquired');
@@ -198,6 +206,7 @@ export class PushNotifications {
 
     const currentConfig: TokenConfigurationType = await this.getTokenConfiguration();
 
+    
     const request = {
       body: Object.assign({}, currentConfig, {
         token: this.deviceToken,
@@ -215,7 +224,7 @@ export class PushNotifications {
       throw new Error("Can't subscribe: no device token acquired");
     }
 
-    addresses = [...new Set(addresses)];
+    addresses = [...new Set(addresses)]; 
 
     console.log(`subscribing addresses ${addresses.join(',')} to push notifications`);
     await (
@@ -231,13 +240,14 @@ export class PushNotifications {
     });
   }
 
+  
   async subscribeTransactionsToPushNotifications(txids: string[]) {
     const deviceToken = await this.getDeviceToken();
     if (!deviceToken) {
       throw new Error("Can't subscribe: no device token acquired");
     }
 
-    txids = [...new Set(txids)];
+    txids = [...new Set(txids)]; 
 
     console.log(`subscribing txids ${txids.join(',')} to push notifications`);
     try {

@@ -18,8 +18,10 @@ export type DefaultTransactionNotes = {
   transactionTitle?: string;
 };
 
+
 export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): string => {
   switch (config.transactionType) {
+    
     case TRANSACTION_TYPES.NFT_BUY: {
       const args = {
         address: formatAddress(config.address ?? '', true),
@@ -28,6 +30,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
 
       let result = '';
 
+      
+      
       switch (config.transactionState) {
         case 'succeeded':
           result = loc.formatString(loc.transactionDetails.description.nftBuy.succeeded, args).toString();
@@ -51,6 +55,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
 
       let result = '';
 
+      
+      
       switch (config.transactionState) {
         case 'succeeded':
           result = loc.formatString(loc.transactionDetails.description.nftSell.succeeded, args).toString();
@@ -74,6 +80,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
 
       let result = '';
 
+      
+      
       switch (config.transactionState) {
         case 'succeeded':
           result = loc.formatString(loc.transactionDetails.description.nftMint.succeeded, args).toString();
@@ -97,6 +105,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
 
       let result = '';
 
+      
+      
       switch (config.transactionState) {
         case 'succeeded':
           result = loc.formatString(loc.transactionDetails.description.nftSend.succeeded, args).toString();
@@ -120,6 +130,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
 
       let result = '';
 
+      
+      
       switch (config.transactionState) {
         case 'succeeded':
           result = loc.formatString(loc.transactionDetails.description.nftReceive.succeeded, args).toString();
@@ -132,6 +144,9 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
       return result;
     }
 
+    
+    
+    
     case TRANSACTION_PENDING_TYPES.SEND:
     case TRANSACTION_TYPES.SEND: {
       let result = '';
@@ -141,6 +156,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
           amount: `${config.assetAmount} ${config.assetSymbol}`,
         };
 
+        
+        
         switch (config.transactionState) {
           case 'succeeded':
             result = loc.formatString(loc.transactionDetails.description.sendUtxo.succeeded, args).toString();
@@ -158,6 +175,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
           address: formatAddress(config.address ?? '', true),
         };
 
+        
+        
         switch (config.transactionState) {
           case 'succeeded':
             result = loc.formatString(loc.transactionDetails.description.send.succeeded, args).toString();
@@ -183,6 +202,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
           amount: `${config.assetAmount} ${config.assetSymbol}`,
         };
 
+        
+        
         switch (config.transactionState) {
           case 'succeeded':
             result = loc.formatString(loc.transactionDetails.description.receiveUtxo.succeeded, args).toString();
@@ -197,6 +218,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
           address: formatAddress(config.address ?? '', true),
         };
 
+        
+        
         switch (config.transactionState) {
           case 'succeeded':
             result = loc.formatString(loc.transactionDetails.description.receive.succeeded, args).toString();
@@ -219,6 +242,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
 
       let result = '';
 
+      
+      
       switch (config.transactionState) {
         case 'succeeded':
           result = loc.formatString(loc.transactionDetails.description.swap.succeeded, args).toString();
@@ -243,6 +268,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
 
       let result = '';
 
+      
+      
       switch (config.transactionState) {
         case 'succeeded':
           result = loc.formatString(loc.transactionDetails.description.approval.succeeded, args).toString();
@@ -272,6 +299,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
             break;
         }
       } else {
+        
+        
         switch (config.transactionState) {
           case 'succeeded':
             result = loc.formatString(loc.transactionDetails.description.contractInteraction.succeeded, args).toString();
@@ -296,6 +325,8 @@ export const getDefaultTransactionNotes = (config: DefaultTransactionNotes): str
 
       let result = '';
 
+      
+      
       switch (config.transactionState) {
         case 'succeeded':
           result = loc.formatString(loc.transactionDetails.description.deposit.succeeded, args).toString();

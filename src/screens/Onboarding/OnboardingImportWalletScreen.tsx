@@ -86,6 +86,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
     }
   };
 
+  
   useDebounceEffect(() => setCanDeleteWord(!inputValue), [words, inputValue], 0);
 
   const onPastePress = useCallback(async () => {
@@ -131,7 +132,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
   const onChangeText = useCallback(
     (text: string) => {
       clearAllErrors();
-
+      
       if (text.length > inputValue.length + 1) {
         const pastedValue = text.replace(inputValue, '');
         handlePaste(pastedValue);
@@ -142,6 +143,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
         if (suggestion) {
           addWord(suggestion);
         } else if (text.trimEnd().length) {
+          
           addWord(text.trimEnd());
         }
         return;

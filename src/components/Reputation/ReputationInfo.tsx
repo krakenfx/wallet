@@ -16,7 +16,10 @@ interface Props {
   assetId?: string;
   filterOut?: FilterOut;
 }
-export const ReputationInfo = ({ assetId = '', filterOut = { reputation: [], coinDesignation: ['network'] } }: Props) => {
+export const ReputationInfo = ({
+  assetId = '',
+  filterOut = { reputation: [], coinDesignation: ['network' ] },
+}: Props) => {
   const reputation = useReputation(assetId);
   const shouldFilterOut = useShouldFilterOut({ assetId, reputation }, filterOut);
 

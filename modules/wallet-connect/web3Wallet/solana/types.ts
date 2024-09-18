@@ -35,8 +35,9 @@ type SolanaSignTransactionWithDeprecatedFields = {
 } & SolanaSignTransactionRequiredFields;
 
 type SolanaSignTransactionRequiredFields = {
-  transaction: string;
+  transaction: string; 
 };
+
 
 export type SolanaSignTransaction = SolanaSignTransactionWithDeprecatedFields | SolanaSignTransactionRequiredFields;
 
@@ -62,5 +63,5 @@ export type SolanaSignTransactionWeb3JS = {
     publicKey: web3.PublicKey;
     signature: Buffer;
   }[];
-  transaction: string;
+  transaction: string; 
 };

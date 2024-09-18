@@ -52,10 +52,12 @@ export async function handleSessionRequestTransaction({
   verified: Verify.Context['verified'];
 }) {
   const preparedTransaction = await transport
-    .prepareTransaction(network, foundWallet, (await getWalletStorage(realm, foundWallet, true)) as WalletStorage<unknown>, {
-      ...transaction,
-      dAppOrigin: verified.origin,
-    })
+    .prepareTransaction(
+      network,
+      foundWallet,
+      (await getWalletStorage(realm, foundWallet, true)) as WalletStorage<unknown> ,
+      { ...transaction, dAppOrigin: verified.origin } ,
+    )
     .catch(() => {});
 
   if (!preparedTransaction || preparedTransaction.isError) {
@@ -68,10 +70,12 @@ export async function handleSessionRequestTransaction({
   let approveSignRequest = false;
   let fee: EVMFeeOption | null = null;
 
+  
   const currency = getAppCurrency(realm);
 
   const assetContent = await buildAssetContent(classifiedTransaction, network, currency);
 
+  
   const dappName = activeSessions[topic].peer.metadata.name;
   const { approveSignRequest: approveSignRequest_, fee: fee_ } = await navigateToSignStructuredTransactionPage({
     dispatch,
@@ -113,6 +117,7 @@ export async function handleSessionRequestTransaction({
     warning,
   });
 
+  
   approveSignRequest = approveSignRequest_;
   fee = fee_ as EVMFeeOption;
 
@@ -123,18 +128,19 @@ export async function handleSessionRequestTransaction({
         web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
         return handleError('Missing seed', 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
       }
-
+      
       const finalPreparedTransaction = await transport.prepareTransaction(
         network,
         foundWallet,
-        (await getWalletStorage(realm, foundWallet, true)) as WalletStorage<unknown>,
+        (await getWalletStorage(realm, foundWallet, true)) as WalletStorage<unknown>, 
         { ...transaction },
         fee,
-        true,
+        true, 
       );
 
       await showToast({ type: 'info', text: loc.walletConnect.action_in_progress });
 
+      
       const result = await network.signTransaction(
         {
           ...foundWallet,
@@ -145,10 +151,12 @@ export async function handleSessionRequestTransaction({
         finalPreparedTransaction.data,
       );
 
+      
       if (method === WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TRANSACTION) {
         await web3Wallet.respondSessionRequest({ topic, response: { id, result: result, jsonrpc: '2.0' } });
       }
 
+      
       if (method === WALLET_CONNECT_ETH_SIGN_TYPES.SEND_TRANSACTION) {
         const txid = await transport.broadcastTransaction(network, result);
         await web3Wallet.respondSessionRequest({ topic, response: { id, result: txid, jsonrpc: '2.0' } });
@@ -160,6 +168,7 @@ export async function handleSessionRequestTransaction({
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
   } else {
+    
     web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
     return handleError('Response rejected', 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.walletConnect.response_rejected });
   }

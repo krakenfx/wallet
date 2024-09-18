@@ -29,10 +29,12 @@ export const ExtendedPublicKey = ({ accountNumber, extendedPublicKey }: { accoun
     return { wallet: btcWallet, network: btcNetwork };
   }, [account.wallets]);
 
+  
   if (!wallet || !network) {
     return null;
   }
 
+  
   const showExtendedPublicKey = async () => {
     setIsGettingXpub(true);
 

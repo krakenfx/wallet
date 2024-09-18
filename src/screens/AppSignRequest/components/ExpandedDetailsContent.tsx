@@ -16,7 +16,7 @@ export const ExpandedDetailsContent = ({ content }: Props) => {
     <View style={styles.contentContainer}>
       {Array.isArray(content) &&
         content.map(({ title, description }, i) => {
-          return description !== '' ? (
+          return description !== ''  ? (
             <View style={styles.listItem} key={title + '_' + i}>
               <Label type="regularCaption1" color="light50" style={styles.titleText}>
                 {title}
@@ -34,6 +34,8 @@ export const ExpandedDetailsContent = ({ content }: Props) => {
     </View>
   );
 };
+
+
 
 const isAddress = (title: string) => {
   return title === loc.appSignRequest.contractAddress;

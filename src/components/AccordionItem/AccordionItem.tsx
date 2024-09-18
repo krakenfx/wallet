@@ -9,6 +9,8 @@ interface Props {
   duration?: number;
 }
 
+
+
 export function AccordionItem({ isExpanded, children, style, duration = 300 }: Props) {
   const height = useSharedValue(0);
 

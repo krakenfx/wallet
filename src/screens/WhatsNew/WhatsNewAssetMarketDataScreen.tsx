@@ -35,6 +35,7 @@ export const WhatsNewAssetMarketDataScreen = ({ navigation }: NavigationProps<'W
       const token = sortedTokens[0];
       navigation.replace(Routes.Transactions, { assetBalanceId: { assetId: token.assetId, walletId: token.walletId } });
     } else {
+      
       close();
     }
   }, [close, navigation, sortedTokens]);

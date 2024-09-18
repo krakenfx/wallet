@@ -12,6 +12,7 @@ type Props = SwitchProps & {
 
 const UPDATE_LOCAL_STATE_WITH_VALUE_FROM_PROPS_TIMEOUT = 1000;
 
+
 export const Switch: React.FC<Props> = ({ value, onValueChange, ...props }) => {
   const [switchValue, setSwitchValue] = useState(value);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +29,7 @@ export const Switch: React.FC<Props> = ({ value, onValueChange, ...props }) => {
   );
 
   const updateValueFromProps = () => {
+    
     setSwitchValue(latest.current);
   };
 

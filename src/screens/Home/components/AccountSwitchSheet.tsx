@@ -71,7 +71,7 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
       const isFirst = index === 0;
       const isLast = index === accounts.length - 1;
       const isCurrent = accountNumber === item.accountNumber;
-      const BOTTOM_LIST_MARGIN = LARGE_BUTTON_SIZE + bottomSpacing + 32;
+      const BOTTOM_LIST_MARGIN = LARGE_BUTTON_SIZE + bottomSpacing + 32; 
 
       return (
         <>
@@ -92,6 +92,7 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
 
   const handleBottomSheetChange = (index: number) => {
     if (index > -1) {
+      
       listRef.current?.scrollToIndex({ index: accounts.length - 1, viewPosition: 0 });
     }
   };
@@ -109,9 +110,9 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
           <Label>{loc.accountSwitch.wallets}</Label>
           <Button text={loc.accountSwitch.manage} onPress={handleManagePress} testID="EditAccountManageButton" />
         </View>
-        <WalletBackupWarning />
+        <WalletBackupWarning showDismissable={false} />
         <BottomSheetFlatList
-          style={{ maxHeight: WALLET_ITEM_HEIGHT * 9 }}
+          style={{ maxHeight: WALLET_ITEM_HEIGHT * 9 }} 
           data={accounts}
           keyExtractor={account => String(account.accountNumber)}
           renderItem={renderItem}

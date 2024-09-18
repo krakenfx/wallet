@@ -9,6 +9,7 @@ import { WalletBackupVerify } from './components';
 
 export const SettingsBackupVerifyScreen = ({ navigation }: SettingsNavigationProps<'SettingsBackupVerify'>) => {
   const handleVerifySuccess = useCallback(() => {
+    
     navigation.pop(2);
   }, [navigation]);
 

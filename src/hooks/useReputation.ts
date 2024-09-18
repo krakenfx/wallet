@@ -8,13 +8,14 @@ export enum REPUTATION {
   UNVERIFIED = 'unverified',
 }
 
-const getReputation = (assetMetadata?: AssetMetadata | null): REPUTATION => {
+export const getReputation = (assetMetadata?: AssetMetadata | null): REPUTATION => {
   if (!assetMetadata) {
     return REPUTATION.UNVERIFIED;
   }
   const isBlacklisted = (assetMetadata?.reputation?.blacklists ?? []).length > 0;
   const isWhitelisted = (assetMetadata?.reputation?.whitelists ?? []).length > 0;
 
+  
   return isBlacklisted ? REPUTATION.BLACKLISTED : isWhitelisted ? REPUTATION.WHITELISTED : REPUTATION.UNVERIFIED;
 };
 

@@ -15,7 +15,7 @@ type ViewPagerPage = {
 type ViewPagerProps = {
   left: ViewPagerPage;
   right: ViewPagerPage;
-
+  
   secondaryComponent?: React.ReactElement;
   toggleTestID?: string;
   containerStyle?: StyleProp<ViewStyle>;

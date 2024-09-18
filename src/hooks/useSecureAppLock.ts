@@ -16,6 +16,7 @@ export const useSecureAppLock = () => {
       hideSplashScreen();
     } else {
       if (Platform.OS === 'android') {
+        
         hideSplashScreen();
       }
       Alert.alert(loc.appLock.authenticationCancelled, loc.appLock.authenticationCancelledDescription, [

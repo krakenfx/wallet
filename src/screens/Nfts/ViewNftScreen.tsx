@@ -98,10 +98,15 @@ export const ViewNftScreen = ({ navigation, route }: NavigationProps<'ViewNft'>)
     imagePreviewVisibity.value = withDelay(
       transitionConfig.initialDelay ?? 0,
       withTiming(0, { duration: transitionConfig.duration }, () => {
-        runOnJS(sheetRef.current?.snapToIndex!)(0);
+        
+        const snapIndex = sheetRef.current?.snapToIndex;
+
+        if (snapIndex) {
+          runOnJS(snapIndex)(0);
+        }
       }),
     );
-
+    
     sheetRef.current?.snapToPosition(1);
   };
 

@@ -5,14 +5,17 @@ import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { useRealmWallets } from '@/realm/wallets';
 
+
 export const useGetSubscribeNotifications = () => {
   const wallets = useRealmWallets(true);
   const getWalletStorage = useGetWalletStorage();
 
+  
   const subscribeToNotifications = useCallback(async () => {
     const pushInstance = PushNotifications.getInstance();
     const pushToken = await pushInstance.getDeviceToken();
 
+    
     let addresses2subscribe: string[] = [];
     if (pushToken) {
       for (const wallet2subscribe of wallets) {
@@ -22,6 +25,7 @@ export const useGetSubscribeNotifications = () => {
         addresses2subscribe = addresses2subscribe.concat(addresses);
       }
 
+      
       await pushInstance.subscribeAddressesToPushNotifications(addresses2subscribe);
     }
   }, [wallets, getWalletStorage]);

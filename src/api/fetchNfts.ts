@@ -30,6 +30,9 @@ export const fetchNfts = async (wallet: RealmishWallet, getRawNftMetadata: (nft:
     return await fetchFromHarmony(address, network.caipId, getRawNftMetadata);
   } catch (e) {
     if (e instanceof APIResponseError) {
+      
+      
+      
       const params = e.errorContent?.params as unknown as { [key: string]: unknown };
       if (typeof params === 'object' && typeof params._ === 'string') {
         const firstMessage = params._ as string;
@@ -57,7 +60,7 @@ export async function fetchFromHarmony(address: string, network: string, getRawN
 
   const nfts: RawNftData[] = [];
   const allowedConcurrentRequests = 20;
-
+  
   const chunks = chunk(result.content, allowedConcurrentRequests);
   for (const ch of chunks) {
     const batchResult = await Promise.allSettled(ch.map(nft => getRawNftMetadata(nft)));

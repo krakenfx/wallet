@@ -25,6 +25,7 @@ const blurProps: BlurViewProps = {
 export const IconButton = ({ onPress, name, testID, blurred, size = 16, backgroundColor = 'light15', style, containerStyle }: IconButtonProps) => {
   const { colors } = useTheme();
 
+  
   const { component: OptionalBlur, props: optionalBlurProps } =
     blurred && Platform.OS === 'ios'
       ? {

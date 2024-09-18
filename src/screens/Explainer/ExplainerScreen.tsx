@@ -11,6 +11,7 @@ import { useTheme } from '@/theme/themes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import {
+  ExplainerBackupRecoverability,
   ExplainerBlacklisted,
   ExplainerDomainMatch,
   ExplainerDomainMismatch,
@@ -34,11 +35,13 @@ export enum EXPLAINER_CONTENT_TYPES {
   WHITELISTED_KRAKEN = 'whitelisted-kraken',
   UNVERIFIED_LISTS = 'unverified-lists',
   CONTRACT_ADDRESS = 'contract-address',
+  BACKUP_RECOVERABILITY = 'backup-recoverability',
 }
 
 export type ExplainerModalProps = {
   contentType: EXPLAINER_CONTENT_TYPES;
 };
+
 
 export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explainer'>) => {
   const theme = useTheme();
@@ -48,6 +51,7 @@ export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explaine
   const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const content = useMemo(() => {
+    
     switch (contentType) {
       case EXPLAINER_CONTENT_TYPES.TOKEN_LISTS:
         return <ExplainerTokenLists />;
@@ -69,6 +73,8 @@ export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explaine
         return <ExplainerUnverifiedLists />;
       case EXPLAINER_CONTENT_TYPES.CONTRACT_ADDRESS:
         return <ExplainerTokenContract />;
+      case EXPLAINER_CONTENT_TYPES.BACKUP_RECOVERABILITY:
+        return <ExplainerBackupRecoverability />;
     }
   }, [contentType]);
 

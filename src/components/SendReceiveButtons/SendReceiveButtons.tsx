@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   smallDeviceContainer: {
-    marginTop: 28,
+    marginTop: 16,
   },
   btnContainer: {
     flex: 1,

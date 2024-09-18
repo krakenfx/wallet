@@ -13,6 +13,7 @@ export const Camera: FC<CameraProps> = props => {
   useEffect(() => {
     type Listener = Parameters<typeof navigation.addListener<'beforeRemove'>>[1];
     const listener: Listener = e => {
+      
       e.preventDefault();
       if (cameraVisible) {
         setCameraVisible(false);

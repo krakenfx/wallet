@@ -1,16 +1,22 @@
-import React, { useCallback } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { noop } from 'lodash';
+import React, { useCallback, useMemo } from 'react';
+import { Image, ScrollView, StyleSheet } from 'react-native';
+
+import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import { GradientScreenView } from '@/components/Gradients';
+import { Menu, useMenu } from '@/components/Menu';
 import { SvgIcon } from '@/components/SvgIcon';
+import { BackupCompletionBadge } from '@/components/WalletBackup';
+import { BackupMethodSelector } from '@/components/WalletBackup/BackupMethodSelector';
 import { WalletItem } from '@/components/WalletItem';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
+import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { useAccounts } from '@/realm/accounts';
-import { useIsWalletBackupDone } from '@/realm/settings';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { SettingsItem, SettingsSectionHeader, TickIcon } from '../components';
+import { SettingsItem, SettingsSectionHeader } from '../components';
 import { SettingsNavigationProps } from '../SettingsRouter';
 import { WalletBackupWarning } from '../walletBackup';
 
@@ -19,9 +25,11 @@ import loc from '/loc';
 export const ManageWalletsScreen = ({ navigation }: SettingsNavigationProps<'ManageWallets'>) => {
   const accounts = useAccounts();
   const { navigate } = navigation;
-  const isWalletBackupDone = useIsWalletBackupDone();
 
-  useHeaderTitle(loc.manageWallets.title);
+  const { isCloudBackupSupported, isCloudBackupSuggested, isCloudBackupCompleted, isManualBackupCompleted, isAnyBackupCompleted, isAnyBackupSuggested } =
+    useWalletBackupSettings();
+
+  useHeaderTitle(isCloudBackupSupported ? loc.settings.walletsAndBackups : loc.settings.manageWallets);
 
   const renderAccounts = useCallback(() => {
     return accounts.map((account, index) => {
@@ -31,25 +39,82 @@ export const ManageWalletsScreen = ({ navigation }: SettingsNavigationProps<'Man
   }, [accounts]);
 
   const handleSecretRecoveryPhrasePress = () => {
-    if (!isWalletBackupDone) {
-      navigate(Routes.SettingsWalletBackup);
+    if (!isManualBackupCompleted) {
+      navigate(isCloudBackupSupported ? Routes.SettingsDisplaySeed : Routes.SettingsWalletBackup);
     } else {
       navigate(Routes.SettingsDisplaySeed);
     }
   };
 
+  const navigateToCloudBackup = () => {
+    navigate(Routes.SettingsWalletCloudBackup);
+  };
+
+  const showCloudBackupSection = isCloudBackupSupported && isAnyBackupCompleted;
+
+  const { isShown } = useMenu();
+
+  const chevronStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: withTiming(isShown ? '0deg' : '180deg', { duration: 200 }) }],
+  }));
+
+  const navigateToDeleteConfirmation = () => {
+    navigation.navigate(Routes.SettingsWalletCloudBackupDelete);
+  };
+
+  const backupIcon = useMemo(() => {
+    if (!isAnyBackupCompleted || isCloudBackupSuggested) {
+      return null;
+    }
+    return <BackupCompletionBadge completed={isManualBackupCompleted} />;
+  }, [isAnyBackupCompleted, isCloudBackupSuggested, isManualBackupCompleted]);
+
   return (
     <GradientScreenView>
-      <ScrollView style={styles.scroll}>
-        <SettingsSectionHeader title={loc.settings.wallets} />
-        <WalletBackupWarning />
+      <ScrollView style={styles.container}>
+        {!!showCloudBackupSection && (
+          <BackupMethodSelector
+            key={String(isCloudBackupCompleted)}
+            containerStyle={styles.cloudBackup}
+            icon={<Image source={require('@/assets/images/common/iCloud.png')} />}
+            onPress={navigateToCloudBackup}
+            title={isCloudBackupCompleted ? loc.walletBackupSelection.backupWithICloudCompleted : loc.walletBackupSelection.backupWithICloud}
+            subtitle={loc.walletBackupSelection.iCloudDescLong}
+            subtitleShort={isCloudBackupCompleted ? loc.walletBackupSelection.iCloudDescCompletedShort : loc.walletBackupSelection.iCloudDescShort}
+            showCompletionState
+            completionIconSize={24}
+            completed={isCloudBackupCompleted}
+            rightElement={
+              !!isCloudBackupCompleted && (
+                <Menu
+                  menuXOffset={12}
+                  type="context"
+                  items={[
+                    {
+                      title: loc.walletCloudBackupDelete.title,
+                      icon: 'trash',
+                      onPress: navigateToDeleteConfirmation,
+                    },
+                  ]}>
+                  <SvgIcon name="chevron-up" style={chevronStyle} onPress={noop} />
+                </Menu>
+              )
+            }
+            centerIcon
+          />
+        )}
+
+        {isAnyBackupCompleted && isAnyBackupSuggested && <WalletBackupWarning style={styles.backupSuggested} />}
+        <SettingsSectionHeader title={loc.settings.wallets} style={[isAnyBackupSuggested && styles.walletHeaderTitle]} />
+        {!isAnyBackupCompleted && <WalletBackupWarning />}
         <SettingsItem
           isHighlighted
           isFirst
           title={loc.settings.secretRecoveryPhrase}
           onPress={handleSecretRecoveryPhrasePress}
+          containerStyle={styles.walletHeader}
           testID="SecretRecoveryPhraseButton">
-          {isWalletBackupDone ? <TickIcon enabled /> : <SvgIcon name="error" color="red400" />}
+          {backupIcon}
         </SettingsItem>
         {renderAccounts()}
       </ScrollView>
@@ -58,10 +123,22 @@ export const ManageWalletsScreen = ({ navigation }: SettingsNavigationProps<'Man
 };
 
 const styles = StyleSheet.create({
-  scroll: {
+  container: {
     flex: 1,
     paddingHorizontal: 12,
   },
+  cloudBackup: {
+    marginTop: 16,
+  },
+  backupSuggested: {
+    marginTop: 16,
+  },
+  walletHeaderTitle: {
+    marginTop: 24,
+  },
+  walletHeader: {
+    marginBottom: 1,
+  },
 });
 
-ManageWalletsScreen.navigationOptions = navigationStyle({ title: loc.manageWallets.title, headerTransparent: true });
+ManageWalletsScreen.navigationOptions = navigationStyle({ headerTransparent: true });

@@ -11,9 +11,8 @@ export default class BackendConfigurator {
       const storedUri = (await AsyncStorage.getItem(BackendConfigurator.STORAGE_KEY_GC_URI)) ?? DEFAULT_GROUNDCONTROL_BASE_URI;
       if (storedUri) {
         return storedUri;
-      } else {
-        throw new Error('DEFAULT_GROUNDCONTROL_BASE_URI is empty or null.');
       }
+      throw new Error('DEFAULT_GROUNDCONTROL_BASE_URI is empty or null.');
     } catch (error) {
       throw new Error('Failed to retrieve DEFAULT_GROUNDCONTROL_BASE_URI base URI');
     }
@@ -23,9 +22,8 @@ export default class BackendConfigurator {
       const storedUri = (await AsyncStorage.getItem(BackendConfigurator.STORAGE_KEY_HARMONY_URI)) ?? DEFAULT_HARMONY_BASE_URI;
       if (storedUri) {
         return storedUri;
-      } else {
-        throw new Error('DEFAULT_HARMONY_BASE_URI is empty or null.');
       }
+      throw new Error('DEFAULT_HARMONY_BASE_URI is empty or null.');
     } catch (error) {
       throw new Error('Failed to retrieve DEFAULT_HARMONY_BASE_URI base URI');
     }

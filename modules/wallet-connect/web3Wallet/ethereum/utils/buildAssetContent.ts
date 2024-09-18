@@ -29,6 +29,7 @@ export async function buildAssetContent(data: TransactionData, network: Network,
   } else if (data.kind === 'contract') {
     assetContentItems = [];
   } else {
+    
     const exhaustiveCheck: never = data;
     throw new Error(`Unhandled case: ${exhaustiveCheck}`);
   }
@@ -39,6 +40,7 @@ export async function buildAssetContent(data: TransactionData, network: Network,
       return assetContentItem;
     }),
   ).catch(error => {
+    
     handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
     return [];
   });
@@ -57,6 +59,9 @@ const buildAssetContentItem = async ({
   tokenAmount: string;
   currency: Currency;
 }): Promise<TransactionAmountProps> => {
+  
+  
+  
   const tokenMetadata = await fetchTokenMetadata(assetId);
 
   const assetAmount = !tokenAmount ? '0.00' : tokenAmount;
@@ -70,10 +75,12 @@ const buildAssetContentItem = async ({
     assetAmountInAppCurrency === '0' ? formatCurrency(0, { currency }) : formatCurrency(assetAmountInAppCurrency, { currency });
 
   return {
-    assetAmount: assetAmountFormatted,
-    assetFiatAmount: assetAmountInAppCurrencyFormatted,
+    
+    assetAmount: assetAmountFormatted, 
+    assetFiatAmount: assetAmountInAppCurrencyFormatted, 
 
-    assetNetwork: getNetworkName(network.caipId) as WalletType,
-    assetSymbol: tokenMetadata?.symbol ?? '',
+    
+    assetNetwork: getNetworkName(network.caipId) as WalletType, 
+    assetSymbol: tokenMetadata?.symbol ?? '', 
   };
 };

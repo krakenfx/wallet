@@ -7,9 +7,13 @@ import DefaultPreference from 'react-native-default-preference';
 
 import { Utxo } from './BlueElectrum';
 
+
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const ElectrumClient = require('electrum-client');
 
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const net = require('net');
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const tls = require('tls');
 
 export const electrumConnectionEmitter = new EventEmitter();
@@ -61,6 +65,7 @@ type Peer = {
 };
 const hardcodedPeers: Peer[] = [{ host: 'electrum.wallet.kraken.com', ssl: '443' }];
 
+
 async function getRandomHardcodedPeer() {
   return hardcodedPeers[(hardcodedPeers.length * Math.random()) | 0];
 }
@@ -89,11 +94,11 @@ async function getSavedPeer(): Promise<Peer | undefined> {
   }
   if (port) {
     return { host, tcp: port };
-  } else if (sslPort) {
-    return { host, ssl: sslPort };
-  } else {
-    return undefined;
   }
+  if (sslPort) {
+    return { host, ssl: sslPort };
+  }
+  return undefined;
 }
 
 export async function forceDisconnect() {
@@ -123,6 +128,7 @@ export async function connectMain() {
     await DefaultPreference.set(ELECTRUM_TCP_PORT, peerToSave.tcp ?? '');
     await DefaultPreference.set(ELECTRUM_SSL_PORT, peerToSave.ssl ?? '');
   } catch (e) {
+    
     console.log(e);
   }
 
@@ -133,9 +139,13 @@ export async function connectMain() {
     ElectrumState.mainClient.onError = function (e: Error) {
       console.log('electrum mainClient.onError():', e.message);
       if (ElectrumState.mainConnected) {
+        
+        
+        
         ElectrumState.mainClient.close();
         ElectrumState.mainConnected = false;
-
+        
+        
         console.log('reconnecting after socket error');
         setTimeout(connectMain, usingPeer.host.endsWith('.onion') ? 4000 : 500);
       }
@@ -148,6 +158,7 @@ export async function connectMain() {
       ElectrumState.mainConnected = true;
       ElectrumState.wasConnectedAtLeastOnce = true;
       if (ver[0].startsWith('ElectrumPersonalServer') || ver[0].startsWith('electrs') || ver[0].startsWith('Fulcrum')) {
+        
         ElectrumState.disableBatching = true;
       }
       const header = await ElectrumState.mainClient.blockchainHeaders_subscribe();
@@ -155,6 +166,7 @@ export async function connectMain() {
         ElectrumState.latestBlockHeight = header.height;
         ElectrumState.latestBlockHeightTimestamp = Math.floor(+new Date() / 1000);
       }
+      
     }
   } catch (e) {
     ElectrumState.mainConnected = false;
@@ -180,22 +192,27 @@ export const estimateFees = async function (fastBlocks: number, mediumBlocks: nu
   let histogram: FeeHistogram | undefined;
   try {
     histogram = await Promise.race([ElectrumState.mainClient.mempool_getFeeHistogram(), new Promise(resolve => setTimeout(resolve, 29000))]);
-  } catch (_) {}
+    /* eslint-disable-next-line no-empty */
+  } catch (_: unknown) {}
 
   if (!histogram) {
     throw new Error('timeout while getting mempool_getFeeHistogram');
   }
 
+  
   const _fast = await estimateFee(fastBlocks);
   const _medium = await estimateFee(mediumBlocks);
   const _slow = await estimateFee(slowBlocks);
 
+  
   const fast = calcEstimateFeeFromFeeHistogram(1, histogram);
-
+  
+  
   const medium = Math.max(1, Math.round((fast * _medium) / _fast));
   const slow = Math.max(1, Math.round((fast * _slow) / _fast));
   return { fast, medium, slow };
 };
+
 
 const estimateFee = async function (numberOfBlocks: number) {
   if (!ElectrumState.mainClient) {
@@ -209,15 +226,18 @@ const estimateFee = async function (numberOfBlocks: number) {
   return Math.round(new BigNumber(coinUnitsPerKilobyte).dividedBy(1024).multipliedBy(100000000).toNumber());
 };
 
+
 export const calcEstimateFeeFromFeeHistogram = function (numberOfBlocks: number, feeHistogram: FeeHistogram) {
+  
   let totalVsize = 0;
   const histogramToUse = [];
   for (const h of feeHistogram) {
-    let [fee, vsize] = h;
+    const [fee] = h;
+    let [, vsize] = h;
     let timeToStop = false;
 
     if (totalVsize + vsize >= 1000000 * numberOfBlocks) {
-      vsize = 1000000 * numberOfBlocks - totalVsize;
+      vsize = 1000000 * numberOfBlocks - totalVsize; 
       timeToStop = true;
     }
 
@@ -228,9 +248,12 @@ export const calcEstimateFeeFromFeeHistogram = function (numberOfBlocks: number,
     }
   }
 
+  
+  
   let histogramFlat: number[] = [];
   for (const hh of histogramToUse) {
     histogramFlat = histogramFlat.concat(Array(Math.round(hh.vsize / 25000)).fill(hh.fee));
+    
   }
 
   histogramFlat = histogramFlat.sort(function (a, b) {
@@ -239,6 +262,8 @@ export const calcEstimateFeeFromFeeHistogram = function (numberOfBlocks: number,
 
   return Math.round(percentile(histogramFlat, 0.5) || 1);
 };
+
+
 
 function percentile(arr: number[], p: number) {
   if (arr.length === 0) {
@@ -280,6 +305,8 @@ export async function multiGetUtxoByAddress(addresses: string[], batchsize?: num
   const ret: { [key: string]: Utxo[] } = {};
   const chunks = splitIntoChunks(addresses, batchsize);
   for (const chunk of chunks) {
+    
+    
     const scripthashes: string[] = [];
     const scripthash2addr: { [key: string]: string } = {};
     for (const addr of chunk) {
@@ -300,6 +327,10 @@ export async function multiGetUtxoByAddress(addresses: string[], batchsize?: num
       }[];
     }[];
     if (ElectrumState.disableBatching) {
+      
+      
+      
+      
       throw new Error('not supported w/o batching');
     } else {
       result = await ElectrumState.mainClient.blockchainScripthash_listunspentBatch(scripthashes);
@@ -321,6 +352,7 @@ export async function multiGetUtxoByAddress(addresses: string[], batchsize?: num
 
   return ret;
 }
+
 
 export const multiGetBalanceByAddress = async function (addresses: string[], batchsize?: number) {
   batchsize = batchsize || 200;
@@ -345,8 +377,8 @@ export const multiGetBalanceByAddress = async function (addresses: string[], bat
     for (const addr of chunk) {
       const script = bitcoin.address.toOutputScript(addr);
       const hash = bitcoin.crypto.sha256(script);
-      let reversedHash = Buffer.from(reverse(hash));
-      let reversedHashStr = reversedHash.toString('hex');
+      const reversedHash = Buffer.from(reverse(hash));
+      const reversedHashStr = reversedHash.toString('hex');
       scripthashes.push(reversedHashStr);
       scripthash2addr[reversedHashStr] = addr;
     }
@@ -412,8 +444,8 @@ export const multiGetHistoryByAddress = async function (addresses: string[], bat
     for (const addr of chunk) {
       const script = bitcoin.address.toOutputScript(addr);
       const hash = bitcoin.crypto.sha256(script);
-      let reversedHash = Buffer.from(reverse(hash));
-      let reversedHashStr = reversedHash.toString('hex');
+      const reversedHash = Buffer.from(reverse(hash));
+      const reversedHashStr = reversedHash.toString('hex');
       scripthashes.push(reversedHashStr);
       scripthash2addr[reversedHashStr] = addr;
     }
@@ -455,7 +487,7 @@ export const multiGetHistoryByAddress = async function (addresses: string[], bat
 
       for (const result of history.result || []) {
         if (result.tx_hash) {
-          ElectrumState.txhashHeightCache[result.tx_hash] = result.height;
+          ElectrumState.txhashHeightCache[result.tx_hash] = result.height; 
         }
       }
 
@@ -468,6 +500,7 @@ export const multiGetHistoryByAddress = async function (addresses: string[], bat
 
   return ret;
 };
+
 
 export const waitTillConnected = async function () {
   let waitTillConnectedInterval: NodeJS.Timer;
@@ -487,6 +520,8 @@ export const waitTillConnected = async function () {
       }
 
       if (ElectrumState.wasConnectedAtLeastOnce && retriesCounter++ >= 30) {
+        
+        
         clearInterval(waitTillConnectedInterval);
         emitElectrumDisconnected();
         reject(new Error('Waiting for Electrum connection timeout'));

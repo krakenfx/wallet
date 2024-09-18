@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { SvgIcon } from '@/components/SvgIcon';
-import { REPUTATION, useReputation } from '@/hooks/useReputation';
+import { REPUTATION } from '@/hooks/useReputation';
 
 import { FilterOut, useShouldFilterOut } from './useShouldFilterOut';
 
@@ -19,11 +19,15 @@ export const ReputationTagUnverified = () => {
 
 type ReputationTagProps = {
   assetId?: string;
+  reputation: REPUTATION;
   filterOut?: FilterOut;
 };
 
-export const ReputationTag = ({ assetId = '', filterOut = { reputation: [], coinDesignation: ['network'] } }: ReputationTagProps) => {
-  const reputation = useReputation(assetId);
+export const ReputationTag = ({
+  assetId = '',
+  reputation,
+  filterOut = { reputation: [], coinDesignation: ['network' ] },
+}: ReputationTagProps) => {
   const shouldFilterOut = useShouldFilterOut({ assetId, reputation }, filterOut);
 
   if (shouldFilterOut) {

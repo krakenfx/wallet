@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 
 import { CircleLabel } from '@/components/CircleLabel';
-import { OverlappingList } from '@/components/OverlappingList';
+
+import { OverlappingList } from './OverlappingList';
 
 import loc from '/loc';
 

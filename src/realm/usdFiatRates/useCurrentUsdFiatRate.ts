@@ -11,8 +11,7 @@ export const useCurrentUsdFiatRate = () => {
   return useMemo(() => {
     if (currency === Currency.USD || !fiatRate) {
       return 1;
-    } else {
-      return parseFloat(fiatRate.value);
     }
+    return parseFloat(fiatRate.value);
   }, [currency, fiatRate]);
 };

@@ -38,7 +38,9 @@ export const NftTraits: React.FC<{ nft: RealmNft }> = ({ nft }) => {
           .filter(t => t.traitType === TRAIT_CREATED_DATE || t.traitType === TRAIT_EXPIRATION_DATE)
           .map(t => ({
             name: words(t.traitType).at(0)?.toLowerCase(),
-            value: !isNaN(Number(t.value)) ? format(new Date(Number(t.value)), 'dd LLL yyyy') : t.value,
+            value: !isNaN(Number(t.value))
+              ? format(new Date(Number(t.value)), 'dd LLL yyyy') 
+              : t.value,
           })),
         'name',
       );

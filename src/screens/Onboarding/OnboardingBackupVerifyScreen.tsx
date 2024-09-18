@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import { GradientScreenView } from '@/components/Gradients';
 
+import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { Routes } from '@/Routes';
 import { WalletBackupVerify } from '@/screens/Settings/walletBackup';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -9,9 +10,15 @@ import { navigationStyle } from '@/utils/navigationStyle';
 import { OnboardingNavigationProps } from './OnboardingRouter';
 
 export const OnboardingBackupVerifyScreen = ({ navigation }: OnboardingNavigationProps<'OnboardingBackupVerify'>) => {
-  const handleVerifySuccess = useCallback(() => {
-    navigation.navigate(Routes.OnboardingSecureWallet);
-  }, [navigation]);
+  const { isCloudBackupSuggested } = useWalletBackupSettings();
+
+  const handleVerifySuccess = () => {
+    if (isCloudBackupSuggested) {
+      navigation.navigate(Routes.OnboardingBackupPrompt);
+    } else {
+      navigation.navigate(Routes.OnboardingSecureWallet);
+    }
+  };
 
   return (
     <GradientScreenView>

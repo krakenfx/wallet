@@ -16,6 +16,7 @@ import { NftBlock } from '@/components/NftBlock';
 import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
 import { PrepareError } from '@/onChain/wallets/bitcoin';
 import { getImplForWallet } from '@/onChain/wallets/registry';
+import { useCurrentAccountNumber } from '@/realm/accounts';
 import { useNftById } from '@/realm/nfts';
 import { useTokenPrice } from '@/realm/tokenPrice';
 import { useResolvedAssetBalance, useTokenById } from '@/realm/tokens';
@@ -57,10 +58,11 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
   const qrCode = params.qrCode;
   const fromUniversalSend = params.fromUniversalSend;
 
+  const currentAccount = useCurrentAccountNumber();
   const { isFormValid } = useFormContext();
   const [isSimulationLoading, setIsSimulationLoading] = useState(false);
   const [inputInFiatCurrency, setInputInFiatCurrency] = useState(false);
-
+  
   const [__, _, tokenId] = useResolvedAssetBalance('assetBalanceId' in params ? params.assetBalanceId : undefined);
   const token = useTokenById(tokenId);
 
@@ -74,14 +76,15 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
         walletId: nft.walletId,
         nft,
       };
-    } else {
-      return {
-        walletId: token!.walletId,
-        token: token!,
-      };
     }
+    return {
+      
+      walletId: token!.walletId,
+      token: token!,
+    };
   }, [nft, token]);
 
+  
   const wallet = useRealmWalletById(data.walletId);
 
   const { network } = getImplForWallet(wallet);
@@ -105,6 +108,7 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
       };
     }
     if (!token || !amount || !Number(amount)) {
+      
       return;
     }
     return {
@@ -151,9 +155,9 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
       data.nft ? (
         <NftCollectionDetails size={32} nft={data.nft} label={loc.send.title_nft} />
       ) : (
-        <CoinHeader assetBalanceId={'assetBalanceId' in params ? params.assetBalanceId : undefined} text={loc.send.title} />
+        <CoinHeader wallet={wallet} token={token} text={loc.send.title} />
       ),
-    [data.nft, params],
+    [data.nft, token, wallet],
   );
 
   useLayoutEffect(() => {
@@ -208,6 +212,8 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
         throw Error('Internal error: missing fee');
       }
 
+      
+      
       await getWalletStorage(wallet, true);
 
       const senderLabel = await getSenderLabel();
@@ -296,7 +302,7 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
           contentContainerStyle={[styles.scrollContainer, { paddingBottom: insets.bottom }]}>
           <View style={styles.container}>
             {data.nft ? (
-              <NftBlock nft={data.nft} containerStyle={styles.nft} />
+              <NftBlock nft={data.nft} currentAccount={currentAccount} containerStyle={styles.nft} />
             ) : (
               !!data.token && (
                 <AmountInput

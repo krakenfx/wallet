@@ -5,7 +5,7 @@ import { SvgUri } from 'react-native-svg';
 type SizeAwareSVGUriProps = Omit<ComponentProps<typeof SvgUri>, 'onLoad'> & {
   onLoad?: (size: { width: number; height: number }) => void;
   containerStyle?: StyleProp<ViewStyle>;
-  fillContainer?: boolean;
+  fillContainer?: boolean; 
 };
 
 const getViewBox = (xmlString: string) => {
@@ -34,11 +34,16 @@ export const SizeAwareSVGUri: React.FC<SizeAwareSVGUriProps> = ({ uri, onLoad, f
   const onContainerLayout = ({ nativeEvent: { layout } }: LayoutChangeEvent) => setContainerSize(layout);
   const onSvgLoad = (xml: string) => xml && setViewBox(getViewBox(xml));
 
+  
+  
+  
+
   const sizeProps = useMemo(() => {
+    
     if (!svgSize || !containerSize || viewBox === undefined) {
       return {};
     }
-
+    
     if (svgSize.width >= containerSize.width) {
       return {
         width: props.width,
@@ -46,7 +51,7 @@ export const SizeAwareSVGUri: React.FC<SizeAwareSVGUriProps> = ({ uri, onLoad, f
         viewBox: viewBox ?? `0 0 ${svgSize.width} ${svgSize.height}`,
       };
     }
-
+    
     return fillContainer
       ? {
           viewBox: `0 0 ${svgSize.width} ${svgSize.height}`,
@@ -58,7 +63,15 @@ export const SizeAwareSVGUri: React.FC<SizeAwareSVGUriProps> = ({ uri, onLoad, f
 
   return (
     <View style={[styles.svgContainer, containerStyle]} onLayout={svgSize ? undefined : onContainerLayout}>
-      <SvgUri uri={uri} onLoad={onSvgLoad} onLayout={svgSize ? undefined : onSvgLayout} {...props} {...sizeProps} style={[!svgSize && styles.svgHidden]} />
+      <SvgUri
+        uri={uri}
+        onLoad={onSvgLoad}
+        onLayout={svgSize ? undefined : onSvgLayout}
+        {...props}
+        {...sizeProps}
+        
+        style={[!svgSize && styles.svgHidden]}
+      />
     </View>
   );
 };

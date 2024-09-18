@@ -380,6 +380,12 @@
     "header": "Je wallet heeft een saldo",
     "inputLabel": "Walletsaldo invoeren"
   },
+  "deleteAllData": {
+    "iCloudInfo": {
+      "desc": "Zolang je je back-up niet handmatig hebt verwijderd, is je wallet herstelbaar.",
+      "title": "Hierdoor wordt je iCloud-back-up niet verwijderd."
+    }
+  },
   "diagnostics": {
     "running": "Diagnose wordt uitgevoerd..."
   },
@@ -413,14 +419,52 @@
   "extension": {
     "_": {
       "off": "Uit",
-      "on": "Aan"
+      "on": "Aan",
+      "timeAbbr": {
+        "days": "dag",
+        "hours": "uur",
+        "minutes": "min.",
+        "months": "mnd",
+        "seconds": "sec.",
+        "weeks": "wk",
+        "years": "jr"
+      },
+      "unknown": "onbekend"
+    },
+    "alt": {
+      "proceduralWalletImage": "Procedurele wallet-afbeelding"
     },
     "ariaLabel": {
-      "icon": "Icon"
+      "icon": "Icon",
+      "iconButton": "Knop met pictogram",
+      "toggleSwitch": "Schakelaar"
     },
     "assets": {
       "logoAlt": "asset logo",
       "manageAssets": "Assets beheren"
+    },
+    "customNetwork": {
+      "addCustomNetwork": "Aangepast netwerk toevoegen",
+      "addNetwork": "Netwerk toevoegen",
+      "blockExplorerUrl": "URL naar block explorer",
+      "chainId": "Chain-ID",
+      "customNetwork": "Aangepast netwerk",
+      "customNetworks": "Aangepaste netwerken",
+      "decimals": "Decimalen",
+      "editCustomNetwork": "Aangepast netwerk bewerken",
+      "enterNetworkName": "Voer netwerknaam in",
+      "networkName": "Netwerknaam",
+      "remove": "Verwijderen",
+      "rpcUrl": "RPC URL",
+      "symbol": "Symbool",
+      "updateNetwork": "Netwerk bijwerken"
+    },
+    "enterPasswordDialog": {
+      "continue": "Doorgaan",
+      "currentPasswordAriaLabel": "Huidig wachtwoord",
+      "enterCurrentPassword": "Voer huidig wachtwoord in",
+      "enterToDecrypt": "Voer je huidige wachtwoord in om je herstelzin te zien",
+      "lockGraphicsAlternativeText": "Afbeeldingen vergrendelen"
     },
     "home": {
       "addWallet": "Wallet toevoegen",
@@ -433,8 +477,12 @@
       "hiddenAssets": "Verborgen assets",
       "manageAssets": "Assets beheren",
       "search": "Zoek naar meer dan 5000 assets",
+      "searchResults": "Zoekresultaten",
       "unhideAll": "Alles weergeven",
       "visibleAssets": "Zichtbare assets"
+    },
+    "manageWallets": {
+      "viewRecoveryPhrase": "Herstelzin bekijken"
     },
     "navigation": {
       "activity": "Activiteit",
@@ -446,6 +494,9 @@
       "addNfts": "Voeg NFT's toe aan je wallet",
       "send": "Verzenden"
     },
+    "onboarding_backup": {
+      "backUpWallet": "Backup-wallet"
+    },
     "onboarding": {
       "skip": "Overslaan",
       "typeYourSecretRecoveryPhrase": "Typ jouw geheime herstelzin",
@@ -455,7 +506,21 @@
       "receiveCryptoOrNft": "Ontvang crypto of NFT's"
     },
     "send": {
+      "amountInput": {
+        "balance": "Tegoed",
+        "errors": {
+          "exceedsBalance": "Ingevoerde bedrag overschrijd je tegoed",
+          "greaterThanZero": "Ingevoerde bedrag moet groter zijn dan 0",
+          "invalid": "Ingevoerde bedrag is ongeldig"
+        },
+        "label": "Hoeveelheid",
+        "placeholder": "Bedrag invoeren"
+      },
       "continue": "Doorgaan",
+      "networkFee": "Netwerkkosten",
+      "sending": {
+        "title": "Wordt verzonden"
+      },
       "sendingTo": {
         "search": "Selecteer wat je wilt versturen",
         "title": "Versturen naar"
@@ -472,7 +537,15 @@
     },
     "settings": {
       "build": "Stel {0} samen",
-      "changePassword": "Wachtwoord wijzigen",
+      "changePassword": {
+        "caption": "Voer wachtwoord in om je wallet te beveiligen en te vergrendelen",
+        "confirmPassword": "Bevestig wachtwoord",
+        "label": "Wachtwoord",
+        "menuItemTitle": "Wachtwoord wijzigen",
+        "setPassword": "Wachtwoord instellen",
+        "title": "Voer nieuw wachtwoord in",
+        "typePassword": "Voer wachtwoord in"
+      },
       "lockWallet": "Wallet vergrendelen",
       "privacy": "Privacy",
       "version": "Kraken Wallet-uitbreiding {0}",
@@ -694,6 +767,13 @@
     "continue": "Zin onthullen",
     "recovery_phrase": "geheime herstelzin",
     "skip": "Overslaan",
+    "skipWarning": {
+      "back": "Terug",
+      "checkOne": "Ik begrijp dat ik mijn wallet niet meer kan herstellen, als ik mijn telefoon verlies of de app verwijder zonder een back-up te maken.",
+      "checkTwo": "Ik begrijp dat ik alleen verantwoordelijk ben voor verlies van assets als gevolg van het niet maken van een back-up.",
+      "confirm": "Bevestigen",
+      "title": "Verdergaan zonder een back-up te maken van je wallet?"
+    },
     "subtitle": "je wallet",
     "title": "Back-up"
   },
@@ -778,6 +858,28 @@
     "title": "Verifieer of je de zin correct hebt opgeslagen",
     "verified": "Geverifieerd",
     "verify": "Verifiëren"
+  },
+  "onboardingImportCloudBackup": {
+    "desc": "Om je wallet vanuit een back-up te importeren, gebruik je de passkey om deze te ontsleutelen.",
+    "selection": {
+      "desc": "Je hebt meer dan één back-up gemaakt. Kies de back-up van de wallet die je wilt importeren",
+      "recent": "Meest recent",
+      "title": "Selecteer de back-up van de wallet die je wilt importeren"
+    },
+    "title": "Importeren vanuit back-up",
+    "usePasskey": "Mijn passkey gebruiken"
+  },
+  "onboardingImportMethod": {
+    "methodICloud": {
+      "desc": "Importeren vanuit een iCloud-back-up die je hebt gemaakt voor Kraken Wallet",
+      "title": "Importeren vanuit iCloud"
+    },
+    "methodManual": {
+      "desc": "Importeren met behulp van je Geheime Herstelzin van 12 tot 24 tekens",
+      "title": "Seed phrase invoeren"
+    },
+    "subtitle": "je wallet",
+    "title": "Importeren"
   },
   "onboardingImportWallet": {
     "caption": "Voer jouw geheime herstelzin in om je wallet te importeren.",
@@ -1070,7 +1172,8 @@
     "testnet": "Testnet",
     "testnetDescription": "Indien ingeschakeld, kun je je Testnet-netwerk en assets selecteren in het scherm assets beheren.",
     "view_list_of_connected_dapps": "Lijst met verbonden Dapps weergeven",
-    "wallets": "Wallets"
+    "wallets": "Wallets",
+    "walletsAndBackups": "Wallets en back-ups"
   },
   "storeReview": {
     "alertMessage": "We horen graag of je een geweldige ervaring hebt.",
@@ -1328,6 +1431,21 @@
     "backup": "Back-up",
     "backupYourWallet": "Maak een back-up van je wallet",
     "backupYourWalletDescription": "Zorg ervoor dat je jouw crypto kunt herstellen als je jouw apparaat verliest of naar een andere wallet overschakelt.",
+    "cloudWarning": {
+      "button": "Back-up met iCloud",
+      "desc": "Zorg ervoor dat je jouw wallet kan herstellen zelfs als je jouw geheime herstelzin verliest",
+      "title": "Back-up in de cloud aanbevolen"
+    },
+    "manualWarning": {
+      "button": "Manuele back-up",
+      "desc": "Zorg ervoor dat je jouw wallet kan herstellen zelfs als je jouw iCloud-accounttoegang verliest.",
+      "title": "Manuele back-up aanbevolen"
+    },
+    "secondaryBackup": {
+      "iCloud": "Voor een betere herstelbaarheid maak je een met een wachtwoord versleutelde back-up op iCloud. Versleuteling betekent dat zelfs Apple het niet kan zien",
+      "manual": "Maak voor een betere herstelbaarheid een handmatige back-up van je geheime herstelzin en bewaar deze op een veilige plek",
+      "title": "Een secundaire back-up aanmaken"
+    },
     "secretRecoveryPhrase": "Geheime herstelzin",
     "tapHereToView": "Tik hier om weer te geven"
   },
@@ -1335,6 +1453,98 @@
     "backUpNow": "Maak nu een back-up",
     "body": "Je hebt geen back-up gemaakt van je geheime herstelzin. We raden aan om een back-up te maken om te voorkomen dat je de toegang tot je geld verliest.",
     "header": "Maak een back-up voordat je geld ontvangt in deze wallet"
+  },
+  "walletBackupSelection": {
+    "backupManually": "Manuele back-up",
+    "backupManuallyCompleted": "Manuele back-up",
+    "backupWithICloud": "Back-up met iCloud",
+    "backupWithICloudCompleted": "Back-up gemaakt met iCloud",
+    "caption": "Als je geen back-up van je wallet maakt, bestaat het risico dat je jouw crypto verliest. We hebben geen toegang tot je herstelzin en kunnen niet helpen deze te herstellen zonder een back-up.",
+    "explainer": {
+      "desc": "Het verliezen van een geheime herstelzin is een typische manier waarop mensen hun crypto verliezen. Kraken Wallet minimaliseert dit risico door meer dan één veilige back-upmethode aan te bieden.",
+      "title": "Herstelbaarheid verhogen om de kans op verlies te verkleinen"
+    },
+    "iCloudDescCompletedShort": "Versleutelde geheime herstelzin",
+    "iCloudDescLong": "Versleutelen met een passkey en op iCloud opslaan",
+    "iCloudDescShort": "Versleutelen en op iCloud opslaan",
+    "manualBackupDescLong": "Manueel bewaren op een plek van jouw keuze",
+    "manualBackupDescShort": "Bewaren op een veilige plek van jouw keuze",
+    "manualBackupDescShortCompleted": "Ik heb deze op een veilige plek bewaard",
+    "prompt": "Zorg ervoor dat je altijd toegang hebt tot je wallet, zelfs als je jouw apparaat verliest.",
+    "recoverability": {
+      "desc": "Zou sterker kunnen",
+      "title": "Herstelbaarheid"
+    },
+    "skipButton": "Misschien later",
+    "subtitle": "je wallet",
+    "title": "Back-up",
+    "titleWithSubtitle": "Maak een back-up van je wallet",
+    "tooltip": {
+      "iCloud": "Een iCloud-back-up zorgt ervoor dat je jouw wallet nog steeds kan herstellen als je jouw geheime herstelzin verliest.",
+      "manual": "Een manuele back-up zorgt ervoor dat je jouw wallet nog steeds kan herstellen als je je toegang tot iCloud verliest of je apparaat kwijtraakt."
+    }
+  },
+  "walletCloudBackup": {
+    "createPasskey": "Passkey aanmaken",
+    "hints": {
+      "part1": "Veiliger dan een standaard wachtwoord",
+      "part2": "Versleuteld met behulp van biometrische gegevens of een beveiligingsapparaat",
+      "part3": "Door jou herstelbaar zelfs als je dit apparaat verliest"
+    },
+    "passkeyDescription": "Om je back-up te maken, versleutel deze met een passkey. Dit zorgt ervoor dat alleen jij je back-up kan herstellen. (Versleuteling zorgt ervoor dat zelfs Apple deze niet kan zien)",
+    "secureYourBackup": "Je back-up beveiligen",
+    "success": "Back-up gemaakt van je wallet op iCloud"
+  },
+  "walletCloudBackupDelete": {
+    "cancel": "Annuleren",
+    "caption": "Zorg ervoor dat je Geheime Herstelzin ergens veilig is bewaard, zodat je nog steeds je wallet kan herstellen indien je jouw apparaat verliest.",
+    "check1": "Ik begrijp dat als ik mijn telefoon verlies of de app verwijder, ik de geheime herstelzin nodig heb om mijn wallet te herstellen.",
+    "check2": "Ik bevestig dat ik mijn geheime herstelzin van 12 woorden op een veilige plaats heb opgeslagen.",
+    "delete": "Verwijderen",
+    "header": "Weet je zeker dat je deze back-up wilt verwijderen?",
+    "title": "Back-up verwijderen"
+  },
+  "walletCloudBackupError": {
+    "ensureICloudKeychainOn": "Controleer in de Wachtwoordopties van je apparaat of iCloud-sleutelhanger is ingeschakeld om te worden gebruikt voor wachtwoorden en passkeys:",
+    "errorCreatingBackup": {
+      "cancel": "Annuleren",
+      "description": "Er is iets fout gegaan bij het maken van een back-up.",
+      "title": "Fout bij het maken van back-up",
+      "tryAgainBold": "we ondersteunen het opslaan van back-ups op andere apparaten niet.",
+      "tryAgainButton": "Probeer opnieuw",
+      "tryAgainRegular": "Houd er bij het opnieuw proberen rekening mee dat "
+    },
+    "errorCreatingPasskey": {
+      "description": "Controleer in de Wachtwoordopties van je apparaat of iCloud-sleutelhanger is ingeschakeld om te worden gebruikt voor wachtwoorden en passkeys:",
+      "title": "Fout bij het aanmaken van passkey"
+    },
+    "errorDeletingPasskey": {
+      "title": "Fout bij het verwijderen van passkey"
+    },
+    "errorInactive": {
+      "description": "Als je meerdere passkeys hebt aangemaakt, kun je proberen een andere back-up te importeren. Anders kun je je wallet importeren met de geheime herstelzin van 12-24 woorden",
+      "subtitle": "Deze passkey is inactief, wat betekent dat hij afkomstig is van een back-up die je handmatig hebt verwijderd.",
+      "title": "Inactieve passkey"
+    },
+    "keychainSteps": {
+      "one": {
+        "bold": "Instellingen → Wachtwoorden → Wachtwoordopties",
+        "regular": "1. Ga naar: "
+      },
+      "two": {
+        "bold": "iCloud-sleutelhanger",
+        "regular": "2. Schakel in: "
+      }
+    },
+    "noPasskeyFound": {
+      "description": "We konden geen passkey vinden. Het is mogelijk dat je er geen hebt aangemaakt of dat iCloud-sleutelhanger is uitgeschakeld in de instellingen. Zorg ervoor dat iCloud-sleutelhanger is ingeschakeld door deze stappen te volgen:",
+      "title": "Geen passkey gevonden"
+    },
+    "supportHint": {
+      "link": "Kraken Wallet Support",
+      "regular": "Als dat je probleem niet oplost, kun je hulp krijgen door te gaan naar ",
+      "regularWithManualBackup": "Als dat je probleem niet oplost, kun je je geheime herstelzin van 12-24 woorden importeren of hulp krijgen door te gaan naar "
+    }
   },
   "walletConnect": {
     "account_not_found": "WalletConnect: account niet gevonden",
@@ -1350,6 +1560,7 @@
       "cancel": "Annuleren",
       "connect": "Verbinden"
     },
+    "back_to_dapp": "Ga terug naar de browser om verder te gaan",
     "failedToConnect": "De applicatie heeft geen verbinding gemaakt",
     "failedToDisconnect": "De applicatie heeft de verbinding niet verbroken",
     "feeEstimate": "Geschatte kosten",

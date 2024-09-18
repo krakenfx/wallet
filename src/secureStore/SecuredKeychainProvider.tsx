@@ -97,7 +97,7 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
         if (throwOnError) {
           throw e;
         } else {
-          return false as T extends true ? string : false;
+          return false as T extends true ? string : false; 
         }
       }
     },
@@ -114,7 +114,7 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
         if (throwOnError) {
           throw e;
         } else {
-          return false as T extends true ? ArrayBuffer : false;
+          return false as T extends true ? ArrayBuffer : false; 
         }
       }
     },

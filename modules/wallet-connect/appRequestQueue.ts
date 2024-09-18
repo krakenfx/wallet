@@ -1,3 +1,7 @@
+
+
+
+
 const appRequestQueue: (() => Promise<void>)[] = [];
 const appRequestState = { inProgress: false };
 export const enqueueAppRequest = (appRequest: () => Promise<void>) => {
@@ -23,6 +27,6 @@ const dequeueAppRequest = () => {
           dequeueAppRequest();
         });
       }
-    }, 2000);
+    }, 2000 );
   }
 };

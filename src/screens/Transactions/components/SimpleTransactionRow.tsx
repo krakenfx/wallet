@@ -34,6 +34,7 @@ export const SimpleTransactionRow = React.memo(
     const { assetAmount, appCurrencyValue, description, detailsAssetAmount, detailsAssetAmountInCurrency, title } = displayData;
 
     const transactionDetailsDisplayData = useSimpleTransactionDetailsDisplayData({
+      
       assetAmount: detailsAssetAmount === undefined ? assetAmount : detailsAssetAmount,
       appCurrencyValue: detailsAssetAmountInCurrency === undefined ? appCurrencyValue : detailsAssetAmountInCurrency,
       classifiedTx,
@@ -51,6 +52,7 @@ export const SimpleTransactionRow = React.memo(
       });
     }, [contextToken?.assetId, item.id, navigation, transactionDetailsDisplayData]);
 
+    
     const isTokenApproval = classifiedTx.type === TRANSACTION_TYPES.TOKEN_APPROVAL || classifiedTx.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED;
 
     return (

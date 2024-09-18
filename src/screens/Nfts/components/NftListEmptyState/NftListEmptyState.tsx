@@ -38,6 +38,7 @@ const TEXT_CONTENT = {
 
 export const NftListEmptyState = ({ nftList, networkFilter }: NftListEmptyStateProps) => {
   const { heading, subheading } = useMemo(() => {
+    
     if (networkFilter.length === 1 && networkFilter.includes(NETWORK_FILTERS.blast)) {
       return {
         heading: loc.nftList.everythingEmptyState.selectedNetworks.blastHeading,

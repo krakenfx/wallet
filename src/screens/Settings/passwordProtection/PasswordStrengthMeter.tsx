@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import calculateLevel from 'react-native-password-strength-meter/src/utils/calculate-level';
 import scorePassword from 'react-native-password-strength-meter/src/utils/score-password';
 
-import Animated, { FadeIn, FadeOut, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { Label } from '@/components/Label';
-import { ColorName, useTheme } from '@/theme/themes';
+import { ProgressBar } from '@/components/ProgressBar';
+import { ColorName } from '@/theme/themes';
 
 import { MIN_PASSWORD_CHARS } from './consts';
 
@@ -54,23 +55,7 @@ const levels: { bars: number; label: string; color: ColorName }[] = [
 ];
 
 export const PasswordStrengthMeter: React.FC<Props> = ({ password, containerStyle }) => {
-  const { colors } = useTheme();
-
   const currentLevel = calculateLevel(scorePassword(password, MIN_PASSWORD_CHARS, 100, patterns), levels);
-
-  const renderLevels = () => (
-    <View style={styles.row}>
-      {levels.map((l, i) => (
-        <LevelBar
-          isActive={l.bars <= currentLevel.bars}
-          isFirst={i === 0}
-          isLast={i === levels.length - 1}
-          inactiveColor={colors.light15}
-          activeColor={colors[currentLevel.color]}
-        />
-      ))}
-    </View>
-  );
 
   const hint = useMemo(() => {
     if (password.length < MIN_PASSWORD_CHARS) {
@@ -98,7 +83,7 @@ export const PasswordStrengthMeter: React.FC<Props> = ({ password, containerStyl
           {currentLevel.label}
         </Label>
       </View>
-      {renderLevels()}
+      <ProgressBar totalBars={levels.length} currentBar={currentLevel.bars} activeColor={currentLevel.color} />
       {currentLevel.bars < levels.length && (
         <Label type="regularBody" color="light50" style={styles.text}>
           {hint}
@@ -106,26 +91,6 @@ export const PasswordStrengthMeter: React.FC<Props> = ({ password, containerStyl
       )}
     </Animated.View>
   );
-};
-
-const LevelBar: React.FC<{
-  isFirst: boolean;
-  isLast: boolean;
-  isActive: boolean;
-  activeColor: string;
-  inactiveColor: string;
-}> = ({ isActive, isFirst, isLast, activeColor, inactiveColor }) => {
-  const active = useSharedValue(isActive);
-
-  useEffect(() => {
-    active.value = isActive;
-  }, [active, isActive]);
-
-  const backgroundStyle = useAnimatedStyle(() => ({
-    backgroundColor: withTiming(active.value ? activeColor : inactiveColor),
-  }));
-
-  return <Animated.View style={[styles.levelBar, isFirst && styles.levelFirstBar, isLast && styles.levelLastBar, backgroundStyle]} />;
 };
 
 const styles = StyleSheet.create({
@@ -138,21 +103,6 @@ const styles = StyleSheet.create({
   },
   levelMessage: {
     marginLeft: 12,
-  },
-  levelBar: {
-    flex: 1,
-    height: 7,
-    marginHorizontal: 2.5,
-  },
-  levelFirstBar: {
-    marginLeft: 0,
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
-  },
-  levelLastBar: {
-    marginRight: 0,
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
   },
   text: {
     marginLeft: 4,

@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { SvgIcon } from '@/components/SvgIcon';
+import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { useAccounts } from '@/realm/accounts';
-import { useIsWalletBackupDone } from '@/realm/settings/useIsWalletBackupDone';
 
 import { SettingsTextBadge } from '../components';
 
 export const ManageWalletsBadge = () => {
   const accounts = useAccounts();
-  const isWalletBackupDone = useIsWalletBackupDone();
+  const { isAnyBackupCompleted, isAnyBackupNeeded } = useWalletBackupSettings();
+
+  const icon = useMemo(() => {
+    if (!isAnyBackupCompleted) {
+      return <SvgIcon color="red400" name="error" />;
+    }
+    return <SvgIcon color={isAnyBackupNeeded ? 'light50' : 'green400'} name="check-circle-filled" />;
+  }, [isAnyBackupCompleted, isAnyBackupNeeded]);
 
   return (
     <View style={styles.container}>
-      {!isWalletBackupDone && <SvgIcon color="red400" name="error" style={styles.icon} />}
-      <SettingsTextBadge text={String(accounts.length)} isCircle />
+      {icon}
+      {accounts.length > 1 && <SettingsTextBadge text={String(accounts.length)} isCircle containerStyle={styles.accountBadge} />}
     </View>
   );
 };
@@ -24,7 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  icon: {
-    marginRight: 4,
+  accountBadge: {
+    marginLeft: 10,
   },
 });

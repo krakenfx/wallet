@@ -38,6 +38,7 @@ export const PushNotificationPrompt: React.FC<Props> = ({
   const subscribe = useCallback(async () => {
     const pn = PushNotifications.getInstance();
     try {
+      
       await pn.requestPermissions();
       onAllow();
     } catch (error) {
@@ -47,7 +48,7 @@ export const PushNotificationPrompt: React.FC<Props> = ({
     try {
       await pn.registerRemoteNotifications();
       await pn.saveTokenConfiguration();
-      await subscribeToNotifications();
+      await subscribeToNotifications(); 
       onSubscribed?.();
     } catch (error) {
       onError(error);

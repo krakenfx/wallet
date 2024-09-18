@@ -18,6 +18,8 @@ const onCopyToClipboard = (copiedString: string, text = loc._.copyToClipboard) =
   });
 };
 
+
+
 const SHOW_CHECKMARK_DURATION = 4300;
 
 type Props = {

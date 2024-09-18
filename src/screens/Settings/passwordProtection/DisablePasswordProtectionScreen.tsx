@@ -23,7 +23,7 @@ export const DisablePasswordProtectionScreen = ({ navigation }: SettingsNavigati
     async (password: string) => {
       try {
         setIsLoading(true);
-
+        
         if (seedEncrypted) {
           await decryptSeedWithUserPassword(password);
         }

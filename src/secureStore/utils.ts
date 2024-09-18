@@ -14,9 +14,8 @@ export async function encryptValue(value: string, password: string, encoding: En
   const encrypted = await encrypt(data, password, deviceID);
   if (encrypted instanceof Int8Array) {
     return arrayBufferToHexString(encrypted);
-  } else {
-    return encrypted;
   }
+  return encrypted;
 }
 
 export async function decryptValue(value: string, password: string, encoding: Encoding = 'hex'): Promise<string> {
@@ -25,9 +24,8 @@ export async function decryptValue(value: string, password: string, encoding: En
   const decrypted = await decrypt(data, password, deviceID);
   if (decrypted instanceof Int8Array) {
     return arrayBufferToHexString(decrypted);
-  } else {
-    return decrypted;
   }
+  return decrypted;
 }
 
 export async function encryptBuffer(value: Int8Array, password: string): Promise<Int8Array> {
@@ -35,9 +33,8 @@ export async function encryptBuffer(value: Int8Array, password: string): Promise
   const encrypted = await encrypt(value, password, deviceID);
   if (encrypted instanceof Int8Array) {
     return encrypted;
-  } else {
-    throw Error('Failed to encrypt');
   }
+  throw Error('Failed to encrypt');
 }
 
 export async function decryptBuffer(value: Int8Array, password: string): Promise<Int8Array> {
@@ -45,7 +42,6 @@ export async function decryptBuffer(value: Int8Array, password: string): Promise
   const decrypted = await decrypt(value, password, deviceID);
   if (decrypted instanceof Int8Array) {
     return decrypted;
-  } else {
-    throw Error('Failed to decrypt');
   }
+  throw Error('Failed to decrypt');
 }

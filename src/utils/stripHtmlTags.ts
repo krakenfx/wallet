@@ -4,6 +4,7 @@ const htmlEntities: { [key: string]: string } = {
   '&quot;': '"',
   '&lt;': '<',
   '&gt;': '>',
+  
 };
 export function stripHtmlTags(input: string): string {
   const textWithoutHtmlTags = input.replace(/<\/?[^>]+(>|$)/g, '');

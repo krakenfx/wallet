@@ -8,7 +8,9 @@ import { getAppLockSecret } from '@/secureStore';
 import { KeychainKey, getFromKeychain, setInKeychain } from '@/secureStore/keychain';
 import { decryptValue, encryptValue } from '@/secureStore/utils';
 
+
 export let isAuthenticating = false;
+
 
 const noStrongAuthCombination = Platform.OS === 'android' && Platform.Version < 30;
 
@@ -28,6 +30,7 @@ export async function biometricUnlock(useKeychain = true): Promise<boolean> {
   }
 }
 
+
 async function checkBiometrics(): Promise<boolean> {
   try {
     isAuthenticating = true;
@@ -46,10 +49,9 @@ async function checkBiometrics(): Promise<boolean> {
 export async function isBiometricEnabled(): Promise<boolean> {
   const value = await getFromKeychain(KeychainKey.isBiometricsEnabledKey);
   if (value) {
-    return JSON.parse(value);
-  } else {
-    return false;
+    return JSON.parse(value); 
   }
+  return false;
 }
 
 export const SECURITY_ENROLLED_NONE = 'SECURITY_ENROLLED_NONE';
@@ -69,12 +71,13 @@ export async function enableBiometrics() {
       const seed = await getFromKeychain(KeychainKey.seedBufferKey);
       const existingSecret = await getFromKeychain(KeychainKey.appLockSecretKey);
       if (existingSecret) {
+        
         throw Error('Secret already exists');
       }
       if (!!mnemonic && !!seed) {
         const encrypedSeed = await encryptValue(seed, appLockSecret);
         const encrypedMnemonic = await encryptValue(mnemonic, appLockSecret, 'utf8');
-
+        
         await setInKeychain(KeychainKey.appLockSecretKey, appLockSecret, true);
         await setInKeychain(KeychainKey.isBiometricsEnabledKey, 'true');
         await setInKeychain(KeychainKey.seedBufferKey, encrypedSeed);
@@ -102,7 +105,7 @@ export async function disableBiometrics() {
     const decrypedMnemonic = await decryptValue(mnemonic, appLockSecret, 'utf8');
     await setInKeychain(KeychainKey.seedBufferKey, decrypedSeed);
     await setInKeychain(KeychainKey.mnemonicKey, decrypedMnemonic);
-
+    
     await Keychain.resetGenericPassword({ service: KeychainKey.isBiometricsEnabledKey });
     await Keychain.resetGenericPassword({ service: KeychainKey.appLockSecretKey });
     return true;

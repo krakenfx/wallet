@@ -4,9 +4,8 @@ import { getBuildNumber, getVersion } from 'react-native-device-info';
 import { realmConfig } from '@/realm/realmSchema';
 import { useDeviceInfo } from '@/screens/DebugScreen';
 
+import gitInfo from '/git-info.json';
 import loc from '/loc';
-
-const gitInfo = require('/git-info.json');
 
 export const useDebugInfo = () => {
   const deviceInfo = useDeviceInfo();

@@ -6,6 +6,8 @@ import { DefaultBackButton } from '@/components/BackButton';
 import { RouteProps, Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 
+import { WalletCloudBackupDeleteScreen, WalletCloudBackupScreen } from '../WalletCloudBackup';
+
 import { AboutScreen } from './about';
 import { AdvancedSettingsScreen } from './AdvancedSettingsScreen';
 import { AppLockScreen } from './appLock';
@@ -16,7 +18,7 @@ import { DisablePasswordProtectionScreen, PasswordProtectionFormScreen, Password
 import { PrivacyScreen } from './PrivacyScreen';
 import { SettingsScreen } from './SettingsScreen';
 import { SupportScreen } from './support';
-import { SettingsBackupVerifyScreen, SettingsWalletBackupScreen } from './walletBackup';
+import { SettingsBackupVerifyScreen, SettingsWalletBackupMethodScreen, SettingsWalletBackupScreen } from './walletBackup';
 import { SettingsDisplaySeedScreen } from './walletBackup/SettingsDisplaySeedScreen';
 
 export type SettingsStackParams = {
@@ -32,6 +34,9 @@ export type SettingsStackParams = {
   DeleteAllDataWarningScreen: undefined;
   DisablePasswordProtection: undefined;
   SettingsWalletBackup: undefined;
+  SettingsWalletBackupMethod: undefined;
+  SettingsWalletCloudBackup: undefined;
+  SettingsWalletCloudBackupDelete: undefined;
   SettingsBackupVerify: undefined;
   SettingsDisplaySeed: undefined;
   Support: undefined;
@@ -56,6 +61,21 @@ export const SettingsRouter = () => {
         name={Routes.PasswordProtectionForm}
         component={PasswordProtectionFormScreen}
         options={PasswordProtectionFormScreen.navigationOptions(theme)}
+      />
+      <SettingsStack.Screen
+        name={Routes.SettingsWalletBackupMethod}
+        component={SettingsWalletBackupMethodScreen}
+        options={SettingsWalletBackupMethodScreen.navigationOptions(theme)}
+      />
+      <SettingsStack.Screen
+        name={Routes.SettingsWalletCloudBackup}
+        component={WalletCloudBackupScreen}
+        options={WalletCloudBackupScreen.navigationOptions(theme)}
+      />
+      <SettingsStack.Screen
+        name={Routes.SettingsWalletCloudBackupDelete}
+        component={WalletCloudBackupDeleteScreen}
+        options={WalletCloudBackupDeleteScreen.navigationOptions(theme)}
       />
       <SettingsStack.Screen
         name={Routes.SettingsWalletBackup}

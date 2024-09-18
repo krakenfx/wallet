@@ -1,10 +1,11 @@
 import React from 'react';
-import { InputAccessoryView, Keyboard, Platform, View } from 'react-native';
+import { InputAccessoryView, Keyboard, Platform, StyleSheet, View } from 'react-native';
 
-import loc from '../../../loc';
 import { useTheme } from '../../theme/themes';
 
 import { ButtonLink } from './ButtonLink';
+
+import loc from '/loc';
 
 export const DONE_BUTTON_MAX_HEIGHT = 44;
 
@@ -15,21 +16,23 @@ export const KeyboardDoneInputAccessoryView = () => {
     return null;
   }
 
-  const inputView = (
-    <View
-      style={{
-        backgroundColor: colors.iOSKeyboardAccessoryBg,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        maxHeight: DONE_BUTTON_MAX_HEIGHT,
-        width: '100%',
-      }}>
-      <ButtonLink title={loc._.done} testID="KeyboardDoneButton" onPress={Keyboard.dismiss} />
-    </View>
+  return (
+    <InputAccessoryView nativeID={KeyboardDoneInputAccessoryView.InputAccessoryViewID}>
+      <View style={[styles.view, { backgroundColor: colors.iOSKeyboardAccessoryBg }]}>
+        <ButtonLink title={loc._.done} testID="KeyboardDoneButton" onPress={Keyboard.dismiss} />
+      </View>
+    </InputAccessoryView>
   );
-
-  return <InputAccessoryView nativeID={KeyboardDoneInputAccessoryView.InputAccessoryViewID}>{inputView}</InputAccessoryView>;
 };
 
 KeyboardDoneInputAccessoryView.InputAccessoryViewID = 'KeyboardDoneInputAccessoryView';
+
+const styles = StyleSheet.create({
+  view: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    maxHeight: DONE_BUTTON_MAX_HEIGHT,
+    width: '100%',
+  },
+});

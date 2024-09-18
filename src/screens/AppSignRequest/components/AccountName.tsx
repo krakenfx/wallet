@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     flexShrink: 2,
   },
   label: {
-    minWidth: 100,
+    minWidth: 100, 
   },
 });

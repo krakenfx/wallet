@@ -17,7 +17,7 @@ import { formatTransactionValueAsNegativeOrPositive } from './formatTransactionV
 
 export const useNftAmounts = (classifiedTx: NFTTransactionData, item: RealmTransaction, contextToken: RealmToken, isGlobalView?: boolean) => {
   const { currency } = useAppCurrency();
-
+  
   const assetAmountFormatted = useMemo(() => {
     const formatted = formatNftAmount(classifiedTx.type, {
       currency,
@@ -39,17 +39,18 @@ export const useNftAmounts = (classifiedTx: NFTTransactionData, item: RealmTrans
     return formatTransactionValueAsNegativeOrPositive(formattedInAppCurrencyValue, classifiedTx.type);
   }, [assetAmountInCurrency, classifiedTx, currency]);
 
+  
   const tokenAmountAndNetworkFee = useMemo(() => {
     if (classifiedTx.type === TRANSACTION_TYPES.NFT_RECEIVE) {
       return classifiedTx?.paymentToken?.amount ?? item.fee ?? '0';
-    } else {
-      const paymentTokenAmount = classifiedTx?.paymentToken?.amount ?? '0';
-
-      const networkFee = isGlobalView ? '0' : item.fee ?? '0';
-      const transactionValue = BigNumber.sum(paymentTokenAmount, -networkFee).toFixed();
-
-      return transactionValue;
     }
+    
+    const paymentTokenAmount = classifiedTx?.paymentToken?.amount ?? '0';
+    
+    const networkFee = isGlobalView ? '0' : (item.fee ?? '0');
+    const transactionValue = BigNumber.sum(paymentTokenAmount, -networkFee).toFixed();
+
+    return transactionValue;
   }, [classifiedTx?.paymentToken?.amount, classifiedTx.type, isGlobalView, item.fee]);
   const assetAmountAndNetworkFeeFormatted = useMemo(
     () =>

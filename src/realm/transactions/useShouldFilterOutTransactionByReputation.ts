@@ -15,9 +15,11 @@ const shouldFilterOutTransactionByReputation = (
 ) => {
   if (filterInBlacklistedAssets && filterInUnverifiedAssets) {
     return false;
-  } else if (isSpam && !filterInBlacklistedAssets) {
+  }
+  if (isSpam && !filterInBlacklistedAssets) {
     return true;
-  } else if (classifiedTx.kind === 'simple' && classifiedTx.type === 'receive') {
+  }
+  if (classifiedTx.kind === 'simple' && classifiedTx.type === 'receive') {
     if ((!filterInBlacklistedAssets && reputation === REPUTATION.BLACKLISTED) || (!filterInUnverifiedAssets && reputation === REPUTATION.UNVERIFIED)) {
       return true;
     }

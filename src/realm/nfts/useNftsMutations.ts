@@ -31,11 +31,12 @@ export const useNftsMutations = () => {
       const latestIds = nfts.map(nft => nft.token);
       runInTransaction(() => {
         realm.delete(existingNfts.filtered('NOT assetId IN $0', latestIds));
-
+        
         const newData = nfts.filter(nft => !existingIds.has(nft.token) || nft.metadataType === 'raw');
         for (const data of newData) {
           const existingNft = realm.objectForPrimaryKey<RealmNft>(REALM_TYPE_NFT, data.token);
 
+          
           const shouldNotAutoArchive = !!existingNft && (existingNft.inGallery || existingNft.archivedAt || existingNft.metadata.isSpam);
 
           const archive =

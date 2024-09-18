@@ -16,6 +16,7 @@ const openENSDomains = (name: string) => {
   return () => Linking.openURL(`https://app.ens.domains/${name}`);
 };
 
+
 const openEtherscan = (collectionId: string, tokenId: string) => {
   return () => Linking.openURL(`https://etherscan.io/nft/${collectionId}/${tokenId}`);
 };
@@ -38,6 +39,8 @@ const openSolscan = (_: string, tokenId: string) => {
   return () => Linking.openURL(`https://solscan.io/token/${tokenId}`);
 };
 
+
+
 const openOpenseaEthereum = (collectionId: string, tokenId: string) => {
   return () => Linking.openURL(`https://opensea.io/assets/ethereum/${collectionId}/${tokenId}`);
 };
@@ -54,15 +57,21 @@ const openOpenseaBase = (collectionId: string, tokenId: string) => {
   return () => Linking.openURL(`https://opensea.io/assets/base/${collectionId}/${tokenId}`);
 };
 
+
 const openMagicEden = (_: string, tokenId: string) => {
   return () => Linking.openURL(`https://magiceden.io/item-details/${tokenId}`);
 };
+
 
 const openTensorSolana = (_: string, tokenId: string) => {
   return () => Linking.openURL(`https://www.tensor.trade/item/${tokenId}`);
 };
 
-type NFTLinkItemConfig = { label: string; onPress: Function; icon?: NonSmallIconName };
+type NFTLinkItemConfig = {
+  label: string;
+  onPress: /* eslint-disable @typescript-eslint/no-explicit-any */ (...args: any[]) => any;
+  icon?: NonSmallIconName;
+};
 export const configNftLinks: Record<
   WalletType,
   | {

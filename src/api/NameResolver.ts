@@ -55,9 +55,11 @@ export default class NameResolver {
   }
 
   isSuspicious(name: string) {
+    
     const spl = name.split('.');
     const namejoined = spl.slice(0, spl.length - 1).join('');
 
+    
     const isPrintableASCII = (string: string) => /^[\x20-\x7F]*$/.test(string);
 
     let theresPrintable = false;
@@ -72,6 +74,7 @@ export default class NameResolver {
     }
 
     if (theresPrintable && theresNonPrintable) {
+      
       return true;
     }
 

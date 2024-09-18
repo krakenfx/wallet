@@ -10,7 +10,7 @@ export const useTokensGalleryMutations = () => {
   const addTokenToGallery = useCallback(
     (token: RealmToken) => {
       realm.write(() => {
-        token.inGallery = true;
+        token.inGallery = 'manuallyAdded';
       });
     },
     [realm],
@@ -19,7 +19,7 @@ export const useTokensGalleryMutations = () => {
   const removeTokenFromGallery = useCallback(
     (token: RealmToken) => {
       realm.write(() => {
-        token.inGallery = false;
+        token.inGallery = 'manuallyRemoved';
       });
     },
     [realm],

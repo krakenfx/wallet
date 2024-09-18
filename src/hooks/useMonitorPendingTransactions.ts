@@ -2,7 +2,9 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { showToast } from '@/components/Toast';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { useTokensFetch } from '@/realm/tokens';
+import { useRealm } from '@/realm/RealmContext';
+import { checkTokenGalleryChange } from '@/realm/tokenPrice/utils';
+import { getTokenById, useTokensFetch, useTokensMutations } from '@/realm/tokens';
 import { RealmPendingTransaction, usePendingTransactions, useTransactionMutations } from '@/realm/transactions';
 
 import loc from '/loc';
@@ -13,7 +15,9 @@ export const useMonitorPendingTransactions = () => {
   const interval = useRef<NodeJS.Timer>();
   const pendingTransactions = usePendingTransactions();
   const { confirmPendingTransaction, dangerouslyCleanupConfirmedTransactions, invalidatePendingTransaction } = useTransactionMutations();
+  const { setTokenGalleryStatus } = useTokensMutations();
   const { fetchBalance } = useTokensFetch();
+  const realm = useRealm();
 
   const checkTransaction = useCallback(
     async (tx: RealmPendingTransaction) => {
@@ -39,11 +43,16 @@ export const useMonitorPendingTransactions = () => {
         const isConfirmed = await transport.getTransactionStatus(network, tx.transactionId);
         if (isConfirmed && tx.isValid()) {
           confirmPendingTransaction(id);
-          fetchBalance(tx.wallet, false);
+          await fetchBalance(tx.wallet, false);
+          const token = getTokenById(realm, tx.tokenId);
+          if (token) {
+            const galleryStatus = checkTokenGalleryChange(token, token.price);
+            setTokenGalleryStatus(token, galleryStatus);
+          }
         }
       }
     },
-    [confirmPendingTransaction, fetchBalance, invalidatePendingTransaction],
+    [confirmPendingTransaction, fetchBalance, invalidatePendingTransaction, realm, setTokenGalleryStatus],
   );
 
   useEffect(() => {

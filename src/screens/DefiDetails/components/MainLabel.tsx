@@ -63,6 +63,6 @@ export const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: -6,
+    marginBottom: -6, 
   },
 });

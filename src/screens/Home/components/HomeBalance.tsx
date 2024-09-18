@@ -19,7 +19,7 @@ import { WaitForAccountSwitchSettled } from './WaitForAccountSwitchSettled';
 
 import loc from '/loc';
 
-const UPDATE_BALANCE_DEBOUNCE = 2000;
+const UPDATE_BALANCE_DEBOUNCE = 2000; 
 
 export const HomeBalance = () => {
   const { setHideBalances } = useSettingsMutations();

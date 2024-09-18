@@ -7,6 +7,16 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
 import { ReputationInfo } from '@/components/Reputation';
+import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
+import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
+import { isNetworkCoin as isNetworkCoinCheck } from '@/onChain/wallets/registry';
+import { useAssetMarketData } from '@/realm/assetMarketData';
+import { useAssetMetadata } from '@/realm/assetMetadata';
+import { useTokenPrice } from '@/realm/tokenPrice';
+import { useTokenById } from '@/realm/tokens';
+import { useNetworkFeeEstimate } from '@/screens/Send/hooks/useNetworkFeeEstimate';
+
+import { NetworkFeeEstimate } from './NetworkFeeEstimate';
 import {
   AboutAsset,
   ContractAddress,
@@ -18,18 +28,9 @@ import {
   PercentageChange,
   PriceAndChangeSmallInfo,
   ReputationSmallOrMediumInfo,
-} from '@/components/TokenMarketData';
-import { SheetPosition } from '@/components/TokenMarketData/utils';
-import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
-import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
-import { isNetworkCoin as isNetworkCoinCheck } from '@/onChain/wallets/registry';
-import { useAssetMarketData } from '@/realm/assetMarketData';
-import { useAssetMetadata } from '@/realm/assetMetadata';
-import { useTokenPrice } from '@/realm/tokenPrice';
-import { useTokenById } from '@/realm/tokens';
-import { useNetworkFeeEstimate } from '@/screens/Send/hooks/useNetworkFeeEstimate';
+} from './TokenMarketData';
 
-import { NetworkFeeEstimate } from './NetworkFeeEstimate';
+import { SheetPosition } from './TokenMarketData/utils';
 
 export const SMALL_SHEET_MIN_HEIGHT = 88;
 
@@ -84,11 +85,11 @@ export const TokenMarketDataBottomSheet = ({ tokenId, onPositionChange, position
     () => {
       if (aIndex.value < 0.2) {
         return SheetPosition.SMALL;
-      } else if (aIndex.value > 1.2) {
-        return SheetPosition.HIGH;
-      } else {
-        return SheetPosition.MEDIUM;
       }
+      if (aIndex.value > 1.2) {
+        return SheetPosition.HIGH;
+      }
+      return SheetPosition.MEDIUM;
     },
     (newPos, prevPos) => {
       if (newPos === defaultSheetPosition) {

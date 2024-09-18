@@ -10,6 +10,7 @@ export const HomeHeaderLeft = () => {
 
 const styles = StyleSheet.create({
   icon: {
+    
     marginLeft: 27 - 18,
   },
 });

@@ -8,6 +8,7 @@ const transport = new BitcoinElectrumTransport();
 
 export { transport as electrumXTransport };
 
+
 export const hdSegwitBech32Network = new BitcoinNetwork({
   segwitType: 'p2wpkh',
   derivationPath: {
@@ -15,6 +16,7 @@ export const hdSegwitBech32Network = new BitcoinNetwork({
   },
   xpubPrefix: ZPUB_PREFIX,
   deriveAddress: hdNode => {
+    
     return bitcoin.payments.p2wpkh({
       pubkey: hdNode.publicKey,
     }).address!;
@@ -32,6 +34,7 @@ export const hdSegwitBech32Network = new BitcoinNetwork({
   },
 });
 
+
 export const hdLegacyP2PKHNetwork = new BitcoinNetwork({
   derivationPath: {
     purpose: '44',
@@ -45,6 +48,9 @@ export const hdLegacyP2PKHNetwork = new BitcoinNetwork({
   updatePsbtInput: async (wallet: WalletData, psbtInput, _inputUtxo) => {
     const txdataHex = null;
     if (!txdataHex) {
+      
+      
+      
       throw new Error('Legacy Transactions not supported');
     }
 

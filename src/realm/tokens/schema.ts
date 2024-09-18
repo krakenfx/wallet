@@ -11,7 +11,7 @@ export type Token = {
   assetId: string;
   walletId: string;
   balance: string;
-  inGallery?: boolean;
+  inGallery?: 'autoAdded' | 'manuallyAdded' | 'autoRemoved' | 'manuallyRemoved' | null;
 };
 
 export type RealmToken = RealmTypeOf<
@@ -33,7 +33,7 @@ export const TokenSchema: ObjectSchema = {
     assetId: 'string',
     walletId: 'string',
     balance: 'string',
-    inGallery: 'bool?',
+    inGallery: 'string?',
     price: {
       type: 'object',
       objectType: REALM_TYPE_TOKEN_PRICE,

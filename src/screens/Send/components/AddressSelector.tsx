@@ -140,7 +140,7 @@ export const AddressSelector: React.FC<Props> = React.memo(
       if (hasFocus) {
         return;
       }
-
+      
       const hasInvalidAddress = address && !networks.some(n => n.isAddressValid(address)) && !nameResolver.isValidName;
       const hasInvalidName = nameResolver.unresolved;
       if (hasInvalidAddress || hasInvalidName) {

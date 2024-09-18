@@ -6,6 +6,7 @@ import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
 import { isBtc } from '@/utils/isBtc';
 
+
 export const totalFeeToFiatString = (currency: Currency, fee?: TotalFee, wallet?: RealmishWallet, price?: number): string => {
   if (!fee || !wallet || !price) {
     return '';
@@ -25,8 +26,13 @@ export const totalFeeToFiatString = (currency: Currency, fee?: TotalFee, wallet?
   );
 };
 
+
 export function totalFeeToFiatStringSafe(currency: Currency, fee?: TotalFee, wallet?: RealmishWallet, price?: number) {
   if (!price && wallet && fee) {
+    
+    
+    
+    
     const { network } = getImplForWallet(wallet);
 
     if (network.nativeTokenCaipId === fee.token) {

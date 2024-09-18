@@ -51,12 +51,13 @@ export async function handleSessionRequestMessage({
   transport: EVMHarmonyTransport;
   verified: Verify.Context['verified'];
 }) {
+  
+  
   const [rawMessage, contractAddress]: [string, string] = (() => {
     if (method === WALLET_CONNECT_ETH_SIGN_TYPES.PERSONAL_SIGN) {
       return requestParams;
-    } else {
-      return [...requestParams].reverse();
     }
+    return [...requestParams].reverse();
   })();
   const genericMessage = adaptToGenericMessage(method, requestParams);
   const messageSimulationInput = adaptMessageToEVMMessageSimulationInput(method, genericMessage.rawMessage);
@@ -106,6 +107,7 @@ export async function handleSessionRequestMessage({
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
   } else {
+    
     web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
     return handleError('User rejected', 'ERROR_CONTEXT_PLACEHOLDER', { icon: 'plug-disconnected', text: loc.walletConnect.response_rejected });
   }

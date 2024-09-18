@@ -311,6 +311,7 @@ export interface components {
     };
     TokenPriceFiatValue: {
       source: string;
+      changePercentage24HR?: string;
       value: string;
     };
     TokenPriceV2: {
@@ -657,7 +658,7 @@ export interface components {
       content: components["schemas"]["TokenMetadataResponse"];
     };
     
-    TransactionCategory: "send" | "receive" | "token_receive" | "token_send" | "token_swap" | "nft_sale" | "nft_purchase" | "nft_send" | "nft_receive" | "airdrop" | "mint" | "deposit" | "withdraw" | "contract_interaction";
+    TransactionCategory: "send" | "receive" | "token_receive" | "token_send" | "token_swap" | "nft_sale" | "nft_purchase" | "nft_send" | "nft_receive" | "airdrop" | "mint" | "deposit" | "withdraw" | "approve" | "revoke" | "contract_interaction";
     
     Transaction: {
       protocolInfo?: {

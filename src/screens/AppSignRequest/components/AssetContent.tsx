@@ -39,21 +39,20 @@ export const AssetContent = ({ content }: Props) => {
         )}
       />
     );
-  } else {
-    return (
-      <>
-        {content.assetContent.map(({ assetAmount, assetFiatAmount, assetNetwork, assetSymbol }, i) => {
-          return (
-            <TransactionAmount
-              assetAmount={assetAmount}
-              assetFiatAmount={assetFiatAmount}
-              assetNetwork={assetNetwork}
-              assetSymbol={assetSymbol}
-              key={`${i}:${assetNetwork}:${assetSymbol}`}
-            />
-          );
-        })}
-      </>
-    );
   }
+  return (
+    <>
+      {content.assetContent.map(({ assetAmount, assetFiatAmount, assetNetwork, assetSymbol }, i) => {
+        return (
+          <TransactionAmount
+            assetAmount={assetAmount}
+            assetFiatAmount={assetFiatAmount}
+            assetNetwork={assetNetwork}
+            assetSymbol={assetSymbol}
+            key={`${i}:${assetNetwork}:${assetSymbol}`}
+          />
+        );
+      })}
+    </>
+  );
 };

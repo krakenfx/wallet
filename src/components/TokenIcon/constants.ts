@@ -1,0 +1,2 @@
+export const NETWORK_ICON_TO_TOKEN_RATIO = 2 / 5;
+export const NETWORK_ICON_BORDER_TO_TOKEN_RATIO = 1 / 20;

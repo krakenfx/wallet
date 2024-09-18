@@ -1,3 +1,4 @@
+
 import Realm from 'realm';
 
 import { REALM_TYPE_WALLET_ADDRESS_CACHE, REALM_TYPE_WALLET_STATE, WalletAddressCacheItem, WalletState } from '@/realm/wallets';
@@ -10,6 +11,7 @@ export interface IWalletStorage<T> {
   state: T;
   getAddress(derivationPath: string, creatorFunc: () => Promise<string>): Promise<string>;
 }
+
 
 export class WalletStorage<T> implements IWalletStorage<T> {
   constructor(private realm: Realm, public state: T, private walletId: string) {}
@@ -47,6 +49,7 @@ export async function getWalletStorage<T>(realm: Realm, wallet: RealmishWallet, 
   return storageInterface;
 }
 
+
 export async function refreshWalletState<T>(wallet: RealmishWallet, realm: Realm, store: WalletStorage<T>): Promise<void> {
   let newState: T;
   try {
@@ -59,6 +62,7 @@ export async function refreshWalletState<T>(wallet: RealmishWallet, realm: Realm
     throw e;
   }
 
+  
   realm.write(() => {
     realm.create<WalletState>(
       REALM_TYPE_WALLET_STATE,

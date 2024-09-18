@@ -14,7 +14,7 @@ export type VOut = {
     hex: string;
     reqSigs: number;
     type: string;
-  } & ({ addresses: string[] } | { address: string } | {});
+  } & ({ addresses: string[] } | { address: string } | Record<string, never>);
 };
 
 type Transaction = {
@@ -40,6 +40,7 @@ type Transaction = {
 };
 
 export function getBalanceByAddress(address: string): Promise<{ confirmed: number; unconfirmed: number }>;
+
 
 export function multiGetTransactionByTxid(txIds: string[], batchsize: number = 45, verbose: true = true): Promise<Record<string, Transaction>>;
 export function multiGetTransactionByTxid(txIds: string[], batchsize: number, verbose: false): Promise<Record<string, string>>;

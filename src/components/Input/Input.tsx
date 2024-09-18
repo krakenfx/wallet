@@ -22,6 +22,7 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   inputWrapperStyle?: StyleProp<TextStyle>;
   inputStyle?: StyleProp<TextStyle>;
   shrinkInput?: boolean;
+  transparent?: boolean;
   type?: TypographyKey;
   placeholderType?: TypographyKey;
   testID?: string;
@@ -29,7 +30,6 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   hideDoneAccessoryView?: boolean;
   errorText?: string;
   errorMessageTestID?: string;
-  transparent?: boolean;
   borderColorOnFocus?: ColorName;
   borderColorOnBlur?: ColorName;
   backgroundColor?: ColorName;
@@ -70,6 +70,7 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
       hideDoneAccessoryView,
       placeholderType,
       placeholder,
+      textAlign,
       ...props
     },
     ref,
@@ -104,7 +105,7 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
         selectionColor={colors.kraken}
         cursorColor={colors.kraken}
         autoCorrect={false}
-        textAlign={props.transparent ? 'center' : 'left'}
+        textAlign={textAlign}
         testID={inputTestID}
         inputAccessoryViewID={!hideDoneAccessoryView ? KeyboardDoneInputAccessoryView.InputAccessoryViewID : undefined}
         {...props}

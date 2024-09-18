@@ -7,6 +7,7 @@ import { ActivityIndicator } from '@/components/ActivityIndicator/ActivityIndica
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientMask } from '@/components/Gradients';
 import { SvgIcon } from '@/components/SvgIcon';
+import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
@@ -23,6 +24,8 @@ export const OnboardingIntroScreen = ({ navigation }: OnboardingNavigationProps<
   const { createWallet } = useCreateWallet();
   const [createWalletState, setCreateWalletState] = useState<CreateWalletState>();
   const [animationFinished, setAnimationFinished] = useState<boolean>(false);
+
+  const { isCloudBackupSupported } = useWalletBackupSettings();
 
   const insets = useSafeAreaInsets();
 
@@ -50,8 +53,8 @@ export const OnboardingIntroScreen = ({ navigation }: OnboardingNavigationProps<
   };
 
   const onImportWalletButtonPressed = useCallback(() => {
-    navigation.navigate(Routes.OnboardingImportWallet);
-  }, [navigation]);
+    navigation.navigate(isCloudBackupSupported ? Routes.OnboardingImportMethodSelection : Routes.OnboardingImportWallet);
+  }, [isCloudBackupSupported, navigation]);
 
   return (
     <View style={styles.container} testID="OnboardingIntroScreen">

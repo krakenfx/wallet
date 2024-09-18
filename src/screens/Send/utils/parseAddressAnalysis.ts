@@ -10,12 +10,14 @@ const getWarning = (group: Record<AddressAnalysisWarning['severity'], AddressAna
       severity: 'CRITICAL',
       message: collapseWarningsToMessage(group.CRITICAL),
     };
-  } else if (group.WARNING?.length) {
+  }
+  if (group.WARNING?.length) {
     return {
       severity: 'WARNING',
       message: collapseWarningsToMessage(group.WARNING),
     };
-  } else if (group.INFO?.length) {
+  }
+  if (group.INFO?.length) {
     return {
       severity: 'INFO',
       message: collapseWarningsToMessage(group.INFO),

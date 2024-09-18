@@ -19,6 +19,7 @@ export type LanguageTag = (typeof languages)[number]['tag'];
 
 type BackendSupportedLanguages = 'en' | 'de' | 'es' | 'fr' | 'it' | 'pt' | 'ru' | 'vi';
 
+
 export const getIanaLanguage = (): BackendSupportedLanguages => {
   switch (getCurrentLanguage()) {
     case 'en-US':
@@ -58,6 +59,7 @@ const config = {
   'uk-UA': uk_UA,
   'vi-VN': vi_VN,
 } satisfies Partial<Record<LanguageTag, object>>;
+
 
 export const loc = new Localization<StringsJSON>(config as Record<LanguageTag, StringsJSON>);
 

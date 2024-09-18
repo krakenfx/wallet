@@ -9,8 +9,8 @@ import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
 import { REALM_TYPE_TOKEN, RealmToken } from '../tokens';
 
-import { useIsTokenRelevant } from './isTokenRelevant';
 import { REALM_TYPE_TOKEN_PRICE, RealmTokenPrice } from './schema';
+import { checkTokenGalleryChange } from './utils';
 
 import { handleError } from '/helpers/errorHandler';
 
@@ -18,26 +18,28 @@ export const useTokenPriceFetch = () => {
   const realm = useRealm();
   const { runInTransaction } = useRealmTransaction();
   const isFetching = useRef<boolean>(false);
-  const isTokenRelevant = useIsTokenRelevant();
   const currentAccountNumber = useCurrentAccountNumber();
 
-  const fetchRelevantTokenPrices = useCallback(async (): Promise<boolean> => {
+  const fetchTokenPrices = useCallback(async (): Promise<boolean> => {
     if (isFetching.current) {
       return true;
     }
     isFetching.current = true;
     const tokens = realm.objects<RealmToken>(REALM_TYPE_TOKEN).filtered('wallet.accountIdx == $0', [currentAccountNumber]);
-    const relevantTokens = tokens.filter(isTokenRelevant);
-    const results = await Promise.allSettled(relevantTokens.map(token => fetchPriceForToken(token.assetId)));
+    const results = await Promise.allSettled(tokens.map(token => fetchPriceForToken(token.assetId)));
     const fetchedPrices = results.filter(isPromiseFulfilled).map(({ value }) => value);
 
     runInTransaction(() => {
       for (const priceOutput of fetchedPrices) {
         const price = realm.create<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE, priceOutput, Realm.UpdateMode.Modified);
-        relevantTokens
+        tokens
           .filter(t => t.assetId === priceOutput.assetId)
           .forEach(token => {
             token.price = price;
+            const galleryStatus = checkTokenGalleryChange(token, price);
+            if (galleryStatus) {
+              token.inGallery = galleryStatus;
+            }
           });
       }
     });
@@ -46,9 +48,9 @@ export const useTokenPriceFetch = () => {
     isFetching.current = false;
 
     return results.length === fetchedPrices.length;
-  }, [currentAccountNumber, isTokenRelevant, realm, runInTransaction]);
+  }, [currentAccountNumber, realm, runInTransaction]);
 
   return {
-    fetchRelevantTokenPrices,
+    fetchTokenPrices,
   };
 };

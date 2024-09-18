@@ -4,25 +4,20 @@ import { StyleSheet, View } from 'react-native';
 import { Label } from '@/components/Label';
 import { TokenIcon } from '@/components/TokenIcon';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { useResolvedAssetBalance, useTokenById } from '@/realm/tokens';
-import { useRealmWalletById } from '@/realm/wallets';
-import { AssetBalanceId } from '@/types';
+import type { RealmToken } from '@/realm/tokens';
+import { RealmWallet } from '@/realm/wallets';
 import { getLabelName } from '@/utils/getLabelName';
 import { getWalletName } from '@/utils/getWalletName';
 
 import loc from '/loc';
 
 interface CoinHeaderProps {
-  assetBalanceId?: AssetBalanceId;
-  tag?: JSX.Element;
+  wallet: RealmWallet | null;
+  token?: RealmToken;
   text?: string;
 }
 
-export const CoinHeader = ({ assetBalanceId, text, tag }: CoinHeaderProps) => {
-  const [walletId, _, tokenId] = useResolvedAssetBalance(assetBalanceId);
-  const token = useTokenById(tokenId);
-  const wallet = useRealmWalletById(walletId);
-
+export const CoinHeader = ({ wallet, token, text }: CoinHeaderProps) => {
   if (!wallet) {
     return null;
   }
@@ -32,7 +27,7 @@ export const CoinHeader = ({ assetBalanceId, text, tag }: CoinHeaderProps) => {
 
   return (
     <View style={styles.container}>
-      {!!token && <TokenIcon size={32} wallet={wallet} tokenId={token.assetId} tokenSymbol={token.metadata.symbol} />}
+      {token && <TokenIcon size={32} wallet={wallet} tokenId={token.assetId} tokenSymbol={token.metadata.symbol} />}
       <View style={styles.titleContainer}>
         <View style={styles.titleHeaderContainer}>
           {(text || titleName) && (
@@ -45,9 +40,8 @@ export const CoinHeader = ({ assetBalanceId, text, tag }: CoinHeaderProps) => {
                 : titleName}
             </Label>
           )}
-          {tag}
         </View>
-        {!text && !!token && (
+        {!text && Boolean(token) && (
           <Label type="regularCaption1" color="light50">
             {networkName} network
           </Label>

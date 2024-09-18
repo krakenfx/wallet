@@ -380,6 +380,12 @@
     "header": "Sua carteira tem saldo",
     "inputLabel": "Insira o saldo da carteira"
   },
+  "deleteAllData": {
+    "iCloudInfo": {
+      "desc": "Desde que você não tenha excluído manualmente seu backup, sua carteira poderá ser recuperada.",
+      "title": "Isso não excluirá seu backup do iCloud."
+    }
+  },
   "diagnostics": {
     "running": "Executando diagnósticos..."
   },
@@ -413,14 +419,52 @@
   "extension": {
     "_": {
       "off": "Desligado",
-      "on": "Ligado"
+      "on": "Ligado",
+      "timeAbbr": {
+        "days": "dia",
+        "hours": "h",
+        "minutes": "min.",
+        "months": "mês",
+        "seconds": "seg.",
+        "weeks": "wk",
+        "years": "ano"
+      },
+      "unknown": "desconhecido"
+    },
+    "alt": {
+      "proceduralWalletImage": "Imagem de carteira processual"
     },
     "ariaLabel": {
-      "icon": "Ícone"
+      "icon": "Ícone",
+      "iconButton": "Botão com ícone",
+      "toggleSwitch": "Interruptor de alternância"
     },
     "assets": {
       "logoAlt": "logotipo do ativo",
       "manageAssets": "Gerenciar ativos"
+    },
+    "customNetwork": {
+      "addCustomNetwork": "Adicionar rede personalizada",
+      "addNetwork": "Adicionar rede",
+      "blockExplorerUrl": "Bloquear URL do Explorer",
+      "chainId": "ID da cadeia",
+      "customNetwork": "Rede personalizada",
+      "customNetworks": "Redes personalizadas",
+      "decimals": "Decimais",
+      "editCustomNetwork": "Editar rede personalizada",
+      "enterNetworkName": "Inserir nome da rede",
+      "networkName": "Nome da rede",
+      "remove": "Remover",
+      "rpcUrl": "URL RPC",
+      "symbol": "Símbolo",
+      "updateNetwork": "Atualizar rede"
+    },
+    "enterPasswordDialog": {
+      "continue": "Continuar",
+      "currentPasswordAriaLabel": "Senha atual",
+      "enterCurrentPassword": "Inserir senha atual",
+      "enterToDecrypt": "Insira sua senha atual para visualizar a frase de recuperação",
+      "lockGraphicsAlternativeText": "Bloquear gráficos"
     },
     "home": {
       "addWallet": "Adicionar carteira",
@@ -433,8 +477,12 @@
       "hiddenAssets": "Ativos ocultos",
       "manageAssets": "Gerenciar ativos",
       "search": "Pesquise mais de 5.000 ativos",
+      "searchResults": "Resultado das pesquisas",
       "unhideAll": "Reexibir tudo",
       "visibleAssets": "Ativos visíveis"
+    },
+    "manageWallets": {
+      "viewRecoveryPhrase": "Visualizar frase de recuperação"
     },
     "navigation": {
       "activity": "Atividade",
@@ -446,6 +494,9 @@
       "addNfts": "Adicionar NFTs a sua carteira",
       "send": "Enviar"
     },
+    "onboarding_backup": {
+      "backUpWallet": "Fazer cópia de segurança da carteira"
+    },
     "onboarding": {
       "skip": "Pular",
       "typeYourSecretRecoveryPhrase": "Digite sua frase secreta de recuperação",
@@ -455,7 +506,21 @@
       "receiveCryptoOrNft": "Receber cripto ou NFTs"
     },
     "send": {
+      "amountInput": {
+        "balance": "Saldo",
+        "errors": {
+          "exceedsBalance": "O valor inserido excede seu saldo",
+          "greaterThanZero": "O valor inserido deve ser maior que 0",
+          "invalid": "O valor inserido é inválido"
+        },
+        "label": "Valor",
+        "placeholder": "Insira um valor"
+      },
       "continue": "Continuar",
+      "networkFee": "Taxa de rede",
+      "sending": {
+        "title": "Enviando"
+      },
       "sendingTo": {
         "search": "Selecione o que você deseja enviar",
         "title": "Enviando para"
@@ -472,7 +537,15 @@
     },
     "settings": {
       "build": "Versão {0}",
-      "changePassword": "Alterar senha",
+      "changePassword": {
+        "caption": "Inserir senha para bloquear e manter sua carteira segura",
+        "confirmPassword": "Confirmar senha",
+        "label": "Senha",
+        "menuItemTitle": "Alterar senha",
+        "setPassword": "Definir senha",
+        "title": "Insira sua nova senha",
+        "typePassword": "Digitar senha"
+      },
       "lockWallet": "Bloquear carteira",
       "privacy": "Privacidade",
       "version": "Extensão da Kraken Wallet {0}",
@@ -694,6 +767,13 @@
     "continue": "Revelar frase",
     "recovery_phrase": "frase secreta de recuperação",
     "skip": "Pular",
+    "skipWarning": {
+      "back": "Voltar",
+      "checkOne": "Eu entendo que se eu perder meu telefone ou excluir o aplicativo sem fazer o backup, não será possível recuperar minha carteira.",
+      "checkTwo": "Eu entendo que sou o único responsável por qualquer perda de ativos resultante de não realizar um backup de recuperação.",
+      "confirm": "Confirmar",
+      "title": "Continuar sem fazer o backup da sua carteira?"
+    },
     "subtitle": "sua carteira",
     "title": "Cópia de segurança"
   },
@@ -778,6 +858,28 @@
     "title": "Verifique se você salvou corretamente",
     "verified": "Verificado",
     "verify": "Verificar"
+  },
+  "onboardingImportCloudBackup": {
+    "desc": "Para importar sua carteira do backup, use sua chave de acesso para descriptografar.",
+    "selection": {
+      "desc": "Você criou mais de um backup. Escolha o backup da carteira que você deseja importar",
+      "recent": "Mais recente",
+      "title": "Selecione o backup da carteira que deseja importar"
+    },
+    "title": "Importar do backup",
+    "usePasskey": "Usar minha chave de acesso"
+  },
+  "onboardingImportMethod": {
+    "methodICloud": {
+      "desc": "Importar de um backup iCloud que você criou para a Kraken Wallet",
+      "title": "Importar do iCloud"
+    },
+    "methodManual": {
+      "desc": "Importar usando sua frase secreta de recuperação de 12-24 palavras",
+      "title": "Insira a seed phrase"
+    },
+    "subtitle": "sua carteira",
+    "title": "Importar"
   },
   "onboardingImportWallet": {
     "caption": "Digite sua frase secreta de recuperação para importar sua carteira.",
@@ -1070,7 +1172,8 @@
     "testnet": "Rede de teste",
     "testnetDescription": "Ao ativar, selecione a rede de testes e ativos na tela de gerenciamento de ativos.",
     "view_list_of_connected_dapps": "Visualizar lista de DApps conectados",
-    "wallets": "Carteiras"
+    "wallets": "Carteiras",
+    "walletsAndBackups": "Carteiras e backups"
   },
   "storeReview": {
     "alertMessage": "Adoraríamos saber se você está aproveitando a experiência.",
@@ -1328,6 +1431,21 @@
     "backup": "Cópia de segurança",
     "backupYourWallet": "Faça uma cópia de segurança de sua carteira",
     "backupYourWalletDescription": "Você pode recuperar a criptografia caso perca seu dispositivo ou mude para outra carteira.",
+    "cloudWarning": {
+      "button": "Fazer backup com iCloud",
+      "desc": "Certifique-se de que você poderá recuperar sua carteira mesmo que você perca sua frase secreta de recuperação",
+      "title": "Recomenda-se o backup na nuvem"
+    },
+    "manualWarning": {
+      "button": "Fazer backup manualmente",
+      "desc": "Certifique-se de que você poderá recuperar sua carteira mesmo que você perca seu acesso à conta iCloud.",
+      "title": "Recomenda-se o backup manual"
+    },
+    "secondaryBackup": {
+      "iCloud": "Para maiores chances de recuperação, crie uma cópia de segurança criptografada com senha no iCloud. Criptografia significa que nem mesmo a Apple pode vê-la",
+      "manual": "Para maiores chances de recuperação, crie um backup manual da sua frase secreta de recuperação para manter em um local seguro",
+      "title": "Crie um backup secundário"
+    },
     "secretRecoveryPhrase": "Frase secreta de recuperação",
     "tapHereToView": "Toque aqui para visualizar"
   },
@@ -1335,6 +1453,98 @@
     "backUpNow": "Fazer backup agora",
     "body": "Você não fez backup da sua frase secreta de recuperação. Recomendamos fazer backup para evitar perder acesso ao seus fundos.",
     "header": "Faça o backup antes de receber os fundos nesta carteira"
+  },
+  "walletBackupSelection": {
+    "backupManually": "Fazer backup manualmente",
+    "backupManuallyCompleted": "Backup manualmente concluído com sucesso",
+    "backupWithICloud": "Fazer backup com iCloud",
+    "backupWithICloudCompleted": "Backup feito com iCloud",
+    "caption": "Se você não fizer o backup da sua carteira, você corre o risco de perder suas criptomoedas. Nós não temos acesso à sua frase de recuperação e não poderemos ajudá-lo a recuperá-la sem um backup.",
+    "explainer": {
+      "desc": "A forma mais comum de perder suas criptomoedas é perder a frase secreta de recuperação. A Kraken Wallet minimiza o risco ao oferecer mais de um método de backup de segurança.",
+      "title": "Aumente a chance de recuperação para reduzir a chance de perdas"
+    },
+    "iCloudDescCompletedShort": "Sua frase secreta de recuperação criptografada",
+    "iCloudDescLong": "Criptografar com uma chave de acesso e armazenar no iCloud",
+    "iCloudDescShort": "Criptografar e armazenar no iCloud",
+    "manualBackupDescLong": "Salvar manualmente em um local seguro de sua escolha",
+    "manualBackupDescShort": "Salvar em um local seguro de sua escolha",
+    "manualBackupDescShortCompleted": "Salvei em um local seguro",
+    "prompt": "Certifique-se que de é capaz de acessar sua carteira mesmo que perca seu dispositivo.",
+    "recoverability": {
+      "desc": "Deve ser mais forte",
+      "title": "Chances de recuperação"
+    },
+    "skipButton": "Talvez mais tarde",
+    "subtitle": "sua carteira",
+    "title": "Cópia de segurança",
+    "titleWithSubtitle": "Faça uma cópia de segurança de sua carteira",
+    "tooltip": {
+      "iCloud": "Um backup no iCloud garante que você ainda possa recuperar sua carteira mesmo que perca sua frase secreta de recuperação.",
+      "manual": "Um backup manual garante que você ainda possa recuperar sua carteira mesmo que perca o acesso no iCloud ou o seu dispositivo."
+    }
+  },
+  "walletCloudBackup": {
+    "createPasskey": "Criar uma chave de acesso",
+    "hints": {
+      "part1": "Mais seguro do que senhas padrão",
+      "part2": "Criptografado usando biometria ou dispositivo de segurança",
+      "part3": "Você pode recuperar mesmo perdendo este dispositivo"
+    },
+    "passkeyDescription": "Para criar seu backup, criptografe usando uma chave de acesso. Isso assegura que apenas você possa restaurar o backup. (A criptografia assegura que mesmo a Apple não veja)",
+    "secureYourBackup": "Proteja seu backup",
+    "success": "Backup da carteira realizado com sucesso no iCloud"
+  },
+  "walletCloudBackupDelete": {
+    "cancel": "Cancelar",
+    "caption": "Assegure-se de salvar suas Frases secretas de recuperação em local seguro para que você ainda possa recuperar sua carteira, caso perca seu dispositivo.",
+    "check1": "Estou ciente de que, se perder meu telefone ou excluir o aplicativo, precisarei da frase secreta de recuperação para restaurar minha carteira.",
+    "check2": "Confirmo que salvei minha frase secreta da recuperação de 12 palavras em um lugar seguro.",
+    "delete": "Excluir",
+    "header": "Tem certeza de que deseja excluir este backup?",
+    "title": "Excluir backup"
+  },
+  "walletCloudBackupError": {
+    "ensureICloudKeychainOn": "Nas opções de senha do seu dispositivo, certifique-se de manter o iCloud Keychain ativado para ser usado para senhas e chaves de acesso:",
+    "errorCreatingBackup": {
+      "cancel": "Cancelar",
+      "description": "Ocorreu algum erro ao tentar criar um backup.",
+      "title": "Erro ao criar backup",
+      "tryAgainBold": "não é possível salvar o backup em outros dispositivos.",
+      "tryAgainButton": "Tentar novamente",
+      "tryAgainRegular": "Ao tentar novamente, lembre-se que "
+    },
+    "errorCreatingPasskey": {
+      "description": "Nas opções de senha do seu dispositivo, certifique-se de manter o iCloud Keychain ativado para ser usado para senhas e chaves de acesso:",
+      "title": "Erro ao criar chave de acesso"
+    },
+    "errorDeletingPasskey": {
+      "title": "Erro ao excluir chave de acesso"
+    },
+    "errorInactive": {
+      "description": "Caso você tenha criado diversas chaves de acesso, tente importar outro backup. Caso contrário, não será possível importar sua carteira usando a frase secreta de recuperação de 12 a 24 palavras",
+      "subtitle": "Esta chave de acesso está inativa, o que significa que provém de um backup excluído manualmente.",
+      "title": "Chave de acesso inativa"
+    },
+    "keychainSteps": {
+      "one": {
+        "bold": "Configurações → Senhas → Opções de senha",
+        "regular": "1. Acesse: "
+      },
+      "two": {
+        "bold": "iCloud Keychain",
+        "regular": "2. Ative: "
+      }
+    },
+    "noPasskeyFound": {
+      "description": "Não foi possível localizar a chave de acesso. É possível que você ainda não tenha criado, ou o iCloud Keychain esteja desativado nas configurações. Certifique-se de manter o iCloud Keychain ativado seguindo essas etapas a seguir:",
+      "title": "Nenhuma chave de acesso encontrada"
+    },
+    "supportHint": {
+      "link": "Suporte Kraken Wallet ↗",
+      "regular": "Se isso não funcionar, você pode obter ajuda acessando ",
+      "regularWithManualBackup": "Se isso não funcionar, você pode importar sua frase secreta de recuperação de 12 a 24 palavras ou pode obter ajuda acessando "
+    }
   },
   "walletConnect": {
     "account_not_found": "WalletConnect: conta não encontrada",
@@ -1350,6 +1560,7 @@
       "cancel": "Cancelar",
       "connect": "Conectar"
     },
+    "back_to_dapp": "Retorne ao navegador para continuar",
     "failedToConnect": "O aplicativo não conectou",
     "failedToDisconnect": "O aplicativo não desconectou",
     "feeEstimate": "Taxa estimada",

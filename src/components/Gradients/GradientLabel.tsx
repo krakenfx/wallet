@@ -10,6 +10,7 @@ type Props = LabelProps & {
   containerStyle?: StyleProp<ViewStyle>;
 };
 
+
 export const GradientLabel: React.FC<Props> = ({ containerStyle, ...props }) => {
   return <GradientMask style={containerStyle} element={<Label {...props} />} />;
 };

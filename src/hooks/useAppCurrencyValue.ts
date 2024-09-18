@@ -10,7 +10,7 @@ export const useAppCurrencyValue = (token: { assetId: string; metadata: { decima
 
   return useMemo(
     () =>
-      token && realmTokenPrice
+      token && realmTokenPrice !== undefined
         ? calculateBalance({
             price: realmTokenPrice,
             balance,

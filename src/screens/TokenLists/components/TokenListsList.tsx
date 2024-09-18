@@ -21,6 +21,7 @@ export const TokenListsList = ({ assetId }: TokenListsListProps) => {
   const reputationLists = useReputationLists(assetId);
   const tokenListsCount = useTokenListsCount();
 
+  
   const isBlacklisted = reputationLists.blacklists.length > 0;
   const isWhitelisted = reputationLists.whitelists.length > 0;
   const isUnverified = !isBlacklisted && !isWhitelisted;

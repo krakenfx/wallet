@@ -10,7 +10,8 @@ export const isSecureDevice = async () => {
 
 export const setInKeychain = async (key: string, password: string, withAppLock: boolean = false) => {
   const isBiometrySupported = await Keychain.getSupportedBiometryType();
-
+  
+  
   const accessControl = isBiometrySupported ? ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE : ACCESS_CONTROL.DEVICE_PASSCODE;
 
   const biometricAuthOptions = withAppLock

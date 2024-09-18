@@ -21,6 +21,15 @@ export const ethereumSepoliaNetwork = new EVMNetwork({
   defaultGasLimit: 21000,
 });
 
+
+
+
+
+
+
+
+
+
 export const polygonNetwork = new EVMNetwork({
   chainId: 137,
   nativeTokenSlipId: 966,
@@ -32,7 +41,8 @@ export const polygonNetwork = new EVMNetwork({
     fgColor: ['#6c4dc2', '#99e3ed', -45],
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
-
+  
+  
   disable1559: true,
   defaultGasLimit: 21000,
 });
@@ -41,10 +51,10 @@ export const arbitrumNetwork = new EVMNetwork({
   chainId: 42161,
   nativeTokenSlipId: 60,
   nativeTokenSymbol: 'ETH',
-  nativeTokenLabel: 'Ethereum',
+  nativeTokenLabel: 'Ethereum', 
   label: loc.network.arbitrum,
   blockExplorer: new Etherscan('arbiscan.io'),
-  defaultGasLimit: 70000,
+  defaultGasLimit: 70000, 
   icon: ({ opacity }) => ({
     id: 'arb',
     fgColor: ['#6c4dc2', '#99e3ed', -45],
@@ -56,7 +66,7 @@ export const baseNetwork = new EVMNetwork({
   chainId: 8453,
   nativeTokenSlipId: 60,
   nativeTokenSymbol: 'ETH',
-  nativeTokenLabel: 'Ethereum',
+  nativeTokenLabel: 'Ethereum', 
   label: loc.network.base,
   blockExplorer: new Etherscan('basescan.org'),
   icon: ({ opacity }) => ({
@@ -64,14 +74,14 @@ export const baseNetwork = new EVMNetwork({
     fgColor: ['#6c4dc2', '#99e3ed', -45],
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
-  defaultGasLimit: 21000,
+  defaultGasLimit: 21000, 
 });
 
 export const optimismNetwork = new EVMNetwork({
   chainId: 10,
   nativeTokenSlipId: 60,
   nativeTokenSymbol: 'ETH',
-  nativeTokenLabel: 'Ethereum',
+  nativeTokenLabel: 'Ethereum', 
   label: loc.network.optimism,
   blockExplorer: new Etherscan('optimistic.etherscan.io'),
   icon: ({ opacity }) => ({
@@ -86,7 +96,7 @@ export const blastNetwork = new EVMNetwork({
   chainId: 81457,
   nativeTokenSlipId: 60,
   nativeTokenSymbol: 'ETH',
-  nativeTokenLabel: 'Ethereum',
+  nativeTokenLabel: 'Ethereum', 
   label: loc.network.blast,
   blockExplorer: new Etherscan('blastscan.io'),
   icon: ({ opacity }) => ({

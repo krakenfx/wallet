@@ -17,6 +17,7 @@ export const useAssetMarketDataMutations = () => {
       runInTransaction(() => {
         const marketData = realm.create<RealmAssetMarketData>(REALM_TYPE_ASSET_MARKET_DATA, assetMetadata, Realm.UpdateMode.Modified);
         for (const token of tokens) {
+          
           token.marketData = marketData;
         }
       });

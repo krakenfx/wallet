@@ -14,10 +14,12 @@ export const useWhatsNewQueue = () => {
 
   useEffect(() => {
     if (isInitialised.current) {
+      
       return;
     }
     isInitialised.current = true;
 
+    
     for (const welcomeTask of queue) {
       if (!welcomeTask.isTaskCompleted) {
         welcomeTask.task();

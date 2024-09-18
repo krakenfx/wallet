@@ -1,5 +1,6 @@
 import { ObjectSchema } from 'realm';
 
+
 export type AssetMetadata = {
   assetId: string;
   label: string;

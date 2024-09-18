@@ -5,9 +5,10 @@ export const cancelActiveRequests = () => {
 };
 
 export async function superFetch(url: RequestInfo, opts: RequestInit = {}, timeout = 15000) {
-  // @ts-ignore
-  const requestId = opts?.headers?.map?.['x-request-id'] ?? '';
+  const headers = opts.headers instanceof Headers ? opts.headers : new Headers(opts.headers ?? {});
+  const requestId = headers.get('x-request-id') ?? '';
 
+  
   if (typeof url === 'string') {
     const method = opts?.method ?? 'GET';
     console.log(`${method} ${url} x-request-id: ${requestId}`);
@@ -31,7 +32,7 @@ export async function superFetch(url: RequestInfo, opts: RequestInit = {}, timeo
   } catch (err) {
     if (err instanceof Error && err.name === 'AbortError') {
       console.log(`request timeout: ${url} x-request-id: ${requestId}`);
-      throw new Error(`Request to ${url2domain(String(url))} timed out`);
+      throw new Error(`Request to ${url2domain(String(url))} timed out`); 
     } else {
       console.error(`request to ${String(url)} failed with error: ${err instanceof Error ? err.message : String(err)} x-request-id: ${requestId}`);
       throw err;

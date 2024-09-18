@@ -22,6 +22,7 @@ export type CardWarningProps = TouchableProps & {
   elementRight?: React.ReactElement;
   iconSize?: number;
   hideLeftIcon?: boolean;
+  onClose?: () => void;
 };
 
 type CardWarningColors = Record<'backgroundColor' | 'buttonBackgroundColor' | 'textColor' | 'headerTextColor' | 'iconColor', ColorName>;
@@ -74,6 +75,7 @@ export const CardWarning = React.memo(
     style,
     iconSize,
     elementRight,
+    onClose,
     hideLeftIcon,
     ...touchableProps
   }: CardWarningProps) => {
@@ -107,6 +109,7 @@ export const CardWarning = React.memo(
               </View>
             ) : null}
           </View>
+          {!!onClose && <SvgIcon name="close" color={iconColor} onPress={onClose} />}
           {elementRight}
         </View>
       </Touchable>

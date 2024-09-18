@@ -70,7 +70,7 @@ export const NetworkFilter = ({ networkFilter, setNetworkFilter, withBtcAndDoge 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    maxHeight: 60,
+    maxHeight: 60, 
   },
   contentContainer: {
     gap: 6,

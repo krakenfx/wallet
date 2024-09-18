@@ -67,7 +67,6 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
       <GradientItemBackground backgroundType={isCurrentAccount ? 'modalLight' : backgroundType} />
       <View style={styles.walletInfo}>
         <Label type="boldTitle2">{accountCustomName}</Label>
-        {}
         <Label type="boldMonospace" color="light75" style={styles.balance}>
           {balanceDisplay}
         </Label>
@@ -101,7 +100,7 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
             testID: 'RemoveWallet',
           },
         ]}>
-        <IconButton name="more" onPress={noop} />
+        <IconButton name="more" onPress={noop} backgroundColor="light8" />
       </Menu>
     </Touchable>
   );

@@ -3,7 +3,7 @@ import Animated, { EntryExitAnimationFunction, withTiming } from 'react-native-r
 
 import { AssetRow } from '@/components/AssetRow';
 import { ReputationTag } from '@/components/Reputation';
-import { REPUTATION } from '@/hooks/useReputation';
+import { REPUTATION, useReputation } from '@/hooks/useReputation';
 import { RealmToken } from '@/realm/tokens';
 
 type Props = {
@@ -26,6 +26,7 @@ const EnteringAnimation =
   };
 
 export const SendAssetItem = ({ token, index, shouldAnimateIn, onSelected }: Props) => {
+  const reputation = useReputation(token.assetId);
   const onPress = useCallback(() => onSelected(token), [onSelected, token]);
 
   const entering = useMemo(() => (shouldAnimateIn ? EnteringAnimation(index) : undefined), [index, shouldAnimateIn]);
@@ -33,14 +34,14 @@ export const SendAssetItem = ({ token, index, shouldAnimateIn, onSelected }: Pro
   const options = useMemo(
     () => ({
       onPress,
-      tag: <ReputationTag assetId={token.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
+      tag: <ReputationTag assetId={token.assetId} reputation={reputation} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
       testID: `SendAssetRow-${token.assetId}`,
       hideZeroAmount: false,
       showAmountInFiat: true,
       walletId: token.walletId,
       readonly: false,
     }),
-    [onPress, token.assetId, token.walletId],
+    [onPress, reputation, token.assetId, token.walletId],
   );
 
   return (

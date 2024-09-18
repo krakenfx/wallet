@@ -380,6 +380,12 @@
     "header": "Su monedero tiene un balance",
     "inputLabel": "Introducir el balance del monedero"
   },
+  "deleteAllData": {
+    "iCloudInfo": {
+      "desc": "Siempre que no hayas borrado manualmente tu copia de seguridad, tu monedero podrá recuperarse.",
+      "title": "Esto no eliminará tu copia de seguridad de iCloud."
+    }
+  },
   "diagnostics": {
     "running": "Ejecutando diagnóstico..."
   },
@@ -413,14 +419,52 @@
   "extension": {
     "_": {
       "off": "Apagado",
-      "on": "Encendido"
+      "on": "Encendido",
+      "timeAbbr": {
+        "days": "día",
+        "hours": "hr",
+        "minutes": "mín.",
+        "months": "mes",
+        "seconds": "s",
+        "weeks": "semana",
+        "years": "año"
+      },
+      "unknown": "desconocido"
+    },
+    "alt": {
+      "proceduralWalletImage": "Imagen de monedero de procedimiento"
     },
     "ariaLabel": {
-      "icon": "Icon"
+      "icon": "Icon",
+      "iconButton": "Botón con icono",
+      "toggleSwitch": "Botón de alternancia"
     },
     "assets": {
       "logoAlt": "logotipo del activo",
       "manageAssets": "Gestionar activos"
+    },
+    "customNetwork": {
+      "addCustomNetwork": "Añadir red personalizada",
+      "addNetwork": "Añadir red",
+      "blockExplorerUrl": "URL al explorador de bloques",
+      "chainId": "ID de la cadena",
+      "customNetwork": "Red personalizada",
+      "customNetworks": "Redes personalizadas",
+      "decimals": "Decimales",
+      "editCustomNetwork": "Editar red personalizada",
+      "enterNetworkName": "Introduce el nombre de la red",
+      "networkName": "Nombre de la red",
+      "remove": "Eliminar",
+      "rpcUrl": "URL de RPC",
+      "symbol": "Símbolo",
+      "updateNetwork": "Actualizar red"
+    },
+    "enterPasswordDialog": {
+      "continue": "Continuar",
+      "currentPasswordAriaLabel": "Contraseña actual",
+      "enterCurrentPassword": "Introduce la contraseña actual",
+      "enterToDecrypt": "Introduce tu contraseña actual para ver tu frase de recuperación",
+      "lockGraphicsAlternativeText": "Bloquear gráficos"
     },
     "home": {
       "addWallet": "Añadir monedero",
@@ -433,8 +477,12 @@
       "hiddenAssets": "Activos ocultos",
       "manageAssets": "Gestionar activos",
       "search": "Buscar + de 5000 activos",
+      "searchResults": "Buscar resultados",
       "unhideAll": "Mostrar todo",
       "visibleAssets": "Activos visibles"
+    },
+    "manageWallets": {
+      "viewRecoveryPhrase": "Ver frase de recuperación"
     },
     "navigation": {
       "activity": "Actividad",
@@ -446,6 +494,9 @@
       "addNfts": "Añadir NFT a tu monedero",
       "send": "Enviar"
     },
+    "onboarding_backup": {
+      "backUpWallet": "Realizar copia de seguridad del monedero"
+    },
     "onboarding": {
       "skip": "Omitir",
       "typeYourSecretRecoveryPhrase": "Introduce tu frase de recuperación secreta",
@@ -455,7 +506,21 @@
       "receiveCryptoOrNft": "Recibir cripto o NFT"
     },
     "send": {
+      "amountInput": {
+        "balance": "Balance",
+        "errors": {
+          "exceedsBalance": "La cantidad introducida supera tu balance",
+          "greaterThanZero": "La cantidad introducida debe ser mayor que 0",
+          "invalid": "La cantidad introducida no es válida"
+        },
+        "label": "Cantidad",
+        "placeholder": "Introduzca un importe"
+      },
       "continue": "Continuar",
+      "networkFee": "Tarifa de red",
+      "sending": {
+        "title": "Enviando"
+      },
       "sendingTo": {
         "search": "Selecciona lo que quieras enviar.",
         "title": "Enviando a"
@@ -472,7 +537,15 @@
     },
     "settings": {
       "build": "Versión {0}",
-      "changePassword": "Cambiar contraseña",
+      "changePassword": {
+        "caption": "Introduce la contraseña para proteger y bloquear tu monedero",
+        "confirmPassword": "Confirmar contraseña",
+        "label": "Contraseña",
+        "menuItemTitle": "Cambiar contraseña",
+        "setPassword": "Establecer contraseña",
+        "title": "Introducir nueva contraseña",
+        "typePassword": "Introducir contraseña"
+      },
       "lockWallet": "Bloquear monedero",
       "privacy": "Privacidad",
       "version": "Extensión {0} de Kraken Wallet",
@@ -694,6 +767,13 @@
     "continue": "Desvelar frase",
     "recovery_phrase": "frase de recuperación secreta",
     "skip": "Omitir",
+    "skipWarning": {
+      "back": "Atrás",
+      "checkOne": "Comprendo que si pierdo mi teléfono o elimino la aplicación sin hacer una copia de seguridad, no tendré ninguna forma de recuperar mi monedero.",
+      "checkTwo": "Entiendo que soy el único responsable de cualquier pérdida de activos resultante de no tener una copia de seguridad de recuperación.",
+      "confirm": "Confirmar",
+      "title": "¿Deseas continuar sin hacer una copia de seguridad de tu monedero?"
+    },
     "subtitle": "tu monedero",
     "title": "Respaldar"
   },
@@ -778,6 +858,28 @@
     "title": "Verifique que lo ha guardado correctamente",
     "verified": "Verificado",
     "verify": "Verificar"
+  },
+  "onboardingImportCloudBackup": {
+    "desc": "Para importar tu monedero desde una copia de seguridad, usa tu clave de paso para el descifrado.",
+    "selection": {
+      "desc": "Has creado más de una copia de seguridad; elige la copia de seguridad de monedero que quieras importar",
+      "recent": "Más recientes",
+      "title": "Selecciona la copia de seguridad de monedero que quieras importar"
+    },
+    "title": "Importar desde copia de seguridad",
+    "usePasskey": "Usar mi clave de paso"
+  },
+  "onboardingImportMethod": {
+    "methodICloud": {
+      "desc": "Importar desde una copia de seguridad de iCloud que hayas creado para Kraken Wallet",
+      "title": "Importar desde iCloud"
+    },
+    "methodManual": {
+      "desc": "Importar con tu frase de recuperación secreta de 12-24 palabras",
+      "title": "Introducir frase semilla"
+    },
+    "subtitle": "su monedero",
+    "title": "Importar"
   },
   "onboardingImportWallet": {
     "caption": "Introduce tu frase de recuperación secreta para importar el monedero.",
@@ -1070,7 +1172,8 @@
     "testnet": "Testnet",
     "testnetDescription": "Cuando la función está activada, puede seleccionar los activos y la red testnet desde la pantalla de gestionar activos.",
     "view_list_of_connected_dapps": "Ver lista de aplicaciones descentralizadas conectadas",
-    "wallets": "Monederos"
+    "wallets": "Monederos",
+    "walletsAndBackups": "Monederos y copias de seguridad"
   },
   "storeReview": {
     "alertMessage": "Nos gustaría saber si tu experiencia está siendo buena.",
@@ -1328,6 +1431,21 @@
     "backup": "Respaldar",
     "backupYourWallet": "Respalde su monedero",
     "backupYourWalletDescription": "Asegúrese de poder recuperar sus cripto si pierde su dispositivo o cambia a otro monedero.",
+    "cloudWarning": {
+      "button": "Copia de seguridad con iCloud",
+      "desc": "Asegúrate de poder recuperar tu monedero incluso si pierdes tu frase de recuperación secreta",
+      "title": "Copia de seguridad en la nube recomendada"
+    },
+    "manualWarning": {
+      "button": "Copia de seguridad manual",
+      "desc": "Asegúrate de poder recuperar tu monedero incluso si pierdes tu acceso a la cuenta de iCloud.",
+      "title": "Copia de seguridad manual recomendada"
+    },
+    "secondaryBackup": {
+      "iCloud": "Para mejorar las posibilidades de recuperación, crea una copia de seguridad cifrada con contraseña en iCloud. El cifrado significa que ni siquiera Apple podrá verla",
+      "manual": "Para facilitar la recuperación, crea una copia de seguridad manual de tu frase secreta de recuperación y guárdala en un lugar seguro",
+      "title": "Crear una copia de seguridad secundaria"
+    },
     "secretRecoveryPhrase": "Frase de recuperación secreta",
     "tapHereToView": "Pulse aquí para ver"
   },
@@ -1335,6 +1453,98 @@
     "backUpNow": "Realizar copia de seguridad ahora",
     "body": "Aún no has hecho una copia de seguridad de tu frase de recuperación secreta. Te recomendamos que hagas una copia de seguridad para que no pierdas el acceso a tus fondos.",
     "header": "Antes de recibir fondos en este monedero, haz una copia de seguridad"
+  },
+  "walletBackupSelection": {
+    "backupManually": "Copia de seguridad manual",
+    "backupManuallyCompleted": "Copia de seguridad manual",
+    "backupWithICloud": "Copia de seguridad con iCloud",
+    "backupWithICloudCompleted": "Copia de seguridad con iCloud",
+    "caption": "Si no haces una copia de seguridad de tu monedero, te arriesgas a perder tus criptomonedas. No tenemos acceso a tu frase de recuperación y no podemos ayudarte a recuperarlas sin una copia de seguridad.",
+    "explainer": {
+      "desc": "Perder una frase secreta de recuperación es una forma habitual en la que la gente pierde sus criptomonedas. Kraken Wallet minimiza este riesgo al ofrecer más de un método seguro de copia de seguridad.",
+      "title": "Aumento de las posibilidades de recuperación para reducir la probabilidad de pérdidas"
+    },
+    "iCloudDescCompletedShort": "Frase de recuperación secreta cifrada",
+    "iCloudDescLong": "Cifrar con una clave de paso y almacenar en iCloud",
+    "iCloudDescShort": "Cifrar y almacenar en iCloud",
+    "manualBackupDescLong": "Guardar manualmente en un lugar seguro de tu elección",
+    "manualBackupDescShort": "Guardar en un lugar seguro de tu elección",
+    "manualBackupDescShortCompleted": "La he guardado en un lugar seguro",
+    "prompt": "Asegúrate de que puedes acceder en cualquier momento a tu monedero incluso si pierdes tu dispositivo.",
+    "recoverability": {
+      "desc": "Podría ser más compleja",
+      "title": "Posibilidad de recuperación"
+    },
+    "skipButton": "Quizás más tarde",
+    "subtitle": "su monedero",
+    "title": "Respaldar",
+    "titleWithSubtitle": "Respalde su monedero",
+    "tooltip": {
+      "iCloud": "Una copia de seguridad de iCloud garantiza que puedas recuperar tu monedero si pierdes tu frase secreta de recuperación.",
+      "manual": "Una copia de seguridad manual garantiza que puedas recuperar tu monedero si pierdes el acceso a iCloud o pierdes tu dispositivo."
+    }
+  },
+  "walletCloudBackup": {
+    "createPasskey": "Crear una clave de paso",
+    "hints": {
+      "part1": "Mayor seguridad que en el caso de contraseñas estándar",
+      "part2": "Cifrado mediante biometría o dispositivo de seguridad",
+      "part3": "Recuperable aunque pierdas este dispositivo"
+    },
+    "passkeyDescription": "Haz el cifrado con clave de paso para crear tu copia de seguridad. De esta forma, solo tú puedes restaurar la copia de seguridad. (El cifrado garantiza que ni siquiera Apple pueda verlo)",
+    "secureYourBackup": "Protege tu copia de seguridad",
+    "success": "Copia de seguridad correcta del monedero en iCloud"
+  },
+  "walletCloudBackupDelete": {
+    "cancel": "Cancelar",
+    "caption": "Asegúrate de tener tu frase secreta de recuperación guardada en algún lugar seguro para poder recuperar tu monedero en caso de que pierdas tu dispositivo.",
+    "check1": "Comprendo que si pierdo mi teléfono o elimino la aplicación, necesitaré la frase de recuperación secreta para restaurar mi monedero.",
+    "check2": "Confirmo que he guardado mi frase secreta de 12 palabras en un lugar seguro.",
+    "delete": "Eliminar",
+    "header": "¿Seguro que quiere eliminar esta copia de seguridad?",
+    "title": "Eliminar copia de seguridad"
+  },
+  "walletCloudBackupError": {
+    "ensureICloudKeychainOn": "En las Opciones de contraseña de tu dispositivo, asegúrate de que iCloud Keychain esté activado para utilizarse con contraseñas y claves de paso:",
+    "errorCreatingBackup": {
+      "cancel": "Cancelar",
+      "description": "Algo salió mal al intentar crear la copia de seguridad.",
+      "title": "Se ha producido un error al crear la copia de seguridad",
+      "tryAgainBold": "no es posible guardar la copia de seguridad en otros dispositivos.",
+      "tryAgainButton": "Intentarlo de nuevo",
+      "tryAgainRegular": "Al intentarlo de nuevo, ten en cuenta que "
+    },
+    "errorCreatingPasskey": {
+      "description": "En las Opciones de contraseña de tu dispositivo, asegúrate de que iCloud Keychain esté activado para utilizarse con contraseñas y claves de paso:",
+      "title": "Se ha producido un error al crear la clave de paso"
+    },
+    "errorDeletingPasskey": {
+      "title": "Se ha producido un error al eliminar la clave de paso"
+    },
+    "errorInactive": {
+      "description": "Si ya has creado varias claves de paso, puedes intentar importar otra copia de seguridad. De lo contrario, puedes importar tu monedero mediante la frase secreta de recuperación de 12-24 palabras",
+      "subtitle": "Esta clave de paso está inactiva, lo que significa que procede de una copia de seguridad eliminada manualmente.",
+      "title": "Clave de paso inactiva"
+    },
+    "keychainSteps": {
+      "one": {
+        "bold": "Configuración → Contraseñas → Opciones de contraseña",
+        "regular": "1. Accede a: "
+      },
+      "two": {
+        "bold": "iCloud Keychain",
+        "regular": "2. Activa: "
+      }
+    },
+    "noPasskeyFound": {
+      "description": "No hemos podido encontrar ninguna clave de paso. Es posible que no hayas creado uno o que iCloud Keychain esté desactivado en los ajustes. Asegúrate de que iCloud Keychain está activado con estos pasos:",
+      "title": "No se ha encontrado ninguna clave de paso"
+    },
+    "supportHint": {
+      "link": "Servicio de Atención al cliente de Kraken Wallet ↗",
+      "regular": "Si eso no resuelve tu problema, puedes obtener ayuda visitando ",
+      "regularWithManualBackup": "Si eso no resuelve tu problema, puedes importar tu frase secreta de recuperación de 12-24 palabras u obtener ayuda visitando "
+    }
   },
   "walletConnect": {
     "account_not_found": "WalletConnect: cuenta no encontrada",
@@ -1350,6 +1560,7 @@
       "cancel": "Cancelar",
       "connect": "Conectar"
     },
+    "back_to_dapp": "Volver al navegador para continuar",
     "failedToConnect": "La aplicación no se conectó",
     "failedToDisconnect": "La aplicación no se desconectó",
     "feeEstimate": "Estimación de tarifas",

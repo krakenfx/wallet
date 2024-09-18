@@ -1,22 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+
+import assert from 'assert';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
-import { useCurrentAccountNumber } from '@/realm/accounts';
-import { NftMetadata } from '@/realm/nftMetadata/schema';
-import { useNftById } from '@/realm/nfts';
+import type { RealmNft } from '@/realm/nfts';
 import { Routes } from '@/Routes';
 import { getLabelsFromNft } from '@/screens/Nfts/utils';
 
 import { getTokenIconFallbackProps } from '/generated/assetIcons';
 
 interface NftCollectionBlockProps {
-  nft: { metadata: NftMetadata };
+  nft: RealmNft | undefined;
+  currentAccount: number;
   omitSecondaryLabel?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
   allowNavigationToNft?: boolean;
@@ -24,33 +25,31 @@ interface NftCollectionBlockProps {
 
 const IMG_SIZE = 72;
 
-export const NftBlock = ({ nft, omitSecondaryLabel, containerStyle, allowNavigationToNft }: NftCollectionBlockProps) => {
+export const NftBlock = ({ nft, currentAccount, omitSecondaryLabel, containerStyle, allowNavigationToNft }: NftCollectionBlockProps) => {
+  const navigation = useNavigation();
   const { primaryLabel, secondaryLabel } = getLabelsFromNft(nft);
   const showSecondaryLabel = !omitSecondaryLabel && secondaryLabel;
-  const fallbackBackgroundColor = !nft.metadata.imageUrl && { backgroundColor: getTokenIconFallbackProps('NFT').backgroundColor };
-  const realmNft = useNftById(nft.metadata.assetId);
-  const currentAccount = useCurrentAccountNumber();
+  const fallbackBackgroundColor = !nft?.metadata?.imageUrl && { backgroundColor: getTokenIconFallbackProps('NFT').backgroundColor };
+  const isNftOwnedByWallet = nft && nft.wallet.accountIdx === currentAccount;
+  const metadata = nft?.metadata;
+  const canOpenNft = metadata && allowNavigationToNft && isNftOwnedByWallet;
 
-  const isNftOwnedByWallet = realmNft && realmNft.wallet.accountIdx === currentAccount;
+  const handlePress = useCallback(() => {
+    assert(metadata !== undefined, 'Unexpected error in NFTBlock handlePress, this should never happen');
 
-  const navigation = useNavigation();
-
-  const handlePress = () => {
     navigation.goBack();
     navigation.navigate(Routes.ViewNft, {
-      assetId: nft.metadata.assetId,
+      assetId: metadata.assetId,
     });
-  };
-
-  const canOpenNft = allowNavigationToNft && isNftOwnedByWallet;
+  }, [navigation, metadata]);
 
   return (
     <Touchable disabled={!canOpenNft} onPress={handlePress}>
       <View style={[styles.collection, containerStyle]}>
         <GradientItemBackground />
         <View style={[styles.imageWrapper, fallbackBackgroundColor]}>
-          {nft.metadata.imageUrl ? (
-            <ImageSvg fallbackIconSize={45} uri={nft.metadata.imageUrl} width={IMG_SIZE} height={IMG_SIZE} contentType={nft.metadata.contentType} />
+          {metadata?.imageUrl ? (
+            <ImageSvg fallbackIconSize={45} uri={metadata.imageUrl} width={IMG_SIZE} height={IMG_SIZE} contentType={metadata.contentType} />
           ) : (
             <Label type="boldTitle0">NFT</Label>
           )}

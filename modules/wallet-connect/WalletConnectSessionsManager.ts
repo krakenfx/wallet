@@ -23,13 +23,21 @@ export const userDisconnectReason = {
   message: 'User disconnected',
 };
 
+
 function logger({ type, message }: { type: string; message: string }) {
   console.log(type, message);
 }
 
+
+
+
+
 function getWalletAddressFromWCAccount(wcAccount: string): string {
   return wcAccount.split(':').reverse()?.[0] ?? '';
 }
+
+
+
 
 export class WalletConnectSessionsManager implements WCSessionsManager {
   private _web3Wallet?: IWeb3Wallet;
@@ -79,11 +87,14 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
       });
   }
 
+  
   async getAccountSessions(accountWallets: RealmResults<RealmWallet>) {
+    
     try {
       const allAccountSessions = (await this._web3Wallet?.getActiveSessions()) ?? {};
       const accountWalletAddresses = await this.getAccountWalletAddresses(accountWallets);
 
+      
       const accountSessions: Record<string, SessionTypes.Struct> = {};
 
       Object.entries(allAccountSessions).forEach(([k, v]) => {
@@ -98,8 +109,12 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
           });
 
           if (isFoundInWallets) {
+            
             accountSessions[k] = { ...v };
 
+            
+            
+            
             break;
           }
         }
@@ -120,6 +135,7 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
   }
 
   async disconnectAllSessionsForAllAccounts(callback?: { onError?: (error: Error) => void; onSuccess?: () => void }) {
+    
     try {
       const topics = Object.keys((await this._web3Wallet?.getActiveSessions()) || {});
 

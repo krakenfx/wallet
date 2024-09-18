@@ -3,16 +3,13 @@ import { Platform, SectionListData, StyleSheet, View, ViewToken } from 'react-na
 import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AssetRow } from '@/components/AssetRow';
 import { BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
 import { FadingElement } from '@/components/FadingElement';
 import { ListAnimatedItem } from '@/components/ListAnimatedItem';
 import { ListHeader } from '@/components/ListHeader';
 import { NFTCollectionRow } from '@/components/NFTCollectionRow';
-import { ReputationTag } from '@/components/Reputation';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
-import { REPUTATION } from '@/hooks/useReputation';
 import { RealmDefi, useDefi } from '@/realm/defi';
 import { NftsCollection, useNftsArchivedCollection, useNftsCollections } from '@/realm/nfts';
 import { useTokenPrices } from '@/realm/tokenPrice';
@@ -24,6 +21,8 @@ import { isRealmObject } from '@/utils/isRealmObject';
 import { useHomeAssetPanelEmitterListener } from './homeAssetPanelEventEmitter';
 import { HomeAssetPanelSectionList } from './HomeAssetsSectionList';
 import { HomeNFTGallery } from './HomeNFTGallery';
+
+import { TokenRow } from './TokenRow';
 
 import loc from '/loc';
 
@@ -76,7 +75,7 @@ const isIos = Platform.OS === 'ios';
 const DISTANCE_TO_RECENT_ACTIVITY = 320;
 
 export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
-  const tokens = useTokensFilteredByReputationAndNetwork([]);
+  const tokens = useTokensFilteredByReputationAndNetwork([] );
   const tokenPrices = useTokenPrices();
   const nftsCollection = useNftsCollections().slice(0, COLLECTIONS_TO_SHOW);
   const defiDeposits = useDefi();
@@ -86,7 +85,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   const stickyHeaderIndex = useSharedValue(0);
 
   const tokensDataSource = useMemo(() => {
-    return sortTokensByFiatValue(tokens.filtered('inGallery == true'), tokenPrices);
+    return sortTokensByFiatValue(tokens.filtered('inGallery == "autoAdded" OR inGallery == "manuallyAdded"'), tokenPrices);
   }, [tokens, tokenPrices]);
 
   const sections = useMemo(() => {
@@ -122,17 +121,9 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
         return null;
       }
 
-      const options = {
-        onPress: () => navigation.navigate(Routes.Transactions, { assetBalanceId: { assetId: item.assetId, walletId: item.walletId } }),
-        showAmountInFiat: true,
-        tag: <ReputationTag assetId={item.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
-        testID: `Asset-${item.assetId}`,
-        walletId: item.walletId,
-      };
-
       return (
         <ListAnimatedItem>
-          <AssetRow token={item} options={options} />
+          <TokenRow token={item} navigation={navigation} />
         </ListAnimatedItem>
       );
     },
@@ -210,6 +201,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
     transform: [{ translateY: -stickyHeaderIndex.value * HEADER_HEIGHT }],
   }));
 
+  
   const onViewableItemsChanged = useCallback(
     (info: { viewableItems: Array<ViewToken> }) => {
       const header = info.viewableItems.find(item => item.key === '0');
@@ -269,7 +261,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
-    marginTop: -HEADER_HEIGHT - 8,
+    marginTop: -HEADER_HEIGHT - 8, 
   },
   headerStyle: {
     height: HEADER_HEIGHT,
@@ -295,6 +287,6 @@ const styles = StyleSheet.create({
   },
   firstHeader: {
     marginTop: 0,
-    transform: [{ scale: 0 }],
+    transform: [{ scale: 0 }], 
   },
 });

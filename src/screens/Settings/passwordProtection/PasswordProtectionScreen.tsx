@@ -39,7 +39,7 @@ export const PasswordProtectionScreen = ({ navigation }: SettingsNavigationProps
         navigate(Routes.PasswordProtectionForm);
       } else {
         const delay = (await isBiometricEnabled()) ? BIOMETRIC_DELAY : 0;
-
+        
         setTimeout(() => navigate(Routes.DisablePasswordProtection), delay);
       }
     } else {

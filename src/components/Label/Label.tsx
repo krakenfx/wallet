@@ -12,6 +12,7 @@ export type LabelProps = AnimateProps<TextProps> & {
   type?: TypographyKey;
 };
 
+
 const Fonts = {
   Celias: {
     regular: 'Celias',
@@ -45,11 +46,14 @@ const Fonts = {
   })!,
 };
 
+
+
 export const Typography = {
   boldDisplay1: { fontSize: 56, fontFamily: Fonts.Celias.bold },
   boldDisplay2: { fontSize: 36, fontFamily: Fonts.Celias.bold },
   boldDisplay3: { fontSize: 28, fontFamily: Fonts.Celias.bold },
   boldDisplay4: { fontSize: 24, fontFamily: Fonts.Celias.bold },
+  boldDisplay5: { fontSize: 22, fontFamily: Fonts.Celias.bold },
   boldTitle0: { fontSize: 20, fontFamily: Fonts.Celias.bold },
   boldTitle1: { fontSize: 18, fontFamily: Fonts.Celias.bold },
   boldTitle2: { fontSize: 16, fontFamily: Fonts.Celias.bold },
@@ -67,6 +71,7 @@ export const Typography = {
   regularMonospace: { fontSize: 13, fontFamily: Fonts.IBMPlexMono.regular },
   regularLargeMonospace: { fontSize: 16, fontFamily: Fonts.IBMPlexMono.regular },
 
+  
   headerBalance: { fontSize: 56, fontFamily: Fonts.IBMPlexSans.bold },
   headerWalletConnectTutorial: { fontSize: 36, fontFamily: Fonts.IBMPlexSans.bold, lineHeight: 42 },
   headerBalanceTicker: { fontSize: 24, fontFamily: Fonts.Celias.medium },

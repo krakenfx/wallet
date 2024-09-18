@@ -2,6 +2,7 @@ import Realm from 'realm';
 
 import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey } from '../settings';
 
+
 export const migrationsSchemaVersion20 = (oldRealm: Realm, newRealm: Realm) => {
   if (oldRealm.schemaVersion < 20) {
     const settings = newRealm.objectForPrimaryKey(REALM_TYPE_SETTINGS, 'walletConnectExplainerNeeded');

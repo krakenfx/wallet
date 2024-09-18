@@ -14,13 +14,16 @@ export enum RealmSettingsKey {
   isPushPromptNeeded = 'isPushPromptNeeded',
   isTestnetEnabled = 'isTestnetEnabled',
   isWalletBackupDone = 'isWalletBackupDone',
+  cloudBackupCredentialID = 'cloudBackupCredentialID',
+  isCloudBackupDismissed = 'isCloudBackupDismissed',
+  isManualBackupDismissed = 'isManualBackupDismissed',
   language = 'language',
   appOpenedCounter = 'appOpenedCounter',
   walletConnectTaskCompleted = 'walletConnectTaskCompleted',
   storeReviewTaskCompleted = 'storeReviewTaskCompleted',
   storeReviewSubmitted = 'storeReviewSubmitted',
   hideBalances = 'hideBalances',
-
+  
   isBlastModalCompleted = 'isBlastModalCompleted',
   whatsNewIsAssetMarketDataCompleted = 'whatsNewIsAssetMarketDataCompleted',
   whatsNewIsLongPressCompleted = 'whatsNewIsLongPressCompleted',
@@ -36,6 +39,9 @@ export type SettingsType = {
   [RealmSettingsKey.isPushPromptNeeded]: boolean;
   [RealmSettingsKey.isTestnetEnabled]: boolean;
   [RealmSettingsKey.isWalletBackupDone]: boolean;
+  [RealmSettingsKey.cloudBackupCredentialID]: string;
+  [RealmSettingsKey.isCloudBackupDismissed]: boolean;
+  [RealmSettingsKey.isManualBackupDismissed]: boolean;
   [RealmSettingsKey.language]: LanguageTag;
   [RealmSettingsKey.walletConnectTaskCompleted]: boolean;
   [RealmSettingsKey.appOpenedCounter]: number;

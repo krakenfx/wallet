@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 
 import { Label } from '@/components/Label';
 
-export const SettingsSectionHeader = ({ title }: { title: string }) => (
-  <Label type="boldTitle2" color="light50" style={styles.sectionHeader}>
+export const SettingsSectionHeader = ({ title, style }: { title: string; style?: StyleProp<TextStyle> }) => (
+  <Label type="boldTitle2" color="light50" style={[styles.sectionHeader, style]}>
     {title}
   </Label>
 );

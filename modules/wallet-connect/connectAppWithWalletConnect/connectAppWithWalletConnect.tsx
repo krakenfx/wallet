@@ -23,6 +23,8 @@ type Props = {
   getSeed: SecuredKeychainContext['getSeed'];
 };
 
+
+
 export const connectAppWithWalletConnect = async (
   sessionProposal: SessionProposal,
   setUIState: React.Dispatch<React.SetStateAction<UI_STATE>>,
@@ -31,6 +33,7 @@ export const connectAppWithWalletConnect = async (
   const result: _3rdPartyData = {};
   setUIState(UI_STATE.loading);
 
+  
   const web3Wallet = await initWalletConnectWeb3Wallet(realm, dispatch, getSeed);
 
   setUIState(UI_STATE.none);
@@ -62,9 +65,10 @@ export const connectAppWithWalletConnect = async (
 
   result.approveSession = async () => {
     setUIState(UI_STATE.loading);
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 500)); 
 
     if (matchedWallets.length === 0) {
+      
       setUIState(UI_STATE.none);
       return;
     }

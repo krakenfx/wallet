@@ -1,3 +1,4 @@
+
 export class ChainAgnostic {
   static NETWORK_ARBITRUM = 'eip155:42161';
   static NETWORK_BASE = 'eip155:8453';
@@ -26,23 +27,26 @@ export class ChainAgnostic {
 
 const CAIP19_REGEX = /^([-a-z0-9]{3,8}):([-_a-zA-Z0-9]{1,32})\/([-a-z0-9]{3,8}):([-.%a-zA-Z0-9]{1,128})(?:\/([-.%a-zA-Z0-9]{1,78}))?$/;
 
+
 export type CAIP19 = {
-  assetType: string;
-  chainId: string;
-  chainNamespace: string;
-  chainReference: string;
-  assetId: string;
-  assetNamespace: string;
-  assetReference: string;
-  tokenId?: string;
+  assetType: string; 
+  chainId: string; 
+  chainNamespace: string; 
+  chainReference: string; 
+  assetId: string; 
+  assetNamespace: string; 
+  assetReference: string; 
+  tokenId?: string; 
 };
+
 
 export function parseCAIP19(assetType: string): CAIP19 | null {
   const match: RegExpMatchArray | null = assetType.match(CAIP19_REGEX);
   if (!match) {
     return null;
   }
-
+  
+  
   const [_, chainNamespace, chainReference, assetNamespace, assetReference, tokenId] = match;
   const caip19: CAIP19 = {
     assetType,

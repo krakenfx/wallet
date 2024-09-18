@@ -12,19 +12,24 @@ export function getNFTTransferCall(
   toAddress: string,
   tokenId: string,
 ) {
+  
   if (nft.chainId === 1 && nft.contractAddress.toLowerCase() === CRYPTOKITTIES_ADDRESS) {
     const iface = new Interface(['function transfer(address,uint256)']);
     return iface.encodeFunctionData('transfer', [toAddress, tokenId]);
-  } else if (nft?.type === 'erc1155') {
+  }
+  if (nft?.type === 'erc1155') {
+    
     const iface = new Interface(['function safeTransferFrom(address,address,uint256,uint256,bytes)']);
     return iface.encodeFunctionData('safeTransferFrom', [fromAddress, toAddress, tokenId, 1, '0x']);
-  } else if (nft?.type === 'erc721') {
+  }
+  if (nft?.type === 'erc721') {
     const iface = new Interface(['function safeTransferFrom(address,address,uint256)']);
     return iface.encodeFunctionData('safeTransferFrom', [fromAddress, toAddress, tokenId]);
   }
 
   throw new Error('unsupported asset, not a supported NFT');
 }
+
 
 export function getTokenTransferCall(
   nft: {
@@ -38,6 +43,7 @@ export function getTokenTransferCall(
   const iface = new Interface(['function transfer(address,uint256)']);
   return iface.encodeFunctionData('transfer', [toAddress, amount]);
 }
+
 
 export function getEVMNFTProtocolType(caipTokenId: string) {
   const [_, network, erc, contract, tokenId] = caipTokenId.match(/^([^/]+)\/(.+?):(.+?)\/(\d+)$/)!;

@@ -12,6 +12,7 @@ export enum ToastEmitter {
   showToastsForRouteEvent = 'showToastsForRouteEvent',
 }
 
+
 const emitShowToastEvent = (props: ToastConfigProps): Promise<void> => {
   toastEmitter.emit(ToastEmitter.showToastEvent, props);
   return new Promise(resolve => setTimeout(resolve, 100));

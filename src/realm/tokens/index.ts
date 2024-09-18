@@ -7,3 +7,4 @@ export * from './useTokensFetch';
 export * from './useTokensFilteredByReputationAndNetwork';
 export * from './utils';
 export * from './schema';
+export * from './getTokenById';

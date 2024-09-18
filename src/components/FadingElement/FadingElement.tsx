@@ -27,6 +27,7 @@ const FadingElementIOS: React.FC<PropsWithChildren<Omit<LinearGradientProps, 'ch
   );
 };
 
+
 export const FadingElement = Platform.select({ ios: FadingElementIOS, default: Fragment });
 
 const styles = StyleSheet.create({

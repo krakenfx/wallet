@@ -55,6 +55,7 @@ export const NftImageGalleryScreen = ({ navigation, route }: NavigationProps<'Nf
   } = route.params;
 
   useEffect(() => {
+    
     screenEnter.value = withDelay(
       transitionConfig.initialDelay ?? 0,
       withTiming(1, { duration: transitionConfig.duration }, finished => {
@@ -63,10 +64,11 @@ export const NftImageGalleryScreen = ({ navigation, route }: NavigationProps<'Nf
         }
       }),
     );
-
+    
     controlsVisibility.value = withDelay(transitionConfig.controlsDelay ?? 0, withTiming(1));
   }, [controlsVisibility, transitionConfig, screenEnter, screenLoaded]);
 
+  
   useAnimatedReaction(
     () => {
       if (!screenExit.value && panDismiss.value === PanDismiss.NONE) {
@@ -77,6 +79,7 @@ export const NftImageGalleryScreen = ({ navigation, route }: NavigationProps<'Nf
     transition => (backgroundColorTransition.value = transition),
   );
 
+  
   useAnimatedReaction(
     () => {
       if (panDismiss.value === PanDismiss.FINISHED) {
@@ -95,6 +98,7 @@ export const NftImageGalleryScreen = ({ navigation, route }: NavigationProps<'Nf
     backgroundColor: theme.colors.background,
   }));
 
+  
   const scaleLimiterStyle = useAnimatedStyle(
     () => ({
       transform: [
@@ -106,6 +110,7 @@ export const NftImageGalleryScreen = ({ navigation, route }: NavigationProps<'Nf
     [containedSize, transitionConfig, screenLoaded.value],
   );
 
+  
   const heightLimiterStyle = useAnimatedStyle(
     () => ({ height: interpolate(screenExit.value, [0, 1], [frame.height, containedSize.height]) }),
     [containedSize, screenLoaded.value, frame],

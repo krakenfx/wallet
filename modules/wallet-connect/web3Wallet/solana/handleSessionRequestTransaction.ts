@@ -70,7 +70,8 @@ export async function handleSessionRequestTransaction({
     [],
     adaptSolanaSignTransactionToDefinitionList(transaction),
     preparedTransaction,
-
+    
+    
     true,
     warning,
   );
@@ -93,6 +94,7 @@ export async function handleSessionRequestTransaction({
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
   } else {
+    
     web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
     return handleError('User rejected', 'ERROR_CONTEXT_PLACEHOLDER', { icon: 'plug-disconnected', text: loc.walletConnect.response_rejected });
   }

@@ -1,6 +1,7 @@
 import { TokenReputation } from '@/api/types';
 import { AssetReputation } from '@/realm/assetMetadata';
 
+
 export const adaptTokenReputationToRealmAssetReputation = (tr?: TokenReputation | AssetReputation): AssetReputation => {
   if (!tr) {
     return {
@@ -9,6 +10,7 @@ export const adaptTokenReputationToRealmAssetReputation = (tr?: TokenReputation 
     };
   }
 
+  
   if ('whitelists' in tr) {
     return tr;
   }

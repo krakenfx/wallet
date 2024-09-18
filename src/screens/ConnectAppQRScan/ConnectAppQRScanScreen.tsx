@@ -38,6 +38,7 @@ const UseDeepLinkWcUri = ({ handleData, wcUri }: { handleData: (data: string) =>
     decodedWcUri = wcUri;
   }
 
+  
   if (!decodedWcUri.startsWith('wc:')) {
     decodedWcUri = 'wc:' + decodedWcUri;
   }
@@ -112,6 +113,7 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
   const minSheetHeight = (height - insets.bottom) / 2;
   const hasDeepLinkWcUri = !!route.path;
 
+  
   const initialWalletsCount = realm.objects<RealmWallet>(REALM_TYPE_WALLET).snapshot().length;
   const isOnboarding = initialWalletsCount === 0;
 

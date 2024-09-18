@@ -1,5 +1,11 @@
 module.exports = function (api) {
-  const presets = [['module:@react-native/babel-preset', { unstable_transformProfile: 'hermes-stable' }]];
+  const presets = [
+    [
+      'module:@react-native/babel-preset',
+      
+      { unstable_transformProfile: 'hermes-stable' },
+    ],
+  ];
   const plugins = [
     [
       'react-native-reanimated/plugin',
@@ -11,6 +17,7 @@ module.exports = function (api) {
   ];
 
   if (process?.env?.JEST_WORKER_ID) {
+    
     plugins.unshift([
       'module-resolver',
       {
@@ -24,6 +31,7 @@ module.exports = function (api) {
     ]);
     api.cache.never();
   } else {
+    
     plugins.unshift([
       'module-resolver',
       {
@@ -32,8 +40,8 @@ module.exports = function (api) {
         alias: {
           '@': './src',
           '/': '.',
-          crypto: './modules/crypto',
-          stream: 'stream-browserify',
+          'crypto': './modules/crypto',
+          'stream': 'stream-browserify',
         },
       },
     ]);
@@ -44,10 +52,14 @@ module.exports = function (api) {
     presets,
     plugins,
     overrides: [
+      
+      
       {
         test: './node_modules/ethers',
-        plugins: [['@babel/plugin-transform-private-methods', { loose: true }]],
-      },
-    ],
+        plugins: [
+          ["@babel/plugin-transform-private-methods", { "loose": true }]
+        ]
+      }
+    ]
   };
 };

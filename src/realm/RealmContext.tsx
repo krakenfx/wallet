@@ -14,6 +14,8 @@ export const RealmProvider = ({ children, encryptionKey }: Props) => {
   return <ReactRealmProvider encryptionKey={encryptionKey}>{children}</ReactRealmProvider>;
 };
 
+
+
 function useObject<T, K = string>(
   type: string,
   primaryKey: K | undefined,

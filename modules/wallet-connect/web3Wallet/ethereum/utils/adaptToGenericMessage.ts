@@ -7,7 +7,10 @@ import { isEIP712 } from './isEIP712';
 
 import loc from '/loc';
 
-export function adaptToGenericMessage(signMethod: string, requestParams: any): GenericMessage {
+export function adaptToGenericMessage(
+  signMethod: string,
+  requestParams: any ,
+): GenericMessage {
   let address = '';
   let heading;
   let _message: string;
@@ -32,7 +35,7 @@ export function adaptToGenericMessage(signMethod: string, requestParams: any): G
       rawMessage = _message;
       break;
     }
-
+    
     case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA:
     case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V4: {
       const message_ = requestParams[1];
@@ -68,7 +71,11 @@ export function adaptToGenericMessage(signMethod: string, requestParams: any): G
     type: 'generic-message',
     address,
     heading,
-    message: typeof message === 'string' ? [{ title: loc.appSignRequest.message, description: hexToAscii(message) }] : message,
+    message:
+      typeof message === 'string'
+        ? 
+          [{ title: loc.appSignRequest.message, description: hexToAscii(message) }]
+        : message,
     rawMessage,
   };
 }

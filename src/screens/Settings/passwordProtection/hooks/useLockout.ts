@@ -20,7 +20,7 @@ type Lock = {
 };
 
 export const useLockout = () => {
-  const context = useRef(Math.random().toString());
+  const context = useRef(Math.random().toString()); 
   const [failedAttempts, setFailedAttempts] = useState<number>(0);
   const [currentLock, setCurrentLock] = useState<Lock>();
   const [isReady, setIsReady] = useState(false);
@@ -37,6 +37,7 @@ export const useLockout = () => {
   const checkIfLockValid = useCallback(async (lock: Lock): Promise<boolean> => {
     const currentTimeSinceBooted = await BootTime.getTimeSinceBooted();
     if (currentTimeSinceBooted < lock.fromTime) {
+      
       const durationInMillis: Lock = {
         durationInMillis: lock.durationInMillis,
         fromTime: currentTimeSinceBooted,

@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { LargeHeader } from '@/components/LargeHeader';
+import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { useLanguage } from '@/realm/settings';
 import { Routes } from '@/Routes';
 import { CurrencyBadge } from '@/screens/Settings/currency';
@@ -22,10 +23,15 @@ import loc from '/loc';
 export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'SettingsRoot'>) => {
   const { navigate } = navigation;
 
+  
+  
+  
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const _lang = useLanguage();
 
   const insets = useSafeAreaInsets();
+
+  const { isCloudBackupSupported } = useWalletBackupSettings();
 
   return (
     <GradientScreenView>
@@ -34,9 +40,8 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
 
         <SettingsSectionHeader title={loc.settings.wallets} />
         <WalletBackupWarning />
-
         <SettingsItem
-          title={loc.settings.manageWallets}
+          title={isCloudBackupSupported ? loc.settings.walletsAndBackups : loc.settings.manageWallets}
           icon="wallet"
           isFirst
           isLast

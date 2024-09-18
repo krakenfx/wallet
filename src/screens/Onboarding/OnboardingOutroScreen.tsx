@@ -28,6 +28,7 @@ export const OnboardingOutroScreen = ({ navigation, route }: OnboardingNavigatio
   }, [fadeIn]);
 
   useEffect(() => {
+    
     const time = route.params.hasSecuredWallet ? MAX_ANIMATION_TIMEOUT : ANIMATION_TIMEOUT_WITHOUT_SECURE;
     setTimeout(onAnimationFinish, time);
   }, [onAnimationFinish, route.params.hasSecuredWallet]);

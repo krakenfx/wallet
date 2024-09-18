@@ -1,10 +1,13 @@
+
 export function removeProtocol(url: string): string {
   return url.replace(/(^[\w-]+:|^)\/\//, '');
 }
 
+
 export function removeWWWSubdomain(url: string): string {
   return url.replace(/(?<=\/|^)www\./i, '');
 }
+
 
 export const untilFirstBackslash = /^[^/]*/;
 export const untilFirstColon = /^[^:]*/;

@@ -25,55 +25,53 @@ export const useTokensFetch = () => {
       const currentMetadata = realm.objectForPrimaryKey<AssetMetadata>(REALM_TYPE_ASSET_METADATA, assetId);
       if (currentMetadata && currentMetadata.isValid() && !currentMetadata.updateRequired) {
         return new Promise<AssetMetadata>(resolve => resolve(currentMetadata));
-      } else {
-        return fetchTokenMetadata(assetId);
       }
+      return fetchTokenMetadata(assetId);
     },
     [realm],
   );
 
-  const fetchAndUpdateTokens = useCallback(
-    async (addTokensWithBalanceToGallery?: boolean): Promise<boolean> => {
-      if (isFetchingAll.current) {
-        return true;
-      }
-      isFetchingAll.current = true;
-      const accountWallets = getWalletsForMutations(realm);
-      const results = await Promise.allSettled(
-        accountWallets.map(async wallet => {
-          if (wallet.isValid()) {
-            const { network, transport } = getImplForWallet(wallet);
-            const walletStorage = await getWalletStorage(realm, wallet, true);
-            const balances = await transport.fetchBalance(network, wallet, walletStorage, getTokenMetadata);
-            return {
-              balances,
-              wallet,
-            };
-          }
-        }),
-      );
-
-      const suceessResults = compact(results.filter(isPromiseFulfilled).map(({ value }) => value));
-
-      runInTransaction(() => {
-        for (const result of suceessResults) {
-          saveTokensToRealm(result.balances, result.wallet, addTokensWithBalanceToGallery);
+  const fetchAndUpdateTokens = useCallback(async (): Promise<boolean> => {
+    if (isFetchingAll.current) {
+      return true;
+    }
+    isFetchingAll.current = true;
+    const accountWallets = getWalletsForMutations(realm);
+    const results = await Promise.allSettled(
+      accountWallets.map(async wallet => {
+        
+        if (wallet.isValid()) {
+          const { network, transport } = getImplForWallet(wallet);
+          const walletStorage = await getWalletStorage(realm, wallet, true);
+          const balances = await transport.fetchBalance(network, wallet, walletStorage, getTokenMetadata);
+          return {
+            balances,
+            wallet,
+          };
         }
-      });
+      }),
+    );
 
-      results.filter(isPromiseRejected).forEach(({ reason }) => handleError(reason, 'ERROR_CONTEXT_PLACEHOLDER'));
-      isFetchingAll.current = false;
-      return results.length === suceessResults.length;
-    },
-    [getTokenMetadata, realm, runInTransaction, saveTokensToRealm],
-  );
+    const suceessResults = compact(results.filter(isPromiseFulfilled).map(({ value }) => value));
 
+    runInTransaction(() => {
+      for (const result of suceessResults) {
+        saveTokensToRealm(result.balances, result.wallet);
+      }
+    });
+
+    results.filter(isPromiseRejected).forEach(({ reason }) => handleError(reason, 'ERROR_CONTEXT_PLACEHOLDER'));
+    isFetchingAll.current = false;
+    return results.length === suceessResults.length;
+  }, [getTokenMetadata, realm, runInTransaction, saveTokensToRealm]);
+
+  
   const fetchBalance = useCallback(
     async (wallet: RealmWallet, refreshState: boolean) => {
       const { network, transport } = getImplForWallet(wallet);
 
       const balances = await transport.fetchBalance(network, wallet, await getWalletStorage(realm, wallet, refreshState), getTokenMetadata);
-      return saveTokensToRealm(balances, wallet, false);
+      return saveTokensToRealm(balances, wallet);
     },
     [realm, saveTokensToRealm, getTokenMetadata],
   );

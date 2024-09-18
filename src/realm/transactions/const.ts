@@ -1,6 +1,13 @@
 export const TYPE_ERC721 = 'erc721';
 export const TYPE_ERC1155 = 'erc1155';
 
+
+
+
+
+
+
+
 export enum TRANSACTION_TYPES {
   CONTRACT_INTERACTION = 'contract-interaction',
   MINT = 'mint',
@@ -13,10 +20,13 @@ export enum TRANSACTION_TYPES {
   SEND = 'send',
   NFT_SEND = 'nft-send',
   SWAP = 'swap',
-
-  TOKEN_APPROVAL = 'token-approval',
-  TOKEN_APPROVAL_UNLIMITED = 'token-approval-unlimited',
+  
+  
+  
+  TOKEN_APPROVAL = 'token-approval', 
+  TOKEN_APPROVAL_UNLIMITED = 'token-approval-unlimited', 
 }
+
 
 export enum TRANSACTION_PENDING_TYPES {
   SEND = 'pending-send',

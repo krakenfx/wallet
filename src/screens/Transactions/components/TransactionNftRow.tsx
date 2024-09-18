@@ -44,6 +44,8 @@ export const TransactionNftRow = React.memo(
     onTransactionHide,
     containerStyle,
   }: TransactionNftRowProps) => {
+    
+    
     let finalNftAssetId = classifiedTx.nft.assetId;
     if (finalNftAssetId.endsWith('?nft')) {
       finalNftAssetId = finalNftAssetId.slice(0, -4);
@@ -69,6 +71,7 @@ export const TransactionNftRow = React.memo(
     const { assetAmountFormatted, assetAmountInCurrencyFormatted, assetAmountAndNetworkFeeFormatted, assetAmountAndNetworkFeeInCurrencyFormatted } =
       useNftAmounts(classifiedTx, item, contextToken, isGlobalView);
 
+    
     const descriptionDefault = parsedTx.protocolInfo?.projectId || formatTransactionAddress(parsedTx.metadata?.target, classifiedTx.type ?? '');
 
     const NFTname = useMemo(() => {
@@ -113,6 +116,7 @@ export const TransactionNftRow = React.memo(
       });
     }, [item, navigation, contextToken?.assetId, transactionDetailsMetadata]);
 
+    
     const showRow = !(pendingTx !== undefined && pendingTx.isValid() && !pendingTx.confirmed);
 
     const hideAmount = useMemo(

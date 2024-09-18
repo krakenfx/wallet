@@ -59,13 +59,13 @@ export const SendAsset = ({ supportedNetworks, onAssetSelected, goBack }: Props)
       const filteredTokens = compatibleTokens.filter(coin => {
         const testString = (coin.metadata.label + ' ' + coin.metadata.symbol).toLowerCase();
 
+        
         return testString.startsWith(searchQuery_) || testString.includes(` ${searchQuery_}`);
       });
 
       return filteredTokens;
-    } else {
-      return compatibleTokens;
     }
+    return compatibleTokens;
   }, [compatibleTokens, searchQuery]);
 
   const renderItem: ListRenderItem<RealmToken> = ({ item, index }) => (

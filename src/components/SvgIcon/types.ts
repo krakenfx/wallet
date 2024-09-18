@@ -1,3 +1,7 @@
+
+
+
+
 export type IconName =
   | 'wallet'
   | 'shield-tick'
@@ -128,6 +132,7 @@ export type IconName =
   | 'link-zealy'
   | 'asset-coin'
   | 'un-archive'
+  | 'passkey'
   | 'small-wallet'
   | 'small-shield-tick'
   | 'small-notification'
@@ -256,4 +261,5 @@ export type IconName =
   | 'small-link-bitbucket'
   | 'small-link-zealy'
   | 'small-asset-coin'
-  | 'small-un-archive';
+  | 'small-un-archive'
+  | 'small-passkey';

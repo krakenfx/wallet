@@ -20,6 +20,8 @@ type Props = {
   networkName: WalletType | 'walletTypeUnknown';
 };
 
+
+
 const NORMAL_USE_AMOUNT = ['BTC', 'DOGE', 'SOL'];
 const NORMAL_USE_PRICE = ['BTC', 'DOGE'];
 

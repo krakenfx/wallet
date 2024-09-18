@@ -5,6 +5,7 @@ import { useRealmWallets } from '../wallets/useWallets';
 
 import { REALM_TYPE_NFT, RealmNft } from './schema';
 
+
 export const useNfts = (archived = false, networkFilter: string[] = []) => {
   const walletIds = useRealmWallets().map(w => w.id);
   const nfts = useQuery<RealmNft>(REALM_TYPE_NFT, nft => nft.filtered("walletId IN $0 AND metadata.collectionId != ''", walletIds), [walletIds]);

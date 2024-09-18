@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+
 export const useDeafultHeaderHeight = (withTopInset = false) => {
   const insets = useSafeAreaInsets();
 

@@ -52,7 +52,9 @@ export const DeleteAccountConfirmScreen = ({ route, navigation }: AccountNavigat
           <Label type="boldDisplay4" style={styles.label}>
             {loc.deleteAccountConfirm.header}
           </Label>
-          <Label type="regularTitle1">{loc.deleteAccountConfirm.caption}</Label>
+          <Label type="regularTitle1" color="light75">
+            {loc.deleteAccountConfirm.caption}
+          </Label>
         </View>
       </View>
       <FloatingBottomContainer>

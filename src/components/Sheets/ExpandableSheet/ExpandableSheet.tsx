@@ -16,34 +16,25 @@ import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-cont
 
 import { BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
 
+import { ExpandableSheetContextProvider } from './ExpandableSheetContext';
 import { ExpandableSheetFooter } from './ExpandableSheetFooter';
 import { ExpandableSheetMethods } from './types';
 
-export type ExpandableSheetProps<P> = {
-  FloatingButtonsComponent?: React.FC<ExpandableSheetMethods & P> | null | false | undefined;
-  PreviewComponent: React.FC<ExpandableSheetMethods>;
-  DetailsComponent?: React.FC<ExpandableSheetMethods> | null | false | undefined;
+export type ExpandableSheetProps = {
+  PreviewComponent: React.ReactNode;
+  DetailsComponent?: React.ReactNode;
+  FloatingButtonsComponent?: React.ReactNode;
   StickyHeaderComponent?: React.FC<{ collapsibleSectionStyle: StyleProp<AnimateStyle<StyleProp<ViewStyle>>> }>;
+
   onDismiss?: () => void;
   dismissible?: boolean;
   extraPaddingBottom?: number;
-  floatingButtonsProps?: P;
 };
 
-export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableSheetProps<any>>(
-  (
-    {
-      PreviewComponent,
-      DetailsComponent,
-      FloatingButtonsComponent,
-      StickyHeaderComponent,
-      onDismiss,
-      dismissible,
-      extraPaddingBottom = 16,
-      floatingButtonsProps,
-    },
-    ref,
-  ) => {
+
+
+export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableSheetProps>(
+  ({ PreviewComponent, DetailsComponent, FloatingButtonsComponent, StickyHeaderComponent, onDismiss, dismissible, extraPaddingBottom = 16 }, ref) => {
     const sheetRef = useRef<BottomSheetRef>(null);
     const scrollRef = useAnimatedRef<ScrollView>();
     const animatedIndex = useSharedValue<number>(0);
@@ -61,12 +52,13 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
     const frame = useSafeAreaFrame();
     const insets = useSafeAreaInsets();
 
+    
     useAnimatedReaction(
       () => animatedIndex.value < 0.5,
       (collapsing, prev) => {
         if (collapsing !== prev && collapsing) {
           scrollTo(scrollRef, 0, 0, true);
-          stickyHeaderCollapsed.value = withTiming(0);
+          stickyHeaderCollapsed.value = withTiming(0); 
         }
       },
     );
@@ -82,13 +74,7 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
 
     useImperativeHandle(ref, () => sheetMethods, [sheetMethods]);
 
-    const detailsElement = useMemo(() => !!DetailsComponent && <DetailsComponent {...sheetMethods} />, [DetailsComponent, sheetMethods]);
-    const footerElement = useMemo(
-      () => !!FloatingButtonsComponent && <FloatingButtonsComponent {...sheetMethods} {...floatingButtonsProps} />,
-      [FloatingButtonsComponent, sheetMethods, floatingButtonsProps],
-    );
-
-    const canShowMore = !!detailsElement;
+    const canShowMore = !!DetailsComponent;
 
     const paddingBottom = (footerLayout?.height ?? 0) + extraPaddingBottom;
 
@@ -110,12 +96,12 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
               sheetMethods.collapse();
             }
           }}
-          FooterElement={footerElement}
+          FooterElement={FloatingButtonsComponent}
           {...sheetMethods}
           {...props}
         />
       ),
-      [canShowMore, animatedSnapPoints, animatedIndex, footerElement, sheetMethods],
+      [canShowMore, animatedSnapPoints, animatedIndex, FloatingButtonsComponent, sheetMethods],
     );
 
     useEffect(() => {
@@ -129,6 +115,8 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
 
       const stickyHeaderHeight = stickyHeaderLayout?.height ?? 0;
 
+      
+      
       handleContentLayout({ nativeEvent: { layout: { ...previewLayout, height: previewLayout.height + stickyHeaderHeight + paddingBottom } } });
     }, [handleContentLayout, paddingBottom, previewLayout, stickyHeaderLayout, StickyHeaderComponent]);
 
@@ -141,6 +129,7 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
     };
 
     const snapPoints = useDerivedValue(() => {
+      
       if (!canShowMore) {
         return [animatedSnapPoints.value[0]];
       }
@@ -148,10 +137,10 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
     }, [canShowMore]);
 
     const onBottomSheetScrollViewScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      if (!stickyHeaderCollapsed.value && animatedIndex.value === 1 && event.nativeEvent.contentOffset.y > 5) {
+      if (!stickyHeaderCollapsed.value && animatedIndex.value === 1 && event.nativeEvent.contentOffset.y > 5 ) {
         stickyHeaderCollapsed.value = withTiming(1);
       } else if (animatedIndex.value === 1 && event.nativeEvent.contentOffset.y <= 5) {
-        stickyHeaderCollapsed.value = withTiming(0);
+        stickyHeaderCollapsed.value = withTiming(0); 
       }
     };
 
@@ -164,39 +153,42 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
     );
 
     return (
-      <BottomSheet
-        ref={sheetRef}
-        handleAndroidBackButton
-        dismissible={dismissible}
-        contentHeight={animatedContentHeight}
-        handleHeight={animatedHandleHeight}
-        snapPoints={snapPoints}
-        animatedPosition={animatedPosition}
-        animatedIndex={animatedIndex}
-        footerComponent={renderFooter}
-        onDismiss={onDismiss}>
-        {!!StickyHeaderComponent && (
-          <View onLayout={stickyHeaderLayout ? undefined : onStickyHeaderLayout}>
-            <StickyHeaderComponent collapsibleSectionStyle={collapsibleHeaderSectionStyle} />
-          </View>
-        )}
-        <BottomSheetScrollView
-          ref={scrollRef}
-          onScroll={onBottomSheetScrollViewScroll}
-          style={[
-            styles.contentContainer,
+      <ExpandableSheetContextProvider {...sheetMethods}>
+        <BottomSheet
+          ref={sheetRef}
+          handleAndroidBackButton
+          dismissible={dismissible}
+          contentHeight={animatedContentHeight}
+          handleHeight={animatedHandleHeight}
+          snapPoints={snapPoints}
+          animatedPosition={animatedPosition}
+          animatedIndex={animatedIndex}
+          footerComponent={renderFooter}
+          onDismiss={onDismiss}>
+          {!!StickyHeaderComponent && (
+            
+            <View onLayout={stickyHeaderLayout ? undefined : onStickyHeaderLayout}>
+              <StickyHeaderComponent collapsibleSectionStyle={collapsibleHeaderSectionStyle} />
+            </View>
+          )}
 
-            { maxHeight: frame.height - insets.bottom - insets.top - (stickyHeaderLayout?.height ?? 0) - (footerLayout?.height ?? 0) },
-          ]}>
-          <View onLayout={onLayout}>
-            <PreviewComponent {...sheetMethods} />
-          </View>
-          {!!DetailsComponent && <Animated.View style={collapsedContentStyle}>{detailsElement}</Animated.View>}
-        </BottomSheetScrollView>
-      </BottomSheet>
+          <BottomSheetScrollView
+            ref={scrollRef}
+            onScroll={onBottomSheetScrollViewScroll}
+            style={[
+              styles.contentContainer,
+              
+              { maxHeight: frame.height - insets.bottom - insets.top - (stickyHeaderLayout?.height ?? 0) - (footerLayout?.height ?? 0) },
+            ]}>
+            <View onLayout={onLayout}>{PreviewComponent}</View>
+
+            {canShowMore && <Animated.View style={collapsedContentStyle}>{DetailsComponent}</Animated.View>}
+          </BottomSheetScrollView>
+        </BottomSheet>
+      </ExpandableSheetContextProvider>
     );
   },
-) as <T extends {}>(p: ExpandableSheetProps<T> & { ref?: RefObject<ExpandableSheetMethods> }) => React.ReactElement;
+) as (p: ExpandableSheetProps & { ref?: RefObject<ExpandableSheetMethods> }) => React.ReactElement;
 
 const styles = StyleSheet.create({
   contentContainer: {

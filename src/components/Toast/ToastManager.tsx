@@ -34,7 +34,7 @@ export const ToastManager: React.FC = () => {
   }, [currentProps, currentRouteName]);
 
   useEffect(() => {
-    const routeName = navigationState?.routes[navigationState.index ?? 0].name as Routes;
+    const routeName = navigationState?.routes[navigationState.index ?? 0 ].name as Routes;
     setCurrentRouteName(routeName);
   }, [navigationState]);
 
@@ -58,6 +58,7 @@ export const ToastManager: React.FC = () => {
     (newProps: ToastConfigProps) => {
       const mergedProps = defaults(newProps, defaultProps);
       if (currentProps) {
+        
         if (![...queue.current, currentProps].find(props => isEqual(props, mergedProps))) {
           queue.current.unshift(newProps);
         }
@@ -71,6 +72,7 @@ export const ToastManager: React.FC = () => {
           withTiming(ToastState.IN, { duration: 0 }, finished => {
             if (finished && !['onlyManual', 'event'].includes(mergedProps.dismissMode || '')) {
               if (mergedProps?.id) {
+                
                 runOnJS(removeToastByIdFromQueue)(mergedProps.id);
               }
               hideToast();
@@ -83,6 +85,7 @@ export const ToastManager: React.FC = () => {
   );
 
   useEffect(() => {
+    
     if (!currentProps) {
       const nextProps = queue.current?.pop();
       if (nextProps) {
@@ -117,7 +120,7 @@ export const ToastManager: React.FC = () => {
       if (currentProps?.id === id) {
         hideToast();
       }
-
+      
       removeToastByIdFromQueue(id);
     },
     [currentProps?.id, hideToast, removeToastByIdFromQueue],

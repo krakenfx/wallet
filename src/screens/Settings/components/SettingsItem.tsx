@@ -18,17 +18,32 @@ interface SettingsItemProps {
   isLast?: boolean;
   isHighlighted?: boolean;
   children?: React.ReactNode;
+  footer?: React.ReactNode;
   isWarningAction?: boolean;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
-export const SettingsItem = ({ icon, title, label, onPress, testID, isLast, isFirst, isHighlighted, children, isWarningAction }: SettingsItemProps) => {
+export const SettingsItem = ({
+  icon,
+  title,
+  label,
+  onPress,
+  testID,
+  isLast,
+  isFirst,
+  isHighlighted,
+  children,
+  footer,
+  isWarningAction,
+  containerStyle,
+}: SettingsItemProps) => {
   const borderTopRadius = isFirst ? { borderTopLeftRadius: 16, borderTopRightRadius: 16 } : {};
   const borderBottomRadius = isLast ? { borderBottomLeftRadius: 16, borderBottomRightRadius: 16 } : {};
 
   const borderRadiusStyle: StyleProp<ViewStyle> = [borderTopRadius, borderBottomRadius];
 
   return (
-    <Touchable style={[styles.container, borderRadiusStyle]} onPress={onPress} testID={testID}>
+    <Touchable style={[styles.container, borderRadiusStyle, containerStyle]} onPress={onPress} testID={testID}>
       {isHighlighted && <GradientItemBackground />}
       {icon ? <SettingsIcon name={icon} isWarningIcon={isWarningAction} /> : <View style={styles.spaceElement} />}
       <View style={styles.values}>
@@ -43,8 +58,9 @@ export const SettingsItem = ({ icon, title, label, onPress, testID, isLast, isFi
       </View>
       <View style={styles.rightElement}>
         {children}
-        <SvgIcon name="chevron-right" style={styles.chevron} color={!isWarningAction ? 'light75' : 'red400'} />
+        <SvgIcon name="chevron-right" size={16} style={styles.chevron} color={!isWarningAction ? 'light75' : 'red400'} />
       </View>
+      {footer}
     </Touchable>
   );
 };
@@ -72,8 +88,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   chevron: {
-    marginLeft: 'auto',
-    position: 'relative',
-    alignItems: 'center',
+    marginLeft: 6,
   },
 });

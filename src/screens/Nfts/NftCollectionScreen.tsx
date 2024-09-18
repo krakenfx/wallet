@@ -57,6 +57,7 @@ export const NftCollectionScreen = ({ navigation, route }: NavigationProps<'NftC
   useFocusEffect(
     useCallback(() => {
       if (!collection?.nfts.length) {
+        
         navigation.goBack();
       }
     }, [collection?.nfts.length, navigation]),

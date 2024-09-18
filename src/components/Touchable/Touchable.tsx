@@ -27,7 +27,7 @@ export const Touchable = ({ hapticFeedbackOnPress = 'impactLight', hapticFeedbac
       },
       200,
       { trailing: false },
-    ),
+    ), 
     [props.onPress, hapticFeedbackOnPress],
   );
   const handleLongPressWithFeedback = (e: GestureResponderEvent) => {

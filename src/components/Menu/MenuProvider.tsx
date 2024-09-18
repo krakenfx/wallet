@@ -7,6 +7,7 @@ import { MenuOverlay, MenuOverlayProps, PopupMenuProps } from './MenuOverlay';
 
 interface MenuContextProps {
   hide: () => void;
+  setVisible: (visible: boolean) => void;
   show: (props: MenuOverlayProps) => void;
   update: (props: PopupMenuProps<any>) => void;
   isShown: boolean;
@@ -16,14 +17,17 @@ const MenuContext = React.createContext<MenuContextProps>({
   hide: noop,
   show: noop,
   update: noop,
+  setVisible: noop,
   isShown: false,
 });
 
 export const MenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [props, setProps] = useState<MenuOverlayProps>();
+  const [visible, setVisible] = useState(false);
 
   const show = (newProps: MenuOverlayProps) => {
     setProps(newProps);
+    setVisible(true);
   };
 
   const update = (newProps: PopupMenuProps<any>) => {
@@ -32,13 +36,14 @@ export const MenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const hide = () => {
     setProps(undefined);
+    setVisible(false);
   };
 
   const Container = Platform.OS === 'ios' ? FullWindowOverlay : View;
 
   return (
     <>
-      <MenuContext.Provider value={{ hide, show, update, isShown: !!props }}>
+      <MenuContext.Provider value={{ hide, show, update, setVisible, isShown: !!visible }}>
         {children}
         {props && (
           <Container style={StyleSheet.absoluteFill} pointerEvents="box-none">

@@ -8,6 +8,7 @@ import { Theme } from '@/theme/themes';
 
 const numberRange = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const getPosition = (value: string, height?: number) => {
+  
   const int = parseInt(value, 10) || 0;
 
   return int * (height || 0) * -1;
@@ -27,16 +28,17 @@ export const Tick = ({ type, value, fontSize, lineHeight, color }: TickProps) =>
 
   const animatedStyle = useAnimatedStyle(() => {
     if (global._WORKLET) {
+      
       return {
         transform: [{ translateY: animation.value }],
       };
-    } else {
-      return {};
     }
+    return {};
   });
 
   useEffect(() => {
     if (lastValue.current !== value) {
+      
       animation.value = withTiming(getPosition(value, fontSize), { duration: 350, easing: Easing.bezier(0.62, 0.24, 0.4, 0.85) }, () => {});
     } else {
       animation.value = getPosition(value, fontSize);

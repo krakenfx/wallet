@@ -15,6 +15,7 @@ export type PositionProps = {
   origin: {
     x: number;
     y: number;
+    offsetX: number;
     elementHeight: number;
   };
   menuWidth?: number;
@@ -32,7 +33,7 @@ const springConfig: WithSpringConfig = {
 export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth, ...props }) => {
   const [layout, setLayout] = useState<LayoutRectangle>();
   const { height, width } = useWindowDimensions();
-  const { hide } = useMenu();
+  const { hide, setVisible } = useMenu();
   const { colors } = useTheme();
   const frame = useSafeAreaFrame();
   const insets = useSafeAreaInsets();
@@ -40,10 +41,13 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
   const transition = useSharedValue(0);
 
   useEffect(() => {
+    
     transition.value = withSpring(1, springConfig);
   }, [transition]);
 
   const onClose = () => {
+    
+    setVisible(false);
     transition.value = withSpring(0, springConfig, finished => {
       if (finished) {
         runOnJS(hide)();
@@ -57,11 +61,13 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
   });
 
   const maxMenuHeight = useMemo(() => {
+    
     if (origin.y - origin.elementHeight / 2 > height / 2) {
+      
       return origin.y - insets.top - origin.elementHeight;
-    } else {
-      return height - origin.y - Platform.select({ ios: insets.bottom, default: 0 }) - 16;
     }
+    
+    return height - origin.y - Platform.select({ ios: insets.bottom, default: 0 }) - 16;
   }, [height, insets.bottom, insets.top, origin.y, origin.elementHeight]);
 
   const horizontalPositionStyle = alignTo === 'left' ? { left: 0 } : { right: 0 };
@@ -75,10 +81,10 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
 
     const maxBottom = frame.height - insets.bottom;
     const bottom = layout.height + layout.y;
-
+    
     const translateOriginX = (layout.width / 2) * (alignTo === 'left' ? -1 : 1);
     const translateOriginY = layout.height / -2;
-
+    
     const additionalOffset = bottom > maxBottom ? -layout.height - origin.elementHeight : 0;
 
     return {
@@ -89,6 +95,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
         { translateX: -translateOriginX },
         { translateY: -translateOriginY },
         { translateY: additionalOffset },
+        { translateX: origin.offsetX },
       ],
       opacity: interpolate(transition.value, [0, 1], [0, 1]),
     };

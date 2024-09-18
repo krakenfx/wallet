@@ -100,9 +100,10 @@ export const LockScreen = React.forwardRef<LockScreenRef, Props>(
               selectionColor={inputColor}
               inputStyle={{ color: inputColor }}
               autoFocus
+              textAlign="center"
+              transparent
               style={[styles.input, animatedStyle]}
               containerStyle={styles.inputContainer}
-              transparent
               secureTextEntry
               textContentType="password"
               onChangeText={handleChangeText}

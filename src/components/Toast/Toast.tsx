@@ -30,7 +30,7 @@ export type ToastConfigProps = {
   type: 'error' | 'info' | 'success';
   topOffset?: number;
   noIcon?: boolean;
-  duration?: number;
+  duration?: number; 
   dismissMode?: DismissMode;
   id?: string;
   testID?: string;
@@ -46,6 +46,7 @@ export enum ToastState {
   IN = 1,
   OUT = 2,
 }
+
 
 type DismissMode = 'auto' | 'onlyManual' | 'preventManual' | 'event';
 

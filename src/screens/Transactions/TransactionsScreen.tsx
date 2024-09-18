@@ -12,24 +12,26 @@ import { ListHeader } from '@/components/ListHeader';
 import { FlashListWithRefreshControl } from '@/components/ScrollerWithRefreshControl';
 import { SvgIcon } from '@/components/SvgIcon';
 import { hideToast } from '@/components/Toast';
-import { SheetPosition } from '@/components/TokenMarketData/utils';
 import { Touchable } from '@/components/Touchable';
-import { TransactionsTokenHeader } from '@/components/TransactionsTokenHeader';
 import { useAssetMarketdataFetch } from '@/realm/assetMarketData';
 import { useAssetMetadataFetch } from '@/realm/assetMetadata';
 import { useResolvedAssetBalance, useTokenById, useTokensFetch } from '@/realm/tokens';
 import { useTransactionsFetch } from '@/realm/transactions/useTransactionsFetch';
 import { useRealmWalletById } from '@/realm/wallets';
 import { NavigationProps } from '@/Routes';
-import { SMALL_SHEET_MIN_HEIGHT, TokenMarketDataBottomSheet, defaultSheetPosition } from '@/screens/Transactions/components/TokenMarketDataBottomSheet';
-import { TokenSendReceiveButtons } from '@/screens/Transactions/components/TokenSendReceiveButtons';
-import { TransactionListItem, useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
+
 import { useTheme } from '@/theme/themes';
 import { AssetBalanceId } from '@/types';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
+import { SheetPosition } from './components/TokenMarketData/utils';
+import { SMALL_SHEET_MIN_HEIGHT, TokenMarketDataBottomSheet, defaultSheetPosition } from './components/TokenMarketDataBottomSheet';
+import { TokenSendReceiveButtons } from './components/TokenSendReceiveButtons';
+import { TransactionsTokenHeader } from './components/TransactionsTokenHeader';
+
 import { refreshingTransactionsEvent, showRefreshingTransactionsToast } from './utils/showRefreshingTransactionsToast';
+import { TransactionListItem, useTransactionsDataSource } from './utils/useTransactionsDataSource';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -69,7 +71,8 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
       showIndicator && showRefreshingTransactionsToast();
       try {
         console.log('[Transactions & Balance] fetching');
-
+        
+        
         await Promise.all([
           fetchTransactions(realmWallet, true),
           fetchBalance(realmWallet, false),
@@ -125,7 +128,7 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
     }
   }, []);
 
-  const headerTitleComponent = useCallback(() => <CoinHeader assetBalanceId={params.assetBalanceId} />, [params.assetBalanceId]);
+  const headerTitleComponent = useCallback(() => <CoinHeader wallet={realmWallet} token={token} />, [realmWallet, token]);
   const headerRightComponent = useCallback(
     () => (
       <Touchable onPress={onTransactionHistoryPress} testID="TxHistory" style={[styles.transactionHeaderButton, { backgroundColor: colors.purple_40 }]}>
@@ -216,11 +219,6 @@ const styles = StyleSheet.create({
   sectionHeader: {
     marginTop: 16,
   },
-  reputationPillContainer: {
-    flexDirection: 'row',
-    marginTop: 12,
-  },
-
   containerZeroState: {
     flex: 1,
     justifyContent: 'center',

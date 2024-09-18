@@ -2,57 +2,85 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useEffect, useState } from 'react';
 import Config from 'react-native-config';
 
+import { featureFlagsKey } from '@/secureStore/asyncStorageKeys';
+
+import { createErrorHandlerWithContext, handleError } from '/helpers/errorHandler';
+
 const FEATURE_FLAGS_ENABLED = __DEV__ || Config.INTERNAL_RELEASE;
 
 export enum FeatureFlag {
   AssetMarketDataEnabled = 'AssetMarketDataEnabled',
+  iCloudBackupEnabled = 'iCloudBackupEnabled',
 }
 
-export function checkAndSetFeatureFlags<FMap = Record<FeatureFlag, boolean | undefined>>(): FMap {
+export function getFeatureFlagsFromStorage<FMap = Record<FeatureFlag, boolean | undefined>>(): FMap {
   const result = {} as FMap;
   if (FEATURE_FLAGS_ENABLED) {
-    Object.keys(FeatureFlag).forEach(key => {
-      AsyncStorage.getItem(key).then(value => {
-        featureFlagObj[key as FeatureFlag] = value === 'true';
-      });
-    });
+    AsyncStorage.getItem(featureFlagsKey)
+      .then(flagsStr => {
+        if (typeof flagsStr !== 'string') {
+          return result;
+        }
+        try {
+          const parsedFlags = JSON.parse(flagsStr) as FMap;
+          for (const key in parsedFlags) {
+            result[key] = parsedFlags[key];
+          }
+        } catch (e) {
+          handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
+        }
+      })
+      .catch(createErrorHandlerWithContext('ERROR_CONTEXT_PLACEHOLDER'));
   }
   return result;
 }
-const featureFlagObj = checkAndSetFeatureFlags();
 
-export function isFeatureEnabled(key: FeatureFlag) {
+export async function saveFeatureFlagsToStorage() {
+  if (FEATURE_FLAGS_ENABLED) {
+    return AsyncStorage.setItem(featureFlagsKey, JSON.stringify(featureFlagObj)).catch(createErrorHandlerWithContext('ERROR_CONTEXT_PLACEHOLDER'));
+  }
+}
+
+const featureFlagObj = getFeatureFlagsFromStorage(); 
+
+function isFeatureEnabled(key: FeatureFlag) {
+  
   return !!(__DEV__ || Config.INTERNAL_RELEASE) && !!featureFlagObj[key];
 }
 
 export async function enableFeature(key: FeatureFlag) {
-  await AsyncStorage.setItem(key, 'true');
   featureFlagObj[key] = true;
+  await saveFeatureFlagsToStorage();
 }
 
 export async function disableFeature(key: FeatureFlag) {
-  await AsyncStorage.setItem(key, 'false');
   featureFlagObj[key] = false;
+  await saveFeatureFlagsToStorage();
 }
 
 export const useFeatureFlag = (key: FeatureFlag) => {
-  const [isFeatureFlagEnabled, setIsFeatureFlagEnabled] = useState(false);
+  const [isFeatureFlagEnabled, setIsFeatureFlagEnabled] = useState(false); 
 
   useEffect(() => {
     setIsFeatureFlagEnabled(isFeatureEnabled(key));
   }, [key]);
 
-  const toggleFeature = useCallback(() => {
-    if (isFeatureFlagEnabled) {
-      disableFeature(key);
-    } else {
-      enableFeature(key);
-    }
-    setIsFeatureFlagEnabled(!isFeatureFlagEnabled);
-  }, [isFeatureFlagEnabled, key]);
+  const setFeatureEnabled = useCallback(
+    (enabled: boolean) => {
+      if (enabled) {
+        enableFeature(key);
+      } else {
+        disableFeature(key);
+      }
+      setIsFeatureFlagEnabled(enabled);
+    },
+    [key],
+  );
 
-  return {
-    isFeatureFlagEnabled,
-    toggleFeature,
-  };
+  return [isFeatureFlagEnabled, setFeatureEnabled] as const;
+};
+
+export const useFeatureFlagEnabled = (key: FeatureFlag) => {
+  const [featureEnabled] = useFeatureFlag(key);
+  return featureEnabled;
 };

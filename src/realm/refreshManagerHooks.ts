@@ -41,12 +41,14 @@ export const refreshTokenPrices = debounce(() => {
 const DELAY_REFRESH_TRANSACTION_FIRST_CALL = 3000;
 const DELAY_REFRESH_TRANSACTION_ADDITIONAL_CALL = 15000;
 export const refreshAllTransactions = debounce(() => {
+  
   setTimeout(() => refreshEmitter.emit(RefreshEmitter.refreshAllTransactions), DELAY_REFRESH_TRANSACTION_FIRST_CALL);
   setTimeout(() => refreshEmitter.emit(RefreshEmitter.refreshAllTransactions), DELAY_REFRESH_TRANSACTION_ADDITIONAL_CALL);
 }, DEBOUNCE_FETCH_TIME);
 
+
 export const useRegisterRefreshManager = () => {
-  const { fetchRelevantTokenPrices } = useTokenPriceFetch();
+  const { fetchTokenPrices } = useTokenPriceFetch();
   const { fetchAndUpdateNfts } = useNftsFetch();
   const { fetchAndUpdateTokens } = useTokensFetch();
   const { fetchAllTransactionsForAllNetworks } = useTransactionsFetch();
@@ -54,16 +56,16 @@ export const useRegisterRefreshManager = () => {
   useEffect(() => {
     refreshEmitter.on(RefreshEmitter.refreshAllTokens, fetchAndUpdateTokens);
     refreshEmitter.on(RefreshEmitter.refreshAllNfts, fetchAndUpdateNfts);
-    refreshEmitter.on(RefreshEmitter.refreshTokenPrices, fetchRelevantTokenPrices);
+    refreshEmitter.on(RefreshEmitter.refreshTokenPrices, fetchTokenPrices);
     refreshEmitter.on(RefreshEmitter.refreshAllTransactions, fetchAllTransactionsForAllNetworks);
 
     return () => {
       refreshEmitter.off(RefreshEmitter.refreshAllTokens, fetchAndUpdateTokens);
       refreshEmitter.off(RefreshEmitter.refreshAllNfts, fetchAndUpdateNfts);
-      refreshEmitter.off(RefreshEmitter.refreshTokenPrices, fetchRelevantTokenPrices);
+      refreshEmitter.off(RefreshEmitter.refreshTokenPrices, fetchTokenPrices);
       refreshEmitter.off(RefreshEmitter.refreshAllTransactions, fetchAllTransactionsForAllNetworks);
     };
-  }, [fetchRelevantTokenPrices, fetchAndUpdateNfts, fetchAndUpdateTokens, fetchAllTransactionsForAllNetworks]);
+  }, [fetchTokenPrices, fetchAndUpdateNfts, fetchAndUpdateTokens, fetchAllTransactionsForAllNetworks]);
 };
 
 export const refreshingAllEvent = 'refreshingAll';
@@ -86,12 +88,12 @@ const showRefreshDataUpToDate = async () =>
     hapticFeedbackOnShow: 'notificationSuccess',
     text: loc._.upToDate,
     testID: 'UpToDateToast',
-    duration: 1000,
+    duration: 1000, 
     blackListRoutes: [Routes.Onboarding],
   });
 
 export const useRefreshStateActions = () => {
-  const { fetchRelevantTokenPrices } = useTokenPriceFetch();
+  const { fetchTokenPrices } = useTokenPriceFetch();
   const { fetchAndUpdateNfts } = useNftsFetch();
   const { fetchAndUpdateTokens } = useTokensFetch();
   const { fetchAndUpdateDefi } = useDefiFetch();
@@ -116,25 +118,24 @@ export const useRefreshStateActions = () => {
       setIsRefreshing(true);
       preventRefresh.current = true;
 
-      const fetchResults: boolean[] = [];
+      const fetchResults: boolean[] = []; 
       if (showToastImmediately) {
         await showRefreshLoading();
       } else {
         timeoutId.current = setTimeout(showRefreshLoading, REFRESH_TOAST_TIMEOUT);
       }
 
+      
       fetchAndUpdateNfts();
       fetchAndUpdateDefi();
       fetchAllTransactionsForAllNetworks();
+      
+
+      fetchResults.push(await fetchAndUpdateTokens());
+      fetchResults.push(await fetchTokenPrices());
 
       if (!account.didLoadOnce) {
-        fetchResults.push(await fetchAndUpdateTokens(true));
-        if (fetchResults.includes(true)) {
-          setDidLoadOnce(account);
-        }
-        fetchResults.push(await fetchRelevantTokenPrices());
-      } else {
-        fetchResults.push(...(await Promise.all([fetchAndUpdateTokens(), fetchRelevantTokenPrices()])));
+        setDidLoadOnce(account);
       }
 
       clearTimeout(timeoutId.current);
@@ -142,6 +143,7 @@ export const useRefreshStateActions = () => {
       setIsRefreshing(false);
       preventRefresh.current = false;
 
+      
       if (!fetchResults.includes(false)) {
         showRefreshDataUpToDate();
       }
@@ -154,7 +156,7 @@ export const useRefreshStateActions = () => {
       fetchAndUpdateDefi,
       fetchAllTransactionsForAllNetworks,
       fetchAndUpdateTokens,
-      fetchRelevantTokenPrices,
+      fetchTokenPrices,
       setDidLoadOnce,
     ],
   );

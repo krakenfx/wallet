@@ -35,18 +35,24 @@ interface LocalCache {
   };
 }
 
+
+
 export const RealmQueueProvider = ({ children }: Props) => {
   const queue = useRef<QueueWithName>({});
   const localCache = useRef<LocalCache>({});
 
   const { runInTransaction } = useRealmTransaction();
 
-  const addToRealmTransactionQueue = useCallback(function (queueName: string, callback: () => unknown) {
+  const addToRealmTransactionQueue = useCallback(function (
+    queueName: string,
+    callback: () => unknown ,
+  ) {
     if (!queue.current[queueName]) {
       queue.current[queueName] = [];
     }
     queue.current[queueName].push(callback);
-  }, []);
+  },
+  []);
 
   const commitRealmTransactionQueue = useCallback(
     (queueName: string) => {

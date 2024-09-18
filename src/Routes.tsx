@@ -30,6 +30,7 @@ import { TransactionDetailsParams, TransactionsRouteProps } from '@/screens/Tran
 import { TriggeredPushPromptParams } from '@/screens/TriggerredPushPromptScreen';
 import { UniversalSendRouteParams } from '@/screens/UniversalSend';
 
+
 type ExcludeRealmObject<T> = {
   [K in keyof T]: T[K] extends Realm.Object ? never : T[K];
 };
@@ -50,6 +51,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     WhatsNewAssetMarketData: undefined;
     WhatsNewLongPress: undefined;
     WalletBackupPrompt: undefined;
+    WalletCloudBackupScreen: { origin: Routes } | undefined;
     CoinsList: undefined;
     ConnectApp: ConnectAppParams;
     ConnectAppQRScan: ScanQRCodeParams | undefined;
@@ -135,6 +137,10 @@ export enum Routes {
   OnboardingBackup = 'OnboardingBackup',
   OnboardingBackupPrompt = 'OnboardingBackupPrompt',
   OnboardingBackupVerify = 'OnboardingBackupVerify',
+  OnboardingWalletCloudBackup = 'OnboardingWalletCloudBackup',
+  OnboardingWalletCloudImport = 'OnboardingWalletCloudImport',
+  OnboardingWalletCloudImportSelection = 'OnboardingWalletCloudImportSelection',
+  OnboardingImportMethodSelection = 'OnboardingImportMethodSelection',
   OnboardingImportWallet = 'OnboardingImportWallet',
   OnboardingIntro = 'OnboardingIntro',
   OnboardingOutro = 'OnboardingOutro',
@@ -156,6 +162,7 @@ export enum Routes {
   WalletConnectSignRequest_GenericTransaction = 'WalletConnectSignRequest_GenericTransaction',
   WalletConnectSignRequest_StructuredTransaction = 'WalletConnectSignRequest_StructuredTransaction',
 
+  
   About = 'About',
   AppLock = 'AppLock',
   DeleteAccountConfirm = 'DeleteAccountConfirm',
@@ -167,18 +174,26 @@ export enum Routes {
   PasswordProtectionForm = 'PasswordProtectionForm',
   SettingsBackupVerify = 'SettingsBackupVerify',
   SettingsWalletBackup = 'SettingsWalletBackup',
+  SettingsWalletBackupMethod = 'SettingsWalletBackupMethod',
+  SettingsWalletCloudBackup = 'SettingsWalletCloudBackup',
+  SettingsCloudBackup = 'SettingsCloudBackup',
+  SettingsWalletCloudBackupDelete = 'SettingsWalletCloudBackupDelete',
   SettingsDisplaySeed = 'SettingsDisplaySeed',
 
+  
   Send = 'Send',
   SendConfirm = 'SendConfirm',
   SendQRScan = 'SendQRScan',
 }
 
+
+/* eslint-disable @typescript-eslint/no-namespace */
 declare global {
   namespace ReactNavigation {
     interface RootParamList extends RouteProps {}
   }
 }
+/* eslint-enable */
 
 export type NavigationProps<T extends keyof RouteProps> = NativeStackScreenProps<RouteProps, T>;
 

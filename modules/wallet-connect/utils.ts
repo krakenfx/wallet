@@ -22,13 +22,16 @@ export function hexToDecimal(hex?: string): string {
   return hex ? (hex.startsWith('0x') ? parseInt(hex, 16).toString() : hex) : '';
 }
 
+
 export function isWalletConnectURI(uri: string) {
   return uri.startsWith('wc:');
 }
 
+
 export function isWalletConnectURIV1(uri: string) {
   return isWalletConnectURI(uri) && (uri.endsWith('@1') || uri.includes('@1?'));
 }
+
 
 export function isWalletConnectURIV2(uri: string) {
   return isWalletConnectURI(uri) && (uri.endsWith('@2') || uri.includes('@2?'));
@@ -65,6 +68,8 @@ export function getNetworkNameFromWalletString(walletString: string): WalletType
   return getNetworkName(chain + ':' + id);
 }
 
+
+
 export function splitWalletString(walletString: string): [string, string, string] {
   const [chain, id, address] = walletString.split(':');
   const [chainID] = SHIM_replaceWrongSolanaMainnetID(`${chain}:${id}`);
@@ -72,6 +77,8 @@ export function splitWalletString(walletString: string): [string, string, string
 
   return [chain_, id_, address];
 }
+
+
 
 export function isCAIP2(s: string): boolean {
   return s.includes(':');
@@ -100,7 +107,7 @@ export function getVerificationFromWalletConnectVerify(verified: Verify.Context[
     };
   }
 
-  if (verified.validation === 'INVALID') {
+  if (verified.validation === 'INVALID' ) {
     return {
       isDomainMatch,
       isScam,

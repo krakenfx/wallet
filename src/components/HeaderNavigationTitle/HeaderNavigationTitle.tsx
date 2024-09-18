@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   headerLabel: {
     justifyContent: 'center',
-    flexBasis: '70%',
+    flexBasis: '70%', 
   },
   headerIcon: {
     marginRight: 8,

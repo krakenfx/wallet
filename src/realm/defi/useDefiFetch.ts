@@ -30,6 +30,7 @@ export const useDefiFetch = () => {
     for (const wallet of wallets) {
       const { network } = getImplForWallet(wallet);
       if (!DefiNetworks.find(n => network.caipId === n.caipId)) {
+        
         continue;
       }
       let address: string;
@@ -39,6 +40,7 @@ export const useDefiFetch = () => {
         address = await network.deriveAddress!(wallet);
       }
       if (!addressList.find(add => add.address === address)) {
+        
         addressList.push({ wallet, address });
       }
     }
@@ -47,6 +49,7 @@ export const useDefiFetch = () => {
       try {
         const { positions, fiatRates } = await fetchDefiPositions(address);
         if (index === 0) {
+          
           saveFiatRates(fiatRates);
         }
         saveDefis(positions, wallet);

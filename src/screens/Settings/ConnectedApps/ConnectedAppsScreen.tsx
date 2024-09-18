@@ -40,6 +40,7 @@ export type ConnectedAppsParams = {
   accountNumber: number;
 };
 
+
 export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'ConnectedApps'>) => {
   const [isLoading, setIsLoading] = useState(false);
   const [activeSessions, setActiveSessions] = useWalletConnectActiveSessions(route.params.accountNumber);
@@ -88,6 +89,7 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
                 showToast({ type: 'error', text: loc.connectedApps.list.error_all });
               }
 
+              
               setActiveSessions(Object.values(await WalletConnectSessionsManager.getAccountSessions(accountWallets)));
             }
           },
@@ -124,6 +126,8 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
       return;
     }
 
+    
+    
     const errors: Error[] = [];
     await Promise.all(
       activeSessions.map(session => {
@@ -132,6 +136,7 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
         });
       }),
     ).catch(err => {
+      
       console.log(err);
     });
 
@@ -140,6 +145,7 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
       showToast({ type: 'error', text: loc.connectedApps.list.error_all });
     }
 
+    
     setActiveSessions(Object.values(await WalletConnectSessionsManager.getAccountSessions(accountWallets)));
     setIsLoading(false);
   }, [accountWallets, activeSessions, setActiveSessions]);
@@ -205,7 +211,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    top: -64,
+    top: -64, 
   },
   header: {
     marginBottom: 36,

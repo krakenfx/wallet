@@ -5,9 +5,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
   extraOffset?: number;
-  absolutePosition?: boolean;
-  useBottomInset?: boolean;
-  offsetBottomInsetWhenOpen?: boolean;
+  absolutePosition?: boolean; 
+  useBottomInset?: boolean; 
+  offsetBottomInsetWhenOpen?: boolean; 
 };
 export const KeyboardAvoider: React.FC<AnimateProps<ViewProps> & Props> = ({
   children,

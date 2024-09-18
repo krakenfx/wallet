@@ -3,7 +3,7 @@ import { EIP712, EIP712TypeDefinitions } from '../types';
 function sanitizeObject(object: EIP712['message' | 'domain'], typeDefinition: EIP712TypeDefinitions, types: EIP712['types']): Record<string, unknown> {
   const sanitizedObject: Record<string, unknown> = {};
   typeDefinition.forEach(({ name, type }) => {
-    if (object.hasOwnProperty(name)) {
+    if (Object.prototype.hasOwnProperty.call(object, name)) {
       if (types[type]) {
         sanitizedObject[name] = sanitizeObject(object[name] as Record<string, unknown>, types[type], types);
       } else {

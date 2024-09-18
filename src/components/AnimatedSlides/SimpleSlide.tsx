@@ -35,7 +35,7 @@ export const SimpleSlide: React.FC<PropsWithChildren & Props> = ({
     setLottieLayout(animationHeight ? { ...e.nativeEvent.layout, height: animationHeight } : e.nativeEvent.layout);
   };
 
-  const paddingBottom = useBottomSheetPadding(false, -100 + 16);
+  const paddingBottom = useBottomSheetPadding(false, -100 + 16); 
 
   return (
     <View style={styles.flex}>

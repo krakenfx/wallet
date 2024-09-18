@@ -9,6 +9,7 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 import { NftBlock } from '@/components/NftBlock';
 import { showToast } from '@/components/Toast';
+import { useCurrentAccountNumber } from '@/realm/accounts';
 import { useNftById, useNftsMutations } from '@/realm/nfts';
 import { useNftGalleryToggle } from '@/realm/nfts/useNftGalleryToggle';
 import { NavigationProps, Routes } from '@/Routes';
@@ -22,6 +23,7 @@ export interface ManageNftParams {
 }
 
 export const ManageNftScreen = ({ route, navigation }: NavigationProps<'ManageNft'>) => {
+  const currentAccount = useCurrentAccountNumber();
   const insets = useSafeAreaInsets();
   const { height } = useWindowDimensions();
   const sheetRef = useRef<BottomSheetView>(null);
@@ -64,7 +66,7 @@ export const ManageNftScreen = ({ route, navigation }: NavigationProps<'ManageNf
       <ModalNavigationHeader title={loc.nftManage.title} onClosePress={onClosePress} />
 
       <View style={styles.container}>
-        <NftBlock nft={nft} containerStyle={styles.nft} />
+        <NftBlock nft={nft} currentAccount={currentAccount} containerStyle={styles.nft} />
 
         {!nft.isArchived && (
           <ActionButton

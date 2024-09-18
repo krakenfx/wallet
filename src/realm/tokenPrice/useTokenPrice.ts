@@ -1,4 +1,5 @@
 import { useRealm } from '@realm/react';
+
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { fetchPriceForToken } from '@/api/fetchPriceForToken';
@@ -15,20 +16,22 @@ import { getAvailableTokenBalance } from '../tokens/getAvailableTokenBalance';
 import { useCurrentUsdFiatRate } from '../usdFiatRates';
 
 import { useIsTokenRelevant } from './isTokenRelevant';
-import { REALM_TYPE_TOKEN_PRICE, RealmTokenPrice, TokenPrice } from './schema';
+import { FiatValue, REALM_TYPE_TOKEN_PRICE, RealmTokenPrice, TokenPrice } from './schema';
 import { useTokenPriceMutations } from './useTokenPriceMutations';
 
 import { handleError } from '/helpers/errorHandler';
 
-interface Props {
+const CACHE_KEY = 'tokenPrice';
+
+export interface PriceProps {
   assetId?: string;
   refresh?: boolean;
   realmQueueName?: string;
 }
 
-const CACHE_KEY = 'tokenPrice';
 
-export const useTokenPrice = ({ assetId, realmQueueName, refresh }: Props): number | undefined => {
+export const useTokenPriceFiatValue = ({ assetId, realmQueueName, refresh }: PriceProps): FiatValue | undefined => {
+  
   const tokenPrice = useObject<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE, assetId, 'assetId');
   const { setTokenPrice } = useTokenPriceMutations();
   const { currency } = useAppCurrency();
@@ -75,10 +78,22 @@ export const useTokenPrice = ({ assetId, realmQueueName, refresh }: Props): numb
   ]);
 
   return useMemo(() => {
-    const value = localCacheValue?.fiatValue[currency]?.value ?? tokenPrice?.fiatValue[currency]?.value;
-    return value !== undefined ? parseFloat(value) : undefined;
+    return localCacheValue?.fiatValue[currency] ?? tokenPrice?.fiatValue[currency];
   }, [currency, localCacheValue, tokenPrice?.fiatValue]);
 };
+
+
+export const useTokenPrice = ({ assetId, realmQueueName, refresh }: PriceProps): number | undefined => {
+  const fiatValue = useTokenPriceFiatValue({ assetId, realmQueueName, refresh });
+  return fiatValue?.value !== undefined ? parseFloat(fiatValue.value) : undefined;
+};
+
+
+export const useTokenPriceChangePercentage = ({ assetId, realmQueueName, refresh }: PriceProps): number | undefined => {
+  const fiatValue = useTokenPriceFiatValue({ assetId, realmQueueName, refresh });
+  return fiatValue?.changePercentage24HR !== undefined ? parseFloat(fiatValue.changePercentage24HR) : undefined;
+};
+
 
 export const useTokenPriceGetter = () => {
   const realm = useRealm();
@@ -101,6 +116,7 @@ export const useTokenPriceGetter = () => {
 export const useTokenPrices = () => {
   return useQuery<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE);
 };
+
 
 export const useDefiNonTokenizedPositionsTotalBalance = (): number => {
   const defis = useDefi();
@@ -145,7 +161,7 @@ export const useTotalWalletBalance = (): number => {
         balance: realTokenBalance,
         decimals: token.metadata.decimals,
       });
-
+      
       balance = balance > 0 ? balance : 0;
 
       return accumulator + balance;

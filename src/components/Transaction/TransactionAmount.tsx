@@ -14,11 +14,13 @@ export type TransactionAmountProps = {
   attached?: boolean;
   label?: string;
 
-  assetAmount: StringNumber;
-  assetFiatAmount?: StringNumber;
+  
+  assetAmount: StringNumber; 
+  assetFiatAmount?: StringNumber; 
 
-  assetNetwork: WalletType;
-  assetSymbol?: string;
+  
+  assetNetwork: WalletType; 
+  assetSymbol?: string; 
   containerStyle?: StyleProp<ViewStyle>;
   testID?: string;
   tokenIconProps?: TokenIconProps;

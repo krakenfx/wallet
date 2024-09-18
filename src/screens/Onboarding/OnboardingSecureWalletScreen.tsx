@@ -7,11 +7,11 @@ import { BottomSheetModalRef } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
+import { LargeHeaderPage } from '@/components/LargeHeaderPage';
 import { MissingBiometricsSheet } from '@/components/MissingBiometricsSheet';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { OnboardingIntroPage } from './components/OnboardingIntroPage';
 import { OnboardingNavigationProps } from './OnboardingRouter';
 
 import { SECURITY_ENROLLED_NONE, enableBiometrics, getSupportedAuthentication } from '/helpers/biometric-unlock';
@@ -67,7 +67,8 @@ export const OnboardingSecureWalletScreen = ({ navigation }: OnboardingNavigatio
     switch (securityLevelEnrolled) {
       case SecurityLevel.SECRET:
         return loc.onboarding_secure_wallet.authPasscode;
-      case SecurityLevel.BIOMETRIC:
+      case SecurityLevel.BIOMETRIC_STRONG:
+      case SecurityLevel.BIOMETRIC_WEAK:
       case SecurityLevel.NONE: {
         if (Platform.OS === 'ios' && authenticationTypes.length === 1) {
           switch (authenticationTypes[0]) {
@@ -89,7 +90,7 @@ export const OnboardingSecureWalletScreen = ({ navigation }: OnboardingNavigatio
 
   return (
     <GradientScreenView insetHeaderHeight={false}>
-      <OnboardingIntroPage
+      <LargeHeaderPage
         testID="OnboardingSecureWalletPropt"
         title={loc.onboarding_secure_wallet.title}
         subtitle={loc.onboarding_secure_wallet.subtitle}
@@ -97,7 +98,7 @@ export const OnboardingSecureWalletScreen = ({ navigation }: OnboardingNavigatio
         <View style={styles.imageContainer}>
           <LottieView source={require('./assets/biometricsAnimation.json')} autoPlay loop style={StyleSheet.absoluteFill} />
         </View>
-      </OnboardingIntroPage>
+      </LargeHeaderPage>
       <FloatingBottomButtons
         primary={{
           text: loc.onboarding_secure_wallet.secureWallet,

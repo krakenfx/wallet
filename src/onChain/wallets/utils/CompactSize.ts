@@ -1,3 +1,4 @@
+
 export default class CompactSize {
   size: number;
   offset: number;

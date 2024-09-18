@@ -46,6 +46,7 @@ import { SettingsSwitch } from '@/screens/Settings/components';
 import { SettingsBox } from '@/screens/Settings/components/SettingsBox';
 import { isSecureDevice } from '@/secureStore/keychain';
 import { useTheme } from '@/theme/themes';
+import { FeatureFlag, useFeatureFlag } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { showToast } from '../components/Toast';
@@ -63,6 +64,7 @@ import {
   isShowToastOnAllErrorsEnabled,
   recentErrors,
 } from '/helpers/errorHandler';
+import { isPasskeySupported } from '/modules/cloud-backup';
 
 const copyToClipboard = (data: string, text: string) => {
   Clipboard.setString(String(data));
@@ -128,6 +130,9 @@ export const DebugScreen = () => {
   const deviceInfoRef = useRef<BottomSheetMethods>(null);
   const backendConfigRef = useRef<BottomSheetMethods>(null);
 
+  const [isICloudBackupEnabled, setIsICloudBackupEnabled] = useFeatureFlag(FeatureFlag.iCloudBackupEnabled);
+
+  
   useEffect(() => {
     (async () => {
       setToken(await PushNotifications.getInstance().getDeviceToken());
@@ -135,6 +140,7 @@ export const DebugScreen = () => {
     })();
   }, []);
 
+  
   useEffect(() => {
     setIsLogToFileEnabled(isLoggingToFileEnabled());
     setShowToastForAllErrors(isShowToastOnAllErrorsEnabled());
@@ -158,6 +164,7 @@ export const DebugScreen = () => {
     setShowToastForAllErrors(value);
   };
 
+  
   useEffect(() => {
     (async () => {
       if (!token) {
@@ -178,7 +185,7 @@ export const DebugScreen = () => {
   const onMeasurePerformance = async () => {
     setIsMeasuringPerformance(true);
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
 
     try {
       const mnemonic = 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
@@ -186,10 +193,10 @@ export const DebugScreen = () => {
 
       const seed = await bip39.mnemonicToSeed(mnemonic);
 
-      let wallet = {
+      const wallet = {
         seed: {
           secret: mnemonic,
-
+          
           data: seed.buffer.slice(seed.byteOffset, seed.byteOffset + seed.byteLength),
         },
         accountIdx: 0,
@@ -200,7 +207,7 @@ export const DebugScreen = () => {
       console.log({ sec });
       showToast({ type: 'info', text: `mnemonicToSeed: ${sec} sec` });
 
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000)); 
 
       start = +new Date();
       for (let c = 0; c < 20; c++) {
@@ -212,7 +219,7 @@ export const DebugScreen = () => {
       sec = (end - start) / 1000;
       console.log({ sec });
       showToast({ type: 'info', text: `deriveAddress: ${sec} sec` });
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000)); 
     } finally {
       setIsMeasuringPerformance(false);
     }
@@ -255,6 +262,16 @@ export const DebugScreen = () => {
         <SettingsBox isLast isHighlighted style={styles.spacing}>
           <Label type="regularCaption1">When enabled, all errors will show red toast with initial error message</Label>
         </SettingsBox>
+        {!!Config.INTERNAL_RELEASE && isPasskeySupported && (
+          <>
+            <SettingsBox isFirst isHighlighted>
+              <SettingsSwitch icon="wallet" text="Enable iCloud backup" enabled={isICloudBackupEnabled} onToggle={setIsICloudBackupEnabled} />
+            </SettingsBox>
+            <SettingsBox isLast isHighlighted style={styles.spacing}>
+              <Label type="regularCaption1">This flag will persist the app clean in Advanced settings</Label>
+            </SettingsBox>
+          </>
+        )}
         <Button
           icon="fire"
           size="large"
@@ -327,7 +344,7 @@ const DeviceInfo: React.FC<{ info: object }> = ({ info }) => {
   );
 };
 
-const BackendConfig: React.FC<{}> = () => {
+const BackendConfig: React.FC = () => {
   const insets = useSafeAreaInsets();
   const [harmonyUri, setHarmonyUri] = useState('');
   const [groundcontrolUri, setGroundcontrolUri] = useState('');
@@ -466,7 +483,7 @@ function WalletStateSheet() {
 const removeImages = (data: string) => data.replace(/<img[^>]*>/g, 'IMAGE REDACTED');
 
 const extractHTMLBody = (data: string) =>
-  data.substring(0, 100).includes('<!DOCTYPE html') ? data.match(/<body>.*<\/body>/)?.[0].replaceAll('\\n', '\n') ?? '' : data;
+  data.substring(0, 100).includes('<!DOCTYPE html') ? (data.match(/<body>.*<\/body>/)?.[0].replaceAll('\\n', '\n') ?? '') : data;
 
 const ErrorBox: React.FC<{ date: Date; error: ErrorObject; context: string }> = ({ date, error, context }) => {
   const [collapsed, setCollapsed] = useState(true);

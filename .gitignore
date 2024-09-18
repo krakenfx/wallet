@@ -98,3 +98,4 @@ default.realm.note
 coverage-ts
 
 .env
+.env.storybook

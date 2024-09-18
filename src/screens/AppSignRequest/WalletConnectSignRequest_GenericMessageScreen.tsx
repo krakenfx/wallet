@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { BlockScreenSheet } from '@/components/BlockScreen';
@@ -35,68 +35,81 @@ export interface WalletConnectSignRequest_GenericMessageParams {
 
 export const WalletConnectSignRequest_GenericMessageScreen = ({ route, navigation }: NavigationProps<'WalletConnectSignRequest_GenericMessage'>) => {
   const { accountIdx, metadata, onReject, onApprove, genericMessage, detailsContent, warning } = route.params;
-  const { goBack } = navigation;
-  const { height } = useWindowDimensions();
   const isCriticalWarning = warning?.severity === 'critical';
   const blockScreenMessage = isCriticalWarning ? warning.message : '';
   const [showBlockScreen, setShowBlockScreen] = useState(isCriticalWarning);
-  const handleApprove = useCallback(() => {
-    onApprove();
-    goBack();
-  }, [goBack, onApprove]);
-  const handleReject = useCallback(() => {
-    onReject();
-    goBack();
-  }, [goBack, onReject]);
   const [hasScrolledToEndOfContent, setHasScrolledToEndOfContent] = useState(false);
 
-  const renderPreview = useCallback(() => {
-    return (
-      <View>
-        <Header url={metadata.url} icon={metadata.imageUrl} name={metadata.name} heading={getMessageHeading(genericMessage.heading)} />
-        <View style={[styles.contentContainer, { maxHeight: height * 0.3 }]}>
-          {warning && <CardWarningFromWarning warning={warning} />}
-          <GenericSignContent content={genericMessage.message} setHasScrolledToEndOfContent={setHasScrolledToEndOfContent} />
-        </View>
-      </View>
-    );
-  }, [genericMessage.heading, genericMessage.message, height, metadata.imageUrl, metadata.name, metadata.url, warning]);
+  const { goBack } = navigation;
 
-  const renderDetails = useCallback(() => {
-    return <ExpandedDetailsContent content={detailsContent} />;
-  }, [detailsContent]);
-
-  const renderFooter = () => {
-    return (
-      <ConfirmationFooter
-        content={
-          <View style={styles.infoContainer}>
-            <Info cells={[<AccountName accountIdx={accountIdx} key={`accountName_${accountIdx}}`} />]} />
-          </View>
-        }
-        disableConfirmationButton={!hasScrolledToEndOfContent}
-        onApprove={handleApprove}
-        onReject={handleReject}
-        isCriticalWarning={isCriticalWarning}
-      />
-    );
+  const handleApprove = () => {
+    onApprove();
+    goBack();
   };
 
-  return showBlockScreen ? (
-    <BlockScreenSheet
-      onGoBack={handleReject}
-      onProceed={() => setShowBlockScreen(false)}
-      title={loc.onChainSecurity.messageFlagged}
-      message={blockScreenMessage}
-    />
-  ) : (
+  const handleReject = () => {
+    onReject();
+    goBack();
+  };
+
+  if (showBlockScreen) {
+    return (
+      <BlockScreenSheet
+        onGoBack={handleReject}
+        onProceed={() => setShowBlockScreen(false)}
+        title={loc.onChainSecurity.messageFlagged}
+        message={blockScreenMessage}
+      />
+    );
+  }
+
+  return (
     <ExpandableSheet
       dismissible
       onDismiss={handleReject}
-      PreviewComponent={renderPreview}
-      DetailsComponent={renderDetails}
-      FloatingButtonsComponent={renderFooter}
+      PreviewComponent={
+        <Preview metadata={metadata} warning={warning} genericMessage={genericMessage} setHasScrolledToEndOfContent={setHasScrolledToEndOfContent} />
+      }
+      DetailsComponent={<ExpandedDetailsContent content={detailsContent} />}
+      FloatingButtonsComponent={
+        <ConfirmationFooter
+          content={
+            <View style={styles.infoContainer}>
+              <Info cells={[<AccountName accountIdx={accountIdx} key={`accountName_${accountIdx}}`} />]} />
+            </View>
+          }
+          disableConfirmationButton={!hasScrolledToEndOfContent}
+          onApprove={handleApprove}
+          onReject={handleReject}
+          isCriticalWarning={isCriticalWarning}
+        />
+      }
     />
+  );
+};
+
+interface PreviewProps {
+  metadata: {
+    imageUrl: string;
+    name: string;
+    url: string;
+  };
+  warning?: Warning;
+  genericMessage: GenericMessage;
+  setHasScrolledToEndOfContent: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Preview: React.FC<PreviewProps> = ({ metadata, warning, genericMessage, setHasScrolledToEndOfContent }) => {
+  const { height } = useWindowDimensions();
+
+  return (
+    <View>
+      <Header url={metadata.url} icon={metadata.imageUrl} name={metadata.name} heading={getMessageHeading(genericMessage.heading)} />
+      <View style={[styles.contentContainer, { maxHeight: height * 0.3 }]}>
+        {warning && <CardWarningFromWarning warning={warning} />}
+        <GenericSignContent content={genericMessage.message} setHasScrolledToEndOfContent={setHasScrolledToEndOfContent} />
+      </View>
+    </View>
   );
 };
 

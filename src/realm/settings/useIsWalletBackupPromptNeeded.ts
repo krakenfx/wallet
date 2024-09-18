@@ -1,10 +1,11 @@
+import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
+
 import { RealmSettingsKey } from './schema';
-import { useIsWalletBackupDone } from './useIsWalletBackupDone';
 import { useSettingsByKey } from './useSettingsByKey';
 
 export const useIsWalletBackupPromptNeeded = () => {
-  const isWalletBackupNeeded = !useIsWalletBackupDone();
+  const { isAnyBackupCompleted } = useWalletBackupSettings();
   const hasViewedWalletBackupPrompt = !!useSettingsByKey(RealmSettingsKey.hasViewedWalletBackupPrompt);
 
-  return isWalletBackupNeeded && !hasViewedWalletBackupPrompt;
+  return !isAnyBackupCompleted && !hasViewedWalletBackupPrompt;
 };

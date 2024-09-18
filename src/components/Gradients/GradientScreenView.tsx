@@ -11,6 +11,7 @@ interface Props extends ViewProps {
   fallbackToDefaultHeader?: boolean;
 }
 
+
 export const GradientScreenView: React.FC<Props> = ({ children, insetHeaderHeight = true, fallbackToDefaultHeader, ...props }) => {
   const headerheight = useContext(HeaderHeightContext);
   const defaultHeaderHeight = useDeafultHeaderHeight(insetHeaderHeight);

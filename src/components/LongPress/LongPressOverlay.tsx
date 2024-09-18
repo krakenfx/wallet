@@ -18,9 +18,8 @@ export const LongPressOverlay = () => {
     if (selectedItem) {
       onPressOut();
       return true;
-    } else {
-      return false;
     }
+    return false;
   });
 
   const onItemPress = useCallback(

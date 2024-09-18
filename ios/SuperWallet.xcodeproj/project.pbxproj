@@ -29,6 +29,8 @@
 		D37417BC2B19FB54002724D7 /* BootTimeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37417BA2B19FB54002724D7 /* BootTimeModule.swift */; };
 		D37417BE2B19FB72002724D7 /* BootTimeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = D37417BD2B19FB72002724D7 /* BootTimeModule.m */; };
 		D37417BF2B19FB72002724D7 /* BootTimeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = D37417BD2B19FB72002724D7 /* BootTimeModule.m */; };
+		D3BD2A172C3EAAB700792CBB /* CloudBackupModule.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BD2A162C3EAAB700792CBB /* CloudBackupModule.m */; };
+		D3BD2A192C3EAAC400792CBB /* CloudBackupModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD2A182C3EAAC400792CBB /* CloudBackupModule.swift */; };
 		D3C8A2F02B8D49EC00A8A59C /* WalletGradientViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C8A2EF2B8D49EC00A8A59C /* WalletGradientViewManager.m */; };
 		D3C8A2F42B8D4F8B00A8A59C /* SwiftUIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8A2F32B8D4F8B00A8A59C /* SwiftUIWrapper.swift */; };
 		D3C8A2F92B8E77E600A8A59C /* MainGradientViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8A2F82B8E77E600A8A59C /* MainGradientViewManager.swift */; };
@@ -75,6 +77,8 @@
 		D37417B92B19FB54002724D7 /* SuperWalletTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperWalletTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		D37417BA2B19FB54002724D7 /* BootTimeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootTimeModule.swift; sourceTree = "<group>"; };
 		D37417BD2B19FB72002724D7 /* BootTimeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BootTimeModule.m; sourceTree = "<group>"; };
+		D3BD2A162C3EAAB700792CBB /* CloudBackupModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloudBackupModule.m; sourceTree = "<group>"; };
+		D3BD2A182C3EAAC400792CBB /* CloudBackupModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackupModule.swift; sourceTree = "<group>"; };
 		D3C8A2EF2B8D49EC00A8A59C /* WalletGradientViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletGradientViewManager.m; sourceTree = "<group>"; };
 		D3C8A2F32B8D4F8B00A8A59C /* SwiftUIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWrapper.swift; sourceTree = "<group>"; };
 		D3C8A2F82B8E77E600A8A59C /* MainGradientViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradientViewManager.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 		13B07FAE1A68108700A75B9A /* SuperWallet */ = {
 			isa = PBXGroup;
 			children = (
+				D3BD2A152C3EAA6300792CBB /* CloudBackup */,
 				D3C8A2F52B8E770C00A8A59C /* WalletGradient */,
 				D37417C02B1A06E1002724D7 /* BootTime */,
 				90B59F5F294B7833009B2401 /* fonts */,
@@ -228,6 +233,15 @@
 				D37417BD2B19FB72002724D7 /* BootTimeModule.m */,
 			);
 			name = BootTime;
+			sourceTree = "<group>";
+		};
+		D3BD2A152C3EAA6300792CBB /* CloudBackup */ = {
+			isa = PBXGroup;
+			children = (
+				D3BD2A162C3EAAB700792CBB /* CloudBackupModule.m */,
+				D3BD2A182C3EAAC400792CBB /* CloudBackupModule.swift */,
+			);
+			path = CloudBackup;
 			sourceTree = "<group>";
 		};
 		D3C8A2F52B8E770C00A8A59C /* WalletGradient */ = {
@@ -481,6 +495,8 @@
 			files = (
 				D37417BB2B19FB54002724D7 /* BootTimeModule.swift in Sources */,
 				D3C8A2F02B8D49EC00A8A59C /* WalletGradientViewManager.m in Sources */,
+				D3BD2A192C3EAAC400792CBB /* CloudBackupModule.swift in Sources */,
+				D3BD2A172C3EAAB700792CBB /* CloudBackupModule.m in Sources */,
 				E5F5FAAE28181BE60076D6DA /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				D3C8A2FB2B8E782C00A8A59C /* SheetGradientViewManager.swift in Sources */,
@@ -718,7 +734,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -792,7 +812,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

@@ -25,14 +25,18 @@ export const ConnectAppScreen = ({ route }: NavigationProps<'ConnectApp'>) => {
     route.params.onDone();
   };
 
-  return showBlockScreen ? (
-    <BlockScreenSheet
-      onGoBack={rejectSession}
-      onProceed={() => setShowBlockScreen(false)}
-      title={loc.onChainSecurity.knownSecurityRiskExclamation}
-      message={loc.onChainSecurity.knownSecurityRiskMessage}
-    />
-  ) : (
+  if (showBlockScreen) {
+    return (
+      <BlockScreenSheet
+        onGoBack={rejectSession}
+        onProceed={() => setShowBlockScreen(false)}
+        title={loc.onChainSecurity.knownSecurityRiskExclamation}
+        message={loc.onChainSecurity.knownSecurityRiskMessage}
+      />
+    );
+  }
+
+  return (
     <ConnectAppUI
       appMetadata={_3rdPartyAPI.appMetadata}
       networkIDs={_3rdPartyAPI.networkIDs}

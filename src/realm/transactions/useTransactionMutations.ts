@@ -30,8 +30,7 @@ export const useTransactionMutations = () => {
             foundExistingTransaction = true;
           }
 
-          // @ts-ignore
-
+          // @ts-expect-error not supported on BE yet
           if (tx.status === 'pending') {
             if (!pendingTxExist) {
               const effect = tx.effects[0];
@@ -51,7 +50,7 @@ export const useTransactionMutations = () => {
                     type: 'coin',
                     from: 'sender' in effect ? effect.sender : null,
                     to: 'recipient' in effect ? effect.recipient : null,
-                    time: null,
+                    time: null, 
                     fee: tx.fee?.amount ? tokenUnit2SmallestUnit(tx.fee.amount, wallet.nativeTokenDecimals).toFixed() : null,
                   },
                   Realm.UpdateMode.Modified,
@@ -125,6 +124,7 @@ export const useTransactionMutations = () => {
 
         realm.write(() => {
           if (token) {
+            
             token.balance = getAvailableTokenBalance(token);
           }
           pendingTx.confirmed = true;
@@ -134,6 +134,7 @@ export const useTransactionMutations = () => {
     [realm],
   );
 
+  
   const dangerouslyCleanupConfirmedTransactions = useCallback(async () => {
     const confirmedTransactions = realm
       .objects<RealmPendingTransaction>(REALM_TYPE_PENDING_TRANSACTION)
@@ -143,7 +144,7 @@ export const useTransactionMutations = () => {
         realm.delete(confirmedTransactions);
       });
     }
-
+    
     return new Promise(resolve => setTimeout(resolve, 100));
   }, [realm]);
 

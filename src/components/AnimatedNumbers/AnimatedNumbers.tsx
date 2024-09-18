@@ -13,12 +13,13 @@ export type AnimatedNumbersProps = Omit<LabelProps, 'numberOfLines' | 'children'
   type: 'headerBalance' | 'boldLargeMonospace' | 'boldTitleMarketDataPercentageLarge' | 'boldTitleMarketDataPercentage';
   height?: number;
   fontSize: number;
-
+  
+  
   glyphSize: number;
   ticker?: string;
   tickerType?: TypographyKey;
   tickerFontSize?: number;
-  tickerBottomOffset?: number;
+  tickerBottomOffset?: number; 
   prefix?: string;
   suffix?: string;
   style?: StyleProp<ViewStyle>;
@@ -53,6 +54,7 @@ export const AnimatedNumbers = React.memo(
       ({ nativeEvent: { lines } }: NativeSyntheticEvent<TextLayoutEventData>) => {
         const totalWidth = lines.reduce((acc, line) => line.width + acc, 0);
         if (!containerLayout) {
+          
           return;
         }
 
@@ -105,7 +107,8 @@ export const AnimatedNumbers = React.memo(
             {suffix}
           </Label>
         );
-      } else if (ticker) {
+      }
+      if (ticker) {
         return (
           <Label
             entering={FadeIn}
@@ -114,11 +117,11 @@ export const AnimatedNumbers = React.memo(
             style={{ height: fontSize, lineHeight, bottom: -tickerBottomOffset, fontSize: tickerFontSize }}
             type={tickerType}>{`  ${ticker}`}</Label>
         );
-      } else {
-        return null;
       }
+      return null;
     }, [color, type, fontSize, lineHeight, suffix, tickerBottomOffset, tickerFontSize, tickerType, ticker]);
 
+    
     const renderShadowNode = useCallback(
       () => (
         <Label style={[styles.shadowNode, { fontSize, lineHeight }]} onTextLayout={handleTextLayout}>

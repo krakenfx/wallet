@@ -8,16 +8,15 @@ import Animated, { FadeIn, FadeOut, SequencedTransition } from 'react-native-rea
 import { BottomSheetModalRef } from '@/components/BottomSheet';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
+import { CheckBoxConfirmationSheet } from '@/components/Sheets';
 import { Touchable } from '@/components/Touchable';
 import { usePreventScreenCaptureLong } from '@/hooks/usePreventScreenCaptureLong';
-import { RealmSettingsKey, useSettingsMutations } from '@/realm/settings';
+import { useSettingsMutations } from '@/realm/settings';
 import { OnboardingHeader, OnboardingWordButton } from '@/screens/Onboarding/components';
 import { useValidationState } from '@/screens/Onboarding/hooks/useValidationState';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 import { useTheme } from '@/theme/themes';
 import { runAfterUISync } from '@/utils/runAfterUISync';
-
-import { PasteWarningSheet } from './PasteWarningSheet';
 
 import loc from '/loc';
 
@@ -34,7 +33,7 @@ export const WalletBackupVerify = ({ onVerifySuccess }: Props) => {
   const { colors } = useTheme();
   const [selectedWords, setSelectedWords] = useState<WordElement[]>([]);
   const [availableWords, setAvailableWords] = useState<WordElement[]>([]);
-  const { setSettings } = useSettingsMutations();
+  const { setManualBackupCompleted } = useSettingsMutations();
   const pasteWarningSheet = useRef<BottomSheetModalRef>(null);
   const [secret, setSecret] = useState('');
   usePreventScreenCaptureLong();
@@ -78,13 +77,13 @@ export const WalletBackupVerify = ({ onVerifySuccess }: Props) => {
       )
     ) {
       validator.setState('valid', () => {
-        setSettings(RealmSettingsKey.isWalletBackupDone, true);
+        setManualBackupCompleted();
         onVerifySuccess();
       });
     } else {
       validator.setState('invalid');
     }
-  }, [onVerifySuccess, secretElements, selectedWords, setSettings, validator]);
+  }, [onVerifySuccess, secretElements, selectedWords, setManualBackupCompleted, validator]);
 
   const onPaste = useCallback(async () => {
     const pastedSeed = (await Clipboard.getString())
@@ -114,7 +113,6 @@ export const WalletBackupVerify = ({ onVerifySuccess }: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log('BackupSeed/useEffect');
     resetAvailableWords();
   }, [resetAvailableWords, secret]);
 
@@ -183,7 +181,22 @@ export const WalletBackupVerify = ({ onVerifySuccess }: Props) => {
           disabled: selectedWords.length !== numberOfWords,
         }}
       />
-      <PasteWarningSheet onCancel={onPastedPhraseCanceled} onConfirm={onPastedPhraseVerified} ref={pasteWarningSheet} />
+      <CheckBoxConfirmationSheet
+        testID="PasteWarning"
+        ref={pasteWarningSheet}
+        title={loc.onboardingBackupVerify.pasteWarning.title}
+        checkBoxLabels={[loc.onboardingBackupVerify.pasteWarning.checkOne, loc.onboardingBackupVerify.pasteWarning.checkTwo]}
+        confirmButtonProps={{
+          text: loc.onboardingBackupVerify.pasteWarning.confirm,
+          onPress: onPastedPhraseVerified,
+          testID: 'PasteWarningConfirmButton',
+        }}
+        cancelButtonProps={{
+          text: loc.onboardingBackupVerify.pasteWarning.back,
+          onPress: onPastedPhraseCanceled,
+          testID: 'PasteWarningBackButton',
+        }}
+      />
     </View>
   );
 };

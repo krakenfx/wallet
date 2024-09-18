@@ -20,12 +20,14 @@ export const getDisplayNetworkFee = ({
   switch (nativeTokenSymbol) {
     case 'BTC': {
       return {
+        
         amount: networkFee ? tokenUnit2SmallestUnit(networkFee, nativeTokenDecimals).toString(10) + ' Sats' : '',
         price: networkFee && tokenPrice ? formatCurrency(tokenUnit2Fiat(networkFee, tokenPrice)?.toString(10), { currency, highPrecision: true }) : '',
       };
     }
     case 'DOGE': {
       return {
+        
         amount: networkFee
           ? formatTokenAmount(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10), { currency, highPrecision: true }) + ' Doge'
           : '',
@@ -37,15 +39,18 @@ export const getDisplayNetworkFee = ({
     }
     case 'SOL': {
       return {
+        
         amount: networkFee
           ? formatTokenAmount(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10), { currency, highPrecision: true }) + ' Sol'
           : '',
-        price: '',
+        price: '', 
       };
     }
-
+    
     default: {
       return {
+        
+        
         amount: networkFee ? formatTokenAmount(smallUnit2TokenUnit(networkFee, 9).toString(10), { currency, highPrecision: true }) + ' Gwei' : '',
         price: networkFee
           ? formatTokenAmount(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10), { currency, highPrecision: true }) + ' ' + nativeTokenSymbol

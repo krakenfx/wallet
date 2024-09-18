@@ -57,6 +57,8 @@ export type Utxo = {
   vout: number;
   value: number;
 
+  
+  
   derivationPath: string;
   address: string;
 };
@@ -69,13 +71,15 @@ type SendRequest = {
 
 type SendTransaction = {
   psbt: bitcoin.Psbt;
-
+  
   inputPaths: string[];
 
   utxos: Utxo[];
   changeAddress: string;
   request: SendRequest;
 
+  
+  
   fee: number;
 };
 
@@ -86,15 +90,18 @@ type HDSequenceState = {
 
 export type BTCTransaction = Transaction & { inputs: string[]; outputs: string[] };
 
+
 export type WalletState =
   | {
       sequence?: HDSequenceState;
     }
   | undefined;
 
+
 export type GenerateAddress = (node: BIP32Interface) => string;
 
 export type HDAddressChangeType = 'change' | 'receiving';
+
 
 type BIP44Path = {
   purpose: string;
@@ -104,12 +111,14 @@ type BIP44Path = {
   index: number;
 };
 
+
 const BITCOIN_COINTYPE = 0;
 
 export type PsbtInputExtended = Parameters<bitcoin.Psbt['addInput']>[0];
 type UpdatePsbtInput = (wallet: WalletData, pbst: PsbtInputExtended, utxo: Utxo) => Promise<PsbtInputExtended>;
 
 type BitcoinFeeOption = BaseFeeOption;
+
 
 export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
   label: string = loc.network.bitcoin;
@@ -167,6 +176,7 @@ export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
   }
 
   async deriveAddress(wallet: WalletData): Promise<string> {
+    
     return this.generateAddress(await this.getHDNodeForPath(wallet, { type: 'receiving', index: 0 }));
   }
 
@@ -178,6 +188,7 @@ export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
     return Object.keys(await this.getAllAddresses(data, store, !onlyPublic ?? true, true));
   }
 
+  
   async getAllAddresses(
     wallet: WalletData,
     store: IWalletStorage<WalletState>,
@@ -210,17 +221,20 @@ export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
     return addresses;
   }
 
+  
   getPath(props: Pick<BIP44Path, 'type' | 'index'>) {
     const path: string[] = [props.type === 'change' ? '1' : '0', props.index.toString()];
     return path.join('/');
   }
 
+  
   async getHDNodeForPath(wallet: WalletData, props: Pick<BIP44Path, 'type' | 'index'> | string) {
     const path = typeof props === 'string' ? props : this.getPath(props);
     const root = await runAfterUISync(() => deriveRoot(wallet), 3);
     return await runAfterUISync(() => root.derivePath(path), 3);
   }
 
+  
   async getAddressForPath(store: IWalletStorage<WalletState>, wallet: WalletData, props: Pick<BIP44Path, 'type' | 'index'> | string) {
     const path = typeof props === 'string' ? props : this.getPath(props);
 
@@ -232,12 +246,14 @@ export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
     return store.getAddress(path, creatorFunc);
   }
 
+  
   getDerivationPath(accountIdx?: number): string {
     const path: string[] = ['m', `${this.derivationPath.purpose}'`, `${BITCOIN_COINTYPE}'`, `${accountIdx ?? 0}'`];
     return path.join('/');
   }
 
   isAddressValid(address: string): boolean {
+    
     try {
       bitcoin.address.toOutputScript(address);
       return true;
@@ -246,12 +262,19 @@ export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
     }
   }
 
+  
   async signTransaction(wallet: WalletDataWithSeed, tx: SendTransaction): Promise<string> {
     const root = deriveRootFromSeed(wallet);
 
+    
     tx.psbt.txInputs.forEach((input, idx) => {
-      const derivationPath = this.getDerivationPath(wallet.accountIdx);
+      
+      
+      
 
+      const derivationPath = this.getDerivationPath(wallet.accountIdx);
+      
+      
       const wif = root.derivePath(derivationPath + '/' + tx.inputPaths[idx]).toWIF();
       const keyPair = ECPair.fromWIF(wif);
       tx.psbt.signInput(idx, keyPair);
@@ -264,6 +287,7 @@ export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
     return `${parseFloat(amount).toFixed()} Sats/vB`;
   }
 
+  
   async getXYZPub(wallet: WalletDataWithSeed): Promise<string> {
     const rootPath = this.getDerivationPath(wallet.accountIdx);
     const bip32Interface = deriveRootFromSeed(wallet).derivePath(rootPath);
@@ -288,7 +312,9 @@ export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
   }
 }
 
+
 export class BitcoinElectrumTransport implements Transport<SendTransaction, SendRequest, WalletState, BitcoinNetwork, BitcoinFeeOption> {
+  
   async fetchState(wallet: WalletData, network: BitcoinNetwork, store: IWalletStorage<WalletState>): Promise<WalletState> {
     const receivingIndex = await refreshSequence(store.state?.sequence?.receivingIndex ?? 0, async index => {
       return await network.getAddressForPath(store, wallet, { index, type: 'receiving' });
@@ -304,6 +330,8 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     };
   }
 
+  
+
   async prepareTransaction(
     network: BitcoinNetwork,
     wallet: WalletData,
@@ -311,9 +339,12 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     transaction: SendRequest,
     feeOption: BitcoinFeeOption,
   ): Promise<PreparedTransaction<SendTransaction>> {
+    
     const utxos: (Utxo & {
       script?: { length: number };
     })[] = (await this.fetchUtxo(wallet, network, store)).map(utxo => {
+      
+      
       let extra;
       if (utxo.address.startsWith('bc1')) {
         extra = { script: { length: 27 } };
@@ -327,6 +358,7 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
         value: utxo.value,
         ...extra,
 
+        
         address: utxo.address,
         derivationPath: utxo.path,
       };
@@ -362,15 +394,18 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     const targets = [
       {
         address: transaction.to,
-
+        
         value: transaction.isMax ? undefined : Number(transaction.amount),
       },
     ];
 
+    
     // eslint-disable-next-line radix
     const { inputs, outputs, fee } = coinselect(utxos, targets, parseInt(amount), changeAddress);
 
+    
     if (transaction.isMax) {
+      
       const totalSent = outputs
         .filter(o => !!o.address)
         .map(o => o.value)
@@ -388,13 +423,14 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
         index: input.vout,
         sequence: defaultRBFSequence,
       };
-
+      
       const finalPsbtInput = (await network.prepareInput?.(wallet, psbtInput, input)) ?? psbtInput;
       psbt.addInput(finalPsbtInput);
       inputPaths.push(input.derivationPath);
     }
 
     outputs.forEach(output => {
+      
       if (!output.address) {
         output.address = changeAddress;
       }
@@ -412,6 +448,7 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     };
   }
 
+  
   async estimateTransactionCost(
     network: BitcoinNetwork,
     wallet: WalletData,
@@ -432,7 +469,7 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     store: IWalletStorage<WalletState>,
     feeOption: BitcoinFeeOption,
   ): Promise<TotalFee> {
-    const amount = BigInt('546');
+    const amount = BigInt('546'); 
     const tx = await this.prepareTransaction(network, wallet, store, { amount, to: '' }, feeOption);
     const { fee } = await this.selectUtxosBuildPsbt(network, wallet, tx.data.utxos, tx.data.request, tx.data.changeAddress, feeOption);
     return {
@@ -441,6 +478,7 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     };
   }
 
+  
   async broadcastTransaction(network: BitcoinNetwork, signedTx: string): Promise<string> {
     await waitTillConnected();
     const broadcast = await BlueElectrum.broadcastV2(signedTx);
@@ -449,7 +487,7 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     if (broadcast.indexOf('successfully') !== -1) {
       success = true;
     } else {
-      success = broadcast.length === 64;
+      success = broadcast.length === 64; 
     }
 
     if (!success) {
@@ -525,8 +563,17 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     const receiveAddresses = await network.getAllAddresses(wallet, store, false, true);
     const addressesToQuery = Object.keys({ ...changeAddresses, ...receiveAddresses });
 
+    
+    
+    
+    
+    
+    
+    
     const txHistoryByAddress = await multiGetHistoryByAddress(addressesToQuery);
 
+    
+    
     const allHistoryItems = flatMap(Object.values(txHistoryByAddress));
     allHistoryItems.sort((a, b) => {
       const heightComparison = b.height - a.height;
@@ -536,6 +583,8 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
       return heightComparison;
     });
 
+    
+    
     const dedupedHistoryItems: HistoryItem[] = [];
     for (let i = 0; i < allHistoryItems.length; i++) {
       if (i === allHistoryItems.length - 1 || allHistoryItems[i].tx_hash !== allHistoryItems[i + 1].tx_hash) {
@@ -543,32 +592,41 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
       }
     }
 
+    
+    
     const chunkedHistoryItems = splitIntoChunks(dedupedHistoryItems, 200);
 
     for (const chunk of chunkedHistoryItems) {
+      
       const hashes: { [key: string]: HistoryItem } = {};
       for (const tx of Object.values(chunk)) {
         hashes[tx.tx_hash] = tx;
       }
       const transactionDataById = await BlueElectrum.multiGetTransactionByTxid(Object.keys(hashes));
 
+      
+      
       const vinTxHashes = Object.values(transactionDataById)
         .flatMap(tx => tx.vin)
         .map(vin => vin.txid);
       const vinTxData = await BlueElectrum.multiGetTransactionByTxid(vinTxHashes);
 
+      
       const transactions: BTCTransaction[] = chunk.map(tx => {
         const data = transactionDataById[tx.tx_hash];
 
-        let effects = [];
+        const effects = [];
 
+        
         const getAddressFromVOut = (vout: VOut) =>
           'address' in vout.scriptPubKey ? vout.scriptPubKey.address : 'addresses' in vout.scriptPubKey ? vout.scriptPubKey.addresses[0] : undefined;
 
+        
         let feeBalance = new BigNumber('0');
         const inputs = [];
         const outputs = [];
 
+        
         let ownedAddressesSpent = new BigNumber('0');
         for (const vin of data.vin) {
           const address = getAddressFromVOut(vinTxData[vin.txid].vout[vin.vout]);
@@ -585,7 +643,8 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
           inputs.push(address);
         }
 
-        let unownedOutAddresses: string[] = [];
+        
+        const unownedOutAddresses: string[] = [];
         let unownedAddressesReceived = new BigNumber(0);
         let ownedAddressesReceived = new BigNumber(0);
         for (const vout of data.vout) {
@@ -610,27 +669,34 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
 
         if (totalOwnedChange.gt(0)) {
           kind = 'affected' as const;
-          let effect: ReceiveAsset = {
+          const effect: ReceiveAsset = {
             assetId: network.nativeTokenCaipId,
-            sender: '',
+            sender: '', 
             amount: totalOwnedChange.multipliedBy(ELECTRUM_BTC_TO_INT_MULTIPLIER).toString(),
             type: 'receive',
           };
           effects.push(effect);
         } else if (unownedOutAddresses.length === 0) {
+          
           kind = 'sent' as const;
 
+          
+          
+          
+          
           const receiveOutput = data.vout.filter(vout => (getAddressFromVOut(vout) ?? '') in receiveAddresses)?.[0];
           let amount, recipient;
           if (receiveOutput) {
             amount = new BigNumber(receiveOutput.value).multipliedBy(ELECTRUM_BTC_TO_INT_MULTIPLIER).toString();
             recipient = getAddressFromVOut(receiveOutput);
           } else {
+            
+            
             amount = ownedAddressesReceived.multipliedBy(ELECTRUM_BTC_TO_INT_MULTIPLIER).toString();
             recipient = getAddressFromVOut(data.vout[0]);
           }
 
-          let effect: SendAsset = {
+          const effect: SendAsset = {
             assetId: network.nativeTokenCaipId,
             recipient: recipient ?? '',
             amount,
@@ -639,7 +705,7 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
           effects.push(effect);
         } else {
           kind = 'sent' as const;
-          let effect: SendAsset = {
+          const effect: SendAsset = {
             assetId: network.nativeTokenCaipId,
             recipient: unownedOutAddresses[0] ?? '',
             amount: unownedAddressesReceived.multipliedBy(ELECTRUM_BTC_TO_INT_MULTIPLIER).toString(),
@@ -661,7 +727,7 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
                 }
               : undefined,
           timestamp: data.time,
-          status: data.time ? 'succeeded' : ('pending' as any),
+          status: data.time ? 'succeeded' : ('pending' as any), 
           effects: effects as TransactionEffect[],
         };
       });
@@ -670,7 +736,9 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     }
   }
 
+  
   private async fetchUtxo(wallet: WalletData, network: BitcoinNetwork, state: IWalletStorage<WalletState>): Promise<(BlueElectrum.Utxo & { path: string })[]> {
+    
     const addressToPath = await network.getAllAddresses(wallet, state, true, true);
     await waitTillConnected();
     const utxoByAddress = await multiGetUtxoByAddress(Object.keys(addressToPath));
@@ -690,7 +758,10 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
 
 type KnownReason = 'exceedingBalance';
 export class PrepareError extends Error {
-  constructor(readonly message: string, readonly reason?: KnownReason) {
+  constructor(
+    readonly message: string,
+    readonly reason?: KnownReason,
+  ) {
     super(message);
     this.reason = reason;
   }
@@ -714,13 +785,14 @@ export function coinselect(
   }
 
   let algo = coinSelect;
-
+  
   if (targets.some(i => i.value === undefined)) {
     algo = coinSelectSplit;
   }
 
   const { inputs, outputs, fee } = algo(utxos, targets, feeRate);
 
+  
   if (!inputs || !outputs) {
     throw new PrepareError('Not enough balance', 'exceedingBalance');
   }
@@ -728,21 +800,25 @@ export function coinselect(
   return { inputs, outputs, fee };
 }
 
+
 export function getMasterFingerprintBuffer(masterFingerprint: number | undefined) {
   if (masterFingerprint) {
     let masterFingerprintHex = Number(masterFingerprint).toString(16);
     if (masterFingerprintHex.length < 8) {
       masterFingerprintHex = '0' + masterFingerprintHex;
-    }
+    } 
     const hexBuffer = Buffer.from(masterFingerprintHex, 'hex');
     return Buffer.from(reverse(hexBuffer));
-  } else {
-    return Buffer.from([0x00, 0x00, 0x00, 0x00]);
   }
+  return Buffer.from([0x00, 0x00, 0x00, 0x00]);
+
+  
+  
 }
 
-export const defaultRBFSequence = 2147483648;
-export const finalRBFSequence = 0xffffffff;
+export const defaultRBFSequence = 2147483648; 
+export const finalRBFSequence = 0xffffffff; 
+
 
 export function deriveRootFromSeed(wallet: Pick<WalletDataWithSeed, 'seed'>) {
   return bip32.fromSeed(Buffer.from(wallet.seed.data));
@@ -753,7 +829,6 @@ export function deriveRoot(wallet: WalletData) {
   if (wallet.chainCode) {
     const chainCode = Buffer.from(wallet.chainCode);
     return bip32.fromPublicKey(publicKey, chainCode);
-  } else {
-    throw new Error('[bitcoin] missing chainCode in wallet data');
   }
+  throw new Error('[bitcoin] missing chainCode in wallet data');
 }

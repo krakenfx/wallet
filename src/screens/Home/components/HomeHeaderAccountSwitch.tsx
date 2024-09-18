@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 11,
-    maxWidth: Dimensions.get('window').width - 180,
+    maxWidth: Dimensions.get('window').width - 180, 
     paddingHorizontal: 16,
     flexDirection: 'row',
   },
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   labelExpanded: {
-    flexGrow: 1,
+    flexGrow: 1, 
   },
 });

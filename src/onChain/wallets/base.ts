@@ -17,9 +17,13 @@ export interface PreparedTransaction<T = unknown> {
   warnings?: SimulationResult['warnings'];
 }
 
+
 export interface FeeOptions<T extends FeeOption = FeeOption> {
   options: T[];
 }
+
+
+
 
 export interface BalanceResponse {
   balance: InternalBalance;
@@ -33,7 +37,7 @@ export interface BlockExplorer {
 export type NetworkIcon = (args: { opacity: number }) => {
   id: string;
   bgColor: ColorValue;
-
+  
   fgColor: string | [string, string, number];
 };
 
@@ -48,6 +52,7 @@ export type ExtendedPublicKeyAndChainCode = {
 };
 
 export type NativeTokenSymbol = 'BTC' | 'DOGE' | 'ETH' | 'MATIC' | 'SOL' | 'TEZ';
+
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface Network<TransactionType = unknown, TransactionRequest = unknown, TFeeOption = unknown> {
@@ -70,6 +75,7 @@ export interface Network<TransactionType = unknown, TransactionRequest = unknown
 
   getExtendedPublicKey(seed: ArrayBuffer, accountIdx: number): ExtendedPublicKeyAndChainCode;
 
+  
   createMaxPaymentTransaction?(data: WalletData, to: string, minAmount?: StringNumber): Promise<TransactionRequest>;
   createPaymentTransaction(data: WalletData, to: string, amount: StringNumber): Promise<TransactionRequest>;
   createTokenTransferTransaction(data: WalletData, to: string, token: RealmToken, amount: StringNumber): Promise<TransactionRequest>;
@@ -81,12 +87,15 @@ export interface SingleAddressNetwork extends Network {
   deriveAddress(data: WalletData): Promise<string>;
 }
 
+
 export class NotSupportedError extends Error {}
+
 
 export interface Transport<TTransaction, TTransactionRequest, TWalletState, TNetwork = Network, TFeeOption extends FeeOption = FeeOption> {
   getTransactionStatus(network: TNetwork, txid: string): Promise<boolean>;
   getFeesEstimate(network: TNetwork): Promise<FeeOptions<TFeeOption>>;
 
+  
   prepareTransaction(
     network: TNetwork,
     walletData: WalletData,
@@ -96,8 +105,9 @@ export interface Transport<TTransaction, TTransactionRequest, TWalletState, TNet
     final?: boolean,
   ): Promise<PreparedTransaction<TTransaction>>;
 
+  
   estimateTransactionCost(network: TNetwork, wallet: WalletData, tx: PreparedTransaction<TTransaction>, fee: TFeeOption): Promise<TotalFee>;
-
+  
   estimateDefaultTransactionCost(network: TNetwork, wallet: WalletData, store: IWalletStorage<TWalletState>, fee: TFeeOption): Promise<TotalFee>;
 
   broadcastTransaction(network: TNetwork, signedTx: string): Promise<string>;
@@ -111,6 +121,7 @@ export interface Transport<TTransaction, TTransactionRequest, TWalletState, TNet
   fetchState?(wallet: WalletData, network: Network, data: IWalletStorage<TWalletState>): Promise<TWalletState>;
 }
 
+
 export type RealmishWallet = {
   id: string;
   type: WalletType;
@@ -118,6 +129,7 @@ export type RealmishWallet = {
   chainCode: ArrayBuffer | null;
   accountIdx?: number;
 };
+
 
 export type WalletData = {
   extendedPublicKey: ArrayBuffer;
@@ -131,6 +143,7 @@ export type WalletDataWithSeed = WalletData & {
   };
 };
 
+
 export type SingleKeyWalletData = {
   privateKey: string;
 };
@@ -140,6 +153,7 @@ export type WatchOnlyWallet = {
 };
 
 export type AnyWalletKind = WalletData | WatchOnlyWallet;
+
 
 export function makeWalletId(wallet: { accountIdx: number; type: string }) {
   const string2hash = wallet.type + new Date().getTime() + wallet.accountIdx;

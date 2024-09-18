@@ -15,6 +15,7 @@ type Props = {
 };
 
 export const ConfirmationFooter = ({ content, onApprove, onReject, disableConfirmationButton, isCriticalWarning }: Props) => {
+  
   const [enableConfirmationButtonAfterTimeout, setEnableConfirmationButtonAfterTimeout] = useState(false);
   useFocusEffect(
     useCallback(() => {

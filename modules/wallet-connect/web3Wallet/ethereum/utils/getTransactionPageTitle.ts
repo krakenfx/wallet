@@ -7,6 +7,8 @@ import loc from '/loc';
 export const TITLE_ALL_TRANSACTIONS_CONTRACT_INTERACTION = true;
 
 export const getTransactionPageTitle = (transactionType: TRANSACTION_TYPES | undefined, options?: Partial<{ method: string; tokenSymbol: string }>) => {
+  
+  
   if (TITLE_ALL_TRANSACTIONS_CONTRACT_INTERACTION) {
     switch (transactionType) {
       case TRANSACTION_TYPES.SWAP: {
@@ -39,6 +41,8 @@ export const getTransactionPageTitle = (transactionType: TRANSACTION_TYPES | und
     [TRANSACTION_TYPES.CONTRACT_INTERACTION]: loc.appSignRequest.swap,
   };
 
+  
+  
   if (!transactionType || !(transactionType in mapping)) {
     return loc.appSignRequest.sign;
   }

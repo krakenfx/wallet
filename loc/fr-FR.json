@@ -380,6 +380,12 @@
     "header": "Votre portefeuille présente un solde",
     "inputLabel": "Saisir le solde du portefeuille"
   },
+  "deleteAllData": {
+    "iCloudInfo": {
+      "desc": "Si vous n’avez pas supprimé manuellement votre sauvegarde, vous pouvez récupérer votre portefeuille.",
+      "title": "Ceci ne supprimera pas votre sauvegarde iCloud."
+    }
+  },
   "diagnostics": {
     "running": "Exécution du diagnostic..."
   },
@@ -413,14 +419,52 @@
   "extension": {
     "_": {
       "off": "Désactivé",
-      "on": "Activé"
+      "on": "Activé",
+      "timeAbbr": {
+        "days": "jour",
+        "hours": "h",
+        "minutes": "min",
+        "months": "mois",
+        "seconds": "seconde",
+        "weeks": "sem",
+        "years": "an"
+      },
+      "unknown": "inconnu"
+    },
+    "alt": {
+      "proceduralWalletImage": "Image procédurale de portefeuille"
     },
     "ariaLabel": {
-      "icon": "Icône"
+      "icon": "Icône",
+      "iconButton": "Bouton avec icône",
+      "toggleSwitch": "Interrupteur"
     },
     "assets": {
       "logoAlt": "logo d’actif",
       "manageAssets": "Gérer des actifs"
+    },
+    "customNetwork": {
+      "addCustomNetwork": "Ajouter un réseau personnalisé",
+      "addNetwork": "Ajouter un réseau",
+      "blockExplorerUrl": "URL vers l’explorateur de blocs",
+      "chainId": "Identifiant de la chaîne",
+      "customNetwork": "Réseau personnalisé",
+      "customNetworks": "Réseaux personnalisés",
+      "decimals": "Décimales",
+      "editCustomNetwork": "Modifier un réseau personnalisé",
+      "enterNetworkName": "Saisir un nom de réseau",
+      "networkName": "Nom de réseau",
+      "remove": "Supprimer",
+      "rpcUrl": "URL RPC",
+      "symbol": "Symbole",
+      "updateNetwork": "Mettre à jour le réseau"
+    },
+    "enterPasswordDialog": {
+      "continue": "Continuer",
+      "currentPasswordAriaLabel": "Mot de passe actuel",
+      "enterCurrentPassword": "Saisir le mot de passe actuel",
+      "enterToDecrypt": "Saisissez votre mot de passe actuel pour voir votre phrase de récupération",
+      "lockGraphicsAlternativeText": "Verrouiller les graphiques"
     },
     "home": {
       "addWallet": "Ajouter un portefeuille",
@@ -433,8 +477,12 @@
       "hiddenAssets": "Actifs masqués",
       "manageAssets": "Gérer des actifs",
       "search": "Rechercher parmi plus de 5 000 actifs",
+      "searchResults": "Résultats de la recherche",
       "unhideAll": "Tout afficher",
       "visibleAssets": "Actifs visibles"
+    },
+    "manageWallets": {
+      "viewRecoveryPhrase": "Voir la phrase de récupération"
     },
     "navigation": {
       "activity": "Activité",
@@ -446,6 +494,9 @@
       "addNfts": "Ajoutez des NFT à votre portefeuille",
       "send": "Envoyer"
     },
+    "onboarding_backup": {
+      "backUpWallet": "Sauvegarder le portefeuille"
+    },
     "onboarding": {
       "skip": "Ignorer",
       "typeYourSecretRecoveryPhrase": "Saisissez votre phrase de récupération secrète",
@@ -455,7 +506,21 @@
       "receiveCryptoOrNft": "Recevez des crypto-monnaies ou des NFT"
     },
     "send": {
+      "amountInput": {
+        "balance": "Solde",
+        "errors": {
+          "exceedsBalance": "Le montant saisi dépasse votre solde",
+          "greaterThanZero": "Le montant saisi doit être supérieur à 0",
+          "invalid": "Le montant saisi n’est pas valide"
+        },
+        "label": "Montant",
+        "placeholder": "Saisir le montant"
+      },
       "continue": "Continuer",
+      "networkFee": "Frais de réseau",
+      "sending": {
+        "title": "En cours d’envoi"
+      },
       "sendingTo": {
         "search": "Sélectionnez ce que vous voulez envoyer",
         "title": "Envoi à"
@@ -472,7 +537,15 @@
     },
     "settings": {
       "build": "Version {0}",
-      "changePassword": "Changer le mot de passe",
+      "changePassword": {
+        "caption": "Saisissez un mot de passe pour sécuriser et verrouiller votre portefeuille",
+        "confirmPassword": "Confirmer le mot de passe",
+        "label": "Mot de passe",
+        "menuItemTitle": "Changer le mot de passe",
+        "setPassword": "Définir un mot de passe",
+        "title": "Saisir le nouveau mot de passe",
+        "typePassword": "Saisir le mot de passe"
+      },
       "lockWallet": "Verrouiller le portefeuille",
       "privacy": "Confidentialité",
       "version": "Extension Kraken Wallet {0}",
@@ -694,6 +767,13 @@
     "continue": "Révéler la phrase",
     "recovery_phrase": "phrase de récupération secrète",
     "skip": "Ignorer",
+    "skipWarning": {
+      "back": "Retour",
+      "checkOne": "J’ai compris que si je perds mon téléphone ou que je supprime l’application sans faire de sauvegarde, je ne pourrai pas récupérer mon portefeuille.",
+      "checkTwo": "J’ai compris que je suis seul(e) responsable de la perte de mes actifs si je n’ai pas créé de sauvegarde de récupération.",
+      "confirm": "Confirmer",
+      "title": "Continuer sans créer de sauvegarde de votre portefeuille ?"
+    },
     "subtitle": "votre portefeuille",
     "title": "Sauvegarder"
   },
@@ -778,6 +858,28 @@
     "title": "Vérifiez que vous l’avez bien enregistrée",
     "verified": "Vérifié",
     "verify": "Confirmer"
+  },
+  "onboardingImportCloudBackup": {
+    "desc": "Pour importer votre portefeuille depuis une sauvegarde, utilisez votre clé d’accès pour le déchiffrement.",
+    "selection": {
+      "desc": "Vous avez créé plusieurs sauvegardes, choisissez la sauvegarde du portefeuille que vous souhaitez importer",
+      "recent": "Sauvegarde la plus récente",
+      "title": "Sélectionnez la sauvegarde du portefeuille que vous souhaitez importer"
+    },
+    "title": "Importation depuis une sauvegarde",
+    "usePasskey": "Utiliser ma clé d’accès"
+  },
+  "onboardingImportMethod": {
+    "methodICloud": {
+      "desc": "Importation depuis une sauvegarde iCloud que vous avez créée pour Kraken Wallet",
+      "title": "Importation depuis iCloud"
+    },
+    "methodManual": {
+      "desc": "Importation en utilisant votre phrase de récupération secrète de 12-24 mots",
+      "title": "Saisir la phrase d’accès"
+    },
+    "subtitle": "votre portefeuille",
+    "title": "Importer"
   },
   "onboardingImportWallet": {
     "caption": "Saisissez votre phrase de récupération secrète pour importer votre portefeuille.",
@@ -1070,7 +1172,8 @@
     "testnet": "Testnet",
     "testnetDescription": "Lorsqu’elle est activée, vous pouvez sélectionner votre réseau testnet et vos actifs à partir de l’écran de gestion des actifs.",
     "view_list_of_connected_dapps": "Afficher la liste des DApp connectées",
-    "wallets": "Portefeuilles"
+    "wallets": "Portefeuilles",
+    "walletsAndBackups": "Portefeuilles et sauvegardes"
   },
   "storeReview": {
     "alertMessage": "Nous aimerions beaucoup savoir si l’expérience vous satisfait.",
@@ -1328,6 +1431,21 @@
     "backup": "Sauvegarder",
     "backupYourWallet": "Sauvegardez votre portefeuille",
     "backupYourWalletDescription": "Assurez-vous de pouvoir récupérer votre crypto si vous perdez votre appareil ou si vous changez de portefeuille.",
+    "cloudWarning": {
+      "button": "Sauvegarde avec iCloud",
+      "desc": "Assurez-vous de pouvoir récupérer votre portefeuille même si vous oubliez votre phrase de récupération secrète",
+      "title": "Sauvegarde cloud recommandée"
+    },
+    "manualWarning": {
+      "button": "Sauvegarde manuelle",
+      "desc": "Assurez-vous de pouvoir récupérer votre portefeuille même si vous perdez l’accès à votre compte iCloud.",
+      "title": "Sauvegarde manuelle recommandée"
+    },
+    "secondaryBackup": {
+      "iCloud": "Pour une meilleure récupération, créez une sauvegarde chiffrée par mot de passe sur iCloud. Le chiffrement signifie que même Apple ne peut pas la voir",
+      "manual": "Pour une meilleure récupération, créez une sauvegarde manuelle de votre phrase de récupération secrète afin qu’elle soit conservée dans un lieu sécurisé",
+      "title": "Créer une sauvegarde secondaire"
+    },
     "secretRecoveryPhrase": "Phrase de récupération secrète",
     "tapHereToView": "Appuyez ici pour afficher"
   },
@@ -1335,6 +1453,98 @@
     "backUpNow": "Sauvegardez vos données",
     "body": "Vous n’avez pas sauvegardé votre Phrase de récupération secrète. Nous vous conseillons de procéder à une sauvegarde pour éviter de perdre l’accès à vos fonds.",
     "header": "Avant de recevoir des fonds dans ce portefeuille, faites-en une sauvegarde"
+  },
+  "walletBackupSelection": {
+    "backupManually": "Sauvegarde manuelle",
+    "backupManuallyCompleted": "Sauvegardée manuellement",
+    "backupWithICloud": "Sauvegarde avec iCloud",
+    "backupWithICloudCompleted": "Sauvegarde avec iCloud",
+    "caption": "Si vous n’effectuez pas de sauvegarde de votre portefeuille, vous risquez de perdre votre crypto. Nous n’avons pas accès à votre phrase de récupération et nous ne pouvons pas vous aider à récupérer votre crypto sans sauvegarde.",
+    "explainer": {
+      "desc": "La perte d’une phrase de récupération secrète est la raison principale de la perte de crypto. Kraken Wallet réduit ce risque en proposant plus d’une méthode de sauvegarde sécurisée.",
+      "title": "Augmentez vos possibilités de récupération pour réduire vos risques de perte"
+    },
+    "iCloudDescCompletedShort": "Phrase de récupération secrète chiffrée",
+    "iCloudDescLong": "Chiffrer avec une clé d’accès et stocker sur iCloud",
+    "iCloudDescShort": "Chiffrer et stocker sur iCloud",
+    "manualBackupDescLong": "Sauvegarde manuelle dans le lieu sécurisé de votre choix",
+    "manualBackupDescShort": "Sauvegarde dans le lieu sécurisé de votre choix",
+    "manualBackupDescShortCompleted": "Je l’ai sauvegardée dans un lieu sécurisé",
+    "prompt": "Assurez-vous de toujours avoir accès à votre portefeuille même si vous perdez votre appareil.",
+    "recoverability": {
+      "desc": "Pourrait être plus forte",
+      "title": "Récupération"
+    },
+    "skipButton": "Peut-être plus tard",
+    "subtitle": "votre portefeuille",
+    "title": "Sauvegarder",
+    "titleWithSubtitle": "Sauvegardez votre portefeuille",
+    "tooltip": {
+      "iCloud": "Une sauvegarde iCloud vous assure de toujours pouvoir récupérer votre portefeuille si vous oubliez votre phrase de récupération secrète.",
+      "manual": "Une sauvegarde manuelle vous assure de toujours pouvoir récupérer votre portefeuille si vous perdez votre accès à iCloud ou si vous égarez votre appareil."
+    }
+  },
+  "walletCloudBackup": {
+    "createPasskey": "Créer une clé d’accès",
+    "hints": {
+      "part1": "Plus sûr que les mots de passe standard",
+      "part2": "Chiffrement à l’aide de la biométrie ou d’un dispositif de sécurité",
+      "part3": "Récupération possible par vous, même si vous perdez cet appareil"
+    },
+    "passkeyDescription": "Pour créer votre sauvegarde, chiffrez-la à l’aide d’une clé d’accès. Ceci vous garantit que personne d’autre ne peut restaurer la sauvegarde. (Le chiffrement garantit que même Apple ne peut pas la voir)",
+    "secureYourBackup": "Sécuriser votre sauvegarde",
+    "success": "Sauvegarde du portefeuille sur iCloud réussie"
+  },
+  "walletCloudBackupDelete": {
+    "cancel": "Annuler",
+    "caption": "Assurez-vous que votre phrase secrète de récupération est sauvegardée en lieu sûr et que vous pouvez toujours récupérer votre portefeuille si vous perdez votre appareil.",
+    "check1": "Je comprends que si je perds mon téléphone ou si je supprime l’application, j’aurai besoin de la phrase de récupération secrète pour restaurer mon portefeuille.",
+    "check2": "Je confirme avoir placé ma phrase de récupération secrète de 12 mots en lieu sûr.",
+    "delete": "Supprimer",
+    "header": "Êtes-vous sûr(e) de vouloir supprimer cette sauvegarde ?",
+    "title": "Supprimer la sauvegarde"
+  },
+  "walletCloudBackupError": {
+    "ensureICloudKeychainOn": "Dans les Options de mot de passe de votre appareil, assurez-vous que iCloud Keychain est activé pour être utilisé pour les mots de passe et clés d’accès :",
+    "errorCreatingBackup": {
+      "cancel": "Annuler",
+      "description": "Une erreur s’est produite lors de la création d’une sauvegarde.",
+      "title": "Erreur lors de la création de la sauvegarde",
+      "tryAgainBold": "nous n’assurons pas le support pour une sauvegarde sur d’autres appareils.",
+      "tryAgainButton": "Veuillez réessayer",
+      "tryAgainRegular": "Lorsque vous réessayez, n’oubliez pas que "
+    },
+    "errorCreatingPasskey": {
+      "description": "Dans les Options de mot de passe de votre appareil, assurez-vous que iCloud Keychain est activé pour être utilisé pour les mots de passe et clés d’accès :",
+      "title": "Erreur lors de la création de la clé d’accès"
+    },
+    "errorDeletingPasskey": {
+      "title": "Erreur lors de la suppression de la clé d’accès"
+    },
+    "errorInactive": {
+      "description": "Si vous avez créé plusieurs clés d’accès, vous pouvez essayer d’importer une autre sauvegarde. Sinon, vous pouvez importer votre portefeuille en utilisant la Phrase de récupération secrète de 12 à 24 mots",
+      "subtitle": "Cette clé d’accès est inactive, ce qui signifie qu’elle provient d’une sauvegarde que vous avez effacée manuellement.",
+      "title": "Clé d’accès inactive"
+    },
+    "keychainSteps": {
+      "one": {
+        "bold": "Paramètres → Mots de passe → Options de mots de passe",
+        "regular": "1. Allez sur : "
+      },
+      "two": {
+        "bold": "iCloud Keychain",
+        "regular": "2. Activation : "
+      }
+    },
+    "noPasskeyFound": {
+      "description": "Nous n’avons pas trouvé de clés d’accès. Il est possible que vous n’en ayez pas créée ou que iCloud Keychain soit désactivé dans les paramètres. Assurez-vous que iCloud Keychain est activé en suivant les étapes suivantes :",
+      "title": "Aucune clé d’accès trouvée"
+    },
+    "supportHint": {
+      "link": "Support de Kraken Wallet ↗",
+      "regular": "Si cela ne règle pas votre problème, vous pouvez obtenir de l’aide en consultant ",
+      "regularWithManualBackup": "Si cela ne règle pas votre problème, vous pouvez importer votre phrase de récupération secrète de 12 à 24 mots ou obtenir de l’aide en consultant "
+    }
   },
   "walletConnect": {
     "account_not_found": "WalletConnect : compte introuvable",
@@ -1350,6 +1560,7 @@
       "cancel": "Annuler",
       "connect": "Connecter"
     },
+    "back_to_dapp": "Revenir au navigateur pour continuer",
     "failedToConnect": "L’application ne s’est pas connectée",
     "failedToDisconnect": "L’application ne s’est pas déconnectée",
     "feeEstimate": "Estimation des frais",

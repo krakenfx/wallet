@@ -62,9 +62,8 @@ export const GlobalActivityScreen = ({ navigation }: NavigationProps<'GlobalActi
   const renderEmptyState = () => {
     if (networkFilter.length === 0) {
       return <GlobalActivityEmptyAll navigation={navigation} />;
-    } else {
-      return <GlobalActivityEmptyNetworkSelection />;
     }
+    return <GlobalActivityEmptyNetworkSelection />;
   };
 
   return (

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
-import { SeedDisplay } from '@/components/SeedDisplay';
+import { SeedDisplay, useSeedPhrase } from '@/components/SeedDisplay';
 import { OnboardingHeader } from '@/screens/Onboarding/components/OnboardingHeader';
 
 import loc from '/loc';
@@ -15,50 +15,69 @@ interface Props {
 }
 
 export const WalletBackup = ({ onContinue, seedVisible }: Props) => {
-  const header = useCallback(
-    () => (
-      <OnboardingHeader
-        title={loc.onboarding_backup.title}
-        caption={loc.formatString(loc.onboarding_backup.caption, {
-          neverShare: (
-            <Label type="boldTitle1" color="light50">
-              {loc.onboarding.never_share}
-            </Label>
-          ),
-        })}
-      />
-    ),
-    [],
-  );
+  const { seed, isSeedVisible, onSeedReveal } = useSeedPhrase(seedVisible);
 
-  const footer = useCallback(
-    (canCopy: boolean, seed?: string) => (
-      <FloatingBottomButtons
-        noAbsolutePosition
-        style={styles.buttons}
-        primary={{
-          text: loc.onboarding_backup.continue,
-          testID: 'NextButton',
-          onPress: onContinue,
-        }}
-        secondary={{
-          disabled: !canCopy || !seed,
-          text: loc._.copy,
-          testID: 'CopyButton',
-          onPress: () => !!seed && SensitiveClipboard.setString(seed),
-          icon: 'copy',
-        }}
-      />
-    ),
+  const stickyFooter = useCallback(
+    (props: { seedVisible: boolean; seed?: string }) => {
+      return <StickyFooter {...props} onContinue={onContinue} />;
+    },
     [onContinue],
   );
 
-  return <SeedDisplay testID="WalletBackupSeedDisplay" style={styles.seedDisplay} header={header} footer={footer} initiallyRevealed={seedVisible} />;
+  return (
+    <SeedDisplay
+      seed={seed}
+      isSeedVisible={isSeedVisible}
+      onSeedReveal={onSeedReveal}
+      testID="WalletBackupSeedDisplay"
+      style={styles.seedDisplay}
+      stickyHeader={<StickyHeader />}
+      stickyFooter={stickyFooter}
+    />
+  );
 };
+
+const StickyHeader = () => (
+  <OnboardingHeader
+    title={loc.onboarding_backup.title}
+    caption={loc.formatString(loc.onboarding_backup.caption, {
+      neverShare: (
+        <Label type="boldTitle1" color="light50">
+          {loc.onboarding.never_share}
+        </Label>
+      ),
+    })}
+  />
+);
+
+interface StickyFooterProps {
+  seedVisible: boolean;
+  seed?: string;
+  onContinue: () => void;
+}
+
+const StickyFooter: React.FC<StickyFooterProps> = ({ seedVisible, seed, onContinue }) => (
+  <FloatingBottomButtons
+    noAbsolutePosition
+    style={styles.buttons}
+    primary={{
+      text: loc.onboarding_backup.continue,
+      testID: 'NextButton',
+      onPress: onContinue,
+    }}
+    secondary={{
+      disabled: !seedVisible || !seed,
+      text: loc._.copy,
+      testID: 'CopyButton',
+      onPress: () => !!seed && SensitiveClipboard.setString(seed),
+      icon: 'copy',
+    }}
+  />
+);
 
 const styles = StyleSheet.create({
   seedDisplay: {
-    marginVertical: 12,
+    margin: 12,
   },
   buttons: {
     paddingHorizontal: 12,

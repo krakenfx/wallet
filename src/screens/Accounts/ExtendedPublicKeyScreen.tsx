@@ -42,7 +42,7 @@ export const ExtendedPublicKeyScreen = ({ route, navigation }: NavigationProps<'
     }
   };
   const { width } = useSafeAreaFrame();
-  const qrCodeSize = width - 96;
+  const qrCodeSize = width - 96; 
 
   return (
     <BottomSheet dismissible={useIsFocused()} animatedIndex={sheetIndex} snapPoints={['100%']} {...bottomSheetProps}>

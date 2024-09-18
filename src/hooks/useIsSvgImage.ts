@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { isContentTypeSvg, isSvgImage } from '@/utils/isSvgImage';
 
+
 export const useIsSvgImage = (imageUrl?: string | null, contentType?: string | null) => {
   const [isSvg, setIsSVG] = useState<boolean>();
 

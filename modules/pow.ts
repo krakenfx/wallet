@@ -4,6 +4,9 @@ export async function solvePowChallenge(difficulty: number, challengeD: string):
   const targetHash = BigInt(2 ** 256) - BigInt(2 ** 256 * difficulty);
   let attempts = 0;
   const t0 = Date.now();
+
+  
+  /* eslint-disable-next-line no-constant-condition */
   while (true) {
     const solution = attempts.toString(16);
     attempts++;

@@ -4,12 +4,11 @@ import { StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native'
 import Animated from 'react-native-reanimated';
 import { Path, Svg } from 'react-native-svg';
 
-import { GradientIconBackground } from '@/components/GradientIconBackground';
-
 import { Label } from '@/components/Label';
 import { Touchable, TouchableProps } from '@/components/Touchable';
 import { ColorName, useTheme } from '@/theme/themes';
 
+import { GradientIconBackground } from './GradientIconBackground';
 import iconSet from './selection.json';
 import { IconName } from './types';
 

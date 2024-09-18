@@ -67,7 +67,8 @@ export const AppLockScreen = () => {
       switch (securityLevelEnrolled) {
         case SecurityLevel.SECRET:
           return loc.appLock.authType.passcode;
-        case SecurityLevel.BIOMETRIC:
+        case SecurityLevel.BIOMETRIC_STRONG:
+        case SecurityLevel.BIOMETRIC_WEAK:
         case SecurityLevel.NONE: {
           if (Platform.OS === 'ios' && authenticationTypes.length === 1) {
             switch (authenticationTypes[0]) {

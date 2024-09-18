@@ -16,14 +16,22 @@ type CustomFooterProps<P> = {
   onLayout: (layout: LayoutRectangle) => void;
   animatedIndex: SharedValue<number>;
   snapPoints: ReturnType<typeof useBottomSheetDynamicSnapPoints>['animatedSnapPoints'];
-  FooterElement: React.ReactElement | false | null | undefined;
+  FooterElement: React.ReactNode;
   canShowMore: boolean;
   floatingButtonsProps?: P;
 };
 
 export type Props<P> = BottomSheetFooterProps & CustomFooterProps<P>;
 
-export const ExpandableSheetFooter: React.FC<Props<{}>> = ({ toggle, snapPoints, animatedIndex, canShowMore, onLayout, FooterElement, ...otherProps }) => {
+export const ExpandableSheetFooter: React.FC<Props<Record<string, never>>> = ({
+  toggle,
+  snapPoints,
+  animatedIndex,
+  canShowMore,
+  onLayout,
+  FooterElement,
+  ...otherProps
+}) => {
   const insets = useSafeAreaInsets();
 
   const arrowStyle = useAnimatedStyle(() => ({
@@ -41,6 +49,7 @@ export const ExpandableSheetFooter: React.FC<Props<{}>> = ({ toggle, snapPoints,
     onLayout(e.nativeEvent.layout);
   };
 
+  
   const containerStyle = useAnimatedStyle(() => {
     const firstSnap = snapPoints.value[0];
     if (typeof firstSnap !== 'number') {

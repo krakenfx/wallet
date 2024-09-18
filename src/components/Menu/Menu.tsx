@@ -9,17 +9,19 @@ import { PopupMenuProps } from './MenuOverlay';
 import { useMenu } from './MenuProvider';
 
 type OwnProps = {
-  menuOffset?: number;
+  menuYOffset?: number;
+  menuXOffset?: number;
   menuWidth?: number;
   onShow?: () => void;
   disabled?: boolean;
-  refreshKey?: unknown;
+  refreshKey?: unknown; 
   testID?: string;
 };
 
 export function Menu<T>({
   children,
-  menuOffset = 8,
+  menuYOffset = 8,
+  menuXOffset = 0,
   menuWidth,
   onShow,
   disabled,
@@ -38,10 +40,12 @@ export function Menu<T>({
     menu.show({
       ...props,
       origin: {
-        y: nativeEvent.pageY + layout.current.height - nativeEvent.locationY + menuOffset,
+        
+        y: nativeEvent.pageY + layout.current.height - nativeEvent.locationY + menuYOffset,
         x: nativeEvent.pageX,
-
-        elementHeight: layout.current.height + menuOffset * 2,
+        offsetX: menuXOffset,
+        
+        elementHeight: layout.current.height + menuYOffset * 2,
       },
       menuWidth,
     });

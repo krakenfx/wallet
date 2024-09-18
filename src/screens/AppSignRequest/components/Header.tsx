@@ -21,6 +21,7 @@ export function getMessageHeading(typedMessage?: string) {
   return typedMessage ? loc.formatString(loc.appSignRequest.typedMessageSigningRequest, { type: typedMessage }) : loc.appSignRequest.messageSigningRequest;
 }
 
+
 export const Header = ({ url, coinType, icon, name, heading, subheading }: Props) => {
   return (
     <View style={styles.header}>

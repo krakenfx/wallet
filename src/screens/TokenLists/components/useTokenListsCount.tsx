@@ -17,12 +17,14 @@ export const useTokenListsCount = (): Record<string, string> => {
           const tokenCount = response?.content?.tokenCount;
           const nextState: Record<string, string> = {};
 
+          
           const blacklistsTotal = tokenCount.blacklists?.total;
 
           if (blacklistsTotal) {
             nextState[BLACKLISTED] = String(blacklistsTotal);
           }
 
+          
           const whitelists = tokenCount.whitelists;
 
           if (whitelists) {

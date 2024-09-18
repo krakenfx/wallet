@@ -15,6 +15,7 @@ export interface Props {
   testID?: string;
 }
 
+
 export function SwapIcon({ sentAsset, receivedAsset }: Props) {
   const size = 28;
   const coinSize = 30;

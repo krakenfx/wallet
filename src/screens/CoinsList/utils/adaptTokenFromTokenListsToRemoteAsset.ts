@@ -11,11 +11,12 @@ export function adaptTokenFromTokenListsToRemoteAsset(tokenFromTokenLists: Token
     metadata: {
       label: tokenFromTokenLists.name ?? '',
       symbol: tokenFromTokenLists.symbol ?? '',
-
+      
+      
       decimals: typeof decimals === 'number' ? decimals : typeof decimals === 'string' ? Number(decimals) : 2,
       reputation: {
         whitelists: tokenFromTokenLists.lists,
-        blacklists: [],
+        blacklists: [] ,
       },
     },
     type: 'remoteAsset',

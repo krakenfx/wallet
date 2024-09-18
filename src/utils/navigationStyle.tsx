@@ -20,7 +20,7 @@ export const navigationStyle = ({
       headerRight = () => <CloseButton />;
     }
 
-    let options: NativeStackNavigationOptions = {
+    const options: NativeStackNavigationOptions = {
       headerStyle: {
         backgroundColor: opts.headerTransparent ? undefined : theme.colors.background,
       },

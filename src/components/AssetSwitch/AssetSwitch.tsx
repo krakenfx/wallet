@@ -36,6 +36,7 @@ export const AssetSwitch = ({ value, onValueChange, token, options = {} }: Asset
       hideZeroAmount: options.hideZeroAmount,
       networkName: options.networkName,
       onPress,
+      priceChange: options.priceChange,
       showAmountInFiat: options.showAmountInFiat,
       style: styles.switch,
       selected: switchValue,

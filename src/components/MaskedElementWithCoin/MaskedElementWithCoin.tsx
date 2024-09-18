@@ -6,13 +6,13 @@ import Svg, { Circle, Defs, G, Mask, Rect } from 'react-native-svg';
 import { NetworkIcon } from '@/components/NetworkIcon';
 import { WalletType } from '@/onChain/wallets/registry';
 
-type Props = {
+export type MaskedElementWithCoinProps = {
   size: number;
   maskedElement?: React.ReactElement;
   coinType: WalletType | 'walletTypeUnknown';
   coinSize: number;
   coinBorderSize?: number;
-
+  
   coinPosition?: {
     top: number;
     left: number;
@@ -22,7 +22,7 @@ type Props = {
   testID?: string;
 };
 
-const RoundedSquare = ({ fill = 'white', size }: Pick<Props, 'size'> & { fill?: string }) => {
+const RoundedSquare = ({ fill = 'white', size }: Pick<MaskedElementWithCoinProps, 'size'> & { fill?: string }) => {
   const reductionScale = 16;
   const startXY = size / reductionScale;
   const reducedSize = startXY * (reductionScale - 2);
@@ -31,7 +31,7 @@ const RoundedSquare = ({ fill = 'white', size }: Pick<Props, 'size'> & { fill?: 
   return <Rect x={startXY} y={startXY} width={reducedSize} height={reducedSize} rx={radius} fill={fill} />;
 };
 
-export const MaskedElementWithCoin: React.FC<Props> = React.memo(
+export const MaskedElementWithCoin: React.FC<MaskedElementWithCoinProps> = React.memo(
   ({
     size,
     coinSize,

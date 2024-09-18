@@ -35,9 +35,8 @@ export const useNftsFetch = () => {
             metadataType: 'cached',
           }),
         );
-      } else {
-        return fetchRawNftMetadata(nft);
       }
+      return fetchRawNftMetadata(nft);
     },
     [realm],
   );
@@ -57,6 +56,7 @@ export const useNftsFetch = () => {
       const nftsFetched = results.filter(isPromiseFulfilled).map(({ value }) => value);
       runInTransaction(() => {
         nftsFetched.forEach(({ nfts, wallet }) => {
+          
           if (wallet.isValid()) {
             saveNftsToRealm(nfts, wallet);
           }

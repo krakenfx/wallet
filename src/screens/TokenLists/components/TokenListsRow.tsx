@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 6,
     marginBottom: 8,
-    minHeight: 20,
+    minHeight: 20, 
   },
   header: {
     flexDirection: 'row',

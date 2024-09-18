@@ -5,8 +5,9 @@ import { useFilterInUnverifiedAssets } from '@/realm/settings/useFilterInUnverif
 import { useTokens } from '@/realm/tokens';
 
 export const useTokensFilteredByReputationAndNetwork = (networkFilter: string[]) => {
-  let unfilteredTokensFromRealm = useTokens();
+  const unfilteredTokensFromRealm = useTokens();
 
+  
   const filterInBlacklistedAssets = useFilterInBlacklistedAssets();
   const filterInUnverifiedAssets = useFilterInUnverifiedAssets();
   const shouldFilterOutByReputation = useMemo(
@@ -17,6 +18,7 @@ export const useTokensFilteredByReputationAndNetwork = (networkFilter: string[])
   return useMemo(() => {
     let filteredTokens = unfilteredTokensFromRealm;
 
+    
     filteredTokens = networkFilter.length ? filteredTokens.filtered('assetId BEGINSWITH[c] ANY $0', networkFilter) : filteredTokens;
 
     if (shouldFilterOutByReputation) {
@@ -26,9 +28,11 @@ export const useTokensFilteredByReputationAndNetwork = (networkFilter: string[])
         const tokenAssetMetadata = token.metadata;
 
         if (token.assetId === token.wallet.nativeTokenCaipId) {
+          
           return;
         }
 
+        
         if (!filterInBlacklistedAssets) {
           const isBlacklisted = (tokenAssetMetadata?.reputation?.blacklists || []).length > 0;
 
@@ -38,6 +42,7 @@ export const useTokensFilteredByReputationAndNetwork = (networkFilter: string[])
           }
         }
 
+        
         if (!filterInUnverifiedAssets) {
           const isUnverified =
             (tokenAssetMetadata?.reputation?.blacklists || []).length === 0 && (tokenAssetMetadata?.reputation?.whitelists || []).length === 0;

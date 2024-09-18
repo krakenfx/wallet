@@ -10,14 +10,14 @@ import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
 import { RealmWallet } from '../wallets';
 
-import { REALM_TYPE_TOKEN, RealmToken } from './schema';
+import { REALM_TYPE_TOKEN, RealmToken, Token } from './schema';
 
 export const useTokensMutations = () => {
   const realm = useRealm();
   const { runInTransaction } = useRealmTransaction();
 
   const saveTokensToRealm = useCallback(
-    (records: BalanceResponse[], wallet: RealmWallet, addTokensWithBalanceToGallery?: boolean) => {
+    (records: BalanceResponse[], wallet: RealmWallet) => {
       console.log('[useTokensMutations] saving tokens and metadata ' + wallet.id + ' ' + records.length.toString());
       runInTransaction(() => {
         const isSolanaWallet = wallet.type === 'solana' || wallet.type === 'solanaDevnet';
@@ -25,25 +25,7 @@ export const useTokensMutations = () => {
         for (const record of records) {
           const id = `${wallet.id}:${record.balance.token}`;
           const balance = record.balance.value ?? '0';
-          const balanceNumber = parseFloat(balance);
           const reputation = adaptTokenReputationToRealmAssetReputation(record.metadata.reputation);
-          const isNativeToken = record.balance.token === wallet.nativeTokenCaipId;
-          const isWhitelistedOrUnverified = reputation.blacklists.length === 0;
-          const isAddToGalleryWorthy = balanceNumber > 0 && (isNativeToken || isWhitelistedOrUnverified);
-
-          const shouldAddToGalleryAutomatically = ((): boolean => {
-            if (isAddToGalleryWorthy) {
-              const existingToken = realm.objectForPrimaryKey<RealmToken>(REALM_TYPE_TOKEN, id);
-
-              if (!existingToken || (existingToken && parseFloat(existingToken.balance) === 0)) {
-                return true;
-              }
-            }
-
-            return false;
-          })();
-
-          const shouldAddToGalleryFromProp = addTokensWithBalanceToGallery && isAddToGalleryWorthy;
 
           const token = realm.create<RealmToken>(
             REALM_TYPE_TOKEN,
@@ -66,6 +48,7 @@ export const useTokensMutations = () => {
                   description: record.metadata.description,
                   reputation,
                   updateRequired: false,
+                  
                 },
                 Realm.UpdateMode.Modified,
               ),
@@ -73,15 +56,16 @@ export const useTokensMutations = () => {
             Realm.UpdateMode.All,
           );
 
-          if (shouldAddToGalleryFromProp || shouldAddToGalleryAutomatically) {
-            token.inGallery = true;
-          }
-
           if (isSolanaWallet) {
             solanaTokensSaved.push(token.assetId);
           }
         }
 
+        
+        
+        
+        
+        
         if (isSolanaWallet) {
           const solanaTokensNeedingZeroBalance = realm.objects(REALM_TYPE_TOKEN).filtered('walletId = $0 AND assetId == NONE $1', wallet.id, solanaTokensSaved);
 
@@ -95,7 +79,7 @@ export const useTokensMutations = () => {
   );
 
   const addTokenToRealm = useCallback(
-    (token: RemoteAsset, wallet: RealmWallet, addToGallery?: boolean): RealmToken => {
+    (token: RemoteAsset, wallet: RealmWallet): RealmToken => {
       console.log('[useTokensMutations] adding remote asset as token' + ' ' + token.assetId + ' ' + wallet.id);
       return realm.write(() => {
         return realm.create<RealmToken>(
@@ -106,13 +90,13 @@ export const useTokensMutations = () => {
             walletId: wallet.id,
             balance: token.balance ?? '0',
             wallet,
-            inGallery: addToGallery,
+            inGallery: 'manuallyAdded',
             metadata: realm.create<RealmAssetMetadata>(
               REALM_TYPE_ASSET_METADATA,
               {
                 assetId: token.assetId,
                 symbol: token.metadata.symbol ?? '',
-
+                
                 label: token.metadata.label ?? '',
                 decimals: token.metadata.decimals,
                 reputation: token.metadata.reputation,
@@ -120,7 +104,7 @@ export const useTokensMutations = () => {
               Realm.UpdateMode.Modified,
             ),
           },
-          Realm.UpdateMode.Never,
+          Realm.UpdateMode.Never ,
         );
       });
     },
@@ -140,9 +124,21 @@ export const useTokensMutations = () => {
     [realm],
   );
 
+  const setTokenGalleryStatus = useCallback(
+    (token: RealmToken, status: Token['inGallery']) => {
+      if (status) {
+        realm.write(() => {
+          token.inGallery = status;
+        });
+      }
+    },
+    [realm],
+  );
+
   return {
     addTokenToRealm,
     removeTokenFromRealm,
     saveTokensToRealm,
+    setTokenGalleryStatus,
   };
 };

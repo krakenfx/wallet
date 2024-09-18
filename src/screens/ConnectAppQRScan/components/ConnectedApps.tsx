@@ -46,6 +46,7 @@ export const ConnectedApps = forwardRef<BottomSheetModalRef, ConnectedAppsProps>
       const items: JSX.Element[] = [];
 
       loopOverAllSessionNamespaceAccounts(session, (account, i) => {
+        
         const network = getNetworkNameFromWalletString(account);
 
         items.push(

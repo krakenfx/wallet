@@ -17,14 +17,12 @@ export const getAvailableTokenBalance = (token: {
         if (curr.type === 'coin') {
           const feeValue = curr.fee ? BigNumber(curr.fee) : BigNumber(0);
           return BigNumber.sum(acc, balanceValue, feeValue);
-        } else {
-          return BigNumber.sum(acc, balanceValue);
         }
+        return BigNumber.sum(acc, balanceValue);
       }, BigNumber(0));
     const totalBalance = BigNumber.sum(token.balance, -totalOutgoingBalance);
 
     return totalBalance.toFixed();
-  } else {
-    return token.balance;
   }
+  return token.balance;
 };

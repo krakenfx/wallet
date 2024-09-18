@@ -4,6 +4,8 @@ import { Networks } from '@/onChain/wallets/registry';
 export const WALLET_CONNECT_SESSION_NAMESPACE_KEY_EVM = 'eip155';
 export const WALLET_CONNECT_SESSION_NAMESPACE_KEY_SOLANA = 'solana';
 
+
+
 export const WALLET_CONNECT_SUPPORTED_NETWORKS: Network[] = Object.values(Networks).filter(network => {
   return network.caipId.startsWith(WALLET_CONNECT_SESSION_NAMESPACE_KEY_EVM) || network.caipId.startsWith(WALLET_CONNECT_SESSION_NAMESPACE_KEY_SOLANA);
 });

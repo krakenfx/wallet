@@ -28,6 +28,7 @@ type SessionRequestParams = {
 };
 
 export async function handleSessionRequest({ event, dispatch, realm, web3Wallet, getSeed }: SessionRequestParams) {
+  
   try {
     const {
       topic,
@@ -42,12 +43,14 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
       return handleError('Topic not found', 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
 
+    
     const supportedWallet = findSupportedWallet({ activeSessions, chainId, topic });
 
     if (!supportedWallet) {
       return handleError('Account not found', 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
 
+    
     const foundWallet: RealmWallet | undefined = await findUserWallet(realm, supportedWallet);
 
     if (!foundWallet) {
@@ -61,6 +64,7 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
     const { network, transport } = getImplForWallet(foundWallet);
 
     switch (method) {
+      
       case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN:
       case WALLET_CONNECT_ETH_SIGN_TYPES.PERSONAL_SIGN:
       case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V4:
@@ -73,6 +77,7 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
           break;
         }
 
+        
         if (!ethereum.areMessageRequestParamsValid(requestParams)) {
           handleError('Invalid  request params', 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
           break;
@@ -95,6 +100,7 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
         break;
       }
 
+      
       case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TRANSACTION:
       case WALLET_CONNECT_ETH_SIGN_TYPES.SEND_TRANSACTION: {
         if (!isEVMNetwork(network) || !isEVMHarmonyTransport(transport)) {
@@ -125,6 +131,7 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
         break;
       }
 
+      
       case WALLET_CONNECT_SOLANA_SIGN_TYPES.SIGN_MESSAGE: {
         if (!isSolanaNetwork(network)) {
           handleError(`Unsupported network: ${network}`, 'ERROR_CONTEXT_PLACEHOLDER', {
@@ -149,6 +156,7 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
         break;
       }
 
+      
       case WALLET_CONNECT_SOLANA_SIGN_TYPES.SIGN_TRANSACTION: {
         if (!isSolanaNetwork(network) || !isSolanaTransport(transport)) {
           handleError(`Unsupported network: ${network}`, 'ERROR_CONTEXT_PLACEHOLDER', {
@@ -175,16 +183,18 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
         break;
       }
 
-      default:
+      default: {
         handleError('Method not implemented', 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
         const response = { id, jsonrpc: '2.0', error: { code: 5001, message: 'Unsupported method' } };
         await web3Wallet.respondSessionRequest({ topic, response });
         break;
+      }
     }
   } catch (error) {
     handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
   }
 }
+
 
 function findSupportedWallet({ activeSessions, chainId, topic }: { activeSessions: Record<string, SessionTypes.Struct>; chainId: string; topic: string }) {
   let result;
@@ -202,7 +212,10 @@ function findSupportedWallet({ activeSessions, chainId, topic }: { activeSession
   return result;
 }
 
+
 async function findUserWallet(realm: Realm, supportedWallet: string): Promise<RealmWallet | undefined> {
+  
+  
   const allWalletsForAllAccounts = realm.objects<RealmWallet>(REALM_TYPE_WALLET) ?? [];
   const [chain, chainID, address] = splitWalletString(supportedWallet);
 

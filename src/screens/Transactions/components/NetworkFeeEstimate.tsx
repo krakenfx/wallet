@@ -11,9 +11,10 @@ type Props = {
   size: 'small' | 'medium' | 'big';
 };
 
-import { GeneralMarketDataItem } from '@/components/TokenMarketData/GeneralMarketDataItem';
-import { commonStyles } from '@/components/TokenMarketData/utils';
 import { FeeOptionsData } from '@/screens/Send/utils/getFeeOptionsData';
+
+import { GeneralMarketDataItem } from './TokenMarketData/GeneralMarketDataItem';
+import { commonStyles } from './TokenMarketData/styles';
 
 import loc from '/loc';
 

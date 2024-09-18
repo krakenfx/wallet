@@ -82,7 +82,7 @@ export const FeeSelector = React.memo(
             .map(e => e.amount)
             .join()}
           onShow={Keyboard.dismiss}
-          menuOffset={-8}
+          menuYOffset={-8}
           type="dropdown"
           onSelect={({ id }) => onChange(id)}
           selectedId={selected}

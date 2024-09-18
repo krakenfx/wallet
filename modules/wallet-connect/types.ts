@@ -18,7 +18,7 @@ export type SessionNamespace =
   | {
       solana: SessionTypes.BaseNamespace;
     }
-  | {};
+  | Record<string, never>;
 
 export type DefinitionList = { title: string; description: string }[];
 export type GenericSignContent = string | DefinitionList;
@@ -28,6 +28,7 @@ export type TransactionContent =
   | { type: TRANSACTION_TYPES.SWAP; assetContent: [TransactionAmountProps, TransactionAmountProps] }
   | { type: TRANSACTION_TYPES.TOKEN_APPROVAL; assetContent: [TransactionAmountProps] }
   | { type: TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED; subtitle: string | string[]; assetContent: [] };
+
 
 export type GenericMessage = {
   type: 'generic-message';

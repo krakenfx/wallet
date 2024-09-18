@@ -380,6 +380,12 @@
     "header": "Ví của bạn có số dư",
     "inputLabel": "Nhập số dư ví"
   },
+  "deleteAllData": {
+    "iCloudInfo": {
+      "desc": "Miễn là bạn chưa xóa bản sao lưu theo cách thủ công thì ví của bạn vẫn có thể khôi phục được.",
+      "title": "Thao tác này sẽ không xóa bản sao lưu iCloud của bạn."
+    }
+  },
   "diagnostics": {
     "running": "Đang chạy chẩn đoán..."
   },
@@ -413,14 +419,52 @@
   "extension": {
     "_": {
       "off": "Tắt",
-      "on": "Bật"
+      "on": "Bật",
+      "timeAbbr": {
+        "days": "ngày",
+        "hours": "giờ",
+        "minutes": "tối thiểu",
+        "months": "tháng",
+        "seconds": "giây",
+        "weeks": "wk",
+        "years": "năm"
+      },
+      "unknown": "không xác định"
+    },
+    "alt": {
+      "proceduralWalletImage": "Ảnh ví thủ tục"
     },
     "ariaLabel": {
-      "icon": "Icon"
+      "icon": "Icon",
+      "iconButton": "Nút có biểu tượng",
+      "toggleSwitch": "Nút chuyển đổi"
     },
     "assets": {
       "logoAlt": "logo tài sản",
       "manageAssets": "Quản lý tài sản"
+    },
+    "customNetwork": {
+      "addCustomNetwork": "Thêm mạng tùy chỉnh",
+      "addNetwork": "Thêm mạng",
+      "blockExplorerUrl": "URL block explorer",
+      "chainId": "ID chuỗi",
+      "customNetwork": "Mạng tùy chỉnh",
+      "customNetworks": "Mạng tùy chỉnh",
+      "decimals": "Số thập phân",
+      "editCustomNetwork": "Chỉnh sửa mạng tùy chỉnh",
+      "enterNetworkName": "Nhập tên mạng",
+      "networkName": "Tên mạng",
+      "remove": "Xóa",
+      "rpcUrl": "URL RPC",
+      "symbol": "Biểu tượng",
+      "updateNetwork": "Cập nhật mạng"
+    },
+    "enterPasswordDialog": {
+      "continue": "Tiếp tục",
+      "currentPasswordAriaLabel": "Mật khẩu hiện tại",
+      "enterCurrentPassword": "Nhập mật khẩu hiện tại",
+      "enterToDecrypt": "Nhập mật khẩu hiện tại của bạn để xem cụm từ khôi phục",
+      "lockGraphicsAlternativeText": "Đồ họa khóa"
     },
     "home": {
       "addWallet": "Thêm ví",
@@ -433,8 +477,12 @@
       "hiddenAssets": "Tài sản đã bị ẩn",
       "manageAssets": "Quản lý tài sản",
       "search": "Tìm kiếm hơn 5.000 tài sản",
+      "searchResults": "Kết quả tìm kiếm",
       "unhideAll": "Bỏ ẩn tất cả",
       "visibleAssets": "Tài sản đang hiển thị"
+    },
+    "manageWallets": {
+      "viewRecoveryPhrase": "Xem cụm từ khôi phục"
     },
     "navigation": {
       "activity": "Hoạt động",
@@ -446,6 +494,9 @@
       "addNfts": "Thêm NFT vào ví của bạn",
       "send": "Gửi"
     },
+    "onboarding_backup": {
+      "backUpWallet": "Sao lưu ví"
+    },
     "onboarding": {
       "skip": "Bỏ qua",
       "typeYourSecretRecoveryPhrase": "Nhập cụm từ khôi phục bí mật của bạn",
@@ -455,7 +506,21 @@
       "receiveCryptoOrNft": "Nhận tiền điện tử hoặc NFT"
     },
     "send": {
+      "amountInput": {
+        "balance": "Số dư",
+        "errors": {
+          "exceedsBalance": "Số tiền đã nhập vượt quá số dư của bạn",
+          "greaterThanZero": "Số tiền đã nhập phải lớn hơn 0",
+          "invalid": "Số tiền đã nhập không hợp lệ"
+        },
+        "label": "Số tiền",
+        "placeholder": "Nhập số tiền"
+      },
       "continue": "Tiếp tục",
+      "networkFee": "Phí mạng",
+      "sending": {
+        "title": "Đang gửi"
+      },
       "sendingTo": {
         "search": "Chọn tài sản bạn muốn gửi",
         "title": "Đang gửi tới"
@@ -472,7 +537,15 @@
     },
     "settings": {
       "build": "Xây dựng {0}",
-      "changePassword": "Đổi mật khẩu",
+      "changePassword": {
+        "caption": "Nhập mật khẩu để bảo mật và khóa ví của bạn",
+        "confirmPassword": "Xác nhận mật khẩu",
+        "label": "Mật khẩu",
+        "menuItemTitle": "Đổi mật khẩu",
+        "setPassword": "Đặt mật khẩu",
+        "title": "Nhập mật khẩu mới",
+        "typePassword": "Nhập mật khẩu"
+      },
       "lockWallet": "Khóa ví",
       "privacy": "Bảo mật",
       "version": "Tiện ích mở rộng Kraken Wallet {0}",
@@ -694,6 +767,13 @@
     "continue": "Tiết lộ cụm từ",
     "recovery_phrase": "cụm từ khôi phục bí mật",
     "skip": "Bỏ qua",
+    "skipWarning": {
+      "back": "Quay lại",
+      "checkOne": "Tôi hiểu rằng nếu mất điện thoại hoặc xóa ứng dụng mà không sao lưu, tôi sẽ không có cách nào để khôi phục ví của mình.",
+      "checkTwo": "Tôi hiểu rằng tôi phải chịu hoàn toàn trách nhiệm về bất kỳ tổn thất tài sản nào phát sinh do không có bản sao lưu phục hồi.",
+      "confirm": "Xác nhận",
+      "title": "Tiếp tục mà không sao lưu ví của bạn?"
+    },
     "subtitle": "ví của bạn",
     "title": "Hỗ trợ"
   },
@@ -778,6 +858,28 @@
     "title": "Xác minh rằng bạn đã lưu cụm từ một cách chính xác",
     "verified": "Đã xác minh",
     "verify": "Xác minh"
+  },
+  "onboardingImportCloudBackup": {
+    "desc": "Để nhập ví từ bản sao lưu, hãy sử dụng mã khóa để giải mã ví.",
+    "selection": {
+      "desc": "Bạn đã tạo nhiều hơn một bản sao lưu, hãy chọn bản sao lưu ví mà bạn muốn nhập",
+      "recent": "Gần đây nhất",
+      "title": "Chọn bản sao lưu ví bạn muốn nhập"
+    },
+    "title": "Nhập từ bản sao lưu",
+    "usePasskey": "Sử dụng mã khóa của tôi"
+  },
+  "onboardingImportMethod": {
+    "methodICloud": {
+      "desc": "Nhập từ bản sao lưu iCloud mà bạn đã tạo cho Kraken Wallet",
+      "title": "Nhập từ iCloud"
+    },
+    "methodManual": {
+      "desc": "Nhập bằng Cụm từ khôi phục bí mật dài 12-24 từ của bạn",
+      "title": "Nhập cụm từ hạt giống"
+    },
+    "subtitle": "ví của bạn",
+    "title": "Nhập"
   },
   "onboardingImportWallet": {
     "caption": "Nhập cụm từ khôi phục bí mật để nhập ví của bạn.",
@@ -1070,7 +1172,8 @@
     "testnet": "Mạng thử nghiệm",
     "testnetDescription": "Khi đã bật, bạn có thể chọn tài sản và mạng thử nghiệm của mình từ màn hình quản lý tài sản.",
     "view_list_of_connected_dapps": "Xem danh sách các Dapp được kết nối",
-    "wallets": "Ví"
+    "wallets": "Ví",
+    "walletsAndBackups": "Ví và bản sao lưu"
   },
   "storeReview": {
     "alertMessage": "Chúng tôi muốn biết liệu bạn có trải nghiệm tuyệt vời hay không.",
@@ -1328,6 +1431,21 @@
     "backup": "Hỗ trợ",
     "backupYourWallet": "Sao lưu ví của bạn",
     "backupYourWalletDescription": "Đảm bảo bạn có thể khôi phục tiền điện tử của mình nếu bạn mất thiết bị hoặc chuyển sang ví khác.",
+    "cloudWarning": {
+      "button": "Sao lưu bằng iCloud",
+      "desc": "Đảm bảo bạn có thể khôi phục ví của mình ngay cả khi bạn mất cụm từ khôi phục bí mật",
+      "title": "Khuyến nghị sao lưu đám mây"
+    },
+    "manualWarning": {
+      "button": "Sao lưu thủ công",
+      "desc": "Đảm bảo bạn có thể khôi phục ví của mình ngay cả khi mất quyền truy cập tài khoản iCloud.",
+      "title": "Khuyến nghị sao lưu thủ công"
+    },
+    "secondaryBackup": {
+      "iCloud": "Để tăng khả năng khôi phục, hãy tạo bản sao lưu được mã hóa bằng mật khẩu trên iCloud. Mã hóa có nghĩa là ngay cả Apple cũng không thể nhìn thấy",
+      "manual": "Để tăng khả năng khôi phục, hãy tạo bản sao lưu thủ công cụm từ khôi phục bí mật của bạn để lưu trữ ở nơi an toàn",
+      "title": "Tạo bản sao lưu phụ"
+    },
     "secretRecoveryPhrase": "Cụm từ khôi phục bí mật",
     "tapHereToView": "Nhấn vào đây để xem"
   },
@@ -1335,6 +1453,98 @@
     "backUpNow": "Sao lưu ngay bây giờ",
     "body": "Bạn chưa sao lưu Cụm từ khôi phục bí mật của mình. Chúng tôi khuyên bạn nên sao lưu để tránh mất quyền truy cập vào khoản tiền của mình.",
     "header": "Trước khi nhận tiền vào ví này, hãy sao lưu cụm từ khôi phục"
+  },
+  "walletBackupSelection": {
+    "backupManually": "Sao lưu thủ công",
+    "backupManuallyCompleted": "Đã sao lưu thủ công",
+    "backupWithICloud": "Sao lưu bằng iCloud",
+    "backupWithICloudCompleted": "Đã sao lưu bằng iCloud",
+    "caption": "Nếu không sao lưu ví của mình, bạn sẽ có nguy cơ mất tiền điện tử. Chúng tôi không có quyền truy cập vào cụm từ khôi phục của bạn và không thể giúp bạn khôi phục nếu không có bản sao lưu.",
+    "explainer": {
+      "desc": "Việc mất cụm từ khôi phục bí mật là cách thông thường khiến mọi người mất tiền điện tử. Kraken Wallet giảm thiểu rủi ro này bằng cách cung cấp nhiều phương pháp sao lưu an toàn.",
+      "title": "Tăng khả năng khôi phục để giảm nguy cơ mất tiền"
+    },
+    "iCloudDescCompletedShort": "Cụm từ khôi phục bí mật được mã hóa",
+    "iCloudDescLong": "Mã hóa bằng mã khóa và lưu trữ trên iCloud",
+    "iCloudDescShort": "Mã hóa và lưu trữ trên iCloud",
+    "manualBackupDescLong": "Lưu theo cách thủ công ở nơi an toàn theo ý bạn",
+    "manualBackupDescShort": "Lưu ở nơi an toàn theo ý bạn",
+    "manualBackupDescShortCompleted": "Tôi đã lưu ở một nơi an toàn",
+    "prompt": "Đảm bảo bạn luôn có thể truy cập vào ví của mình ngay cả khi bạn làm mất thiết bị.",
+    "recoverability": {
+      "desc": "Có thể mạnh hơn",
+      "title": "Khả năng khôi phục"
+    },
+    "skipButton": "Có lẽ để sau",
+    "subtitle": "ví của bạn",
+    "title": "Hỗ trợ",
+    "titleWithSubtitle": "Sao lưu ví của bạn",
+    "tooltip": {
+      "iCloud": "Bản sao lưu iCloud đảm bảo bạn vẫn có thể khôi phục ví của mình nếu bạn làm mất cụm từ khôi phục bí mật.",
+      "manual": "Sao lưu thủ công đảm bảo bạn vẫn có thể khôi phục ví của mình nếu mất quyền truy cập iCloud hoặc làm mất thiết bị."
+    }
+  },
+  "walletCloudBackup": {
+    "createPasskey": "Tạo mã khóa",
+    "hints": {
+      "part1": "An toàn hơn mật khẩu tiêu chuẩn",
+      "part2": "Được mã hóa bằng sinh trắc học hoặc thiết bị bảo mật",
+      "part3": "Bạn có thể khôi phục lại ngay cả khi mất thiết bị này"
+    },
+    "passkeyDescription": "Để tạo bản sao lưu, hãy mã hóa bằng mã khóa. Điều này đảm bảo không ai ngoài bạn có thể khôi phục bản sao lưu. (Hãy mã hóa để đảm bảo ngay cả Apple cũng không thể nhìn thấy)",
+    "secureYourBackup": "Bảo mật bản sao lưu của bạn",
+    "success": "Ví đã được sao lưu thành công trên iCloud"
+  },
+  "walletCloudBackupDelete": {
+    "cancel": "Hủy",
+    "caption": "Hãy đảm bảo bạn đã lưu Cụm từ khôi phục bí mật ở nơi an toàn để bạn vẫn có thể khôi phục ví trong trường hợp bị mất thiết bị.",
+    "check1": "Tôi hiểu rằng nếu tôi bị mất điện thoại hoặc xóa ứng dụng, tôi sẽ cần cụm từ khôi phục bí mật để khôi phục ví của mình.",
+    "check2": "Tôi xác nhận tôi đã lưu cụm từ khôi phục bí mật gồm 12 từ của mình ở một nơi an toàn.",
+    "delete": "Xóa",
+    "header": "Bạn có chắc chắn muốn xóa bản sao lưu này không?",
+    "title": "Xóa bản sao lưu"
+  },
+  "walletCloudBackupError": {
+    "ensureICloudKeychainOn": "Trong Tùy chọn mật khẩu trên thiết bị của bạn, hãy đảm bảo iCloud Keychain đã bật để sử dụng cho mật khẩu và mã khóa:",
+    "errorCreatingBackup": {
+      "cancel": "Hủy",
+      "description": "Đã xảy ra sự cố khi cố gắng tạo bản sao lưu.",
+      "title": "Lỗi khi tạo bản sao lưu",
+      "tryAgainBold": "chúng tôi không hỗ trợ lưu bản sao lưu trên các thiết bị khác.",
+      "tryAgainButton": "Thử lại",
+      "tryAgainRegular": "Khi thử lại, hãy nhớ rằng "
+    },
+    "errorCreatingPasskey": {
+      "description": "Trong Tùy chọn mật khẩu trên thiết bị của bạn, hãy đảm bảo iCloud Keychain đã bật để sử dụng cho mật khẩu và mã khóa:",
+      "title": "Lỗi khi tạo mã khóa"
+    },
+    "errorDeletingPasskey": {
+      "title": "Lỗi khi xóa mã khóa"
+    },
+    "errorInactive": {
+      "description": "Nếu đã tạo nhiều mã khóa, bạn có thể thử nhập một bản sao lưu khác. Nếu không, bạn có thể nhập ví của mình bằng Cụm từ khôi phục bí mật gồm 12-24 từ",
+      "subtitle": "Mã khóa này không hoạt động, nghĩa là mã đang nằm trong bản sao lưu mà bạn đã xóa thủ công.",
+      "title": "Mã khóa không còn hoạt động"
+    },
+    "keychainSteps": {
+      "one": {
+        "bold": "Cài đặt → Mật khẩu → Tùy chọn mật khẩu",
+        "regular": "1. Đi đến: "
+      },
+      "two": {
+        "bold": "iCloud Keychain",
+        "regular": "2. Bật: "
+      }
+    },
+    "noPasskeyFound": {
+      "description": "Chúng tôi không thể tìm thấy mã khóa. Có thể bạn chưa tạo hoặc iCloud Keychain đã bị tắt trong phần cài đặt. Đảm bảo iCloud Keychain đã bật bằng cách làm theo các bước sau:",
+      "title": "Không tìm thấy mã khóa"
+    },
+    "supportHint": {
+      "link": "Bộ phận Hỗ trợ Kraken Wallet ↗",
+      "regular": "Nếu điều đó không giải quyết được vấn đề, bạn có thể nhận trợ giúp bằng cách truy cập ",
+      "regularWithManualBackup": "Nếu điều đó không giải quyết được vấn đề, bạn có thể nhập Cụm từ khôi phục bí mật 12-24 ký tự hoặc nhận trợ giúp bằng cách truy cập "
+    }
   },
   "walletConnect": {
     "account_not_found": "WalletConnect: không tìm thấy tài khoản",
@@ -1350,6 +1560,7 @@
       "cancel": "Hủy",
       "connect": "Kết nối"
     },
+    "back_to_dapp": "Quay lại trình duyệt để tiếp tục",
     "failedToConnect": "Ứng dụng không kết nối được",
     "failedToDisconnect": "Ứng dụng chưa ngắt kết nối",
     "feeEstimate": "Ước tính phí",

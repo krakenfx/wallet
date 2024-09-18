@@ -51,13 +51,22 @@ export function serializeInstruction(inst: web3.TransactionInstruction) {
   };
 }
 
+
+
+
+
+
+
+
 type SolanaTransactionPlan = {
   atas?: {
+    
     address: web3.PublicKey;
     mint: web3.PublicKey;
     owner: web3.PublicKey;
   }[];
 
+  
   instructions: web3.TransactionInstruction[];
 };
 
@@ -66,7 +75,10 @@ type SolanaPreparedTransaction = {
   fee: string;
 };
 
+
 export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTransaction, SolanaTransactionPlan, unknown> {
+  
+  
   async prepareTransaction(
     network: Network,
     walletData: WalletData,
@@ -79,7 +91,15 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
 
     let txPayload: SolanaSimulationInput;
     if ('transaction' in transaction) {
+      
       txPayload = { ...transaction, signatory: payer };
+
+      
+      
+      
+      
+      
+      
     } else {
       const instructions = transaction.instructions.map(inst => serializeInstruction(inst));
 
@@ -97,7 +117,7 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
         atas: transaction.atas?.map(ata => {
           return {
             address: ata.address.toString(),
-
+            
             instruction: serializeInstruction(splToken.createAssociatedTokenAccountInstruction(new web3.PublicKey(payer), ata.address, ata.owner, ata.mint)),
           };
         }),
@@ -106,6 +126,10 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
       };
     }
 
+    
+    
+    
+    
     const result = (
       await harmony.POST('/v1/simulate', {
         params: { query: { network: network.caipId } },
@@ -134,6 +158,12 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
     tx: PreparedTransaction<SolanaPreparedTransaction>,
     fee: SolanaFeeOption,
   ): Promise<TotalFee> {
+    
+
+    
+    
+    
+    
     const computeUnitBudget = 200_000;
     const totalFeeMicroLamports = fee.computeUnitPriceMicroLamports * computeUnitBudget;
     const totalFeeLamports = Math.floor(totalFeeMicroLamports / 1000 / 1000);
@@ -208,6 +238,7 @@ export class SolanaNetwork implements Network<SolanaPreparedTransaction, SolanaT
     const toPubkey = new web3.PublicKey(to);
     const mintPubkey = new web3.PublicKey(mintAddress);
 
+    
     const fromAtaAcount = await splToken.getAssociatedTokenAddress(mintPubkey, fromWallet);
     const toAtaAccount = await splToken.getAssociatedTokenAddress(mintPubkey, toPubkey);
 
@@ -262,7 +293,7 @@ export class SolanaNetwork implements Network<SolanaPreparedTransaction, SolanaT
   isAddressValid(address: string): boolean {
     try {
       return Boolean(new web3.PublicKey(address));
-    } catch (_) {
+    } catch (_: unknown) {
       return false;
     }
   }
@@ -270,15 +301,17 @@ export class SolanaNetwork implements Network<SolanaPreparedTransaction, SolanaT
   async signTransaction(data: WalletDataWithSeed, txPayload: SolanaPreparedTransaction): Promise<string> {
     const keyPair = await this.getKeypair(data);
 
+    
     if ('version' in txPayload.tx) {
       txPayload.tx.sign([keyPair]);
 
       return Buffer.from(txPayload.tx.serialize()).toString('base64');
-    } else {
-      txPayload.tx.sign(keyPair);
-
-      return txPayload.tx.serialize().toString('base64');
     }
+    
+
+    txPayload.tx.sign(keyPair);
+
+    return txPayload.tx.serialize().toString('base64');
   }
 
   async signMessage(data: WalletDataWithSeed, message: string): Promise<{ signature: string }> {

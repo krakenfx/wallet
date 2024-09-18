@@ -83,6 +83,7 @@ const getItemType = (item: TransactionListItem): string => {
   const txData = getTransactionMetadata(memoizedJSONParseTx(item.data));
   switch (txData.kind) {
     case 'simple': {
+      
       return omitNetworkIcons[txData.effect.assetId] ? 'simple_noicon' : 'simple';
     }
     default:
@@ -245,9 +246,8 @@ export const useTransactionsDataSource = ({
       }
       if (isPendingTransaction(item)) {
         return renderPendingTransaction(item);
-      } else {
-        return renderTransaction(item);
       }
+      return renderTransaction(item);
     },
     [renderPendingTransaction, renderTransaction],
   );

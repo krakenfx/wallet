@@ -4,6 +4,7 @@ export const safelyAnimateLayout = () => {
   if (Platform.OS === 'ios') {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   } else {
+    
     LayoutAnimation.configureNext({
       duration: 300,
       create: {

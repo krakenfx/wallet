@@ -16,8 +16,9 @@ export const BackButton: React.FC<Omit<IconButtonProps, 'name'>> = props => {
 
 const styles = StyleSheet.create({
   backButton: {
-    marginRight: Platform.select({ android: 8, default: 2 }),
+    marginRight: Platform.select({ android: 8, default: 2 }), 
   },
 });
+
 
 export const DefaultBackButton = () => <BackButton />;

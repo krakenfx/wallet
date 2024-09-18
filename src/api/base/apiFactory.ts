@@ -1,4 +1,5 @@
 import createClient, { BodySerializer, FetchOptions, HeadersOptions, QuerySerializer } from 'openapi-fetch';
+import { getBuildNumber, getVersion } from 'react-native-device-info';
 
 import { getApiKey } from '@/secureStore/domains/apiKey';
 
@@ -7,15 +8,19 @@ import { ErrorResult } from '../types';
 import BackendConfigurator from './BackendConfigurator';
 import { superFetch } from './superFetch';
 
-import type { FilterKeys, PathsWithMethod } from 'openapi-typescript-helpers';
+import type { FilterKeys, PathItemObject, PathsWithMethod } from 'openapi-typescript-helpers';
 
 import { HARMONY_CF_CLIENT_ID, HARMONY_CF_CLIENT_SECRET } from '/config';
 import { paths as groundcontrolPaths } from '/generated/groundcontrol';
 import { paths as harmonyPaths } from '/generated/harmony';
 import { getIanaLanguage } from '/loc';
 
+
 class APIFetchError extends Error {
-  constructor(readonly original: Error, readonly requestId: string) {
+  constructor(
+    readonly original: Error,
+    readonly requestId: string,
+  ) {
     super(original.message);
   }
 
@@ -28,8 +33,13 @@ class APIFetchError extends Error {
   }
 }
 
+
 export class APIResponseError extends Error {
-  constructor(url: string, readonly response?: Response, readonly errorContent?: ErrorResult) {
+  constructor(
+    url: string,
+    readonly response?: Response,
+    readonly errorContent?: ErrorResult,
+  ) {
     const message = `"${url}" returned an error: ${JSON.stringify(errorContent)}`;
     super(message);
   }
@@ -51,16 +61,19 @@ function makeFetchAPI() {
     const url = request;
 
     const init = _init || {};
-
+    
+    
     const headers = new Headers(init.headers);
     init.headers = headers;
 
+    
     Object.entries(getHarmonyHeaders(url)).forEach(([key, value]) => {
       if (value) {
         headers.set(key, value);
       }
     });
 
+    
     if (url.indexOf('/pow/') === -1) {
       const apiKey = await getApiKey();
       headers.set('Authorization', apiKey);
@@ -72,6 +85,9 @@ function makeFetchAPI() {
         .padStart(2, '0'),
     ).join('');
     headers.set('x-request-id', requestId);
+
+    
+    headers.set('x-client-version', `${getVersion()}-${getBuildNumber()}`);
 
     try {
       return await superFetch(request, init, 15000);
@@ -91,7 +107,8 @@ interface ClientOptions extends Omit<RequestInit, 'headers'> {
   headers?: HeadersOptions;
 }
 
-export default function createThrowingClient<Paths extends {}>(clientOptions: ClientOptions = {}) {
+
+export default function createThrowingClient<Paths extends Record<string, PathItemObject>>(clientOptions: ClientOptions = {}) {
   const client = createClient<Paths>(clientOptions);
   return {
     async GET<P extends PathsWithMethod<Paths, 'get'>>(url: P, init: FetchOptions<FilterKeys<Paths[P], 'get'>>) {
@@ -119,6 +136,7 @@ function getHarmonyHeaders(url: string) {
       };
     case url.startsWith('https://pp-wallet'): {
       return {
+        
         'CF-Access-Client-Id': HARMONY_CF_CLIENT_ID,
         'CF-Access-Client-Secret': HARMONY_CF_CLIENT_SECRET,
         'Accept-Language': getIanaLanguage(),
@@ -130,6 +148,7 @@ function getHarmonyHeaders(url: string) {
 }
 
 export async function getGroundControl() {
+  /* @ts-expect-error Generated types don't fit. (Inferrence still works.) */
   return createThrowingClient<groundcontrolPaths>({
     baseUrl: await BackendConfigurator.getGroundcontrolBaseUri(),
     fetch: makeFetchAPI(),
@@ -139,6 +158,7 @@ export async function getGroundControl() {
 export async function getHarmony() {
   const fetch = makeFetchAPI();
 
+  /* @ts-expect-error Generated types don't fit. (Inferrence still works.) */
   const harmony = createThrowingClient<harmonyPaths>({
     baseUrl: await BackendConfigurator.getHarmonyBaseUri(),
     fetch,
@@ -150,6 +170,7 @@ export async function getHarmony() {
           return;
         }
         if (typeof v === 'string') {
+          
           v = encodeURIComponent(v as string);
         }
         if (Array.isArray(v)) {
@@ -167,4 +188,5 @@ export async function getHarmony() {
   return harmony;
 }
 
+/* @ts-expect-error Generated types don't fit. (Inferrence still works.) */
 export type DefaultApi = ReturnType<typeof createThrowingClient<harmonyPaths>>;

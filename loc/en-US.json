@@ -191,9 +191,6 @@
     "total_balance": "Balance",
     "deposits": "Deposits"
   },
-  "manageWallets": {
-    "title": "Manage wallets"
-  },
   "marketData": {
     "about": "About {assetSymbol}",
     "allTimeLow": {
@@ -370,7 +367,14 @@
     "caption": "You need your {recoveryPhrase} to recover your crypto if you lose your device or switch to another wallet.\n{neverShare}",
     "recovery_phrase": "secret recovery phrase",
     "skip": "Skip",
-    "continue": "Reveal phrase"
+    "continue": "Reveal phrase",
+    "skipWarning": {
+      "title": "Continue without backing up your wallet?",
+      "checkOne": "I understand that if I lose my phone or delete the app without backing up, I won't have any way to recover my wallet.",
+      "checkTwo": "I understand that I'm solely responsible for any loss of assets resulting as a result of not having a recovery backup.",
+      "confirm": "Confirm",
+      "back": "Back"
+    }
   },
   "onboarding_backup": {
     "title": "Your secret recovery phrase",
@@ -402,6 +406,28 @@
       "checkTwo": "I understand that if I lose my recovery phrase, I'm solely responsible for any loss of assets.",
       "confirm": "Confirm",
       "back": "Back"
+    }
+  },
+  "onboardingImportMethod": {
+    "title": "Import",
+    "subtitle": "your wallet",
+    "methodManual": {
+      "title": "Enter seed phrase",
+      "desc": "Import using your 12-24 word Secret Recovery Phrase"
+    },
+    "methodICloud": {
+      "title": "Import from iCloud",
+      "desc": "Import from an iCloud backup that you created for Kraken Wallet"
+    }
+  },
+  "onboardingImportCloudBackup": {
+    "title": "Import from backup",
+    "desc": "To import your wallet from a backup, use your passkey to decrypt it.",
+    "usePasskey": "Use my passkey",
+    "selection": {
+      "title": "Select the wallet backup you want to import",
+      "desc": "You have created more than one backup, pick the wallet backup you want to import",
+      "recent": "Most recent"
     }
   },
   "onboardingImportWallet": {
@@ -554,6 +580,12 @@
     "dataLoss3": "I understand that if I reset the app and don’t have my wallet secret recovery phrase(s), it will be impossible to restore my wallet(s).",
     "dataLoss4": "I understand that if I lose my recovery phrase(s), I’m solely responsible for any loss of assets."
   },
+  "deleteAllData": {
+    "iCloudInfo": {
+      "title": "This will not delete your iCloud backup.",
+      "desc": "So long as you have not manually deleted your backup, your wallet is recoverable."
+    }
+  },
   "receive": {
     "addressCopied": "Address copied",
     "share": "Share",
@@ -670,6 +702,7 @@
     "appLock": "App Lock",
     "currency": "Currency",
     "general": "General",
+    "walletsAndBackups": "Wallets & backups",
     "manageWallets": "Manage wallets",
     "passwordProtection": "Password protection",
     "privacy": "Privacy",
@@ -889,10 +922,6 @@
     "onTokenLists": "On {count} token lists",
     "title": "Reputation"
   },
-  "floatingTransactionActivityButtons": {
-    "send": "Send",
-    "receive": "Receive"
-  },
   "tokenLists": {
     "tokens": "{tokenListCount} tokens",
     "tokenLists": "Token lists",
@@ -917,13 +946,119 @@
     "backupYourWallet": "Back up your wallet",
     "backupYourWalletDescription": "Make sure you can recover your crypto if you lose your device or switch to another wallet.",
     "backup": "Back up",
-    "secretRecoveryPhrase": "Secret recovery phrase",
-    "tapHereToView": "Tap here to view"
+    "cloudWarning": {
+      "title": "Cloud backup recommended",
+      "desc": "Ensure you can recover your wallet even if you lose your secret recovery phrase",
+      "button": "Back up with iCloud"
+    },
+    "manualWarning": {
+      "title": "Manual backup recommended",
+      "desc": "Ensure you can recover your wallet even if you lose your iCloud account access.",
+      "button": "Back up manually"
+    },
+    "secretRecoveryPhrase": "Your secret recovery phrase",
+    "tapHereToView": "Tap here to view",
+    "secondaryBackup": {
+      "title": "Create a secondary backup",
+      "iCloud": "For enhanced recoverability, create a password-encrypted backup on iCloud. Encryption means not even Apple can see it",
+      "manual": "For enhanced recoverability, create a manual backup of you secret recovery phrase to keep it in a secure place"
+    }
   },
   "walletBackupPrompt": {
     "backUpNow": "Back up now",
     "body": "You haven't backed up your Secret Recovery Phrase. We recommend backing up to avoid losing access to your funds.",
     "header": "Before receiving funds in this wallet, back it up"
+  },
+  "walletCloudBackup": {
+    "secureYourBackup": "Secure your backup",
+    "passkeyDescription": "To create your backup, encrypt it with a passkey. This ensures no-one but you can restore the backup. (Encryption ensures that even Apple can't see it)",
+    "createPasskey": "Create a passkey",
+    "hints": {
+      "part1": "More secure than standard passwords",
+      "part2": "Encrypted using biometrics or security device",
+      "part3": "Recoverable by you even if you lose this device"
+    },
+    "success": "Wallet successfully backed up on iCloud"
+  },
+  "walletCloudBackupDelete": {
+    "title": "Delete backup",
+    "header": "Are you sure you want to delete this backup?",
+    "caption": "Make sure you have your Secret Recovery Phrase saved somewhere safe so that you can still recover your wallet in case you lose your device.",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "check1": "I understand that if I lose my phone or delete the app, I will need the secret recovery phrase to restore my wallet.",
+    "check2": "I confirm that I have saved my 12 word secret recovery phrase in a secure place."
+  },
+  "walletCloudBackupError": {
+    "ensureICloudKeychainOn": "In your device Password Options, make sure iCloud Keychain is turned-on to be used for passwords and passkeys:",
+    "noPasskeyFound": {
+      "title": "No passkey found",
+      "description": "We couldn't find a passkey. It's possible you didn't create one or iCloud Keychain is disabled in settings. Make sure iCloud Keychain is turned-on by following these steps:"
+    },
+    "errorInactive": {
+      "title": "Inactive passkey",
+      "subtitle": "This passkey is inactive, which means it is from a backup that you deleted manually.",
+      "description": "If you have created multiple passkeys, you can try importing another backup. Otherwise, you can import your wallet using the 12-24 word Secret Recovery Phrase"
+    },
+    "errorCreatingPasskey": {
+      "title": "Error creating passkey"
+    },
+    "errorDeletingPasskey": {
+      "title": "Error deleting passkey"
+    },
+    "errorCreatingBackup": {
+      "title": "Error creating backup",
+      "description": "Something went wrong when trying to create a backup.",
+      "tryAgainRegular": "When trying again, keep in mind that ",
+      "tryAgainBold": "we don't support saving backup on other devices.",
+      "tryAgainButton": "Try again",
+      "cancel": "Cancel"
+    },
+    "keychainSteps": {
+      "one": {
+        "regular": "1. Go to: ",
+        "bold": "Settings → Passwords → Password Options"
+      },
+      "two": {
+        "regular": "2. Turn on: ",
+        "bold": "iCloud Keychain"
+      }
+    },
+    "supportHint": {
+      "regular": "If that doesn't resolve your issue, you can get help by visiting ",
+      "regularWithManualBackup": "If that doesn't resolve your issue, you can import your 12-24 Secret Recovery Phrase or get help by visiting ",
+      "link": "Kraken Wallet Support ↗"
+    }
+  },
+  "walletBackupSelection": {
+    "title": "Back up",
+    "subtitle": "your wallet",
+    "titleWithSubtitle": "Back up your wallet",
+    "prompt": "Make sure you can always access your wallet even if you lose your device.",
+    "caption": "If you don't backup your wallet, you put yourself at risk of losing your crypto. We have no access to your recovery phrase and can't help you recover it without a backup.",
+    "backupWithICloud": "Back up with iCloud",
+    "backupWithICloudCompleted": "Backed up with iCloud",
+    "iCloudDescLong": "Encrypt with a passkey and store on iCloud",
+    "iCloudDescShort": "Encrypt and store on iCloud",
+    "iCloudDescCompletedShort": "Encrypted secret recovery phrase",
+    "backupManually": "Back up manually",
+    "backupManuallyCompleted": "Backed up manually",
+    "manualBackupDescLong": "Save by hand in a safe place of your choice",
+    "manualBackupDescShort": "Save in a safe place of your choice",
+    "manualBackupDescShortCompleted": "I've saved it in a safe place",
+    "tooltip": {
+      "iCloud": "An iCloud backup ensures you can still recover your wallet if you lose your secret recovery phrase.",
+      "manual": "A manual backup ensures you can still recover your wallet if you lose iCloud access or misplace your device."
+    },
+    "recoverability": {
+      "title": "Recoverability",
+      "desc": "Could be stronger"
+    },
+    "explainer": {
+      "title": "Increase recoverability to reduce the chance of loss",
+      "desc": "Losing a secret recovery phrase is a typical way people lose their crypto. Kraken Wallet minimizes this risk by offering more than one secure backup method."
+    },
+    "skipButton": "Maybe later"
   },
   "whatsNew": {
     "assetMarketData": {

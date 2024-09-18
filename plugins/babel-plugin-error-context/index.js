@@ -8,7 +8,7 @@ module.exports = function () {
           const relativePath = path_.relative(state.file.opts.root, state.file.opts.filename);
           path.node.value = `${relativePath}:${path.node.loc.start.line}`;
         }
-      }
-    }
+      },
+    },
   };
 };

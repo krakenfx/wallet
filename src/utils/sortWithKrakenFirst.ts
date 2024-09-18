@@ -10,9 +10,8 @@ export function sortWithKrakenFirst(list: string[], moveKrakenToFront = true) {
       const kx = sorted.splice(kxIndex, 1);
 
       return [...kx, ...sorted];
-    } else {
-      return sorted;
     }
+    return sorted;
   }
 
   return sorted;

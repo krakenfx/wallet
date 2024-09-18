@@ -33,10 +33,11 @@ export const useRefreshingFeeOptions = (wallet: RealmWallet, refreshInBackground
     if (selectedFee) {
       return;
     }
-
+    
     if (defaultFeeOption) {
       setSelectedFee(defaultFeeOption);
     } else if (fees.length && !selectedFee) {
+      
       setSelectedFee(defaultFeeOption ?? fees[0].kind);
     }
   }, [defaultFeeOption, fees, selectedFee, setSelectedFee]);

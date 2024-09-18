@@ -14,16 +14,16 @@ type Props = {
   setHasScrolledToEndOfContent: Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SCROLL_TO_END_OF_CONTENT_BUTTON_OFFSET = 44;
+const SCROLL_TO_END_OF_CONTENT_BUTTON_OFFSET = 44; 
 
 export const GenericSignContent = ({ content, setHasScrolledToEndOfContent }: Props) => {
   const { colors } = useTheme();
   const scrollViewRef = useRef<ScrollView & Readonly<NativeMethods>>(null);
   const endOfContentRef = useRef<View>(null);
-
+  
   const hasScrolledToEndOfContentOnce = useRef(false);
   const [shouldShowScrollToEndOfContentButton, setShouldShowScrollToEndOfContentButton] = useState(false);
-  const [scrollToEndOfContentButtonY, setScrollToEndOfContentButtonY] = useState(-3 * SCROLL_TO_END_OF_CONTENT_BUTTON_OFFSET);
+  const [scrollToEndOfContentButtonY, setScrollToEndOfContentButtonY] = useState(-3 * SCROLL_TO_END_OF_CONTENT_BUTTON_OFFSET); 
 
   const onScrollToEndOfContentButtonPress = useCallback(() => {
     setShouldShowScrollToEndOfContentButton(false);
@@ -44,6 +44,7 @@ export const GenericSignContent = ({ content, setHasScrolledToEndOfContent }: Pr
         onLayout={({ nativeEvent }) => {
           if (endOfContentRef.current && scrollViewRef.current) {
             endOfContentRef.current.measureLayout(scrollViewRef.current, (left, top, width, height) => {
+              
               const hasOverflowedContent = height > nativeEvent.layout.height;
               if (hasOverflowedContent) {
                 setScrollToEndOfContentButtonY(nativeEvent.layout.height - SCROLL_TO_END_OF_CONTENT_BUTTON_OFFSET);
@@ -52,6 +53,7 @@ export const GenericSignContent = ({ content, setHasScrolledToEndOfContent }: Pr
                 setShouldShowScrollToEndOfContentButton(false);
               }
 
+              
               if (height < nativeEvent.layout.height + nativeEvent.layout.y && !hasScrolledToEndOfContentOnce.current) {
                 hasScrolledToEndOfContentOnce.current = true;
                 setHasScrolledToEndOfContent(true);
@@ -61,11 +63,13 @@ export const GenericSignContent = ({ content, setHasScrolledToEndOfContent }: Pr
         }}
         onScroll={({ nativeEvent }) => {
           if (endOfContentRef.current && scrollViewRef.current) {
+            
             endOfContentRef.current.measureLayout(scrollViewRef.current, (left, top, width, height) => {
               if (height < nativeEvent.layoutMeasurement.height + nativeEvent.contentOffset.y && !hasScrolledToEndOfContentOnce.current) {
                 hasScrolledToEndOfContentOnce.current = true;
                 setHasScrolledToEndOfContent(true);
 
+                
                 setShouldShowScrollToEndOfContentButton(false);
               }
             });

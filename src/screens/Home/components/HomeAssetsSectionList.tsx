@@ -5,6 +5,8 @@ import { InteractionManager, Platform, SectionListProps } from 'react-native';
 import { useCurrentAccountNumber } from '@/realm/accounts';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
+
+
 export function HomeAssetPanelSectionList<ItemT, SectionT>(props: SectionListProps<ItemT, SectionT>) {
   const accountNumber = useCurrentAccountNumber();
 

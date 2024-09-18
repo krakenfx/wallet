@@ -5,20 +5,18 @@ interface Labels {
   secondaryLabel: string;
 }
 
-export const getLabelsFromNft = ({ metadata: { name, collectionName } }: { metadata: Pick<NftMetadata, 'name' | 'collectionName'> }): Labels => {
-  let primaryLabel = '';
-  let secondaryLabel = '';
 
-  if (name) {
-    primaryLabel = name;
-    secondaryLabel = collectionName;
-  } else if (collectionName) {
-    primaryLabel = collectionName;
-    secondaryLabel = '';
+
+export const getLabelsFromNft = (nft?: { metadata?: Pick<NftMetadata, 'name' | 'collectionName'> }): Labels => {
+  if (nft?.metadata?.name) {
+    return {
+      primaryLabel: nft.metadata.name,
+      secondaryLabel: nft.metadata.collectionName || '',
+    };
   }
 
   return {
-    primaryLabel,
-    secondaryLabel,
+    primaryLabel: nft?.metadata?.collectionName || '',
+    secondaryLabel: '',
   };
 };

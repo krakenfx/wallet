@@ -15,7 +15,7 @@ import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { useResolvedAssetBalance } from '@/realm/tokens';
+import { useResolvedAssetBalance, useTokenById } from '@/realm/tokens';
 import { useRealmWalletById } from '@/realm/wallets';
 import { NavigationProps } from '@/Routes';
 import { AssetBalanceId } from '@/types';
@@ -36,9 +36,10 @@ export const ReceiveScreen = ({ route, navigation }: NavigationProps<'Receive'>)
   const params = route.params;
   const { bottomSheetProps, close } = useBottomSheetScreenProps(navigation);
   const sheetIndex = useSharedValue(0);
-  const [walletId] = useResolvedAssetBalance(params.assetBalanceId);
-
+  const [walletId, _, tokenId] = useResolvedAssetBalance(params.assetBalanceId);
+  
   const wallet = useRealmWalletById(walletId!);
+  const token = useTokenById(tokenId);
 
   const isOnline = useIsOnline();
 
@@ -49,11 +50,11 @@ export const ReceiveScreen = ({ route, navigation }: NavigationProps<'Receive'>)
   const share = () => Share.open({ message: displayAddressText });
   const { width } = useSafeAreaFrame();
 
-  const qrCodeSize = width - 96;
+  const qrCodeSize = width - 96; 
 
   return (
     <BottomSheet dismissible={useIsFocused()} animatedIndex={sheetIndex} snapPoints={['100%']} {...bottomSheetProps}>
-      <ModalNavigationHeader onClosePress={close} title={<CoinHeader assetBalanceId={params.assetBalanceId} />} />
+      <ModalNavigationHeader onClosePress={close} title={<CoinHeader wallet={wallet} token={token} />} />
       <BottomSheetScrollView style={styles.scrollView} testID="ReceiveScreen">
         {displayAddressText ? (
           <View style={styles.container}>

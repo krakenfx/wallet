@@ -8,6 +8,7 @@ import {
   migrationsSchemaVersion25,
   migrationsSchemaVersion26,
   migrationsSchemaVersion27,
+  migrationsSchemaVersion29,
 } from './';
 
 export const onMigration = (oldRealm: Realm, newRealm: Realm) => {
@@ -18,4 +19,6 @@ export const onMigration = (oldRealm: Realm, newRealm: Realm) => {
   migrationsSchemaVersion25(oldRealm, newRealm);
   migrationsSchemaVersion26(oldRealm, newRealm);
   migrationsSchemaVersion27(oldRealm, newRealm);
+  migrationsSchemaVersion29(oldRealm, newRealm);
+  
 };

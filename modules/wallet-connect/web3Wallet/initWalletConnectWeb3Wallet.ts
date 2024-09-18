@@ -29,6 +29,7 @@ const metadata = {
 
 export let web3Wallet: IWeb3Wallet | undefined;
 
+
 let dispatch_: ReactNavigationDispatch;
 const getDispatch_ = (): ReactNavigationDispatch => dispatch_;
 
@@ -37,13 +38,18 @@ const getRealm_ = (): Realm => realm_;
 
 export const WalletConnectSessionsManager = new WalletConnectSessionsManager_();
 
+
+
 const sessionProposals: string[] = [];
+
+
 
 export async function initWalletConnectWeb3Wallet(
   realm: Realm,
   dispatch: ReactNavigationDispatch,
   getSeed: SecuredKeychainContext['getSeed'],
 ): Promise<IWeb3Wallet> {
+  
   realm_ = realm;
   dispatch_ = dispatch;
 
@@ -51,6 +57,7 @@ export async function initWalletConnectWeb3Wallet(
     return web3Wallet;
   }
 
+  
   web3Wallet = await Web3Wallet.init({
     core,
     metadata,
@@ -62,15 +69,15 @@ export async function initWalletConnectWeb3Wallet(
     enqueueAppRequest(() => {
       if (web3Wallet) {
         return handleSessionRequest({ web3Wallet, event, realm: getRealm_(), dispatch: getDispatch_(), getSeed });
-      } else {
-        return new Promise(resolve => resolve());
       }
+      return new Promise(resolve => resolve());
     });
   });
 
   web3Wallet.on('session_proposal', proposal => {
     const hasBeenProposed = sessionProposals.includes(String(proposal.id));
 
+    
     if (!hasBeenProposed) {
       sessionProposals.push(String(proposal.id));
       enqueueAppRequest(() => {
@@ -82,4 +89,5 @@ export async function initWalletConnectWeb3Wallet(
   web3Wallet.on('auth_request', () => showToast({ type: 'info', icon: 'plug-disconnected', text: 'Action not implemented: auth_request' }));
 
   return web3Wallet;
+  
 }

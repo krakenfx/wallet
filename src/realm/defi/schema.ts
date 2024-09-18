@@ -169,6 +169,7 @@ export const DefiProductsSchema: ObjectSchema = {
   },
 };
 
+
 export type DefiNetwork =
   | 'ethereum'
   | 'polygon'

@@ -12,7 +12,7 @@ import { HeaderHeightContext } from '@react-navigation/elements';
 import { FlashList, FlashListProps } from '@shopify/flash-list';
 import React, { forwardRef, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, ScrollViewProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { WithSpringConfig, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { CriticalWarningBackground } from '@/components/CriticalWarningBackground';
@@ -54,7 +54,7 @@ const Backdrop = (props: BottomSheetBackdropProps & { dismissible: boolean; onBa
   );
 };
 
-export const ANIMATION_CONFIGS = {
+export const ANIMATION_CONFIGS: WithSpringConfig = {
   damping: 500,
   stiffness: 1000,
   mass: 3,
@@ -106,8 +106,6 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
       if (typeof ref === 'function') {
         ref(sheetRef.current);
       } else {
-        // @ts-ignore
-
         ref.current = sheetRef.current;
       }
     }
@@ -134,8 +132,8 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
     backdropComponent: renderBackdrop,
     handleIndicatorStyle: styles.handle,
     enablePanDownToClose: dismissible,
-    onClose: onDismiss,
-    onDismiss,
+    onClose: onDismiss, 
+    onDismiss, 
     onChange: handleAndroidBackButton ? handleChange : onChange,
     containerHeight: height - headerHeight,
     overDragResistanceFactor: 5,
@@ -161,6 +159,7 @@ const BottomSheetBlur = (props: BottomSheetBlurProps) => {
 
   const { colors } = useTheme();
 
+  
   const gradientSizeStyle = useAnimatedStyle(() => ({
     transform: [
       { translateY: -availableHeight / 2 },

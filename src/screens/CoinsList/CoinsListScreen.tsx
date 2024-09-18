@@ -1,4 +1,3 @@
-import keyBy from 'lodash/keyBy';
 import sortBy from 'lodash/sortBy';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
@@ -9,30 +8,21 @@ import { BottomSheet, BottomSheetFlashList } from '@/components/BottomSheet';
 import { FadingElement } from '@/components/FadingElement';
 import { KeyboardAvoider } from '@/components/Keyboard';
 import { NetworkFilter, useNetworkFilter } from '@/components/NetworkFilter';
-import { ReputationTag } from '@/components/Reputation';
 import { SearchInput } from '@/components/SearchInput';
 import { omitNetworkIcons } from '@/components/TokenIcon';
-import { TokenSwitch } from '@/components/TokenSwitch';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useDebounceEffect } from '@/hooks/useDebounceEffect';
-import { REPUTATION } from '@/hooks/useReputation';
 import { useTokenPrices } from '@/realm/tokenPrice';
-import {
-  RealmToken,
-  getNetworkNameFromAssetId,
-  sortTokensAlphabetically,
-  sortTokensByFiatValue,
-  useTokensFilteredByReputationAndNetwork,
-} from '@/realm/tokens';
+import { RealmToken, sortTokensAlphabetically, sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
 import { useTokensGallery } from '@/realm/tokensGallery';
-import { useRealmWallets } from '@/realm/wallets';
 import { NavigationProps } from '@/Routes';
-import { RemoteAsset } from '@/types';
 import { isRealmObject } from '@/utils/isRealmObject';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { safelyAnimateLayout } from '@/utils/safeLayoutAnimation';
 
+import { RemoteAssetRow } from './components/RemoteAssetRow';
+import { TokenRow } from './components/TokenRow';
 import { GlobalFilter } from './GlobalFilter';
 import { useFilteredTokensFromTokenLists } from './hooks/useFilteredTokensFromTokenLists';
 import { ReputationFilter } from './ReputationFilter';
@@ -43,8 +33,9 @@ import { isRemoteAsset } from './utils/isRemoteAsset';
 import loc from '/loc';
 
 const isInvalid = (item: Item) => {
-  return !item || (isRealmObject(item) && !item.isValid());
+  return !item  || (isRealmObject(item) && !item.isValid());
 };
+
 const renderItemSeparator = () => <View style={styles.divider} />;
 const itemKeyExtractor = (item: Item, i: number) => {
   if (isInvalid(item)) {
@@ -68,10 +59,10 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
   const [inputValue, setInputValue] = useState('');
 
   const [networkFilter, setNetworkFilter] = useNetworkFilter();
-  const wallets = keyBy(Array.from(useRealmWallets()), 'type');
   const tokenPrices = useTokenPrices();
   const tokensGallery = useTokensGallery();
 
+  
   const tokensFromRealm = useTokensFilteredByReputationAndNetwork(networkFilter);
   const { withBalance, withoutBalance } = useMemo(() => {
     return {
@@ -81,94 +72,67 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
   }, [tokensFromRealm]);
   const tokensFromTokenLists = useFilteredTokensFromTokenLists(networkFilter, searchQuery);
   const tokenGalleryAndNativeTokens: RealmToken[] = useMemo(() => {
-    return sortTokensByFiatValue(tokensFromRealm.filtered('balance != $0 || inGallery == true || assetId = wallet.nativeTokenCaipId', '0'), tokenPrices);
+    return sortTokensByFiatValue(
+      tokensFromRealm.filtered('balance != $0 || inGallery == "manuallyAdded" || inGallery == "autoAdded" || assetId = wallet.nativeTokenCaipId', '0'),
+      tokenPrices,
+    );
   }, [tokensFromRealm, tokenPrices]);
 
+  
   const tokens: Item[] = useMemo(() => {
     if (searchQuery) {
       const searchKey = searchQuery.charAt(0).toLowerCase();
 
+      
       const tokensFromTokenListsPreFiltered = [...(tokensFromTokenLists[searchKey] || [])];
 
+      
       return withBalance.concat(sortBy(tokensFromTokenListsPreFiltered.concat([...withoutBalance] as []), sortTokensAlphabetically.lodash) as []);
-    } else {
-      return tokenGalleryAndNativeTokens;
     }
+    return tokenGalleryAndNativeTokens;
   }, [tokensFromTokenLists, withBalance, withoutBalance, tokenGalleryAndNativeTokens, searchQuery]);
 
   const data = useMemo(() => {
-    if (searchQuery) {
-      const searchQuery_ = searchQuery.toLowerCase();
-
-      const tokensGroupedBySearchScore = {
-        withBalance: Object.keys(SEARCH_SCORE_TO_SORTING_INDEX).map(() => [] as Item[]),
-        withoutBalance: Object.keys(SEARCH_SCORE_TO_SORTING_INDEX).map(() => [] as Item[]),
-      };
-
-      tokens.forEach(t => {
-        const score = getSearchScore(searchQuery_, t);
-
-        if (score in SEARCH_SCORE_TO_SORTING_INDEX) {
-          if (t.balance === '0') {
-            tokensGroupedBySearchScore.withoutBalance[SEARCH_SCORE_TO_SORTING_INDEX[score]].push(t);
-          } else {
-            tokensGroupedBySearchScore.withBalance[SEARCH_SCORE_TO_SORTING_INDEX[score]].push(t);
-          }
-        }
-      });
-
-      return tokensGroupedBySearchScore.withBalance.flat().concat(tokensGroupedBySearchScore.withoutBalance.flat());
-    } else {
+    if (!searchQuery) {
       return tokens;
     }
-  }, [searchQuery, tokens]);
 
-  const renderTokenRow = useCallback(
-    (token: RealmToken) => {
-      if (isInvalid(token)) {
-        return null;
+    const searchQuery_ = searchQuery.toLowerCase();
+
+    
+    const tokensGroupedBySearchScore = {
+      withBalance: Object.keys(SEARCH_SCORE_TO_SORTING_INDEX).map(() => [] as Item[]),
+      withoutBalance: Object.keys(SEARCH_SCORE_TO_SORTING_INDEX).map(() => [] as Item[]),
+    };
+
+    tokens.forEach(t => {
+      const score = getSearchScore(searchQuery_, t);
+
+      if (score in SEARCH_SCORE_TO_SORTING_INDEX) {
+        if (t.balance === '0') {
+          tokensGroupedBySearchScore.withoutBalance[SEARCH_SCORE_TO_SORTING_INDEX[score]].push(t);
+        } else {
+          tokensGroupedBySearchScore.withBalance[SEARCH_SCORE_TO_SORTING_INDEX[score]].push(t);
+        }
       }
+    });
 
-      const options = {
-        hideZeroAmount: true,
-        showAmountInFiat: false,
-        symbolUnderLabel: true,
-        tag: <ReputationTag assetId={token.assetId} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />,
-        walletId: token.walletId,
-      };
-
-      return <TokenSwitch token={token} tokensGalleryLength={tokensGallery.length} options={options} />;
-    },
-    [tokensGallery.length],
-  );
-
-  const renderRemoteAssetRow = useCallback(
-    (remoteAsset: RemoteAsset) => {
-      const networkName = getNetworkNameFromAssetId(remoteAsset.assetId);
-      const wallet = wallets[networkName];
-      const options = {
-        hideZeroAmount: true,
-        isRemoteAsset: true,
-        networkName,
-        showAmountInFiat: false,
-        symbolUnderLabel: true,
-        wallet,
-      };
-
-      return <TokenSwitch token={remoteAsset} tokensGalleryLength={tokensGallery.length} options={options} />;
-    },
-    [wallets, tokensGallery.length],
-  );
+    return tokensGroupedBySearchScore.withBalance.flat().concat(tokensGroupedBySearchScore.withoutBalance.flat());
+  }, [searchQuery, tokens]);
 
   const renderItem = useCallback(
     ({ item }: { item: Item }) => {
       if (isRemoteAsset(item)) {
-        return renderRemoteAssetRow(item);
-      } else {
-        return renderTokenRow(item);
+        return <RemoteAssetRow remoteAsset={item} tokensGalleryLength={tokensGallery.length} />;
       }
+
+      if (isInvalid(item)) {
+        return null;
+      }
+
+      return <TokenRow token={item} tokensGalleryLength={tokensGallery.length} />;
     },
-    [renderRemoteAssetRow, renderTokenRow],
+    [tokensGallery.length],
   );
 
   const [canRenderAll, setCanRenderAll] = useState(false);
@@ -190,7 +154,7 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
       setSearchQuery(inputValue);
     },
     [inputValue],
-    200,
+    300,
   );
 
   const { bottomSheetProps } = useBottomSheetScreenProps(navigation);
