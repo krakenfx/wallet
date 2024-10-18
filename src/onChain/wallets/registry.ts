@@ -7,7 +7,16 @@ import { BitcoinNetwork } from './bitcoin';
 import { electrumXTransport, hdSegwitBech32Network } from './bitcoinWallets';
 import { DogecoinNetwork, dogecoinNetwork, dogecoinTransport } from './dogecoin';
 import { EVMHarmonyTransport, EVMNetwork } from './evm';
-import { arbitrumNetwork, baseNetwork, blastNetwork, ethereumNetwork, ethereumSepoliaNetwork, optimismNetwork, polygonNetwork } from './evmNetworks';
+import {
+  arbitrumNetwork,
+  baseNetwork,
+  blastNetwork,
+  ethereumNetwork,
+  ethereumSepoliaNetwork,
+  lineaNetwork,
+  optimismNetwork,
+  polygonNetwork,
+} from './evmNetworks';
 import { SolanaNetwork } from './solana';
 import { solanaDevnet, solanaDevnetTransport } from './solanaDevnet';
 import { solanaMainnet, solanaRpcNetwork } from './solanaMainnet';
@@ -27,10 +36,11 @@ export const Networks = {
   
   solanaDevnet: solanaDevnet,
   blast: blastNetwork,
+  linea: lineaNetwork,
 };
 
 
-export const DefiNetworks = [Networks.HDsegwitBech32, Networks.ethereum, Networks.polygon, Networks.base, Networks.arbitrum, Networks.optimism];
+export const DefiNetworks = [Networks.HDsegwitBech32, Networks.ethereum, Networks.polygon, Networks.base, Networks.arbitrum, Networks.optimism, Networks.linea];
 export const parseDefiNetworkTypeToWalletType = (networkType: DefiNetwork): WalletType => {
   switch (networkType) {
     case 'bitcoin':
@@ -55,6 +65,7 @@ const Transports = {
   ethereum: evmHarmonyTransport,
   ethereumTestnetSepolia: evmHarmonyTransport,
   blast: evmHarmonyTransport,
+  linea: evmHarmonyTransport,
   
 } satisfies { [x in keyof typeof Networks]: Transport<any, any, any, any, any> };
 
@@ -91,7 +102,7 @@ export function getNetworkName<TType, TRequest, TFeeOption>(network: Network<TTy
   }
 }
 
-const isTestNet = (network: Network & { isTestnet?: boolean }) => {
+export const isTestNet = (network: Network & { isTestnet?: boolean }) => {
   return !!network.isTestnet;
 };
 

@@ -1023,7 +1023,7 @@ PODS:
     - React-debug
   - react-native-blur (4.3.2):
     - React-Core
-  - react-native-compat (2.13.3):
+  - react-native-compat (2.15.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1101,6 +1101,27 @@ PODS:
   - react-native-tcp-socket (6.0.6):
     - CocoaAsyncSocket
     - React-Core
+  - react-native-webview (13.12.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Codegen
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - React-nativeconfig (0.74.2)
   - React-NativeModulesApple (0.74.2):
     - glog
@@ -1347,7 +1368,7 @@ PODS:
     - React-Core
   - RNDefaultPreference (1.4.4):
     - React-Core
-  - RNDeviceInfo (10.12.0):
+  - RNDeviceInfo (13.0.0):
     - React-Core
   - RNFastImage (8.6.3):
     - React-Core
@@ -1427,7 +1448,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNShare (9.2.3):
+  - RNShare (10.0.0):
     - React-Core
   - RNSVG (15.2.0):
     - React-Core
@@ -1501,6 +1522,7 @@ DEPENDENCIES:
   - "react-native-skia (from `../node_modules/@shopify/react-native-skia`)"
   - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - react-native-tcp-socket (from `../node_modules/react-native-tcp-socket`)
+  - react-native-webview (from `../node_modules/react-native-webview`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1665,6 +1687,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/slider"
   react-native-tcp-socket:
     :path: "../node_modules/react-native-tcp-socket"
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
   React-nativeconfig:
     :path: "../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -1804,7 +1828,7 @@ SPEC CHECKSUMS:
   React-logger: 29fa3e048f5f67fe396bc08af7606426d9bd7b5d
   React-Mapbuffer: bf56147c9775491e53122a94c423ac201417e326
   react-native-blur: cfdad7b3c01d725ab62a8a729f42ea463998afa2
-  react-native-compat: 0767233bce5123adae8d0338ce121147f195cbd9
+  react-native-compat: 480399574fd82075838ab3da5ed7cfdc31574dad
   react-native-config: 86038147314e2e6d10ea9972022aa171e6b1d4d8
   react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
   react-native-netinfo: bdb108d340cdb41875c9ced535977cac6d2ff321
@@ -1812,6 +1836,7 @@ SPEC CHECKSUMS:
   react-native-skia: d751b7977b728596a75b289788639377bc801b25
   react-native-slider: ce295d2bf830a7990af05b0bd70ab28c133e230c
   react-native-tcp-socket: e724380c910c2e704816ec817ed28f1342246ff7
+  react-native-webview: d318ee67196d938d985dd3e3e6cce780b0d084bf
   React-nativeconfig: 9f223cd321823afdecf59ed00861ab2d69ee0fc1
   React-NativeModulesApple: ff7efaff7098639db5631236cfd91d60abff04c0
   React-perflogger: 32ed45d9cee02cf6639acae34251590dccd30994
@@ -1843,7 +1868,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: 090213d32d8b3bb83a4dcb7d12c18f0152591906
   RNDateTimePicker: 40ffda97d071a98a10fdca4fa97e3977102ccd14
   RNDefaultPreference: 08bdb06cfa9188d5da97d4642dac745218d7fb31
-  RNDeviceInfo: db5c64a060e66e5db3102d041ebe3ef307a85120
+  RNDeviceInfo: 55264dd7cc939dad6e9c231a7621311f5277f1dc
   RNFastImage: 07f5a49900db2947f4ecc81f5e2b2b8e03da36e2
   RNFlashList: b521ebdd7f9352673817f1d98e8bdc0c8cf8545b
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
@@ -1853,7 +1878,7 @@ SPEC CHECKSUMS:
   RNReactNativeHapticFeedback: 1e3efeca9628ff9876ee7cdd9edec1b336913f8c
   RNReanimated: f9192536fa8a312c737eaf15c905f78831193ef1
   RNScreens: b32a9ff15bea7fcdbe5dff6477bc503f792b1208
-  RNShare: da6d90b6dc332f51f86498041d6e34211f96b630
+  RNShare: 11fcd7daa34825a26cffda827170493690c376a8
   RNSVG: 43b64ed39c14ce830d840903774154ca0c1f27ec
   SDWebImage: 2d6d229046fea284d62e36bfb8ebe8287dfc5b10
   SDWebImageWebPCoder: af09429398d99d524cae2fe00f6f0f6e491ed102

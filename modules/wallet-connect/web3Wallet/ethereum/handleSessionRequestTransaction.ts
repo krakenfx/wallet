@@ -11,10 +11,12 @@ import { TRANSACTION_TYPES } from '@/realm/transactions/const';
 import { RealmWallet } from '@/realm/wallets';
 import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
+import { handleRedirect } from '../../connectAppWithWalletConnect/handleRedirect';
 import { ReactNavigationDispatch } from '../../types';
 import { getWarningFromSimulation } from '../../utils';
 import { navigateToSignStructuredTransactionPage } from '../navigateToSignStructuredTransactionPage';
 import { responseRejected } from '../responseRejected';
+import { sessionIsDeepLinked } from '../sessionIsDeepLinked';
 
 import { TransactionObject, WALLET_CONNECT_ETH_SIGN_TYPES } from './types';
 import { adaptTransactionObjectToDefinitionList, buildAssetContent, classifyTransaction, getTransactionPageTitle } from './utils';
@@ -87,7 +89,7 @@ export async function handleSessionRequestTransaction({
     },
     transactionTitle: getTransactionPageTitle(classifiedTransaction.type, {
       method,
-      tokenSymbol: classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED ? assetContent[0]?.assetSymbol ?? '' : '',
+      tokenSymbol: classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED ? (assetContent[0]?.assetSymbol ?? '') : '',
     }),
     content: (function getTransactionContent() {
       if (classifiedTransaction.kind === 'swap') {
@@ -161,8 +163,9 @@ export async function handleSessionRequestTransaction({
         const txid = await transport.broadcastTransaction(network, result);
         await web3Wallet.respondSessionRequest({ topic, response: { id, result: txid, jsonrpc: '2.0' } });
       }
+      const isDeepLinked = sessionIsDeepLinked(realm, topic);
 
-      await showToast({ type: 'success', icon: 'plug-connected', text: loc.walletConnect.request_fulfilled });
+      await handleRedirect(activeSessions[topic], 'request_fulfilled', isDeepLinked);
     } catch (error) {
       web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');

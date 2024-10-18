@@ -10,6 +10,10 @@ export interface paths {
     
     post: operations["AnalyseDomains"];
   };
+  "/v1/analyse/url": {
+    
+    post: operations["AnalyseUrl"];
+  };
   "/v1/balances": {
     
     get: operations["GetBalances"];
@@ -17,6 +21,14 @@ export interface paths {
   "/v1/broadcast": {
     
     post: operations["Broadcast"];
+  };
+  "/v1/explore": {
+    
+    get: operations["GetMainPageContent"];
+  };
+  "/v1/explore/{pageSlug}": {
+    
+    get: operations["GetPageContentBySlug"];
   };
   "/v1/fee": {
     
@@ -42,13 +54,13 @@ export interface paths {
     
     post: operations["SubmitSolution"];
   };
-  "/v2/price": {
-    
-    get: operations["GetPriceDataV2"];
-  };
   "/v1/price": {
     
     get: operations["GetPriceData"];
+  };
+  "/v2/price": {
+    
+    get: operations["GetPriceDataV2"];
   };
   "/v1/priceHistory": {
     
@@ -119,8 +131,8 @@ export interface components {
       content: components["schemas"]["AnalyseAddressResult"][];
     };
     ErrorResult: {
-      params?: string;
       message: string;
+      params?: string;
     };
     DomainAnalysisWarning: {
       
@@ -138,6 +150,13 @@ export interface components {
     };
     Result_AnalyseDomainsResult_: {
       content: components["schemas"]["AnalyseDomainsResult"];
+    };
+    AnalyseUrlResult: {
+      url: string;
+      isMalicious: boolean | null;
+    };
+    Result_AnalyseUrlResult_: {
+      content: components["schemas"]["AnalyseUrlResult"];
     };
     BlockChainExplorer: {
       url: string;
@@ -169,9 +188,9 @@ export interface components {
     };
     
     InternalBalance: {
-      metadata?: components["schemas"]["TokenMetadata"];
-      value: string;
       token: string;
+      value: string;
+      metadata?: components["schemas"]["TokenMetadata"];
     };
     "Result_InternalBalance-Array_": {
       content: components["schemas"]["InternalBalance"][];
@@ -181,6 +200,98 @@ export interface components {
     };
     Result_BroadcastReceipt_: {
       content: components["schemas"]["BroadcastReceipt"];
+    };
+    
+    "ExploreContentVariant.Text": "Text";
+    
+    ExploreTextContent: {
+      body?: string;
+      title?: string;
+      id: string;
+    };
+    ExploreTextContentRow: {
+      content: components["schemas"]["ExploreTextContent"][];
+      variant: components["schemas"]["ExploreContentVariant.Text"];
+      id: string;
+    };
+    
+    "ExploreContentVariant.Card": "Card";
+    
+    ExploreCardSize: "Large" | "Medium" | "Small";
+    ExploreLinkExternal: {
+      text: string;
+      
+      isInternal: false;
+      url: string;
+    };
+    ExploreLinkInternal: {
+      text: string;
+      
+      isInternal: true;
+      slug: string;
+    };
+    ExploreLink: components["schemas"]["ExploreLinkExternal"] | components["schemas"]["ExploreLinkInternal"];
+    ExploreCardContent: {
+      link?: components["schemas"]["ExploreLink"];
+      buttonLink?: string;
+      buttonText?: string;
+      floatingIcon?: string;
+      background: string;
+      size: components["schemas"]["ExploreCardSize"];
+      body?: string;
+      title?: string;
+      id: string;
+    };
+    ExploreCardContentRow: {
+      content: components["schemas"]["ExploreCardContent"][];
+      variant: components["schemas"]["ExploreContentVariant.Card"];
+      id: string;
+    };
+    
+    "ExploreContentVariant.List": "List";
+    
+    ExploreListIconVariant: "Square" | "RoudedCorners" | "Circle";
+    ExploreListItemContent: {
+      link?: components["schemas"]["ExploreLink"];
+      buttonLink?: string;
+      buttonText?: string;
+      iconVariant?: components["schemas"]["ExploreListIconVariant"];
+      icon?: string;
+      body?: string;
+      title?: string;
+      id: string;
+    };
+    ExploreListContent: {
+      items: components["schemas"]["ExploreListItemContent"][];
+      title?: string;
+      id: string;
+    };
+    ExploreListContentRow: {
+      content: components["schemas"]["ExploreListContent"][];
+      variant: components["schemas"]["ExploreContentVariant.List"];
+      id: string;
+    };
+    
+    "ExploreContentVariant.Hero": "Hero";
+    
+    ExploreHeroVariant: "Card" | "FullBleed";
+    ExploreHeroContent: {
+      cta?: components["schemas"]["ExploreListItemContent"];
+      background: string;
+      body?: string;
+      title: string;
+      variant: components["schemas"]["ExploreHeroVariant"];
+      id: string;
+    };
+    ExploreHeroContentRow: {
+      content: components["schemas"]["ExploreHeroContent"][];
+      variant: components["schemas"]["ExploreContentVariant.Hero"];
+      id: string;
+    };
+    
+    ExploreContentRow: components["schemas"]["ExploreTextContentRow"] | components["schemas"]["ExploreCardContentRow"] | components["schemas"]["ExploreListContentRow"] | components["schemas"]["ExploreHeroContentRow"];
+    "Result_ExploreContentRow-Array_": {
+      content: components["schemas"]["ExploreContentRow"][];
     };
     
     FeeOptionKind: "slow" | "medium" | "fast" | "default";
@@ -215,6 +326,8 @@ export interface components {
       kind: components["schemas"]["FeeOptionKind"];
       
       computeUnitPriceMicroLamports: number;
+      
+      computeUnitLimit: number;
     };
     FeeOption: components["schemas"]["DefaultFeeOption"] | components["schemas"]["EVMFeeOption"] | components["schemas"]["SolanaFeeOption"];
     "Result_FeeOption-Array_": {
@@ -309,6 +422,15 @@ export interface components {
       
       v: 1;
     };
+    TokenPrice: {
+      exchange?: string;
+      provider: string;
+      value: string;
+      token: string;
+    };
+    "Result_TokenPrice-or-null_": {
+      content: components["schemas"]["TokenPrice"] | null;
+    };
     TokenPriceFiatValue: {
       source: string;
       changePercentage24HR?: string;
@@ -322,15 +444,6 @@ export interface components {
     };
     "Result_TokenPriceV2-or-null_": {
       content: components["schemas"]["TokenPriceV2"] | null;
-    };
-    TokenPrice: {
-      exchange?: string;
-      provider: string;
-      value: string;
-      token: string;
-    };
-    "Result_TokenPrice-or-null_": {
-      content: components["schemas"]["TokenPrice"] | null;
     };
     PriceHistoryItem: {
       
@@ -792,6 +905,32 @@ export interface operations {
     };
   };
   
+  AnalyseUrl: {
+    
+    requestBody: {
+      content: {
+        "application/json": {
+          address?: string;
+          url?: string;
+        };
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_AnalyseUrlResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
   GetBalances: {
     parameters: {
       query: {
@@ -833,6 +972,45 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Result_BroadcastReceipt_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  GetMainPageContent: {
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_ExploreContentRow-Array_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  GetPageContentBySlug: {
+    parameters: {
+      path: {
+        pageSlug: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_ExploreContentRow-Array_"];
         };
       };
       
@@ -984,31 +1162,6 @@ export interface operations {
     };
   };
   
-  GetPriceDataV2: {
-    parameters: {
-      query: {
-        
-        token: string;
-        
-        backend?: string;
-      };
-    };
-    responses: {
-      
-      200: {
-        content: {
-          "application/json": components["schemas"]["Result_TokenPriceV2-or-null_"];
-        };
-      };
-      
-      default: {
-        content: {
-          "application/json": components["schemas"]["ErrorResult"];
-        };
-      };
-    };
-  };
-  
   GetPriceData: {
     parameters: {
       query: {
@@ -1023,6 +1176,31 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Result_TokenPrice-or-null_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  GetPriceDataV2: {
+    parameters: {
+      query: {
+        
+        token: string;
+        
+        backend?: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_TokenPriceV2-or-null_"];
         };
       };
       

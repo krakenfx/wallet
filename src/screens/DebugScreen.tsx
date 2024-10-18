@@ -64,7 +64,7 @@ import {
   isShowToastOnAllErrorsEnabled,
   recentErrors,
 } from '/helpers/errorHandler';
-import { isPasskeySupported } from '/modules/cloud-backup';
+import { CloudBackupManager, isPasskeySupported } from '/modules/cloud-backup';
 
 const copyToClipboard = (data: string, text: string) => {
   Clipboard.setString(String(data));
@@ -131,6 +131,9 @@ export const DebugScreen = () => {
   const backendConfigRef = useRef<BottomSheetMethods>(null);
 
   const [isICloudBackupEnabled, setIsICloudBackupEnabled] = useFeatureFlag(FeatureFlag.iCloudBackupEnabled);
+  const [isExploreScreenEnabled, setIsExploreScreenEnabled] = useFeatureFlag(FeatureFlag.ExploreScreenEnabled);
+  const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag(FeatureFlag.NewNetworksEnabled);
+  const [isInAppBrowserEnabled, setIsInAppBrowserEnabled] = useFeatureFlag(FeatureFlag.InAppBrowserEnabled);
 
   
   useEffect(() => {
@@ -268,7 +271,63 @@ export const DebugScreen = () => {
               <SettingsSwitch icon="wallet" text="Enable iCloud backup" enabled={isICloudBackupEnabled} onToggle={setIsICloudBackupEnabled} />
             </SettingsBox>
             <SettingsBox isLast isHighlighted style={styles.spacing}>
-              <Label type="regularCaption1">This flag will persist the app clean in Advanced settings</Label>
+              <Label type="regularCaption1">Enables iCloud backup</Label>
+              <Button
+                size="small"
+                text="Remove metadata"
+                onPress={() => CloudBackupManager.setKnownBackups([]).then(() => showToast({ text: 'Metadata of existing backups removed', type: 'success' }))}
+              />
+            </SettingsBox>
+          </>
+        )}
+        {!!Config.INTERNAL_RELEASE && (
+          <>
+            <SettingsBox isFirst isHighlighted>
+              <SettingsSwitch
+                testID="EnableExploreFeed"
+                icon="compass"
+                text="Enable Explore Feed"
+                enabled={isExploreScreenEnabled}
+                onToggle={setIsExploreScreenEnabled}
+              />
+            </SettingsBox>
+            <SettingsBox isLast isHighlighted style={styles.spacing}>
+              <Label type="regularCaption1">When enabled, app will display a button that leads to Explore Feed </Label>
+            </SettingsBox>
+          </>
+        )}
+        {!!Config.INTERNAL_RELEASE && (
+          <>
+            <SettingsBox isFirst isHighlighted>
+              <SettingsSwitch
+                testID="EnableNewNetworks"
+                icon="plug-disconnected"
+                text="Enable new networks"
+                enabled={isNewNetworksEnabled}
+                onToggle={setIsNewNetworksEnabled}
+              />
+            </SettingsBox>
+            <SettingsBox isLast isHighlighted style={styles.spacing}>
+              <Label type="regularCaption1">When enabled, new networks are supported </Label>
+            </SettingsBox>
+          </>
+        )}
+
+        {!!Config.INTERNAL_RELEASE && (
+          <>
+            <SettingsBox isFirst isHighlighted>
+              <SettingsSwitch
+                testID="EnableInAppBrowser"
+                icon="web3-globe"
+                text="Enable in-app browser"
+                enabled={isInAppBrowserEnabled}
+                onToggle={setIsInAppBrowserEnabled}
+              />
+            </SettingsBox>
+            <SettingsBox isLast isHighlighted style={styles.spacing}>
+              <Label type="regularCaption1">
+                When enabled, search bar will be active in explore (if enabled) and all links will open in the in-app browser{' '}
+              </Label>
             </SettingsBox>
           </>
         )}

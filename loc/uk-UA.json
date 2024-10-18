@@ -64,8 +64,9 @@
   "advancedAccountInfo": {
     "derivationPath": "Шлях виведення",
     "ethereumDerivationPath": "Шлях виведення Ethereum",
-    "ethereumDerivationPathContent": "Шлях виведення Ethereum використовується спільно з мережами рівня 2, такими як Polygon, Arbitrum, Optimism і Base, тобто для всіх них використовується той самий шлях виведення.",
+    "ethereumDerivationPathContent": "Шлях виведення Ethereum використовується спільно з сумісними з Ethereum мережами, такими як Polygon, Arbitrum, OP Mainnet, Base, Linea і Avalanche, тобто для всіх них використовується той самий шлях виведення.",
     "extendedPublicKey": "Розширений публічний ключ",
+    "includesCompatibleNetworks": "Включає мережі, сумісні з Ethereum",
     "includesLayer2Networks": "Включає мережі рівня 2",
     "pathCopied": "Шлях скопійовано",
     "title": "{walletName} – інформація",
@@ -167,6 +168,31 @@
   },
   "broadcast": {
     "sent": "Надіслано"
+  },
+  "browser": {
+    "clearSearch": "Очистити",
+    "loadingError": {
+      "description": "Перевірте URL-адресу на наявність помилок або відсутніх частин",
+      "title": "URL-адресу не знайдено"
+    },
+    "noSearch": {
+      "description": "Введіть або вставте повну URL-адресу для пошуку",
+      "title": "Почніть пошук"
+    },
+    "quickActions": {
+      "connectedApps": "Подивитися підключені застосунки",
+      "disconnect": "Від’єднати",
+      "refresh": "Оновити",
+      "share": "Поділитися"
+    },
+    "searchOnChain": "Шукати ончейн"
+  },
+  "bugTracking": {
+    "allow": "Дозволити",
+    "content": "Спостережуваність дозволяє нам здійснювати моніторинг вашої взаємодії з гаманцем і покращувати її завдяки збору важливих даних. Це допомагає нам виявляти проблеми, оптимізувати результативність і забезпечувати безперебійне функціонування вашого гаманця. Ваші дані безпечно зберігаються в анонімізованому вигляді! ",
+    "disallow": "Не дозволяти",
+    "skip": "Запитайте мене пізніше",
+    "title": "Допоможіть нам удосконалити Kraken Wallet"
   },
   "coins": {
     "allNetworks": "Усі мережі",
@@ -322,8 +348,8 @@
     "request_approval": "Надіслати запит на схвалення транзакцій",
     "see_balance": "Перегляньте свої баланси й активність",
     "unsupportedNetwork": "Непідтримувана мережа",
-    "unsupportedNetworkDescription": "Цей застосунок використовує мережу {unsupportedNetwork}, що наразі не підтримується. Наразі Kraken Wallet підтримує застосунки в мережах Ethereum, Polygon, Optimism, Arbitrum і Solana.",
-    "unsupportedNetworksDescription": "Цей застосунок використовує мережі {unsupportedNetworks}, що наразі не підтримуються. Наразі Kraken Wallet підтримує застосунки в мережах Ethereum, Polygon, Optimism, Arbitrum і Solana."
+    "unsupportedNetworkDescription": "Цей застосунок використовує мережу {unsupportedNetwork}, що наразі не підтримується. Наразі Kraken Wallet підтримує застосунки в мережах Ethereum, Polygon, OP Mainnet, Arbitrum і Solana.",
+    "unsupportedNetworksDescription": "Цей застосунок використовує мережі {unsupportedNetworks}, що наразі не підтримуються. Наразі Kraken Wallet підтримує застосунки в мережах Ethereum, Polygon, OP Mainnet, Arbitrum і Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -393,6 +419,7 @@
     "explore": "Більше"
   },
   "editAccount": {
+    "rename": "Перейменувати",
     "save": "Зберегти",
     "title": "Редагувати гаманець",
     "walletName": "Назва гаманця"
@@ -402,12 +429,18 @@
   },
   "errors": {
     "connectionError": "Помилка під час з’єднання",
+    "exploreSubpage": "Під час відкриття цього змісту виникла помилка. Спробуйте пізніше.",
     "generalFetchError": "Помилка, спробуйте ще раз",
     "generic": "Щось пішло не так",
     "genericTryAgainLater": "Щось пішло не так, повторіть спробу пізніше",
     "network": "Помилка мережі",
     "offline": "Офлайн",
     "seedMissing": "Критична помилка! Початкове значення недоступне."
+  },
+  "explore": {
+    "continueAccessibilityHint": "Прийміть відмову від відповідальності й продовжуйте",
+    "disclaimerBody": "Натискаючи застосунки DApp у цьому розділі, ви переходите на зовнішні URL-адреси, тому завжди виконуйте перевірку.",
+    "disclaimerTitle": "Будьте обережні"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -660,6 +693,7 @@
   },
   "network": {
     "arbitrum": "Arbitrum",
+    "avalanche": "Avalanche",
     "base": "Базовий",
     "bitcoin": "Bitcoin",
     "blast": "Blast",
@@ -667,8 +701,9 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – тестова мережа Goerli",
     "ethereum_sepolia": "Ethereum – тестова мережа Sepolia",
+    "linea": "Linea",
     "matic": "Matic",
-    "optimism": "Optimism",
+    "optimism": "Мережа OP Mainnet",
     "polygon": "Polygon",
     "solana": "Solana",
     "solana_devnet": "Solana – Devnet",
@@ -881,6 +916,41 @@
     "subtitle": "ваш гаманець",
     "title": "Імпорт"
   },
+  "onboardingImportSubWallets": {
+    "findingWallets": {
+      "caption": "Це може зайняти кілька секунд",
+      "foundWallets": "Знайдена така кількість гаманців: {count}...",
+      "title": "Шукаєте субгаманці"
+    },
+    "findSubWallets": {
+      "caption": "Це може зайняти кілька секунд",
+      "foundWallets": "Знайдена така кількість гаманців: {count}...",
+      "title": "Шукаєте субгаманці"
+    },
+    "importSubWallets": {
+      "importWallets": "Імпорт такої кількості гаманців: {subWalletsCount}",
+      "importWalletsOne": "Імпорт одного гаманця",
+      "subtitle": "Ми знайшли таку кількість гаманців {subWalletsCount} із активністю або балансами. Виберіть усі гаманці, які хочете імпортувати.",
+      "subtitleOneWallet": "Ми знайшли 1 гаманець із активністю або балансами.",
+      "title": "Виберіть гаманці для імпорту",
+      "walletsFound": "Знайдена така кількість гаманців: {subWalletsCount}",
+      "walletsFoundOne": "Знайдено один гаманець"
+    },
+    "importSubWalletsSuccess": {
+      "continue": "Продовжити",
+      "subtitle": "Гаманці додано успішно. Ви можете додати більше в будь-який час.",
+      "subtitleOneWallet": "Гаманець додано успішно. Ви можете додати більше в будь-який час.",
+      "title": "Імпортована така кількість гаманців: {subWalletsCount}!",
+      "titleOneWallet": "Імпортовано один гаманець!"
+    },
+    "loadingSubWallets": {
+      "caption": "Це може зайняти кілька секунд",
+      "foundWallets": "Знайдена така кількість гаманців: {subWalletsCount}...",
+      "foundWalletsOne": "Знайдено один гаманець",
+      "subtitle": "Це може зайняти кілька секунд",
+      "title": "Шукаєте субгаманці"
+    }
+  },
   "onboardingImportWallet": {
     "caption": "Введіть секретну фразу для відновлення, щоб імпортувати свій гаманець.",
     "header": "Імпортувати свій гаманець",
@@ -907,9 +977,12 @@
     "titleStart": "Щоб завжди бути в курсі, "
   },
   "onChainSecurity": {
+    "analysingApp": "Триває аналіз застосунку...",
     "appConnectCriticalWarning": "Ми вважаємо цей застосунок зловмисним, тож підключення до нього буде небезпечним. Схвалення може призвести до втрати коштів.",
     "appConnectMediumWarning": "Не вдалося верифікувати застосунок, що надсилає запит.",
     "appFlagged": "Застосунок позначено!",
+    "appSafetyNotVerified": "Безпеку застосунку не верифіковано",
+    "appSafetyNotVerifiedMessage": "Ми не змогли верифікувати безпеку застосунку, до якого ви намагаєтеся підключитись. Дійте з обережністю.",
     "appSignMessageCriticalWarning": "Ми вважаємо цей застосунок зловмисним, тож повідомлення є небезпечними для підписання. Схвалення може призвести до втрати коштів.",
     "appSignMessageMediumWarning": "Не вдалося верифікувати застосунок, що надсилає запит.",
     "appSignTransactionCriticalWarning": "Ми вважаємо цей застосунок зловмисним, тож транзакції є небезпечними для підписання. Схвалення може призвести до втрати коштів.",
@@ -1144,6 +1217,8 @@
     "electrum_reset_to_default": "Ви дійсно хочете відновити налаштування Electrum за замовчуванням?",
     "electrum_saved": "Ваші зміни були успішно збережені. Щоб зміни набули чинності, може знадобитися перезапуск застосунку.",
     "electrum_unable_to_connect": "Не вдалося підключитися до {server}.",
+    "enableTracking": "Увімкнути відстежування помилок",
+    "enableTrackingDescription": "Увімкнувши цю функцію, ви допомагаєте нам покращувати застосунок",
     "general": "Загальні",
     "header": "Налаштування",
     "hideBalances": "Приховати баланси",
@@ -1190,6 +1265,32 @@
     "knowledgeBaseDesc": "Шукайте наші документи, знайомтеся з поширеними запитаннями й зв’язуйтеся з нами",
     "knowledgeBaseTitle": "База знань",
     "visitSupportCenter": "Відвідати центр підтримки"
+  },
+  "swap": {
+    "amountExceedingBalance": "Введена сума перевищує доступний баланс",
+    "amountPlaceholder": "Уведіть суму",
+    "balance": "Баланс {0}",
+    "buttonTitle": "Обмін",
+    "emptyState": {
+      "assetsEmptyDesc": "У вашому поточному гаманці немає активів. Спробуйте поповнити гаманець",
+      "assetsEmptyTitle": "Активи відсутні",
+      "clearSearch": "Очистити пошуковий запит",
+      "goBack": "Назад",
+      "searchAllNetworks": "Пошук у всіх мережах",
+      "searchEmptyDesc": "Спробуйте розширити пошук",
+      "searchEmptyTitle": "Немає результатів",
+      "swappableAssetsEmptyDesc": "У вашому поточному гаманці немає активів, які підтримуються нашими постачальниками послуг обміну активів",
+      "swappableAssetsEmptyNetworkDesc": "У вашому поточному гаманці немає активів у вибраній мережі, які підтримуються нашими постачальниками послуг обміну активів",
+      "swappableAssetsEmptyNetworkTitle": "У вибраній мережі немає доступних для обміну активів",
+      "swappableAssetsEmptyTitle": "Немає доступних для обміну активів"
+    },
+    "findingBestRote": "Пошук найкращого маршруту",
+    "selectAsset": "Обрати актив",
+    "sourceListHeader": "Ваші активи",
+    "sourceSearchPlaceholder": "Обрати актив для обміну",
+    "targetSearchPlaceholder": "Обрати актив для отримання",
+    "title": "Обмін",
+    "unsupportedAssetsHidden": "Наші постачальники послуг обміну ще не підтримують таку кількість ваших інших активів: {count}"
   },
   "test": {
     "key": "Тестування"
@@ -1387,8 +1488,8 @@
     "copied": "Адресу скопійовано",
     "crypto": "Криптовалюта",
     "cryptoAndNft": "NFT й криптовалюта",
-    "ethereumAddressLabel": "Включає мережі рівня 2",
-    "ethereumExplainerBody": "Адресна система Ethereum поширюється на мережі рівня 2, як-от Polygon, Arbitrum, Optimism і Base, гарантуючи, що ваша єдина адреса буде працювати скрізь",
+    "ethereumAddressLabel": "Включає мережі, сумісні з Ethereum",
+    "ethereumExplainerBody": "Адресна система Ethereum поширюється на сумісні з Ethereum мережі, як-от Polygon, Arbitrum, OP Mainnet, Base, Linea і Avalanche, гарантуючи, що ваша єдина адреса працюватиме скрізь",
     "ethereumExplainerHeading": "Ваша адреса Ethereum",
     "tokenAddress": "Адреса {token}"
   },
@@ -1408,7 +1509,7 @@
     "continue": "Продовжити",
     "goBack": "Назад",
     "myWallets": "Мої гаманці",
-    "searchEmptyDesc": "Спробуйте розширити пошук",
+    "searchEmptyDesc": "Спробуйте розширити ваш пошук",
     "searchEmptyTitle": "Немає результатів",
     "searchPlaceholder": "Виберіть, що ви хочете надіслати",
     "sendAsset": "Надіслати актив",
@@ -1446,7 +1547,7 @@
       "manual": "Щоб збільшити можливість відновлення, створіть резервну копію секретної фрази відновлення вручну та збережіть її в надійному місці.",
       "title": "Створити вторинну резервну копію"
     },
-    "secretRecoveryPhrase": "Секретна фраза для відновлення",
+    "secretRecoveryPhrase": "Ваша секретна фраза для відновлення",
     "tapHereToView": "Торкніться тут для перегляду"
   },
   "walletBackupPrompt": {
@@ -1505,6 +1606,13 @@
     "title": "Видалити резервну копію"
   },
   "walletCloudBackupError": {
+    "deleteBackupConfirmation": {
+      "cancel": "Скасувати",
+      "description": "Видаляючи її, ви підтверджуєте, що ключ доступу вже було видалено. Ця дія видалить будь-яке посилання на видалений із застосунку ключ доступу.",
+      "header": "Видалити резервну копію ключа доступу",
+      "remove": "Видалити",
+      "title": "Справді видалити цю резервну копію ключа доступу?"
+    },
     "ensureICloudKeychainOn": "Переконайтеся, що в налаштуваннях паролів вашого пристрою ввімкнено функцію iCloud Keychain, яка має використовуватися для зберігання паролів і ключів:",
     "errorCreatingBackup": {
       "cancel": "Скасувати",
@@ -1519,7 +1627,10 @@
       "title": "Помилка під час створення ключа"
     },
     "errorDeletingPasskey": {
-      "title": "Помилка під час видалення ключа"
+      "cancel": "Скасувати",
+      "deletedPasskeyPossibility": "Інша можливість полягає в тому, що ключ доступу, який містить вашу резервну копію, вже було видалено. Якщо ви впевнені, що ключ доступу видалено, ми можемо позначити його як видалений і видалити його з гаманця.",
+      "removeItButton": "Так, видалити його",
+      "title": "Помилка під час видалення резервної копії ключа доступу"
     },
     "errorInactive": {
       "description": "Якщо ви створили кілька ключів, спробуйте імпортувати іншу резервну копію. В іншому випадку ви можете імпортувати гаманець за допомогою секретної фрази для відновлення з 12–24 слів",
@@ -1544,6 +1655,11 @@
       "link": "Підтримка Kraken Wallet ↗",
       "regular": "Якщо вам не вдалося вирішити проблему, ви можете звернутися по допомогу: ",
       "regularWithManualBackup": "Якщо вам не вдалося вирішити проблему, ви можете імпортувати секретну фрази для відновлення з 12–24 слів або звернутися по допомогу: "
+    },
+    "userCanceledBackup": {
+      "cancel": "Скасувати",
+      "description": "Щоб створити резервну копію гаманця, ви повинні увійти в систему вдруге, інакше ми не зможемо надійно захистити ваш гаманець за допомогою ключа доступу.",
+      "title": "Потрібен ключ доступу для входу в систему"
     }
   },
   "walletConnect": {

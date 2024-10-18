@@ -1,12 +1,14 @@
 import { useCallback } from 'react';
 
 import { fetchEnsName } from '@/api/fetchEnsName';
+import { fetchEnsOwnership } from '@/api/fetchEnsOwnership';
 import { showToast } from '@/components/Toast';
 import { ALL_MAINNET_COINS, DEFAULT_GALLERY_COINS, TESTNET_COINS, WalletType } from '@/onChain/wallets/registry';
 import { RealmAccount, useAccounts, useAccountsMutations } from '@/realm/accounts';
 import { useRealmTransaction } from '@/realm/hooks/useRealmTransaction';
 import { useSettingsMutations } from '@/realm/settings';
 import { useIsTestnetEnabled } from '@/realm/settings/useIsTestnetEnabled';
+import { useWalletConnectTopicsMutations } from '@/realm/walletConnectTopics/useWalletConnectTopicsMutations';
 import { useWalletsMutations } from '@/realm/wallets';
 import { RealmWallet } from '@/realm/wallets';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
@@ -21,6 +23,7 @@ export const useManageAccount = () => {
   const accounts = useAccounts();
 
   const { addNewAccount, deleteAccount } = useAccountsMutations();
+  const { deleteSession } = useWalletConnectTopicsMutations();
   const { runInTransaction } = useRealmTransaction();
   const isTestnetEnabled = useIsTestnetEnabled();
 
@@ -28,10 +31,13 @@ export const useManageAccount = () => {
 
   const assignENSNameIfPresent = useCallback(
     async (account: RealmAccount, ethWallet: RealmWallet) => {
-      const ens = await fetchEnsName(ethWallet);
-      if (ens) {
+      const ensName = await fetchEnsName(ethWallet);
+      if (ensName) {
+        const ensData = await fetchEnsOwnership(ensName);
+        const avatar = ensData?.owner?.avatar;
         runInTransaction(() => {
-          account.accountCustomName = ens;
+          account.accountCustomName = ensName;
+          account.avatar = avatar ?? null;
         });
       }
     },
@@ -98,9 +104,13 @@ export const useManageAccount = () => {
 
   const removeAccount = async (accountNumber: number, accountWallets: RealmResults<RealmWallet>) => {
     try {
-      const { removedLastAccount } = await deleteAccount(accountNumber);
-      WalletConnectSessionsManager.disconnectAccountSessions(accountWallets);
+      await WalletConnectSessionsManager.disconnectAccountSessions(accountWallets, {
+        onSuccess: async (sessionId: string) => {
+          deleteSession(sessionId);
+        },
+      });
 
+      const { removedLastAccount } = await deleteAccount(accountNumber);
       if (!removedLastAccount) {
         showToast({ type: 'success', text: loc.accountSwitch.walletDelete.success });
       }

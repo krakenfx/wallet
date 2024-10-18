@@ -35,6 +35,11 @@ declare module 'react-native-config' {
   export default Config;
 }
 
+declare module '*.webp' {
+  const content: string;
+  export default content;
+}
+
 declare module 'react-native-password-strength-meter/src/utils/calculate-level' {
   function calculateLevel<T extends object>(score: number, levels: T[]): T;
   export default calculateLevel;

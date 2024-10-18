@@ -1,7 +1,7 @@
 import React from 'react';
-import { Linking } from 'react-native';
 
 import { NonSmallIconName } from '@/components/SvgIcon';
+import { OpenURL, useBrowser } from '@/hooks/useBrowser';
 import { WalletType } from '@/onChain/wallets/registry';
 import { RealmNft } from '@/realm/nfts';
 
@@ -12,59 +12,63 @@ type NFTLinksProps = {
   walletType: WalletType;
 };
 
-const openENSDomains = (name: string) => {
-  return () => Linking.openURL(`https://app.ens.domains/${name}`);
+const openENSDomains = (name: string, openURL: OpenURL) => {
+  return () => openURL(`https://app.ens.domains/${name}`);
 };
 
 
-const openEtherscan = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://etherscan.io/nft/${collectionId}/${tokenId}`);
+const openEtherscan = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://etherscan.io/nft/${collectionId}/${tokenId}`);
 };
-const openPolygonscan = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://polygonscan.com/nft/${collectionId}/${tokenId}`);
+const openPolygonscan = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://polygonscan.com/nft/${collectionId}/${tokenId}`);
 };
-const openBase = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://basescan.org/token/${collectionId}?a=${tokenId}/`);
+const openBase = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://basescan.org/token/${collectionId}?a=${tokenId}/`);
 };
-const openArbiscan = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://arbiscan.io/token/${collectionId}?a=${tokenId}/`);
+const openArbiscan = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://arbiscan.io/token/${collectionId}?a=${tokenId}/`);
 };
-const openOptimismExplorer = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://optimistic.etherscan.io/token/${collectionId}?a=${tokenId}`);
+const openOptimismExplorer = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://optimistic.etherscan.io/token/${collectionId}?a=${tokenId}`);
 };
-const openBlastExplorer = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://blastscan.io/token/${collectionId}?a=${tokenId}`);
+const openBlastExplorer = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://blastscan.io/token/${collectionId}?a=${tokenId}`);
 };
-const openSolscan = (_: string, tokenId: string) => {
-  return () => Linking.openURL(`https://solscan.io/token/${tokenId}`);
+const openLineaScan = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://lineascan.build/nft/${collectionId}/${tokenId}`);
+};
+
+const openSolscan = (_: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://solscan.io/token/${tokenId}`);
 };
 
 
 
-const openOpenseaEthereum = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://opensea.io/assets/ethereum/${collectionId}/${tokenId}`);
+const openOpenseaEthereum = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://opensea.io/assets/ethereum/${collectionId}/${tokenId}`);
 };
-const openOpenseaArbitrum = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://opensea.io/assets/arbitrum/${collectionId}/${tokenId}`);
+const openOpenseaArbitrum = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://opensea.io/assets/arbitrum/${collectionId}/${tokenId}`);
 };
-const openOpenseaOptimism = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://opensea.io/assets/optimism/${collectionId}/${tokenId}`);
+const openOpenseaOptimism = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://opensea.io/assets/optimism/${collectionId}/${tokenId}`);
 };
-const openOpenseaPolygon = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://opensea.io/assets/matic/${collectionId}/${tokenId}`);
+const openOpenseaPolygon = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://opensea.io/assets/matic/${collectionId}/${tokenId}`);
 };
-const openOpenseaBase = (collectionId: string, tokenId: string) => {
-  return () => Linking.openURL(`https://opensea.io/assets/base/${collectionId}/${tokenId}`);
-};
-
-
-const openMagicEden = (_: string, tokenId: string) => {
-  return () => Linking.openURL(`https://magiceden.io/item-details/${tokenId}`);
+const openOpenseaBase = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://opensea.io/assets/base/${collectionId}/${tokenId}`);
 };
 
 
-const openTensorSolana = (_: string, tokenId: string) => {
-  return () => Linking.openURL(`https://www.tensor.trade/item/${tokenId}`);
+const openMagicEden = (_: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://magiceden.io/item-details/${tokenId}`);
+};
+
+
+const openTensorSolana = (_: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://www.tensor.trade/item/${tokenId}`);
 };
 
 type NFTLinkItemConfig = {
@@ -128,6 +132,14 @@ export const configNftLinks: Record<
     },
     marketplaces: [{ label: 'Opensea', onPress: openOpenseaOptimism, icon: 'opensea' }],
   },
+  linea: {
+    blockchainExplorer: {
+      label: 'Lineascan',
+      onPress: openLineaScan,
+      icon: 'lineascan',
+    },
+    marketplaces: [],
+  },
   polygon: {
     blockchainExplorer: {
       label: 'Polygonscan',
@@ -164,14 +176,19 @@ export const configNftLinks: Record<
 
 export const NFTLinks: React.FC<NFTLinksProps> = ({ nft: { metadata }, walletType }) => {
   const nftLinksItems = configNftLinks[walletType];
+  const { openURL } = useBrowser();
 
-  return nftLinksItems ? (
+  if (!nftLinksItems) {
+    return null;
+  }
+
+  return (
     <>
       {}
       <NFTLinksItem
         isFirst
         label={nftLinksItems.blockchainExplorer.label}
-        onPress={nftLinksItems.blockchainExplorer.onPress(metadata.collectionId, metadata.tokenId)}
+        onPress={nftLinksItems.blockchainExplorer.onPress(metadata.collectionId, metadata.tokenId, openURL)}
         variant="light"
         iconRight="chevron-right"
         iconLeft={nftLinksItems.blockchainExplorer.icon}
@@ -182,7 +199,7 @@ export const NFTLinks: React.FC<NFTLinksProps> = ({ nft: { metadata }, walletTyp
         return (
           <NFTLinksItem
             label={label}
-            onPress={onPress(metadata.collectionId, metadata.tokenId)}
+            onPress={onPress(metadata.collectionId, metadata.tokenId, openURL)}
             isLast={nftLinksItems.marketplaces.length - 1 === i}
             variant="light"
             iconRight="chevron-right"
@@ -192,7 +209,7 @@ export const NFTLinks: React.FC<NFTLinksProps> = ({ nft: { metadata }, walletTyp
         );
       })}
     </>
-  ) : null;
+  );
 };
 
 type ENSLinksProps = {
@@ -200,19 +217,21 @@ type ENSLinksProps = {
 };
 
 export const ENSLinks: React.FC<ENSLinksProps> = ({ nft: { metadata } }) => {
+  const { openURL } = useBrowser();
+
   return (
     <>
-      <NFTLinksItem label="app.ens.domains" onPress={openENSDomains(metadata.name)} isFirst variant="light" iconRight="chevron-right" iconLeft="ens" />
+      <NFTLinksItem label="app.ens.domains" onPress={openENSDomains(metadata.name, openURL)} isFirst variant="light" iconRight="chevron-right" iconLeft="ens" />
       <NFTLinksItem
         label="Etherscan"
-        onPress={openEtherscan(metadata.collectionId, metadata.tokenId)}
+        onPress={openEtherscan(metadata.collectionId, metadata.tokenId, openURL)}
         variant="light"
         iconRight="chevron-right"
         iconLeft="etherscan"
       />
       <NFTLinksItem
         label="Opensea"
-        onPress={openOpenseaEthereum(metadata.collectionId, metadata.tokenId)}
+        onPress={openOpenseaEthereum(metadata.collectionId, metadata.tokenId, openURL)}
         isLast
         variant="light"
         iconRight="chevron-right"

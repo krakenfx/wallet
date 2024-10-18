@@ -32,6 +32,10 @@ export const languages = [
     tag: 'pt-BR',
   },
   {
+    label: 'Polski',
+    tag: 'pl-PL',
+  },
+  {
     label: 'Русский',
     tag: 'ru-RU',
   },

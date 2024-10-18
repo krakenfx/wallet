@@ -2,39 +2,35 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
 
 import React, { useCallback, useMemo } from 'react';
-import { Linking, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { FadeIn } from 'react-native-reanimated';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { GradientItemBackground } from '@/components/GradientItemBackground';
-import { Label } from '@/components/Label';
-import { LongPressable } from '@/components/LongPress';
-import { LongPressOptionItemProps } from '@/components/LongPress/LongPressOptionItem';
-import { showToast } from '@/components/Toast';
-import { TokenIcon } from '@/components/TokenIcon';
-import { Touchable } from '@/components/Touchable';
-import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
+import { useBrowser } from '@/hooks/useBrowser';
 import { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
-import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
-import { useTokenPriceChangePercentage } from '@/realm/tokenPrice';
 import { RealmToken } from '@/realm/tokens';
 import { useTokensGalleryMutations } from '@/realm/tokensGallery';
 import { useRealmWalletById } from '@/realm/wallets';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
-import { Currency } from '@/screens/Settings/currency';
 import { RemoteAsset } from '@/types';
-import { formatCurrency } from '@/utils/formatCurrency';
-import { getPercentageLabel } from '@/utils/formatPercentage';
 import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
 import { getExplorerIcon } from '@/utils/getExplorerIcon';
 import { getWalletName } from '@/utils/getWalletName';
 import { isRealmToken } from '@/utils/isRealmToken';
 
-import loc from '/loc';
+import { GradientItemBackground } from '../GradientItemBackground';
+import { Label } from '../Label';
+import { LongPressable } from '../LongPress';
+import { LongPressOptionItemProps } from '../LongPress/LongPressOptionItem';
+import { showToast } from '../Toast';
+import { TokenIcon } from '../TokenIcon';
+import { Touchable } from '../Touchable';
 
-const PRICE_CHANGE_PLACEHOLDER = '--';
+import { AssetPriceChangeLabel } from './AssetPriceChangeLabel';
+import { AssetRowAmountInFiat } from './AssetRowAmountInFiat';
+
+import loc from '/loc';
 
 export type AssetRowProps = {
   token: RealmToken | RemoteAsset;
@@ -68,14 +64,9 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
   const amount = hideZeroAmount && tokenAmountFormatted === '0' ? '' : `${tokenAmountFormatted}${symbolUnderLabel ? '' : ' ' + token.metadata.symbol}`;
   const balanceDisplay = useBalanceDisplay(amount);
   const { removeTokenFromGallery } = useTokensGalleryMutations();
-  const priceChangePct = useTokenPriceChangePercentage({ assetId: token.assetId });
+  const { openURL } = useBrowser();
 
   const content = useMemo(() => {
-    const priceChangeLabel = getPercentageLabel(priceChangePct, 2, {
-      placeholderColor: 'light50',
-      placeholder: PRICE_CHANGE_PLACEHOLDER,
-      truncateTrailingZeros: true,
-    });
     return (
       <>
         <View style={styles.leftContentContainer} testID="AssetRowContentContainer">
@@ -89,13 +80,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
               </Label>
               {tag !== null && <View>{tag}</View>}
             </View>
-            {showPriceChangeUnderLabel && isRealmToken(token) && (
-              <View style={styles.labelContainer} testID="AssetRowContent">
-                <Label testID={`PriceChangeLabel-${testID}`} type="regularCaption1" color={priceChangeLabel.color} style={[styles.priceChangeLabel]}>
-                  {priceChangeLabel.label}
-                </Label>
-              </View>
-            )}
+            {showPriceChangeUnderLabel && isRealmToken(token) && <AssetPriceChangeLabel assetId={token.assetId} testID={testID} />}
             {showSymbolUnderLabel && (
               <Label type="regularMonospace" color="light75">
                 {token.metadata.symbol}
@@ -117,20 +102,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
         </View>
       </>
     );
-  }, [
-    balanceDisplay,
-    priceChangePct,
-    currency,
-    label,
-    networkName,
-    showAmountInFiat,
-    showPriceChangeUnderLabel,
-    showSymbolUnderLabel,
-    tag,
-    testID,
-    token,
-    wallet,
-  ]);
+  }, [balanceDisplay, currency, label, networkName, showAmountInFiat, showPriceChangeUnderLabel, showSymbolUnderLabel, tag, testID, token, wallet]);
 
   const containerStyle = useMemo(() => [style, styles.container], [style]);
 
@@ -174,7 +146,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
       explorer && {
         text: loc.formatString(loc.assetOptions.viewOn, { explorer: explorer.name }),
         iconName: getExplorerIcon(explorer.name),
-        onPress: () => Linking.openURL(explorer.url),
+        onPress: () => openURL(explorer.url),
         spaceBelow: true,
       },
       {
@@ -213,21 +185,6 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
   );
 };
 
-const AssetRowAmountInFiat = ({ currency, token }: Pick<AssetRowProps, 'token'> & { currency: Currency }) => {
-  const amountInAppCurrency = useTokenBalanceConvertedToAppCurrency(token);
-  const balancesHidden = useIsHideBalancesEnabled();
-  const amountFormatted = useBalanceDisplay(formatCurrency(amountInAppCurrency, { currency }), 7);
-  return (
-    <Label
-      entering={FadeIn}
-      style={[styles.animatedNumbers, balancesHidden && styles.balanceHidden]}
-      type="boldLargeMonospace"
-      color={balancesHidden ? 'light50' : 'light100'}>
-      {amountFormatted}
-    </Label>
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -261,11 +218,6 @@ const styles = StyleSheet.create({
   amountInFiat: {
     alignItems: 'flex-end',
   },
-  animatedNumbers: {
-    alignItems: 'flex-end',
-    textAlign: 'right',
-    minWidth: 100,
-  },
   priceChangeLabel: {
     alignItems: 'flex-start',
     textAlign: 'left',
@@ -275,6 +227,5 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: 4,
   },
-  balanceHidden: { paddingTop: 5, marginBottom: -5 },
   longPress: { marginHorizontal: 14, flex: 1 },
 });

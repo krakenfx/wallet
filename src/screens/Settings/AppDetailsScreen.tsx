@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Linking, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { ConnectAppPermissions } from '@/components/ConnectAppPermissions';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
@@ -7,6 +7,7 @@ import { GradientScreenView } from '@/components/Gradients';
 import { IconWithCoinIcon } from '@/components/IconWithCoinIcon';
 import { Label } from '@/components/Label';
 import { showToast } from '@/components/Toast';
+import { useBrowser } from '@/hooks/useBrowser';
 import { WalletType } from '@/onChain/wallets/registry';
 import { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -31,6 +32,7 @@ export type AppDetailsParams = {
 export const AppDetailsScreen = ({ navigation, route }: NavigationProps<'AppDetails'>) => {
   const { content, onDisconnect } = route.params;
   const [isDisconnecting, setIsDisconnecting] = useState(false);
+  const { openURL } = useBrowser();
 
   const body = isDisconnecting ? (
     <ActivityIndicatorView />
@@ -80,9 +82,7 @@ export const AppDetailsScreen = ({ navigation, route }: NavigationProps<'AppDeta
       <FloatingBottomButtons
         primary={{
           text: loc.connectedApps.app_details.open,
-          onPress: () => {
-            Linking.openURL(content.url);
-          },
+          onPress: () => openURL(content.url),
         }}
         secondary={{
           text: loc.connectedApps.app_details.disconnect,

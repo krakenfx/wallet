@@ -1,5 +1,7 @@
 import Realm from 'realm';
 
+import { NEW_NETWORKS, isNewNetworksEnabled } from '@/utils/featureFlags';
+
 import { useCurrentAccountNumber } from '../accounts';
 import { useQuery } from '../RealmContext';
 import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey } from '../settings';
@@ -14,7 +16,13 @@ export const useRealmWallets = (showAllWallets = false, accountNumber?: number) 
     REALM_TYPE_WALLET,
     wallets => {
       const targetAccountNumber = accountNumber ?? currentAccountNumber;
-      return showAllWallets ? wallets : wallets.filtered(`accountIdx = ${targetAccountNumber}`);
+      const targetWallets = showAllWallets ? wallets : wallets.filtered(`accountIdx = ${targetAccountNumber}`);
+
+      if (isNewNetworksEnabled()) {
+        return targetWallets;
+      }
+
+      return targetWallets.filtered(`NOT caipId IN $0`, NEW_NETWORKS);
     },
     [accountNumber, currentAccountNumber, showAllWallets],
   );
@@ -22,8 +30,9 @@ export const useRealmWallets = (showAllWallets = false, accountNumber?: number) 
 
 
 export const getWalletsForMutations = (realm: Realm, showAllWallets = false) => {
-  const wallets = realm.objects<RealmWallet>(REALM_TYPE_WALLET);
-
+  const wallets = isNewNetworksEnabled()
+    ? realm.objects<RealmWallet>(REALM_TYPE_WALLET)
+    : realm.objects<RealmWallet>(REALM_TYPE_WALLET).filtered(`NOT caipId IN $0`, NEW_NETWORKS);
   if (showAllWallets) {
     return wallets;
   }

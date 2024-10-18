@@ -2,7 +2,7 @@ import { BottomSheetFlatList, BottomSheetModalProps } from '@gorhom/bottom-sheet
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { SessionTypes } from '@walletconnect/types';
 import React, { forwardRef, useCallback, useMemo } from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { AppsListItem } from '@/components/AppsListItem';
 import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
@@ -10,6 +10,7 @@ import { Button } from '@/components/Button';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useBottomSheetPadding } from '@/hooks/useBottomSheetPadding';
+import { useBrowser } from '@/hooks/useBrowser';
 import { useCurrentAccountNumber } from '@/realm/accounts';
 import { Routes } from '@/Routes';
 
@@ -32,6 +33,8 @@ export const ConnectedApps = forwardRef<BottomSheetModalRef, ConnectedAppsProps>
   const currentAccountNumber = useCurrentAccountNumber();
   const [activeSessions] = useWalletConnectActiveSessions(currentAccountNumber);
 
+  const { openURL } = useBrowser();
+
   const navigation = useNavigation();
   const rightElement = useMemo(() => {
     return <SvgIcon name="open-external" />;
@@ -41,7 +44,7 @@ export const ConnectedApps = forwardRef<BottomSheetModalRef, ConnectedAppsProps>
     (item: { item: SessionTypes.Struct }) => {
       const session: SessionTypes.Struct | undefined = item.item;
       const { icons, name, url } = session?.peer?.metadata ?? {};
-      const onPress = () => url && Linking.openURL(url);
+      const onPress = () => url && openURL(url);
       const iconUri = (icons || [])[0] ?? '';
       const items: JSX.Element[] = [];
 

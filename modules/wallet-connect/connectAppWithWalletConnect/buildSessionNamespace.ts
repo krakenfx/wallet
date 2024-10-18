@@ -1,8 +1,9 @@
 import { SessionProposal } from '@/screens/ConnectApp/types';
 
-import { SessionNamespace } from '../types';
+import { getChainsEip155, getChainsSolana } from './getChainsForSessionNamespace';
 
 import { WALLET_CONNECT_SESSION_NAMESPACE_KEY_EVM, WALLET_CONNECT_SESSION_NAMESPACE_KEY_SOLANA } from '/modules/wallet-connect/consts';
+import { SessionNamespace } from '/modules/wallet-connect/types';
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from '/modules/wallet-connect/web3Wallet/ethereum/types';
 import { WALLET_CONNECT_SOLANA_SIGN_TYPES } from '/modules/wallet-connect/web3Wallet/solana/types';
 
@@ -62,6 +63,7 @@ export function buildSessionNamespace(sessionProposal: SessionProposal, accounts
               uniqueMethodsEIP155.filter(m => supportedMethodsEIP155.includes(m))
             : supportedMethodsEIP155,
         events: uniqueEventsEIP155.length > 0 ? uniqueEventsEIP155 : ['chainChanged', 'accountsChanged'],
+        chains: getChainsEip155(accountsFromMatchedWallets.eip155),
       },
     }),
     ...(shouldIncludeSolana && {
@@ -73,6 +75,7 @@ export function buildSessionNamespace(sessionProposal: SessionProposal, accounts
               uniqueMethodsSolana.filter(m => supportedMethodsSolana.includes(m))
             : supportedMethodsSolana,
         events: uniqueEventsSolana.length > 0 ? uniqueEventsSolana : [],
+        chains: getChainsSolana(accountsFromMatchedWallets.solana),
       },
     }),
   } as SessionNamespace;

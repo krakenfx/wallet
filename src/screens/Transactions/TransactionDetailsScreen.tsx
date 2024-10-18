@@ -6,12 +6,14 @@ import NameResolver from '@/api/NameResolver';
 import { Transaction } from '@/api/types';
 import { Button } from '@/components/Button';
 import { ExpandableSheet } from '@/components/Sheets';
+import { useBrowser } from '@/hooks/useBrowser';
 import { BTCTransaction } from '@/onChain/wallets/bitcoin';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { memoizedJSONParseTx, usePendingTransactionById, useTransactionById } from '@/realm/transactions';
 import { RealmWallet } from '@/realm/wallets';
 import { NavigationProps } from '@/Routes';
 
+import { isInAppBrowserEnabled } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { TransactionDetails } from './components/TransactionDetails';
@@ -33,6 +35,8 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
   const existingTransaction = useTransactionById(route.params.id);
   const pendingTransaction = usePendingTransactionById(route.params.id);
   const transaction = existingTransaction || pendingTransaction;
+
+  const { openURL } = useBrowser();
 
   const [transactionWalletAddress, setTransactionWalletAddress] = useState('');
 
@@ -62,7 +66,14 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
     navigation.goBack();
   }, [navigation]);
 
-  const onOpenExplorer = () => openExplorer(transaction.wallet.type, transaction.transactionId);
+  const onOpenExplorer = () => {
+    if (isInAppBrowserEnabled()) {
+      
+      navigation.goBack();
+    }
+
+    openExplorer(transaction.wallet.type, transaction.transactionId, openURL);
+  };
 
   if (!transaction?.isValid()) {
     return null;

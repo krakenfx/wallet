@@ -6,7 +6,7 @@ import { getApiKey } from '@/secureStore/domains/apiKey';
 import { ErrorResult } from '../types';
 
 import BackendConfigurator from './BackendConfigurator';
-import { superFetch } from './superFetch';
+import { fetchClient } from './fetchClient';
 
 import type { FilterKeys, PathItemObject, PathsWithMethod } from 'openapi-typescript-helpers';
 
@@ -90,7 +90,7 @@ function makeFetchAPI() {
     headers.set('x-client-version', `${getVersion()}-${getBuildNumber()}`);
 
     try {
-      return await superFetch(request, init, 15000);
+      return await fetchClient(request, init);
     } catch (e) {
       throw new APIFetchError(e as Error, requestId);
     }

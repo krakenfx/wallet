@@ -31,9 +31,11 @@ import { TokenSchema } from './tokens';
 import { TransactionNotesSchema } from './transactionNotes';
 import { PendingTransactionsSchema, WalletTransactionsSchema } from './transactions';
 import { UsdFiatRatesSchema } from './usdFiatRates';
+import { WalletConnectTopicsSchema } from './walletConnectTopics';
 import { WalletAddressCacheSchema, WalletSchema, WalletStateSchema } from './wallets';
 
 export const RealmSchema = [
+  WalletConnectTopicsSchema,
   WalletSchema,
   WalletStateSchema,
   WalletAddressCacheSchema,
@@ -71,7 +73,7 @@ export const RealmSchema = [
 ];
 
 export const realmConfig: Configuration = {
-  schemaVersion: 29,
+  schemaVersion: 32,
   schema: RealmSchema,
   onMigration,
 };

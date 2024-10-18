@@ -64,8 +64,9 @@
   "advancedAccountInfo": {
     "derivationPath": "Đường dẫn phái sinh",
     "ethereumDerivationPath": "Đường dẫn phái sinh Ethereum",
-    "ethereumDerivationPathContent": "Đường dẫn phái sinh của Ethereum được chia sẻ với các mạng Lớp 2 như Polygon, Arbitrum, Optimism và Base, nghĩa là tất cả chúng đều sử dụng cùng một đường dẫn phái sinh.",
+    "ethereumDerivationPathContent": "Đường dẫn phái sinh của Ethereum được chia sẻ với các mạng tương thích với Ethereum như Polygon, Arbitrum, OP Mainnet, Base, Linea và Avalanche, nghĩa là tất cả chúng đều sử dụng cùng một đường dẫn phái sinh.",
     "extendedPublicKey": "Khóa công khai mở rộng",
+    "includesCompatibleNetworks": "Bao gồm các mạng tương thích với Ethereum",
     "includesLayer2Networks": "Bao gồm mạng lớp 2",
     "pathCopied": "Đã sao chép đường dẫn",
     "title": "Thông tin {walletName}",
@@ -167,6 +168,31 @@
   },
   "broadcast": {
     "sent": "Đã gửi"
+  },
+  "browser": {
+    "clearSearch": "Xóa",
+    "loadingError": {
+      "description": "Kiểm tra URL xem có lỗi đánh máy hoặc thiếu phần nào không",
+      "title": "Không tìm thấy URL"
+    },
+    "noSearch": {
+      "description": "Nhập hoặc dán url đầy đủ để tìm kiếm",
+      "title": "Bắt đầu tìm kiếm của bạn"
+    },
+    "quickActions": {
+      "connectedApps": "Xem các ứng dụng được kết nối",
+      "disconnect": "Ngắt kết nối",
+      "refresh": "Làm mới",
+      "share": "Chia sẻ"
+    },
+    "searchOnChain": "Tìm kiếm onchain"
+  },
+  "bugTracking": {
+    "allow": "Cho phép",
+    "content": "Khả năng quan sát cho phép chúng tôi theo dõi và cải thiện trải nghiệm ví của bạn bằng cách thu thập dữ liệu cần thiết. Điều này giúp chúng tôi xác định các vấn đề, tối ưu hóa hiệu suất và đảm bảo ví của bạn hoạt động trơn tru. Dữ liệu của bạn được ẩn danh và an toàn! ",
+    "disallow": "Không cho phép",
+    "skip": "Hỏi tôi sau",
+    "title": "Giúp chúng tôi cải thiện Kraken Wallet"
   },
   "coins": {
     "allNetworks": "Tất cả các mạng",
@@ -322,8 +348,8 @@
     "request_approval": "Yêu cầu phê duyệt giao dịch",
     "see_balance": "Xem số dư và hoạt động của bạn",
     "unsupportedNetwork": "Mạng không được hỗ trợ",
-    "unsupportedNetworkDescription": "Ứng dụng này sử dụng mạng {unsupportedNetwork} không được hỗ trợ tại thời điểm này. Kraken Wallet hiện hỗ trợ các ứng dụng trên mạng Ethereum, Polygon, Optimism, Arbitrum và Solana.",
-    "unsupportedNetworksDescription": "Ứng dụng này sử dụng các mạng {unsupportedNetworks} không được hỗ trợ tại thời điểm này. Kraken Wallet hiện hỗ trợ các ứng dụng trên mạng Ethereum, Polygon, Optimism, Arbitrum và Solana."
+    "unsupportedNetworkDescription": "Ứng dụng này sử dụng mạng {unsupportedNetwork} không được hỗ trợ tại thời điểm này. Kraken Wallet hiện hỗ trợ các ứng dụng trên mạng Ethereum, Polygon, OP Mainnet, Arbitrum và Solana.",
+    "unsupportedNetworksDescription": "Ứng dụng này sử dụng các mạng {unsupportedNetworks} không được hỗ trợ tại thời điểm này. Kraken Wallet hiện hỗ trợ các ứng dụng trên mạng Ethereum, Polygon, OP Mainnet, Arbitrum và Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -393,6 +419,7 @@
     "explore": "Khám phá"
   },
   "editAccount": {
+    "rename": "Đổi tên",
     "save": "Lưu",
     "title": "Chỉnh sửa ví",
     "walletName": "Tên ví"
@@ -402,12 +429,18 @@
   },
   "errors": {
     "connectionError": "Lỗi kết nối",
+    "exploreSubpage": "Đã xảy ra lỗi khi mở nội dung này. Vui lòng thử lại sau.",
     "generalFetchError": "Có lỗi, vui lòng thử lại",
     "generic": "Đã xảy ra lỗi",
     "genericTryAgainLater": "Đã xảy ra sự cố, vui lòng thử lại sau",
     "network": "Lỗi mạng",
     "offline": "Ngoại tuyến",
     "seedMissing": "Lỗi nghiêm trọng! Hạt giống không khả dụng."
+  },
+  "explore": {
+    "continueAccessibilityHint": "Chấp nhận tuyên bố từ chối trách nhiệm và tiếp tục",
+    "disclaimerBody": "Khi chạm vào dapp trong phần này, bạn sẽ được chuyển đến các URL bên ngoài và bạn nên luôn tự mình tìm hiểu.",
+    "disclaimerTitle": "Hãy cẩn thận ở ngoài đó"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -660,6 +693,7 @@
   },
   "network": {
     "arbitrum": "Arbitrum",
+    "avalanche": "Avalanche",
     "base": "Cơ sở",
     "bitcoin": "Bitcoin",
     "blast": "Blast",
@@ -667,8 +701,9 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Mạng thử nghiệm Goerli",
     "ethereum_sepolia": "Ethereum - Mạng thử nghiệm Sepolia",
+    "linea": "Linea",
     "matic": "Matic",
-    "optimism": "Optimism",
+    "optimism": "OP Mainnet",
     "polygon": "Polygon",
     "solana": "Solana",
     "solana_devnet": "Solana - Devnet",
@@ -881,6 +916,41 @@
     "subtitle": "ví của bạn",
     "title": "Nhập"
   },
+  "onboardingImportSubWallets": {
+    "findingWallets": {
+      "caption": "Quy trình này có thể mất vài giây",
+      "foundWallets": "Đã tìm thấy {count} ví...",
+      "title": "Đang tìm ví phụ"
+    },
+    "findSubWallets": {
+      "caption": "Quy trình này có thể mất vài giây",
+      "foundWallets": "Đã tìm thấy {count} ví...",
+      "title": "Đang tìm ví phụ"
+    },
+    "importSubWallets": {
+      "importWallets": "Nhập {subWalletsCount} ví",
+      "importWalletsOne": "Nhập 1 ví",
+      "subtitle": "Chúng tôi tìm thấy {subWalletsCount} ví có hoạt động hoặc số dư. Chọn tất cả ví bạn muốn nhập.",
+      "subtitleOneWallet": "Chúng tôi tìm thấy 1 ví có hoạt động hoặc số dư.",
+      "title": "Chọn ví để nhập",
+      "walletsFound": "Đã tìm thấy {subWalletsCount} ví",
+      "walletsFoundOne": "Đã tìm thấy 1 ví"
+    },
+    "importSubWalletsSuccess": {
+      "continue": "Tiếp tục",
+      "subtitle": "Đã thêm ví thành công. Bạn có thể thêm bất cứ lúc nào.",
+      "subtitleOneWallet": "Đã thêm ví thành công. Bạn có thể thêm bất cứ lúc nào.",
+      "title": "Đã nhập {subWalletsCount} ví!",
+      "titleOneWallet": "Đã nhập 1 ví!"
+    },
+    "loadingSubWallets": {
+      "caption": "Quy trình này có thể mất vài giây",
+      "foundWallets": "Đã tìm thấy {subWalletsCount} ví...",
+      "foundWalletsOne": "Đã tìm thấy 1 ví...",
+      "subtitle": "Quy trình này có thể mất vài giây",
+      "title": "Đang tìm ví phụ"
+    }
+  },
   "onboardingImportWallet": {
     "caption": "Nhập cụm từ khôi phục bí mật để nhập ví của bạn.",
     "header": "Nhập ví của bạn",
@@ -907,9 +977,12 @@
     "titleStart": "Để luôn được cập nhật, "
   },
   "onChainSecurity": {
+    "analysingApp": "Đang phân tích ứng dụng...",
     "appConnectCriticalWarning": "Chúng tôi tin rằng ứng dụng này là ứng dụng độc hại và kết nối sẽ không an toàn. Nếu phê duyệt, bạn sẽ có thể bị mất tiền.",
     "appConnectMediumWarning": "Không thể xác minh ứng dụng gửi yêu cầu.",
     "appFlagged": "Cảnh báo ứng dụng!",
+    "appSafetyNotVerified": "Tính an toàn của ứng dụng chưa được xác minh",
+    "appSafetyNotVerifiedMessage": "Chúng tôi không thể xác minh tính an toàn của ứng dụng mà bạn đang cố gắng kết nối. Hãy tiến hành một cách thận trọng.",
     "appSignMessageCriticalWarning": "Chúng tôi tin rằng ứng dụng này độc hại và tin nhắn không an toàn để ký. Nếu phê duyệt, bạn sẽ có thể bị mất tiền.",
     "appSignMessageMediumWarning": "Không thể xác minh ứng dụng gửi yêu cầu.",
     "appSignTransactionCriticalWarning": "Chúng tôi tin rằng ứng dụng này độc hại và giao dịch không an toàn để ký. Nếu phê duyệt, bạn sẽ có thể bị mất tiền.",
@@ -1144,6 +1217,8 @@
     "electrum_reset_to_default": "Bạn có chắc chắn muốn đặt lại cài đặt Electrum của mình về mặc định không?",
     "electrum_saved": "Những thay đổi của bạn đã được lưu thành công. Có thể cần phải khởi động lại ứng dụng để các thay đổi có hiệu lực.",
     "electrum_unable_to_connect": "Không thể kết nối với {server}.",
+    "enableTracking": "Kích hoạt tính năng theo dõi lỗi",
+    "enableTrackingDescription": "Khi bật, bạn giúp ứng dụng của chúng tôi tốt hơn",
     "general": "Tổng quan",
     "header": "Cài đặt",
     "hideBalances": "Ẩn số dư",
@@ -1190,6 +1265,32 @@
     "knowledgeBaseDesc": "Tìm kiếm tài liệu của chúng tôi, đọc Những câu hỏi thường gặp rồi liên hệ",
     "knowledgeBaseTitle": "Kiến thức cơ bản",
     "visitSupportCenter": "Truy cập trung tâm hỗ trợ"
+  },
+  "swap": {
+    "amountExceedingBalance": "Số tiền đã nhập vượt quá số dư khả dụng",
+    "amountPlaceholder": "Nhập số tiền",
+    "balance": "Số dư {0}",
+    "buttonTitle": "Hoán đổi",
+    "emptyState": {
+      "assetsEmptyDesc": "Ví hiện tại của bạn không có bất kỳ tài sản nào, hãy thử nạp tiền vào ví của bạn",
+      "assetsEmptyTitle": "Hiện không có tài sản nào",
+      "clearSearch": "Xóa dữ liệu tìm kiếm",
+      "goBack": "Quay lại",
+      "searchAllNetworks": "Tìm kiếm tất cả các mạng",
+      "searchEmptyDesc": "Hãy thử mở rộng tìm kiếm của bạn",
+      "searchEmptyTitle": "Không có kết quả",
+      "swappableAssetsEmptyDesc": "Ví hiện tại của bạn không có bất kỳ tài sản nào được nhà cung cấp dịch vụ hoán đổi của chúng tôi hỗ trợ",
+      "swappableAssetsEmptyNetworkDesc": "Ví hiện tại của bạn không có bất kỳ tài sản nào trên mạng được chọn được nhà cung cấp hoán đổi của chúng tôi hỗ trợ",
+      "swappableAssetsEmptyNetworkTitle": "Không có tài sản có thể hoán đổi nào khả dụng trên mạng đã chọn",
+      "swappableAssetsEmptyTitle": "Không có tài sản có thể hoán đổi nào"
+    },
+    "findingBestRote": "Tìm lộ trình tốt nhất",
+    "selectAsset": "Chọn tài sản",
+    "sourceListHeader": "Tài sản của bạn",
+    "sourceSearchPlaceholder": "Chọn tài sản để hoán đổi",
+    "targetSearchPlaceholder": "Chọn tài sản để nhận",
+    "title": "Hoán đổi",
+    "unsupportedAssetsHidden": "Các nhà cung cấp hoán đổi của chúng tôi hiện chưa hỗ trợ {count} tài sản khác của bạn"
   },
   "test": {
     "key": "Đang kiểm tra"
@@ -1387,8 +1488,8 @@
     "copied": "Đã sao chép địa chỉ",
     "crypto": "Tiền điện tử",
     "cryptoAndNft": "NFT và tiền điện tử",
-    "ethereumAddressLabel": "Bao gồm mạng lớp 2",
-    "ethereumExplainerBody": "Hệ thống địa chỉ của Ethereum mở rộng đến các mạng Lớp 2 như Polygon, Arbitrum, Optimism và Base, đảm bảo địa chỉ duy nhất của bạn có thể hoạt động ở mọi nơi",
+    "ethereumAddressLabel": "Bao gồm các mạng tương thích với Ethereum",
+    "ethereumExplainerBody": "Hệ thống địa chỉ của Ethereum mở rộng sang các mạng tương thích với Ethereum như Polygon, Arbitrum, OP Mainnet, Base, Linea và Avalanche đảm bảo một địa chỉ của bạn hoạt động ở mọi nơi",
     "ethereumExplainerHeading": "Địa chỉ Ethereum của bạn",
     "tokenAddress": "Địa chỉ {token}"
   },
@@ -1408,7 +1509,7 @@
     "continue": "Tiếp tục",
     "goBack": "Quay lại",
     "myWallets": "Ví của tôi",
-    "searchEmptyDesc": "Hãy thử mở rộng tìm kiếm của bạn",
+    "searchEmptyDesc": "Thử mở rộng tìm kiếm của bạn",
     "searchEmptyTitle": "Không có kết quả",
     "searchPlaceholder": "Chọn tài sản bạn muốn gửi",
     "sendAsset": "Gửi tài sản",
@@ -1446,7 +1547,7 @@
       "manual": "Để tăng khả năng khôi phục, hãy tạo bản sao lưu thủ công cụm từ khôi phục bí mật của bạn để lưu trữ ở nơi an toàn",
       "title": "Tạo bản sao lưu phụ"
     },
-    "secretRecoveryPhrase": "Cụm từ khôi phục bí mật",
+    "secretRecoveryPhrase": "Cụm từ khôi phục bí mật của bạn",
     "tapHereToView": "Nhấn vào đây để xem"
   },
   "walletBackupPrompt": {
@@ -1505,6 +1606,13 @@
     "title": "Xóa bản sao lưu"
   },
   "walletCloudBackupError": {
+    "deleteBackupConfirmation": {
+      "cancel": "Hủy",
+      "description": "Khi xóa đi, bạn xác nhận rằng mã khóa đã bị xóa. Hành động này sẽ xóa mọi tham chiếu đến mã khóa đã xóa khỏi ứng dụng.",
+      "header": "Xóa bản sao lưu mã khóa",
+      "remove": "Xóa",
+      "title": "Bạn có chắc chắn muốn xóa bản sao lưu mã khóa này không?"
+    },
     "ensureICloudKeychainOn": "Trong Tùy chọn mật khẩu trên thiết bị của bạn, hãy đảm bảo iCloud Keychain đã bật để sử dụng cho mật khẩu và mã khóa:",
     "errorCreatingBackup": {
       "cancel": "Hủy",
@@ -1519,7 +1627,10 @@
       "title": "Lỗi khi tạo mã khóa"
     },
     "errorDeletingPasskey": {
-      "title": "Lỗi khi xóa mã khóa"
+      "cancel": "Hủy",
+      "deletedPasskeyPossibility": "Một khả năng khác là mã khóa chứa bản sao lưu của bạn đã bị xóa. Nếu bạn chắc chắn mã khóa đã bị xóa, chúng tôi có thể đánh dấu mã khóa đó và xóa mã khóa đó khỏi ví.",
+      "removeItButton": "Có, hãy xóa",
+      "title": "Lỗi khi xóa bản sao lưu mã khóa"
     },
     "errorInactive": {
       "description": "Nếu đã tạo nhiều mã khóa, bạn có thể thử nhập một bản sao lưu khác. Nếu không, bạn có thể nhập ví của mình bằng Cụm từ khôi phục bí mật gồm 12-24 từ",
@@ -1544,6 +1655,11 @@
       "link": "Bộ phận Hỗ trợ Kraken Wallet ↗",
       "regular": "Nếu điều đó không giải quyết được vấn đề, bạn có thể nhận trợ giúp bằng cách truy cập ",
       "regularWithManualBackup": "Nếu điều đó không giải quyết được vấn đề, bạn có thể nhập Cụm từ khôi phục bí mật 12-24 ký tự hoặc nhận trợ giúp bằng cách truy cập "
+    },
+    "userCanceledBackup": {
+      "cancel": "Hủy",
+      "description": "Để sao lưu ví, bạn phải Đăng nhập lần thứ hai, nếu không, chúng tôi không thể mã hóa ví của bạn một cách an toàn bằng mã khóa.",
+      "title": "Yêu cầu đăng nhập bằng mã khóa"
     }
   },
   "walletConnect": {

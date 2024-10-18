@@ -8,6 +8,7 @@ export const AccountSchema: ObjectSchema = {
   properties: {
     accountNumber: 'int',
     accountCustomName: 'string',
+    avatar: 'string?',
     balance: 'double',
     didLoadOnce: 'bool?',
     wallets: {
@@ -20,6 +21,7 @@ export const AccountSchema: ObjectSchema = {
 export type Account = {
   accountNumber: number;
   accountCustomName: string;
+  avatar: string | null;
   balance: number;
   didLoadOnce?: boolean;
 };

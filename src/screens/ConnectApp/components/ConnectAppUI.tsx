@@ -11,7 +11,7 @@ import { UI_STATE, Verification } from '../types';
 import { Footer } from './Footer';
 import { Preview } from './Preview';
 
-import { WALLET_CONNECT_SUPPORTED_NETWORK_IDS } from '/modules/wallet-connect/consts';
+import { useWalletConnectSupportedNetworkIds } from '/modules/wallet-connect/hooks';
 
 type SessionProposal = Omit<Web3WalletTypes.BaseEventArgs<ProposalTypes.Struct>, 'topic'>;
 
@@ -36,11 +36,11 @@ type Props = {
 export const ConnectAppUI = ({ appMetadata, networkIDs, requiredNetworkIDs, uiState, approveSession, rejectSession, verification }: Props) => {
   const isDataComplete =
     appMetadata !== undefined && approveSession !== undefined && networkIDs !== undefined && requiredNetworkIDs !== undefined && rejectSession !== undefined;
-
+  const walletConnectSupportedNetworkIds = useWalletConnectSupportedNetworkIds();
   
-  const unsupportedRequiredNetworks: string[] = (requiredNetworkIDs || []).filter(networkID => !WALLET_CONNECT_SUPPORTED_NETWORK_IDS.includes(networkID));
+  const unsupportedRequiredNetworks: string[] = (requiredNetworkIDs || []).filter(networkID => !walletConnectSupportedNetworkIds.includes(networkID));
   const hasUnsupportedRequiredNetworks = unsupportedRequiredNetworks.length > 0;
-  const supportedNetworks: string[] = (networkIDs || []).filter(networkID => WALLET_CONNECT_SUPPORTED_NETWORK_IDS.includes(networkID));
+  const supportedNetworks: string[] = (networkIDs || []).filter(networkID => walletConnectSupportedNetworkIds.includes(networkID));
   const hasSupportedNetworks = supportedNetworks.length > 0;
 
   const shouldDisableConfirmation = hasUnsupportedRequiredNetworks || !hasSupportedNetworks;

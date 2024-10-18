@@ -14,6 +14,7 @@ import { SHIM_replaceWrongSolanaMainnetID } from './solanaShim';
 
 import loc from '/loc';
 
+
 export function hexToAscii(message?: string): string {
   return message ? (message.startsWith('0x') ? Buffer.from(message.replace('0x', ''), 'hex').toString('ascii') : message) : '';
 }
@@ -58,7 +59,7 @@ export function isSolanaTransport(transport: unknown): transport is SolanaHarmon
 }
 
 export function getNetworkName(networkID: string): WalletType | '' {
-  const [networkID_] = SHIM_replaceWrongSolanaMainnetID(networkID);
+  const networkID_ = SHIM_replaceWrongSolanaMainnetID(networkID);
 
   return networkIdToNetworkName[networkID_] ?? '';
 }
@@ -72,7 +73,7 @@ export function getNetworkNameFromWalletString(walletString: string): WalletType
 
 export function splitWalletString(walletString: string): [string, string, string] {
   const [chain, id, address] = walletString.split(':');
-  const [chainID] = SHIM_replaceWrongSolanaMainnetID(`${chain}:${id}`);
+  const chainID = SHIM_replaceWrongSolanaMainnetID(`${chain}:${id}`);
   const [chain_, id_] = chainID.split(':');
 
   return [chain_, id_, address];
@@ -140,4 +141,15 @@ export function getWarningFromSimulation(
       message: warnings?.map(({ message }) => message).join('\n') ?? loc.onChainSecurity.signTransactionCriticalWarning,
     };
   }
+}
+
+export function matchPairingTopic(uri: string) {
+  const regex = /wc:(.*?)@/;
+  const match = uri.match(regex);
+
+  if (match && match[1]) {
+    return match[1];
+  }
+
+  return false;
 }

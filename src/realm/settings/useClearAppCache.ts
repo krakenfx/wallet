@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useCallback } from 'react';
 
-import { cancelActiveRequests } from '@/api/base/superFetch';
+import { cancelActiveRequestsAndInvalidateCache } from '@/api/base/fetchClient';
 import { hideToast } from '@/components/Toast';
 import { Routes } from '@/Routes';
 import { runAfterUISync } from '@/utils/runAfterUISync';
@@ -26,7 +26,7 @@ export const useClearAppCache = () => {
   const { cancelAllQueues } = useRealmQueue();
 
   const clearAppCache = useCallback(() => {
-    cancelActiveRequests();
+    cancelActiveRequestsAndInvalidateCache();
     cancelAllQueues();
     hideToast({ id: refreshingAllEvent });
     runAfterUISync(() => {

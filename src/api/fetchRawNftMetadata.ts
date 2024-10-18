@@ -1,5 +1,5 @@
 import { getHarmony } from '@/api/base/apiFactory';
-import { superFetch } from '@/api/base/superFetch';
+import { fetchClient } from '@/api/base/fetchClient';
 import { NftWithRawMetadata, RawNftMetadata } from '@/api/fetchNfts';
 import { NFT } from '@/api/types';
 
@@ -17,7 +17,7 @@ export async function fetchRawNftMetadata(nft: NFT): Promise<NftWithRawMetadata>
     if (result.content && 'isNFT' in result.content && result.content.isNFT) {
       metadata = result.content ?? undefined;
       if (!metadata?.contentType && metadata?.contentUrl) {
-        const contentTypeResult = await superFetch(metadata?.contentUrl, { method: 'HEAD' });
+        const contentTypeResult = await fetchClient(metadata?.contentUrl, { method: 'HEAD' });
         metadata.contentType = contentTypeResult.headers.get('content-type')?.toLowerCase();
       }
     }

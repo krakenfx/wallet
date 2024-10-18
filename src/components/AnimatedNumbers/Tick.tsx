@@ -33,7 +33,9 @@ export const Tick = ({ type, value, fontSize, lineHeight, color }: TickProps) =>
         transform: [{ translateY: animation.value }],
       };
     }
-    return {};
+    return {
+      transform: [{ translateY: getPosition(value, fontSize) }],
+    };
   });
 
   useEffect(() => {

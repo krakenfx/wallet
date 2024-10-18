@@ -1,11 +1,12 @@
 import React from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
+import { useBrowser } from '@/hooks/useBrowser';
 import { AssetExplorer } from '@/realm/assetMetadata';
 
 import { getExplorerIcon } from '@/utils/getExplorerIcon';
@@ -18,11 +19,9 @@ interface Props {
 
 const VISIBLE_EXPLORERS_COUNT = 2;
 
-const openUrl = (url: string) => {
-  Linking.openURL(url);
-};
-
 export const Explorers = ({ explorers }: Props) => {
+  const { openURL } = useBrowser();
+
   if (explorers.length === 0) {
     return null;
   }
@@ -34,7 +33,7 @@ export const Explorers = ({ explorers }: Props) => {
       </Label>
       <View style={styles.explorers}>
         {explorers.slice(0, VISIBLE_EXPLORERS_COUNT).map(explorer => (
-          <Touchable key={explorer.name} style={styles.item} onPress={() => openUrl(explorer.url)} testID={`Explorer-${explorer.name}`}>
+          <Touchable key={explorer.name} style={styles.item} onPress={() => openURL(explorer.url)} testID={`Explorer-${explorer.name}`}>
             <GradientItemBackground />
             <SvgIcon name={getExplorerIcon(explorer.name)} size={24} bgColor="transparent" color="light75" />
             <Label type="boldBody" color="light75" style={styles.label}>

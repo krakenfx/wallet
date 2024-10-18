@@ -44,7 +44,7 @@
       "advanced_info": "Geavanceerde informatie",
       "connected_apps": "Verbonden apps",
       "delete": "Verwijderen",
-      "edit": "Bewerk"
+      "edit": "Bewerken"
     },
     "walletDelete": {
       "error": "De wallet is niet verwijderd, probeer het opnieuw",
@@ -64,8 +64,9 @@
   "advancedAccountInfo": {
     "derivationPath": "Derivatiepad",
     "ethereumDerivationPath": "Derivatiepad van Ethereum",
-    "ethereumDerivationPathContent": "Het derivatiepad van Ethereum wordt gedeeld met Layer 2-netwerken zoals Polygon, Arbitrum, Optimism en Base, wat betekent dat hetzelfde derivatiepad voor al deze netwerken wordt gebruikt.",
+    "ethereumDerivationPathContent": "Het derivatiepad van Ethereum wordt gedeeld met netwerken die compatibel zijn met Ethereum, zoals Polygon, Arbitrum, OP Mainnet, Base, Linea en Avalanche, wat betekent dat hetzelfde derivatiepad voor al deze netwerken wordt gebruikt.",
     "extendedPublicKey": "Extended public key",
+    "includesCompatibleNetworks": "Bevat netwerken die compatibel zijn met Ethereum",
     "includesLayer2Networks": "Omvat Layer 2-netwerken",
     "pathCopied": "Pad gekopieerd",
     "title": "{walletName} - info",
@@ -167,6 +168,31 @@
   },
   "broadcast": {
     "sent": "Verzonden"
+  },
+  "browser": {
+    "clearSearch": "Wissen",
+    "loadingError": {
+      "description": "Verifieer of de URL typfouten heeft en of dat er delen ontbreken",
+      "title": "URL niet gevonden"
+    },
+    "noSearch": {
+      "description": "Typ of plak volledige url om te zoeken",
+      "title": "Begin met zoeken"
+    },
+    "quickActions": {
+      "connectedApps": "Verbonden apps bekijken",
+      "disconnect": "Verbindingen verbreken",
+      "refresh": "Verversen",
+      "share": "Delen"
+    },
+    "searchOnChain": "Onchain zoeken"
+  },
+  "bugTracking": {
+    "allow": "Toestaan",
+    "content": "Observability stelt ons in staat om je wallet-ervaring te controleren en te verbeteren door essentiële gegevens te verzamelen. Dit helpt ons om problemen te identificeren, prestaties te optimaliseren en ervoor te zorgen dat je wallet soepel draait. Jouw gegevens zijn geanonimiseerd en beveiligd! ",
+    "disallow": "Niet toestaan",
+    "skip": "Later vragen",
+    "title": "Help ons Kraken Wallet te verbeteren"
   },
   "coins": {
     "allNetworks": "Alle netwerken",
@@ -322,8 +348,8 @@
     "request_approval": "Goedkeuringsverzoek voor transacties",
     "see_balance": "Je saldo en activiteit bekijken",
     "unsupportedNetwork": "Niet ondersteund netwerk",
-    "unsupportedNetworkDescription": "Deze app gebruikt het {unsupportedNetwork}-netwerk dat op dit moment niet ondersteund wordt. Kraken Wallet ondersteunt momenteel apps op de Ethereum-, Polygon-, Optimism-, Arbitrum- en Solana-netwerken.",
-    "unsupportedNetworksDescription": "Deze app gebruikt {unsupportedNetworks}-netwerken die op dit moment niet ondersteund worden. Kraken Wallet ondersteunt momenteel apps op de Ethereum-, Polygon-, Optimism-, Arbitrum- en Solana-netwerken."
+    "unsupportedNetworkDescription": "Deze app gebruikt het {unsupportedNetwork}-netwerk dat op dit moment niet ondersteund wordt. Kraken Wallet ondersteunt momenteel apps op de Ethereum-, Polygon-, OP Mainnet-, Arbitrum- en Solana-netwerken.",
+    "unsupportedNetworksDescription": "Deze app gebruikt {unsupportedNetworks}-netwerken die op dit moment niet ondersteund worden. Kraken Wallet ondersteunt momenteel apps op de Ethereum-, Polygon-, OP Mainnet-, Arbitrum- en Solana-netwerken."
   },
   "connectedApps": {
     "app_details": {
@@ -393,6 +419,7 @@
     "explore": "Ontdekken"
   },
   "editAccount": {
+    "rename": "Hernoemen",
     "save": "Opslaan",
     "title": "Wallet wijzigen",
     "walletName": "Naam van wallet"
@@ -402,12 +429,18 @@
   },
   "errors": {
     "connectionError": "Verbindingsfout",
+    "exploreSubpage": "Er is een fout opgetreden bij het openen van deze inhoud. Probeer het later opnieuw.",
     "generalFetchError": "Fout, probeer het opnieuw",
     "generic": "Er is iets misgegaan",
     "genericTryAgainLater": "Er ging iets mis, probeer het later opnieuw",
     "network": "Netwerkfout",
     "offline": "Offline",
     "seedMissing": "Kritieke fout! Seed is niet beschikbaar."
+  },
+  "explore": {
+    "continueAccessibilityHint": "De disclaimer accepteren en doorgaan",
+    "disclaimerBody": "Als je in deze sectie op dapps klikt, kom je op externe URL's terecht en moet je altijd je eigen onderzoek doen.",
+    "disclaimerTitle": "Wees voorzichtig"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -618,7 +651,7 @@
     "marketCap": {
       "details": "De totale marktwaarde van een cryptovaluta, berekend door de huidige koers te vermenigvuldigen met de circulerende voorraad.",
       "short": "Marktplafond",
-      "title": "Marktplafond"
+      "title": "Marktkapitalisatie"
     },
     "maxSupply": {
       "details": "Het maximale aantal munten of tokens dat ooit zal bestaan voor een cryptovaluta, zoals gedefinieerd door het protocol van het project.",
@@ -660,6 +693,7 @@
   },
   "network": {
     "arbitrum": "Arbitrum",
+    "avalanche": "Avalanche",
     "base": "Base",
     "bitcoin": "Bitcoin",
     "blast": "Blast",
@@ -667,8 +701,9 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Goerli-testnet",
     "ethereum_sepolia": "Ethereum - Sepolia-testnet",
+    "linea": "Linea",
     "matic": "Matic",
-    "optimism": "Optimism",
+    "optimism": "OP Mainnet",
     "polygon": "Polygon",
     "solana": "Solana",
     "solana_devnet": "Solana - Devnet",
@@ -881,6 +916,41 @@
     "subtitle": "je wallet",
     "title": "Importeren"
   },
+  "onboardingImportSubWallets": {
+    "findingWallets": {
+      "caption": "Dit kan enkele seconden duren",
+      "foundWallets": "{count} wallets gevonden...",
+      "title": "Zoeken naar sub-wallets"
+    },
+    "findSubWallets": {
+      "caption": "Dit kan enkele seconden duren",
+      "foundWallets": "{count} wallets gevonden...",
+      "title": "Zoeken naar sub-wallets"
+    },
+    "importSubWallets": {
+      "importWallets": "{subWalletsCount} wallets importeren",
+      "importWalletsOne": "1 wallet importeren",
+      "subtitle": "We hebben {subWalletsCount} wallets gevonden met activiteit of tegoeden. Selecteer alle wallets die je wilt importeren.",
+      "subtitleOneWallet": "We hebben 1 wallet gevonden met activiteit of tegoeden.",
+      "title": "Selecteer wallets om te importeren",
+      "walletsFound": "{subWalletsCount} wallets gevonden",
+      "walletsFoundOne": "1 wallet gevonden"
+    },
+    "importSubWalletsSuccess": {
+      "continue": "Doorgaan",
+      "subtitle": "Wallets toegevoegd. Je kunt op elk gewenst moment meer toevoegen.",
+      "subtitleOneWallet": "Wallet toegevoegd. Je kunt op elk gewenst moment meer toevoegen.",
+      "title": "{subWalletsCount} wallets geïmporteerd!",
+      "titleOneWallet": "1 wallet geïmporteerd!"
+    },
+    "loadingSubWallets": {
+      "caption": "Dit kan enkele seconden duren",
+      "foundWallets": "{subWalletsCount} wallets gevonden...",
+      "foundWalletsOne": "1 wallet gevonden...",
+      "subtitle": "Dit kan enkele seconden duren",
+      "title": "Zoeken naar sub-wallets"
+    }
+  },
   "onboardingImportWallet": {
     "caption": "Voer jouw geheime herstelzin in om je wallet te importeren.",
     "header": "Jouw wallet importeren",
@@ -907,9 +977,12 @@
     "titleStart": "Om op de hoogte blijven, "
   },
   "onChainSecurity": {
+    "analysingApp": "Analyseren van app...",
     "appConnectCriticalWarning": "We denken dat deze app onbetrouwbaar is en dat verbinding maken onveilig zou zijn. Goedkeuring kan leiden tot verlies van geld.",
     "appConnectMediumWarning": "De app die het verzoek stuurt, kan niet worden geverifieerd.",
     "appFlagged": "App gemarkeerd!",
+    "appSafetyNotVerified": "Veiligheid van app niet geverifieerd",
+    "appSafetyNotVerifiedMessage": "We konden de veiligheid van de app waarmee je verbinding probeert te maken niet verifiëren. Ga voorzichtig te werk.",
     "appSignMessageCriticalWarning": "We denken dat deze app onbetrouwbaar is en dat het onveilig is om het bericht te ondertekenen. Goedkeuring kan leiden tot verlies van geld.",
     "appSignMessageMediumWarning": "De app die het verzoek stuurt, kan niet worden geverifieerd.",
     "appSignTransactionCriticalWarning": "We denken dat deze app onbetrouwbaar is en dat het onveilig is om de transactie te ondertekenen. Goedkeuring kan leiden tot verlies van geld.",
@@ -1144,6 +1217,8 @@
     "electrum_reset_to_default": "Weet je zeker dat je jouw Electrum-instellingen wilt resetten naar de standaardwaarden?",
     "electrum_saved": "Je wijzigingen zijn opgeslagen. Het kan nodig zijn om de app opnieuw op te starten om de wijzigingen door te voeren.",
     "electrum_unable_to_connect": "Kan geen verbinding maken met {server}.",
+    "enableTracking": "Bugtracking inschakelen",
+    "enableTrackingDescription": "Als dit is ingeschakeld, help je ons onze app beter te maken",
     "general": "Algemeen",
     "header": "Instellingen",
     "hideBalances": "Tegoeden verbergen",
@@ -1190,6 +1265,32 @@
     "knowledgeBaseDesc": "Doorzoek onze documenten, lees onze veelgestelde vragen en neem contact op",
     "knowledgeBaseTitle": "Kennisbank",
     "visitSupportCenter": "Ga naar Support Center"
+  },
+  "swap": {
+    "amountExceedingBalance": "Ingevoerd bedrag overschrijdt beschikbaar saldo",
+    "amountPlaceholder": "Bedrag invoeren",
+    "balance": "Saldo {0}",
+    "buttonTitle": "Swap",
+    "emptyState": {
+      "assetsEmptyDesc": "Jouw huidige wallet bevat geen assets, probeer je wallet te financieren",
+      "assetsEmptyTitle": "Geen assets beschikbaar",
+      "clearSearch": "Zoekopdracht verwijderen",
+      "goBack": "Ga terug",
+      "searchAllNetworks": "Alle netwerken zoeken",
+      "searchEmptyDesc": "Probeer je zoekopdracht uit te breiden",
+      "searchEmptyTitle": "Geen resultaten",
+      "swappableAssetsEmptyDesc": "Je huidige wallet heeft geen assets die worden ondersteund door onze swapaanbieders",
+      "swappableAssetsEmptyNetworkDesc": "Je huidige wallet heeft geen assets op het geselecteerde netwerk die worden ondersteund door onze swapaanbieders",
+      "swappableAssetsEmptyNetworkTitle": "Geen verwisselbare assets beschikbaar op geselecteerd netwerk",
+      "swappableAssetsEmptyTitle": "Geen verwisselbare assets beschikbaar"
+    },
+    "findingBestRote": "De beste route zoeken",
+    "selectAsset": "Selecteer assets",
+    "sourceListHeader": "Jouw assets",
+    "sourceSearchPlaceholder": "Selecteer een asset om te ruilen",
+    "targetSearchPlaceholder": "Selecteer een asset om te ontvangen",
+    "title": "Swap",
+    "unsupportedAssetsHidden": "Onze swapproviders ondersteunen {count} van je andere asset(s) nog niet"
   },
   "test": {
     "key": "Testen"
@@ -1387,8 +1488,8 @@
     "copied": "Adres gekopieerd",
     "crypto": "Crypto",
     "cryptoAndNft": "NFT's en crypto",
-    "ethereumAddressLabel": "Omvat Layer 2-netwerken",
-    "ethereumExplainerBody": "Het adressysteem van Ethereum breidt zich uit naar Layer 2-netwerken zoals Polygon, Arbitrum, Optimism en Base. Dit zorgt ervoor dat jouw ene adres overal werkt",
+    "ethereumAddressLabel": "Bevat netwerken die compatibel zijn met Ethereum",
+    "ethereumExplainerBody": "Het adressysteem van Ethereum breidt zich uit naar netwerken die compatibel zijn met Ethereum, zoals Polygon, Arbitrum, OP Mainnet, Base, Linea en Avalanche. Dit zorgt ervoor dat jouw ene adres overal werkt",
     "ethereumExplainerHeading": "Jouw Ethereum-adres",
     "tokenAddress": "{token} adres"
   },
@@ -1446,7 +1547,7 @@
       "manual": "Maak voor een betere herstelbaarheid een handmatige back-up van je geheime herstelzin en bewaar deze op een veilige plek",
       "title": "Een secundaire back-up aanmaken"
     },
-    "secretRecoveryPhrase": "Geheime herstelzin",
+    "secretRecoveryPhrase": "Jouw geheime herstelzin",
     "tapHereToView": "Tik hier om weer te geven"
   },
   "walletBackupPrompt": {
@@ -1505,6 +1606,13 @@
     "title": "Back-up verwijderen"
   },
   "walletCloudBackupError": {
+    "deleteBackupConfirmation": {
+      "cancel": "Annuleren",
+      "description": "Door deze te verwijderen, bevestig je dat de passkey al verwijderd was. Deze actie verwijdert alle verwijzingen naar de verwijderde passkeys uit de app.",
+      "header": "Passkey-backup verwijderen",
+      "remove": "Verwijderen",
+      "title": "Weet je zeker dat je deze passkey-back-up wilt verwijderen?"
+    },
     "ensureICloudKeychainOn": "Controleer in de Wachtwoordopties van je apparaat of iCloud-sleutelhanger is ingeschakeld om te worden gebruikt voor wachtwoorden en passkeys:",
     "errorCreatingBackup": {
       "cancel": "Annuleren",
@@ -1519,7 +1627,10 @@
       "title": "Fout bij het aanmaken van passkey"
     },
     "errorDeletingPasskey": {
-      "title": "Fout bij het verwijderen van passkey"
+      "cancel": "Annuleren",
+      "deletedPasskeyPossibility": "Een andere mogelijkheid is dat de passkey die je back-up bevat al verwijderd is. Als je zeker weet dat de passkey verwijderd is, kunnen we hem als zodanig markeren en uit de wallet verwijderen.",
+      "removeItButton": "Ja, verwijder hem",
+      "title": "Fout bij het verwijderen van passkey-back-up"
     },
     "errorInactive": {
       "description": "Als je meerdere passkeys hebt aangemaakt, kun je proberen een andere back-up te importeren. Anders kun je je wallet importeren met de geheime herstelzin van 12-24 woorden",
@@ -1544,6 +1655,11 @@
       "link": "Kraken Wallet Support",
       "regular": "Als dat je probleem niet oplost, kun je hulp krijgen door te gaan naar ",
       "regularWithManualBackup": "Als dat je probleem niet oplost, kun je je geheime herstelzin van 12-24 woorden importeren of hulp krijgen door te gaan naar "
+    },
+    "userCanceledBackup": {
+      "cancel": "Annuleren",
+      "description": "Om een back-up van je wallet te maken, moet je je een tweede keer aanmelden, anders kunnen we je wallet niet veilig versleutelen met de passkey.",
+      "title": "Aanmelden met passkey vereist"
     }
   },
   "walletConnect": {

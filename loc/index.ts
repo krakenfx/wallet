@@ -9,6 +9,7 @@ import it_IT from './it-IT.json';
 
 import { languages } from './languages';
 import nl_NL from './nl-NL.json';
+import pl_PL from './pl-PL.json';
 import pt_BR from './pt-BR.json';
 import ru_RU from './ru-RU.json';
 import tr_TR from './tr-TR.json';
@@ -17,7 +18,7 @@ import vi_VN from './vi-VN.json';
 
 export type LanguageTag = (typeof languages)[number]['tag'];
 
-type BackendSupportedLanguages = 'en' | 'de' | 'es' | 'fr' | 'it' | 'pt' | 'ru' | 'vi';
+type BackendSupportedLanguages = 'en' | 'de' | 'es' | 'fr' | 'it' | 'pt' | 'ru' | 'vi' | 'pl';
 
 
 export const getIanaLanguage = (): BackendSupportedLanguages => {
@@ -34,6 +35,8 @@ export const getIanaLanguage = (): BackendSupportedLanguages => {
       return 'it';
     case 'pt-BR':
       return 'pt';
+    case 'pl-PL':
+      return 'pl';
     case 'ru-RU':
       return 'ru';
     case 'vi-VN':
@@ -54,6 +57,7 @@ const config = {
   'it-IT': it_IT,
   'nl-NL': nl_NL,
   'pt-BR': pt_BR,
+  'pl-PL': pl_PL,
   'ru-RU': ru_RU,
   'tr-TR': tr_TR,
   'uk-UA': uk_UA,

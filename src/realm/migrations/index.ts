@@ -6,4 +6,5 @@ export * from './migrationsSchemaVersion25';
 export * from './migrationsSchemaVersion26';
 export * from './migrationsSchemaVersion27';
 export * from './migrationsSchemaVersion29';
+export * from './migrationsSchemaVersion31';
 export * from './onMigration';

@@ -89,6 +89,13 @@ export const useSettingsMutations = () => {
     [setSettings],
   );
 
+  const setHasAcceptedExploreWarning = useCallback(
+    (value: boolean) => {
+      setSettings(RealmSettingsKey.hasAcceptedExploreWarning, value);
+    },
+    [setSettings],
+  );
+
   const setCloudBackupCompleted = useCallback(
     (credentialID: string) => {
       setSettings(RealmSettingsKey.cloudBackupCredentialID, credentialID);
@@ -130,6 +137,7 @@ export const useSettingsMutations = () => {
     setAppCurrency,
     setWalletConnectExplainerTaskCompleted,
     setHasViewedWalletBackupPrompt,
+    setHasAcceptedExploreWarning,
     setHideBalances,
     setCloudBackupCompleted,
     setCloudBackupDismissed,

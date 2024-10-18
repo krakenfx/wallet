@@ -41,6 +41,7 @@ function getWalletAddressFromWCAccount(wcAccount: string): string {
 
 export class WalletConnectSessionsManager implements WCSessionsManager {
   private _web3Wallet?: IWeb3Wallet;
+  private _usedDeepLink: boolean = false;
 
   setWeb3Wallet(web3Wallet: IWeb3Wallet) {
     this._web3Wallet = web3Wallet;
@@ -58,14 +59,18 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
     return accountWalletsList;
   }
 
-  async approveSession(sessionProposalID: number, namespaces: SessionNamespace, callback?: { onError?: (error: Error) => void; onSuccess?: () => void }) {
+  async approveSession(
+    sessionProposalID: number,
+    namespaces: SessionNamespace,
+    callback?: { onError?: (error: Error) => void; onSuccess?: (response: any) => void },
+  ) {
     await this._web3Wallet
       ?.approveSession({
         id: sessionProposalID,
         namespaces,
       })
-      .then(() => {
-        callback?.onSuccess?.();
+      .then(response => {
+        callback?.onSuccess?.(response);
         logger({ type: 'approveSession', message: `sessionProposalID: ${sessionProposalID}, namespaces: ${JSON.stringify(namespaces)}` });
       })
       .catch((err: Error) => {
@@ -74,11 +79,11 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
       });
   }
 
-  async disconnectSession(sessionTopic: string, callback?: { onError?: (error: Error) => void; onSuccess?: () => void }) {
+  async disconnectSession(sessionTopic: string, callback?: { onError?: (error: Error) => void; onSuccess?: (topic: string) => void }) {
     await this._web3Wallet
       ?.disconnectSession({ topic: sessionTopic, reason: userDisconnectReason })
       .then(() => {
-        callback?.onSuccess?.();
+        callback?.onSuccess?.(sessionTopic);
         logger({ type: 'disconnectSession', message: `topic: ${sessionTopic}, reason: ${JSON.stringify(userDisconnectReason)}` });
       })
       .catch((err: Error) => {
@@ -128,13 +133,16 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
     }
   }
 
-  async disconnectAccountSessions(accountWallets: RealmResults<RealmWallet>, callback?: { onError?: (error: Error) => void; onSuccess?: () => void }) {
+  async disconnectAccountSessions(
+    accountWallets: RealmResults<RealmWallet>,
+    callback?: { onError?: (error: Error) => void; onSuccess?: (sessionId: string) => void },
+  ) {
     const topics = Object.keys((await this.getAccountSessions(accountWallets)) || {});
 
     topics.forEach(topic => this.disconnectSession(topic, callback));
   }
 
-  async disconnectAllSessionsForAllAccounts(callback?: { onError?: (error: Error) => void; onSuccess?: () => void }) {
+  async disconnectAllSessionsForAllAccounts(callback?: { onError?: (error: Error) => void; onSuccess?: (topic: string) => void }) {
     
     try {
       const topics = Object.keys((await this._web3Wallet?.getActiveSessions()) || {});

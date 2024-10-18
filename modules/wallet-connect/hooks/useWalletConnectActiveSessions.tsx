@@ -8,7 +8,7 @@ import { useRealm } from '@/realm/RealmContext';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
-import { WalletConnectSessionsManager, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
+import { WalletConnectSessionsManager, deleteStaleSessionsFromRealm, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
 
 export const useWalletConnectActiveSessions = (
   accountIdx: number,
@@ -20,6 +20,9 @@ export const useWalletConnectActiveSessions = (
   const [activeSessions, setActiveSessions] = useState<SessionTypes.Struct[]>([]);
   const accountWallets = useRealmWallets(false, accountIdx);
   const getAccountSessions = useCallback(async () => {
+    if (web3WalletRef.current) {
+      deleteStaleSessionsFromRealm(realm, web3WalletRef.current)
+    }
     setActiveSessions(Object.values(await WalletConnectSessionsManager.getAccountSessions(accountWallets)));
   }, [accountWallets]);
 

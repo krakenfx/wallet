@@ -64,8 +64,9 @@
   "advancedAccountInfo": {
     "derivationPath": "Percorso derivazione",
     "ethereumDerivationPath": "Percorso derivazione Ethereum",
-    "ethereumDerivationPathContent": "Il percorso di derivazione di Ethereum è condiviso con i network Layer 2 come Polygon, Arbitrum, Optimism e Base, ovvero per tutti viene utilizzato lo stesso percorso di derivazione.",
+    "ethereumDerivationPathContent": "Il percorso di derivazione di Ethereum è condiviso con i network compatibili con Ethereum, come Polygon, Arbitrum, OP Mainnet, Base, Linea e Avalanche, vale a dire che per tutti viene utilizzato lo stesso percorso di derivazione.",
     "extendedPublicKey": "Chiave pubblica estesa",
+    "includesCompatibleNetworks": "Include i network compatibili con Ethereum",
     "includesLayer2Networks": "Include network Layer 2",
     "pathCopied": "Percorso copiato",
     "title": "{walletName} - info",
@@ -167,6 +168,31 @@
   },
   "broadcast": {
     "sent": "Inviate"
+  },
+  "browser": {
+    "clearSearch": "Cancella",
+    "loadingError": {
+      "description": "Verifica l’URL per individuare eventuali refusi o parti mancanti",
+      "title": "URL non trovato"
+    },
+    "noSearch": {
+      "description": "Digita o incolla l'URL completo per iniziare la ricerca",
+      "title": "Inizia la tua ricerca"
+    },
+    "quickActions": {
+      "connectedApps": "Visualizza le app connesse",
+      "disconnect": "Scollega",
+      "refresh": "Aggiorna",
+      "share": "Condividi"
+    },
+    "searchOnChain": "Cerca on-chain"
+  },
+  "bugTracking": {
+    "allow": "Consenti",
+    "content": "L’osservabilità ci consente di monitorare e migliorare la tua esperienza di wallet raccogliendo dati essenziali. Questo ci aiuta a identificare i problemi, a ottimizzare le prestazioni e a garantire che il tuo wallet funzioni in modo ottimale. I tuoi dati sono anonimizzati e sicuri! ",
+    "disallow": "Non consentire",
+    "skip": "Chiedimelo dopo",
+    "title": "Aiutaci a migliorare Kraken Wallet"
   },
   "coins": {
     "allNetworks": "Tutti i network",
@@ -322,8 +348,8 @@
     "request_approval": "Richiedi approvazione per le transazioni",
     "see_balance": "Visualizza saldi e attività",
     "unsupportedNetwork": "Network non supportato",
-    "unsupportedNetworkDescription": "Questa app usa il network {unsupportedNetwork}, che al momento non è supportato. Kraken Wallet attualmente supporta le app per i network Ethereum, Polygon, Optimism, Arbitrum e Solana.",
-    "unsupportedNetworksDescription": "Questa app usa i network {unsupportedNetworks}, che al momento non sono supportati. Kraken Wallet attualmente supporta le app per i network Ethereum, Polygon, Optimism, Arbitrum e Solana."
+    "unsupportedNetworkDescription": "Questa app usa il network {unsupportedNetwork}, che al momento non è supportato. Kraken Wallet attualmente supporta le app per i network Ethereum, Polygon, OP Mainnet, Arbitrum e Solana.",
+    "unsupportedNetworksDescription": "Questa app usa i network {unsupportedNetworks}, che al momento non sono supportati. Kraken Wallet attualmente supporta le app per i network Ethereum, Polygon, OP Mainnet, Arbitrum e Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -393,6 +419,7 @@
     "explore": "Esplora"
   },
   "editAccount": {
+    "rename": "Rinomina",
     "save": "Salva",
     "title": "Modifica wallet",
     "walletName": "Nome del wallet"
@@ -402,12 +429,18 @@
   },
   "errors": {
     "connectionError": "Errore di connessione",
+    "exploreSubpage": "Si è verificato un problema durante l’apertura di questo contenuto. Riprova più tardi.",
     "generalFetchError": "Errore, riprova",
     "generic": "Qualcosa è andato storto",
     "genericTryAgainLater": "Si è verificato un errore, riprova più tardi",
     "network": "Errore del network",
     "offline": "Offline",
     "seedMissing": "Errore critico. Seed non disponibile."
+  },
+  "explore": {
+    "continueAccessibilityHint": "Accetta il disclaimer e continua",
+    "disclaimerBody": "Toccando le dapp in questa sezione verrai indirizzato a URL esterni; è consigliabile eseguire le opportune verifiche prima di continuare.",
+    "disclaimerTitle": "Presta la massima attenzione quando operi al di fuori di Kraken"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -660,6 +693,7 @@
   },
   "network": {
     "arbitrum": "Arbitrum",
+    "avalanche": "Avalanche",
     "base": "Base",
     "bitcoin": "Bitcoin",
     "blast": "Blast",
@@ -667,8 +701,9 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
     "ethereum_sepolia": "Ethereum - Testnet Sepolia",
+    "linea": "Linea",
     "matic": "Matic",
-    "optimism": "Optimism",
+    "optimism": "OP Mainnet",
     "polygon": "Polygon",
     "solana": "Solana",
     "solana_devnet": "Solana - Devnet",
@@ -881,6 +916,41 @@
     "subtitle": "il tuo wallet",
     "title": "Importa"
   },
+  "onboardingImportSubWallets": {
+    "findingWallets": {
+      "caption": "Questa operazione potrebbe richiedere qualche secondo",
+      "foundWallets": "Trovati {count} wallet...",
+      "title": "Ricerca di sub-wallet"
+    },
+    "findSubWallets": {
+      "caption": "Questa operazione potrebbe richiedere qualche secondo",
+      "foundWallets": "Trovati {count} wallet...",
+      "title": "Ricerca di sub-wallet"
+    },
+    "importSubWallets": {
+      "importWallets": "Importa {subWalletsCount} wallet",
+      "importWalletsOne": "importa 1 wallet",
+      "subtitle": "Abbiamo trovato {subWalletsCount} wallet in attività o con saldi. Seleziona tutti i wallet che desideri importare.",
+      "subtitleOneWallet": "Abbiamo trovato 1 wallet in attività o con saldo.",
+      "title": "Seleziona i wallet da importare",
+      "walletsFound": "{subWalletsCount} wallet trovati",
+      "walletsFoundOne": "1 wallet trovato"
+    },
+    "importSubWalletsSuccess": {
+      "continue": "Continua",
+      "subtitle": "Wallet aggiunti. Puoi aggiungerne altri in qualsiasi momento.",
+      "subtitleOneWallet": "Wallet aggiunto. Puoi aggiungerne altri in qualsiasi momento.",
+      "title": "{subWalletsCount} wallet importati!",
+      "titleOneWallet": "1 wallet importato!"
+    },
+    "loadingSubWallets": {
+      "caption": "Questa operazione potrebbe richiedere qualche secondo",
+      "foundWallets": "Trovati {subWalletsCount} wallet...",
+      "foundWalletsOne": "Trovato 1 wallet...",
+      "subtitle": "Questa operazione potrebbe richiedere qualche secondo",
+      "title": "Ricerca di sub-wallet"
+    }
+  },
   "onboardingImportWallet": {
     "caption": "Per importare il tuo wallet, inserisci la tua frase di recupero segreta.",
     "header": "Importa wallet",
@@ -907,9 +977,12 @@
     "titleStart": "Per ricevere informazioni regolari, "
   },
   "onChainSecurity": {
+    "analysingApp": "Analisi dell'app in corso...",
     "appConnectCriticalWarning": "Riteniamo che questa app sia malevola e la connessione non sicura. L'approvazione potrebbe comportare la perdita di fondi.",
     "appConnectMediumWarning": "Non è possibile verificare l'app da cui è stata inviata la richiesta.",
     "appFlagged": "App segnalata!",
+    "appSafetyNotVerified": "Sicurezza dell'app non verificata",
+    "appSafetyNotVerifiedMessage": "Non siamo riusciti a verificare la sicurezza dell'app alla quale stai cercando di connetterti. Procedere con cautela.",
     "appSignMessageCriticalWarning": "Riteniamo che questa app sia malevola e il messaggio non sicuro da firmare. L'approvazione potrebbe comportare la perdita di fondi.",
     "appSignMessageMediumWarning": "Non è possibile verificare l'app da cui è stata inviata la richiesta.",
     "appSignTransactionCriticalWarning": "Riteniamo che questa app sia malevola e la transazione non sicura da firmare. L'approvazione potrebbe comportare la perdita di fondi.",
@@ -1144,6 +1217,8 @@
     "electrum_reset_to_default": "Ripristinare le impostazioni predefinite di Electrum?",
     "electrum_saved": "Salvataggio delle modifiche completato. Per applicare le modifiche potrebbe essere necessario riavviare l'app.",
     "electrum_unable_to_connect": "Impossibile connettersi a {server}.",
+    "enableTracking": "Attiva il bug tracking",
+    "enableTrackingDescription": "Dopo che lo avrai attivato, contribuirai a migliorare la nostra app",
     "general": "Generale",
     "header": "Impostazioni",
     "hideBalances": "Nascondi saldo",
@@ -1190,6 +1265,32 @@
     "knowledgeBaseDesc": "Cerca nei nostri documenti, leggi le nostre FAQ e contattaci",
     "knowledgeBaseTitle": "Conoscenza di base",
     "visitSupportCenter": "Visita il Centro di supporto"
+  },
+  "swap": {
+    "amountExceedingBalance": "L'importo inserito supera il saldo disponibile",
+    "amountPlaceholder": "Inserisci un importo",
+    "balance": "Saldo {0}",
+    "buttonTitle": "Swap",
+    "emptyState": {
+      "assetsEmptyDesc": "Il tuo wallet non contiene al momento asset; prova a fare versamenti nel tuo wallet",
+      "assetsEmptyTitle": "Nessun asset disponibile",
+      "clearSearch": "Cancella ricerca",
+      "goBack": "Torna indietro",
+      "searchAllNetworks": "Cerca tutti i network",
+      "searchEmptyDesc": "Prova a espandere la tua ricerca",
+      "searchEmptyTitle": "Nessun risultato",
+      "swappableAssetsEmptyDesc": "Il tuo wallet attuale non contiene asset supportati dai nostri fornitori di swap",
+      "swappableAssetsEmptyNetworkDesc": "Il tuo wallet attuale non contiene asset sul network selezionato che sono supportati dai nostri fornitori di swap",
+      "swappableAssetsEmptyNetworkTitle": "Nessun asset disponibile per lo swap sul network selezionato",
+      "swappableAssetsEmptyTitle": "Nessun asset disponibile per lo swap"
+    },
+    "findingBestRote": "Ricerca del percorso migliore",
+    "selectAsset": "Seleziona asset",
+    "sourceListHeader": "I tuoi asset",
+    "sourceSearchPlaceholder": "Seleziona asset da scambiare",
+    "targetSearchPlaceholder": "Seleziona asset da ricevere",
+    "title": "Swap",
+    "unsupportedAssetsHidden": "I nostri fornitori di swap non supportano ancora {count} dei tuoi altri asset"
   },
   "test": {
     "key": "In fase di test"
@@ -1387,8 +1488,8 @@
     "copied": "Indirizzo copiato",
     "crypto": "Crypto",
     "cryptoAndNft": "NFT e crypto",
-    "ethereumAddressLabel": "Include network Layer 2",
-    "ethereumExplainerBody": "Il sistema di indirizzi Ethereum si estende ai network Layer 2 come Polygon, Arbitrum, Optimism e Base, garantendo che il tuo indirizzo univoco sia attivo ovunque",
+    "ethereumAddressLabel": "Include i network compatibili con Ethereum",
+    "ethereumExplainerBody": "Il sistema di indirizzi di Ethereum si estende ai network compatibili con Ethereum, come Polygon, Arbitrum, OP Mainnet, Base, Linea e Avalanche, garantendo ovunque il funzionamento del tuo indirizzo univoco",
     "ethereumExplainerHeading": "Il tuo indirizzo Ethereum",
     "tokenAddress": "Indirizzo {token}"
   },
@@ -1446,7 +1547,7 @@
       "manual": "Per facilitare il recupero, crea un backup manuale della frase di recupero segreta e conservalo in un posto sicuro",
       "title": "Crea un backup secondario"
     },
-    "secretRecoveryPhrase": "Frase di recupero segreta",
+    "secretRecoveryPhrase": "La tua frase di recupero segreta",
     "tapHereToView": "Per visualizzarla, tocca qui"
   },
   "walletBackupPrompt": {
@@ -1505,6 +1606,13 @@
     "title": "Elimina backup"
   },
   "walletCloudBackupError": {
+    "deleteBackupConfirmation": {
+      "cancel": "Annulla",
+      "description": "Con la rimozione, confermi che la passkey è già stata eliminata. Questa azione rimuoverà qualsiasi riferimento alla passkey eliminata dall'app.",
+      "header": "Rimuovi il backup della passkey",
+      "remove": "Rimuovi",
+      "title": "Confermi di voler rimuovere il backup della passkey?"
+    },
     "ensureICloudKeychainOn": "Nelle opzioni per la password del tuo dispositivo, verifica che l’opzione iCloud Keychain sia attivata per l’uso di password e passkey:",
     "errorCreatingBackup": {
       "cancel": "Annulla",
@@ -1519,7 +1627,10 @@
       "title": "Errore durante la creazione della passkey"
     },
     "errorDeletingPasskey": {
-      "title": "Errore durante l'eliminazione della passkey"
+      "cancel": "Annulla",
+      "deletedPasskeyPossibility": "Un'altra possibilità è che la passkey contenente il tuo backup sia già stata eliminata. Se hai eliminato la passkey con certezza, possiamo segnarla come tale e rimuoverla dal wallet.",
+      "removeItButton": "Sì, rimuovi",
+      "title": "Errore durante l'eliminazione del backup della passkey"
     },
     "errorInactive": {
       "description": "Se hai creato più passkey, puoi provare a importare un altro backup. Altrimenti, puoi importare il tuo wallet usando la frase di recupero segreta di 12-24 parole",
@@ -1544,6 +1655,11 @@
       "link": "Assistenza clienti di Kraken Wallet ↗",
       "regular": "Se il problema persiste, puoi ricevere assistenza visitando ",
       "regularWithManualBackup": "Se il problema persiste, puoi importare la frase di recupero segreta di 12-24 parole o ricevere assistenza visitando "
+    },
+    "userCanceledBackup": {
+      "cancel": "Annulla",
+      "description": "Per eseguire il backup del tuo wallet, devi accedere una seconda volta, altrimenti non possiamo criptare in modo sicuro il tuo wallet utilizzando la passkey.",
+      "title": "È richiesto l'accesso tramite passkey"
     }
   },
   "walletConnect": {

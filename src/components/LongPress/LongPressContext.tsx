@@ -3,6 +3,7 @@ import React, { PropsWithChildren, createContext, useContext, useMemo, useRef, u
 import { StyleProp, ViewStyle } from 'react-native';
 import { AnimatedStyle, Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { useGlobalState } from '@/components/GlobalState';
 import { LongPressOptionItemProps } from '@/components/LongPress/LongPressOptionItem';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 
@@ -70,6 +71,7 @@ export const LongPressProvider: React.FC<PropsWithChildren> = ({ children }) => 
     }
   }, [size]);
   const pressOutCallback = useRef<PressOutCallback>();
+  const [, setShowNavTabs] = useGlobalState('showNavTabs');
 
   const onLongPress = (item: React.ReactNode, positionX: number, positionY: number, onPressOutCallback?: () => void) => {
     
@@ -102,9 +104,15 @@ export const LongPressProvider: React.FC<PropsWithChildren> = ({ children }) => 
         });
       }
     });
+
+    
+    setShowNavTabs(false);
   };
 
   const onPressOut = (skipAnimation?: boolean, callback?: PressOutCallback) => {
+    
+    setShowNavTabs(true);
+
     if (pressOutCallback.current) {
       pressOutCallback.current();
       pressOutCallback.current = undefined;

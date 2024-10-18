@@ -1,11 +1,12 @@
 import React from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { IconName, SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
+import { useBrowser } from '@/hooks/useBrowser';
 import { AssetMetadata } from '@/realm/assetMetadata';
 
 import loc from '/loc';
@@ -51,6 +52,8 @@ const iconMappings: IconMapping = {
 };
 
 const LinkItem = ({ url, skipLabel }: ItemProps) => {
+  const { openURL } = useBrowser();
+
   const getIconAndLabel = () => {
     let icon: IconName | undefined;
     let label: string | undefined;
@@ -80,9 +83,7 @@ const LinkItem = ({ url, skipLabel }: ItemProps) => {
   };
   const { icon, label } = getIconAndLabel();
 
-  const onPress = () => {
-    Linking.openURL(url);
-  };
+  const onPress = () => openURL(url);
 
   return (
     <Touchable style={[styles.item, !!label && styles.itemWithLabel]} onPress={onPress} testID={`Link-${icon}`}>

@@ -1,6 +1,6 @@
 import { NETWORK_FILTERS, UINetworkFilters } from './types';
 
-export function getNetworkFilters(wasPressed: UINetworkFilters, prevNetworkFilters: NETWORK_FILTERS[], withBtcAndDoge?: boolean): NETWORK_FILTERS[] {
+export function getNetworkFilters(wasPressed: UINetworkFilters, prevNetworkFilters: NETWORK_FILTERS[], allNetworkFiltersLength: number): NETWORK_FILTERS[] {
   
   if (wasPressed === 'all') {
     return [];
@@ -14,8 +14,6 @@ export function getNetworkFilters(wasPressed: UINetworkFilters, prevNetworkFilte
   } else {
     prevNetworkFiltersSet.add(wasPressed);
   }
-
-  const allNetworkFiltersLength = withBtcAndDoge ? Object.keys(NETWORK_FILTERS).length : Object.keys(NETWORK_FILTERS).length - 2; 
 
   
   const areAllNetworkFiltersSelected = allNetworkFiltersLength === prevNetworkFiltersSet.size;

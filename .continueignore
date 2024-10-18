@@ -1,0 +1,7 @@
+# Ignore everything
+*
+
+# Include the src directory and everything in it
+!/src/
+!/src/**
+src/assets/**

@@ -79,7 +79,7 @@ export const showRefreshLoading = async () =>
     testID: 'UpdatingToast',
     dismissMode: 'event',
     iconLottieSource: require('@/assets/lottie/refreshSpinner.json'),
-    blackListRoutes: [Routes.Onboarding],
+    blackListRoutes: [Routes.Onboarding, Routes.Browser],
   });
 
 const showRefreshDataUpToDate = async () =>
@@ -89,7 +89,7 @@ const showRefreshDataUpToDate = async () =>
     text: loc._.upToDate,
     testID: 'UpToDateToast',
     duration: 1000, 
-    blackListRoutes: [Routes.Onboarding],
+    blackListRoutes: [Routes.Onboarding, Routes.Browser],
   });
 
 export const useRefreshStateActions = () => {
@@ -104,10 +104,10 @@ export const useRefreshStateActions = () => {
   const realm = useRealm();
   const accountNumber = useCurrentAccountNumber();
   const timeoutId = useRef<NodeJS.Timeout>();
-  const preventRefresh = useRef<boolean>();
+  const preventRefresh = useRef(false);
 
   const refreshAll = useCallback(
-    async (showToastImmediately?: boolean) => {
+    async ({ showToast }: { showToast?: 'immediately' | 'delayed' | 'none' } = { showToast: 'delayed' }) => {
       if (preventRefresh.current) {
         return;
       }
@@ -119,9 +119,9 @@ export const useRefreshStateActions = () => {
       preventRefresh.current = true;
 
       const fetchResults: boolean[] = []; 
-      if (showToastImmediately) {
+      if (showToast === 'immediately') {
         await showRefreshLoading();
-      } else {
+      } else if (showToast === 'delayed') {
         timeoutId.current = setTimeout(showRefreshLoading, REFRESH_TOAST_TIMEOUT);
       }
 
@@ -131,6 +131,8 @@ export const useRefreshStateActions = () => {
       fetchAllTransactionsForAllNetworks();
       
 
+      
+      
       fetchResults.push(await fetchAndUpdateTokens());
       fetchResults.push(await fetchTokenPrices());
 
@@ -144,7 +146,7 @@ export const useRefreshStateActions = () => {
       preventRefresh.current = false;
 
       
-      if (!fetchResults.includes(false)) {
+      if (!fetchResults.includes(false) && showToast !== 'none') {
         showRefreshDataUpToDate();
       }
     },

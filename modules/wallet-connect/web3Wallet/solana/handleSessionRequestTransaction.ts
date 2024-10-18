@@ -2,16 +2,17 @@ import { SessionTypes, Verify } from '@walletconnect/types';
 import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 import Realm from 'realm';
 
-import { showToast } from '@/components/Toast';
 import { RealmishWallet } from '@/onChain/wallets/base';
 import { SolanaHarmonyTransport, SolanaNetwork } from '@/onChain/wallets/solana';
 import { WalletStorage, getWalletStorage } from '@/onChain/wallets/walletState';
 import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
+import { handleRedirect } from '../../connectAppWithWalletConnect/handleRedirect';
 import { ReactNavigationDispatch } from '../../types';
 import { getWarningFromSimulation } from '../../utils';
 import { navigateToSignGenericTransactionPage } from '../navigateToSignGenericTransactionPage';
 import { responseRejected } from '../responseRejected';
+import { sessionIsDeepLinked } from '../sessionIsDeepLinked';
 
 import { SolanaSignTransaction } from './types';
 import { adaptSolanaSignTransactionToDefinitionList, getWalletConnectRespondSessionRequestResult } from './utils';
@@ -88,7 +89,8 @@ export async function handleSessionRequestTransaction({
       const result = getWalletConnectRespondSessionRequestResult(transaction, signedTransaction);
 
       await web3Wallet.respondSessionRequest({ topic, response: { id, result, jsonrpc: '2.0' } });
-      await showToast({ type: 'success', icon: 'plug-connected', text: loc.walletConnect.request_fulfilled });
+      const isDeepLinked = sessionIsDeepLinked(realm, topic);
+      await handleRedirect(activeSessions[topic], 'request_fulfilled', isDeepLinked);
     } catch (error) {
       web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');

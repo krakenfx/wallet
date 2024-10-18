@@ -9,7 +9,6 @@ import { Label } from '@/components/Label';
 import checkMarkImage from '@/screens/Explainer/images/checkMark.png';
 import ethereumAddress from '@/screens/Explainer/images/ethereumAddress.png';
 /* eslint-disable-next-line import/no-unresolved */
-import exclamationImage from '@/screens/Explainer/images/exclamation.png';
 
 import loc from '/loc';
 
@@ -77,7 +76,7 @@ export const ExplainerWhitelistedKraken = () => (
   </Explainer>
 );
 export const ExplainerBlacklisted = () => (
-  <Explainer image={<Image source={exclamationImage} style={styles.image} />} heading={loc.tokenLists.likelySpamHelp}>
+  <Explainer image={<Image source={require('@/assets/images/common/exclamation.png')} style={styles.image} />} heading={loc.tokenLists.likelySpamHelp}>
     {loc.tokenLists.likelySpamInfo}
   </Explainer>
 );
@@ -89,7 +88,9 @@ export const ExplainerBackupRecoverability = () => (
 );
 
 export const ExplainerTokenContract = () => (
-  <Explainer image={<Image source={exclamationImage} style={styles.image} />} heading={loc.marketData.tokenContractWarning.header}>
+  <Explainer
+    image={<Image source={require('@/assets/images/common/exclamation.png')} style={styles.image} />}
+    heading={loc.marketData.tokenContractWarning.header}>
     {loc.formatString(loc.marketData.tokenContractWarning.description, {
       boldDescription: (
         <Label type="regularBody" color="yellow600">
@@ -115,12 +116,12 @@ export const ExplainerDomainMatch = () => (
   </Explainer>
 );
 export const ExplainerDomainMismatch = () => (
-  <Explainer image={<Image source={exclamationImage} />} heading={loc.onChainSecurity.domainMismatch}>
+  <Explainer image={<Image source={require('@/assets/images/common/exclamation.png')} />} heading={loc.onChainSecurity.domainMismatch}>
     {loc.onChainSecurity.domainMismatchInfo}
   </Explainer>
 );
 export const ExplainerKnownSecurityRisk = () => (
-  <Explainer image={<Image source={exclamationImage} />} heading={loc.onChainSecurity.knownSecurityRisk}>
+  <Explainer image={<Image source={require('@/assets/images/common/exclamation.png')} />} heading={loc.onChainSecurity.knownSecurityRisk}>
     {loc.onChainSecurity.knownSecurityRiskInfo}
   </Explainer>
 );

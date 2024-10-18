@@ -18,11 +18,12 @@ import i14 from 'kraken-wallet-network-icons/src/evmos.svg';
 import i15 from 'kraken-wallet-network-icons/src/fantom.svg';
 import i16 from 'kraken-wallet-network-icons/src/gnosis.svg';
 import i17 from 'kraken-wallet-network-icons/src/harmony.svg';
-import i18 from 'kraken-wallet-network-icons/src/moonriver.svg';
-import i19 from 'kraken-wallet-network-icons/src/optimism.svg';
-import i20 from 'kraken-wallet-network-icons/src/polygon.svg';
-import i21 from 'kraken-wallet-network-icons/src/solana-devnet.svg';
-import i22 from 'kraken-wallet-network-icons/src/solana.svg';
+import i18 from 'kraken-wallet-network-icons/src/linea.svg';
+import i19 from 'kraken-wallet-network-icons/src/moonriver.svg';
+import i20 from 'kraken-wallet-network-icons/src/optimism.svg';
+import i21 from 'kraken-wallet-network-icons/src/polygon.svg';
+import i22 from 'kraken-wallet-network-icons/src/solana-devnet.svg';
+import i23 from 'kraken-wallet-network-icons/src/solana.svg';
 
 export const networkIcons = {
   'arbitrum': i1,
@@ -42,11 +43,12 @@ export const networkIcons = {
   'fantom': i15,
   'gnosis': i16,
   'harmony': i17,
-  'moonriver': i18,
-  'optimism': i19,
-  'polygon': i20,
-  'solana-devnet': i21,
-  'solana': i22,
+  'linea': i18,
+  'moonriver': i19,
+  'optimism': i20,
+  'polygon': i21,
+  'solana-devnet': i22,
+  'solana': i23,
 };
 
 const mapNetworkNameToNetworkIconName = (networkName: string) => {

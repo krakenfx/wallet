@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useEffect, useState } from 'react';
 import Config from 'react-native-config';
 
+import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { featureFlagsKey } from '@/secureStore/asyncStorageKeys';
 
 import { createErrorHandlerWithContext, handleError } from '/helpers/errorHandler';
@@ -10,8 +11,13 @@ const FEATURE_FLAGS_ENABLED = __DEV__ || Config.INTERNAL_RELEASE;
 
 export enum FeatureFlag {
   AssetMarketDataEnabled = 'AssetMarketDataEnabled',
+  ExploreScreenEnabled = 'ExploreScreenEnabled',
   iCloudBackupEnabled = 'iCloudBackupEnabled',
+  NewNetworksEnabled = 'NewNetworksEnabled',
+  InAppBrowserEnabled = 'InAppBrowserEnabled',
 }
+
+export const NEW_NETWORKS = [ChainAgnostic.NETWORK_LINEA] as const;
 
 export function getFeatureFlagsFromStorage<FMap = Record<FeatureFlag, boolean | undefined>>(): FMap {
   const result = {} as FMap;
@@ -56,6 +62,14 @@ export async function enableFeature(key: FeatureFlag) {
 export async function disableFeature(key: FeatureFlag) {
   featureFlagObj[key] = false;
   await saveFeatureFlagsToStorage();
+}
+
+export function isNewNetworksEnabled() {
+  return isFeatureEnabled(FeatureFlag.NewNetworksEnabled);
+}
+
+export function isInAppBrowserEnabled() {
+  return isFeatureEnabled(FeatureFlag.InAppBrowserEnabled);
 }
 
 export const useFeatureFlag = (key: FeatureFlag) => {

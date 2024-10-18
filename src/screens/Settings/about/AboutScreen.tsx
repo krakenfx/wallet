@@ -1,7 +1,8 @@
 import React from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
+import { useBrowser } from '@/hooks/useBrowser';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { SettingsItem } from '@/screens/Settings/components';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -11,17 +12,18 @@ import loc from '/loc';
 
 export const AboutScreen = () => {
   useHeaderTitle(loc.settings.about);
+  const { openURL } = useBrowser();
 
   const handlePrivacyPolicyPress = () => {
-    Linking.openURL(URLs.privacyPolicy);
+    openURL(URLs.privacyPolicy);
   };
 
   const handleTermsOfServicePress = () => {
-    Linking.openURL(URLs.termsOfService);
+    openURL(URLs.termsOfService);
   };
 
   const handleReleaseNotesPress = () => {
-    Linking.openURL(URLs.releaseNotes);
+    openURL(URLs.releaseNotes);
   };
 
   return (

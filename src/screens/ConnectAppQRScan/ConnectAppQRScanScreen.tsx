@@ -14,40 +14,20 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
 import { useRealm } from '@/realm/RealmContext';
-import { REALM_TYPE_WALLET, RealmWallet } from '@/realm/wallets';
+import { useWalletConnectTopicsMutations } from '@/realm/walletConnectTopics/useWalletConnectTopicsMutations';
 import { NavigationProps, NoParamsRoute } from '@/Routes';
 import { Routes } from '@/Routes';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { ConnectedApps } from './components/ConnectedApps';
-import { handleWalletConnectUri } from './components/handleWalletConnectUri';
 
 import loc from '/loc';
+import { handleConnectToDappWalletConnectUri } from '/modules/wallet-connect/handleConnectToDappWalletConnectUri';
+import { matchPairingTopic } from '/modules/wallet-connect/utils';
 
 export type ScanQRCodeParams = {
   successRoute?: NoParamsRoute;
-};
-
-const UseDeepLinkWcUri = ({ handleData, wcUri }: { handleData: (data: string) => void; wcUri: string }) => {
-  let decodedWcUri: string;
-
-  try {
-    decodedWcUri = decodeURIComponent(wcUri);
-  } catch (e) {
-    decodedWcUri = wcUri;
-  }
-
-  
-  if (!decodedWcUri.startsWith('wc:')) {
-    decodedWcUri = 'wc:' + decodedWcUri;
-  }
-
-  useEffect(() => {
-    handleData(decodedWcUri);
-  }, [decodedWcUri, handleData, wcUri]);
-
-  return null;
 };
 
 export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'ConnectAppQRScan'>) => {
@@ -56,25 +36,35 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
   const { height } = useSafeAreaFrame();
   const bottomSheetModalRef = useRef<BottomSheetModalRef>(null);
   const [permissionResponse, requestPermission] = useCameraPermissions();
+  const { saveTopicToRealm } = useWalletConnectTopicsMutations();
 
   const handleData = useCallback(
-    (data: string) => {
-      handleWalletConnectUri(data, realm, navigation.dispatch, getSeed);
-      bottomSheetModalRef?.current?.close();
-      if (route.params?.successRoute) {
-        navigation.replace(route.params.successRoute);
-      } else {
-        if (navigation.canGoBack()) {
-          navigation.goBack();
+    (data: string, isDeepLinked: boolean) => {
+      const pairingTopic = matchPairingTopic(data);
+
+      if (pairingTopic) {
+        const topic = '';
+
+        saveTopicToRealm(pairingTopic, topic, isDeepLinked);
+        handleConnectToDappWalletConnectUri(data, realm, navigation.dispatch, getSeed);
+        bottomSheetModalRef?.current?.close();
+        if (route.params?.successRoute) {
+          navigation.replace(route.params.successRoute);
         } else {
-          navigation.replace(Routes.Home);
+          if (navigation.canGoBack()) {
+            navigation.goBack();
+          } else {
+            navigation.replace(Routes.Home);
+          }
         }
       }
     },
-    [navigation, realm, route.params, getSeed],
+    [navigation, realm, route.params, getSeed, saveTopicToRealm],
   );
 
-  const handleBarCodeScanned = ({ data }: BarcodeScanningResult) => handleData(data);
+  const handleBarCodeScanned = ({ data }: BarcodeScanningResult) => {
+    handleData(data, false);
+  };
 
   useEffect(() => {
     requestPermission();
@@ -90,7 +80,7 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
 
   const onPasteAddress = useCallback(async () => {
     const code = await Clipboard.getString();
-    handleData(code);
+    handleData(code, false);
   }, [handleData]);
 
   const renderFooter = useCallback(
@@ -111,24 +101,13 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
   const insets = useSafeAreaInsets();
 
   const minSheetHeight = (height - insets.bottom) / 2;
-  const hasDeepLinkWcUri = !!route.path;
-
-  
-  const initialWalletsCount = realm.objects<RealmWallet>(REALM_TYPE_WALLET).snapshot().length;
-  const isOnboarding = initialWalletsCount === 0;
-
-  if (isOnboarding) {
-    navigation.navigate(Routes.Onboarding, { screen: 'OnboardingIntro' });
-    return null;
-  }
 
   return (
     <GradientScreenView insetHeaderHeight={false}>
-      {!hasDeepLinkWcUri && permissionResponse?.status === PermissionStatus.DENIED ? (
+      {permissionResponse?.status === PermissionStatus.DENIED ? (
         <Label style={styles.missingPermission}>{loc.scan.missingPermission}</Label>
       ) : (
         <>
-          {hasDeepLinkWcUri && <UseDeepLinkWcUri wcUri={route.path} handleData={handleData} />}
           <Camera onBarcodeScanned={handleBarCodeScanned} style={StyleSheet.absoluteFill} />
           <View
             style={[

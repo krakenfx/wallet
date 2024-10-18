@@ -1,15 +1,19 @@
 import { SessionTypes, Verify } from '@walletconnect/types';
 import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
+import Realm from 'realm';
 
 import { showToast } from '@/components/Toast';
 import { RealmishWallet } from '@/onChain/wallets/base';
 import { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
 import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
+import { handleRedirect } from '../../connectAppWithWalletConnect/handleRedirect';
 import { ReactNavigationDispatch } from '../../types';
 import { getWarningFromSimulation } from '../../utils';
 import { navigateToSignGenericMessagePage } from '../navigateToSignGenericMessagePage';
 import { responseRejected } from '../responseRejected';
+
+import { sessionIsDeepLinked } from '../sessionIsDeepLinked';
 
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from './types';
 import { adaptMessageToEVMMessageSimulationInput, adaptToGenericMessage } from './utils';
@@ -37,6 +41,7 @@ export async function handleSessionRequestMessage({
   getSeed,
   transport,
   verified,
+  realm,
 }: {
   activeSessions: Record<string, SessionTypes.Struct>;
   foundWallet: RealmishWallet;
@@ -50,6 +55,7 @@ export async function handleSessionRequestMessage({
   getSeed: SecuredKeychainContext['getSeed'];
   transport: EVMHarmonyTransport;
   verified: Verify.Context['verified'];
+  realm: Realm;
 }) {
   
   
@@ -100,8 +106,9 @@ export async function handleSessionRequestMessage({
       const signedMessage = await network[ethSignFnMap[method]]({ ...foundWallet, seed: { data: seed } }, rawMessage);
 
       await web3Wallet.respondSessionRequest({ topic, response: { id, result: signedMessage, jsonrpc: '2.0' } });
+      const isDeepLinked = sessionIsDeepLinked(realm, topic);
 
-      await showToast({ type: 'success', icon: 'plug-connected', text: loc.walletConnect.request_fulfilled });
+      await handleRedirect(activeSessions[topic], 'request_fulfilled', isDeepLinked);
     } catch (error) {
       web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');

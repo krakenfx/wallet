@@ -1,9 +1,11 @@
 import * as StoreReview from 'expo-store-review';
 import { useCallback } from 'react';
 
-import { InteractionManager, Linking } from 'react-native';
+import { InteractionManager } from 'react-native';
 
 import { RealmSettingsKey, useSettingsByKey, useSettingsMutations } from '@/realm/settings';
+
+import { useBrowser } from './useBrowser';
 
 import { URLs } from '/config';
 import { handleError } from '/helpers/errorHandler';
@@ -13,7 +15,7 @@ import loc from '/loc';
 export const useStoreReviewTask = () => {
   const taskCompleted = useSettingsByKey(RealmSettingsKey.storeReviewTaskCompleted);
   const { setSettings } = useSettingsMutations();
-
+  const { openURL } = useBrowser();
   const onNegativeAnswer = useCallback(async () => {
     const feedbackRequested = await showAlert(
       loc.storeReview.nagativeAlertTitle,
@@ -22,7 +24,7 @@ export const useStoreReviewTask = () => {
       loc.storeReview.notReally,
     );
     if (feedbackRequested) {
-      Linking.openURL(URLs.supportContact);
+      openURL(URLs.supportContact);
     }
   }, []);
 

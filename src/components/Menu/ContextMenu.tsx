@@ -6,7 +6,7 @@ import { IconName, SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { ColorName } from '@/theme/themes';
 
-type ContextMenuItem = {
+export type ContextMenuItem = {
   title: string;
   subtitle?: string;
   onPress: () => void;

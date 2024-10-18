@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
@@ -13,13 +13,15 @@ import { useIsOnline } from '@/utils/useConnectionManager';
 import { HomeAssetsPanel } from './components/HomeAssetsPanel';
 import { HomeBalance } from './components/HomeBalance';
 import { HomeHeaderAccountSwitch } from './components/HomeHeaderAccountSwitch';
-import { HomeHeaderLeft } from './components/HomeHeaderLeft';
 import { HomeHeaderRight } from './components/HomeHeaderRight';
 import { RecentActivity } from './components/RecentActivity';
 import { UniversalSendReceiveButtons } from './components/UniversalSendReceiveButtons';
 import { WaitForAccountSwitchSettled } from './components/WaitForAccountSwitchSettled';
 
 import { useInitWalletConnect } from '/modules/wallet-connect/hooks';
+
+
+const AUTO_REFRESH_INTERVAL = 120_000;
 
 export const HomeScreen = ({ navigation }: NavigationProps<'Home'>) => {
   const isOnline = useIsOnline();
@@ -31,9 +33,19 @@ export const HomeScreen = ({ navigation }: NavigationProps<'Home'>) => {
   const { refreshAll } = useRefreshStateActions();
   const pullToRefresh = () => {
     if (isOnline) {
-      refreshAll(true);
+      refreshAll({ showToast: 'immediately' });
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refreshAll({ showToast: 'none' });
+    }, AUTO_REFRESH_INTERVAL);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <GradientScreenView>
@@ -59,7 +71,7 @@ const styles = StyleSheet.create({
 
 HomeScreen.navigationOptions = navigationStyle({
   headerTransparent: true,
-  headerTitle: () => <HomeHeaderAccountSwitch />,
+  headerTitle: () => '',
   headerRight: () => <HomeHeaderRight />,
-  headerLeft: () => <HomeHeaderLeft />,
+  headerLeft: () => <HomeHeaderAccountSwitch />,
 });

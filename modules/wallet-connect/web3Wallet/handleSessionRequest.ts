@@ -96,6 +96,7 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
           getSeed,
           transport,
           verified,
+          realm,
         });
         break;
       }
@@ -152,6 +153,7 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
           web3Wallet,
           getSeed,
           verified,
+          realm,
         });
         break;
       }

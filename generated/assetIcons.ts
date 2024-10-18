@@ -860,979 +860,981 @@ import i855 from 'kraken-wallet-cryptoicons/src/kas.svg';
 import i856 from 'kraken-wallet-cryptoicons/src/kat.svg';
 import i857 from 'kraken-wallet-cryptoicons/src/kava.svg';
 import i858 from 'kraken-wallet-cryptoicons/src/kbc.svg';
-import i859 from 'kraken-wallet-cryptoicons/src/kcs.svg';
-import i860 from 'kraken-wallet-cryptoicons/src/kda.svg';
-import i861 from 'kraken-wallet-cryptoicons/src/kdon.svg';
-import i862 from 'kraken-wallet-cryptoicons/src/keep.svg';
-import i863 from 'kraken-wallet-cryptoicons/src/key.svg';
-import i864 from 'kraken-wallet-cryptoicons/src/keycat.svg';
-import i865 from 'kraken-wallet-cryptoicons/src/kick.svg';
-import i866 from 'kraken-wallet-cryptoicons/src/kilt.svg';
-import i867 from 'kraken-wallet-cryptoicons/src/kin.svg';
-import i868 from 'kraken-wallet-cryptoicons/src/kint.svg';
-import i869 from 'kraken-wallet-cryptoicons/src/kira.svg';
-import i870 from 'kraken-wallet-cryptoicons/src/kiro.svg';
-import i871 from 'kraken-wallet-cryptoicons/src/klay.svg';
-import i872 from 'kraken-wallet-cryptoicons/src/klv.svg';
-import i873 from 'kraken-wallet-cryptoicons/src/kma.svg';
-import i874 from 'kraken-wallet-cryptoicons/src/kmd.svg';
-import i875 from 'kraken-wallet-cryptoicons/src/knc.svg';
-import i876 from 'kraken-wallet-cryptoicons/src/kndc.svg';
-import i877 from 'kraken-wallet-cryptoicons/src/kok.svg';
-import i878 from 'kraken-wallet-cryptoicons/src/kol.svg';
-import i879 from 'kraken-wallet-cryptoicons/src/kono.svg';
-import i880 from 'kraken-wallet-cryptoicons/src/kore.svg';
-import i881 from 'kraken-wallet-cryptoicons/src/kp3r.svg';
-import i882 from 'kraken-wallet-cryptoicons/src/krb.svg';
-import i883 from 'kraken-wallet-cryptoicons/src/krl.svg';
-import i884 from 'kraken-wallet-cryptoicons/src/krw.svg';
-import i885 from 'kraken-wallet-cryptoicons/src/ksm.svg';
-import i886 from 'kraken-wallet-cryptoicons/src/ksp.svg';
-import i887 from 'kraken-wallet-cryptoicons/src/ktn.svg';
-import i888 from 'kraken-wallet-cryptoicons/src/kub.svg';
-import i889 from 'kraken-wallet-cryptoicons/src/kyl.svg';
-import i890 from 'kraken-wallet-cryptoicons/src/la.svg';
-import i891 from 'kraken-wallet-cryptoicons/src/lab.svg';
-import i892 from 'kraken-wallet-cryptoicons/src/lace.svg';
-import i893 from 'kraken-wallet-cryptoicons/src/ladys.svg';
-import i894 from 'kraken-wallet-cryptoicons/src/lamb.svg';
-import i895 from 'kraken-wallet-cryptoicons/src/land.svg';
-import i896 from 'kraken-wallet-cryptoicons/src/layer.svg';
-import i897 from 'kraken-wallet-cryptoicons/src/lazio.svg';
-import i898 from 'kraken-wallet-cryptoicons/src/lba.svg';
-import i899 from 'kraken-wallet-cryptoicons/src/lbc.svg';
-import i900 from 'kraken-wallet-cryptoicons/src/lcc.svg';
-import i901 from 'kraken-wallet-cryptoicons/src/lcdot.svg';
-import i902 from 'kraken-wallet-cryptoicons/src/lcx.svg';
-import i903 from 'kraken-wallet-cryptoicons/src/ldo.svg';
-import i904 from 'kraken-wallet-cryptoicons/src/lend.svg';
-import i905 from 'kraken-wallet-cryptoicons/src/leo.svg';
-import i906 from 'kraken-wallet-cryptoicons/src/lever.svg';
-import i907 from 'kraken-wallet-cryptoicons/src/lien.svg';
-import i908 from 'kraken-wallet-cryptoicons/src/like.svg';
-import i909 from 'kraken-wallet-cryptoicons/src/lina.svg';
-import i910 from 'kraken-wallet-cryptoicons/src/link.svg';
-import i911 from 'kraken-wallet-cryptoicons/src/lit.svg';
-import i912 from 'kraken-wallet-cryptoicons/src/lith.svg';
-import i913 from 'kraken-wallet-cryptoicons/src/lkk.svg';
-import i914 from 'kraken-wallet-cryptoicons/src/lky.svg';
-import i915 from 'kraken-wallet-cryptoicons/src/lmc.svg';
-import i916 from 'kraken-wallet-cryptoicons/src/ln.svg';
-import i917 from 'kraken-wallet-cryptoicons/src/lnchx.svg';
-import i918 from 'kraken-wallet-cryptoicons/src/loc.svg';
-import i919 from 'kraken-wallet-cryptoicons/src/locg.svg';
-import i920 from 'kraken-wallet-cryptoicons/src/lode.svg';
-import i921 from 'kraken-wallet-cryptoicons/src/loka.svg';
-import i922 from 'kraken-wallet-cryptoicons/src/loki.svg';
-import i923 from 'kraken-wallet-cryptoicons/src/lon.svg';
-import i924 from 'kraken-wallet-cryptoicons/src/looks.svg';
-import i925 from 'kraken-wallet-cryptoicons/src/loom.svg';
-import i926 from 'kraken-wallet-cryptoicons/src/love.svg';
-import i927 from 'kraken-wallet-cryptoicons/src/lpf.svg';
-import i928 from 'kraken-wallet-cryptoicons/src/lpool.svg';
-import i929 from 'kraken-wallet-cryptoicons/src/lpt.svg';
-import i930 from 'kraken-wallet-cryptoicons/src/lqd.svg';
-import i931 from 'kraken-wallet-cryptoicons/src/lqty.svg';
-import i932 from 'kraken-wallet-cryptoicons/src/lrc.svg';
-import i933 from 'kraken-wallet-cryptoicons/src/lrg.svg';
-import i934 from 'kraken-wallet-cryptoicons/src/lsk.svg';
-import i935 from 'kraken-wallet-cryptoicons/src/lss.svg';
-import i936 from 'kraken-wallet-cryptoicons/src/ltc.svg';
-import i937 from 'kraken-wallet-cryptoicons/src/lto.svg';
-import i938 from 'kraken-wallet-cryptoicons/src/ltx.svg';
-import i939 from 'kraken-wallet-cryptoicons/src/luca.svg';
-import i940 from 'kraken-wallet-cryptoicons/src/lun.svg';
-import i941 from 'kraken-wallet-cryptoicons/src/luna.svg';
-import i942 from 'kraken-wallet-cryptoicons/src/lunc.svg';
-import i943 from 'kraken-wallet-cryptoicons/src/lusd.svg';
-import i944 from 'kraken-wallet-cryptoicons/src/lxt.svg';
-import i945 from 'kraken-wallet-cryptoicons/src/lym.svg';
-import i946 from 'kraken-wallet-cryptoicons/src/lyxe.svg';
-import i947 from 'kraken-wallet-cryptoicons/src/maapl.svg';
-import i948 from 'kraken-wallet-cryptoicons/src/maga.svg';
-import i949 from 'kraken-wallet-cryptoicons/src/magic.svg';
-import i950 from 'kraken-wallet-cryptoicons/src/maha.svg';
-import i951 from 'kraken-wallet-cryptoicons/src/mai.svg';
-import i952 from 'kraken-wallet-cryptoicons/src/maid.svg';
-import i953 from 'kraken-wallet-cryptoicons/src/maki.svg';
-import i954 from 'kraken-wallet-cryptoicons/src/man.svg';
-import i955 from 'kraken-wallet-cryptoicons/src/mana.svg';
-import i956 from 'kraken-wallet-cryptoicons/src/manta.svg';
-import i957 from 'kraken-wallet-cryptoicons/src/map.svg';
-import i958 from 'kraken-wallet-cryptoicons/src/maps.svg';
-import i959 from 'kraken-wallet-cryptoicons/src/marsh.svg';
-import i960 from 'kraken-wallet-cryptoicons/src/mask.svg';
-import i961 from 'kraken-wallet-cryptoicons/src/mass.svg';
-import i962 from 'kraken-wallet-cryptoicons/src/math.svg';
-import i963 from 'kraken-wallet-cryptoicons/src/matic.svg';
-import i964 from 'kraken-wallet-cryptoicons/src/maticx.svg';
-import i965 from 'kraken-wallet-cryptoicons/src/matter.svg';
-import i966 from 'kraken-wallet-cryptoicons/src/mb.svg';
-import i967 from 'kraken-wallet-cryptoicons/src/mbc.svg';
-import i968 from 'kraken-wallet-cryptoicons/src/mbl.svg';
-import i969 from 'kraken-wallet-cryptoicons/src/mbox.svg';
-import i970 from 'kraken-wallet-cryptoicons/src/mc.svg';
-import i971 from 'kraken-wallet-cryptoicons/src/mcb.svg';
-import i972 from 'kraken-wallet-cryptoicons/src/mco.svg';
-import i973 from 'kraken-wallet-cryptoicons/src/mco2.svg';
-import i974 from 'kraken-wallet-cryptoicons/src/mcx.svg';
-import i975 from 'kraken-wallet-cryptoicons/src/mda.svg';
-import i976 from 'kraken-wallet-cryptoicons/src/mdao.svg';
-import i977 from 'kraken-wallet-cryptoicons/src/mds.svg';
-import i978 from 'kraken-wallet-cryptoicons/src/mdt.svg';
-import i979 from 'kraken-wallet-cryptoicons/src/mdx.svg';
-import i980 from 'kraken-wallet-cryptoicons/src/med.svg';
-import i981 from 'kraken-wallet-cryptoicons/src/medx.svg';
-import i982 from 'kraken-wallet-cryptoicons/src/meetone.svg';
-import i983 from 'kraken-wallet-cryptoicons/src/mem.svg';
-import i984 from 'kraken-wallet-cryptoicons/src/meme.svg';
-import i985 from 'kraken-wallet-cryptoicons/src/mer.svg';
-import i986 from 'kraken-wallet-cryptoicons/src/met.svg';
-import i987 from 'kraken-wallet-cryptoicons/src/meta.svg';
-import i988 from 'kraken-wallet-cryptoicons/src/metano.svg';
-import i989 from 'kraken-wallet-cryptoicons/src/metis.svg';
-import i990 from 'kraken-wallet-cryptoicons/src/mew.svg';
-import i991 from 'kraken-wallet-cryptoicons/src/mex.svg';
-import i992 from 'kraken-wallet-cryptoicons/src/mfg.svg';
-import i993 from 'kraken-wallet-cryptoicons/src/mft.svg';
-import i994 from 'kraken-wallet-cryptoicons/src/mhc.svg';
-import i995 from 'kraken-wallet-cryptoicons/src/mim.svg';
-import i996 from 'kraken-wallet-cryptoicons/src/mimatic.svg';
-import i997 from 'kraken-wallet-cryptoicons/src/mina.svg';
-import i998 from 'kraken-wallet-cryptoicons/src/miota.svg';
-import i999 from 'kraken-wallet-cryptoicons/src/mir.svg';
-import i1000 from 'kraken-wallet-cryptoicons/src/mith.svg';
-import i1001 from 'kraken-wallet-cryptoicons/src/mitx.svg';
-import i1002 from 'kraken-wallet-cryptoicons/src/mjt.svg';
-import i1003 from 'kraken-wallet-cryptoicons/src/mkr.svg';
-import i1004 from 'kraken-wallet-cryptoicons/src/mlb.svg';
-import i1005 from 'kraken-wallet-cryptoicons/src/mlk.svg';
-import i1006 from 'kraken-wallet-cryptoicons/src/mln.svg';
-import i1007 from 'kraken-wallet-cryptoicons/src/mmt.svg';
-import i1008 from 'kraken-wallet-cryptoicons/src/mmxn.svg';
-import i1009 from 'kraken-wallet-cryptoicons/src/mnde.svg';
-import i1010 from 'kraken-wallet-cryptoicons/src/mnet.svg';
-import i1011 from 'kraken-wallet-cryptoicons/src/mngo.svg';
-import i1012 from 'kraken-wallet-cryptoicons/src/mns.svg';
-import i1013 from 'kraken-wallet-cryptoicons/src/mnst.svg';
-import i1014 from 'kraken-wallet-cryptoicons/src/mnt.svg';
-import i1015 from 'kraken-wallet-cryptoicons/src/mntl.svg';
-import i1016 from 'kraken-wallet-cryptoicons/src/mnw.svg';
-import i1017 from 'kraken-wallet-cryptoicons/src/moac.svg';
-import i1018 from 'kraken-wallet-cryptoicons/src/mob.svg';
-import i1019 from 'kraken-wallet-cryptoicons/src/mochi.svg';
-import i1020 from 'kraken-wallet-cryptoicons/src/mod.svg';
-import i1021 from 'kraken-wallet-cryptoicons/src/modefi.svg';
-import i1022 from 'kraken-wallet-cryptoicons/src/mof.svg';
-import i1023 from 'kraken-wallet-cryptoicons/src/mog.svg';
-import i1024 from 'kraken-wallet-cryptoicons/src/mom.svg';
-import i1025 from 'kraken-wallet-cryptoicons/src/mona.svg';
-import i1026 from 'kraken-wallet-cryptoicons/src/moni.svg';
-import i1027 from 'kraken-wallet-cryptoicons/src/moon.svg';
-import i1028 from 'kraken-wallet-cryptoicons/src/mot.svg';
-import i1029 from 'kraken-wallet-cryptoicons/src/movez.svg';
-import i1030 from 'kraken-wallet-cryptoicons/src/movr.svg';
-import i1031 from 'kraken-wallet-cryptoicons/src/mph.svg';
-import i1032 from 'kraken-wallet-cryptoicons/src/mpl.svg';
-import i1033 from 'kraken-wallet-cryptoicons/src/msol.svg';
-import i1034 from 'kraken-wallet-cryptoicons/src/msr.svg';
-import i1035 from 'kraken-wallet-cryptoicons/src/mswap.svg';
-import i1036 from 'kraken-wallet-cryptoicons/src/mta.svg';
-import i1037 from 'kraken-wallet-cryptoicons/src/mtc.svg';
-import i1038 from 'kraken-wallet-cryptoicons/src/mth.svg';
-import i1039 from 'kraken-wallet-cryptoicons/src/mtl.svg';
-import i1040 from 'kraken-wallet-cryptoicons/src/mtn.svg';
-import i1041 from 'kraken-wallet-cryptoicons/src/mtrg.svg';
-import i1042 from 'kraken-wallet-cryptoicons/src/mts.svg';
-import i1043 from 'kraken-wallet-cryptoicons/src/mtv.svg';
-import i1044 from 'kraken-wallet-cryptoicons/src/mue.svg';
-import i1045 from 'kraken-wallet-cryptoicons/src/multi.svg';
-import i1046 from 'kraken-wallet-cryptoicons/src/musd.svg';
-import i1047 from 'kraken-wallet-cryptoicons/src/music.svg';
-import i1048 from 'kraken-wallet-cryptoicons/src/mvc.svg';
-import i1049 from 'kraken-wallet-cryptoicons/src/mvl.svg';
-import i1050 from 'kraken-wallet-cryptoicons/src/mvp.svg';
-import i1051 from 'kraken-wallet-cryptoicons/src/mwat.svg';
-import i1052 from 'kraken-wallet-cryptoicons/src/mwc.svg';
-import i1053 from 'kraken-wallet-cryptoicons/src/mx.svg';
-import i1054 from 'kraken-wallet-cryptoicons/src/mxc.svg';
-import i1055 from 'kraken-wallet-cryptoicons/src/mxm.svg';
-import i1056 from 'kraken-wallet-cryptoicons/src/mxw.svg';
-import i1057 from 'kraken-wallet-cryptoicons/src/myb.svg';
-import i1058 from 'kraken-wallet-cryptoicons/src/myro.svg';
-import i1059 from 'kraken-wallet-cryptoicons/src/myst.svg';
-import i1060 from 'kraken-wallet-cryptoicons/src/naka.svg';
-import i1061 from 'kraken-wallet-cryptoicons/src/nano.svg';
-import i1062 from 'kraken-wallet-cryptoicons/src/nas.svg';
-import i1063 from 'kraken-wallet-cryptoicons/src/nav.svg';
-import i1064 from 'kraken-wallet-cryptoicons/src/nbs.svg';
-import i1065 from 'kraken-wallet-cryptoicons/src/nbt.svg';
-import i1066 from 'kraken-wallet-cryptoicons/src/ncash.svg';
-import i1067 from 'kraken-wallet-cryptoicons/src/nct.svg';
-import i1068 from 'kraken-wallet-cryptoicons/src/ndau.svg';
-import i1069 from 'kraken-wallet-cryptoicons/src/near.svg';
-import i1070 from 'kraken-wallet-cryptoicons/src/nebl.svg';
-import i1071 from 'kraken-wallet-cryptoicons/src/nec.svg';
-import i1072 from 'kraken-wallet-cryptoicons/src/nem.svg';
-import i1073 from 'kraken-wallet-cryptoicons/src/neo.svg';
-import i1074 from 'kraken-wallet-cryptoicons/src/neon.svg';
-import i1075 from 'kraken-wallet-cryptoicons/src/neos.svg';
-import i1076 from 'kraken-wallet-cryptoicons/src/neox.svg';
-import i1077 from 'kraken-wallet-cryptoicons/src/nest.svg';
-import i1078 from 'kraken-wallet-cryptoicons/src/neu.svg';
-import i1079 from 'kraken-wallet-cryptoicons/src/new.svg';
-import i1080 from 'kraken-wallet-cryptoicons/src/nex.svg';
-import i1081 from 'kraken-wallet-cryptoicons/src/nexo.svg';
-import i1082 from 'kraken-wallet-cryptoicons/src/nexxo.svg';
-import i1083 from 'kraken-wallet-cryptoicons/src/nft.svg';
-import i1084 from 'kraken-wallet-cryptoicons/src/nftb.svg';
-import i1085 from 'kraken-wallet-cryptoicons/src/nftx.svg';
-import i1086 from 'kraken-wallet-cryptoicons/src/ngc.svg';
-import i1087 from 'kraken-wallet-cryptoicons/src/ngm.svg';
-import i1088 from 'kraken-wallet-cryptoicons/src/nif.svg';
-import i1089 from 'kraken-wallet-cryptoicons/src/nim.svg';
-import i1090 from 'kraken-wallet-cryptoicons/src/niox.svg';
-import i1091 from 'kraken-wallet-cryptoicons/src/nix.svg';
-import i1092 from 'kraken-wallet-cryptoicons/src/nkn.svg';
-import i1093 from 'kraken-wallet-cryptoicons/src/nlc2.svg';
-import i1094 from 'kraken-wallet-cryptoicons/src/nlg.svg';
-import i1095 from 'kraken-wallet-cryptoicons/src/nmc.svg';
-import i1096 from 'kraken-wallet-cryptoicons/src/nmr.svg';
-import i1097 from 'kraken-wallet-cryptoicons/src/noia.svg';
-import i1098 from 'kraken-wallet-cryptoicons/src/nord.svg';
-import i1099 from 'kraken-wallet-cryptoicons/src/normie.svg';
-import i1100 from 'kraken-wallet-cryptoicons/src/normilio.svg';
-import i1101 from 'kraken-wallet-cryptoicons/src/nox.svg';
-import i1102 from 'kraken-wallet-cryptoicons/src/nper.svg';
-import i1103 from 'kraken-wallet-cryptoicons/src/npxs.svg';
-import i1104 from 'kraken-wallet-cryptoicons/src/nrg.svg';
-import i1105 from 'kraken-wallet-cryptoicons/src/nrv.svg';
-import i1106 from 'kraken-wallet-cryptoicons/src/nrve.svg';
-import i1107 from 'kraken-wallet-cryptoicons/src/ntic.svg';
-import i1108 from 'kraken-wallet-cryptoicons/src/ntrn.svg';
-import i1109 from 'kraken-wallet-cryptoicons/src/ntvrk.svg';
-import i1110 from 'kraken-wallet-cryptoicons/src/nu.svg';
-import i1111 from 'kraken-wallet-cryptoicons/src/nuls.svg';
-import i1112 from 'kraken-wallet-cryptoicons/src/num.svg';
-import i1113 from 'kraken-wallet-cryptoicons/src/nusd.svg';
-import i1114 from 'kraken-wallet-cryptoicons/src/nwc.svg';
-import i1115 from 'kraken-wallet-cryptoicons/src/nxm.svg';
-import i1116 from 'kraken-wallet-cryptoicons/src/nxs.svg';
-import i1117 from 'kraken-wallet-cryptoicons/src/nxt.svg';
-import i1118 from 'kraken-wallet-cryptoicons/src/nye.svg';
-import i1119 from 'kraken-wallet-cryptoicons/src/nym.svg';
-import i1120 from 'kraken-wallet-cryptoicons/src/oag.svg';
-import i1121 from 'kraken-wallet-cryptoicons/src/oak.svg';
-import i1122 from 'kraken-wallet-cryptoicons/src/oax.svg';
-import i1123 from 'kraken-wallet-cryptoicons/src/ocean.svg';
-import i1124 from 'kraken-wallet-cryptoicons/src/ocn.svg';
-import i1125 from 'kraken-wallet-cryptoicons/src/oddz.svg';
-import i1126 from 'kraken-wallet-cryptoicons/src/ode.svg';
-import i1127 from 'kraken-wallet-cryptoicons/src/og.svg';
-import i1128 from 'kraken-wallet-cryptoicons/src/ogn.svg';
-import i1129 from 'kraken-wallet-cryptoicons/src/ogo.svg';
-import i1130 from 'kraken-wallet-cryptoicons/src/ohm.svg';
-import i1131 from 'kraken-wallet-cryptoicons/src/oil.svg';
-import i1132 from 'kraken-wallet-cryptoicons/src/ok.svg';
-import i1133 from 'kraken-wallet-cryptoicons/src/okb.svg';
-import i1134 from 'kraken-wallet-cryptoicons/src/oks.svg';
-import i1135 from 'kraken-wallet-cryptoicons/src/olt.svg';
-import i1136 from 'kraken-wallet-cryptoicons/src/om.svg';
-import i1137 from 'kraken-wallet-cryptoicons/src/omg.svg';
-import i1138 from 'kraken-wallet-cryptoicons/src/omni.svg';
-import i1139 from 'kraken-wallet-cryptoicons/src/ondo.svg';
-import i1140 from 'kraken-wallet-cryptoicons/src/one.svg';
-import i1141 from 'kraken-wallet-cryptoicons/src/ong.svg';
-import i1142 from 'kraken-wallet-cryptoicons/src/onion.svg';
-import i1143 from 'kraken-wallet-cryptoicons/src/onston.svg';
-import i1144 from 'kraken-wallet-cryptoicons/src/ont.svg';
-import i1145 from 'kraken-wallet-cryptoicons/src/ooe.svg';
-import i1146 from 'kraken-wallet-cryptoicons/src/ooki.svg';
-import i1147 from 'kraken-wallet-cryptoicons/src/oot.svg';
-import i1148 from 'kraken-wallet-cryptoicons/src/op.svg';
-import i1149 from 'kraken-wallet-cryptoicons/src/open.svg';
-import i1150 from 'kraken-wallet-cryptoicons/src/opium.svg';
-import i1151 from 'kraken-wallet-cryptoicons/src/opq.svg';
-import i1152 from 'kraken-wallet-cryptoicons/src/ops.svg';
-import i1153 from 'kraken-wallet-cryptoicons/src/opsec.svg';
-import i1154 from 'kraken-wallet-cryptoicons/src/opul.svg';
-import i1155 from 'kraken-wallet-cryptoicons/src/opx.svg';
-import i1156 from 'kraken-wallet-cryptoicons/src/orai.svg';
-import i1157 from 'kraken-wallet-cryptoicons/src/orbs.svg';
-import i1158 from 'kraken-wallet-cryptoicons/src/orc.svg';
-import i1159 from 'kraken-wallet-cryptoicons/src/orca.svg';
-import i1160 from 'kraken-wallet-cryptoicons/src/orcat.svg';
-import i1161 from 'kraken-wallet-cryptoicons/src/ordi.svg';
-import i1162 from 'kraken-wallet-cryptoicons/src/orn.svg';
-import i1163 from 'kraken-wallet-cryptoicons/src/osmo.svg';
-import i1164 from 'kraken-wallet-cryptoicons/src/ost.svg';
-import i1165 from 'kraken-wallet-cryptoicons/src/ouro.svg';
-import i1166 from 'kraken-wallet-cryptoicons/src/ousd.svg';
-import i1167 from 'kraken-wallet-cryptoicons/src/ovc.svg';
-import i1168 from 'kraken-wallet-cryptoicons/src/oxen.svg';
-import i1169 from 'kraken-wallet-cryptoicons/src/oxt.svg';
-import i1170 from 'kraken-wallet-cryptoicons/src/oxy.svg';
-import i1171 from 'kraken-wallet-cryptoicons/src/pac.svg';
-import i1172 from 'kraken-wallet-cryptoicons/src/pai.svg';
-import i1173 from 'kraken-wallet-cryptoicons/src/paint.svg';
-import i1174 from 'kraken-wallet-cryptoicons/src/pal.svg';
-import i1175 from 'kraken-wallet-cryptoicons/src/palm.svg';
-import i1176 from 'kraken-wallet-cryptoicons/src/paper.svg';
-import i1177 from 'kraken-wallet-cryptoicons/src/par.svg';
-import i1178 from 'kraken-wallet-cryptoicons/src/part.svg';
-import i1179 from 'kraken-wallet-cryptoicons/src/pasc.svg';
-import i1180 from 'kraken-wallet-cryptoicons/src/pax.svg';
-import i1181 from 'kraken-wallet-cryptoicons/src/paxg.svg';
-import i1182 from 'kraken-wallet-cryptoicons/src/pay.svg';
-import i1183 from 'kraken-wallet-cryptoicons/src/payx.svg';
-import i1184 from 'kraken-wallet-cryptoicons/src/pazzi.svg';
-import i1185 from 'kraken-wallet-cryptoicons/src/pbirb.svg';
-import i1186 from 'kraken-wallet-cryptoicons/src/pbr.svg';
-import i1187 from 'kraken-wallet-cryptoicons/src/pbtc.svg';
-import i1188 from 'kraken-wallet-cryptoicons/src/pbx.svg';
-import i1189 from 'kraken-wallet-cryptoicons/src/pchu.svg';
-import i1190 from 'kraken-wallet-cryptoicons/src/pcx.svg';
-import i1191 from 'kraken-wallet-cryptoicons/src/pdex.svg';
-import i1192 from 'kraken-wallet-cryptoicons/src/pearl.svg';
-import i1193 from 'kraken-wallet-cryptoicons/src/peas.svg';
-import i1194 from 'kraken-wallet-cryptoicons/src/pel.svg';
-import i1195 from 'kraken-wallet-cryptoicons/src/pendle.svg';
-import i1196 from 'kraken-wallet-cryptoicons/src/pepe.svg';
-import i1197 from 'kraken-wallet-cryptoicons/src/perl.svg';
-import i1198 from 'kraken-wallet-cryptoicons/src/perp.svg';
-import i1199 from 'kraken-wallet-cryptoicons/src/pha.svg';
-import i1200 from 'kraken-wallet-cryptoicons/src/phb.svg';
-import i1201 from 'kraken-wallet-cryptoicons/src/phnx.svg';
-import i1202 from 'kraken-wallet-cryptoicons/src/phtk.svg';
-import i1203 from 'kraken-wallet-cryptoicons/src/phx.svg';
-import i1204 from 'kraken-wallet-cryptoicons/src/pickle.svg';
-import i1205 from 'kraken-wallet-cryptoicons/src/pink.svg';
-import i1206 from 'kraken-wallet-cryptoicons/src/pip.svg';
-import i1207 from 'kraken-wallet-cryptoicons/src/pirl.svg';
-import i1208 from 'kraken-wallet-cryptoicons/src/pivx.svg';
-import i1209 from 'kraken-wallet-cryptoicons/src/pkb.svg';
-import i1210 from 'kraken-wallet-cryptoicons/src/pla.svg';
-import i1211 from 'kraken-wallet-cryptoicons/src/play.svg';
-import i1212 from 'kraken-wallet-cryptoicons/src/plbt.svg';
-import i1213 from 'kraken-wallet-cryptoicons/src/plc.svg';
-import i1214 from 'kraken-wallet-cryptoicons/src/pldai.svg';
-import i1215 from 'kraken-wallet-cryptoicons/src/plgr.svg';
-import i1216 from 'kraken-wallet-cryptoicons/src/plr.svg';
-import i1217 from 'kraken-wallet-cryptoicons/src/plt.svg';
-import i1218 from 'kraken-wallet-cryptoicons/src/pltc.svg';
-import i1219 from 'kraken-wallet-cryptoicons/src/plu.svg';
-import i1220 from 'kraken-wallet-cryptoicons/src/plusdc.svg';
-import i1221 from 'kraken-wallet-cryptoicons/src/pma.svg';
-import i1222 from 'kraken-wallet-cryptoicons/src/pmgt.svg';
-import i1223 from 'kraken-wallet-cryptoicons/src/pmon.svg';
-import i1224 from 'kraken-wallet-cryptoicons/src/png.svg';
-import i1225 from 'kraken-wallet-cryptoicons/src/pnk.svg';
-import i1226 from 'kraken-wallet-cryptoicons/src/pnt.svg';
-import i1227 from 'kraken-wallet-cryptoicons/src/poa.svg';
-import i1228 from 'kraken-wallet-cryptoicons/src/poe.svg';
-import i1229 from 'kraken-wallet-cryptoicons/src/pokt.svg';
-import i1230 from 'kraken-wallet-cryptoicons/src/pol.svg';
-import i1231 from 'kraken-wallet-cryptoicons/src/polc.svg';
-import i1232 from 'kraken-wallet-cryptoicons/src/polis.svg';
-import i1233 from 'kraken-wallet-cryptoicons/src/polk.svg';
-import i1234 from 'kraken-wallet-cryptoicons/src/pols.svg';
-import i1235 from 'kraken-wallet-cryptoicons/src/polx.svg';
-import i1236 from 'kraken-wallet-cryptoicons/src/poly-2.svg';
-import i1237 from 'kraken-wallet-cryptoicons/src/poly.svg';
-import i1238 from 'kraken-wallet-cryptoicons/src/polyx.svg';
-import i1239 from 'kraken-wallet-cryptoicons/src/pom.svg';
-import i1240 from 'kraken-wallet-cryptoicons/src/pond.svg';
-import i1241 from 'kraken-wallet-cryptoicons/src/ponke.svg';
-import i1242 from 'kraken-wallet-cryptoicons/src/pont.svg';
-import i1243 from 'kraken-wallet-cryptoicons/src/pool.svg';
-import i1244 from 'kraken-wallet-cryptoicons/src/pop.svg';
-import i1245 from 'kraken-wallet-cryptoicons/src/popcat.svg';
-import i1246 from 'kraken-wallet-cryptoicons/src/pork.svg';
-import i1247 from 'kraken-wallet-cryptoicons/src/porto.svg';
-import i1248 from 'kraken-wallet-cryptoicons/src/pot.svg';
-import i1249 from 'kraken-wallet-cryptoicons/src/potnoy.svg';
-import i1250 from 'kraken-wallet-cryptoicons/src/power.svg';
-import i1251 from 'kraken-wallet-cryptoicons/src/powr.svg';
-import i1252 from 'kraken-wallet-cryptoicons/src/ppay.svg';
-import i1253 from 'kraken-wallet-cryptoicons/src/ppc.svg';
-import i1254 from 'kraken-wallet-cryptoicons/src/ppp.svg';
-import i1255 from 'kraken-wallet-cryptoicons/src/ppt.svg';
-import i1256 from 'kraken-wallet-cryptoicons/src/pre.svg';
-import i1257 from 'kraken-wallet-cryptoicons/src/premia.svg';
-import i1258 from 'kraken-wallet-cryptoicons/src/prime.svg';
-import i1259 from 'kraken-wallet-cryptoicons/src/prl.svg';
-import i1260 from 'kraken-wallet-cryptoicons/src/pro.svg';
-import i1261 from 'kraken-wallet-cryptoicons/src/prom.svg';
-import i1262 from 'kraken-wallet-cryptoicons/src/props.svg';
-import i1263 from 'kraken-wallet-cryptoicons/src/pros.svg';
-import i1264 from 'kraken-wallet-cryptoicons/src/prq.svg';
-import i1265 from 'kraken-wallet-cryptoicons/src/psg.svg';
-import i1266 from 'kraken-wallet-cryptoicons/src/psp.svg';
-import i1267 from 'kraken-wallet-cryptoicons/src/pst.svg';
-import i1268 from 'kraken-wallet-cryptoicons/src/pstake.svg';
-import i1269 from 'kraken-wallet-cryptoicons/src/ptc.svg';
-import i1270 from 'kraken-wallet-cryptoicons/src/ptoy.svg';
-import i1271 from 'kraken-wallet-cryptoicons/src/pundix.svg';
-import i1272 from 'kraken-wallet-cryptoicons/src/pups.svg';
-import i1273 from 'kraken-wallet-cryptoicons/src/pyr.svg';
-import i1274 from 'kraken-wallet-cryptoicons/src/pyth.svg';
-import i1275 from 'kraken-wallet-cryptoicons/src/pyusd.svg';
-import i1276 from 'kraken-wallet-cryptoicons/src/qash.svg';
-import i1277 from 'kraken-wallet-cryptoicons/src/qbit.svg';
-import i1278 from 'kraken-wallet-cryptoicons/src/qi.svg';
-import i1279 from 'kraken-wallet-cryptoicons/src/qkc.svg';
-import i1280 from 'kraken-wallet-cryptoicons/src/qlc.svg';
-import i1281 from 'kraken-wallet-cryptoicons/src/qnt.svg';
-import i1282 from 'kraken-wallet-cryptoicons/src/qqq.svg';
-import i1283 from 'kraken-wallet-cryptoicons/src/qrdo.svg';
-import i1284 from 'kraken-wallet-cryptoicons/src/qrl.svg';
-import i1285 from 'kraken-wallet-cryptoicons/src/qsp.svg';
-import i1286 from 'kraken-wallet-cryptoicons/src/qtum.svg';
-import i1287 from 'kraken-wallet-cryptoicons/src/quick.svg';
-import i1288 from 'kraken-wallet-cryptoicons/src/qun.svg';
-import i1289 from 'kraken-wallet-cryptoicons/src/qwark.svg';
-import i1290 from 'kraken-wallet-cryptoicons/src/r.svg';
-import i1291 from 'kraken-wallet-cryptoicons/src/raca.svg';
-import i1292 from 'kraken-wallet-cryptoicons/src/rad.svg';
-import i1293 from 'kraken-wallet-cryptoicons/src/radar.svg';
-import i1294 from 'kraken-wallet-cryptoicons/src/rads.svg';
-import i1295 from 'kraken-wallet-cryptoicons/src/rae.svg';
-import i1296 from 'kraken-wallet-cryptoicons/src/rai.svg';
-import i1297 from 'kraken-wallet-cryptoicons/src/ramp.svg';
-import i1298 from 'kraken-wallet-cryptoicons/src/ranker.svg';
-import i1299 from 'kraken-wallet-cryptoicons/src/rare.svg';
-import i1300 from 'kraken-wallet-cryptoicons/src/rari.svg';
-import i1301 from 'kraken-wallet-cryptoicons/src/ray.svg';
-import i1302 from 'kraken-wallet-cryptoicons/src/rbc.svg';
-import i1303 from 'kraken-wallet-cryptoicons/src/rbn.svg';
-import i1304 from 'kraken-wallet-cryptoicons/src/rbtc.svg';
-import i1305 from 'kraken-wallet-cryptoicons/src/rby.svg';
-import i1306 from 'kraken-wallet-cryptoicons/src/rcn.svg';
-import i1307 from 'kraken-wallet-cryptoicons/src/rdd.svg';
-import i1308 from 'kraken-wallet-cryptoicons/src/rdn.svg';
-import i1309 from 'kraken-wallet-cryptoicons/src/rdnt.svg';
-import i1310 from 'kraken-wallet-cryptoicons/src/reap.svg';
-import i1311 from 'kraken-wallet-cryptoicons/src/reef.svg';
-import i1312 from 'kraken-wallet-cryptoicons/src/rei.svg';
-import i1313 from 'kraken-wallet-cryptoicons/src/ren.svg';
-import i1314 from 'kraken-wallet-cryptoicons/src/renbtc.svg';
-import i1315 from 'kraken-wallet-cryptoicons/src/render.svg';
-import i1316 from 'kraken-wallet-cryptoicons/src/renfil.svg';
-import i1317 from 'kraken-wallet-cryptoicons/src/rep.svg';
-import i1318 from 'kraken-wallet-cryptoicons/src/req.svg';
-import i1319 from 'kraken-wallet-cryptoicons/src/reth.svg';
-import i1320 from 'kraken-wallet-cryptoicons/src/rev.svg';
-import i1321 from 'kraken-wallet-cryptoicons/src/revo.svg';
-import i1322 from 'kraken-wallet-cryptoicons/src/revu.svg';
-import i1323 from 'kraken-wallet-cryptoicons/src/revv.svg';
-import i1324 from 'kraken-wallet-cryptoicons/src/rfox.svg';
-import i1325 from 'kraken-wallet-cryptoicons/src/rfr.svg';
-import i1326 from 'kraken-wallet-cryptoicons/src/rfuel.svg';
-import i1327 from 'kraken-wallet-cryptoicons/src/rfwsteth.svg';
-import i1328 from 'kraken-wallet-cryptoicons/src/rgt.svg';
-import i1329 from 'kraken-wallet-cryptoicons/src/rhoc.svg';
-import i1330 from 'kraken-wallet-cryptoicons/src/rif.svg';
-import i1331 from 'kraken-wallet-cryptoicons/src/rise.svg';
-import i1332 from 'kraken-wallet-cryptoicons/src/rlc.svg';
-import i1333 from 'kraken-wallet-cryptoicons/src/rly.svg';
-import i1334 from 'kraken-wallet-cryptoicons/src/rmark.svg';
-import i1335 from 'kraken-wallet-cryptoicons/src/rndr.svg';
-import i1336 from 'kraken-wallet-cryptoicons/src/road.svg';
-import i1337 from 'kraken-wallet-cryptoicons/src/roar.svg';
-import i1338 from 'kraken-wallet-cryptoicons/src/ron.svg';
-import i1339 from 'kraken-wallet-cryptoicons/src/roobee.svg';
-import i1340 from 'kraken-wallet-cryptoicons/src/rook.svg';
-import i1341 from 'kraken-wallet-cryptoicons/src/rose.svg';
-import i1342 from 'kraken-wallet-cryptoicons/src/rosn.svg';
-import i1343 from 'kraken-wallet-cryptoicons/src/route.svg';
-import i1344 from 'kraken-wallet-cryptoicons/src/rpl.svg';
-import i1345 from 'kraken-wallet-cryptoicons/src/rpx.svg';
-import i1346 from 'kraken-wallet-cryptoicons/src/rsr.svg';
-import i1347 from 'kraken-wallet-cryptoicons/src/rsv.svg';
-import i1348 from 'kraken-wallet-cryptoicons/src/ruff.svg';
-import i1349 from 'kraken-wallet-cryptoicons/src/rune.svg';
-import i1350 from 'kraken-wallet-cryptoicons/src/rvn.svg';
-import i1351 from 'kraken-wallet-cryptoicons/src/rvr.svg';
-import i1352 from 'kraken-wallet-cryptoicons/src/ryo.svg';
-import i1353 from 'kraken-wallet-cryptoicons/src/s.svg';
-import i1354 from 'kraken-wallet-cryptoicons/src/safemoon.svg';
-import i1355 from 'kraken-wallet-cryptoicons/src/sai.svg';
-import i1356 from 'kraken-wallet-cryptoicons/src/saito.svg';
-import i1357 from 'kraken-wallet-cryptoicons/src/salt.svg';
-import i1358 from 'kraken-wallet-cryptoicons/src/samo.svg';
-import i1359 from 'kraken-wallet-cryptoicons/src/san.svg';
-import i1360 from 'kraken-wallet-cryptoicons/src/sand.svg';
-import i1361 from 'kraken-wallet-cryptoicons/src/santos.svg';
-import i1362 from 'kraken-wallet-cryptoicons/src/sapp.svg';
-import i1363 from 'kraken-wallet-cryptoicons/src/sar.svg';
-import i1364 from 'kraken-wallet-cryptoicons/src/savax.svg';
-import i1365 from 'kraken-wallet-cryptoicons/src/sbd.svg';
-import i1366 from 'kraken-wallet-cryptoicons/src/sbr.svg';
-import i1367 from 'kraken-wallet-cryptoicons/src/sbtc.svg';
-import i1368 from 'kraken-wallet-cryptoicons/src/sc.svg';
-import i1369 from 'kraken-wallet-cryptoicons/src/sclp.svg';
-import i1370 from 'kraken-wallet-cryptoicons/src/scrl.svg';
-import i1371 from 'kraken-wallet-cryptoicons/src/scrt.svg';
-import i1372 from 'kraken-wallet-cryptoicons/src/sd.svg';
-import i1373 from 'kraken-wallet-cryptoicons/src/sdao.svg';
-import i1374 from 'kraken-wallet-cryptoicons/src/sdl.svg';
-import i1375 from 'kraken-wallet-cryptoicons/src/sdn.svg';
-import i1376 from 'kraken-wallet-cryptoicons/src/sdt.svg';
-import i1377 from 'kraken-wallet-cryptoicons/src/seele.svg';
-import i1378 from 'kraken-wallet-cryptoicons/src/sefi.svg';
-import i1379 from 'kraken-wallet-cryptoicons/src/sei.svg';
-import i1380 from 'kraken-wallet-cryptoicons/src/sem.svg';
-import i1381 from 'kraken-wallet-cryptoicons/src/senso.svg';
-import i1382 from 'kraken-wallet-cryptoicons/src/seq.svg';
-import i1383 from 'kraken-wallet-cryptoicons/src/sero.svg';
-import i1384 from 'kraken-wallet-cryptoicons/src/seth.svg';
-import i1385 from 'kraken-wallet-cryptoicons/src/seth2.svg';
-import i1386 from 'kraken-wallet-cryptoicons/src/sfi.svg';
-import i1387 from 'kraken-wallet-cryptoicons/src/sfm.svg';
-import i1388 from 'kraken-wallet-cryptoicons/src/sfp-2.svg';
-import i1389 from 'kraken-wallet-cryptoicons/src/sfp.svg';
-import i1390 from 'kraken-wallet-cryptoicons/src/sfrxeth.svg';
-import i1391 from 'kraken-wallet-cryptoicons/src/sfund.svg';
-import i1392 from 'kraken-wallet-cryptoicons/src/sgb.svg';
-import i1393 from 'kraken-wallet-cryptoicons/src/sha.svg';
-import i1394 from 'kraken-wallet-cryptoicons/src/shdw.svg';
-import i1395 from 'kraken-wallet-cryptoicons/src/shft.svg';
-import i1396 from 'kraken-wallet-cryptoicons/src/shib.svg';
-import i1397 from 'kraken-wallet-cryptoicons/src/shift.svg';
-import i1398 from 'kraken-wallet-cryptoicons/src/shill.svg';
-import i1399 from 'kraken-wallet-cryptoicons/src/ship.svg';
-import i1400 from 'kraken-wallet-cryptoicons/src/shping.svg';
-import i1401 from 'kraken-wallet-cryptoicons/src/shr.svg';
-import i1402 from 'kraken-wallet-cryptoicons/src/shroom.svg';
-import i1403 from 'kraken-wallet-cryptoicons/src/shx.svg';
-import i1404 from 'kraken-wallet-cryptoicons/src/si.svg';
-import i1405 from 'kraken-wallet-cryptoicons/src/sia.svg';
-import i1406 from 'kraken-wallet-cryptoicons/src/sib.svg';
-import i1407 from 'kraken-wallet-cryptoicons/src/silo.svg';
-import i1408 from 'kraken-wallet-cryptoicons/src/skey.svg';
-import i1409 from 'kraken-wallet-cryptoicons/src/skl.svg';
-import i1410 from 'kraken-wallet-cryptoicons/src/sku.svg';
-import i1411 from 'kraken-wallet-cryptoicons/src/sky.svg';
-import i1412 from 'kraken-wallet-cryptoicons/src/sld.svg';
-import i1413 from 'kraken-wallet-cryptoicons/src/slerf.svg';
-import i1414 from 'kraken-wallet-cryptoicons/src/slim.svg';
-import i1415 from 'kraken-wallet-cryptoicons/src/slink.svg';
-import i1416 from 'kraken-wallet-cryptoicons/src/slp.svg';
-import i1417 from 'kraken-wallet-cryptoicons/src/slr.svg';
-import i1418 from 'kraken-wallet-cryptoicons/src/sls.svg';
-import i1419 from 'kraken-wallet-cryptoicons/src/slt.svg';
-import i1420 from 'kraken-wallet-cryptoicons/src/smart.svg';
-import i1421 from 'kraken-wallet-cryptoicons/src/smog.svg';
-import i1422 from 'kraken-wallet-cryptoicons/src/smurfcat.svg';
-import i1423 from 'kraken-wallet-cryptoicons/src/snail.svg';
-import i1424 from 'kraken-wallet-cryptoicons/src/snc.svg';
-import i1425 from 'kraken-wallet-cryptoicons/src/sngls.svg';
-import i1426 from 'kraken-wallet-cryptoicons/src/snm.svg';
-import i1427 from 'kraken-wallet-cryptoicons/src/snow.svg';
-import i1428 from 'kraken-wallet-cryptoicons/src/snt.svg';
-import i1429 from 'kraken-wallet-cryptoicons/src/sntv.svg';
-import i1430 from 'kraken-wallet-cryptoicons/src/snx.svg';
-import i1431 from 'kraken-wallet-cryptoicons/src/sny.svg';
-import i1432 from 'kraken-wallet-cryptoicons/src/soc.svg';
-import i1433 from 'kraken-wallet-cryptoicons/src/sol.svg';
-import i1434 from 'kraken-wallet-cryptoicons/src/solama.svg';
-import i1435 from 'kraken-wallet-cryptoicons/src/solid.svg';
-import i1436 from 'kraken-wallet-cryptoicons/src/solo.svg';
-import i1437 from 'kraken-wallet-cryptoicons/src/solr.svg';
-import i1438 from 'kraken-wallet-cryptoicons/src/solve.svg';
-import i1439 from 'kraken-wallet-cryptoicons/src/sos.svg';
-import i1440 from 'kraken-wallet-cryptoicons/src/soul.svg';
-import i1441 from 'kraken-wallet-cryptoicons/src/sov.svg';
-import i1442 from 'kraken-wallet-cryptoicons/src/spank.svg';
-import i1443 from 'kraken-wallet-cryptoicons/src/sparta.svg';
-import i1444 from 'kraken-wallet-cryptoicons/src/spell.svg';
-import i1445 from 'kraken-wallet-cryptoicons/src/sphr.svg';
-import i1446 from 'kraken-wallet-cryptoicons/src/sphtx.svg';
-import i1447 from 'kraken-wallet-cryptoicons/src/spi.svg';
-import i1448 from 'kraken-wallet-cryptoicons/src/spike.svg';
-import i1449 from 'kraken-wallet-cryptoicons/src/spk.svg';
-import i1450 from 'kraken-wallet-cryptoicons/src/spn.svg';
-import i1451 from 'kraken-wallet-cryptoicons/src/spnd.svg';
-import i1452 from 'kraken-wallet-cryptoicons/src/spr.svg';
-import i1453 from 'kraken-wallet-cryptoicons/src/srm.svg';
-import i1454 from 'kraken-wallet-cryptoicons/src/srn.svg';
-import i1455 from 'kraken-wallet-cryptoicons/src/ssv.svg';
-import i1456 from 'kraken-wallet-cryptoicons/src/stak.svg';
-import i1457 from 'kraken-wallet-cryptoicons/src/stake.svg';
-import i1458 from 'kraken-wallet-cryptoicons/src/stan.svg';
-import i1459 from 'kraken-wallet-cryptoicons/src/starly.svg';
-import i1460 from 'kraken-wallet-cryptoicons/src/start.svg';
-import i1461 from 'kraken-wallet-cryptoicons/src/stc.svg';
-import i1462 from 'kraken-wallet-cryptoicons/src/steem.svg';
-import i1463 from 'kraken-wallet-cryptoicons/src/step.svg';
-import i1464 from 'kraken-wallet-cryptoicons/src/steth-1.svg';
-import i1465 from 'kraken-wallet-cryptoicons/src/steth.svg';
-import i1466 from 'kraken-wallet-cryptoicons/src/stg.svg';
-import i1467 from 'kraken-wallet-cryptoicons/src/stkaave.svg';
-import i1468 from 'kraken-wallet-cryptoicons/src/stklyra.svg';
-import i1469 from 'kraken-wallet-cryptoicons/src/stmatic.svg';
-import i1470 from 'kraken-wallet-cryptoicons/src/stmx.svg';
-import i1471 from 'kraken-wallet-cryptoicons/src/stnd.svg';
-import i1472 from 'kraken-wallet-cryptoicons/src/storj.svg';
-import i1473 from 'kraken-wallet-cryptoicons/src/storm.svg';
-import i1474 from 'kraken-wallet-cryptoicons/src/stpt.svg';
-import i1475 from 'kraken-wallet-cryptoicons/src/stq.svg';
-import i1476 from 'kraken-wallet-cryptoicons/src/strat.svg';
-import i1477 from 'kraken-wallet-cryptoicons/src/strax.svg';
-import i1478 from 'kraken-wallet-cryptoicons/src/strk.svg';
-import i1479 from 'kraken-wallet-cryptoicons/src/strong.svg';
-import i1480 from 'kraken-wallet-cryptoicons/src/stx.svg';
-import i1481 from 'kraken-wallet-cryptoicons/src/stz.svg';
-import i1482 from 'kraken-wallet-cryptoicons/src/sub.svg';
-import i1483 from 'kraken-wallet-cryptoicons/src/sui.svg';
-import i1484 from 'kraken-wallet-cryptoicons/src/suku.svg';
-import i1485 from 'kraken-wallet-cryptoicons/src/sumo.svg';
-import i1486 from 'kraken-wallet-cryptoicons/src/sun.svg';
-import i1487 from 'kraken-wallet-cryptoicons/src/super.svg';
-import i1488 from 'kraken-wallet-cryptoicons/src/suqa.svg';
-import i1489 from 'kraken-wallet-cryptoicons/src/sure.svg';
-import i1490 from 'kraken-wallet-cryptoicons/src/surv.svg';
-import i1491 from 'kraken-wallet-cryptoicons/src/susd.svg';
-import i1492 from 'kraken-wallet-cryptoicons/src/sushi.svg';
-import i1493 from 'kraken-wallet-cryptoicons/src/suter.svg';
-import i1494 from 'kraken-wallet-cryptoicons/src/swap.svg';
-import i1495 from 'kraken-wallet-cryptoicons/src/swash.svg';
-import i1496 from 'kraken-wallet-cryptoicons/src/sweat.svg';
-import i1497 from 'kraken-wallet-cryptoicons/src/swingby.svg';
-import i1498 from 'kraken-wallet-cryptoicons/src/swp.svg';
-import i1499 from 'kraken-wallet-cryptoicons/src/swrv.svg';
-import i1500 from 'kraken-wallet-cryptoicons/src/swt.svg';
-import i1501 from 'kraken-wallet-cryptoicons/src/swth.svg';
-import i1502 from 'kraken-wallet-cryptoicons/src/sxdt.svg';
-import i1503 from 'kraken-wallet-cryptoicons/src/sxp.svg';
-import i1504 from 'kraken-wallet-cryptoicons/src/sylo.svg';
-import i1505 from 'kraken-wallet-cryptoicons/src/syn.svg';
-import i1506 from 'kraken-wallet-cryptoicons/src/synth.svg';
-import i1507 from 'kraken-wallet-cryptoicons/src/synx.svg';
-import i1508 from 'kraken-wallet-cryptoicons/src/sys.svg';
-import i1509 from 'kraken-wallet-cryptoicons/src/t.svg';
-import i1510 from 'kraken-wallet-cryptoicons/src/taas.svg';
-import i1511 from 'kraken-wallet-cryptoicons/src/tara.svg';
-import i1512 from 'kraken-wallet-cryptoicons/src/tau.svg';
-import i1513 from 'kraken-wallet-cryptoicons/src/tbtc.svg';
-import i1514 from 'kraken-wallet-cryptoicons/src/tbx.svg';
-import i1515 from 'kraken-wallet-cryptoicons/src/tch.svg';
-import i1516 from 'kraken-wallet-cryptoicons/src/tcp.svg';
-import i1517 from 'kraken-wallet-cryptoicons/src/tct.svg';
-import i1518 from 'kraken-wallet-cryptoicons/src/tel.svg';
-import i1519 from 'kraken-wallet-cryptoicons/src/ten.svg';
-import i1520 from 'kraken-wallet-cryptoicons/src/tera.svg';
-import i1521 from 'kraken-wallet-cryptoicons/src/tern.svg';
-import i1522 from 'kraken-wallet-cryptoicons/src/tfl.svg';
-import i1523 from 'kraken-wallet-cryptoicons/src/tfuel.svg';
-import i1524 from 'kraken-wallet-cryptoicons/src/thales.svg';
-import i1525 from 'kraken-wallet-cryptoicons/src/thc.svg';
-import i1526 from 'kraken-wallet-cryptoicons/src/thedao.svg';
-import i1527 from 'kraken-wallet-cryptoicons/src/theta.svg';
-import i1528 from 'kraken-wallet-cryptoicons/src/thr.svg';
-import i1529 from 'kraken-wallet-cryptoicons/src/tia.svg';
-import i1530 from 'kraken-wallet-cryptoicons/src/tidal.svg';
-import i1531 from 'kraken-wallet-cryptoicons/src/time.svg';
-import i1532 from 'kraken-wallet-cryptoicons/src/tio.svg';
-import i1533 from 'kraken-wallet-cryptoicons/src/titan.svg';
-import i1534 from 'kraken-wallet-cryptoicons/src/tix.svg';
-import i1535 from 'kraken-wallet-cryptoicons/src/tkn.svg';
-import i1536 from 'kraken-wallet-cryptoicons/src/tko.svg';
-import i1537 from 'kraken-wallet-cryptoicons/src/tks.svg';
-import i1538 from 'kraken-wallet-cryptoicons/src/tky.svg';
-import i1539 from 'kraken-wallet-cryptoicons/src/tlm.svg';
-import i1540 from 'kraken-wallet-cryptoicons/src/tlos.svg';
-import i1541 from 'kraken-wallet-cryptoicons/src/tnb.svg';
-import i1542 from 'kraken-wallet-cryptoicons/src/tnc.svg';
-import i1543 from 'kraken-wallet-cryptoicons/src/tnd.svg';
-import i1544 from 'kraken-wallet-cryptoicons/src/tnt.svg';
-import i1545 from 'kraken-wallet-cryptoicons/src/toby.svg';
-import i1546 from 'kraken-wallet-cryptoicons/src/toke.svg';
-import i1547 from 'kraken-wallet-cryptoicons/src/toko.svg';
-import i1548 from 'kraken-wallet-cryptoicons/src/tomb.svg';
-import i1549 from 'kraken-wallet-cryptoicons/src/tomi.svg';
-import i1550 from 'kraken-wallet-cryptoicons/src/tomo.svg';
-import i1551 from 'kraken-wallet-cryptoicons/src/ton.svg';
-import i1552 from 'kraken-wallet-cryptoicons/src/tonic.svg';
-import i1553 from 'kraken-wallet-cryptoicons/src/tor.svg';
-import i1554 from 'kraken-wallet-cryptoicons/src/torn.svg';
-import i1555 from 'kraken-wallet-cryptoicons/src/toshi.svg';
-import i1556 from 'kraken-wallet-cryptoicons/src/tower.svg';
-import i1557 from 'kraken-wallet-cryptoicons/src/tox.svg';
-import i1558 from 'kraken-wallet-cryptoicons/src/tpay.svg';
-import i1559 from 'kraken-wallet-cryptoicons/src/tra.svg';
-import i1560 from 'kraken-wallet-cryptoicons/src/trac.svg';
-import i1561 from 'kraken-wallet-cryptoicons/src/trade.svg';
-import i1562 from 'kraken-wallet-cryptoicons/src/trb.svg';
-import i1563 from 'kraken-wallet-cryptoicons/src/tremp.svg';
-import i1564 from 'kraken-wallet-cryptoicons/src/trias.svg';
-import i1565 from 'kraken-wallet-cryptoicons/src/tribe.svg';
-import i1566 from 'kraken-wallet-cryptoicons/src/trig.svg';
-import i1567 from 'kraken-wallet-cryptoicons/src/troy.svg';
-import i1568 from 'kraken-wallet-cryptoicons/src/trst.svg';
-import i1569 from 'kraken-wallet-cryptoicons/src/trtl.svg';
-import i1570 from 'kraken-wallet-cryptoicons/src/tru.svg';
-import i1571 from 'kraken-wallet-cryptoicons/src/trump.svg';
-import i1572 from 'kraken-wallet-cryptoicons/src/trvl.svg';
-import i1573 from 'kraken-wallet-cryptoicons/src/trx.svg';
-import i1574 from 'kraken-wallet-cryptoicons/src/try.svg';
-import i1575 from 'kraken-wallet-cryptoicons/src/tryb.svg';
-import i1576 from 'kraken-wallet-cryptoicons/src/tt.svg';
-import i1577 from 'kraken-wallet-cryptoicons/src/ttc.svg';
-import i1578 from 'kraken-wallet-cryptoicons/src/ttt.svg';
-import i1579 from 'kraken-wallet-cryptoicons/src/tube.svg';
-import i1580 from 'kraken-wallet-cryptoicons/src/tur.svg';
-import i1581 from 'kraken-wallet-cryptoicons/src/tusd.svg';
-import i1582 from 'kraken-wallet-cryptoicons/src/tvk.svg';
-import i1583 from 'kraken-wallet-cryptoicons/src/twt.svg';
-import i1584 from 'kraken-wallet-cryptoicons/src/txa.svg';
-import i1585 from 'kraken-wallet-cryptoicons/src/tybg.svg';
-import i1586 from 'kraken-wallet-cryptoicons/src/tyzen.svg';
-import i1587 from 'kraken-wallet-cryptoicons/src/tzc.svg';
-import i1588 from 'kraken-wallet-cryptoicons/src/ubi.svg';
-import i1589 from 'kraken-wallet-cryptoicons/src/ubq.svg';
-import i1590 from 'kraken-wallet-cryptoicons/src/ubsn.svg';
-import i1591 from 'kraken-wallet-cryptoicons/src/ubt.svg';
-import i1592 from 'kraken-wallet-cryptoicons/src/ubx.svg';
-import i1593 from 'kraken-wallet-cryptoicons/src/ubxt.svg';
-import i1594 from 'kraken-wallet-cryptoicons/src/udoo.svg';
-import i1595 from 'kraken-wallet-cryptoicons/src/ufo.svg';
-import i1596 from 'kraken-wallet-cryptoicons/src/uft.svg';
-import i1597 from 'kraken-wallet-cryptoicons/src/ukg.svg';
-import i1598 from 'kraken-wallet-cryptoicons/src/ult.svg';
-import i1599 from 'kraken-wallet-cryptoicons/src/uma.svg';
-import i1600 from 'kraken-wallet-cryptoicons/src/umb.svg';
-import i1601 from 'kraken-wallet-cryptoicons/src/umee.svg';
-import i1602 from 'kraken-wallet-cryptoicons/src/unb.svg';
-import i1603 from 'kraken-wallet-cryptoicons/src/uncx.svg';
-import i1604 from 'kraken-wallet-cryptoicons/src/unfi.svg';
-import i1605 from 'kraken-wallet-cryptoicons/src/uni.svg';
-import i1606 from 'kraken-wallet-cryptoicons/src/unic.svg';
-import i1607 from 'kraken-wallet-cryptoicons/src/unidaieth.svg';
-import i1608 from 'kraken-wallet-cryptoicons/src/unilendeth.svg';
-import i1609 from 'kraken-wallet-cryptoicons/src/unilinketh.svg';
-import i1610 from 'kraken-wallet-cryptoicons/src/unimkreth.svg';
-import i1611 from 'kraken-wallet-cryptoicons/src/uniqo.svg';
-import i1612 from 'kraken-wallet-cryptoicons/src/unisetheth.svg';
-import i1613 from 'kraken-wallet-cryptoicons/src/uniusdceth.svg';
-import i1614 from 'kraken-wallet-cryptoicons/src/unn.svg';
-import i1615 from 'kraken-wallet-cryptoicons/src/uno.svg';
-import i1616 from 'kraken-wallet-cryptoicons/src/uos.svg';
-import i1617 from 'kraken-wallet-cryptoicons/src/up.svg';
-import i1618 from 'kraken-wallet-cryptoicons/src/upi.svg';
-import i1619 from 'kraken-wallet-cryptoicons/src/upp.svg';
-import i1620 from 'kraken-wallet-cryptoicons/src/uqc.svg';
-import i1621 from 'kraken-wallet-cryptoicons/src/usd+.svg';
-import i1622 from 'kraken-wallet-cryptoicons/src/usd.svg';
-import i1623 from 'kraken-wallet-cryptoicons/src/usdc.svg';
-import i1624 from 'kraken-wallet-cryptoicons/src/usdce.svg';
-import i1625 from 'kraken-wallet-cryptoicons/src/usdd.svg';
-import i1626 from 'kraken-wallet-cryptoicons/src/usdj.svg';
-import i1627 from 'kraken-wallet-cryptoicons/src/usdn.svg';
-import i1628 from 'kraken-wallet-cryptoicons/src/usdp.svg';
-import i1629 from 'kraken-wallet-cryptoicons/src/usds.svg';
-import i1630 from 'kraken-wallet-cryptoicons/src/usdt.svg';
-import i1631 from 'kraken-wallet-cryptoicons/src/ust.svg';
-import i1632 from 'kraken-wallet-cryptoicons/src/ustc.svg';
-import i1633 from 'kraken-wallet-cryptoicons/src/usx.svg';
-import i1634 from 'kraken-wallet-cryptoicons/src/ut.svg';
-import i1635 from 'kraken-wallet-cryptoicons/src/utk.svg';
-import i1636 from 'kraken-wallet-cryptoicons/src/uuu.svg';
-import i1637 from 'kraken-wallet-cryptoicons/src/vader.svg';
-import i1638 from 'kraken-wallet-cryptoicons/src/vai.svg';
-import i1639 from 'kraken-wallet-cryptoicons/src/value.svg';
-import i1640 from 'kraken-wallet-cryptoicons/src/vee.svg';
-import i1641 from 'kraken-wallet-cryptoicons/src/veed.svg';
-import i1642 from 'kraken-wallet-cryptoicons/src/vega.svg';
-import i1643 from 'kraken-wallet-cryptoicons/src/veil.svg';
-import i1644 from 'kraken-wallet-cryptoicons/src/vekwenta.svg';
-import i1645 from 'kraken-wallet-cryptoicons/src/vela.svg';
-import i1646 from 'kraken-wallet-cryptoicons/src/velo.svg';
-import i1647 from 'kraken-wallet-cryptoicons/src/vemp.svg';
-import i1648 from 'kraken-wallet-cryptoicons/src/ven.svg';
-import i1649 from 'kraken-wallet-cryptoicons/src/veri.svg';
-import i1650 from 'kraken-wallet-cryptoicons/src/vest.svg';
-import i1651 from 'kraken-wallet-cryptoicons/src/vet.svg';
-import i1652 from 'kraken-wallet-cryptoicons/src/vgx.svg';
-import i1653 from 'kraken-wallet-cryptoicons/src/via.svg';
-import i1654 from 'kraken-wallet-cryptoicons/src/vib.svg';
-import i1655 from 'kraken-wallet-cryptoicons/src/vibe.svg';
-import i1656 from 'kraken-wallet-cryptoicons/src/vid.svg';
-import i1657 from 'kraken-wallet-cryptoicons/src/vidt.svg';
-import i1658 from 'kraken-wallet-cryptoicons/src/vikky.svg';
-import i1659 from 'kraken-wallet-cryptoicons/src/vin.svg';
-import i1660 from 'kraken-wallet-cryptoicons/src/vina.svg';
-import i1661 from 'kraken-wallet-cryptoicons/src/vita.svg';
-import i1662 from 'kraken-wallet-cryptoicons/src/vite.svg';
-import i1663 from 'kraken-wallet-cryptoicons/src/viu.svg';
-import i1664 from 'kraken-wallet-cryptoicons/src/vix.svg';
-import i1665 from 'kraken-wallet-cryptoicons/src/vlx.svg';
-import i1666 from 'kraken-wallet-cryptoicons/src/vnx.svg';
-import i1667 from 'kraken-wallet-cryptoicons/src/vol.svg';
-import i1668 from 'kraken-wallet-cryptoicons/src/voxel.svg';
-import i1669 from 'kraken-wallet-cryptoicons/src/vr.svg';
-import i1670 from 'kraken-wallet-cryptoicons/src/vra.svg';
-import i1671 from 'kraken-wallet-cryptoicons/src/vrc.svg';
-import i1672 from 'kraken-wallet-cryptoicons/src/vrm.svg';
-import i1673 from 'kraken-wallet-cryptoicons/src/vrs.svg';
-import i1674 from 'kraken-wallet-cryptoicons/src/vrsc.svg';
-import i1675 from 'kraken-wallet-cryptoicons/src/vrt.svg';
-import i1676 from 'kraken-wallet-cryptoicons/src/vsp.svg';
-import i1677 from 'kraken-wallet-cryptoicons/src/vsys.svg';
-import i1678 from 'kraken-wallet-cryptoicons/src/vtc.svg';
-import i1679 from 'kraken-wallet-cryptoicons/src/vtho.svg';
-import i1680 from 'kraken-wallet-cryptoicons/src/vtr.svg';
-import i1681 from 'kraken-wallet-cryptoicons/src/vvs.svg';
-import i1682 from 'kraken-wallet-cryptoicons/src/vxv.svg';
-import i1683 from 'kraken-wallet-cryptoicons/src/wabi.svg';
-import i1684 from 'kraken-wallet-cryptoicons/src/wan.svg';
-import i1685 from 'kraken-wallet-cryptoicons/src/warp.svg';
-import i1686 from 'kraken-wallet-cryptoicons/src/wassie.svg';
-import i1687 from 'kraken-wallet-cryptoicons/src/wavax.svg';
-import i1688 from 'kraken-wallet-cryptoicons/src/waves.svg';
-import i1689 from 'kraken-wallet-cryptoicons/src/wax.svg';
-import i1690 from 'kraken-wallet-cryptoicons/src/waxp.svg';
-import i1691 from 'kraken-wallet-cryptoicons/src/wbnb.svg';
-import i1692 from 'kraken-wallet-cryptoicons/src/wbtc.svg';
-import i1693 from 'kraken-wallet-cryptoicons/src/wct.svg';
-import i1694 from 'kraken-wallet-cryptoicons/src/web.svg';
-import i1695 from 'kraken-wallet-cryptoicons/src/wemix.svg';
-import i1696 from 'kraken-wallet-cryptoicons/src/wen.svg';
-import i1697 from 'kraken-wallet-cryptoicons/src/west.svg';
-import i1698 from 'kraken-wallet-cryptoicons/src/weth.svg';
-import i1699 from 'kraken-wallet-cryptoicons/src/wexpoly.svg';
-import i1700 from 'kraken-wallet-cryptoicons/src/wftm.svg';
-import i1701 from 'kraken-wallet-cryptoicons/src/wgr.svg';
-import i1702 from 'kraken-wallet-cryptoicons/src/wgro.svg';
-import i1703 from 'kraken-wallet-cryptoicons/src/whale.svg';
-import i1704 from 'kraken-wallet-cryptoicons/src/whoren.svg';
-import i1705 from 'kraken-wallet-cryptoicons/src/wib.svg';
-import i1706 from 'kraken-wallet-cryptoicons/src/wicc.svg';
-import i1707 from 'kraken-wallet-cryptoicons/src/wif-1.svg';
-import i1708 from 'kraken-wallet-cryptoicons/src/wild.svg';
-import i1709 from 'kraken-wallet-cryptoicons/src/win.svg';
-import i1710 from 'kraken-wallet-cryptoicons/src/wing.svg';
-import i1711 from 'kraken-wallet-cryptoicons/src/wings.svg';
-import i1712 from 'kraken-wallet-cryptoicons/src/wis.svg';
-import i1713 from 'kraken-wallet-cryptoicons/src/wld.svg';
-import i1714 from 'kraken-wallet-cryptoicons/src/wmatic.svg';
-import i1715 from 'kraken-wallet-cryptoicons/src/wmp.svg';
-import i1716 from 'kraken-wallet-cryptoicons/src/wmt.svg';
-import i1717 from 'kraken-wallet-cryptoicons/src/wndr.svg';
-import i1718 from 'kraken-wallet-cryptoicons/src/wnxm.svg';
-import i1719 from 'kraken-wallet-cryptoicons/src/wom.svg';
-import i1720 from 'kraken-wallet-cryptoicons/src/wone.svg';
-import i1721 from 'kraken-wallet-cryptoicons/src/woo.svg';
-import i1722 from 'kraken-wallet-cryptoicons/src/wopenx.svg';
-import i1723 from 'kraken-wallet-cryptoicons/src/wowow.svg';
-import i1724 from 'kraken-wallet-cryptoicons/src/wozx.svg';
-import i1725 from 'kraken-wallet-cryptoicons/src/wpr.svg';
-import i1726 from 'kraken-wallet-cryptoicons/src/wrx.svg';
-import i1727 from 'kraken-wallet-cryptoicons/src/wsienna.svg';
-import i1728 from 'kraken-wallet-cryptoicons/src/wsteth.svg';
-import i1729 from 'kraken-wallet-cryptoicons/src/wtbt.svg';
-import i1730 from 'kraken-wallet-cryptoicons/src/wtc.svg';
-import i1731 from 'kraken-wallet-cryptoicons/src/wxt.svg';
-import i1732 from 'kraken-wallet-cryptoicons/src/x2y2.svg';
-import i1733 from 'kraken-wallet-cryptoicons/src/xai.svg';
-import i1734 from 'kraken-wallet-cryptoicons/src/xas.svg';
-import i1735 from 'kraken-wallet-cryptoicons/src/xaut.svg';
-import i1736 from 'kraken-wallet-cryptoicons/src/xava.svg';
-import i1737 from 'kraken-wallet-cryptoicons/src/xbc.svg';
-import i1738 from 'kraken-wallet-cryptoicons/src/xby.svg';
-import i1739 from 'kraken-wallet-cryptoicons/src/xcad.svg';
-import i1740 from 'kraken-wallet-cryptoicons/src/xch.svg';
-import i1741 from 'kraken-wallet-cryptoicons/src/xchf.svg';
-import i1742 from 'kraken-wallet-cryptoicons/src/xcm.svg';
-import i1743 from 'kraken-wallet-cryptoicons/src/xcn.svg';
-import i1744 from 'kraken-wallet-cryptoicons/src/xcp.svg';
-import i1745 from 'kraken-wallet-cryptoicons/src/xcur.svg';
-import i1746 from 'kraken-wallet-cryptoicons/src/xdata.svg';
-import i1747 from 'kraken-wallet-cryptoicons/src/xdb.svg';
-import i1748 from 'kraken-wallet-cryptoicons/src/xdc.svg';
-import i1749 from 'kraken-wallet-cryptoicons/src/xdfi.svg';
-import i1750 from 'kraken-wallet-cryptoicons/src/xdn.svg';
-import i1751 from 'kraken-wallet-cryptoicons/src/xec.svg';
-import i1752 from 'kraken-wallet-cryptoicons/src/xed.svg';
-import i1753 from 'kraken-wallet-cryptoicons/src/xel.svg';
-import i1754 from 'kraken-wallet-cryptoicons/src/xem.svg';
-import i1755 from 'kraken-wallet-cryptoicons/src/xft.svg';
-import i1756 from 'kraken-wallet-cryptoicons/src/xhv.svg';
-import i1757 from 'kraken-wallet-cryptoicons/src/xido.svg';
-import i1758 from 'kraken-wallet-cryptoicons/src/xin.svg';
-import i1759 from 'kraken-wallet-cryptoicons/src/xlm.svg';
-import i1760 from 'kraken-wallet-cryptoicons/src/xln.svg';
-import i1761 from 'kraken-wallet-cryptoicons/src/xlq.svg';
-import i1762 from 'kraken-wallet-cryptoicons/src/xmark.svg';
-import i1763 from 'kraken-wallet-cryptoicons/src/xmg.svg';
-import i1764 from 'kraken-wallet-cryptoicons/src/xmr.svg';
-import i1765 from 'kraken-wallet-cryptoicons/src/xmt.svg';
-import i1766 from 'kraken-wallet-cryptoicons/src/xmx.svg';
-import i1767 from 'kraken-wallet-cryptoicons/src/xmy.svg';
-import i1768 from 'kraken-wallet-cryptoicons/src/xnc.svg';
-import i1769 from 'kraken-wallet-cryptoicons/src/xnk.svg';
-import i1770 from 'kraken-wallet-cryptoicons/src/xnl.svg';
-import i1771 from 'kraken-wallet-cryptoicons/src/xno.svg';
-import i1772 from 'kraken-wallet-cryptoicons/src/xns.svg';
-import i1773 from 'kraken-wallet-cryptoicons/src/xor.svg';
-import i1774 from 'kraken-wallet-cryptoicons/src/xp.svg';
-import i1775 from 'kraken-wallet-cryptoicons/src/xpa.svg';
-import i1776 from 'kraken-wallet-cryptoicons/src/xpm.svg';
-import i1777 from 'kraken-wallet-cryptoicons/src/xpr.svg';
-import i1778 from 'kraken-wallet-cryptoicons/src/xprt.svg';
-import i1779 from 'kraken-wallet-cryptoicons/src/xrd.svg';
-import i1780 from 'kraken-wallet-cryptoicons/src/xrp.svg';
-import i1781 from 'kraken-wallet-cryptoicons/src/xrt.svg';
-import i1782 from 'kraken-wallet-cryptoicons/src/xsg.svg';
-import i1783 from 'kraken-wallet-cryptoicons/src/xsn.svg';
-import i1784 from 'kraken-wallet-cryptoicons/src/xsr.svg';
-import i1785 from 'kraken-wallet-cryptoicons/src/xst.svg';
-import i1786 from 'kraken-wallet-cryptoicons/src/xsushi.svg';
-import i1787 from 'kraken-wallet-cryptoicons/src/xt.svg';
-import i1788 from 'kraken-wallet-cryptoicons/src/xtag.svg';
-import i1789 from 'kraken-wallet-cryptoicons/src/xtm.svg';
-import i1790 from 'kraken-wallet-cryptoicons/src/xtp.svg';
-import i1791 from 'kraken-wallet-cryptoicons/src/xtz.svg';
-import i1792 from 'kraken-wallet-cryptoicons/src/xuc.svg';
-import i1793 from 'kraken-wallet-cryptoicons/src/xvc.svg';
-import i1794 from 'kraken-wallet-cryptoicons/src/xvg.svg';
-import i1795 from 'kraken-wallet-cryptoicons/src/xvs.svg';
-import i1796 from 'kraken-wallet-cryptoicons/src/xwc.svg';
-import i1797 from 'kraken-wallet-cryptoicons/src/xym.svg';
-import i1798 from 'kraken-wallet-cryptoicons/src/xyo.svg';
-import i1799 from 'kraken-wallet-cryptoicons/src/xyz.svg';
-import i1800 from 'kraken-wallet-cryptoicons/src/xzc.svg';
-import i1801 from 'kraken-wallet-cryptoicons/src/yfdai.svg';
-import i1802 from 'kraken-wallet-cryptoicons/src/yfi.svg';
-import i1803 from 'kraken-wallet-cryptoicons/src/yfii.svg';
-import i1804 from 'kraken-wallet-cryptoicons/src/ygg.svg';
-import i1805 from 'kraken-wallet-cryptoicons/src/yld.svg';
-import i1806 from 'kraken-wallet-cryptoicons/src/yop.svg';
-import i1807 from 'kraken-wallet-cryptoicons/src/youc.svg';
-import i1808 from 'kraken-wallet-cryptoicons/src/yoyo.svg';
-import i1809 from 'kraken-wallet-cryptoicons/src/yoyow.svg';
-import i1810 from 'kraken-wallet-cryptoicons/src/zai.svg';
-import i1811 from 'kraken-wallet-cryptoicons/src/zar.svg';
-import i1812 from 'kraken-wallet-cryptoicons/src/zb.svg';
-import i1813 from 'kraken-wallet-cryptoicons/src/zcl.svg';
-import i1814 from 'kraken-wallet-cryptoicons/src/zco.svg';
-import i1815 from 'kraken-wallet-cryptoicons/src/zcx.svg';
-import i1816 from 'kraken-wallet-cryptoicons/src/zec.svg';
-import i1817 from 'kraken-wallet-cryptoicons/src/zee.svg';
-import i1818 from 'kraken-wallet-cryptoicons/src/zel.svg';
-import i1819 from 'kraken-wallet-cryptoicons/src/zen.svg';
-import i1820 from 'kraken-wallet-cryptoicons/src/zeon.svg';
-import i1821 from 'kraken-wallet-cryptoicons/src/zeta.svg';
-import i1822 from 'kraken-wallet-cryptoicons/src/zil.svg';
-import i1823 from 'kraken-wallet-cryptoicons/src/zip.svg';
-import i1824 from 'kraken-wallet-cryptoicons/src/zks.svg';
-import i1825 from 'kraken-wallet-cryptoicons/src/zkt.svg';
-import i1826 from 'kraken-wallet-cryptoicons/src/zlw.svg';
-import i1827 from 'kraken-wallet-cryptoicons/src/znn.svg';
-import i1828 from 'kraken-wallet-cryptoicons/src/zort.svg';
-import i1829 from 'kraken-wallet-cryptoicons/src/zpay.svg';
-import i1830 from 'kraken-wallet-cryptoicons/src/zrx.svg';
-import i1831 from 'kraken-wallet-cryptoicons/src/zusd.svg';
+import i859 from 'kraken-wallet-cryptoicons/src/kbtc.svg';
+import i860 from 'kraken-wallet-cryptoicons/src/kcs.svg';
+import i861 from 'kraken-wallet-cryptoicons/src/kda.svg';
+import i862 from 'kraken-wallet-cryptoicons/src/kdon.svg';
+import i863 from 'kraken-wallet-cryptoicons/src/keep.svg';
+import i864 from 'kraken-wallet-cryptoicons/src/key.svg';
+import i865 from 'kraken-wallet-cryptoicons/src/keycat.svg';
+import i866 from 'kraken-wallet-cryptoicons/src/kick.svg';
+import i867 from 'kraken-wallet-cryptoicons/src/kilt.svg';
+import i868 from 'kraken-wallet-cryptoicons/src/kin.svg';
+import i869 from 'kraken-wallet-cryptoicons/src/kint.svg';
+import i870 from 'kraken-wallet-cryptoicons/src/kira.svg';
+import i871 from 'kraken-wallet-cryptoicons/src/kiro.svg';
+import i872 from 'kraken-wallet-cryptoicons/src/klay.svg';
+import i873 from 'kraken-wallet-cryptoicons/src/klv.svg';
+import i874 from 'kraken-wallet-cryptoicons/src/kma.svg';
+import i875 from 'kraken-wallet-cryptoicons/src/kmd.svg';
+import i876 from 'kraken-wallet-cryptoicons/src/knc.svg';
+import i877 from 'kraken-wallet-cryptoicons/src/kndc.svg';
+import i878 from 'kraken-wallet-cryptoicons/src/kok.svg';
+import i879 from 'kraken-wallet-cryptoicons/src/kol.svg';
+import i880 from 'kraken-wallet-cryptoicons/src/kono.svg';
+import i881 from 'kraken-wallet-cryptoicons/src/kore.svg';
+import i882 from 'kraken-wallet-cryptoicons/src/kp3r.svg';
+import i883 from 'kraken-wallet-cryptoicons/src/krb.svg';
+import i884 from 'kraken-wallet-cryptoicons/src/krl.svg';
+import i885 from 'kraken-wallet-cryptoicons/src/krw.svg';
+import i886 from 'kraken-wallet-cryptoicons/src/ksm.svg';
+import i887 from 'kraken-wallet-cryptoicons/src/ksp.svg';
+import i888 from 'kraken-wallet-cryptoicons/src/ktn.svg';
+import i889 from 'kraken-wallet-cryptoicons/src/kub.svg';
+import i890 from 'kraken-wallet-cryptoicons/src/kyl.svg';
+import i891 from 'kraken-wallet-cryptoicons/src/la.svg';
+import i892 from 'kraken-wallet-cryptoicons/src/lab.svg';
+import i893 from 'kraken-wallet-cryptoicons/src/lace.svg';
+import i894 from 'kraken-wallet-cryptoicons/src/ladys.svg';
+import i895 from 'kraken-wallet-cryptoicons/src/lamb.svg';
+import i896 from 'kraken-wallet-cryptoicons/src/land.svg';
+import i897 from 'kraken-wallet-cryptoicons/src/layer.svg';
+import i898 from 'kraken-wallet-cryptoicons/src/lazio.svg';
+import i899 from 'kraken-wallet-cryptoicons/src/lba.svg';
+import i900 from 'kraken-wallet-cryptoicons/src/lbc.svg';
+import i901 from 'kraken-wallet-cryptoicons/src/lcc.svg';
+import i902 from 'kraken-wallet-cryptoicons/src/lcdot.svg';
+import i903 from 'kraken-wallet-cryptoicons/src/lcx.svg';
+import i904 from 'kraken-wallet-cryptoicons/src/ldo.svg';
+import i905 from 'kraken-wallet-cryptoicons/src/lend.svg';
+import i906 from 'kraken-wallet-cryptoicons/src/leo.svg';
+import i907 from 'kraken-wallet-cryptoicons/src/lever.svg';
+import i908 from 'kraken-wallet-cryptoicons/src/lien.svg';
+import i909 from 'kraken-wallet-cryptoicons/src/like.svg';
+import i910 from 'kraken-wallet-cryptoicons/src/lina.svg';
+import i911 from 'kraken-wallet-cryptoicons/src/linea.svg';
+import i912 from 'kraken-wallet-cryptoicons/src/link.svg';
+import i913 from 'kraken-wallet-cryptoicons/src/lit.svg';
+import i914 from 'kraken-wallet-cryptoicons/src/lith.svg';
+import i915 from 'kraken-wallet-cryptoicons/src/lkk.svg';
+import i916 from 'kraken-wallet-cryptoicons/src/lky.svg';
+import i917 from 'kraken-wallet-cryptoicons/src/lmc.svg';
+import i918 from 'kraken-wallet-cryptoicons/src/ln.svg';
+import i919 from 'kraken-wallet-cryptoicons/src/lnchx.svg';
+import i920 from 'kraken-wallet-cryptoicons/src/loc.svg';
+import i921 from 'kraken-wallet-cryptoicons/src/locg.svg';
+import i922 from 'kraken-wallet-cryptoicons/src/lode.svg';
+import i923 from 'kraken-wallet-cryptoicons/src/loka.svg';
+import i924 from 'kraken-wallet-cryptoicons/src/loki.svg';
+import i925 from 'kraken-wallet-cryptoicons/src/lon.svg';
+import i926 from 'kraken-wallet-cryptoicons/src/looks.svg';
+import i927 from 'kraken-wallet-cryptoicons/src/loom.svg';
+import i928 from 'kraken-wallet-cryptoicons/src/love.svg';
+import i929 from 'kraken-wallet-cryptoicons/src/lpf.svg';
+import i930 from 'kraken-wallet-cryptoicons/src/lpool.svg';
+import i931 from 'kraken-wallet-cryptoicons/src/lpt.svg';
+import i932 from 'kraken-wallet-cryptoicons/src/lqd.svg';
+import i933 from 'kraken-wallet-cryptoicons/src/lqty.svg';
+import i934 from 'kraken-wallet-cryptoicons/src/lrc.svg';
+import i935 from 'kraken-wallet-cryptoicons/src/lrg.svg';
+import i936 from 'kraken-wallet-cryptoicons/src/lsk.svg';
+import i937 from 'kraken-wallet-cryptoicons/src/lss.svg';
+import i938 from 'kraken-wallet-cryptoicons/src/ltc.svg';
+import i939 from 'kraken-wallet-cryptoicons/src/lto.svg';
+import i940 from 'kraken-wallet-cryptoicons/src/ltx.svg';
+import i941 from 'kraken-wallet-cryptoicons/src/luca.svg';
+import i942 from 'kraken-wallet-cryptoicons/src/lun.svg';
+import i943 from 'kraken-wallet-cryptoicons/src/luna.svg';
+import i944 from 'kraken-wallet-cryptoicons/src/lunc.svg';
+import i945 from 'kraken-wallet-cryptoicons/src/lusd.svg';
+import i946 from 'kraken-wallet-cryptoicons/src/lxt.svg';
+import i947 from 'kraken-wallet-cryptoicons/src/lym.svg';
+import i948 from 'kraken-wallet-cryptoicons/src/lyxe.svg';
+import i949 from 'kraken-wallet-cryptoicons/src/maapl.svg';
+import i950 from 'kraken-wallet-cryptoicons/src/maga.svg';
+import i951 from 'kraken-wallet-cryptoicons/src/magic.svg';
+import i952 from 'kraken-wallet-cryptoicons/src/maha.svg';
+import i953 from 'kraken-wallet-cryptoicons/src/mai.svg';
+import i954 from 'kraken-wallet-cryptoicons/src/maid.svg';
+import i955 from 'kraken-wallet-cryptoicons/src/maki.svg';
+import i956 from 'kraken-wallet-cryptoicons/src/man.svg';
+import i957 from 'kraken-wallet-cryptoicons/src/mana.svg';
+import i958 from 'kraken-wallet-cryptoicons/src/manta.svg';
+import i959 from 'kraken-wallet-cryptoicons/src/map.svg';
+import i960 from 'kraken-wallet-cryptoicons/src/maps.svg';
+import i961 from 'kraken-wallet-cryptoicons/src/marsh.svg';
+import i962 from 'kraken-wallet-cryptoicons/src/mask.svg';
+import i963 from 'kraken-wallet-cryptoicons/src/mass.svg';
+import i964 from 'kraken-wallet-cryptoicons/src/math.svg';
+import i965 from 'kraken-wallet-cryptoicons/src/matic.svg';
+import i966 from 'kraken-wallet-cryptoicons/src/maticx.svg';
+import i967 from 'kraken-wallet-cryptoicons/src/matter.svg';
+import i968 from 'kraken-wallet-cryptoicons/src/mb.svg';
+import i969 from 'kraken-wallet-cryptoicons/src/mbc.svg';
+import i970 from 'kraken-wallet-cryptoicons/src/mbl.svg';
+import i971 from 'kraken-wallet-cryptoicons/src/mbox.svg';
+import i972 from 'kraken-wallet-cryptoicons/src/mc.svg';
+import i973 from 'kraken-wallet-cryptoicons/src/mcb.svg';
+import i974 from 'kraken-wallet-cryptoicons/src/mco.svg';
+import i975 from 'kraken-wallet-cryptoicons/src/mco2.svg';
+import i976 from 'kraken-wallet-cryptoicons/src/mcx.svg';
+import i977 from 'kraken-wallet-cryptoicons/src/mda.svg';
+import i978 from 'kraken-wallet-cryptoicons/src/mdao.svg';
+import i979 from 'kraken-wallet-cryptoicons/src/mds.svg';
+import i980 from 'kraken-wallet-cryptoicons/src/mdt.svg';
+import i981 from 'kraken-wallet-cryptoicons/src/mdx.svg';
+import i982 from 'kraken-wallet-cryptoicons/src/med.svg';
+import i983 from 'kraken-wallet-cryptoicons/src/medx.svg';
+import i984 from 'kraken-wallet-cryptoicons/src/meetone.svg';
+import i985 from 'kraken-wallet-cryptoicons/src/mem.svg';
+import i986 from 'kraken-wallet-cryptoicons/src/meme.svg';
+import i987 from 'kraken-wallet-cryptoicons/src/mer.svg';
+import i988 from 'kraken-wallet-cryptoicons/src/met.svg';
+import i989 from 'kraken-wallet-cryptoicons/src/meta.svg';
+import i990 from 'kraken-wallet-cryptoicons/src/metano.svg';
+import i991 from 'kraken-wallet-cryptoicons/src/metis.svg';
+import i992 from 'kraken-wallet-cryptoicons/src/mew.svg';
+import i993 from 'kraken-wallet-cryptoicons/src/mex.svg';
+import i994 from 'kraken-wallet-cryptoicons/src/mfg.svg';
+import i995 from 'kraken-wallet-cryptoicons/src/mft.svg';
+import i996 from 'kraken-wallet-cryptoicons/src/mhc.svg';
+import i997 from 'kraken-wallet-cryptoicons/src/mim.svg';
+import i998 from 'kraken-wallet-cryptoicons/src/mimatic.svg';
+import i999 from 'kraken-wallet-cryptoicons/src/mina.svg';
+import i1000 from 'kraken-wallet-cryptoicons/src/miota.svg';
+import i1001 from 'kraken-wallet-cryptoicons/src/mir.svg';
+import i1002 from 'kraken-wallet-cryptoicons/src/mith.svg';
+import i1003 from 'kraken-wallet-cryptoicons/src/mitx.svg';
+import i1004 from 'kraken-wallet-cryptoicons/src/mjt.svg';
+import i1005 from 'kraken-wallet-cryptoicons/src/mkr.svg';
+import i1006 from 'kraken-wallet-cryptoicons/src/mlb.svg';
+import i1007 from 'kraken-wallet-cryptoicons/src/mlk.svg';
+import i1008 from 'kraken-wallet-cryptoicons/src/mln.svg';
+import i1009 from 'kraken-wallet-cryptoicons/src/mmt.svg';
+import i1010 from 'kraken-wallet-cryptoicons/src/mmxn.svg';
+import i1011 from 'kraken-wallet-cryptoicons/src/mnde.svg';
+import i1012 from 'kraken-wallet-cryptoicons/src/mnet.svg';
+import i1013 from 'kraken-wallet-cryptoicons/src/mngo.svg';
+import i1014 from 'kraken-wallet-cryptoicons/src/mns.svg';
+import i1015 from 'kraken-wallet-cryptoicons/src/mnst.svg';
+import i1016 from 'kraken-wallet-cryptoicons/src/mnt.svg';
+import i1017 from 'kraken-wallet-cryptoicons/src/mntl.svg';
+import i1018 from 'kraken-wallet-cryptoicons/src/mnw.svg';
+import i1019 from 'kraken-wallet-cryptoicons/src/moac.svg';
+import i1020 from 'kraken-wallet-cryptoicons/src/mob.svg';
+import i1021 from 'kraken-wallet-cryptoicons/src/mochi.svg';
+import i1022 from 'kraken-wallet-cryptoicons/src/mod.svg';
+import i1023 from 'kraken-wallet-cryptoicons/src/modefi.svg';
+import i1024 from 'kraken-wallet-cryptoicons/src/mof.svg';
+import i1025 from 'kraken-wallet-cryptoicons/src/mog.svg';
+import i1026 from 'kraken-wallet-cryptoicons/src/mom.svg';
+import i1027 from 'kraken-wallet-cryptoicons/src/mona.svg';
+import i1028 from 'kraken-wallet-cryptoicons/src/moni.svg';
+import i1029 from 'kraken-wallet-cryptoicons/src/moon.svg';
+import i1030 from 'kraken-wallet-cryptoicons/src/mot.svg';
+import i1031 from 'kraken-wallet-cryptoicons/src/movez.svg';
+import i1032 from 'kraken-wallet-cryptoicons/src/movr.svg';
+import i1033 from 'kraken-wallet-cryptoicons/src/mph.svg';
+import i1034 from 'kraken-wallet-cryptoicons/src/mpl.svg';
+import i1035 from 'kraken-wallet-cryptoicons/src/msol.svg';
+import i1036 from 'kraken-wallet-cryptoicons/src/msr.svg';
+import i1037 from 'kraken-wallet-cryptoicons/src/mswap.svg';
+import i1038 from 'kraken-wallet-cryptoicons/src/mta.svg';
+import i1039 from 'kraken-wallet-cryptoicons/src/mtc.svg';
+import i1040 from 'kraken-wallet-cryptoicons/src/mth.svg';
+import i1041 from 'kraken-wallet-cryptoicons/src/mtl.svg';
+import i1042 from 'kraken-wallet-cryptoicons/src/mtn.svg';
+import i1043 from 'kraken-wallet-cryptoicons/src/mtrg.svg';
+import i1044 from 'kraken-wallet-cryptoicons/src/mts.svg';
+import i1045 from 'kraken-wallet-cryptoicons/src/mtv.svg';
+import i1046 from 'kraken-wallet-cryptoicons/src/mue.svg';
+import i1047 from 'kraken-wallet-cryptoicons/src/multi.svg';
+import i1048 from 'kraken-wallet-cryptoicons/src/musd.svg';
+import i1049 from 'kraken-wallet-cryptoicons/src/music.svg';
+import i1050 from 'kraken-wallet-cryptoicons/src/mvc.svg';
+import i1051 from 'kraken-wallet-cryptoicons/src/mvl.svg';
+import i1052 from 'kraken-wallet-cryptoicons/src/mvp.svg';
+import i1053 from 'kraken-wallet-cryptoicons/src/mwat.svg';
+import i1054 from 'kraken-wallet-cryptoicons/src/mwc.svg';
+import i1055 from 'kraken-wallet-cryptoicons/src/mx.svg';
+import i1056 from 'kraken-wallet-cryptoicons/src/mxc.svg';
+import i1057 from 'kraken-wallet-cryptoicons/src/mxm.svg';
+import i1058 from 'kraken-wallet-cryptoicons/src/mxw.svg';
+import i1059 from 'kraken-wallet-cryptoicons/src/myb.svg';
+import i1060 from 'kraken-wallet-cryptoicons/src/myro.svg';
+import i1061 from 'kraken-wallet-cryptoicons/src/myst.svg';
+import i1062 from 'kraken-wallet-cryptoicons/src/naka.svg';
+import i1063 from 'kraken-wallet-cryptoicons/src/nano.svg';
+import i1064 from 'kraken-wallet-cryptoicons/src/nas.svg';
+import i1065 from 'kraken-wallet-cryptoicons/src/nav.svg';
+import i1066 from 'kraken-wallet-cryptoicons/src/nbs.svg';
+import i1067 from 'kraken-wallet-cryptoicons/src/nbt.svg';
+import i1068 from 'kraken-wallet-cryptoicons/src/ncash.svg';
+import i1069 from 'kraken-wallet-cryptoicons/src/nct.svg';
+import i1070 from 'kraken-wallet-cryptoicons/src/ndau.svg';
+import i1071 from 'kraken-wallet-cryptoicons/src/near.svg';
+import i1072 from 'kraken-wallet-cryptoicons/src/nebl.svg';
+import i1073 from 'kraken-wallet-cryptoicons/src/nec.svg';
+import i1074 from 'kraken-wallet-cryptoicons/src/nem.svg';
+import i1075 from 'kraken-wallet-cryptoicons/src/neo.svg';
+import i1076 from 'kraken-wallet-cryptoicons/src/neon.svg';
+import i1077 from 'kraken-wallet-cryptoicons/src/neos.svg';
+import i1078 from 'kraken-wallet-cryptoicons/src/neox.svg';
+import i1079 from 'kraken-wallet-cryptoicons/src/nest.svg';
+import i1080 from 'kraken-wallet-cryptoicons/src/neu.svg';
+import i1081 from 'kraken-wallet-cryptoicons/src/new.svg';
+import i1082 from 'kraken-wallet-cryptoicons/src/nex.svg';
+import i1083 from 'kraken-wallet-cryptoicons/src/nexo.svg';
+import i1084 from 'kraken-wallet-cryptoicons/src/nexxo.svg';
+import i1085 from 'kraken-wallet-cryptoicons/src/nft.svg';
+import i1086 from 'kraken-wallet-cryptoicons/src/nftb.svg';
+import i1087 from 'kraken-wallet-cryptoicons/src/nftx.svg';
+import i1088 from 'kraken-wallet-cryptoicons/src/ngc.svg';
+import i1089 from 'kraken-wallet-cryptoicons/src/ngm.svg';
+import i1090 from 'kraken-wallet-cryptoicons/src/nif.svg';
+import i1091 from 'kraken-wallet-cryptoicons/src/nim.svg';
+import i1092 from 'kraken-wallet-cryptoicons/src/niox.svg';
+import i1093 from 'kraken-wallet-cryptoicons/src/nix.svg';
+import i1094 from 'kraken-wallet-cryptoicons/src/nkn.svg';
+import i1095 from 'kraken-wallet-cryptoicons/src/nlc2.svg';
+import i1096 from 'kraken-wallet-cryptoicons/src/nlg.svg';
+import i1097 from 'kraken-wallet-cryptoicons/src/nmc.svg';
+import i1098 from 'kraken-wallet-cryptoicons/src/nmr.svg';
+import i1099 from 'kraken-wallet-cryptoicons/src/noia.svg';
+import i1100 from 'kraken-wallet-cryptoicons/src/nord.svg';
+import i1101 from 'kraken-wallet-cryptoicons/src/normie.svg';
+import i1102 from 'kraken-wallet-cryptoicons/src/normilio.svg';
+import i1103 from 'kraken-wallet-cryptoicons/src/nox.svg';
+import i1104 from 'kraken-wallet-cryptoicons/src/nper.svg';
+import i1105 from 'kraken-wallet-cryptoicons/src/npxs.svg';
+import i1106 from 'kraken-wallet-cryptoicons/src/nrg.svg';
+import i1107 from 'kraken-wallet-cryptoicons/src/nrv.svg';
+import i1108 from 'kraken-wallet-cryptoicons/src/nrve.svg';
+import i1109 from 'kraken-wallet-cryptoicons/src/ntic.svg';
+import i1110 from 'kraken-wallet-cryptoicons/src/ntrn.svg';
+import i1111 from 'kraken-wallet-cryptoicons/src/ntvrk.svg';
+import i1112 from 'kraken-wallet-cryptoicons/src/nu.svg';
+import i1113 from 'kraken-wallet-cryptoicons/src/nuls.svg';
+import i1114 from 'kraken-wallet-cryptoicons/src/num.svg';
+import i1115 from 'kraken-wallet-cryptoicons/src/nusd.svg';
+import i1116 from 'kraken-wallet-cryptoicons/src/nwc.svg';
+import i1117 from 'kraken-wallet-cryptoicons/src/nxm.svg';
+import i1118 from 'kraken-wallet-cryptoicons/src/nxs.svg';
+import i1119 from 'kraken-wallet-cryptoicons/src/nxt.svg';
+import i1120 from 'kraken-wallet-cryptoicons/src/nye.svg';
+import i1121 from 'kraken-wallet-cryptoicons/src/nym.svg';
+import i1122 from 'kraken-wallet-cryptoicons/src/oag.svg';
+import i1123 from 'kraken-wallet-cryptoicons/src/oak.svg';
+import i1124 from 'kraken-wallet-cryptoicons/src/oax.svg';
+import i1125 from 'kraken-wallet-cryptoicons/src/ocean.svg';
+import i1126 from 'kraken-wallet-cryptoicons/src/ocn.svg';
+import i1127 from 'kraken-wallet-cryptoicons/src/oddz.svg';
+import i1128 from 'kraken-wallet-cryptoicons/src/ode.svg';
+import i1129 from 'kraken-wallet-cryptoicons/src/og.svg';
+import i1130 from 'kraken-wallet-cryptoicons/src/ogn.svg';
+import i1131 from 'kraken-wallet-cryptoicons/src/ogo.svg';
+import i1132 from 'kraken-wallet-cryptoicons/src/ohm.svg';
+import i1133 from 'kraken-wallet-cryptoicons/src/oil.svg';
+import i1134 from 'kraken-wallet-cryptoicons/src/ok.svg';
+import i1135 from 'kraken-wallet-cryptoicons/src/okb.svg';
+import i1136 from 'kraken-wallet-cryptoicons/src/oks.svg';
+import i1137 from 'kraken-wallet-cryptoicons/src/olt.svg';
+import i1138 from 'kraken-wallet-cryptoicons/src/om.svg';
+import i1139 from 'kraken-wallet-cryptoicons/src/omg.svg';
+import i1140 from 'kraken-wallet-cryptoicons/src/omni.svg';
+import i1141 from 'kraken-wallet-cryptoicons/src/ondo.svg';
+import i1142 from 'kraken-wallet-cryptoicons/src/one.svg';
+import i1143 from 'kraken-wallet-cryptoicons/src/ong.svg';
+import i1144 from 'kraken-wallet-cryptoicons/src/onion.svg';
+import i1145 from 'kraken-wallet-cryptoicons/src/onston.svg';
+import i1146 from 'kraken-wallet-cryptoicons/src/ont.svg';
+import i1147 from 'kraken-wallet-cryptoicons/src/ooe.svg';
+import i1148 from 'kraken-wallet-cryptoicons/src/ooki.svg';
+import i1149 from 'kraken-wallet-cryptoicons/src/oot.svg';
+import i1150 from 'kraken-wallet-cryptoicons/src/op.svg';
+import i1151 from 'kraken-wallet-cryptoicons/src/open.svg';
+import i1152 from 'kraken-wallet-cryptoicons/src/opium.svg';
+import i1153 from 'kraken-wallet-cryptoicons/src/opq.svg';
+import i1154 from 'kraken-wallet-cryptoicons/src/ops.svg';
+import i1155 from 'kraken-wallet-cryptoicons/src/opsec.svg';
+import i1156 from 'kraken-wallet-cryptoicons/src/opul.svg';
+import i1157 from 'kraken-wallet-cryptoicons/src/opx.svg';
+import i1158 from 'kraken-wallet-cryptoicons/src/orai.svg';
+import i1159 from 'kraken-wallet-cryptoicons/src/orbs.svg';
+import i1160 from 'kraken-wallet-cryptoicons/src/orc.svg';
+import i1161 from 'kraken-wallet-cryptoicons/src/orca.svg';
+import i1162 from 'kraken-wallet-cryptoicons/src/orcat.svg';
+import i1163 from 'kraken-wallet-cryptoicons/src/ordi.svg';
+import i1164 from 'kraken-wallet-cryptoicons/src/orn.svg';
+import i1165 from 'kraken-wallet-cryptoicons/src/osmo.svg';
+import i1166 from 'kraken-wallet-cryptoicons/src/ost.svg';
+import i1167 from 'kraken-wallet-cryptoicons/src/ouro.svg';
+import i1168 from 'kraken-wallet-cryptoicons/src/ousd.svg';
+import i1169 from 'kraken-wallet-cryptoicons/src/ovc.svg';
+import i1170 from 'kraken-wallet-cryptoicons/src/oxen.svg';
+import i1171 from 'kraken-wallet-cryptoicons/src/oxt.svg';
+import i1172 from 'kraken-wallet-cryptoicons/src/oxy.svg';
+import i1173 from 'kraken-wallet-cryptoicons/src/pac.svg';
+import i1174 from 'kraken-wallet-cryptoicons/src/pai.svg';
+import i1175 from 'kraken-wallet-cryptoicons/src/paint.svg';
+import i1176 from 'kraken-wallet-cryptoicons/src/pal.svg';
+import i1177 from 'kraken-wallet-cryptoicons/src/palm.svg';
+import i1178 from 'kraken-wallet-cryptoicons/src/paper.svg';
+import i1179 from 'kraken-wallet-cryptoicons/src/par.svg';
+import i1180 from 'kraken-wallet-cryptoicons/src/part.svg';
+import i1181 from 'kraken-wallet-cryptoicons/src/pasc.svg';
+import i1182 from 'kraken-wallet-cryptoicons/src/pax.svg';
+import i1183 from 'kraken-wallet-cryptoicons/src/paxg.svg';
+import i1184 from 'kraken-wallet-cryptoicons/src/pay.svg';
+import i1185 from 'kraken-wallet-cryptoicons/src/payx.svg';
+import i1186 from 'kraken-wallet-cryptoicons/src/pazzi.svg';
+import i1187 from 'kraken-wallet-cryptoicons/src/pbirb.svg';
+import i1188 from 'kraken-wallet-cryptoicons/src/pbr.svg';
+import i1189 from 'kraken-wallet-cryptoicons/src/pbtc.svg';
+import i1190 from 'kraken-wallet-cryptoicons/src/pbx.svg';
+import i1191 from 'kraken-wallet-cryptoicons/src/pchu.svg';
+import i1192 from 'kraken-wallet-cryptoicons/src/pcx.svg';
+import i1193 from 'kraken-wallet-cryptoicons/src/pdex.svg';
+import i1194 from 'kraken-wallet-cryptoicons/src/pearl.svg';
+import i1195 from 'kraken-wallet-cryptoicons/src/peas.svg';
+import i1196 from 'kraken-wallet-cryptoicons/src/pel.svg';
+import i1197 from 'kraken-wallet-cryptoicons/src/pendle.svg';
+import i1198 from 'kraken-wallet-cryptoicons/src/pepe.svg';
+import i1199 from 'kraken-wallet-cryptoicons/src/perl.svg';
+import i1200 from 'kraken-wallet-cryptoicons/src/perp.svg';
+import i1201 from 'kraken-wallet-cryptoicons/src/pha.svg';
+import i1202 from 'kraken-wallet-cryptoicons/src/phb.svg';
+import i1203 from 'kraken-wallet-cryptoicons/src/phnx.svg';
+import i1204 from 'kraken-wallet-cryptoicons/src/phtk.svg';
+import i1205 from 'kraken-wallet-cryptoicons/src/phx.svg';
+import i1206 from 'kraken-wallet-cryptoicons/src/pickle.svg';
+import i1207 from 'kraken-wallet-cryptoicons/src/pink.svg';
+import i1208 from 'kraken-wallet-cryptoicons/src/pip.svg';
+import i1209 from 'kraken-wallet-cryptoicons/src/pirl.svg';
+import i1210 from 'kraken-wallet-cryptoicons/src/pivx.svg';
+import i1211 from 'kraken-wallet-cryptoicons/src/pkb.svg';
+import i1212 from 'kraken-wallet-cryptoicons/src/pla.svg';
+import i1213 from 'kraken-wallet-cryptoicons/src/play.svg';
+import i1214 from 'kraken-wallet-cryptoicons/src/plbt.svg';
+import i1215 from 'kraken-wallet-cryptoicons/src/plc.svg';
+import i1216 from 'kraken-wallet-cryptoicons/src/pldai.svg';
+import i1217 from 'kraken-wallet-cryptoicons/src/plgr.svg';
+import i1218 from 'kraken-wallet-cryptoicons/src/plr.svg';
+import i1219 from 'kraken-wallet-cryptoicons/src/plt.svg';
+import i1220 from 'kraken-wallet-cryptoicons/src/pltc.svg';
+import i1221 from 'kraken-wallet-cryptoicons/src/plu.svg';
+import i1222 from 'kraken-wallet-cryptoicons/src/plusdc.svg';
+import i1223 from 'kraken-wallet-cryptoicons/src/pma.svg';
+import i1224 from 'kraken-wallet-cryptoicons/src/pmgt.svg';
+import i1225 from 'kraken-wallet-cryptoicons/src/pmon.svg';
+import i1226 from 'kraken-wallet-cryptoicons/src/png.svg';
+import i1227 from 'kraken-wallet-cryptoicons/src/pnk.svg';
+import i1228 from 'kraken-wallet-cryptoicons/src/pnt.svg';
+import i1229 from 'kraken-wallet-cryptoicons/src/poa.svg';
+import i1230 from 'kraken-wallet-cryptoicons/src/poe.svg';
+import i1231 from 'kraken-wallet-cryptoicons/src/pokt.svg';
+import i1232 from 'kraken-wallet-cryptoicons/src/pol.svg';
+import i1233 from 'kraken-wallet-cryptoicons/src/polc.svg';
+import i1234 from 'kraken-wallet-cryptoicons/src/polis.svg';
+import i1235 from 'kraken-wallet-cryptoicons/src/polk.svg';
+import i1236 from 'kraken-wallet-cryptoicons/src/pols.svg';
+import i1237 from 'kraken-wallet-cryptoicons/src/polx.svg';
+import i1238 from 'kraken-wallet-cryptoicons/src/poly-2.svg';
+import i1239 from 'kraken-wallet-cryptoicons/src/poly.svg';
+import i1240 from 'kraken-wallet-cryptoicons/src/polyx.svg';
+import i1241 from 'kraken-wallet-cryptoicons/src/pom.svg';
+import i1242 from 'kraken-wallet-cryptoicons/src/pond.svg';
+import i1243 from 'kraken-wallet-cryptoicons/src/ponke.svg';
+import i1244 from 'kraken-wallet-cryptoicons/src/pont.svg';
+import i1245 from 'kraken-wallet-cryptoicons/src/pool.svg';
+import i1246 from 'kraken-wallet-cryptoicons/src/pop.svg';
+import i1247 from 'kraken-wallet-cryptoicons/src/popcat.svg';
+import i1248 from 'kraken-wallet-cryptoicons/src/pork.svg';
+import i1249 from 'kraken-wallet-cryptoicons/src/porto.svg';
+import i1250 from 'kraken-wallet-cryptoicons/src/pot.svg';
+import i1251 from 'kraken-wallet-cryptoicons/src/potnoy.svg';
+import i1252 from 'kraken-wallet-cryptoicons/src/power.svg';
+import i1253 from 'kraken-wallet-cryptoicons/src/powr.svg';
+import i1254 from 'kraken-wallet-cryptoicons/src/ppay.svg';
+import i1255 from 'kraken-wallet-cryptoicons/src/ppc.svg';
+import i1256 from 'kraken-wallet-cryptoicons/src/ppp.svg';
+import i1257 from 'kraken-wallet-cryptoicons/src/ppt.svg';
+import i1258 from 'kraken-wallet-cryptoicons/src/pre.svg';
+import i1259 from 'kraken-wallet-cryptoicons/src/premia.svg';
+import i1260 from 'kraken-wallet-cryptoicons/src/prime.svg';
+import i1261 from 'kraken-wallet-cryptoicons/src/prl.svg';
+import i1262 from 'kraken-wallet-cryptoicons/src/pro.svg';
+import i1263 from 'kraken-wallet-cryptoicons/src/prom.svg';
+import i1264 from 'kraken-wallet-cryptoicons/src/props.svg';
+import i1265 from 'kraken-wallet-cryptoicons/src/pros.svg';
+import i1266 from 'kraken-wallet-cryptoicons/src/prq.svg';
+import i1267 from 'kraken-wallet-cryptoicons/src/psg.svg';
+import i1268 from 'kraken-wallet-cryptoicons/src/psp.svg';
+import i1269 from 'kraken-wallet-cryptoicons/src/pst.svg';
+import i1270 from 'kraken-wallet-cryptoicons/src/pstake.svg';
+import i1271 from 'kraken-wallet-cryptoicons/src/ptc.svg';
+import i1272 from 'kraken-wallet-cryptoicons/src/ptoy.svg';
+import i1273 from 'kraken-wallet-cryptoicons/src/pundix.svg';
+import i1274 from 'kraken-wallet-cryptoicons/src/pups.svg';
+import i1275 from 'kraken-wallet-cryptoicons/src/pyr.svg';
+import i1276 from 'kraken-wallet-cryptoicons/src/pyth.svg';
+import i1277 from 'kraken-wallet-cryptoicons/src/pyusd.svg';
+import i1278 from 'kraken-wallet-cryptoicons/src/qash.svg';
+import i1279 from 'kraken-wallet-cryptoicons/src/qbit.svg';
+import i1280 from 'kraken-wallet-cryptoicons/src/qi.svg';
+import i1281 from 'kraken-wallet-cryptoicons/src/qkc.svg';
+import i1282 from 'kraken-wallet-cryptoicons/src/qlc.svg';
+import i1283 from 'kraken-wallet-cryptoicons/src/qnt.svg';
+import i1284 from 'kraken-wallet-cryptoicons/src/qqq.svg';
+import i1285 from 'kraken-wallet-cryptoicons/src/qrdo.svg';
+import i1286 from 'kraken-wallet-cryptoicons/src/qrl.svg';
+import i1287 from 'kraken-wallet-cryptoicons/src/qsp.svg';
+import i1288 from 'kraken-wallet-cryptoicons/src/qtum.svg';
+import i1289 from 'kraken-wallet-cryptoicons/src/quick.svg';
+import i1290 from 'kraken-wallet-cryptoicons/src/qun.svg';
+import i1291 from 'kraken-wallet-cryptoicons/src/qwark.svg';
+import i1292 from 'kraken-wallet-cryptoicons/src/r.svg';
+import i1293 from 'kraken-wallet-cryptoicons/src/raca.svg';
+import i1294 from 'kraken-wallet-cryptoicons/src/rad.svg';
+import i1295 from 'kraken-wallet-cryptoicons/src/radar.svg';
+import i1296 from 'kraken-wallet-cryptoicons/src/rads.svg';
+import i1297 from 'kraken-wallet-cryptoicons/src/rae.svg';
+import i1298 from 'kraken-wallet-cryptoicons/src/rai.svg';
+import i1299 from 'kraken-wallet-cryptoicons/src/ramp.svg';
+import i1300 from 'kraken-wallet-cryptoicons/src/ranker.svg';
+import i1301 from 'kraken-wallet-cryptoicons/src/rare.svg';
+import i1302 from 'kraken-wallet-cryptoicons/src/rari.svg';
+import i1303 from 'kraken-wallet-cryptoicons/src/ray.svg';
+import i1304 from 'kraken-wallet-cryptoicons/src/rbc.svg';
+import i1305 from 'kraken-wallet-cryptoicons/src/rbn.svg';
+import i1306 from 'kraken-wallet-cryptoicons/src/rbtc.svg';
+import i1307 from 'kraken-wallet-cryptoicons/src/rby.svg';
+import i1308 from 'kraken-wallet-cryptoicons/src/rcn.svg';
+import i1309 from 'kraken-wallet-cryptoicons/src/rdd.svg';
+import i1310 from 'kraken-wallet-cryptoicons/src/rdn.svg';
+import i1311 from 'kraken-wallet-cryptoicons/src/rdnt.svg';
+import i1312 from 'kraken-wallet-cryptoicons/src/reap.svg';
+import i1313 from 'kraken-wallet-cryptoicons/src/reef.svg';
+import i1314 from 'kraken-wallet-cryptoicons/src/rei.svg';
+import i1315 from 'kraken-wallet-cryptoicons/src/ren.svg';
+import i1316 from 'kraken-wallet-cryptoicons/src/renbtc.svg';
+import i1317 from 'kraken-wallet-cryptoicons/src/render.svg';
+import i1318 from 'kraken-wallet-cryptoicons/src/renfil.svg';
+import i1319 from 'kraken-wallet-cryptoicons/src/rep.svg';
+import i1320 from 'kraken-wallet-cryptoicons/src/req.svg';
+import i1321 from 'kraken-wallet-cryptoicons/src/reth.svg';
+import i1322 from 'kraken-wallet-cryptoicons/src/rev.svg';
+import i1323 from 'kraken-wallet-cryptoicons/src/revo.svg';
+import i1324 from 'kraken-wallet-cryptoicons/src/revu.svg';
+import i1325 from 'kraken-wallet-cryptoicons/src/revv.svg';
+import i1326 from 'kraken-wallet-cryptoicons/src/rfox.svg';
+import i1327 from 'kraken-wallet-cryptoicons/src/rfr.svg';
+import i1328 from 'kraken-wallet-cryptoicons/src/rfuel.svg';
+import i1329 from 'kraken-wallet-cryptoicons/src/rfwsteth.svg';
+import i1330 from 'kraken-wallet-cryptoicons/src/rgt.svg';
+import i1331 from 'kraken-wallet-cryptoicons/src/rhoc.svg';
+import i1332 from 'kraken-wallet-cryptoicons/src/rif.svg';
+import i1333 from 'kraken-wallet-cryptoicons/src/rise.svg';
+import i1334 from 'kraken-wallet-cryptoicons/src/rlc.svg';
+import i1335 from 'kraken-wallet-cryptoicons/src/rly.svg';
+import i1336 from 'kraken-wallet-cryptoicons/src/rmark.svg';
+import i1337 from 'kraken-wallet-cryptoicons/src/rndr.svg';
+import i1338 from 'kraken-wallet-cryptoicons/src/road.svg';
+import i1339 from 'kraken-wallet-cryptoicons/src/roar.svg';
+import i1340 from 'kraken-wallet-cryptoicons/src/ron.svg';
+import i1341 from 'kraken-wallet-cryptoicons/src/roobee.svg';
+import i1342 from 'kraken-wallet-cryptoicons/src/rook.svg';
+import i1343 from 'kraken-wallet-cryptoicons/src/rose.svg';
+import i1344 from 'kraken-wallet-cryptoicons/src/rosn.svg';
+import i1345 from 'kraken-wallet-cryptoicons/src/route.svg';
+import i1346 from 'kraken-wallet-cryptoicons/src/rpl.svg';
+import i1347 from 'kraken-wallet-cryptoicons/src/rpx.svg';
+import i1348 from 'kraken-wallet-cryptoicons/src/rsr.svg';
+import i1349 from 'kraken-wallet-cryptoicons/src/rsv.svg';
+import i1350 from 'kraken-wallet-cryptoicons/src/ruff.svg';
+import i1351 from 'kraken-wallet-cryptoicons/src/rune.svg';
+import i1352 from 'kraken-wallet-cryptoicons/src/rvn.svg';
+import i1353 from 'kraken-wallet-cryptoicons/src/rvr.svg';
+import i1354 from 'kraken-wallet-cryptoicons/src/ryo.svg';
+import i1355 from 'kraken-wallet-cryptoicons/src/s.svg';
+import i1356 from 'kraken-wallet-cryptoicons/src/safemoon.svg';
+import i1357 from 'kraken-wallet-cryptoicons/src/sai.svg';
+import i1358 from 'kraken-wallet-cryptoicons/src/saito.svg';
+import i1359 from 'kraken-wallet-cryptoicons/src/salt.svg';
+import i1360 from 'kraken-wallet-cryptoicons/src/samo.svg';
+import i1361 from 'kraken-wallet-cryptoicons/src/san.svg';
+import i1362 from 'kraken-wallet-cryptoicons/src/sand.svg';
+import i1363 from 'kraken-wallet-cryptoicons/src/santos.svg';
+import i1364 from 'kraken-wallet-cryptoicons/src/sapp.svg';
+import i1365 from 'kraken-wallet-cryptoicons/src/sar.svg';
+import i1366 from 'kraken-wallet-cryptoicons/src/savax.svg';
+import i1367 from 'kraken-wallet-cryptoicons/src/sbd.svg';
+import i1368 from 'kraken-wallet-cryptoicons/src/sbr.svg';
+import i1369 from 'kraken-wallet-cryptoicons/src/sbtc.svg';
+import i1370 from 'kraken-wallet-cryptoicons/src/sc.svg';
+import i1371 from 'kraken-wallet-cryptoicons/src/sclp.svg';
+import i1372 from 'kraken-wallet-cryptoicons/src/scrl.svg';
+import i1373 from 'kraken-wallet-cryptoicons/src/scrt.svg';
+import i1374 from 'kraken-wallet-cryptoicons/src/sd.svg';
+import i1375 from 'kraken-wallet-cryptoicons/src/sdao.svg';
+import i1376 from 'kraken-wallet-cryptoicons/src/sdl.svg';
+import i1377 from 'kraken-wallet-cryptoicons/src/sdn.svg';
+import i1378 from 'kraken-wallet-cryptoicons/src/sdt.svg';
+import i1379 from 'kraken-wallet-cryptoicons/src/seele.svg';
+import i1380 from 'kraken-wallet-cryptoicons/src/sefi.svg';
+import i1381 from 'kraken-wallet-cryptoicons/src/sei.svg';
+import i1382 from 'kraken-wallet-cryptoicons/src/sem.svg';
+import i1383 from 'kraken-wallet-cryptoicons/src/senso.svg';
+import i1384 from 'kraken-wallet-cryptoicons/src/seq.svg';
+import i1385 from 'kraken-wallet-cryptoicons/src/sero.svg';
+import i1386 from 'kraken-wallet-cryptoicons/src/seth.svg';
+import i1387 from 'kraken-wallet-cryptoicons/src/seth2.svg';
+import i1388 from 'kraken-wallet-cryptoicons/src/sfi.svg';
+import i1389 from 'kraken-wallet-cryptoicons/src/sfm.svg';
+import i1390 from 'kraken-wallet-cryptoicons/src/sfp-2.svg';
+import i1391 from 'kraken-wallet-cryptoicons/src/sfp.svg';
+import i1392 from 'kraken-wallet-cryptoicons/src/sfrxeth.svg';
+import i1393 from 'kraken-wallet-cryptoicons/src/sfund.svg';
+import i1394 from 'kraken-wallet-cryptoicons/src/sgb.svg';
+import i1395 from 'kraken-wallet-cryptoicons/src/sha.svg';
+import i1396 from 'kraken-wallet-cryptoicons/src/shdw.svg';
+import i1397 from 'kraken-wallet-cryptoicons/src/shft.svg';
+import i1398 from 'kraken-wallet-cryptoicons/src/shib.svg';
+import i1399 from 'kraken-wallet-cryptoicons/src/shift.svg';
+import i1400 from 'kraken-wallet-cryptoicons/src/shill.svg';
+import i1401 from 'kraken-wallet-cryptoicons/src/ship.svg';
+import i1402 from 'kraken-wallet-cryptoicons/src/shping.svg';
+import i1403 from 'kraken-wallet-cryptoicons/src/shr.svg';
+import i1404 from 'kraken-wallet-cryptoicons/src/shroom.svg';
+import i1405 from 'kraken-wallet-cryptoicons/src/shx.svg';
+import i1406 from 'kraken-wallet-cryptoicons/src/si.svg';
+import i1407 from 'kraken-wallet-cryptoicons/src/sia.svg';
+import i1408 from 'kraken-wallet-cryptoicons/src/sib.svg';
+import i1409 from 'kraken-wallet-cryptoicons/src/silo.svg';
+import i1410 from 'kraken-wallet-cryptoicons/src/skey.svg';
+import i1411 from 'kraken-wallet-cryptoicons/src/skl.svg';
+import i1412 from 'kraken-wallet-cryptoicons/src/sku.svg';
+import i1413 from 'kraken-wallet-cryptoicons/src/sky.svg';
+import i1414 from 'kraken-wallet-cryptoicons/src/sld.svg';
+import i1415 from 'kraken-wallet-cryptoicons/src/slerf.svg';
+import i1416 from 'kraken-wallet-cryptoicons/src/slim.svg';
+import i1417 from 'kraken-wallet-cryptoicons/src/slink.svg';
+import i1418 from 'kraken-wallet-cryptoicons/src/slp.svg';
+import i1419 from 'kraken-wallet-cryptoicons/src/slr.svg';
+import i1420 from 'kraken-wallet-cryptoicons/src/sls.svg';
+import i1421 from 'kraken-wallet-cryptoicons/src/slt.svg';
+import i1422 from 'kraken-wallet-cryptoicons/src/smart.svg';
+import i1423 from 'kraken-wallet-cryptoicons/src/smog.svg';
+import i1424 from 'kraken-wallet-cryptoicons/src/smurfcat.svg';
+import i1425 from 'kraken-wallet-cryptoicons/src/snail.svg';
+import i1426 from 'kraken-wallet-cryptoicons/src/snc.svg';
+import i1427 from 'kraken-wallet-cryptoicons/src/sngls.svg';
+import i1428 from 'kraken-wallet-cryptoicons/src/snm.svg';
+import i1429 from 'kraken-wallet-cryptoicons/src/snow.svg';
+import i1430 from 'kraken-wallet-cryptoicons/src/snt.svg';
+import i1431 from 'kraken-wallet-cryptoicons/src/sntv.svg';
+import i1432 from 'kraken-wallet-cryptoicons/src/snx.svg';
+import i1433 from 'kraken-wallet-cryptoicons/src/sny.svg';
+import i1434 from 'kraken-wallet-cryptoicons/src/soc.svg';
+import i1435 from 'kraken-wallet-cryptoicons/src/sol.svg';
+import i1436 from 'kraken-wallet-cryptoicons/src/solama.svg';
+import i1437 from 'kraken-wallet-cryptoicons/src/solid.svg';
+import i1438 from 'kraken-wallet-cryptoicons/src/solo.svg';
+import i1439 from 'kraken-wallet-cryptoicons/src/solr.svg';
+import i1440 from 'kraken-wallet-cryptoicons/src/solve.svg';
+import i1441 from 'kraken-wallet-cryptoicons/src/sos.svg';
+import i1442 from 'kraken-wallet-cryptoicons/src/soul.svg';
+import i1443 from 'kraken-wallet-cryptoicons/src/sov.svg';
+import i1444 from 'kraken-wallet-cryptoicons/src/spank.svg';
+import i1445 from 'kraken-wallet-cryptoicons/src/sparta.svg';
+import i1446 from 'kraken-wallet-cryptoicons/src/spell.svg';
+import i1447 from 'kraken-wallet-cryptoicons/src/sphr.svg';
+import i1448 from 'kraken-wallet-cryptoicons/src/sphtx.svg';
+import i1449 from 'kraken-wallet-cryptoicons/src/spi.svg';
+import i1450 from 'kraken-wallet-cryptoicons/src/spike.svg';
+import i1451 from 'kraken-wallet-cryptoicons/src/spk.svg';
+import i1452 from 'kraken-wallet-cryptoicons/src/spn.svg';
+import i1453 from 'kraken-wallet-cryptoicons/src/spnd.svg';
+import i1454 from 'kraken-wallet-cryptoicons/src/spr.svg';
+import i1455 from 'kraken-wallet-cryptoicons/src/srm.svg';
+import i1456 from 'kraken-wallet-cryptoicons/src/srn.svg';
+import i1457 from 'kraken-wallet-cryptoicons/src/ssv.svg';
+import i1458 from 'kraken-wallet-cryptoicons/src/stak.svg';
+import i1459 from 'kraken-wallet-cryptoicons/src/stake.svg';
+import i1460 from 'kraken-wallet-cryptoicons/src/stan.svg';
+import i1461 from 'kraken-wallet-cryptoicons/src/starly.svg';
+import i1462 from 'kraken-wallet-cryptoicons/src/start.svg';
+import i1463 from 'kraken-wallet-cryptoicons/src/stc.svg';
+import i1464 from 'kraken-wallet-cryptoicons/src/steem.svg';
+import i1465 from 'kraken-wallet-cryptoicons/src/step.svg';
+import i1466 from 'kraken-wallet-cryptoicons/src/steth-1.svg';
+import i1467 from 'kraken-wallet-cryptoicons/src/steth.svg';
+import i1468 from 'kraken-wallet-cryptoicons/src/stg.svg';
+import i1469 from 'kraken-wallet-cryptoicons/src/stkaave.svg';
+import i1470 from 'kraken-wallet-cryptoicons/src/stklyra.svg';
+import i1471 from 'kraken-wallet-cryptoicons/src/stmatic.svg';
+import i1472 from 'kraken-wallet-cryptoicons/src/stmx.svg';
+import i1473 from 'kraken-wallet-cryptoicons/src/stnd.svg';
+import i1474 from 'kraken-wallet-cryptoicons/src/storj.svg';
+import i1475 from 'kraken-wallet-cryptoicons/src/storm.svg';
+import i1476 from 'kraken-wallet-cryptoicons/src/stpt.svg';
+import i1477 from 'kraken-wallet-cryptoicons/src/stq.svg';
+import i1478 from 'kraken-wallet-cryptoicons/src/strat.svg';
+import i1479 from 'kraken-wallet-cryptoicons/src/strax.svg';
+import i1480 from 'kraken-wallet-cryptoicons/src/strk.svg';
+import i1481 from 'kraken-wallet-cryptoicons/src/strong.svg';
+import i1482 from 'kraken-wallet-cryptoicons/src/stx.svg';
+import i1483 from 'kraken-wallet-cryptoicons/src/stz.svg';
+import i1484 from 'kraken-wallet-cryptoicons/src/sub.svg';
+import i1485 from 'kraken-wallet-cryptoicons/src/sui.svg';
+import i1486 from 'kraken-wallet-cryptoicons/src/suku.svg';
+import i1487 from 'kraken-wallet-cryptoicons/src/sumo.svg';
+import i1488 from 'kraken-wallet-cryptoicons/src/sun.svg';
+import i1489 from 'kraken-wallet-cryptoicons/src/super.svg';
+import i1490 from 'kraken-wallet-cryptoicons/src/suqa.svg';
+import i1491 from 'kraken-wallet-cryptoicons/src/sure.svg';
+import i1492 from 'kraken-wallet-cryptoicons/src/surv.svg';
+import i1493 from 'kraken-wallet-cryptoicons/src/susd.svg';
+import i1494 from 'kraken-wallet-cryptoicons/src/sushi.svg';
+import i1495 from 'kraken-wallet-cryptoicons/src/suter.svg';
+import i1496 from 'kraken-wallet-cryptoicons/src/swap.svg';
+import i1497 from 'kraken-wallet-cryptoicons/src/swash.svg';
+import i1498 from 'kraken-wallet-cryptoicons/src/sweat.svg';
+import i1499 from 'kraken-wallet-cryptoicons/src/swingby.svg';
+import i1500 from 'kraken-wallet-cryptoicons/src/swp.svg';
+import i1501 from 'kraken-wallet-cryptoicons/src/swrv.svg';
+import i1502 from 'kraken-wallet-cryptoicons/src/swt.svg';
+import i1503 from 'kraken-wallet-cryptoicons/src/swth.svg';
+import i1504 from 'kraken-wallet-cryptoicons/src/sxdt.svg';
+import i1505 from 'kraken-wallet-cryptoicons/src/sxp.svg';
+import i1506 from 'kraken-wallet-cryptoicons/src/sylo.svg';
+import i1507 from 'kraken-wallet-cryptoicons/src/syn.svg';
+import i1508 from 'kraken-wallet-cryptoicons/src/synth.svg';
+import i1509 from 'kraken-wallet-cryptoicons/src/synx.svg';
+import i1510 from 'kraken-wallet-cryptoicons/src/sys.svg';
+import i1511 from 'kraken-wallet-cryptoicons/src/t.svg';
+import i1512 from 'kraken-wallet-cryptoicons/src/taas.svg';
+import i1513 from 'kraken-wallet-cryptoicons/src/tara.svg';
+import i1514 from 'kraken-wallet-cryptoicons/src/tau.svg';
+import i1515 from 'kraken-wallet-cryptoicons/src/tbtc.svg';
+import i1516 from 'kraken-wallet-cryptoicons/src/tbx.svg';
+import i1517 from 'kraken-wallet-cryptoicons/src/tch.svg';
+import i1518 from 'kraken-wallet-cryptoicons/src/tcp.svg';
+import i1519 from 'kraken-wallet-cryptoicons/src/tct.svg';
+import i1520 from 'kraken-wallet-cryptoicons/src/tel.svg';
+import i1521 from 'kraken-wallet-cryptoicons/src/ten.svg';
+import i1522 from 'kraken-wallet-cryptoicons/src/tera.svg';
+import i1523 from 'kraken-wallet-cryptoicons/src/tern.svg';
+import i1524 from 'kraken-wallet-cryptoicons/src/tfl.svg';
+import i1525 from 'kraken-wallet-cryptoicons/src/tfuel.svg';
+import i1526 from 'kraken-wallet-cryptoicons/src/thales.svg';
+import i1527 from 'kraken-wallet-cryptoicons/src/thc.svg';
+import i1528 from 'kraken-wallet-cryptoicons/src/thedao.svg';
+import i1529 from 'kraken-wallet-cryptoicons/src/theta.svg';
+import i1530 from 'kraken-wallet-cryptoicons/src/thr.svg';
+import i1531 from 'kraken-wallet-cryptoicons/src/tia.svg';
+import i1532 from 'kraken-wallet-cryptoicons/src/tidal.svg';
+import i1533 from 'kraken-wallet-cryptoicons/src/time.svg';
+import i1534 from 'kraken-wallet-cryptoicons/src/tio.svg';
+import i1535 from 'kraken-wallet-cryptoicons/src/titan.svg';
+import i1536 from 'kraken-wallet-cryptoicons/src/tix.svg';
+import i1537 from 'kraken-wallet-cryptoicons/src/tkn.svg';
+import i1538 from 'kraken-wallet-cryptoicons/src/tko.svg';
+import i1539 from 'kraken-wallet-cryptoicons/src/tks.svg';
+import i1540 from 'kraken-wallet-cryptoicons/src/tky.svg';
+import i1541 from 'kraken-wallet-cryptoicons/src/tlm.svg';
+import i1542 from 'kraken-wallet-cryptoicons/src/tlos.svg';
+import i1543 from 'kraken-wallet-cryptoicons/src/tnb.svg';
+import i1544 from 'kraken-wallet-cryptoicons/src/tnc.svg';
+import i1545 from 'kraken-wallet-cryptoicons/src/tnd.svg';
+import i1546 from 'kraken-wallet-cryptoicons/src/tnt.svg';
+import i1547 from 'kraken-wallet-cryptoicons/src/toby.svg';
+import i1548 from 'kraken-wallet-cryptoicons/src/toke.svg';
+import i1549 from 'kraken-wallet-cryptoicons/src/toko.svg';
+import i1550 from 'kraken-wallet-cryptoicons/src/tomb.svg';
+import i1551 from 'kraken-wallet-cryptoicons/src/tomi.svg';
+import i1552 from 'kraken-wallet-cryptoicons/src/tomo.svg';
+import i1553 from 'kraken-wallet-cryptoicons/src/ton.svg';
+import i1554 from 'kraken-wallet-cryptoicons/src/tonic.svg';
+import i1555 from 'kraken-wallet-cryptoicons/src/tor.svg';
+import i1556 from 'kraken-wallet-cryptoicons/src/torn.svg';
+import i1557 from 'kraken-wallet-cryptoicons/src/toshi.svg';
+import i1558 from 'kraken-wallet-cryptoicons/src/tower.svg';
+import i1559 from 'kraken-wallet-cryptoicons/src/tox.svg';
+import i1560 from 'kraken-wallet-cryptoicons/src/tpay.svg';
+import i1561 from 'kraken-wallet-cryptoicons/src/tra.svg';
+import i1562 from 'kraken-wallet-cryptoicons/src/trac.svg';
+import i1563 from 'kraken-wallet-cryptoicons/src/trade.svg';
+import i1564 from 'kraken-wallet-cryptoicons/src/trb.svg';
+import i1565 from 'kraken-wallet-cryptoicons/src/tremp.svg';
+import i1566 from 'kraken-wallet-cryptoicons/src/trias.svg';
+import i1567 from 'kraken-wallet-cryptoicons/src/tribe.svg';
+import i1568 from 'kraken-wallet-cryptoicons/src/trig.svg';
+import i1569 from 'kraken-wallet-cryptoicons/src/troy.svg';
+import i1570 from 'kraken-wallet-cryptoicons/src/trst.svg';
+import i1571 from 'kraken-wallet-cryptoicons/src/trtl.svg';
+import i1572 from 'kraken-wallet-cryptoicons/src/tru.svg';
+import i1573 from 'kraken-wallet-cryptoicons/src/trump.svg';
+import i1574 from 'kraken-wallet-cryptoicons/src/trvl.svg';
+import i1575 from 'kraken-wallet-cryptoicons/src/trx.svg';
+import i1576 from 'kraken-wallet-cryptoicons/src/try.svg';
+import i1577 from 'kraken-wallet-cryptoicons/src/tryb.svg';
+import i1578 from 'kraken-wallet-cryptoicons/src/tt.svg';
+import i1579 from 'kraken-wallet-cryptoicons/src/ttc.svg';
+import i1580 from 'kraken-wallet-cryptoicons/src/ttt.svg';
+import i1581 from 'kraken-wallet-cryptoicons/src/tube.svg';
+import i1582 from 'kraken-wallet-cryptoicons/src/tur.svg';
+import i1583 from 'kraken-wallet-cryptoicons/src/tusd.svg';
+import i1584 from 'kraken-wallet-cryptoicons/src/tvk.svg';
+import i1585 from 'kraken-wallet-cryptoicons/src/twt.svg';
+import i1586 from 'kraken-wallet-cryptoicons/src/txa.svg';
+import i1587 from 'kraken-wallet-cryptoicons/src/tybg.svg';
+import i1588 from 'kraken-wallet-cryptoicons/src/tyzen.svg';
+import i1589 from 'kraken-wallet-cryptoicons/src/tzc.svg';
+import i1590 from 'kraken-wallet-cryptoicons/src/ubi.svg';
+import i1591 from 'kraken-wallet-cryptoicons/src/ubq.svg';
+import i1592 from 'kraken-wallet-cryptoicons/src/ubsn.svg';
+import i1593 from 'kraken-wallet-cryptoicons/src/ubt.svg';
+import i1594 from 'kraken-wallet-cryptoicons/src/ubx.svg';
+import i1595 from 'kraken-wallet-cryptoicons/src/ubxt.svg';
+import i1596 from 'kraken-wallet-cryptoicons/src/udoo.svg';
+import i1597 from 'kraken-wallet-cryptoicons/src/ufo.svg';
+import i1598 from 'kraken-wallet-cryptoicons/src/uft.svg';
+import i1599 from 'kraken-wallet-cryptoicons/src/ukg.svg';
+import i1600 from 'kraken-wallet-cryptoicons/src/ult.svg';
+import i1601 from 'kraken-wallet-cryptoicons/src/uma.svg';
+import i1602 from 'kraken-wallet-cryptoicons/src/umb.svg';
+import i1603 from 'kraken-wallet-cryptoicons/src/umee.svg';
+import i1604 from 'kraken-wallet-cryptoicons/src/unb.svg';
+import i1605 from 'kraken-wallet-cryptoicons/src/uncx.svg';
+import i1606 from 'kraken-wallet-cryptoicons/src/unfi.svg';
+import i1607 from 'kraken-wallet-cryptoicons/src/uni.svg';
+import i1608 from 'kraken-wallet-cryptoicons/src/unic.svg';
+import i1609 from 'kraken-wallet-cryptoicons/src/unidaieth.svg';
+import i1610 from 'kraken-wallet-cryptoicons/src/unilendeth.svg';
+import i1611 from 'kraken-wallet-cryptoicons/src/unilinketh.svg';
+import i1612 from 'kraken-wallet-cryptoicons/src/unimkreth.svg';
+import i1613 from 'kraken-wallet-cryptoicons/src/uniqo.svg';
+import i1614 from 'kraken-wallet-cryptoicons/src/unisetheth.svg';
+import i1615 from 'kraken-wallet-cryptoicons/src/uniusdceth.svg';
+import i1616 from 'kraken-wallet-cryptoicons/src/unn.svg';
+import i1617 from 'kraken-wallet-cryptoicons/src/uno.svg';
+import i1618 from 'kraken-wallet-cryptoicons/src/uos.svg';
+import i1619 from 'kraken-wallet-cryptoicons/src/up.svg';
+import i1620 from 'kraken-wallet-cryptoicons/src/upi.svg';
+import i1621 from 'kraken-wallet-cryptoicons/src/upp.svg';
+import i1622 from 'kraken-wallet-cryptoicons/src/uqc.svg';
+import i1623 from 'kraken-wallet-cryptoicons/src/usd+.svg';
+import i1624 from 'kraken-wallet-cryptoicons/src/usd.svg';
+import i1625 from 'kraken-wallet-cryptoicons/src/usdc.svg';
+import i1626 from 'kraken-wallet-cryptoicons/src/usdce.svg';
+import i1627 from 'kraken-wallet-cryptoicons/src/usdd.svg';
+import i1628 from 'kraken-wallet-cryptoicons/src/usdj.svg';
+import i1629 from 'kraken-wallet-cryptoicons/src/usdn.svg';
+import i1630 from 'kraken-wallet-cryptoicons/src/usdp.svg';
+import i1631 from 'kraken-wallet-cryptoicons/src/usds.svg';
+import i1632 from 'kraken-wallet-cryptoicons/src/usdt.svg';
+import i1633 from 'kraken-wallet-cryptoicons/src/ust.svg';
+import i1634 from 'kraken-wallet-cryptoicons/src/ustc.svg';
+import i1635 from 'kraken-wallet-cryptoicons/src/usx.svg';
+import i1636 from 'kraken-wallet-cryptoicons/src/ut.svg';
+import i1637 from 'kraken-wallet-cryptoicons/src/utk.svg';
+import i1638 from 'kraken-wallet-cryptoicons/src/uuu.svg';
+import i1639 from 'kraken-wallet-cryptoicons/src/vader.svg';
+import i1640 from 'kraken-wallet-cryptoicons/src/vai.svg';
+import i1641 from 'kraken-wallet-cryptoicons/src/value.svg';
+import i1642 from 'kraken-wallet-cryptoicons/src/vee.svg';
+import i1643 from 'kraken-wallet-cryptoicons/src/veed.svg';
+import i1644 from 'kraken-wallet-cryptoicons/src/vega.svg';
+import i1645 from 'kraken-wallet-cryptoicons/src/veil.svg';
+import i1646 from 'kraken-wallet-cryptoicons/src/vekwenta.svg';
+import i1647 from 'kraken-wallet-cryptoicons/src/vela.svg';
+import i1648 from 'kraken-wallet-cryptoicons/src/velo.svg';
+import i1649 from 'kraken-wallet-cryptoicons/src/vemp.svg';
+import i1650 from 'kraken-wallet-cryptoicons/src/ven.svg';
+import i1651 from 'kraken-wallet-cryptoicons/src/veri.svg';
+import i1652 from 'kraken-wallet-cryptoicons/src/vest.svg';
+import i1653 from 'kraken-wallet-cryptoicons/src/vet.svg';
+import i1654 from 'kraken-wallet-cryptoicons/src/vgx.svg';
+import i1655 from 'kraken-wallet-cryptoicons/src/via.svg';
+import i1656 from 'kraken-wallet-cryptoicons/src/vib.svg';
+import i1657 from 'kraken-wallet-cryptoicons/src/vibe.svg';
+import i1658 from 'kraken-wallet-cryptoicons/src/vid.svg';
+import i1659 from 'kraken-wallet-cryptoicons/src/vidt.svg';
+import i1660 from 'kraken-wallet-cryptoicons/src/vikky.svg';
+import i1661 from 'kraken-wallet-cryptoicons/src/vin.svg';
+import i1662 from 'kraken-wallet-cryptoicons/src/vina.svg';
+import i1663 from 'kraken-wallet-cryptoicons/src/vita.svg';
+import i1664 from 'kraken-wallet-cryptoicons/src/vite.svg';
+import i1665 from 'kraken-wallet-cryptoicons/src/viu.svg';
+import i1666 from 'kraken-wallet-cryptoicons/src/vix.svg';
+import i1667 from 'kraken-wallet-cryptoicons/src/vlx.svg';
+import i1668 from 'kraken-wallet-cryptoicons/src/vnx.svg';
+import i1669 from 'kraken-wallet-cryptoicons/src/vol.svg';
+import i1670 from 'kraken-wallet-cryptoicons/src/voxel.svg';
+import i1671 from 'kraken-wallet-cryptoicons/src/vr.svg';
+import i1672 from 'kraken-wallet-cryptoicons/src/vra.svg';
+import i1673 from 'kraken-wallet-cryptoicons/src/vrc.svg';
+import i1674 from 'kraken-wallet-cryptoicons/src/vrm.svg';
+import i1675 from 'kraken-wallet-cryptoicons/src/vrs.svg';
+import i1676 from 'kraken-wallet-cryptoicons/src/vrsc.svg';
+import i1677 from 'kraken-wallet-cryptoicons/src/vrt.svg';
+import i1678 from 'kraken-wallet-cryptoicons/src/vsp.svg';
+import i1679 from 'kraken-wallet-cryptoicons/src/vsys.svg';
+import i1680 from 'kraken-wallet-cryptoicons/src/vtc.svg';
+import i1681 from 'kraken-wallet-cryptoicons/src/vtho.svg';
+import i1682 from 'kraken-wallet-cryptoicons/src/vtr.svg';
+import i1683 from 'kraken-wallet-cryptoicons/src/vvs.svg';
+import i1684 from 'kraken-wallet-cryptoicons/src/vxv.svg';
+import i1685 from 'kraken-wallet-cryptoicons/src/wabi.svg';
+import i1686 from 'kraken-wallet-cryptoicons/src/wan.svg';
+import i1687 from 'kraken-wallet-cryptoicons/src/warp.svg';
+import i1688 from 'kraken-wallet-cryptoicons/src/wassie.svg';
+import i1689 from 'kraken-wallet-cryptoicons/src/wavax.svg';
+import i1690 from 'kraken-wallet-cryptoicons/src/waves.svg';
+import i1691 from 'kraken-wallet-cryptoicons/src/wax.svg';
+import i1692 from 'kraken-wallet-cryptoicons/src/waxp.svg';
+import i1693 from 'kraken-wallet-cryptoicons/src/wbnb.svg';
+import i1694 from 'kraken-wallet-cryptoicons/src/wbtc.svg';
+import i1695 from 'kraken-wallet-cryptoicons/src/wct.svg';
+import i1696 from 'kraken-wallet-cryptoicons/src/web.svg';
+import i1697 from 'kraken-wallet-cryptoicons/src/wemix.svg';
+import i1698 from 'kraken-wallet-cryptoicons/src/wen.svg';
+import i1699 from 'kraken-wallet-cryptoicons/src/west.svg';
+import i1700 from 'kraken-wallet-cryptoicons/src/weth.svg';
+import i1701 from 'kraken-wallet-cryptoicons/src/wexpoly.svg';
+import i1702 from 'kraken-wallet-cryptoicons/src/wftm.svg';
+import i1703 from 'kraken-wallet-cryptoicons/src/wgr.svg';
+import i1704 from 'kraken-wallet-cryptoicons/src/wgro.svg';
+import i1705 from 'kraken-wallet-cryptoicons/src/whale.svg';
+import i1706 from 'kraken-wallet-cryptoicons/src/whoren.svg';
+import i1707 from 'kraken-wallet-cryptoicons/src/wib.svg';
+import i1708 from 'kraken-wallet-cryptoicons/src/wicc.svg';
+import i1709 from 'kraken-wallet-cryptoicons/src/wif-1.svg';
+import i1710 from 'kraken-wallet-cryptoicons/src/wild.svg';
+import i1711 from 'kraken-wallet-cryptoicons/src/win.svg';
+import i1712 from 'kraken-wallet-cryptoicons/src/wing.svg';
+import i1713 from 'kraken-wallet-cryptoicons/src/wings.svg';
+import i1714 from 'kraken-wallet-cryptoicons/src/wis.svg';
+import i1715 from 'kraken-wallet-cryptoicons/src/wld.svg';
+import i1716 from 'kraken-wallet-cryptoicons/src/wmatic.svg';
+import i1717 from 'kraken-wallet-cryptoicons/src/wmp.svg';
+import i1718 from 'kraken-wallet-cryptoicons/src/wmt.svg';
+import i1719 from 'kraken-wallet-cryptoicons/src/wndr.svg';
+import i1720 from 'kraken-wallet-cryptoicons/src/wnxm.svg';
+import i1721 from 'kraken-wallet-cryptoicons/src/wom.svg';
+import i1722 from 'kraken-wallet-cryptoicons/src/wone.svg';
+import i1723 from 'kraken-wallet-cryptoicons/src/woo.svg';
+import i1724 from 'kraken-wallet-cryptoicons/src/wopenx.svg';
+import i1725 from 'kraken-wallet-cryptoicons/src/wowow.svg';
+import i1726 from 'kraken-wallet-cryptoicons/src/wozx.svg';
+import i1727 from 'kraken-wallet-cryptoicons/src/wpr.svg';
+import i1728 from 'kraken-wallet-cryptoicons/src/wrx.svg';
+import i1729 from 'kraken-wallet-cryptoicons/src/wsienna.svg';
+import i1730 from 'kraken-wallet-cryptoicons/src/wsteth.svg';
+import i1731 from 'kraken-wallet-cryptoicons/src/wtbt.svg';
+import i1732 from 'kraken-wallet-cryptoicons/src/wtc.svg';
+import i1733 from 'kraken-wallet-cryptoicons/src/wxt.svg';
+import i1734 from 'kraken-wallet-cryptoicons/src/x2y2.svg';
+import i1735 from 'kraken-wallet-cryptoicons/src/xai.svg';
+import i1736 from 'kraken-wallet-cryptoicons/src/xas.svg';
+import i1737 from 'kraken-wallet-cryptoicons/src/xaut.svg';
+import i1738 from 'kraken-wallet-cryptoicons/src/xava.svg';
+import i1739 from 'kraken-wallet-cryptoicons/src/xbc.svg';
+import i1740 from 'kraken-wallet-cryptoicons/src/xby.svg';
+import i1741 from 'kraken-wallet-cryptoicons/src/xcad.svg';
+import i1742 from 'kraken-wallet-cryptoicons/src/xch.svg';
+import i1743 from 'kraken-wallet-cryptoicons/src/xchf.svg';
+import i1744 from 'kraken-wallet-cryptoicons/src/xcm.svg';
+import i1745 from 'kraken-wallet-cryptoicons/src/xcn.svg';
+import i1746 from 'kraken-wallet-cryptoicons/src/xcp.svg';
+import i1747 from 'kraken-wallet-cryptoicons/src/xcur.svg';
+import i1748 from 'kraken-wallet-cryptoicons/src/xdata.svg';
+import i1749 from 'kraken-wallet-cryptoicons/src/xdb.svg';
+import i1750 from 'kraken-wallet-cryptoicons/src/xdc.svg';
+import i1751 from 'kraken-wallet-cryptoicons/src/xdfi.svg';
+import i1752 from 'kraken-wallet-cryptoicons/src/xdn.svg';
+import i1753 from 'kraken-wallet-cryptoicons/src/xec.svg';
+import i1754 from 'kraken-wallet-cryptoicons/src/xed.svg';
+import i1755 from 'kraken-wallet-cryptoicons/src/xel.svg';
+import i1756 from 'kraken-wallet-cryptoicons/src/xem.svg';
+import i1757 from 'kraken-wallet-cryptoicons/src/xft.svg';
+import i1758 from 'kraken-wallet-cryptoicons/src/xhv.svg';
+import i1759 from 'kraken-wallet-cryptoicons/src/xido.svg';
+import i1760 from 'kraken-wallet-cryptoicons/src/xin.svg';
+import i1761 from 'kraken-wallet-cryptoicons/src/xlm.svg';
+import i1762 from 'kraken-wallet-cryptoicons/src/xln.svg';
+import i1763 from 'kraken-wallet-cryptoicons/src/xlq.svg';
+import i1764 from 'kraken-wallet-cryptoicons/src/xmark.svg';
+import i1765 from 'kraken-wallet-cryptoicons/src/xmg.svg';
+import i1766 from 'kraken-wallet-cryptoicons/src/xmr.svg';
+import i1767 from 'kraken-wallet-cryptoicons/src/xmt.svg';
+import i1768 from 'kraken-wallet-cryptoicons/src/xmx.svg';
+import i1769 from 'kraken-wallet-cryptoicons/src/xmy.svg';
+import i1770 from 'kraken-wallet-cryptoicons/src/xnc.svg';
+import i1771 from 'kraken-wallet-cryptoicons/src/xnk.svg';
+import i1772 from 'kraken-wallet-cryptoicons/src/xnl.svg';
+import i1773 from 'kraken-wallet-cryptoicons/src/xno.svg';
+import i1774 from 'kraken-wallet-cryptoicons/src/xns.svg';
+import i1775 from 'kraken-wallet-cryptoicons/src/xor.svg';
+import i1776 from 'kraken-wallet-cryptoicons/src/xp.svg';
+import i1777 from 'kraken-wallet-cryptoicons/src/xpa.svg';
+import i1778 from 'kraken-wallet-cryptoicons/src/xpm.svg';
+import i1779 from 'kraken-wallet-cryptoicons/src/xpr.svg';
+import i1780 from 'kraken-wallet-cryptoicons/src/xprt.svg';
+import i1781 from 'kraken-wallet-cryptoicons/src/xrd.svg';
+import i1782 from 'kraken-wallet-cryptoicons/src/xrp.svg';
+import i1783 from 'kraken-wallet-cryptoicons/src/xrt.svg';
+import i1784 from 'kraken-wallet-cryptoicons/src/xsg.svg';
+import i1785 from 'kraken-wallet-cryptoicons/src/xsn.svg';
+import i1786 from 'kraken-wallet-cryptoicons/src/xsr.svg';
+import i1787 from 'kraken-wallet-cryptoicons/src/xst.svg';
+import i1788 from 'kraken-wallet-cryptoicons/src/xsushi.svg';
+import i1789 from 'kraken-wallet-cryptoicons/src/xt.svg';
+import i1790 from 'kraken-wallet-cryptoicons/src/xtag.svg';
+import i1791 from 'kraken-wallet-cryptoicons/src/xtm.svg';
+import i1792 from 'kraken-wallet-cryptoicons/src/xtp.svg';
+import i1793 from 'kraken-wallet-cryptoicons/src/xtz.svg';
+import i1794 from 'kraken-wallet-cryptoicons/src/xuc.svg';
+import i1795 from 'kraken-wallet-cryptoicons/src/xvc.svg';
+import i1796 from 'kraken-wallet-cryptoicons/src/xvg.svg';
+import i1797 from 'kraken-wallet-cryptoicons/src/xvs.svg';
+import i1798 from 'kraken-wallet-cryptoicons/src/xwc.svg';
+import i1799 from 'kraken-wallet-cryptoicons/src/xym.svg';
+import i1800 from 'kraken-wallet-cryptoicons/src/xyo.svg';
+import i1801 from 'kraken-wallet-cryptoicons/src/xyz.svg';
+import i1802 from 'kraken-wallet-cryptoicons/src/xzc.svg';
+import i1803 from 'kraken-wallet-cryptoicons/src/yfdai.svg';
+import i1804 from 'kraken-wallet-cryptoicons/src/yfi.svg';
+import i1805 from 'kraken-wallet-cryptoicons/src/yfii.svg';
+import i1806 from 'kraken-wallet-cryptoicons/src/ygg.svg';
+import i1807 from 'kraken-wallet-cryptoicons/src/yld.svg';
+import i1808 from 'kraken-wallet-cryptoicons/src/yop.svg';
+import i1809 from 'kraken-wallet-cryptoicons/src/youc.svg';
+import i1810 from 'kraken-wallet-cryptoicons/src/yoyo.svg';
+import i1811 from 'kraken-wallet-cryptoicons/src/yoyow.svg';
+import i1812 from 'kraken-wallet-cryptoicons/src/zai.svg';
+import i1813 from 'kraken-wallet-cryptoicons/src/zar.svg';
+import i1814 from 'kraken-wallet-cryptoicons/src/zb.svg';
+import i1815 from 'kraken-wallet-cryptoicons/src/zcl.svg';
+import i1816 from 'kraken-wallet-cryptoicons/src/zco.svg';
+import i1817 from 'kraken-wallet-cryptoicons/src/zcx.svg';
+import i1818 from 'kraken-wallet-cryptoicons/src/zec.svg';
+import i1819 from 'kraken-wallet-cryptoicons/src/zee.svg';
+import i1820 from 'kraken-wallet-cryptoicons/src/zel.svg';
+import i1821 from 'kraken-wallet-cryptoicons/src/zen.svg';
+import i1822 from 'kraken-wallet-cryptoicons/src/zeon.svg';
+import i1823 from 'kraken-wallet-cryptoicons/src/zeta.svg';
+import i1824 from 'kraken-wallet-cryptoicons/src/zil.svg';
+import i1825 from 'kraken-wallet-cryptoicons/src/zip.svg';
+import i1826 from 'kraken-wallet-cryptoicons/src/zks.svg';
+import i1827 from 'kraken-wallet-cryptoicons/src/zkt.svg';
+import i1828 from 'kraken-wallet-cryptoicons/src/zlw.svg';
+import i1829 from 'kraken-wallet-cryptoicons/src/znn.svg';
+import i1830 from 'kraken-wallet-cryptoicons/src/zort.svg';
+import i1831 from 'kraken-wallet-cryptoicons/src/zpay.svg';
+import i1832 from 'kraken-wallet-cryptoicons/src/zrx.svg';
+import i1833 from 'kraken-wallet-cryptoicons/src/zusd.svg';
 
 export const icons = {
   '$based': i1,
@@ -2693,979 +2695,981 @@ export const icons = {
   'kat': i856,
   'kava': i857,
   'kbc': i858,
-  'kcs': i859,
-  'kda': i860,
-  'kdon': i861,
-  'keep': i862,
-  'key': i863,
-  'keycat': i864,
-  'kick': i865,
-  'kilt': i866,
-  'kin': i867,
-  'kint': i868,
-  'kira': i869,
-  'kiro': i870,
-  'klay': i871,
-  'klv': i872,
-  'kma': i873,
-  'kmd': i874,
-  'knc': i875,
-  'kndc': i876,
-  'kok': i877,
-  'kol': i878,
-  'kono': i879,
-  'kore': i880,
-  'kp3r': i881,
-  'krb': i882,
-  'krl': i883,
-  'krw': i884,
-  'ksm': i885,
-  'ksp': i886,
-  'ktn': i887,
-  'kub': i888,
-  'kyl': i889,
-  'la': i890,
-  'lab': i891,
-  'lace': i892,
-  'ladys': i893,
-  'lamb': i894,
-  'land': i895,
-  'layer': i896,
-  'lazio': i897,
-  'lba': i898,
-  'lbc': i899,
-  'lcc': i900,
-  'lcdot': i901,
-  'lcx': i902,
-  'ldo': i903,
-  'lend': i904,
-  'leo': i905,
-  'lever': i906,
-  'lien': i907,
-  'like': i908,
-  'lina': i909,
-  'link': i910,
-  'lit': i911,
-  'lith': i912,
-  'lkk': i913,
-  'lky': i914,
-  'lmc': i915,
-  'ln': i916,
-  'lnchx': i917,
-  'loc': i918,
-  'locg': i919,
-  'lode': i920,
-  'loka': i921,
-  'loki': i922,
-  'lon': i923,
-  'looks': i924,
-  'loom': i925,
-  'love': i926,
-  'lpf': i927,
-  'lpool': i928,
-  'lpt': i929,
-  'lqd': i930,
-  'lqty': i931,
-  'lrc': i932,
-  'lrg': i933,
-  'lsk': i934,
-  'lss': i935,
-  'ltc': i936,
-  'lto': i937,
-  'ltx': i938,
-  'luca': i939,
-  'lun': i940,
-  'luna': i941,
-  'lunc': i942,
-  'lusd': i943,
-  'lxt': i944,
-  'lym': i945,
-  'lyxe': i946,
-  'maapl': i947,
-  'maga': i948,
-  'magic': i949,
-  'maha': i950,
-  'mai': i951,
-  'maid': i952,
-  'maki': i953,
-  'man': i954,
-  'mana': i955,
-  'manta': i956,
-  'map': i957,
-  'maps': i958,
-  'marsh': i959,
-  'mask': i960,
-  'mass': i961,
-  'math': i962,
-  'matic': i963,
-  'maticx': i964,
-  'matter': i965,
-  'mb': i966,
-  'mbc': i967,
-  'mbl': i968,
-  'mbox': i969,
-  'mc': i970,
-  'mcb': i971,
-  'mco': i972,
-  'mco2': i973,
-  'mcx': i974,
-  'mda': i975,
-  'mdao': i976,
-  'mds': i977,
-  'mdt': i978,
-  'mdx': i979,
-  'med': i980,
-  'medx': i981,
-  'meetone': i982,
-  'mem': i983,
-  'meme': i984,
-  'mer': i985,
-  'met': i986,
-  'meta': i987,
-  'metano': i988,
-  'metis': i989,
-  'mew': i990,
-  'mex': i991,
-  'mfg': i992,
-  'mft': i993,
-  'mhc': i994,
-  'mim': i995,
-  'mimatic': i996,
-  'mina': i997,
-  'miota': i998,
-  'mir': i999,
-  'mith': i1000,
-  'mitx': i1001,
-  'mjt': i1002,
-  'mkr': i1003,
-  'mlb': i1004,
-  'mlk': i1005,
-  'mln': i1006,
-  'mmt': i1007,
-  'mmxn': i1008,
-  'mnde': i1009,
-  'mnet': i1010,
-  'mngo': i1011,
-  'mns': i1012,
-  'mnst': i1013,
-  'mnt': i1014,
-  'mntl': i1015,
-  'mnw': i1016,
-  'moac': i1017,
-  'mob': i1018,
-  'mochi': i1019,
-  'mod': i1020,
-  'modefi': i1021,
-  'mof': i1022,
-  'mog': i1023,
-  'mom': i1024,
-  'mona': i1025,
-  'moni': i1026,
-  'moon': i1027,
-  'mot': i1028,
-  'movez': i1029,
-  'movr': i1030,
-  'mph': i1031,
-  'mpl': i1032,
-  'msol': i1033,
-  'msr': i1034,
-  'mswap': i1035,
-  'mta': i1036,
-  'mtc': i1037,
-  'mth': i1038,
-  'mtl': i1039,
-  'mtn': i1040,
-  'mtrg': i1041,
-  'mts': i1042,
-  'mtv': i1043,
-  'mue': i1044,
-  'multi': i1045,
-  'musd': i1046,
-  'music': i1047,
-  'mvc': i1048,
-  'mvl': i1049,
-  'mvp': i1050,
-  'mwat': i1051,
-  'mwc': i1052,
-  'mx': i1053,
-  'mxc': i1054,
-  'mxm': i1055,
-  'mxw': i1056,
-  'myb': i1057,
-  'myro': i1058,
-  'myst': i1059,
-  'naka': i1060,
-  'nano': i1061,
-  'nas': i1062,
-  'nav': i1063,
-  'nbs': i1064,
-  'nbt': i1065,
-  'ncash': i1066,
-  'nct': i1067,
-  'ndau': i1068,
-  'near': i1069,
-  'nebl': i1070,
-  'nec': i1071,
-  'nem': i1072,
-  'neo': i1073,
-  'neon': i1074,
-  'neos': i1075,
-  'neox': i1076,
-  'nest': i1077,
-  'neu': i1078,
-  'new': i1079,
-  'nex': i1080,
-  'nexo': i1081,
-  'nexxo': i1082,
-  'nft': i1083,
-  'nftb': i1084,
-  'nftx': i1085,
-  'ngc': i1086,
-  'ngm': i1087,
-  'nif': i1088,
-  'nim': i1089,
-  'niox': i1090,
-  'nix': i1091,
-  'nkn': i1092,
-  'nlc2': i1093,
-  'nlg': i1094,
-  'nmc': i1095,
-  'nmr': i1096,
-  'noia': i1097,
-  'nord': i1098,
-  'normie': i1099,
-  'normilio': i1100,
-  'nox': i1101,
-  'nper': i1102,
-  'npxs': i1103,
-  'nrg': i1104,
-  'nrv': i1105,
-  'nrve': i1106,
-  'ntic': i1107,
-  'ntrn': i1108,
-  'ntvrk': i1109,
-  'nu': i1110,
-  'nuls': i1111,
-  'num': i1112,
-  'nusd': i1113,
-  'nwc': i1114,
-  'nxm': i1115,
-  'nxs': i1116,
-  'nxt': i1117,
-  'nye': i1118,
-  'nym': i1119,
-  'oag': i1120,
-  'oak': i1121,
-  'oax': i1122,
-  'ocean': i1123,
-  'ocn': i1124,
-  'oddz': i1125,
-  'ode': i1126,
-  'og': i1127,
-  'ogn': i1128,
-  'ogo': i1129,
-  'ohm': i1130,
-  'oil': i1131,
-  'ok': i1132,
-  'okb': i1133,
-  'oks': i1134,
-  'olt': i1135,
-  'om': i1136,
-  'omg': i1137,
-  'omni': i1138,
-  'ondo': i1139,
-  'one': i1140,
-  'ong': i1141,
-  'onion': i1142,
-  'onston': i1143,
-  'ont': i1144,
-  'ooe': i1145,
-  'ooki': i1146,
-  'oot': i1147,
-  'op': i1148,
-  'open': i1149,
-  'opium': i1150,
-  'opq': i1151,
-  'ops': i1152,
-  'opsec': i1153,
-  'opul': i1154,
-  'opx': i1155,
-  'orai': i1156,
-  'orbs': i1157,
-  'orc': i1158,
-  'orca': i1159,
-  'orcat': i1160,
-  'ordi': i1161,
-  'orn': i1162,
-  'osmo': i1163,
-  'ost': i1164,
-  'ouro': i1165,
-  'ousd': i1166,
-  'ovc': i1167,
-  'oxen': i1168,
-  'oxt': i1169,
-  'oxy': i1170,
-  'pac': i1171,
-  'pai': i1172,
-  'paint': i1173,
-  'pal': i1174,
-  'palm': i1175,
-  'paper': i1176,
-  'par': i1177,
-  'part': i1178,
-  'pasc': i1179,
-  'pax': i1180,
-  'paxg': i1181,
-  'pay': i1182,
-  'payx': i1183,
-  'pazzi': i1184,
-  'pbirb': i1185,
-  'pbr': i1186,
-  'pbtc': i1187,
-  'pbx': i1188,
-  'pchu': i1189,
-  'pcx': i1190,
-  'pdex': i1191,
-  'pearl': i1192,
-  'peas': i1193,
-  'pel': i1194,
-  'pendle': i1195,
-  'pepe': i1196,
-  'perl': i1197,
-  'perp': i1198,
-  'pha': i1199,
-  'phb': i1200,
-  'phnx': i1201,
-  'phtk': i1202,
-  'phx': i1203,
-  'pickle': i1204,
-  'pink': i1205,
-  'pip': i1206,
-  'pirl': i1207,
-  'pivx': i1208,
-  'pkb': i1209,
-  'pla': i1210,
-  'play': i1211,
-  'plbt': i1212,
-  'plc': i1213,
-  'pldai': i1214,
-  'plgr': i1215,
-  'plr': i1216,
-  'plt': i1217,
-  'pltc': i1218,
-  'plu': i1219,
-  'plusdc': i1220,
-  'pma': i1221,
-  'pmgt': i1222,
-  'pmon': i1223,
-  'png': i1224,
-  'pnk': i1225,
-  'pnt': i1226,
-  'poa': i1227,
-  'poe': i1228,
-  'pokt': i1229,
-  'pol': i1230,
-  'polc': i1231,
-  'polis': i1232,
-  'polk': i1233,
-  'pols': i1234,
-  'polx': i1235,
-  'poly-2': i1236,
-  'poly': i1237,
-  'polyx': i1238,
-  'pom': i1239,
-  'pond': i1240,
-  'ponke': i1241,
-  'pont': i1242,
-  'pool': i1243,
-  'pop': i1244,
-  'popcat': i1245,
-  'pork': i1246,
-  'porto': i1247,
-  'pot': i1248,
-  'potnoy': i1249,
-  'power': i1250,
-  'powr': i1251,
-  'ppay': i1252,
-  'ppc': i1253,
-  'ppp': i1254,
-  'ppt': i1255,
-  'pre': i1256,
-  'premia': i1257,
-  'prime': i1258,
-  'prl': i1259,
-  'pro': i1260,
-  'prom': i1261,
-  'props': i1262,
-  'pros': i1263,
-  'prq': i1264,
-  'psg': i1265,
-  'psp': i1266,
-  'pst': i1267,
-  'pstake': i1268,
-  'ptc': i1269,
-  'ptoy': i1270,
-  'pundix': i1271,
-  'pups': i1272,
-  'pyr': i1273,
-  'pyth': i1274,
-  'pyusd': i1275,
-  'qash': i1276,
-  'qbit': i1277,
-  'qi': i1278,
-  'qkc': i1279,
-  'qlc': i1280,
-  'qnt': i1281,
-  'qqq': i1282,
-  'qrdo': i1283,
-  'qrl': i1284,
-  'qsp': i1285,
-  'qtum': i1286,
-  'quick': i1287,
-  'qun': i1288,
-  'qwark': i1289,
-  'r': i1290,
-  'raca': i1291,
-  'rad': i1292,
-  'radar': i1293,
-  'rads': i1294,
-  'rae': i1295,
-  'rai': i1296,
-  'ramp': i1297,
-  'ranker': i1298,
-  'rare': i1299,
-  'rari': i1300,
-  'ray': i1301,
-  'rbc': i1302,
-  'rbn': i1303,
-  'rbtc': i1304,
-  'rby': i1305,
-  'rcn': i1306,
-  'rdd': i1307,
-  'rdn': i1308,
-  'rdnt': i1309,
-  'reap': i1310,
-  'reef': i1311,
-  'rei': i1312,
-  'ren': i1313,
-  'renbtc': i1314,
-  'render': i1315,
-  'renfil': i1316,
-  'rep': i1317,
-  'req': i1318,
-  'reth': i1319,
-  'rev': i1320,
-  'revo': i1321,
-  'revu': i1322,
-  'revv': i1323,
-  'rfox': i1324,
-  'rfr': i1325,
-  'rfuel': i1326,
-  'rfwsteth': i1327,
-  'rgt': i1328,
-  'rhoc': i1329,
-  'rif': i1330,
-  'rise': i1331,
-  'rlc': i1332,
-  'rly': i1333,
-  'rmark': i1334,
-  'rndr': i1335,
-  'road': i1336,
-  'roar': i1337,
-  'ron': i1338,
-  'roobee': i1339,
-  'rook': i1340,
-  'rose': i1341,
-  'rosn': i1342,
-  'route': i1343,
-  'rpl': i1344,
-  'rpx': i1345,
-  'rsr': i1346,
-  'rsv': i1347,
-  'ruff': i1348,
-  'rune': i1349,
-  'rvn': i1350,
-  'rvr': i1351,
-  'ryo': i1352,
-  's': i1353,
-  'safemoon': i1354,
-  'sai': i1355,
-  'saito': i1356,
-  'salt': i1357,
-  'samo': i1358,
-  'san': i1359,
-  'sand': i1360,
-  'santos': i1361,
-  'sapp': i1362,
-  'sar': i1363,
-  'savax': i1364,
-  'sbd': i1365,
-  'sbr': i1366,
-  'sbtc': i1367,
-  'sc': i1368,
-  'sclp': i1369,
-  'scrl': i1370,
-  'scrt': i1371,
-  'sd': i1372,
-  'sdao': i1373,
-  'sdl': i1374,
-  'sdn': i1375,
-  'sdt': i1376,
-  'seele': i1377,
-  'sefi': i1378,
-  'sei': i1379,
-  'sem': i1380,
-  'senso': i1381,
-  'seq': i1382,
-  'sero': i1383,
-  'seth': i1384,
-  'seth2': i1385,
-  'sfi': i1386,
-  'sfm': i1387,
-  'sfp-2': i1388,
-  'sfp': i1389,
-  'sfrxeth': i1390,
-  'sfund': i1391,
-  'sgb': i1392,
-  'sha': i1393,
-  'shdw': i1394,
-  'shft': i1395,
-  'shib': i1396,
-  'shift': i1397,
-  'shill': i1398,
-  'ship': i1399,
-  'shping': i1400,
-  'shr': i1401,
-  'shroom': i1402,
-  'shx': i1403,
-  'si': i1404,
-  'sia': i1405,
-  'sib': i1406,
-  'silo': i1407,
-  'skey': i1408,
-  'skl': i1409,
-  'sku': i1410,
-  'sky': i1411,
-  'sld': i1412,
-  'slerf': i1413,
-  'slim': i1414,
-  'slink': i1415,
-  'slp': i1416,
-  'slr': i1417,
-  'sls': i1418,
-  'slt': i1419,
-  'smart': i1420,
-  'smog': i1421,
-  'smurfcat': i1422,
-  'snail': i1423,
-  'snc': i1424,
-  'sngls': i1425,
-  'snm': i1426,
-  'snow': i1427,
-  'snt': i1428,
-  'sntv': i1429,
-  'snx': i1430,
-  'sny': i1431,
-  'soc': i1432,
-  'sol': i1433,
-  'solama': i1434,
-  'solid': i1435,
-  'solo': i1436,
-  'solr': i1437,
-  'solve': i1438,
-  'sos': i1439,
-  'soul': i1440,
-  'sov': i1441,
-  'spank': i1442,
-  'sparta': i1443,
-  'spell': i1444,
-  'sphr': i1445,
-  'sphtx': i1446,
-  'spi': i1447,
-  'spike': i1448,
-  'spk': i1449,
-  'spn': i1450,
-  'spnd': i1451,
-  'spr': i1452,
-  'srm': i1453,
-  'srn': i1454,
-  'ssv': i1455,
-  'stak': i1456,
-  'stake': i1457,
-  'stan': i1458,
-  'starly': i1459,
-  'start': i1460,
-  'stc': i1461,
-  'steem': i1462,
-  'step': i1463,
-  'steth-1': i1464,
-  'steth': i1465,
-  'stg': i1466,
-  'stkaave': i1467,
-  'stklyra': i1468,
-  'stmatic': i1469,
-  'stmx': i1470,
-  'stnd': i1471,
-  'storj': i1472,
-  'storm': i1473,
-  'stpt': i1474,
-  'stq': i1475,
-  'strat': i1476,
-  'strax': i1477,
-  'strk': i1478,
-  'strong': i1479,
-  'stx': i1480,
-  'stz': i1481,
-  'sub': i1482,
-  'sui': i1483,
-  'suku': i1484,
-  'sumo': i1485,
-  'sun': i1486,
-  'super': i1487,
-  'suqa': i1488,
-  'sure': i1489,
-  'surv': i1490,
-  'susd': i1491,
-  'sushi': i1492,
-  'suter': i1493,
-  'swap': i1494,
-  'swash': i1495,
-  'sweat': i1496,
-  'swingby': i1497,
-  'swp': i1498,
-  'swrv': i1499,
-  'swt': i1500,
-  'swth': i1501,
-  'sxdt': i1502,
-  'sxp': i1503,
-  'sylo': i1504,
-  'syn': i1505,
-  'synth': i1506,
-  'synx': i1507,
-  'sys': i1508,
-  't': i1509,
-  'taas': i1510,
-  'tara': i1511,
-  'tau': i1512,
-  'tbtc': i1513,
-  'tbx': i1514,
-  'tch': i1515,
-  'tcp': i1516,
-  'tct': i1517,
-  'tel': i1518,
-  'ten': i1519,
-  'tera': i1520,
-  'tern': i1521,
-  'tfl': i1522,
-  'tfuel': i1523,
-  'thales': i1524,
-  'thc': i1525,
-  'thedao': i1526,
-  'theta': i1527,
-  'thr': i1528,
-  'tia': i1529,
-  'tidal': i1530,
-  'time': i1531,
-  'tio': i1532,
-  'titan': i1533,
-  'tix': i1534,
-  'tkn': i1535,
-  'tko': i1536,
-  'tks': i1537,
-  'tky': i1538,
-  'tlm': i1539,
-  'tlos': i1540,
-  'tnb': i1541,
-  'tnc': i1542,
-  'tnd': i1543,
-  'tnt': i1544,
-  'toby': i1545,
-  'toke': i1546,
-  'toko': i1547,
-  'tomb': i1548,
-  'tomi': i1549,
-  'tomo': i1550,
-  'ton': i1551,
-  'tonic': i1552,
-  'tor': i1553,
-  'torn': i1554,
-  'toshi': i1555,
-  'tower': i1556,
-  'tox': i1557,
-  'tpay': i1558,
-  'tra': i1559,
-  'trac': i1560,
-  'trade': i1561,
-  'trb': i1562,
-  'tremp': i1563,
-  'trias': i1564,
-  'tribe': i1565,
-  'trig': i1566,
-  'troy': i1567,
-  'trst': i1568,
-  'trtl': i1569,
-  'tru': i1570,
-  'trump': i1571,
-  'trvl': i1572,
-  'trx': i1573,
-  'try': i1574,
-  'tryb': i1575,
-  'tt': i1576,
-  'ttc': i1577,
-  'ttt': i1578,
-  'tube': i1579,
-  'tur': i1580,
-  'tusd': i1581,
-  'tvk': i1582,
-  'twt': i1583,
-  'txa': i1584,
-  'tybg': i1585,
-  'tyzen': i1586,
-  'tzc': i1587,
-  'ubi': i1588,
-  'ubq': i1589,
-  'ubsn': i1590,
-  'ubt': i1591,
-  'ubx': i1592,
-  'ubxt': i1593,
-  'udoo': i1594,
-  'ufo': i1595,
-  'uft': i1596,
-  'ukg': i1597,
-  'ult': i1598,
-  'uma': i1599,
-  'umb': i1600,
-  'umee': i1601,
-  'unb': i1602,
-  'uncx': i1603,
-  'unfi': i1604,
-  'uni': i1605,
-  'unic': i1606,
-  'unidaieth': i1607,
-  'unilendeth': i1608,
-  'unilinketh': i1609,
-  'unimkreth': i1610,
-  'uniqo': i1611,
-  'unisetheth': i1612,
-  'uniusdceth': i1613,
-  'unn': i1614,
-  'uno': i1615,
-  'uos': i1616,
-  'up': i1617,
-  'upi': i1618,
-  'upp': i1619,
-  'uqc': i1620,
-  'usd+': i1621,
-  'usd': i1622,
-  'usdc': i1623,
-  'usdce': i1624,
-  'usdd': i1625,
-  'usdj': i1626,
-  'usdn': i1627,
-  'usdp': i1628,
-  'usds': i1629,
-  'usdt': i1630,
-  'ust': i1631,
-  'ustc': i1632,
-  'usx': i1633,
-  'ut': i1634,
-  'utk': i1635,
-  'uuu': i1636,
-  'vader': i1637,
-  'vai': i1638,
-  'value': i1639,
-  'vee': i1640,
-  'veed': i1641,
-  'vega': i1642,
-  'veil': i1643,
-  'vekwenta': i1644,
-  'vela': i1645,
-  'velo': i1646,
-  'vemp': i1647,
-  'ven': i1648,
-  'veri': i1649,
-  'vest': i1650,
-  'vet': i1651,
-  'vgx': i1652,
-  'via': i1653,
-  'vib': i1654,
-  'vibe': i1655,
-  'vid': i1656,
-  'vidt': i1657,
-  'vikky': i1658,
-  'vin': i1659,
-  'vina': i1660,
-  'vita': i1661,
-  'vite': i1662,
-  'viu': i1663,
-  'vix': i1664,
-  'vlx': i1665,
-  'vnx': i1666,
-  'vol': i1667,
-  'voxel': i1668,
-  'vr': i1669,
-  'vra': i1670,
-  'vrc': i1671,
-  'vrm': i1672,
-  'vrs': i1673,
-  'vrsc': i1674,
-  'vrt': i1675,
-  'vsp': i1676,
-  'vsys': i1677,
-  'vtc': i1678,
-  'vtho': i1679,
-  'vtr': i1680,
-  'vvs': i1681,
-  'vxv': i1682,
-  'wabi': i1683,
-  'wan': i1684,
-  'warp': i1685,
-  'wassie': i1686,
-  'wavax': i1687,
-  'waves': i1688,
-  'wax': i1689,
-  'waxp': i1690,
-  'wbnb': i1691,
-  'wbtc': i1692,
-  'wct': i1693,
-  'web': i1694,
-  'wemix': i1695,
-  'wen': i1696,
-  'west': i1697,
-  'weth': i1698,
-  'wexpoly': i1699,
-  'wftm': i1700,
-  'wgr': i1701,
-  'wgro': i1702,
-  'whale': i1703,
-  'whoren': i1704,
-  'wib': i1705,
-  'wicc': i1706,
-  'wif-1': i1707,
-  'wild': i1708,
-  'win': i1709,
-  'wing': i1710,
-  'wings': i1711,
-  'wis': i1712,
-  'wld': i1713,
-  'wmatic': i1714,
-  'wmp': i1715,
-  'wmt': i1716,
-  'wndr': i1717,
-  'wnxm': i1718,
-  'wom': i1719,
-  'wone': i1720,
-  'woo': i1721,
-  'wopenx': i1722,
-  'wowow': i1723,
-  'wozx': i1724,
-  'wpr': i1725,
-  'wrx': i1726,
-  'wsienna': i1727,
-  'wsteth': i1728,
-  'wtbt': i1729,
-  'wtc': i1730,
-  'wxt': i1731,
-  'x2y2': i1732,
-  'xai': i1733,
-  'xas': i1734,
-  'xaut': i1735,
-  'xava': i1736,
-  'xbc': i1737,
-  'xby': i1738,
-  'xcad': i1739,
-  'xch': i1740,
-  'xchf': i1741,
-  'xcm': i1742,
-  'xcn': i1743,
-  'xcp': i1744,
-  'xcur': i1745,
-  'xdata': i1746,
-  'xdb': i1747,
-  'xdc': i1748,
-  'xdfi': i1749,
-  'xdn': i1750,
-  'xec': i1751,
-  'xed': i1752,
-  'xel': i1753,
-  'xem': i1754,
-  'xft': i1755,
-  'xhv': i1756,
-  'xido': i1757,
-  'xin': i1758,
-  'xlm': i1759,
-  'xln': i1760,
-  'xlq': i1761,
-  'xmark': i1762,
-  'xmg': i1763,
-  'xmr': i1764,
-  'xmt': i1765,
-  'xmx': i1766,
-  'xmy': i1767,
-  'xnc': i1768,
-  'xnk': i1769,
-  'xnl': i1770,
-  'xno': i1771,
-  'xns': i1772,
-  'xor': i1773,
-  'xp': i1774,
-  'xpa': i1775,
-  'xpm': i1776,
-  'xpr': i1777,
-  'xprt': i1778,
-  'xrd': i1779,
-  'xrp': i1780,
-  'xrt': i1781,
-  'xsg': i1782,
-  'xsn': i1783,
-  'xsr': i1784,
-  'xst': i1785,
-  'xsushi': i1786,
-  'xt': i1787,
-  'xtag': i1788,
-  'xtm': i1789,
-  'xtp': i1790,
-  'xtz': i1791,
-  'xuc': i1792,
-  'xvc': i1793,
-  'xvg': i1794,
-  'xvs': i1795,
-  'xwc': i1796,
-  'xym': i1797,
-  'xyo': i1798,
-  'xyz': i1799,
-  'xzc': i1800,
-  'yfdai': i1801,
-  'yfi': i1802,
-  'yfii': i1803,
-  'ygg': i1804,
-  'yld': i1805,
-  'yop': i1806,
-  'youc': i1807,
-  'yoyo': i1808,
-  'yoyow': i1809,
-  'zai': i1810,
-  'zar': i1811,
-  'zb': i1812,
-  'zcl': i1813,
-  'zco': i1814,
-  'zcx': i1815,
-  'zec': i1816,
-  'zee': i1817,
-  'zel': i1818,
-  'zen': i1819,
-  'zeon': i1820,
-  'zeta': i1821,
-  'zil': i1822,
-  'zip': i1823,
-  'zks': i1824,
-  'zkt': i1825,
-  'zlw': i1826,
-  'znn': i1827,
-  'zort': i1828,
-  'zpay': i1829,
-  'zrx': i1830,
-  'zusd': i1831,
+  'kbtc': i859,
+  'kcs': i860,
+  'kda': i861,
+  'kdon': i862,
+  'keep': i863,
+  'key': i864,
+  'keycat': i865,
+  'kick': i866,
+  'kilt': i867,
+  'kin': i868,
+  'kint': i869,
+  'kira': i870,
+  'kiro': i871,
+  'klay': i872,
+  'klv': i873,
+  'kma': i874,
+  'kmd': i875,
+  'knc': i876,
+  'kndc': i877,
+  'kok': i878,
+  'kol': i879,
+  'kono': i880,
+  'kore': i881,
+  'kp3r': i882,
+  'krb': i883,
+  'krl': i884,
+  'krw': i885,
+  'ksm': i886,
+  'ksp': i887,
+  'ktn': i888,
+  'kub': i889,
+  'kyl': i890,
+  'la': i891,
+  'lab': i892,
+  'lace': i893,
+  'ladys': i894,
+  'lamb': i895,
+  'land': i896,
+  'layer': i897,
+  'lazio': i898,
+  'lba': i899,
+  'lbc': i900,
+  'lcc': i901,
+  'lcdot': i902,
+  'lcx': i903,
+  'ldo': i904,
+  'lend': i905,
+  'leo': i906,
+  'lever': i907,
+  'lien': i908,
+  'like': i909,
+  'lina': i910,
+  'linea': i911,
+  'link': i912,
+  'lit': i913,
+  'lith': i914,
+  'lkk': i915,
+  'lky': i916,
+  'lmc': i917,
+  'ln': i918,
+  'lnchx': i919,
+  'loc': i920,
+  'locg': i921,
+  'lode': i922,
+  'loka': i923,
+  'loki': i924,
+  'lon': i925,
+  'looks': i926,
+  'loom': i927,
+  'love': i928,
+  'lpf': i929,
+  'lpool': i930,
+  'lpt': i931,
+  'lqd': i932,
+  'lqty': i933,
+  'lrc': i934,
+  'lrg': i935,
+  'lsk': i936,
+  'lss': i937,
+  'ltc': i938,
+  'lto': i939,
+  'ltx': i940,
+  'luca': i941,
+  'lun': i942,
+  'luna': i943,
+  'lunc': i944,
+  'lusd': i945,
+  'lxt': i946,
+  'lym': i947,
+  'lyxe': i948,
+  'maapl': i949,
+  'maga': i950,
+  'magic': i951,
+  'maha': i952,
+  'mai': i953,
+  'maid': i954,
+  'maki': i955,
+  'man': i956,
+  'mana': i957,
+  'manta': i958,
+  'map': i959,
+  'maps': i960,
+  'marsh': i961,
+  'mask': i962,
+  'mass': i963,
+  'math': i964,
+  'matic': i965,
+  'maticx': i966,
+  'matter': i967,
+  'mb': i968,
+  'mbc': i969,
+  'mbl': i970,
+  'mbox': i971,
+  'mc': i972,
+  'mcb': i973,
+  'mco': i974,
+  'mco2': i975,
+  'mcx': i976,
+  'mda': i977,
+  'mdao': i978,
+  'mds': i979,
+  'mdt': i980,
+  'mdx': i981,
+  'med': i982,
+  'medx': i983,
+  'meetone': i984,
+  'mem': i985,
+  'meme': i986,
+  'mer': i987,
+  'met': i988,
+  'meta': i989,
+  'metano': i990,
+  'metis': i991,
+  'mew': i992,
+  'mex': i993,
+  'mfg': i994,
+  'mft': i995,
+  'mhc': i996,
+  'mim': i997,
+  'mimatic': i998,
+  'mina': i999,
+  'miota': i1000,
+  'mir': i1001,
+  'mith': i1002,
+  'mitx': i1003,
+  'mjt': i1004,
+  'mkr': i1005,
+  'mlb': i1006,
+  'mlk': i1007,
+  'mln': i1008,
+  'mmt': i1009,
+  'mmxn': i1010,
+  'mnde': i1011,
+  'mnet': i1012,
+  'mngo': i1013,
+  'mns': i1014,
+  'mnst': i1015,
+  'mnt': i1016,
+  'mntl': i1017,
+  'mnw': i1018,
+  'moac': i1019,
+  'mob': i1020,
+  'mochi': i1021,
+  'mod': i1022,
+  'modefi': i1023,
+  'mof': i1024,
+  'mog': i1025,
+  'mom': i1026,
+  'mona': i1027,
+  'moni': i1028,
+  'moon': i1029,
+  'mot': i1030,
+  'movez': i1031,
+  'movr': i1032,
+  'mph': i1033,
+  'mpl': i1034,
+  'msol': i1035,
+  'msr': i1036,
+  'mswap': i1037,
+  'mta': i1038,
+  'mtc': i1039,
+  'mth': i1040,
+  'mtl': i1041,
+  'mtn': i1042,
+  'mtrg': i1043,
+  'mts': i1044,
+  'mtv': i1045,
+  'mue': i1046,
+  'multi': i1047,
+  'musd': i1048,
+  'music': i1049,
+  'mvc': i1050,
+  'mvl': i1051,
+  'mvp': i1052,
+  'mwat': i1053,
+  'mwc': i1054,
+  'mx': i1055,
+  'mxc': i1056,
+  'mxm': i1057,
+  'mxw': i1058,
+  'myb': i1059,
+  'myro': i1060,
+  'myst': i1061,
+  'naka': i1062,
+  'nano': i1063,
+  'nas': i1064,
+  'nav': i1065,
+  'nbs': i1066,
+  'nbt': i1067,
+  'ncash': i1068,
+  'nct': i1069,
+  'ndau': i1070,
+  'near': i1071,
+  'nebl': i1072,
+  'nec': i1073,
+  'nem': i1074,
+  'neo': i1075,
+  'neon': i1076,
+  'neos': i1077,
+  'neox': i1078,
+  'nest': i1079,
+  'neu': i1080,
+  'new': i1081,
+  'nex': i1082,
+  'nexo': i1083,
+  'nexxo': i1084,
+  'nft': i1085,
+  'nftb': i1086,
+  'nftx': i1087,
+  'ngc': i1088,
+  'ngm': i1089,
+  'nif': i1090,
+  'nim': i1091,
+  'niox': i1092,
+  'nix': i1093,
+  'nkn': i1094,
+  'nlc2': i1095,
+  'nlg': i1096,
+  'nmc': i1097,
+  'nmr': i1098,
+  'noia': i1099,
+  'nord': i1100,
+  'normie': i1101,
+  'normilio': i1102,
+  'nox': i1103,
+  'nper': i1104,
+  'npxs': i1105,
+  'nrg': i1106,
+  'nrv': i1107,
+  'nrve': i1108,
+  'ntic': i1109,
+  'ntrn': i1110,
+  'ntvrk': i1111,
+  'nu': i1112,
+  'nuls': i1113,
+  'num': i1114,
+  'nusd': i1115,
+  'nwc': i1116,
+  'nxm': i1117,
+  'nxs': i1118,
+  'nxt': i1119,
+  'nye': i1120,
+  'nym': i1121,
+  'oag': i1122,
+  'oak': i1123,
+  'oax': i1124,
+  'ocean': i1125,
+  'ocn': i1126,
+  'oddz': i1127,
+  'ode': i1128,
+  'og': i1129,
+  'ogn': i1130,
+  'ogo': i1131,
+  'ohm': i1132,
+  'oil': i1133,
+  'ok': i1134,
+  'okb': i1135,
+  'oks': i1136,
+  'olt': i1137,
+  'om': i1138,
+  'omg': i1139,
+  'omni': i1140,
+  'ondo': i1141,
+  'one': i1142,
+  'ong': i1143,
+  'onion': i1144,
+  'onston': i1145,
+  'ont': i1146,
+  'ooe': i1147,
+  'ooki': i1148,
+  'oot': i1149,
+  'op': i1150,
+  'open': i1151,
+  'opium': i1152,
+  'opq': i1153,
+  'ops': i1154,
+  'opsec': i1155,
+  'opul': i1156,
+  'opx': i1157,
+  'orai': i1158,
+  'orbs': i1159,
+  'orc': i1160,
+  'orca': i1161,
+  'orcat': i1162,
+  'ordi': i1163,
+  'orn': i1164,
+  'osmo': i1165,
+  'ost': i1166,
+  'ouro': i1167,
+  'ousd': i1168,
+  'ovc': i1169,
+  'oxen': i1170,
+  'oxt': i1171,
+  'oxy': i1172,
+  'pac': i1173,
+  'pai': i1174,
+  'paint': i1175,
+  'pal': i1176,
+  'palm': i1177,
+  'paper': i1178,
+  'par': i1179,
+  'part': i1180,
+  'pasc': i1181,
+  'pax': i1182,
+  'paxg': i1183,
+  'pay': i1184,
+  'payx': i1185,
+  'pazzi': i1186,
+  'pbirb': i1187,
+  'pbr': i1188,
+  'pbtc': i1189,
+  'pbx': i1190,
+  'pchu': i1191,
+  'pcx': i1192,
+  'pdex': i1193,
+  'pearl': i1194,
+  'peas': i1195,
+  'pel': i1196,
+  'pendle': i1197,
+  'pepe': i1198,
+  'perl': i1199,
+  'perp': i1200,
+  'pha': i1201,
+  'phb': i1202,
+  'phnx': i1203,
+  'phtk': i1204,
+  'phx': i1205,
+  'pickle': i1206,
+  'pink': i1207,
+  'pip': i1208,
+  'pirl': i1209,
+  'pivx': i1210,
+  'pkb': i1211,
+  'pla': i1212,
+  'play': i1213,
+  'plbt': i1214,
+  'plc': i1215,
+  'pldai': i1216,
+  'plgr': i1217,
+  'plr': i1218,
+  'plt': i1219,
+  'pltc': i1220,
+  'plu': i1221,
+  'plusdc': i1222,
+  'pma': i1223,
+  'pmgt': i1224,
+  'pmon': i1225,
+  'png': i1226,
+  'pnk': i1227,
+  'pnt': i1228,
+  'poa': i1229,
+  'poe': i1230,
+  'pokt': i1231,
+  'pol': i1232,
+  'polc': i1233,
+  'polis': i1234,
+  'polk': i1235,
+  'pols': i1236,
+  'polx': i1237,
+  'poly-2': i1238,
+  'poly': i1239,
+  'polyx': i1240,
+  'pom': i1241,
+  'pond': i1242,
+  'ponke': i1243,
+  'pont': i1244,
+  'pool': i1245,
+  'pop': i1246,
+  'popcat': i1247,
+  'pork': i1248,
+  'porto': i1249,
+  'pot': i1250,
+  'potnoy': i1251,
+  'power': i1252,
+  'powr': i1253,
+  'ppay': i1254,
+  'ppc': i1255,
+  'ppp': i1256,
+  'ppt': i1257,
+  'pre': i1258,
+  'premia': i1259,
+  'prime': i1260,
+  'prl': i1261,
+  'pro': i1262,
+  'prom': i1263,
+  'props': i1264,
+  'pros': i1265,
+  'prq': i1266,
+  'psg': i1267,
+  'psp': i1268,
+  'pst': i1269,
+  'pstake': i1270,
+  'ptc': i1271,
+  'ptoy': i1272,
+  'pundix': i1273,
+  'pups': i1274,
+  'pyr': i1275,
+  'pyth': i1276,
+  'pyusd': i1277,
+  'qash': i1278,
+  'qbit': i1279,
+  'qi': i1280,
+  'qkc': i1281,
+  'qlc': i1282,
+  'qnt': i1283,
+  'qqq': i1284,
+  'qrdo': i1285,
+  'qrl': i1286,
+  'qsp': i1287,
+  'qtum': i1288,
+  'quick': i1289,
+  'qun': i1290,
+  'qwark': i1291,
+  'r': i1292,
+  'raca': i1293,
+  'rad': i1294,
+  'radar': i1295,
+  'rads': i1296,
+  'rae': i1297,
+  'rai': i1298,
+  'ramp': i1299,
+  'ranker': i1300,
+  'rare': i1301,
+  'rari': i1302,
+  'ray': i1303,
+  'rbc': i1304,
+  'rbn': i1305,
+  'rbtc': i1306,
+  'rby': i1307,
+  'rcn': i1308,
+  'rdd': i1309,
+  'rdn': i1310,
+  'rdnt': i1311,
+  'reap': i1312,
+  'reef': i1313,
+  'rei': i1314,
+  'ren': i1315,
+  'renbtc': i1316,
+  'render': i1317,
+  'renfil': i1318,
+  'rep': i1319,
+  'req': i1320,
+  'reth': i1321,
+  'rev': i1322,
+  'revo': i1323,
+  'revu': i1324,
+  'revv': i1325,
+  'rfox': i1326,
+  'rfr': i1327,
+  'rfuel': i1328,
+  'rfwsteth': i1329,
+  'rgt': i1330,
+  'rhoc': i1331,
+  'rif': i1332,
+  'rise': i1333,
+  'rlc': i1334,
+  'rly': i1335,
+  'rmark': i1336,
+  'rndr': i1337,
+  'road': i1338,
+  'roar': i1339,
+  'ron': i1340,
+  'roobee': i1341,
+  'rook': i1342,
+  'rose': i1343,
+  'rosn': i1344,
+  'route': i1345,
+  'rpl': i1346,
+  'rpx': i1347,
+  'rsr': i1348,
+  'rsv': i1349,
+  'ruff': i1350,
+  'rune': i1351,
+  'rvn': i1352,
+  'rvr': i1353,
+  'ryo': i1354,
+  's': i1355,
+  'safemoon': i1356,
+  'sai': i1357,
+  'saito': i1358,
+  'salt': i1359,
+  'samo': i1360,
+  'san': i1361,
+  'sand': i1362,
+  'santos': i1363,
+  'sapp': i1364,
+  'sar': i1365,
+  'savax': i1366,
+  'sbd': i1367,
+  'sbr': i1368,
+  'sbtc': i1369,
+  'sc': i1370,
+  'sclp': i1371,
+  'scrl': i1372,
+  'scrt': i1373,
+  'sd': i1374,
+  'sdao': i1375,
+  'sdl': i1376,
+  'sdn': i1377,
+  'sdt': i1378,
+  'seele': i1379,
+  'sefi': i1380,
+  'sei': i1381,
+  'sem': i1382,
+  'senso': i1383,
+  'seq': i1384,
+  'sero': i1385,
+  'seth': i1386,
+  'seth2': i1387,
+  'sfi': i1388,
+  'sfm': i1389,
+  'sfp-2': i1390,
+  'sfp': i1391,
+  'sfrxeth': i1392,
+  'sfund': i1393,
+  'sgb': i1394,
+  'sha': i1395,
+  'shdw': i1396,
+  'shft': i1397,
+  'shib': i1398,
+  'shift': i1399,
+  'shill': i1400,
+  'ship': i1401,
+  'shping': i1402,
+  'shr': i1403,
+  'shroom': i1404,
+  'shx': i1405,
+  'si': i1406,
+  'sia': i1407,
+  'sib': i1408,
+  'silo': i1409,
+  'skey': i1410,
+  'skl': i1411,
+  'sku': i1412,
+  'sky': i1413,
+  'sld': i1414,
+  'slerf': i1415,
+  'slim': i1416,
+  'slink': i1417,
+  'slp': i1418,
+  'slr': i1419,
+  'sls': i1420,
+  'slt': i1421,
+  'smart': i1422,
+  'smog': i1423,
+  'smurfcat': i1424,
+  'snail': i1425,
+  'snc': i1426,
+  'sngls': i1427,
+  'snm': i1428,
+  'snow': i1429,
+  'snt': i1430,
+  'sntv': i1431,
+  'snx': i1432,
+  'sny': i1433,
+  'soc': i1434,
+  'sol': i1435,
+  'solama': i1436,
+  'solid': i1437,
+  'solo': i1438,
+  'solr': i1439,
+  'solve': i1440,
+  'sos': i1441,
+  'soul': i1442,
+  'sov': i1443,
+  'spank': i1444,
+  'sparta': i1445,
+  'spell': i1446,
+  'sphr': i1447,
+  'sphtx': i1448,
+  'spi': i1449,
+  'spike': i1450,
+  'spk': i1451,
+  'spn': i1452,
+  'spnd': i1453,
+  'spr': i1454,
+  'srm': i1455,
+  'srn': i1456,
+  'ssv': i1457,
+  'stak': i1458,
+  'stake': i1459,
+  'stan': i1460,
+  'starly': i1461,
+  'start': i1462,
+  'stc': i1463,
+  'steem': i1464,
+  'step': i1465,
+  'steth-1': i1466,
+  'steth': i1467,
+  'stg': i1468,
+  'stkaave': i1469,
+  'stklyra': i1470,
+  'stmatic': i1471,
+  'stmx': i1472,
+  'stnd': i1473,
+  'storj': i1474,
+  'storm': i1475,
+  'stpt': i1476,
+  'stq': i1477,
+  'strat': i1478,
+  'strax': i1479,
+  'strk': i1480,
+  'strong': i1481,
+  'stx': i1482,
+  'stz': i1483,
+  'sub': i1484,
+  'sui': i1485,
+  'suku': i1486,
+  'sumo': i1487,
+  'sun': i1488,
+  'super': i1489,
+  'suqa': i1490,
+  'sure': i1491,
+  'surv': i1492,
+  'susd': i1493,
+  'sushi': i1494,
+  'suter': i1495,
+  'swap': i1496,
+  'swash': i1497,
+  'sweat': i1498,
+  'swingby': i1499,
+  'swp': i1500,
+  'swrv': i1501,
+  'swt': i1502,
+  'swth': i1503,
+  'sxdt': i1504,
+  'sxp': i1505,
+  'sylo': i1506,
+  'syn': i1507,
+  'synth': i1508,
+  'synx': i1509,
+  'sys': i1510,
+  't': i1511,
+  'taas': i1512,
+  'tara': i1513,
+  'tau': i1514,
+  'tbtc': i1515,
+  'tbx': i1516,
+  'tch': i1517,
+  'tcp': i1518,
+  'tct': i1519,
+  'tel': i1520,
+  'ten': i1521,
+  'tera': i1522,
+  'tern': i1523,
+  'tfl': i1524,
+  'tfuel': i1525,
+  'thales': i1526,
+  'thc': i1527,
+  'thedao': i1528,
+  'theta': i1529,
+  'thr': i1530,
+  'tia': i1531,
+  'tidal': i1532,
+  'time': i1533,
+  'tio': i1534,
+  'titan': i1535,
+  'tix': i1536,
+  'tkn': i1537,
+  'tko': i1538,
+  'tks': i1539,
+  'tky': i1540,
+  'tlm': i1541,
+  'tlos': i1542,
+  'tnb': i1543,
+  'tnc': i1544,
+  'tnd': i1545,
+  'tnt': i1546,
+  'toby': i1547,
+  'toke': i1548,
+  'toko': i1549,
+  'tomb': i1550,
+  'tomi': i1551,
+  'tomo': i1552,
+  'ton': i1553,
+  'tonic': i1554,
+  'tor': i1555,
+  'torn': i1556,
+  'toshi': i1557,
+  'tower': i1558,
+  'tox': i1559,
+  'tpay': i1560,
+  'tra': i1561,
+  'trac': i1562,
+  'trade': i1563,
+  'trb': i1564,
+  'tremp': i1565,
+  'trias': i1566,
+  'tribe': i1567,
+  'trig': i1568,
+  'troy': i1569,
+  'trst': i1570,
+  'trtl': i1571,
+  'tru': i1572,
+  'trump': i1573,
+  'trvl': i1574,
+  'trx': i1575,
+  'try': i1576,
+  'tryb': i1577,
+  'tt': i1578,
+  'ttc': i1579,
+  'ttt': i1580,
+  'tube': i1581,
+  'tur': i1582,
+  'tusd': i1583,
+  'tvk': i1584,
+  'twt': i1585,
+  'txa': i1586,
+  'tybg': i1587,
+  'tyzen': i1588,
+  'tzc': i1589,
+  'ubi': i1590,
+  'ubq': i1591,
+  'ubsn': i1592,
+  'ubt': i1593,
+  'ubx': i1594,
+  'ubxt': i1595,
+  'udoo': i1596,
+  'ufo': i1597,
+  'uft': i1598,
+  'ukg': i1599,
+  'ult': i1600,
+  'uma': i1601,
+  'umb': i1602,
+  'umee': i1603,
+  'unb': i1604,
+  'uncx': i1605,
+  'unfi': i1606,
+  'uni': i1607,
+  'unic': i1608,
+  'unidaieth': i1609,
+  'unilendeth': i1610,
+  'unilinketh': i1611,
+  'unimkreth': i1612,
+  'uniqo': i1613,
+  'unisetheth': i1614,
+  'uniusdceth': i1615,
+  'unn': i1616,
+  'uno': i1617,
+  'uos': i1618,
+  'up': i1619,
+  'upi': i1620,
+  'upp': i1621,
+  'uqc': i1622,
+  'usd+': i1623,
+  'usd': i1624,
+  'usdc': i1625,
+  'usdce': i1626,
+  'usdd': i1627,
+  'usdj': i1628,
+  'usdn': i1629,
+  'usdp': i1630,
+  'usds': i1631,
+  'usdt': i1632,
+  'ust': i1633,
+  'ustc': i1634,
+  'usx': i1635,
+  'ut': i1636,
+  'utk': i1637,
+  'uuu': i1638,
+  'vader': i1639,
+  'vai': i1640,
+  'value': i1641,
+  'vee': i1642,
+  'veed': i1643,
+  'vega': i1644,
+  'veil': i1645,
+  'vekwenta': i1646,
+  'vela': i1647,
+  'velo': i1648,
+  'vemp': i1649,
+  'ven': i1650,
+  'veri': i1651,
+  'vest': i1652,
+  'vet': i1653,
+  'vgx': i1654,
+  'via': i1655,
+  'vib': i1656,
+  'vibe': i1657,
+  'vid': i1658,
+  'vidt': i1659,
+  'vikky': i1660,
+  'vin': i1661,
+  'vina': i1662,
+  'vita': i1663,
+  'vite': i1664,
+  'viu': i1665,
+  'vix': i1666,
+  'vlx': i1667,
+  'vnx': i1668,
+  'vol': i1669,
+  'voxel': i1670,
+  'vr': i1671,
+  'vra': i1672,
+  'vrc': i1673,
+  'vrm': i1674,
+  'vrs': i1675,
+  'vrsc': i1676,
+  'vrt': i1677,
+  'vsp': i1678,
+  'vsys': i1679,
+  'vtc': i1680,
+  'vtho': i1681,
+  'vtr': i1682,
+  'vvs': i1683,
+  'vxv': i1684,
+  'wabi': i1685,
+  'wan': i1686,
+  'warp': i1687,
+  'wassie': i1688,
+  'wavax': i1689,
+  'waves': i1690,
+  'wax': i1691,
+  'waxp': i1692,
+  'wbnb': i1693,
+  'wbtc': i1694,
+  'wct': i1695,
+  'web': i1696,
+  'wemix': i1697,
+  'wen': i1698,
+  'west': i1699,
+  'weth': i1700,
+  'wexpoly': i1701,
+  'wftm': i1702,
+  'wgr': i1703,
+  'wgro': i1704,
+  'whale': i1705,
+  'whoren': i1706,
+  'wib': i1707,
+  'wicc': i1708,
+  'wif-1': i1709,
+  'wild': i1710,
+  'win': i1711,
+  'wing': i1712,
+  'wings': i1713,
+  'wis': i1714,
+  'wld': i1715,
+  'wmatic': i1716,
+  'wmp': i1717,
+  'wmt': i1718,
+  'wndr': i1719,
+  'wnxm': i1720,
+  'wom': i1721,
+  'wone': i1722,
+  'woo': i1723,
+  'wopenx': i1724,
+  'wowow': i1725,
+  'wozx': i1726,
+  'wpr': i1727,
+  'wrx': i1728,
+  'wsienna': i1729,
+  'wsteth': i1730,
+  'wtbt': i1731,
+  'wtc': i1732,
+  'wxt': i1733,
+  'x2y2': i1734,
+  'xai': i1735,
+  'xas': i1736,
+  'xaut': i1737,
+  'xava': i1738,
+  'xbc': i1739,
+  'xby': i1740,
+  'xcad': i1741,
+  'xch': i1742,
+  'xchf': i1743,
+  'xcm': i1744,
+  'xcn': i1745,
+  'xcp': i1746,
+  'xcur': i1747,
+  'xdata': i1748,
+  'xdb': i1749,
+  'xdc': i1750,
+  'xdfi': i1751,
+  'xdn': i1752,
+  'xec': i1753,
+  'xed': i1754,
+  'xel': i1755,
+  'xem': i1756,
+  'xft': i1757,
+  'xhv': i1758,
+  'xido': i1759,
+  'xin': i1760,
+  'xlm': i1761,
+  'xln': i1762,
+  'xlq': i1763,
+  'xmark': i1764,
+  'xmg': i1765,
+  'xmr': i1766,
+  'xmt': i1767,
+  'xmx': i1768,
+  'xmy': i1769,
+  'xnc': i1770,
+  'xnk': i1771,
+  'xnl': i1772,
+  'xno': i1773,
+  'xns': i1774,
+  'xor': i1775,
+  'xp': i1776,
+  'xpa': i1777,
+  'xpm': i1778,
+  'xpr': i1779,
+  'xprt': i1780,
+  'xrd': i1781,
+  'xrp': i1782,
+  'xrt': i1783,
+  'xsg': i1784,
+  'xsn': i1785,
+  'xsr': i1786,
+  'xst': i1787,
+  'xsushi': i1788,
+  'xt': i1789,
+  'xtag': i1790,
+  'xtm': i1791,
+  'xtp': i1792,
+  'xtz': i1793,
+  'xuc': i1794,
+  'xvc': i1795,
+  'xvg': i1796,
+  'xvs': i1797,
+  'xwc': i1798,
+  'xym': i1799,
+  'xyo': i1800,
+  'xyz': i1801,
+  'xzc': i1802,
+  'yfdai': i1803,
+  'yfi': i1804,
+  'yfii': i1805,
+  'ygg': i1806,
+  'yld': i1807,
+  'yop': i1808,
+  'youc': i1809,
+  'yoyo': i1810,
+  'yoyow': i1811,
+  'zai': i1812,
+  'zar': i1813,
+  'zb': i1814,
+  'zcl': i1815,
+  'zco': i1816,
+  'zcx': i1817,
+  'zec': i1818,
+  'zee': i1819,
+  'zel': i1820,
+  'zen': i1821,
+  'zeon': i1822,
+  'zeta': i1823,
+  'zil': i1824,
+  'zip': i1825,
+  'zks': i1826,
+  'zkt': i1827,
+  'zlw': i1828,
+  'znn': i1829,
+  'zort': i1830,
+  'zpay': i1831,
+  'zrx': i1832,
+  'zusd': i1833,
 };
 
 const mapNetworkNameToTokenSymbol: Record<string, string> = {

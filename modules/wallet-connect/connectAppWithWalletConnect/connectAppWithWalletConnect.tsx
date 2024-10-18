@@ -1,7 +1,7 @@
 import React from 'react';
 import Realm from 'realm';
 
-import { showToast } from '@/components/Toast';
+import { REALM_TYPE_WALLET_CONNECT_TOPICS, RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
 import { RealmWallet } from '@/realm/wallets';
 import { SessionProposal, UI_STATE, _3rdPartyData } from '@/screens/ConnectApp/types';
 import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
@@ -10,9 +10,9 @@ import { buildSessionNamespace } from './buildSessionNamespace';
 import { getAccountsFromMatchedWallets } from './getAccountsFromMatchedWallets';
 import { getMatchedWallets } from './getMatchedWallets';
 import { getRequestedNetworkIDs } from './getRequestedNetworkIDs';
+import { handleRedirect } from './handleRedirect';
 
 import { handleError } from '/helpers/errorHandler';
-import loc from '/loc';
 import { ReactNavigationDispatch, WalletConnectSessionsManager, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
 
 type Props = {
@@ -30,6 +30,15 @@ export const connectAppWithWalletConnect = async (
   setUIState: React.Dispatch<React.SetStateAction<UI_STATE>>,
   { dispatch, goBack, realm, wallets, getSeed }: Props,
 ): Promise<_3rdPartyData> => {
+  const deleteProposedSession = (pairingTopic: string) => {
+    realm.write(() => {
+      const sessionToDelete = realm.objectForPrimaryKey<RealmWalletConnectTopics>(REALM_TYPE_WALLET_CONNECT_TOPICS, pairingTopic);
+      if (sessionToDelete) {
+        realm.delete(sessionToDelete);
+      }
+    });
+  };
+
   const result: _3rdPartyData = {};
   setUIState(UI_STATE.loading);
 
@@ -52,6 +61,7 @@ export const connectAppWithWalletConnect = async (
   };
 
   result.rejectSession = async () => {
+    deleteProposedSession(sessionProposal.params.pairingTopic);
     web3Wallet?.rejectSession({
       id: sessionProposal!.id,
       reason: {
@@ -75,29 +85,36 @@ export const connectAppWithWalletConnect = async (
 
     const accountsFromMatchedWallets = await getAccountsFromMatchedWallets(matchedWallets, requiresWrongSolanaID);
     const sessionNamespace = buildSessionNamespace(sessionProposal, accountsFromMatchedWallets);
+
     await new Promise<void>(resolveApproveSession => {
       try {
         WalletConnectSessionsManager.approveSession(sessionProposal!.id, sessionNamespace, {
           onError: error => {
+            deleteProposedSession(sessionProposal.params.pairingTopic);
             handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
             setUIState(UI_STATE.none);
             goBack();
             resolveApproveSession();
           },
-          onSuccess: async () => {
+          onSuccess: async response => {
+            
+            const session = realm.objectForPrimaryKey<RealmWalletConnectTopics>(REALM_TYPE_WALLET_CONNECT_TOPICS, response.pairingTopic);
+            if (!session) {
+              throw new Error('Realm proposal not found');
+            }
+            realm.write(() => {
+              session.topic = response.topic;
+            });
             setUIState(UI_STATE.complete);
             await new Promise(resolve => setTimeout(resolve, 1500));
             goBack();
             resolveApproveSession();
 
-            showToast({
-              type: 'success',
-              icon: 'plug-connected',
-              text: loc.formatString(loc.scan.connected_to, { appName: result.appMetadata?.name ?? '' }).toString(),
-            });
+            await handleRedirect(response, 'connected_to', session.isDeepLinked);
           },
         });
       } catch (error) {
+        deleteProposedSession(sessionProposal.params.pairingTopic);
         handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
         setUIState(UI_STATE.complete);
         goBack();

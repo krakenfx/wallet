@@ -11,6 +11,7 @@ export enum RealmSettingsKey {
   filterInBlacklistedAssets = 'filterInBlacklistedAssets',
   filterInUnverifiedAssets = 'filterInUnverifiedAssets',
   hasViewedWalletBackupPrompt = 'isWalletBackupPromptNeeded',
+  hasAcceptedExploreWarning = 'hasAcceptedExploreWarning',
   isPushPromptNeeded = 'isPushPromptNeeded',
   isTestnetEnabled = 'isTestnetEnabled',
   isWalletBackupDone = 'isWalletBackupDone',
@@ -36,6 +37,7 @@ export type SettingsType = {
   [RealmSettingsKey.filterInBlacklistedAssets]: boolean;
   [RealmSettingsKey.filterInUnverifiedAssets]: boolean;
   [RealmSettingsKey.hasViewedWalletBackupPrompt]: boolean;
+  [RealmSettingsKey.hasAcceptedExploreWarning]: boolean;
   [RealmSettingsKey.isPushPromptNeeded]: boolean;
   [RealmSettingsKey.isTestnetEnabled]: boolean;
   [RealmSettingsKey.isWalletBackupDone]: boolean;

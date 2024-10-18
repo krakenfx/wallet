@@ -92,7 +92,7 @@ class CloudBackupModule: NSObject {
 @available(iOS 17.0, *)
 class PasskeyAuthorizationDelegate: NSObject, ASAuthorizationControllerPresentationContextProviding  {
   
-  private let relyingPartyIdentifier = "wallet.kraken.com"
+  private let relyingPartyIdentifier = "kraken-wallet.com"
   
   let resolve: RCTPromiseResolveBlock
   let reject: RCTPromiseRejectBlock

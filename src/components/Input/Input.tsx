@@ -24,6 +24,7 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   shrinkInput?: boolean;
   transparent?: boolean;
   type?: TypographyKey;
+  placeholderStyle?: ViewStyle;
   placeholderType?: TypographyKey;
   testID?: string;
   inputTestID?: string;
@@ -40,11 +41,16 @@ export type InputMethods = {
   blur: () => void;
 };
 
-const Placeholder = ({ type, placeholder, placeholderType }: Pick<InputProps, 'type' | 'placeholder' | 'placeholderType'>) => {
+const Placeholder = ({
+  type,
+  placeholder,
+  placeholderType,
+  placeholderStyle,
+}: Pick<InputProps, 'type' | 'placeholder' | 'placeholderType' | 'placeholderStyle'>) => {
   const actualType = placeholderType || type || 'regularBody';
 
   return (
-    <Animated.View entering={FadeIn} style={styles.placeholder}>
+    <Animated.View entering={FadeIn} style={[styles.placeholder, placeholderStyle]}>
       <Label type={actualType} color="light50">
         {placeholder}
       </Label>
@@ -70,6 +76,7 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
       hideDoneAccessoryView,
       placeholderType,
       placeholder,
+      placeholderStyle,
       textAlign,
       ...props
     },
@@ -117,7 +124,9 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
       <View style={[styles.inputWrapper, inputWrapperStyle]} testID={`Wrapper-${testID}`}>
         {left}
         <View style={[!shrinkInput && styles.flex]}>
-          {!!placeholder && !props.value && <Placeholder type={type} placeholder={placeholder} placeholderType={placeholderType} />}
+          {!!placeholder && !props.value && (
+            <Placeholder type={type} placeholder={placeholder} placeholderType={placeholderType} placeholderStyle={placeholderStyle} />
+          )}
           {input}
         </View>
         {right}

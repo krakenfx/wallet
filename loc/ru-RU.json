@@ -64,8 +64,9 @@
   "advancedAccountInfo": {
     "derivationPath": "Путь извлечения",
     "ethereumDerivationPath": "Путь извлечения Ethereum",
-    "ethereumDerivationPathContent": "Путь извлечения Ethereum используется совместно с сетями второго уровня, такими как Polygon, Arbitrum, Optimism и Base, то есть для всех из них используется один и тот же путь извлечения.",
+    "ethereumDerivationPathContent": "Путь извлечения Ethereum используется совместно с сетями, совместимыми с Ethereum, такими как Polygon, Arbitrum, OP Mainnet, Base, Linea и Avalanche, то есть для всех них используется один и тот же путь извлечения.",
     "extendedPublicKey": "Расширенный открытый ключ",
+    "includesCompatibleNetworks": "Включает совместимые с Ethereum сети",
     "includesLayer2Networks": "Включает сети второго уровня",
     "pathCopied": "Путь скопирован",
     "title": "Информация о {walletName}",
@@ -167,6 +168,31 @@
   },
   "broadcast": {
     "sent": "Отправлено"
+  },
+  "browser": {
+    "clearSearch": "Очистить",
+    "loadingError": {
+      "description": "Проверьте URL-адрес на наличие опечаток или отсутствие символов",
+      "title": "URL-адрес не найден"
+    },
+    "noSearch": {
+      "description": "Введите или вставьте полную ссылку для поиска",
+      "title": "Начать поиск"
+    },
+    "quickActions": {
+      "connectedApps": "Посмотреть подключенные приложения",
+      "disconnect": "Отключить",
+      "refresh": "Обновить",
+      "share": "Поделиться"
+    },
+    "searchOnChain": "Искать ончейн"
+  },
+  "bugTracking": {
+    "allow": "Разрешить",
+    "content": "Возможность наблюдения позволяет нам отслеживать и совершенствовать ваш опыт использования кошелька, собирая необходимые данные. Это помогает нам находить проблемы, оптимизировать производительность и гарантировать комфортное использование кошелька. Ваши данные анонимизированы и надежно защищены! ",
+    "disallow": "Не разрешать",
+    "skip": "Спросить позже",
+    "title": "Помогите нам сделать Kraken Wallet лучше"
   },
   "coins": {
     "allNetworks": "Все сети",
@@ -322,8 +348,8 @@
     "request_approval": "Запрос подтверждения для транзакций",
     "see_balance": "Просмотрите свои балансы и активность",
     "unsupportedNetwork": "Неподдерживаемая сеть",
-    "unsupportedNetworkDescription": "Приложение использует сеть {unsupportedNetwork}, которая не поддерживается в данный момент. Kraken Wallet в настоящее время поддерживает приложения в сетях Ethereum, Polygon, Optimism, Arbitrum и Solana.",
-    "unsupportedNetworksDescription": "Приложение использует сети {unsupportedNetworks}, которые не поддерживаются в данный момент. Kraken Wallet в настоящее время поддерживает приложения в сетях Ethereum, Polygon, Optimism, Arbitrum и Solana."
+    "unsupportedNetworkDescription": "Приложение использует сеть {unsupportedNetwork}, которая не поддерживается в данный момент. Kraken Wallet в настоящее время поддерживает приложения в сетях Ethereum, Polygon, OP Mainnet, Arbitrum и Solana.",
+    "unsupportedNetworksDescription": "Приложение использует сети {unsupportedNetworks}, которые не поддерживаются в данный момент. Kraken Wallet в настоящее время поддерживает приложения в сетях Ethereum, Polygon, OP Mainnet, Arbitrum и Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -393,6 +419,7 @@
     "explore": "Ознакомиться"
   },
   "editAccount": {
+    "rename": "Переименовать",
     "save": "Сохранить",
     "title": "Изменить кошелек",
     "walletName": "Имя кошелька"
@@ -402,12 +429,18 @@
   },
   "errors": {
     "connectionError": "Ошибка подключения",
+    "exploreSubpage": "Что-то пошло не так при попытке открыть материалы. Повторите попытку позже.",
     "generalFetchError": "Ошибка, повторите попытку",
     "generic": "Что-то пошло не так",
     "genericTryAgainLater": "Произошла ошибка. Повторите попытку позже",
     "network": "Ошибка сети",
     "offline": "Офлайн",
     "seedMissing": "Серьезная ошибка! Секретная фраза для восстановления недоступна."
+  },
+  "explore": {
+    "continueAccessibilityHint": "Ознакомьтесь с отказом от ответственности, примите его и продолжите",
+    "disclaimerBody": "Всегда выполняйте самостоятельную проверку: нажатие на приложения dApp в этом разделе приведет к переходу по внешним ссылкам.",
+    "disclaimerTitle": "Соблюдайте осторожность"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -660,6 +693,7 @@
   },
   "network": {
     "arbitrum": "Arbitrum",
+    "avalanche": "Avalanche",
     "base": "Базовый",
     "bitcoin": "Bitcoin",
     "blast": "Blast",
@@ -667,8 +701,9 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – тестовая сеть Goerli",
     "ethereum_sepolia": "Ethereum – тестовая сеть Sepolia",
+    "linea": "Linea",
     "matic": "Matic",
-    "optimism": "Optimism",
+    "optimism": "OP Mainnet",
     "polygon": "Polygon",
     "solana": "Solana",
     "solana_devnet": "Solana – Devnet",
@@ -881,6 +916,41 @@
     "subtitle": "свой кошелек",
     "title": "Импортировать"
   },
+  "onboardingImportSubWallets": {
+    "findingWallets": {
+      "caption": "Это может занять несколько секунд",
+      "foundWallets": "Найдено кошельков: {count}",
+      "title": "Поиск подкошельков"
+    },
+    "findSubWallets": {
+      "caption": "Это может занять несколько секунд",
+      "foundWallets": "Найдено кошельков: {count}",
+      "title": "Поиск подкошельков"
+    },
+    "importSubWallets": {
+      "importWallets": "Импорт {subWalletsCount} кошельков",
+      "importWalletsOne": "Импорт 1 кошелька",
+      "subtitle": "Найдено {subWalletsCount} активных кошельков/кошельков с ненулевым балансом. Выберите все кошельки, которые хотите импортировать.",
+      "subtitleOneWallet": "Найден 1 активный кошелек/кошелек с ненулевым балансом.",
+      "title": "Выберите кошельки для импорта",
+      "walletsFound": "Найдено кошельков: {subWalletsCount}",
+      "walletsFoundOne": "Найден 1 кошелек"
+    },
+    "importSubWalletsSuccess": {
+      "continue": "Продолжить",
+      "subtitle": "Кошельки добавлены. Вы в любое время можете добавить больше.",
+      "subtitleOneWallet": "Кошелек добавлен. Вы в любое время можете добавить больше.",
+      "title": "Импортировано кошельков: {subWalletsCount}",
+      "titleOneWallet": "Импортирован 1 кошелек"
+    },
+    "loadingSubWallets": {
+      "caption": "Это может занять несколько секунд",
+      "foundWallets": "Найдено кошельков: {subWalletsCount}",
+      "foundWalletsOne": "Найден 1 кошелек",
+      "subtitle": "Это может занять несколько секунд",
+      "title": "Поиск подкошельков"
+    }
+  },
   "onboardingImportWallet": {
     "caption": "Для импорта кошелька введите свою секретную фразу для восстановления.",
     "header": "Импортируйте свой кошелек",
@@ -907,9 +977,12 @@
     "titleStart": "Для получения информации "
   },
   "onChainSecurity": {
+    "analysingApp": "Выполняется анализ приложения",
     "appConnectCriticalWarning": "Мы считаем, что это вредоносное приложение, использовать которое небезопасно. Утверждение может привести к потере средств.",
     "appConnectMediumWarning": "Невозможно верифицировать приложение, отправляющее запрос.",
     "appFlagged": "Приложение отмечено!",
+    "appSafetyNotVerified": "Уровень безопасности приложения не проверен",
+    "appSafetyNotVerifiedMessage": "Не удалось проверить уровень безопасности приложения, к которому вы пытаетесь подключиться. Продолжайте с осторожностью.",
     "appSignMessageCriticalWarning": "Мы считаем, что это вредоносное приложение, и подписывать сообщение небезопасно. Утверждение может привести к потере средств.",
     "appSignMessageMediumWarning": "Невозможно верифицировать приложение, отправляющее запрос.",
     "appSignTransactionCriticalWarning": "Мы считаем, что это вредоносное приложение, и подписывать транзакцию небезопасно. Утверждение может привести к потере средств.",
@@ -1144,6 +1217,8 @@
     "electrum_reset_to_default": "Вы уверены, что хотите сбросить настройки Electrum до значения по умолчанию?",
     "electrum_saved": "Ваши изменения сохранены. Для вступления изменений в силу может потребоваться перезапуск приложения.",
     "electrum_unable_to_connect": "Не удалось подключиться к {server}.",
+    "enableTracking": "Включить отслеживание ошибок",
+    "enableTrackingDescription": "Включив эту функцию, вы помогаете делать наше приложение лучше",
     "general": "Общие сведения",
     "header": "Настройки",
     "hideBalances": "Скрыть балансы",
@@ -1190,6 +1265,32 @@
     "knowledgeBaseDesc": "Находите документацию, читайте часто задаваемые вопросы и связывайтесь с нами",
     "knowledgeBaseTitle": "База знаний",
     "visitSupportCenter": "Посетить Центр поддержки"
+  },
+  "swap": {
+    "amountExceedingBalance": "Введенная сумма превышает доступный баланс",
+    "amountPlaceholder": "Введите сумму",
+    "balance": "Баланс {0}",
+    "buttonTitle": "Обмен",
+    "emptyState": {
+      "assetsEmptyDesc": "В данный момент в вашем кошельке нет активов. Попробуйте пополнить свой кошелек",
+      "assetsEmptyTitle": "Нет доступных активов",
+      "clearSearch": "Очистить поиск",
+      "goBack": "Назад",
+      "searchAllNetworks": "Поиск во всех сетях",
+      "searchEmptyDesc": "Попробуйте расширить поиск",
+      "searchEmptyTitle": "Нет результатов",
+      "swappableAssetsEmptyDesc": "В вашем текущем кошельке нет активов, поддерживаемых нашими провайдерами обмена",
+      "swappableAssetsEmptyNetworkDesc": "В вашем текущем кошельке в выбранной сети нет активов, поддерживаемых нашими провайдерами обмена",
+      "swappableAssetsEmptyNetworkTitle": "В выбранной сети нет доступных активов для обмена",
+      "swappableAssetsEmptyTitle": "Нет доступных активов для обмена"
+    },
+    "findingBestRote": "Поиск наилучшего маршрута",
+    "selectAsset": "Выбрать актив",
+    "sourceListHeader": "Ваши активы",
+    "sourceSearchPlaceholder": "Выберите актив для обмена",
+    "targetSearchPlaceholder": "Выберите актив для получения",
+    "title": "Обмен",
+    "unsupportedAssetsHidden": "Наши провайдеры обмена пока не поддерживают {count} из ваших активов"
   },
   "test": {
     "key": "Проверка"
@@ -1387,8 +1488,8 @@
     "copied": "Адрес скопирован",
     "crypto": "Криптовалюта",
     "cryptoAndNft": "NFT и криптовалюта",
-    "ethereumAddressLabel": "Включает сети второго уровня",
-    "ethereumExplainerBody": "Адресная система Ethereum распространяется на сети второго уровня, такие как Polygon, Arbitrum, Optimism и Base, гарантируя, что ваш единый адрес будет работать везде.",
+    "ethereumAddressLabel": "Включает совместимые с Ethereum сети",
+    "ethereumExplainerBody": "Адресная система Ethereum распространяется на сети, совместимые с Ethereum, такие как Polygon, Arbitrum, OP Mainnet, Base, Linea и Avalanche, гарантируя, что ваш единый адрес будет работать везде.",
     "ethereumExplainerHeading": "Адрес Ethereum",
     "tokenAddress": "Адрес {token}"
   },
@@ -1446,7 +1547,7 @@
       "manual": "Чтобы повысить возможность восстановления, вручную создайте резервную копию вашей секретной фразы для восстановления и храните ее в безопасном месте",
       "title": "Создать вторую резервную копию"
     },
-    "secretRecoveryPhrase": "Секретная фраза для восстановления",
+    "secretRecoveryPhrase": "Ваша секретная фраза для восстановления",
     "tapHereToView": "Нажмите здесь для просмотра"
   },
   "walletBackupPrompt": {
@@ -1505,6 +1606,13 @@
     "title": "Удалить резервную копию"
   },
   "walletCloudBackupError": {
+    "deleteBackupConfirmation": {
+      "cancel": "Отмена",
+      "description": "Удаляя ее вы подтверждаете, что ключ доступа уже удален. Это действие приведет к удалению из приложения любых ссылок на удаленный ключ доступа.",
+      "header": "Удалить резервную копию ключа доступа",
+      "remove": "Удалить",
+      "title": "Вы действительно хотите удалить эту резервную копию ключа доступа?"
+    },
     "ensureICloudKeychainOn": "В параметрах пароля на вашем устройстве необходимо включить использование iCloud Keychain для паролей и ключей доступа.",
     "errorCreatingBackup": {
       "cancel": "Отмена",
@@ -1519,7 +1627,10 @@
       "title": "Ошибка при создании ключа доступа"
     },
     "errorDeletingPasskey": {
-      "title": "Ошибка при удалении ключа доступа"
+      "cancel": "Отмена",
+      "deletedPasskeyPossibility": "Возможно, ключ доступа, содержащий вашу резервную копию, уже был удален. Если вы уверены, что ключ доступа удален, мы можем пометить его как удаленный и удалить из кошелька.",
+      "removeItButton": "Да, удалить",
+      "title": "Ошибка при удалении резервной копии ключа доступа"
     },
     "errorInactive": {
       "description": "Если вы создали несколько ключей доступа, попробуйте импортировать другую резервную копию. В противном случае вы можете вы можете импортировать свой кошелек, используя секретную фразу для восстановления из 12-24 слов.",
@@ -1544,6 +1655,11 @@
       "link": "Служба поддержки Kraken Wallet ↗",
       "regular": "Если это не решит проблему, обратитесь за помощью, посетив ",
       "regularWithManualBackup": "Если это не решит проблему, вы можете импортировать свою секретную фразу для восстановления из 12-24 слов или обратитесь за помощью, посетив "
+    },
+    "userCanceledBackup": {
+      "cancel": "Отмена",
+      "description": "Чтобы создать резервную копию вашего кошелька, вам необходимо повторно войти в систему, в противном случае мы не сможем надежно защитить ваш кошелек с помощью ключа доступа.",
+      "title": "Требуется вход с ключом доступа"
     }
   },
   "walletConnect": {

@@ -11,8 +11,9 @@ import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useLanguage } from '@/realm/settings';
 import { NavigationProps, Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
-import { formatPasskeyDate } from '@/utils/dateFormatter';
 import { navigationStyle } from '@/utils/navigationStyle';
+
+import { getBackupName } from './utils/getBackupName';
 
 import loc from '/loc';
 
@@ -41,11 +42,11 @@ export const WalletCloudImportSelectScreen = ({ navigation, route: { params } }:
               icon={<Image source={require('@/assets/images/common/iCloud.png')} />}
               onPress={() => navigation.navigate(Routes.OnboardingWalletCloudImport, { selectedBackup: backup })}
               title={backup.device}
-              subtitle={formatPasskeyDate(backup.date, getDateLocale(language))}
+              subtitle={getBackupName(backup.date, getDateLocale(language))}
               containerStyle={styles.item}
               rightElement={
                 index === 0 && (
-                  <View>
+                  <View style={styles.badgeContainer}>
                     <View style={[styles.badge, { backgroundColor: colors.green400_15 }]}>
                       <Label type="regularCaption1" color="green400">
                         {loc.onboardingImportCloudBackup.selection.recent}
@@ -84,6 +85,11 @@ const styles = StyleSheet.create({
   },
   item: {
     marginVertical: 8,
+  },
+  badgeContainer: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
   },
   badge: {
     paddingHorizontal: 8,

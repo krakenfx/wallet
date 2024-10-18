@@ -9,6 +9,7 @@ import {
   WalletConnectSignRequest_GenericTransactionParams,
   WalletConnectSignRequest_StructuredTransactionParams,
 } from '@/screens/AppSignRequest';
+import { BrowserParams } from '@/screens/Browser';
 import { ConnectAppParams } from '@/screens/ConnectApp';
 import { ScanQRCodeParams } from '@/screens/ConnectAppQRScan';
 import { DefiDetailsRouteParams } from '@/screens/DefiDetails';
@@ -46,6 +47,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     AdvancedAccountInfo: AdvancedAccountInfoParams;
     AdvancedSettings: undefined;
     AppDetails: AppDetailsParams;
+    Browser: BrowserParams;
     AppLock: undefined;
     WhatsNewBlast: undefined;
     WhatsNewAssetMarketData: undefined;
@@ -59,6 +61,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     Debug: undefined;
     DefiDetails: DefiDetailsRouteParams;
     Diagnostics: undefined;
+    Explore: undefined;
     EditNote: EditNoteParams;
     Explainer: ExplainerProps;
     ExtendedPublicKey: ExtendedPublicKeyParams;
@@ -105,6 +108,7 @@ export enum Routes {
   AdvancedAccountInfo = 'AdvancedAccountInfo',
   AdvancedSettings = 'AdvancedSettings',
   AppDetails = 'AppDetails',
+  Browser = 'Browser',
   WhatsNewBlast = 'WhatsNewBlast',
   WhatsNewLongPress = 'WhatsNewLongPress',
   WhatsNewAssetMarketData = 'WhatsNewAssetMarketData',
@@ -117,6 +121,7 @@ export enum Routes {
   DefiDetails = 'DefiDetails',
   Debug = 'Debug',
   Diagnostics = 'Diagnostics',
+  Explore = 'Explore',
   EditNote = 'EditNote',
   Explainer = 'Explainer',
   ExtendedPublicKey = 'ExtendedPublicKey',

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Realm from 'realm';
 
-import { cancelActiveRequests } from '@/api/base/superFetch';
+import { cancelActiveRequestsAndInvalidateCache } from '@/api/base/fetchClient';
 import { RealmSchema } from '@/realm/realmSchema';
 import { clearAllKeychainValues } from '@/secureStore/keychain';
 
@@ -16,7 +16,7 @@ export const cleanAsyncStorage = async () => {
 };
 
 export const clearAppData = async () => {
-  cancelActiveRequests();
+  cancelActiveRequestsAndInvalidateCache();
   await clearAllKeychainValues();
   await cleanAsyncStorage();
   await validateSchemaVersion();

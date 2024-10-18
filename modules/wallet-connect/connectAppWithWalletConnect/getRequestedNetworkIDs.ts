@@ -2,6 +2,8 @@ import { ProposalTypes } from '@walletconnect/types';
 
 import { SessionProposal } from '@/screens/ConnectApp/types';
 
+import { getRequiresWrongSolanaID } from './getRequiresWrongSolanaID';
+
 import { SHIM_replaceWrongSolanaMainnetID } from '/modules/wallet-connect/solanaShim';
 import { isCAIP2 } from '/modules/wallet-connect/utils';
 
@@ -10,11 +12,9 @@ export function getRequestedNetworkIDs(sessionProposal: SessionProposal): {
   requestedRequiredNetworkIDs: string[];
   requiresWrongSolanaID: boolean;
 } {
-  let requiresWrongSolanaID = false;
   const requestedNetworkIDs: string[] = [];
   const requestedRequiredNetworkIDs: string[] = [];
 
-  
   const assignRequestedNetworkIDs = (namespaceKey: string, namespace: ProposalTypes.BaseRequiredNamespace, isRequired: boolean) => {
     const isKeyCAIP2 = isCAIP2(namespaceKey);
 
@@ -22,7 +22,7 @@ export function getRequestedNetworkIDs(sessionProposal: SessionProposal): {
     
     (isKeyCAIP2 ? [namespaceKey] : namespace.chains || []).map(chain => {
       if (chain) {
-        const [id, wasReplaced] = SHIM_replaceWrongSolanaMainnetID(chain);
+        const id = SHIM_replaceWrongSolanaMainnetID(chain);
 
         if (!requestedNetworkIDs.includes(id)) {
           requestedNetworkIDs.push(id);
@@ -30,11 +30,6 @@ export function getRequestedNetworkIDs(sessionProposal: SessionProposal): {
           if (isRequired) {
             requestedRequiredNetworkIDs.push(id);
           }
-        }
-
-        
-        if (wasReplaced) {
-          requiresWrongSolanaID = true;
         }
       }
     });
@@ -44,7 +39,7 @@ export function getRequestedNetworkIDs(sessionProposal: SessionProposal): {
   Object.entries(sessionProposal.params?.optionalNamespaces ?? {}).forEach(([k, v]) => assignRequestedNetworkIDs(k, v, false));
 
   return {
-    requiresWrongSolanaID,
+    requiresWrongSolanaID: getRequiresWrongSolanaID(sessionProposal),
     requestedNetworkIDs,
     requestedRequiredNetworkIDs,
   };

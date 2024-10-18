@@ -3,6 +3,7 @@ import { noop } from 'lodash';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { AvatarIcon } from '@/components/AvatarIcon';
 import { GradientItemBackground, GradientItemBackgroundProps } from '@/components/GradientItemBackground';
 import { IconButton } from '@/components/IconButton';
 import { Label } from '@/components/Label';
@@ -65,11 +66,16 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
   return (
     <Touchable onPress={handlePress} style={style} disabled={!onPress} testID={testID ?? `Wallet-${accountNumber}`}>
       <GradientItemBackground backgroundType={isCurrentAccount ? 'modalLight' : backgroundType} />
-      <View style={styles.walletInfo}>
-        <Label type="boldTitle2">{accountCustomName}</Label>
-        <Label type="boldMonospace" color="light75" style={styles.balance}>
-          {balanceDisplay}
-        </Label>
+      <View style={styles.left}>
+        <View style={styles.avatarContainer}>
+          <AvatarIcon accountNumber={account.accountNumber} accountAvatar={account.avatar} />
+        </View>
+        <View style={styles.walletInfo}>
+          <Label type="boldTitle2">{accountCustomName}</Label>
+          <Label type="boldMonospace" color="light75" style={styles.balance}>
+            {balanceDisplay}
+          </Label>
+        </View>
       </View>
 
       <Menu
@@ -107,6 +113,11 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
 };
 
 const styles = StyleSheet.create({
+  avatarContainer: {
+    marginRight: 12,
+    width: 36,
+    height: 36,
+  },
   container: {
     paddingHorizontal: 24,
     paddingVertical: 16,
@@ -119,6 +130,11 @@ const styles = StyleSheet.create({
   },
   balance: {
     marginTop: 4,
+  },
+  left: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   walletInfo: {
     justifyContent: 'space-between',

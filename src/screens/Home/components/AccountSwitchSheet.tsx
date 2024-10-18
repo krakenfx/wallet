@@ -4,7 +4,7 @@ import noop from 'lodash/noop';
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import { ListRenderItem, StyleSheet, View } from 'react-native';
 
-import { cancelActiveRequests } from '@/api/base/superFetch';
+import { cancelActiveRequestsAndInvalidateCache } from '@/api/base/fetchClient';
 import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
 
 import { Button, LARGE_BUTTON_SIZE } from '@/components/Button';
@@ -51,7 +51,7 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
   const handleWalletItemPress = useCallback(
     async (walletAccountNumber: number) => {
       dismissModal();
-      cancelActiveRequests();
+      cancelActiveRequestsAndInvalidateCache();
       switchAccount(walletAccountNumber);
     },
     [dismissModal, switchAccount],

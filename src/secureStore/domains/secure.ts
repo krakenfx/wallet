@@ -23,6 +23,10 @@ export async function validateCleanKeychainOnInstall() {
   if (!isRealmInAppEverInitialised) {
     
     await clearAllKeychainValues();
+    if (Realm.exists({ schema: RealmSchema })) {
+      
+      Realm.deleteFile({ schema: RealmSchema });
+    }
   } else if (!hasRealmKey) {
     
     await clearAllKeychainValues();
@@ -99,7 +103,10 @@ export async function decryptSeedWithUserPassword(password: string) {
 export async function retrieveMnemonic(appLockSecret?: string, password?: string) {
   const value = await retrieveAppLockProtectedValue(KeychainKey.mnemonicKey, appLockSecret, 'utf8');
   const isPasswordProtected = await getFromKeychain(KeychainKey.isSeedEncryptedKey);
-  if (password && isPasswordProtected) {
+  if (isPasswordProtected) {
+    if (!password) {
+      throw Error('Trying to decrypt with empty password');
+    }
     return decryptValue(value, password, 'utf8');
   }
   return value;
@@ -108,7 +115,10 @@ export async function retrieveMnemonic(appLockSecret?: string, password?: string
 export async function retrieveSeed(appLockSecret?: string, password?: string) {
   const value = await retrieveAppLockProtectedValue(KeychainKey.seedBufferKey, appLockSecret, 'hex');
   const isPasswordProtected = await getFromKeychain(KeychainKey.isSeedEncryptedKey);
-  if (password && isPasswordProtected) {
+  if (isPasswordProtected) {
+    if (!password) {
+      throw Error('Trying to decrypt with empty password');
+    }
     return decryptValue(value, password, 'hex');
   }
   return value;

@@ -159,6 +159,7 @@ export const ICON_OPTIONS: IconName[] = [
   'link-zealy',
   'asset-coin',
   'un-archive',
+  'compass'
 ];
 
 export const iconsControl = {

@@ -64,8 +64,9 @@
   "advancedAccountInfo": {
     "derivationPath": "Chemin de dérivation",
     "ethereumDerivationPath": "Chemin de dérivation d’Ethereum",
-    "ethereumDerivationPathContent": "Le chemin de dérivation d’Ethereum est partagé avec les réseaux de couche 2 tels que Polygon, Arbitrum, Optimism et Base, ce qui signifie que le même chemin de dérivation est utilisé pour tous ces réseaux.",
+    "ethereumDerivationPathContent": "Le chemin de dérivation d’Ethereum est partagé avec les réseaux Ethereum compatibles tels que Polygon, Arbitrum, OP Mainnet, Base Linea et Avalanche, ce qui signifie que le même chemin de dérivation est utilisé pour tous ces réseaux.",
     "extendedPublicKey": "Clé publique étendue",
+    "includesCompatibleNetworks": "Comprend les réseaux Ethereum compatibles",
     "includesLayer2Networks": "Comprend les réseaux de couche 2",
     "pathCopied": "Chemin copié",
     "title": "{walletName} - Info",
@@ -167,6 +168,31 @@
   },
   "broadcast": {
     "sent": "Envoyé"
+  },
+  "browser": {
+    "clearSearch": "Effacer",
+    "loadingError": {
+      "description": "Vérifiez que l’URL est complète et qu’elle ne contient aucune faute de frappe",
+      "title": "URL introuvable"
+    },
+    "noSearch": {
+      "description": "Saisir ou coller l’URL complète pour effectuer une recherche",
+      "title": "Commencer votre recherche"
+    },
+    "quickActions": {
+      "connectedApps": "Voir les applications connectées",
+      "disconnect": "Déconnecter",
+      "refresh": "Actualiser",
+      "share": "Partager"
+    },
+    "searchOnChain": "Rechercher des données on-chain"
+  },
+  "bugTracking": {
+    "allow": "Autoriser",
+    "content": "L’observabilité nous permet de surveiller et d’améliorer votre expérience de portefeuille en collectant des données essentielles. Ainsi, nous sommes en mesure d’identifier les problèmes, d’optimiser les performances et de garantir le bon fonctionnement de votre portefeuille. Vos données sont anonymisées et sécurisées ! ",
+    "disallow": "Ne pas autoriser",
+    "skip": "Me demander plus tard",
+    "title": "Aidez-nous à améliorer Kraken Wallet"
   },
   "coins": {
     "allNetworks": "Tous les réseaux",
@@ -322,8 +348,8 @@
     "request_approval": "Demander l’approbation des transactions",
     "see_balance": "Consultez vos soldes et votre activité",
     "unsupportedNetwork": "Réseau non pris en charge",
-    "unsupportedNetworkDescription": "Cette application utilise le réseau {unsupportedNetwork} qui n’est pas pris en charge pour le moment. Kraken Wallet prend actuellement en charge les applications sur les réseaux Ethereum, Polygon, Optimism, Arbitrum et Solana.",
-    "unsupportedNetworksDescription": "Cette application utilise les réseaux {unsupportedNetworks} qui ne sont pas pris en charge pour le moment. Kraken Wallet prend actuellement en charge les applications sur les réseaux Ethereum, Polygon, Optimism, Arbitrum et Solana."
+    "unsupportedNetworkDescription": "Cette application utilise le réseau {unsupportedNetwork} qui n’est pas pris en charge pour le moment. Kraken Wallet prend actuellement en charge les applications sur les réseaux Ethereum, Polygon, OP Mainnet, Arbitrum et Solana.",
+    "unsupportedNetworksDescription": "Cette application utilise les réseaux {unsupportedNetworks} qui ne sont pas pris en charge pour le moment. Kraken Wallet prend actuellement en charge les applications sur les réseaux Ethereum, Polygon, OP Mainnet, Arbitrum et Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -393,6 +419,7 @@
     "explore": "Explorer"
   },
   "editAccount": {
+    "rename": "Renommer",
     "save": "Enregistrer",
     "title": "Modifier le portefeuille",
     "walletName": "Nom du portefeuille"
@@ -402,12 +429,18 @@
   },
   "errors": {
     "connectionError": "Erreur de connexion",
+    "exploreSubpage": "Une erreur est survenue lors de l’ouverture de ce contenu. Veuillez réessayer ultérieurement.",
     "generalFetchError": "Erreur, veuillez réessayer",
     "generic": "Une erreur est survenue.",
     "genericTryAgainLater": "Une erreur est survenue, veuillez réessayer ultérieurement",
     "network": "Erreur réseau",
     "offline": "Hors-ligne",
     "seedMissing": "Erreur critique ! Le code d’accès n’est pas disponible."
+  },
+  "explore": {
+    "continueAccessibilityHint": "Accepter l’avis de non-responsabilité et continuer",
+    "disclaimerBody": "Le fait d’appuyer sur les applications décentralisées dans cette section vous redirigera vers des URL externes, et vous devez toujours procéder à vos propres vérifications.",
+    "disclaimerTitle": "Faites preuve de prudence"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -660,6 +693,7 @@
   },
   "network": {
     "arbitrum": "Arbitrum",
+    "avalanche": "Avalanche",
     "base": "Base",
     "bitcoin": "Bitcoin",
     "blast": "Blast",
@@ -667,8 +701,9 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
     "ethereum_sepolia": "Ethereum - Testnet Sepolia",
+    "linea": "Linea",
     "matic": "Matic",
-    "optimism": "Optimism",
+    "optimism": "OP Mainnet",
     "polygon": "Polygon",
     "solana": "Solana",
     "solana_devnet": "Solana - Devnet",
@@ -881,6 +916,41 @@
     "subtitle": "votre portefeuille",
     "title": "Importer"
   },
+  "onboardingImportSubWallets": {
+    "findingWallets": {
+      "caption": "L’opération peut prendre quelques secondes…",
+      "foundWallets": "{count} portefeuilles trouvés...",
+      "title": "Recherche de sous-portefeuilles"
+    },
+    "findSubWallets": {
+      "caption": "L’opération peut prendre quelques secondes…",
+      "foundWallets": "{count} portefeuilles trouvés...",
+      "title": "Recherche de sous-portefeuilles"
+    },
+    "importSubWallets": {
+      "importWallets": "Importer {subWalletsCount} portefeuilles",
+      "importWalletsOne": "Importer 1 portefeuille",
+      "subtitle": "Nous avons trouvé {subWalletsCount} portefeuilles présentant une activité ou un solde. Sélectionnez tous les portefeuilles que vous souhaitez importer.",
+      "subtitleOneWallet": "Nous avons trouvé 1 portefeuille présentant une activité ou un solde.",
+      "title": "Sélectionnez les portefeuilles à importer",
+      "walletsFound": "{subWalletsCount} portefeuilles trouvés",
+      "walletsFoundOne": "1 portefeuille trouvé"
+    },
+    "importSubWalletsSuccess": {
+      "continue": "Continuer",
+      "subtitle": "Les portefeuilles ont été ajoutés. Vous pouvez en ajouter à tout moment.",
+      "subtitleOneWallet": "Le portefeuille a été ajouté. Vous pouvez en ajouter à tout moment.",
+      "title": "{subWalletsCount} portefeuilles importés !",
+      "titleOneWallet": "1 portefeuille importé !"
+    },
+    "loadingSubWallets": {
+      "caption": "L’opération peut prendre quelques secondes…",
+      "foundWallets": "{subWalletsCount} portefeuilles trouvés...",
+      "foundWalletsOne": "1 portefeuille trouvé...",
+      "subtitle": "L’opération peut prendre quelques secondes…",
+      "title": "Recherche de sous-portefeuilles"
+    }
+  },
   "onboardingImportWallet": {
     "caption": "Saisissez votre phrase de récupération secrète pour importer votre portefeuille.",
     "header": "Importer votre portefeuille",
@@ -907,9 +977,12 @@
     "titleStart": "Pour rester informé, "
   },
   "onChainSecurity": {
+    "analysingApp": "Analyse de l’application en cours...",
     "appConnectCriticalWarning": "Nous pensons que cette application est malveillante et qu’il serait dangereux de s’y connecter. L’approbation peut entraîner une perte de fonds.",
     "appConnectMediumWarning": "L’application qui envoie la demande ne peut pas être vérifiée.",
     "appFlagged": "Application signalée !",
+    "appSafetyNotVerified": "Sécurité de l’application non vérifiée",
+    "appSafetyNotVerifiedMessage": "Nous n’avons pas pu vérifier la sécurité de l’application à laquelle vous essayez de vous connecter. Veuillez faire preuve de prudence.",
     "appSignMessageCriticalWarning": "Nous pensons que cette application est malveillante et qu’il serait dangereux de signer le message. L’approbation peut entraîner une perte de fonds.",
     "appSignMessageMediumWarning": "L’application qui envoie la demande ne peut pas être vérifiée.",
     "appSignTransactionCriticalWarning": "Nous pensons que cette application est malveillante et qu’il serait dangereux de signer la transaction. L’approbation peut entraîner une perte de fonds.",
@@ -1144,6 +1217,8 @@
     "electrum_reset_to_default": "Êtes-vous sûr de vouloir réinitialiser vos paramètres Electrum par défaut ?",
     "electrum_saved": "Vos modifications ont été enregistrées avec succès. Le redémarrage de l’application peut être nécessaire pour que les modifications prennent effet.",
     "electrum_unable_to_connect": "Impossible de se connecter à {server}.",
+    "enableTracking": "Activer le dépistage des bugs",
+    "enableTrackingDescription": "En l’activant, vous nous permettez d’améliorer l’application",
     "general": "Général",
     "header": "Paramètres",
     "hideBalances": "Masquer les soldes",
@@ -1190,6 +1265,32 @@
     "knowledgeBaseDesc": "Effectuez des recherches dans notre documentation, consultez nos FAQ et contactez-nous",
     "knowledgeBaseTitle": "Base de connaissances",
     "visitSupportCenter": "Consulter le centre de support"
+  },
+  "swap": {
+    "amountExceedingBalance": "Le montant saisi dépasse le solde disponible",
+    "amountPlaceholder": "Saisir le montant",
+    "balance": "Solde {0}",
+    "buttonTitle": "Échanger",
+    "emptyState": {
+      "assetsEmptyDesc": "Actuellement, votre portefeuille ne contient aucun actif, essayez d’en déposer dans votre portefeuille",
+      "assetsEmptyTitle": "Aucun actif disponible",
+      "clearSearch": "Effacer la recherche",
+      "goBack": "Revenir en arrière",
+      "searchAllNetworks": "Rechercher tous les réseaux",
+      "searchEmptyDesc": "Essayez d’élargir votre recherche",
+      "searchEmptyTitle": "Aucun résultat",
+      "swappableAssetsEmptyDesc": "Votre portefeuille actuel ne dispose d’aucun actif pris en charge par nos fournisseurs de swap",
+      "swappableAssetsEmptyNetworkDesc": "Votre portefeuille actuel ne dispose d’aucun actif sur les réseaux sélectionnés pris en charge par nos fournisseurs de swap",
+      "swappableAssetsEmptyNetworkTitle": "Aucun actif à échanger disponible sur le réseau sélectionné",
+      "swappableAssetsEmptyTitle": "Aucun actif à échanger disponible"
+    },
+    "findingBestRote": "Recherche du meilleur itinéraire",
+    "selectAsset": "Sélectionner un actif",
+    "sourceListHeader": "Vos actifs",
+    "sourceSearchPlaceholder": "Sélectionner un actif à échanger",
+    "targetSearchPlaceholder": "Sélectionner un actif à recevoir",
+    "title": "Échanger",
+    "unsupportedAssetsHidden": "Nos fournisseurs de swap ne prennent pas encore en charge {count} de vos autres actifs"
   },
   "test": {
     "key": "Test"
@@ -1387,8 +1488,8 @@
     "copied": "Adresse copiée",
     "crypto": "Crypto",
     "cryptoAndNft": "NFT et crypto",
-    "ethereumAddressLabel": "Comprend les réseaux de couche 2",
-    "ethereumExplainerBody": "Le système d’adresses d’Ethereum s’étend aux réseaux de couche 2 tels que Polygon, Arbitrum, Optimism et Base, garantissant que votre adresse unique fonctionne partout",
+    "ethereumAddressLabel": "Comprend les réseaux Ethereum compatibles",
+    "ethereumExplainerBody": "Le système d’adresses d’Ethereum s’étend aux réseaux Ethereum compatibles tels que Polygon, Arbitrum, OP Mainnet, Base, Linea et Avalanche garantissant que votre adresse unique fonctionne partout",
     "ethereumExplainerHeading": "Votre adresse Ethereum",
     "tokenAddress": "Adresse de {token}"
   },
@@ -1446,7 +1547,7 @@
       "manual": "Pour une meilleure récupération, créez une sauvegarde manuelle de votre phrase de récupération secrète afin qu’elle soit conservée dans un lieu sécurisé",
       "title": "Créer une sauvegarde secondaire"
     },
-    "secretRecoveryPhrase": "Phrase de récupération secrète",
+    "secretRecoveryPhrase": "Votre phrase de récupération secrète",
     "tapHereToView": "Appuyez ici pour afficher"
   },
   "walletBackupPrompt": {
@@ -1505,6 +1606,13 @@
     "title": "Supprimer la sauvegarde"
   },
   "walletCloudBackupError": {
+    "deleteBackupConfirmation": {
+      "cancel": "Annuler",
+      "description": "En la supprimant, vous confirmez que la clé d’accès était déjà supprimée. Cette action supprimera toute référence à la clé d’accès supprimée depuis l’application.",
+      "header": "Supprimer la sauvegarde de la clé d’accès",
+      "remove": "Supprimer",
+      "title": "Voulez-vous vraiment supprimer la sauvegarde de cette clé d’accès ?"
+    },
     "ensureICloudKeychainOn": "Dans les Options de mot de passe de votre appareil, assurez-vous que iCloud Keychain est activé pour être utilisé pour les mots de passe et clés d’accès :",
     "errorCreatingBackup": {
       "cancel": "Annuler",
@@ -1519,7 +1627,10 @@
       "title": "Erreur lors de la création de la clé d’accès"
     },
     "errorDeletingPasskey": {
-      "title": "Erreur lors de la suppression de la clé d’accès"
+      "cancel": "Annuler",
+      "deletedPasskeyPossibility": "Il est également possible que la clé d’accès contenant votre sauvegarde ait déjà été supprimée. Si vous avez la certitude que la clé d’accès a été supprimée, nous pouvons la signaler comme telle et la supprimer du portefeuille.",
+      "removeItButton": "Oui, supprimer",
+      "title": "Erreur lors de la suppression de la sauvegarde de la clé d’accès"
     },
     "errorInactive": {
       "description": "Si vous avez créé plusieurs clés d’accès, vous pouvez essayer d’importer une autre sauvegarde. Sinon, vous pouvez importer votre portefeuille en utilisant la Phrase de récupération secrète de 12 à 24 mots",
@@ -1544,6 +1655,11 @@
       "link": "Support de Kraken Wallet ↗",
       "regular": "Si cela ne règle pas votre problème, vous pouvez obtenir de l’aide en consultant ",
       "regularWithManualBackup": "Si cela ne règle pas votre problème, vous pouvez importer votre phrase de récupération secrète de 12 à 24 mots ou obtenir de l’aide en consultant "
+    },
+    "userCanceledBackup": {
+      "cancel": "Annuler",
+      "description": "Pour sauvegarder votre portefeuille, vous devez vous connecter une deuxième fois, sinon nous ne serons pas en mesure de chiffrer votre portefeuille en toute sécurité à l’aide de la clé d’accès.",
+      "title": "Connexion par clé d’accès requise"
     }
   },
   "walletConnect": {

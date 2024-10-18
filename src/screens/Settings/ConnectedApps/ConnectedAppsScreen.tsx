@@ -13,6 +13,7 @@ import { showToast } from '@/components/Toast';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { useManageAccount } from '@/hooks/useManageAccount';
 import { useAccountById } from '@/realm/accounts/useAccountById';
+import { useWalletConnectTopicsMutations } from '@/realm/walletConnectTopics/useWalletConnectTopicsMutations';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { NavigationProps, Routes } from '@/Routes';
 import { showPermissionDeniedAlert } from '@/utils/cameraPermissions';
@@ -48,6 +49,7 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
   const { switchAccount } = useManageAccount();
   const accountWallets = useRealmWallets(false, route.params.accountNumber);
   const [_, requestPermission] = useCameraPermissions();
+  const { deleteSession } = useWalletConnectTopicsMutations()
 
   useHeaderTitle(loc.connectedApps.list.title);
 
@@ -80,7 +82,11 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
 
             if (confirmed && topic !== undefined) {
               const errors: Error[] = [];
-              await WalletConnectSessionsManager.disconnectSession(topic).catch(err => {
+              await WalletConnectSessionsManager.disconnectSession(topic, {
+                onSuccess: () => {
+                  deleteSession(topic)
+                }
+              }).catch(err => {
                 errors.push(err);
               });
 
@@ -131,7 +137,11 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
     const errors: Error[] = [];
     await Promise.all(
       activeSessions.map(session => {
-        return WalletConnectSessionsManager.disconnectSession(session.topic).catch(err => {
+        return WalletConnectSessionsManager.disconnectSession(session.topic, {
+          onSuccess: () => {
+            deleteSession(session.topic)
+          }
+        }).catch(err => {
           errors.push(err);
         });
       }),

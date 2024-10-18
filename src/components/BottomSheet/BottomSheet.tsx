@@ -19,6 +19,8 @@ import { CriticalWarningBackground } from '@/components/CriticalWarningBackgroun
 import { useTheme } from '@/theme/themes';
 import { useAndroidBackButton } from '@/utils/useAndroidBackButton';
 
+import { useGlobalState } from '../GlobalState';
+
 import { SheetGradientView } from '/modules/gradient-view';
 
 type CustomProps = {
@@ -83,9 +85,10 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
   const { height } = useWindowDimensions();
   const headerHeight = useContext(HeaderHeightContext) ?? 0;
   const [currentIndex, setCurrentIndex] = useState<number>();
-
+  const [, setShowNavTabs] = useGlobalState('showNavTabs');
   const handleChange = useCallback(
     (newIndex: number) => {
+      setShowNavTabs( newIndex === -1)
       setCurrentIndex(newIndex);
       onChange?.(newIndex);
     },

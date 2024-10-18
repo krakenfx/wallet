@@ -106,6 +106,24 @@
     "hideAsset": "Hide asset",
     "copied": "Contract address copied!"
   },
+  "browser": {
+    "searchOnChain": "Search onchain",
+    "clearSearch": "Clear",
+    "quickActions": {
+      "refresh": "Refresh",
+      "share": "Share",
+      "connectedApps": "See connected apps",
+      "disconnect": "Disconnect"
+    },
+    "noSearch": {
+      "title": "Start your search",
+      "description": "Type or paste full url to search"
+    },
+    "loadingError": {
+      "title": "Url not found",
+      "description": "Verify the URL for any typos or missing parts"
+    }
+  },
   "connectApp": {
     "all_networks": "All networks",
     "cancel": "Cancel",
@@ -191,6 +209,10 @@
     "total_balance": "Balance",
     "deposits": "Deposits"
   },
+  "explore":{
+    "disclaimerTitle": "Be careful out there",
+    "disclaimerBody": "Tapping on dapps in this section will take you to external URLs and you should always do your own diligence."
+  },
   "marketData": {
     "about": "About {assetSymbol}",
     "allTimeLow": {
@@ -270,7 +292,8 @@
     "solana_devnet": "Solana - Devnet",
     "dogecoin": "Dogecoin",
     "tezos": "Tezos",
-    "blast": "Blast"
+    "blast": "Blast",
+    "linea": "Linea"
   },
   "nftList": {
     "title": "NFTs",
@@ -864,7 +887,8 @@
     "failedToDisconnect": "The application did not disconnect",
     "request_fulfilled": "WalletConnect: request fulfilled",
     "response_rejected": "WalletConnect: Application request denied",
-    "action_in_progress": "Working on your WalletConnect action..."
+    "action_in_progress": "Working on your WalletConnect action...",
+    "back_to_dapp": "Return to browser to continue"
   },
   "advancedAccountInfo": {
     "derivationPath": "Derivation path",
@@ -1004,7 +1028,17 @@
       "title": "Error creating passkey"
     },
     "errorDeletingPasskey": {
-      "title": "Error deleting passkey"
+      "title": "Error deleting passkey backup",
+      "deletedPasskeyPossibility": "Another possibility is that the passkey containing your backup was already deleted. If you're sure the passkey is deleted, we can mark it as so and remove it from the wallet.",
+      "removeItButton": "Yes, remove it",
+      "cancel": "Cancel"
+    },
+    "deleteBackupConfirmation": {
+      "header": "Remove passkey backup",
+      "title": "Are you sure you want to remove this passkey backup?",
+      "description": "By removing it, you are confirming that the passkey was already deleted. This action will remove any reference to the deleted passkey from the app.",
+      "remove": "Remove",
+      "cancel": "Cancel"
     },
     "errorCreatingBackup": {
       "title": "Error creating backup",
@@ -1012,6 +1046,11 @@
       "tryAgainRegular": "When trying again, keep in mind that ",
       "tryAgainBold": "we don't support saving backup on other devices.",
       "tryAgainButton": "Try again",
+      "cancel": "Cancel"
+    },
+    "userCanceledBackup": {
+      "title": "Passkey sign in required",
+      "description": "To backup your wallet, you must Sign In a second time, otherwise we can't securely encrypt your wallet using the passkey.",
       "cancel": "Cancel"
     },
     "keychainSteps": {

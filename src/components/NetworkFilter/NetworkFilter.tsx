@@ -9,6 +9,7 @@ import { Pill } from '@/components/Pill';
 
 import { Touchable } from '@/components/Touchable';
 import { useLocalStateUpdate } from '@/hooks/useLocalStateUpdate';
+import { FeatureFlag, NEW_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
 
 import { getNetworkFilters } from './getNetworkFilters';
 import { NETWORK_FILTERS, UINetworkFilters } from './types';
@@ -25,6 +26,7 @@ const UI_FILTER_DATA: UIFilterData[] = [
   { uiLabel: () => loc.network.base, icon: <NetworkIcon networkName="base" size={16} />, networkFilter: NETWORK_FILTERS.base },
   { uiLabel: () => loc.network.blast, icon: <NetworkIcon networkName="blast" size={16} />, networkFilter: NETWORK_FILTERS.blast },
   { uiLabel: () => loc.network.solana, icon: <NetworkIcon networkName="solana" size={16} />, networkFilter: NETWORK_FILTERS.solana },
+  { uiLabel: () => loc.network.linea, icon: <NetworkIcon networkName="linea" size={16} />, networkFilter: NETWORK_FILTERS.linea },
 ];
 
 const BTC_AND_DOGE_UI_FILTER_DATA: UIFilterData[] = [
@@ -38,13 +40,22 @@ type Props = {
   withBtcAndDoge?: boolean;
 };
 
+const isNewNetworkFilter = (filter: UIFilterData) => NEW_NETWORKS.some(network => filter.networkFilter.includes(network));
+const isNetworkFilterEnabled = (filter: UIFilterData) => !isNewNetworkFilter(filter);
+
+const getNetworkFiltersLength = (uiFilterData: UIFilterData[]) => uiFilterData.length - 1;
+
 export const NetworkFilter = ({ networkFilter, setNetworkFilter, withBtcAndDoge }: Props) => {
-  const uiFilterData = useMemo<UIFilterData[]>(() => (withBtcAndDoge ? UI_FILTER_DATA.concat(BTC_AND_DOGE_UI_FILTER_DATA) : UI_FILTER_DATA), [withBtcAndDoge]);
+  const isNewNetworksEnabled = useFeatureFlagEnabled(FeatureFlag.NewNetworksEnabled);
+  const uiFilterData = useMemo<UIFilterData[]>(() => {
+    const uiFilters = isNewNetworksEnabled ? UI_FILTER_DATA : UI_FILTER_DATA.filter(isNetworkFilterEnabled);
+    return withBtcAndDoge ? uiFilters.concat(BTC_AND_DOGE_UI_FILTER_DATA) : uiFilters;
+  }, [withBtcAndDoge, isNewNetworksEnabled]);
 
   const [localFilter, updateFilter] = useLocalStateUpdate(networkFilter, setNetworkFilter);
 
   const onPress = (d: UIFilterData) => {
-    const filter = getNetworkFilters(d.networkFilter, localFilter, withBtcAndDoge);
+    const filter = getNetworkFilters(d.networkFilter, localFilter, getNetworkFiltersLength(uiFilterData));
     updateFilter(filter);
   };
 

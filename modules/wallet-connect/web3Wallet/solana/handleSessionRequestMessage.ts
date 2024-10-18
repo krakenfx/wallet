@@ -1,16 +1,20 @@
 import { SessionTypes, Verify } from '@walletconnect/types';
 import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 import bs58 from 'bs58';
+import Realm from 'realm';
 
 import { showToast } from '@/components/Toast';
 import { RealmishWallet } from '@/onChain/wallets/base';
 import { SolanaNetwork } from '@/onChain/wallets/solana';
 import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
+import { handleRedirect } from '../../connectAppWithWalletConnect/handleRedirect';
 import { GenericMessage, ReactNavigationDispatch } from '../../types';
 
 import { navigateToSignGenericMessagePage } from '../navigateToSignGenericMessagePage';
 import { responseRejected } from '../responseRejected';
+
+import { sessionIsDeepLinked } from '../sessionIsDeepLinked';
 
 import { SolanaSignMessage } from './types';
 
@@ -27,6 +31,7 @@ export async function handleSessionRequestMessage({
   topic,
   web3Wallet,
   getSeed,
+  realm,
 }: {
   activeSessions: Record<string, SessionTypes.Struct>;
   foundWallet: RealmishWallet;
@@ -38,6 +43,7 @@ export async function handleSessionRequestMessage({
   web3Wallet: IWeb3Wallet;
   getSeed: SecuredKeychainContext['getSeed'];
   verified: Verify.Context['verified'];
+  realm: Realm;
 }) {
   const genericMessage: GenericMessage = {
     type: 'generic-message',
@@ -71,7 +77,8 @@ export async function handleSessionRequestMessage({
       const signedMessage = await network.signMessage({ ...foundWallet, seed: { data: seed } }, message.message);
 
       await web3Wallet.respondSessionRequest({ topic, response: { id, result: signedMessage, jsonrpc: '2.0' } });
-      await showToast({ type: 'success', icon: 'plug-connected', text: loc.walletConnect.request_fulfilled });
+      const isDeepLinked = sessionIsDeepLinked(realm, topic);
+      await handleRedirect(activeSessions[topic], 'request_fulfilled', isDeepLinked);
     } catch (error) {
       web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');

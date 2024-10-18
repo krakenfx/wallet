@@ -1,11 +1,13 @@
 import React from 'react';
-import { Image, ImageSourcePropType, Linking, StyleSheet, View } from 'react-native';
+import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
 import Animated, { Keyframe } from 'react-native-reanimated';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
+
+import { useBrowser } from '@/hooks/useBrowser';
 
 import loc from '/loc';
 
@@ -32,9 +34,9 @@ const entering = new Keyframe({
 });
 
 const AppCard: React.FC<AppProps> = ({ description, url, image, formatDescriptionWithUrl }) => {
-  const handlePress = () => {
-    Linking.openURL(`https://${url}`);
-  };
+  const { openURL } = useBrowser();
+
+  const handlePress = () => openURL(`https://${url}`);
 
   return (
     <Touchable onPress={handlePress} style={styles.cards}>

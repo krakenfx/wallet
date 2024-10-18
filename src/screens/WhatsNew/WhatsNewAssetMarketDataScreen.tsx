@@ -23,7 +23,7 @@ export const WhatsNewAssetMarketDataScreen = ({ navigation }: NavigationProps<'W
   const tokenPrices = useTokenPrices();
 
   const sortedTokens = useMemo(() => {
-    return sortTokensByFiatValue(tokens.filtered('inGallery == true'), tokenPrices);
+    return sortTokensByFiatValue(tokens.filtered('inGallery == "autoAdded" OR inGallery == "manuallyAdded"'), tokenPrices);
   }, [tokens, tokenPrices]);
 
   useEffect(() => {

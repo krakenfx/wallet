@@ -13,6 +13,8 @@ import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 
+import { FeatureFlag, NEW_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
+
 import { DerivationPath } from './DerivationPath';
 
 import loc from '/loc';
@@ -22,6 +24,16 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
   const showExplainer = useCallback(() => {
     navigation.navigate(Routes.Explainer, { contentType: EXPLAINER_CONTENT_TYPES.ETHEREUM_DERIVATION_PATH });
   }, [navigation]);
+  const isNewNetworksEnabled = useFeatureFlagEnabled(FeatureFlag.NewNetworksEnabled);
+
+  const networkIDs = [
+    ChainAgnostic.NETWORK_ETHEREUM,
+    ChainAgnostic.NETWORK_POLYGON,
+    ChainAgnostic.NETWORK_ARBITRUM,
+    ChainAgnostic.NETWORK_OPTIMISM,
+    ChainAgnostic.NETWORK_BASE,
+    ...(isNewNetworksEnabled ? NEW_NETWORKS : []),
+  ];
 
   return (
     <View>
@@ -31,16 +43,7 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
           <View>
             <View style={styles.row}>
               <Label type="boldTitle2">Ethereum</Label>
-              <NetworkIDIcons
-                align="left"
-                networkIDs={[
-                  ChainAgnostic.NETWORK_POLYGON,
-                  ChainAgnostic.NETWORK_ARBITRUM,
-                  ChainAgnostic.NETWORK_BASE,
-                  ChainAgnostic.NETWORK_OPTIMISM,
-                  ChainAgnostic.NETWORK_BLAST,
-                ]}
-              />
+              <NetworkIDIcons align="left" networkIDs={networkIDs} />
             </View>
             <Touchable onPress={showExplainer} style={styles.row}>
               <Label type="regularCaption1" color="light75">

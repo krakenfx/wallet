@@ -22,6 +22,7 @@ import { DebugScreen } from '@/screens/DebugScreen';
 import { DefiDetailsScreen } from '@/screens/DefiDetails';
 import { EditNoteScreen } from '@/screens/EditNoteScreen';
 import { ExplainerScreen } from '@/screens/Explainer';
+import { ExploreScreen } from '@/screens/Explore';
 import { GlobalActivityScreen } from '@/screens/GlobalActivity';
 import { HomeScreen } from '@/screens/Home';
 import { ManageAssetsGlobalFilterScreen } from '@/screens/ManageAssetsGlobalFilter';
@@ -44,9 +45,11 @@ import { useConnectionManager } from '@/utils/useConnectionManager';
 
 import { DefaultBackButton } from './components/BackButton';
 import { RouteProps } from './Routes';
+import { BrowserScreen } from './screens/Browser';
 import { useTheme } from './theme/themes';
 
 import { saveLanguage } from '/loc';
+import { useHandleConnectToDappWalletConnectRequests } from '/modules/wallet-connect/hooks';
 
 const DefaultStack = createNativeStackNavigator<RouteProps>();
 
@@ -59,6 +62,7 @@ const NavigationStack = () => {
   useConnectionManager();
   useMonitorPendingTransactions();
   useDebugInfo();
+  useHandleConnectToDappWalletConnectRequests();
 
   useEffect(() => {
     saveLanguage(language);
@@ -83,6 +87,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="AccountStack" component={AccountRouter} options={AccountRouter.navigationOptions} />
       <DefaultStack.Screen name="AdvancedAccountInfo" component={AdvancedAccountInfoScreen} options={AdvancedAccountInfoScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="AppDetails" component={AppDetailsScreen} options={AppDetailsScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="Browser" component={BrowserScreen} options={BrowserScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="WalletBackupPrompt" component={WalletBackupPromptScreen} options={WalletBackupPromptScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="CoinsList" component={CoinsListScreen} options={CoinsListScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ConnectApp" component={ConnectAppScreen} options={ConnectAppScreen.navigationOptions(theme)} />
@@ -139,6 +144,7 @@ const NavigationStack = () => {
         component={WalletConnectSignRequest_StructuredTransactionScreen}
         options={WalletConnectSignRequest_StructuredTransactionScreen.navigationOptions(theme)}
       />
+      <DefaultStack.Screen name="Explore" component={ExploreScreen} options={ExploreScreen.navigationOptions(theme)} />
     </DefaultStack.Navigator>
   );
 };

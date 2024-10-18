@@ -13,8 +13,8 @@ import { runAfterUISync } from '@/utils/runAfterUISync';
 
 import { useImportWallet } from '../Onboarding/hooks/useImportWallet';
 
-import { CloudBackupErrorSheet, PasskeyErrorType } from './CloudBackupErrorSheet';
-import { CloudBackupSuccessSheet, CloudBackupSuccessSheetRef } from './CloudBackupSuccessSheet';
+import { CloudBackupErrorSheet, PasskeyErrorType } from './components/CloudBackupErrorSheet';
+import { CloudBackupSuccessSheet, CloudBackupSuccessSheetRef } from './components/CloudBackupSuccessSheet';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

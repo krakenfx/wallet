@@ -4,6 +4,7 @@ import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 import Realm from 'realm';
 
 import { showToast } from '@/components/Toast';
+import { REALM_TYPE_WALLET_CONNECT_TOPICS, RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
 import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { enqueueAppRequest } from '../appRequestQueue';
@@ -44,6 +45,26 @@ const sessionProposals: string[] = [];
 
 
 
+export const deleteStaleSessionsFromRealm = async (realm: Realm, web3Wallet: IWeb3Wallet) => {
+  const realmWalletConnectSessions = realm.objects<RealmWalletConnectTopics>(REALM_TYPE_WALLET_CONNECT_TOPICS);
+  const activeSessions = await web3Wallet.getActiveSessions();
+  const realmSessionTopicsToDelete: string[] = [];
+  for (const realmWalletConnectTopic of realmWalletConnectSessions) {
+    if (!activeSessions[realmWalletConnectTopic.topic]) {
+      realmSessionTopicsToDelete.push(realmWalletConnectTopic.topic);
+    }
+  }
+  if (realmSessionTopicsToDelete.length > 0) {
+    realm.write(() => {
+      
+      const query = `topic IN {"${realmSessionTopicsToDelete.join('", "')}"}`;
+      const realmSessionsToDelete = realm.objects(REALM_TYPE_WALLET_CONNECT_TOPICS).filtered(query);
+      realm.delete(realmSessionsToDelete);
+    });
+  }
+};
+
+
 export async function initWalletConnectWeb3Wallet(
   realm: Realm,
   dispatch: ReactNavigationDispatch,
@@ -64,6 +85,8 @@ export async function initWalletConnectWeb3Wallet(
   });
 
   WalletConnectSessionsManager.setWeb3Wallet(web3Wallet);
+
+  deleteStaleSessionsFromRealm(realm, web3Wallet);
 
   web3Wallet.on('session_request', event => {
     enqueueAppRequest(() => {

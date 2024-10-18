@@ -1,9 +1,10 @@
 import React from 'react';
-import { Image, Linking, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
 import { LargeHeader } from '@/components/LargeHeader';
+import { useBrowser } from '@/hooks/useBrowser';
 import { SettingsItem, SettingsSectionHeader } from '@/screens/Settings/components';
 import { navigationStyle } from '@/utils/navigationStyle';
 
@@ -13,12 +14,14 @@ import { URLs } from '/config';
 import loc from '/loc';
 
 export const SupportScreen = () => {
+  const { openURL } = useBrowser();
+
   const handleSupportCenter = () => {
-    Linking.openURL(URLs.supportArticles);
+    openURL(URLs.supportArticles);
   };
 
   const handleContactUs = () => {
-    Linking.openURL(URLs.supportContact);
+    openURL(URLs.supportContact);
   };
 
   return (

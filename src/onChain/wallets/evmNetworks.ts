@@ -106,3 +106,18 @@ export const blastNetwork = new EVMNetwork({
   }),
   defaultGasLimit: 21000,
 });
+
+export const lineaNetwork = new EVMNetwork({
+  chainId: 59144,
+  nativeTokenSlipId: 60,
+  nativeTokenSymbol: 'ETH',
+  nativeTokenLabel: 'Ethereum', 
+  label: loc.network.linea,
+  blockExplorer: new Etherscan('lineascan.build'),
+  icon: ({ opacity }) => ({
+    id: 'linea',
+    fgColor: ['#6c4dc2', '#99e3ed', -45],
+    bgColor: `rgba(132, 92, 224, ${opacity})`,
+  }),
+  defaultGasLimit: 21000,
+});

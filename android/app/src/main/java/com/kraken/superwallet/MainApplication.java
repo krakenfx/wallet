@@ -18,6 +18,7 @@ import com.kraken.superwallet.modules.activityLifecycle.ActivityLifecyclePackage
 import com.kraken.superwallet.modules.boottime.BootTimePackage;
 import com.kraken.superwallet.modules.gradients.WalletGradientViewPackage;
 import com.kraken.superwallet.modules.clipboard.SensitiveClipboardPackage;
+import com.kraken.superwallet.modules.minimizer.MinimizerPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -38,6 +39,7 @@ public class MainApplication extends Application implements ReactApplication {
           packages.add(new BootTimePackage());
           packages.add(new WalletGradientViewPackage());
           packages.add(new ActivityLifecyclePackage());
+          packages.add(new MinimizerPackage());
           return packages;
         }
 

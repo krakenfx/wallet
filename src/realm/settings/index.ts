@@ -8,3 +8,4 @@ export * from './schema';
 export * from './useFilterInBlacklistedAssets';
 export * from './useFilterInUnverifiedAssets';
 export * from './useIsHideBalancesEnabled';
+export * from './useIsTestnetEnabled';

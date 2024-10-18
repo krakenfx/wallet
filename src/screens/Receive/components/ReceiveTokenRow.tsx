@@ -9,6 +9,7 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { TokenIcon } from '@/components/TokenIcon';
 import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { RealmToken } from '@/realm/tokens';
+import { FeatureFlag, NEW_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
 
 import { useReceiveAddress } from '../hooks';
 
@@ -22,6 +23,7 @@ type Props = {
 
 export const ReceiveTokenRow = ({ token, onQRcodePress, showEthereumExplainer }: Props) => {
   const address = useReceiveAddress(token.wallet);
+  const isNewNetworksEnabled = useFeatureFlagEnabled(FeatureFlag.NewNetworksEnabled);
 
   const handleQRIconPress = () => onQRcodePress(token.id);
 
@@ -36,6 +38,15 @@ export const ReceiveTokenRow = ({ token, onQRcodePress, showEthereumExplainer }:
 
   const isEthereum = token.assetId === ChainAgnostic.COIN_ETHEREUM;
 
+  const networkIDs = [
+    ChainAgnostic.NETWORK_ETHEREUM,
+    ChainAgnostic.NETWORK_POLYGON,
+    ChainAgnostic.NETWORK_ARBITRUM,
+    ChainAgnostic.NETWORK_OPTIMISM,
+    ChainAgnostic.NETWORK_BASE,
+    ...(isNewNetworksEnabled ? NEW_NETWORKS : []),
+  ];
+
   return (
     <CopyToClipBoard
       testID={`ReceiveTokenRow-${token.assetId}`}
@@ -48,19 +59,7 @@ export const ReceiveTokenRow = ({ token, onQRcodePress, showEthereumExplainer }:
         <Label type="boldTitle2">{loc.formatString(loc.universalReceive.tokenAddress, { token: token.metadata.label })}</Label>
         {isEthereum && renderEthereumLabel()}
         <View style={styles.addressContainer}>
-          {isEthereum && (
-            <NetworkIDIcons
-              align="left"
-              containerStyle={styles.networkIcons}
-              networkIDs={[
-                ChainAgnostic.NETWORK_ETHEREUM,
-                ChainAgnostic.NETWORK_POLYGON,
-                ChainAgnostic.NETWORK_ARBITRUM,
-                ChainAgnostic.NETWORK_OPTIMISM,
-                ChainAgnostic.NETWORK_BASE,
-              ]}
-            />
-          )}
+          {isEthereum && <NetworkIDIcons align="left" containerStyle={styles.networkIcons} networkIDs={networkIDs} />}
           {address && (
             <Label
               testID={`ReceiveAddress-${token.assetId}`}

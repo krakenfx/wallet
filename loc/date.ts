@@ -1,4 +1,4 @@
-import { de, enGB, enUS, es, fr, it, nl, ptBR, ru, tr, uk, vi } from 'date-fns/locale';
+import { de, enGB, enUS, es, fr, it, nl, pl, ptBR, ru, tr, uk, vi } from 'date-fns/locale';
 
 import { LanguageTag, getCurrentLanguage } from './';
 
@@ -30,6 +30,8 @@ export const getDateLocale = (currentLanguage?: LanguageTag) => {
       return uk;
     case 'vi-VN':
       return vi;
+    case 'pl-PL':
+      return pl;
     default:
       return enUS;
   }

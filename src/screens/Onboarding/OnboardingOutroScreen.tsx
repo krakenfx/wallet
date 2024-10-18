@@ -1,12 +1,13 @@
 import LottieView from 'lottie-react-native';
 import React, { useCallback, useEffect } from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { Button } from '@/components/Button';
 import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
+import { useBrowser } from '@/hooks/useBrowser';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useNoopAndroidBackButton } from '@/utils/useAndroidBackButton';
@@ -22,6 +23,7 @@ const ANIMATION_TIMEOUT_WITHOUT_SECURE = 4000;
 export const OnboardingOutroScreen = ({ navigation, route }: OnboardingNavigationProps<'OnboardingOutro'>) => {
   useNoopAndroidBackButton();
   const fadeIn = useSharedValue(0);
+  const { openURL } = useBrowser();
 
   const onAnimationFinish = useCallback(() => {
     fadeIn.value = withTiming(1);
@@ -41,9 +43,7 @@ export const OnboardingOutroScreen = ({ navigation, route }: OnboardingNavigatio
     opacity: fadeIn.value,
   }));
 
-  const openLink = () => {
-    Linking.openURL(URLs.termsOfService);
-  };
+  const openLink = () => openURL(URLs.termsOfService);
 
   return (
     <GradientScreenView>

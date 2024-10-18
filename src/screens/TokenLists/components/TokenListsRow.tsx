@@ -1,12 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import noop from 'lodash/noop';
 import React from 'react';
-import { Linking, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import Svg from 'react-native-svg';
 
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
+import { useBrowser } from '@/hooks/useBrowser';
 import { REPUTATION } from '@/hooks/useReputation';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
@@ -26,13 +27,14 @@ type RowProps = {
   style?: ViewStyle;
 };
 
-const navigateTo = (url: string) => () => Linking.openURL(url);
-
 export const TokenListsRow = ({ tokenListName, tokenListCount, reputation, showOnlyWhiteListed, style }: RowProps) => {
+  const { openURL } = useBrowser();
   const isTokenListName_ = isTokenListName(tokenListName);
   const ImageSource = isTokenListName_ ? tokenListNameToImageSource[tokenListName] : tokenListNameToImageSource.fallback;
   const uiLabel = isTokenListName_ ? tokenListNameToUILabel[tokenListName] : tokenListName;
   const navigation = useNavigation();
+
+  const navigateTo = (url: string) => () => openURL(url);
   const onPress = isTokenListName_ ? navigateTo(tokenListNameToURL[tokenListName]) : noop;
 
   if (showOnlyWhiteListed && reputation !== REPUTATION.WHITELISTED) {

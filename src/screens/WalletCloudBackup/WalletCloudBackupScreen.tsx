@@ -13,68 +13,100 @@ import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { useLanguage } from '@/realm/settings';
 import { NavigationProps, Routes } from '@/Routes';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
-import { formatPasskeyDate } from '@/utils/dateFormatter';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
-import { CloudBackupErrorSheet, PasskeyErrorType } from './CloudBackupErrorSheet';
-import { CloudBackupSuccessSheet, CloudBackupSuccessSheetRef } from './CloudBackupSuccessSheet';
+import { CloudBackupErrorSheet, PasskeyErrorType } from './components/CloudBackupErrorSheet';
+import { CloudBackupSuccessSheet, CloudBackupSuccessSheetRef } from './components/CloudBackupSuccessSheet';
+
+import { getBackupName } from './utils/getBackupName';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
 import { getDateLocale } from '/loc/date';
 import { CloudBackupError, CloudBackupManager, CloudBackupMetadata } from '/modules/cloud-backup';
 
-const getBackupName = (date: Date, deviceName: string, locale: Locale) => `${deviceName} - ${formatPasskeyDate(date, locale)}`;
+type PendingBackup = {
+  credentialID: string;
+  backupDate: Date;
+  backupName: string;
+};
 
 export const WalletCloudBackupScreen = ({ navigation, route }: NavigationProps<'SettingsWalletCloudBackup' | 'OnboardingWalletCloudBackup'>) => {
   const { isManualBackupCompleted, isCloudBackupCompleted, setCloudBackupCompleted } = useWalletBackupSettings();
   const { getMnemonic } = useSecuredKeychain();
   const [passkeyError, setPasskeyError] = useState<PasskeyErrorType>();
+  const [pendingBackup, setPendingBackup] = useState<PendingBackup>();
 
   const language = useLanguage();
 
   const successSheetRef = useRef<CloudBackupSuccessSheetRef>(null);
 
+  const saveBackupMetadata = async (metadata: CloudBackupMetadata) => {
+    try {
+      await CloudBackupManager.addKnownBackup(metadata);
+    } catch (e) {
+      if (e instanceof Error && e.code !== CloudBackupError.synchronization_failed) {
+        throw e;
+      }
+    }
+  };
+
+  const writePasskeyData = async ({ credentialID, backupDate, backupName }: PendingBackup) => {
+    try {
+      const mnemonic = await getMnemonic(true);
+      await CloudBackupManager.writeData(credentialID, mnemonic);
+    } catch (e) {
+      if (e instanceof Error) {
+        switch (e.code) {
+          case CloudBackupError.no_credentials_found: {
+            
+            setPasskeyError('passkeyErrorWritingWrongDevice');
+            return;
+          }
+          case CloudBackupError.user_canceled: {
+            setPasskeyError('passkeyErrorUserCanceledRegistration');
+            return;
+          }
+        }
+      }
+      throw e;
+    }
+    const deviceName = DeviceInfo.getModel() || DeviceInfo.getDeviceNameSync();
+    const backup: CloudBackupMetadata = {
+      credentialID,
+      device: deviceName,
+      name: backupName,
+      date: backupDate,
+    };
+    saveBackupMetadata(backup);
+    setCloudBackupCompleted(credentialID);
+    runAfterUISync(() => {
+      hapticFeedback.notificationSuccess();
+      successSheetRef.current?.present(() => {
+        successSheetRef.current?.close();
+        if (route.params?.origin === Routes.OnboardingBackupPrompt) {
+          navigation.navigate(isManualBackupCompleted ? Routes.OnboardingSecureWallet : Routes.OnboardingBackupPrompt);
+        } else {
+          navigation.goBack();
+        }
+      });
+    });
+  };
+
   const createPasskey = async () => {
     try {
-      const deviceName = DeviceInfo.getModel() || DeviceInfo.getDeviceNameSync();
       const backupDate = new Date();
-      const backupName = getBackupName(backupDate, deviceName, getDateLocale(language));
-      const mnemonic = await getMnemonic(true);
+      const backupName = getBackupName(backupDate, getDateLocale(language));
       const result = await CloudBackupManager.register(backupName);
-      try {
-        await CloudBackupManager.writeData(result.credentialID, mnemonic);
-      } catch (e) {
-        if (e instanceof Error && e.code === CloudBackupError.no_credentials_found) {
-          
-          setPasskeyError('passkeyErrorWritingWrongDevice');
-          return;
-        } 
-          throw e;
-        
-      }
-      const backup: CloudBackupMetadata = {
+      const newPendingBackup: PendingBackup = {
         credentialID: result.credentialID,
-        device: deviceName,
-        name: backupName,
-        date: backupDate,
+        backupDate,
+        backupName,
       };
-      await CloudBackupManager.addKnownBackup(backup);
-
-      setCloudBackupCompleted(result.credentialID);
-      runAfterUISync(() => {
-        hapticFeedback.notificationSuccess();
-        successSheetRef.current?.present(() => {
-          successSheetRef.current?.close();
-          if (route.params?.origin === Routes.OnboardingBackupPrompt) {
-            navigation.navigate(isManualBackupCompleted ? Routes.OnboardingSecureWallet : Routes.OnboardingBackupPrompt);
-          } else {
-            navigation.goBack();
-          }
-        });
-      });
+      setPendingBackup(newPendingBackup);
+      await writePasskeyData(newPendingBackup);
     } catch (e) {
       if (e instanceof Error && e.code === CloudBackupError.user_canceled) {
         navigation.goBack();
@@ -87,9 +119,13 @@ export const WalletCloudBackupScreen = ({ navigation, route }: NavigationProps<'
 
   const clearError = () => setPasskeyError(undefined);
 
-  const handleRetry = () => {
+  const runBackupFlow = () => {
     clearError();
-    createPasskey();
+    if (pendingBackup) {
+      writePasskeyData(pendingBackup);
+    } else {
+      createPasskey();
+    }
   };
 
   const renderDescriptionItem = (icon: IconName, text: string) => (
@@ -120,7 +156,7 @@ export const WalletCloudBackupScreen = ({ navigation, route }: NavigationProps<'
           color="light100"
           textColor="dark100"
           iconColor="dark100"
-          onPress={createPasskey}
+          onPress={runBackupFlow}
         />
         <View style={styles.description}>
           {renderDescriptionItem('shield-tick', loc.walletCloudBackup.hints.part1)}
@@ -129,7 +165,7 @@ export const WalletCloudBackupScreen = ({ navigation, route }: NavigationProps<'
         </View>
       </View>
       <CloudBackupSuccessSheet ref={successSheetRef} />
-      {!!passkeyError && <CloudBackupErrorSheet type={passkeyError} onClose={clearError} onRetry={handleRetry} />}
+      {!!passkeyError && <CloudBackupErrorSheet type={passkeyError} onClose={clearError} onRetry={runBackupFlow} />}
     </GradientScreenView>
   );
 };

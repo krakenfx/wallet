@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { debounce } from 'lodash';
 
-import { superFetch } from '@/api/base/superFetch';
+import { fetchClient } from '@/api/base/fetchClient';
 
 const NFT_IMAGE_IS_SVG: Record<string, boolean> = {};
 
@@ -27,7 +27,7 @@ export async function isSvgImage(imageUrl?: string | null) {
     return cached;
   }
 
-  const result = await superFetch(imageUrl, {
+  const result = await fetchClient(imageUrl, {
     method: 'HEAD',
   });
 
