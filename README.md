@@ -6,7 +6,7 @@
 
 Kraken Wallet is a Crypto and Bitcoin self-custody wallet where your keys never leave your device. Engineered and crafted by the mighty and OG Kraken.com. It is built with React Native, Realm, an Electrum Server, and other FOSS projects. The backend runs over a proxy to ensure your personal data is never shared with 3rd party services or companies. It is built under strong principles of privacy, self-custody, and security to ensure maximum sovereignty for its users. It is open sourced under the MIT license.
 
-This repo functions as a mirror of the main private development repo. Its main purpose is to provide audibility, trust minimization, and code review. Please provide feedback, vulnerabilities or bug reporting using the responsible disclosure process. 
+This repo functions as a mirror of the main private development repo. Its main purpose is to provide auditability, trust minimization, and code review. Please provide feedback, vulnerabilities or bug reporting using the responsible disclosure process. 
 
 ## Main features
 
