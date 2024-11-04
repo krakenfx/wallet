@@ -1,14 +1,11 @@
-import { SessionTypes, Verify } from '@walletconnect/types';
-import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
-import Realm from 'realm';
 
 import { showToast } from '@/components/Toast';
-import { RealmishWallet } from '@/onChain/wallets/base';
-import { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
-import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
+import type { RealmishWallet } from '@/onChain/wallets/base';
+import type { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
+import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { handleRedirect } from '../../connectAppWithWalletConnect/handleRedirect';
-import { ReactNavigationDispatch } from '../../types';
+
 import { getWarningFromSimulation } from '../../utils';
 import { navigateToSignGenericMessagePage } from '../navigateToSignGenericMessagePage';
 import { responseRejected } from '../responseRejected';
@@ -17,6 +14,11 @@ import { sessionIsDeepLinked } from '../sessionIsDeepLinked';
 
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from './types';
 import { adaptMessageToEVMMessageSimulationInput, adaptToGenericMessage } from './utils';
+
+import type { ReactNavigationDispatch } from '../../types';
+import type { SessionTypes, Verify } from '@walletconnect/types';
+import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
+import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

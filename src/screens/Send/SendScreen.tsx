@@ -1,12 +1,11 @@
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import NameResolver from '@/api/NameResolver';
-import { AnalyseAddressResult, FeeOption } from '@/api/types';
+import type { AnalyseAddressResult, FeeOption } from '@/api/types';
 import { BlockScreenModal } from '@/components/BlockScreen';
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
 import { CoinHeader } from '@/components/CoinHeader';
 import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
@@ -23,9 +22,10 @@ import { useResolvedAssetBalance, useTokenById } from '@/realm/tokens';
 import { useRealmWalletById } from '@/realm/wallets';
 import { Routes } from '@/Routes';
 import { NftCollectionDetails } from '@/screens/Nfts/components/NftCollectionDetails';
-import { AmountInput, AmountInputRef } from '@/screens/Send/components/AmountInput';
+import type { AmountInputRef } from '@/screens/Send/components/AmountInput';
+import { AmountInput } from '@/screens/Send/components/AmountInput';
 import { FeeAmountWarning } from '@/screens/Send/components/FeeAmountWarning';
-import { AssetBalanceId } from '@/types';
+import type { AssetBalanceId } from '@/types';
 import { unitConverter } from '@/utils/unitConverter';
 
 import { AddressSelector } from './components/AddressSelector';
@@ -34,12 +34,15 @@ import { useAddressAnalysis } from './hooks/useAddressAnalysis';
 import { useFeeEstimates } from './hooks/useFeeEstimates';
 import { useRefreshingFeeOptions } from './hooks/useRefreshingFeeOptions';
 import { useTransactionMethods } from './hooks/useTransactionMethods';
-import { SendNavigationProps } from './SendRouter';
-import { TransactionParams } from './types';
+
 import { decodeQrCodeAddress } from './utils/decodeQrCodeAddress';
 import { getDefaultFeeOption } from './utils/getDefaultFeeOption';
 import { FormProvider, useFormContext } from './utils/sendForm';
 import { isValidAddress } from './utils/validateAddress';
+
+import type { SendNavigationProps } from './SendRouter';
+import type { TransactionParams } from './types';
+import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -161,7 +164,7 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
   );
 
   useLayoutEffect(() => {
-    navigation.setOptions({ headerTitle: headerTitleComponent });
+    navigation.getParent()?.setOptions({ headerTitle: headerTitleComponent });
   }, [headerTitleComponent, navigation]);
 
   const onChangeAddress = useCallback(
@@ -377,7 +380,7 @@ export const SendScreen = (props: SendNavigationProps<'Send'>) => {
   );
 };
 
-export const navigationOptions: NativeStackNavigationOptions = { headerTransparent: true, headerBackVisible: false };
+export const navigationOptions: NativeStackNavigationOptions = { headerShown: false };
 
 const styles = StyleSheet.create({
   flex: {

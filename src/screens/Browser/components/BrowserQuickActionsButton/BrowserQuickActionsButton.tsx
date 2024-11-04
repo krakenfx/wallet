@@ -4,7 +4,8 @@ import { StyleSheet, View } from 'react-native';
 
 import Share from 'react-native-share';
 
-import { ContextMenuItem, Menu } from '@/components/Menu';
+import type { ContextMenuItem } from '@/components/Menu';
+import { Menu } from '@/components/Menu';
 import { SvgIcon } from '@/components/SvgIcon';
 
 import { useBrowserContext } from '../../context/BrowserContext';

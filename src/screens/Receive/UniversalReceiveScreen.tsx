@@ -1,16 +1,21 @@
+import type { SectionListData, SectionListRenderItem } from 'react-native';
+
 import { BottomSheetSectionList, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
 import React, { useCallback, useMemo } from 'react';
-import { SectionListData, SectionListRenderItem, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { BottomSheet } from '@/components/BottomSheet';
 import { Label } from '@/components/Label';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
-import { RealmToken, useTokens } from '@/realm/tokens';
-import { NavigationProps, Routes } from '@/Routes';
-import { isRealmObject } from '@/utils/isRealmObject';
+import type { RealmToken } from '@/realm/tokens';
+import { useTokens } from '@/realm/tokens';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
+
+import { tokenItemKeyExtractor } from '@/utils/tokenItemKeyExtractor';
 
 import { EXPLAINER_CONTENT_TYPES } from '../Explainer';
 
@@ -31,13 +36,6 @@ type Section =
     };
 
 type SectionType = SectionListData<RealmToken, Section>;
-
-const sectionListKeyExtractor = (item: RealmToken, index: number) => {
-  if (isRealmObject(item) && !item.isValid()) {
-    return 'invalid_' + index;
-  }
-  return item.assetId || String(index);
-};
 
 export const UniversalReceiveScreen = ({ navigation }: NavigationProps<'UniversalReceive'>) => {
   const { bottomSheetProps } = useBottomSheetScreenProps(navigation);
@@ -104,7 +102,7 @@ export const UniversalReceiveScreen = ({ navigation }: NavigationProps<'Universa
         onLayout={handleContentLayout}
         contentInsetAdjustmentBehavior="automatic"
         renderItem={renderSectionItem}
-        keyExtractor={sectionListKeyExtractor}
+        keyExtractor={tokenItemKeyExtractor}
         ListHeaderComponent={renderListHeader}
         renderSectionHeader={renderHeader}
         stickySectionHeadersEnabled={false}

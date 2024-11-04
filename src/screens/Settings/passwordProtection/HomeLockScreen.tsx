@@ -9,7 +9,10 @@ import { clearAppData } from '@/utils/clearAppData';
 
 import { DataLossWarningScreen } from './DataLossWarningScreen';
 import { useLockout } from './hooks/useLockout';
-import { LockScreen, LockScreenRef } from './LockScreen';
+
+import { LockScreen } from './LockScreen';
+
+import type { LockScreenRef } from './LockScreen';
 
 import loc from '/loc';
 

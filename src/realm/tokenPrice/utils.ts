@@ -3,9 +3,8 @@ import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { Currency } from '@/screens/Settings/currency';
 import { calculateBalance } from '@/utils/calculateBalance';
 
-import { RealmToken, Token } from '../tokens';
-
-import { PriceHistoryPeriod, RealmTokenPrice } from './schema';
+import type { PriceHistoryPeriod, RealmTokenPrice } from './schema';
+import type { RealmToken, Token } from '../tokens';
 
 export const getPriceHistoryId = (assetId: string, period: PriceHistoryPeriod) => `${assetId}:${period}`;
 

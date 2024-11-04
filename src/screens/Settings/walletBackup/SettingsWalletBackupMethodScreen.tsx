@@ -6,7 +6,7 @@ import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { SettingsNavigationProps } from '../SettingsRouter';
+import type { SettingsNavigationProps } from '../SettingsRouter';
 
 export const SettingsWalletBackupMethodScreen = ({ navigation }: SettingsNavigationProps<'SettingsWalletBackupMethod'>) => {
   const navigateToManualBackup = () => navigation.navigate(Routes.SettingsWalletBackup);

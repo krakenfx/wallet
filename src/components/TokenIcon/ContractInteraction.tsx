@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 
 import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
 import { SvgIcon } from '@/components/SvgIcon';
-import { WalletType } from '@/onChain/wallets/registry';
-import { RealmWallet } from '@/realm/wallets';
+import type { WalletType } from '@/onChain/wallets/registry';
+import type { RealmWallet } from '@/realm/wallets';
 import { useTheme } from '@/theme/themes';
 
 import { NETWORK_ICON_BORDER_TO_TOKEN_RATIO, NETWORK_ICON_TO_TOKEN_RATIO } from './constants';

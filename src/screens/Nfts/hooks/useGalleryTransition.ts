@@ -2,8 +2,8 @@ import { clamp } from 'lodash';
 import { useMemo, useState } from 'react';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
-import { RawImageData } from '../components/NftPreview';
-import { TransitionConfig } from '../NftImageGalleryScreen';
+import type { RawImageData } from '../components/NftPreview';
+import type { TransitionConfig } from '../NftImageGalleryScreen';
 
 const MIN_PREVIEW_RATIO = 3 / 4;
 const MAX_PREVIEW_RATIO = 16 / 9;

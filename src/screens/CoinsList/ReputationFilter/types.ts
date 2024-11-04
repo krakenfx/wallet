@@ -1,4 +1,4 @@
-import { REPUTATION } from '@/hooks/useReputation';
+import type { REPUTATION } from '@/hooks/useReputation';
 
 export type ReputationFilters = {
   [REPUTATION.UNVERIFIED]: boolean;

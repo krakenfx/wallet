@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { CheckBoxConfirmationSheet } from '@/components/Sheets';
 
 import loc from '/loc';

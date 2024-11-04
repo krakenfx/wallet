@@ -1,14 +1,18 @@
 import { useCallback } from 'react';
 import Realm from 'realm';
 
-import { RawNftData } from '@/api/fetchNfts';
+import type { RawNftData } from '@/api/fetchNfts';
 
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
-import { NftMetadata, REALM_TYPE_NFT_METADATA, RealmNftMetadata, useNftMetadataMutations } from '../nftMetadata';
-import { useRealm } from '../RealmContext';
-import { RealmWallet } from '../wallets';
 
-import { Nft, REALM_TYPE_NFT, RealmNft } from './schema';
+import { REALM_TYPE_NFT_METADATA, useNftMetadataMutations } from '../nftMetadata';
+import { useRealm } from '../RealmContext';
+
+import { REALM_TYPE_NFT } from './schema';
+
+import type { Nft, RealmNft } from './schema';
+import type { NftMetadata, RealmNftMetadata } from '../nftMetadata';
+import type { RealmWallet } from '../wallets';
 
 export interface NftToSave extends Omit<Nft, 'walletId'> {
   metadata: NftMetadata;

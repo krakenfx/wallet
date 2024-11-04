@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { NetworkIcon } from '@/components/NetworkIcon';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 import loc from '/loc';
 

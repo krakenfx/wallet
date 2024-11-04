@@ -11,7 +11,7 @@ import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import loc from '/loc';

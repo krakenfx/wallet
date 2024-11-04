@@ -1,11 +1,9 @@
-import keyBy from 'lodash/keyBy';
 import React from 'react';
 
 import { AssetSwitch } from '@/components/AssetSwitch';
 import { useTokenSwitch } from '@/hooks/useTokenSwitch';
-import { getNetworkNameFromAssetId } from '@/realm/tokens';
-import { useRealmWallets } from '@/realm/wallets';
-import { RemoteAsset } from '@/types';
+import { useWalletByAssetId } from '@/realm/wallets/useWalletByAssetId';
+import type { RemoteAsset } from '@/types';
 
 type RemoteAssetRowProps = {
   remoteAsset: RemoteAsset;
@@ -13,18 +11,15 @@ type RemoteAssetRowProps = {
 };
 
 export const RemoteAssetRow: React.FC<RemoteAssetRowProps> = ({ remoteAsset, tokensGalleryLength }) => {
-  const realmWallets = useRealmWallets();
-  const wallets = keyBy(Array.from(realmWallets), 'type');
-  const networkName = getNetworkNameFromAssetId(remoteAsset.assetId);
-  const wallet = wallets[networkName];
+  const wallet = useWalletByAssetId(remoteAsset.assetId);
 
   const { shouldRender, isTokenInGallery, onSwitch } = useTokenSwitch({
     token: remoteAsset,
     tokensGalleryLength,
     options: {
       isRemoteAsset: true,
-      wallet
-    }
+      wallet,
+    },
   });
 
   if (!shouldRender) {
@@ -37,7 +32,7 @@ export const RemoteAssetRow: React.FC<RemoteAssetRowProps> = ({ remoteAsset, tok
       value={isTokenInGallery}
       onValueChange={onSwitch}
       options={{
-        networkName,
+        networkName: wallet.type,
         walletId: wallet.id,
         hideZeroAmount: true,
         showAmountInFiat: false,

@@ -6,10 +6,11 @@ import { REPUTATION, useReputationLists } from '@/hooks/useReputation';
 import { sortWithKrakenFirst } from '@/utils/sortWithKrakenFirst';
 
 import { DEFAULT_TOKEN_LISTS } from '../const';
-import { TokenListNames } from '../types';
 
 import { TokenListsRow } from './TokenListsRow';
 import { useTokenListsCount } from './useTokenListsCount';
+
+import type { TokenListNames } from '../types';
 
 type TokenListsListProps = {
   assetId: string;

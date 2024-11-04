@@ -1,18 +1,19 @@
-import { BarcodeScanningResult, PermissionStatus, useCameraPermissions } from 'expo-camera';
+import { PermissionStatus, useCameraPermissions } from 'expo-camera';
 import React, { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
 import { Camera } from '@/components/Camera';
 import { CloseButton } from '@/components/CloseButton';
 import { Label } from '@/components/Label';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { UniversalSendRouteParams } from '../UniversalSend';
+import type { SendRouteParams } from './SendScreen';
+import type { UniversalSendRouteParams } from '../UniversalSend';
 
-import { SendRouteParams } from './SendScreen';
+import type { BarcodeScanningResult } from 'expo-camera';
 
 import loc from '/loc';
 

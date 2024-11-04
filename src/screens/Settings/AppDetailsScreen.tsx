@@ -8,8 +8,8 @@ import { IconWithCoinIcon } from '@/components/IconWithCoinIcon';
 import { Label } from '@/components/Label';
 import { showToast } from '@/components/Toast';
 import { useBrowser } from '@/hooks/useBrowser';
-import { WalletType } from '@/onChain/wallets/registry';
-import { NavigationProps } from '@/Routes';
+import type { WalletType } from '@/onChain/wallets/registry';
+import type { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { sanitizeUrl } from '@/utils/stringUtils';
 

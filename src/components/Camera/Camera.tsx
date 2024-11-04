@@ -1,9 +1,13 @@
+import type { FC } from 'react';
+
 import { useNavigation } from '@react-navigation/native';
-import { CameraProps, CameraView } from 'expo-camera';
-import React, { FC, useEffect, useState } from 'react';
+import { CameraView } from 'expo-camera';
+import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { runAfterUISync } from '@/utils/runAfterUISync';
+
+import type { CameraProps } from 'expo-camera';
 
 export const Camera: FC<CameraProps> = props => {
   const [cameraVisible, setCameraVisible] = useState(true);

@@ -1,5 +1,8 @@
-import React, { ComponentProps } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { ComponentProps } from 'react';
+
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import { StyleSheet, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 import { useTheme } from '@/theme/themes';

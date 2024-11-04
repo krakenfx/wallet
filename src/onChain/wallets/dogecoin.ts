@@ -4,17 +4,23 @@
 import { secp256k1 } from '@noble/curves/secp256k1';
 import { ripemd160 } from '@noble/hashes/ripemd160';
 import BigNumber from 'bignumber.js';
-import BIP32Factory, { BIP32Interface } from 'bip32';
+
+import BIP32Factory from 'bip32';
 import bs58check from 'bs58check';
 
 import { Buffer } from 'buffer';
 import crypto from 'crypto';
 
 import { getHarmony } from '@/api/base/apiFactory';
-import { BaseFeeOption, FeeOption } from '@/api/types';
-import { RealmToken } from '@/realm/tokens';
+import type { BaseFeeOption, FeeOption } from '@/api/types';
+import type { RealmToken } from '@/realm/tokens';
 
-import {
+import { HarmonyTransport } from './HarmonyTransport';
+import { ChainAgnostic } from './utils/ChainAgnostic';
+import CompactSize from './utils/CompactSize';
+import { nobleAdapter } from './utils/nobleToTinySecpInterface.ts';
+
+import type {
   BlockExplorer,
   ExtendedPublicKeyAndChainCode,
   NativeTokenSymbol,
@@ -25,11 +31,8 @@ import {
   WalletData,
   WalletDataWithSeed,
 } from './base';
-import { HarmonyTransport } from './HarmonyTransport';
-import { ChainAgnostic } from './utils/ChainAgnostic';
-import CompactSize from './utils/CompactSize';
-import { nobleAdapter } from './utils/nobleToTinySecpInterface.ts';
-import { WalletStorage } from './walletState';
+import type { WalletStorage } from './walletState';
+import type { BIP32Interface } from 'bip32';
 
 import loc from '/loc';
 

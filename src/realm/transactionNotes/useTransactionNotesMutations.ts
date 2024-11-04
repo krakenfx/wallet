@@ -2,9 +2,13 @@ import { useCallback } from 'react';
 import Realm from 'realm';
 
 import { useRealm } from '../RealmContext';
-import { REALM_TYPE_PENDING_TRANSACTION, REALM_TYPE_WALLET_TRANSACTION, RealmTransaction } from '../transactions';
 
-import { REALM_TYPE_TRANSACTION_NOTES, RealmTransactionNotes } from './schema';
+import { REALM_TYPE_PENDING_TRANSACTION, REALM_TYPE_WALLET_TRANSACTION } from '../transactions';
+
+import { REALM_TYPE_TRANSACTION_NOTES } from './schema';
+
+import type { RealmTransactionNotes } from './schema';
+import type { RealmTransaction } from '../transactions';
 
 export const useTransactionNotesMutations = () => {
   const realm = useRealm();

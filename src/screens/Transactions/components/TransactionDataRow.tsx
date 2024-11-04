@@ -1,5 +1,7 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
@@ -7,7 +9,8 @@ import { Touchable } from '@/components/Touchable';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
-import { RealmTransaction, TransactionStatus, usePendingTransactionById } from '@/realm/transactions';
+import type { RealmTransaction, TransactionStatus } from '@/realm/transactions';
+import { usePendingTransactionById } from '@/realm/transactions';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
 import loc from '/loc';

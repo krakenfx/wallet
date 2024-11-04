@@ -1,14 +1,14 @@
 import { entries, fromPairs } from 'lodash';
 
-import { DefiNetwork } from '@/realm/defi';
+import type { DefiNetwork } from '@/realm/defi';
 
-import { Network, RealmishWallet, Transport } from './base';
 import { BitcoinNetwork } from './bitcoin';
 import { electrumXTransport, hdSegwitBech32Network } from './bitcoinWallets';
 import { DogecoinNetwork, dogecoinNetwork, dogecoinTransport } from './dogecoin';
 import { EVMHarmonyTransport, EVMNetwork } from './evm';
 import {
   arbitrumNetwork,
+  avalancheCChainNetwork,
   baseNetwork,
   blastNetwork,
   ethereumNetwork,
@@ -20,6 +20,8 @@ import {
 import { SolanaNetwork } from './solana';
 import { solanaDevnet, solanaDevnetTransport } from './solanaDevnet';
 import { solanaMainnet, solanaRpcNetwork } from './solanaMainnet';
+
+import type { Network, RealmishWallet, Transport } from './base';
 
 
 export const Networks = {
@@ -37,10 +39,20 @@ export const Networks = {
   solanaDevnet: solanaDevnet,
   blast: blastNetwork,
   linea: lineaNetwork,
+  avalanche: avalancheCChainNetwork,
 };
 
 
-export const DefiNetworks = [Networks.HDsegwitBech32, Networks.ethereum, Networks.polygon, Networks.base, Networks.arbitrum, Networks.optimism, Networks.linea];
+export const DefiNetworks = [
+  Networks.HDsegwitBech32,
+  Networks.ethereum,
+  Networks.polygon,
+  Networks.base,
+  Networks.arbitrum,
+  Networks.optimism,
+  Networks.linea,
+  Networks.avalanche,
+];
 export const parseDefiNetworkTypeToWalletType = (networkType: DefiNetwork): WalletType => {
   switch (networkType) {
     case 'bitcoin':
@@ -66,6 +78,7 @@ const Transports = {
   ethereumTestnetSepolia: evmHarmonyTransport,
   blast: evmHarmonyTransport,
   linea: evmHarmonyTransport,
+  avalanche: evmHarmonyTransport,
   
 } satisfies { [x in keyof typeof Networks]: Transport<any, any, any, any, any> };
 
@@ -126,7 +139,7 @@ export const TESTNET_COINS = entries(Networks)
   .map(([type]) => type as WalletType);
 
 
-export const DEFAULT_GALLERY_COINS: WalletType[] = ['HDsegwitBech32', 'ethereum', 'polygon', 'solana'];
+export const DEFAULT_GALLERY_COINS: WalletType[] = ['HDsegwitBech32', 'ethereum', 'polygon', 'solana', 'linea', 'avalanche'];
 
 export const networkIdToNetworkName = fromPairs<WalletType>(
   entries(Networks).map(([type, network]) => {

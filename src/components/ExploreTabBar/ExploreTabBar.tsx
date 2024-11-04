@@ -1,6 +1,8 @@
+import type { FC } from 'react';
+
 import { BlurView } from '@react-native-community/blur';
 
-import React, { FC, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 
 import Animated, { FadeInDown, FadeOutDown, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
@@ -9,7 +11,7 @@ import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useTheme } from '@/theme/themes';
 
-import { ExploreTabBarProps, TabData } from './ExploreTabBar.types';
+import type { ExploreTabBarProps, TabData } from './ExploreTabBar.types';
 
 const TabBarSizes = {
   width: 212,

@@ -1,4 +1,4 @@
-import { NftMetadata } from '@/realm/nftMetadata/schema';
+import type { NftMetadata } from '@/realm/nftMetadata/schema';
 
 interface Labels {
   primaryLabel: string;

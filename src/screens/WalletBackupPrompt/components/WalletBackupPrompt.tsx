@@ -1,6 +1,8 @@
+import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
+
 import { StackActions, useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { SequencedTransition } from 'react-native-reanimated';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';

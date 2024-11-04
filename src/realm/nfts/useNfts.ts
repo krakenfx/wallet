@@ -3,7 +3,9 @@ import { useMemo } from 'react';
 import { useQuery } from '../RealmContext';
 import { useRealmWallets } from '../wallets/useWallets';
 
-import { REALM_TYPE_NFT, RealmNft } from './schema';
+import { REALM_TYPE_NFT } from './schema';
+
+import type { RealmNft } from './schema';
 
 
 export const useNfts = (archived = false, networkFilter: string[] = []) => {

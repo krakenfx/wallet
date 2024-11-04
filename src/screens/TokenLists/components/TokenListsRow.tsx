@@ -1,7 +1,9 @@
+import type { ViewStyle } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import noop from 'lodash/noop';
 import React from 'react';
-import { StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Svg from 'react-native-svg';
 
 import { Label } from '@/components/Label';
@@ -12,10 +14,11 @@ import { REPUTATION } from '@/hooks/useReputation';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 
-import { TokenListNames } from '../types';
 import { isTokenListName, tokenListNameToImageSource, tokenListNameToUILabel, tokenListNameToURL } from '../utils';
 
 import { TokenListsPillBlacklisted, TokenListsPillUnverified, TokenListsPillWhitelisted } from './TokenListsPill';
+
+import type { TokenListNames } from '../types';
 
 import loc from '/loc';
 

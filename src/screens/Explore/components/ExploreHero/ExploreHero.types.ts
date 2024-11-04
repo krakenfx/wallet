@@ -1,9 +1,9 @@
-import { StyleProp, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
-import { ExploreHeroVariant, ExploreListItemContent } from '@/api/types';
+import type { ExploreHeroVariant, ExploreListItemContent } from '@/api/types';
 
 export type ExploreHeroProps = {
-  type: ExploreHeroVariant;
+  variant: ExploreHeroVariant;
   title: string;
   body?: string;
   background: string;

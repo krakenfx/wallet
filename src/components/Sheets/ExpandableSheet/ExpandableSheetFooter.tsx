@@ -1,13 +1,20 @@
-import { BottomSheetFooter, BottomSheetFooterProps, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
+import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
+
+import type { SharedValue } from 'react-native-reanimated';
+
+import { BottomSheetFooter } from '@gorhom/bottom-sheet';
 import React from 'react';
-import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
-import Animated, { Extrapolate, SharedValue, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import { StyleSheet, View } from 'react-native';
+
+import Animated, { Extrapolate, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Touchable } from '@/components/Touchable';
 
 import { Label } from '../../Label';
 import { SvgIcon } from '../../SvgIcon';
+
+import type { BottomSheetFooterProps, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
 
 import loc from '/loc';
 

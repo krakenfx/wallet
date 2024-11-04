@@ -8,8 +8,8 @@ import { NetworkIDIcons } from '@/components/NetworkIDIcons';
 import { SvgIcon } from '@/components/SvgIcon';
 import { TokenIcon } from '@/components/TokenIcon';
 import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
-import { RealmToken } from '@/realm/tokens';
-import { FeatureFlag, NEW_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
+import type { RealmToken } from '@/realm/tokens';
+import { FeatureFlag, NEW_EVM_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
 
 import { useReceiveAddress } from '../hooks';
 
@@ -44,7 +44,7 @@ export const ReceiveTokenRow = ({ token, onQRcodePress, showEthereumExplainer }:
     ChainAgnostic.NETWORK_ARBITRUM,
     ChainAgnostic.NETWORK_OPTIMISM,
     ChainAgnostic.NETWORK_BASE,
-    ...(isNewNetworksEnabled ? NEW_NETWORKS : []),
+    ...(isNewNetworksEnabled ? NEW_EVM_NETWORKS : []),
   ];
 
   return (

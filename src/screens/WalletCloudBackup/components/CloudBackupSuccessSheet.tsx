@@ -3,7 +3,8 @@ import LottieView from 'lottie-react-native';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheetModal } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { Label } from '@/components/Label';
 
 import loc from '/loc';

@@ -6,15 +6,20 @@ import { Button } from '@/components/Button';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
 import { useImportWallet } from '../Onboarding/hooks/useImportWallet';
 
-import { CloudBackupErrorSheet, PasskeyErrorType } from './components/CloudBackupErrorSheet';
-import { CloudBackupSuccessSheet, CloudBackupSuccessSheetRef } from './components/CloudBackupSuccessSheet';
+import { CloudBackupErrorSheet } from './components/CloudBackupErrorSheet';
+
+import { CloudBackupSuccessSheet } from './components/CloudBackupSuccessSheet';
+
+import type { PasskeyErrorType } from './components/CloudBackupErrorSheet';
+import type { CloudBackupSuccessSheetRef } from './components/CloudBackupSuccessSheet';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

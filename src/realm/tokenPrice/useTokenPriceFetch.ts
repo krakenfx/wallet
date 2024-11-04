@@ -7,10 +7,14 @@ import { isPromiseFulfilled, isPromiseRejected } from '@/utils/promise';
 import { useCurrentAccountNumber } from '../accounts';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
-import { REALM_TYPE_TOKEN, RealmToken } from '../tokens';
 
-import { REALM_TYPE_TOKEN_PRICE, RealmTokenPrice } from './schema';
+import { REALM_TYPE_TOKEN } from '../tokens';
+
+import { REALM_TYPE_TOKEN_PRICE } from './schema';
 import { checkTokenGalleryChange } from './utils';
+
+import type { RealmTokenPrice } from './schema';
+import type { RealmToken } from '../tokens';
 
 import { handleError } from '/helpers/errorHandler';
 

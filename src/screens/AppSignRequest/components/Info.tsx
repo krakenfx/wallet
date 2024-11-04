@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import type { ReactElement } from 'react';
+
 import { StyleSheet, View } from 'react-native';
 
 type Props = {

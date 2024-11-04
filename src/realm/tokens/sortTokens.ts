@@ -1,18 +1,19 @@
 import sortBy from 'lodash/sortBy';
 
 import { Currency } from '@/screens/Settings/currency';
+import type { RemoteAsset } from '@/types';
 import { calculateBalance } from '@/utils/calculateBalance';
 
-import { useTokenPrices } from '../tokenPrice';
-
-import { RealmToken } from './schema';
 import { getNetworkNameFromAssetId } from './utils';
+
+import type { RealmToken } from './schema';
+import type { useTokenPrices } from '../tokenPrice';
 
 
 export const sortTokensAlphabetically = {
   
   
-  lodash: (token: Pick<RealmToken, 'assetId' | 'metadata'>) => {
+  lodash: (token: Pick<RealmToken | RemoteAsset, 'assetId' | 'metadata'>) => {
     return [token.metadata.label.toLowerCase(), token.metadata.symbol.toLowerCase(), getNetworkNameFromAssetId(token.assetId)];
   },
   realm: ['metadata.label', 'metadata.symbol', 'wallet.type'],

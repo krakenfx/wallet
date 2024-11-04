@@ -1,9 +1,12 @@
-import { GenericMessage } from '../../../types';
 import { hexToAscii } from '../../../utils';
-import { EIP712, WALLET_CONNECT_ETH_SIGN_TYPES } from '../types';
+
+import { WALLET_CONNECT_ETH_SIGN_TYPES } from '../types';
 
 import { adaptEIP712ToDefinitionList } from './adaptEIP712ToDefinitionList';
 import { isEIP712 } from './isEIP712';
+
+import type { GenericMessage } from '../../../types';
+import type { EIP712} from '../types';
 
 import loc from '/loc';
 

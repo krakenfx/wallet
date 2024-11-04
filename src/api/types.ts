@@ -1,5 +1,5 @@
-import { components as gcComponents } from '/generated/groundcontrol';
-import { components } from '/generated/harmony';
+import type { components as gcComponents } from '/generated/groundcontrol';
+import type { components } from '/generated/harmony';
 
 export type ErrorResult = components['schemas']['ErrorResult'];
 export type SimulationResult = components['schemas']['SimulationResult'];
@@ -42,4 +42,9 @@ export type ExploreListItemContent = components['schemas']['ExploreListItemConte
 export type ExploreListContent = components['schemas']['ExploreListContent'];
 export type ExploreListIconVariant = components['schemas']['ExploreListIconVariant'];
 export type ExploreTextContent = components['schemas']['ExploreTextContent'];
+export type ExploreLink = components['schemas']['ExploreLink'];
 export type TokenConfigurationType = gcComponents['schemas']['TokenConfigurationType'];
+export type SwapFromTokenListResult = components['schemas']['SwapFromTokenListResult'];
+export type SwapToTokenListResult = components['schemas']['SwapToTokenListResult'];
+export type TokenType = components['schemas']['TokenType'];
+export type TokenDict = components['schemas']['TokenDict'];

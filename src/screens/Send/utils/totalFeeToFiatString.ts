@@ -1,6 +1,6 @@
-import { RealmishWallet, TotalFee } from '@/onChain/wallets/base';
+import type { RealmishWallet, TotalFee } from '@/onChain/wallets/base';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { Currency } from '@/screens/Settings/currency';
+import type { Currency } from '@/screens/Settings/currency';
 import { calculateBalance } from '@/utils/calculateBalance';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';

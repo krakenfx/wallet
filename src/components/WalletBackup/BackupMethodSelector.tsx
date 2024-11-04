@@ -1,5 +1,7 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { useAnimatedStyle, withDelay, withTiming } from 'react-native-reanimated';
 
@@ -21,6 +23,7 @@ type Props = {
   highlighted?: boolean;
   highlighDelayMs?: number;
   onPress: () => void;
+  testID?: string;
 } & (
   | {
       showCompletionState?: false | never;
@@ -38,6 +41,7 @@ export const BackupMethodSelector: React.FC<Props> = ({
   icon,
   completionIconSize = 29,
   title,
+  testID,
   subtitle,
   subtitleShort,
   onPress,
@@ -65,7 +69,7 @@ export const BackupMethodSelector: React.FC<Props> = ({
   }, [highlighted]);
 
   return (
-    <Touchable onPress={onPress} style={[styles.container, containerStyle, touchableStyle]} disabled={completed}>
+    <Touchable onPress={onPress} style={[styles.container, containerStyle, touchableStyle]} disabled={completed} testID={testID}>
       <GradientItemBackground />
       <View style={[styles.content, centerIcon && styles.centerContent]}>
         {icon}

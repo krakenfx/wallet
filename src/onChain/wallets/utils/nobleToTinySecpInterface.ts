@@ -1,6 +1,7 @@
 import { schnorr, secp256k1 } from '@noble/curves/secp256k1';
-import { TinySecp256k1Interface as TinySecp256k1InterfaceBip } from 'bip32';
-import { TinySecp256k1Interface } from 'ecpair';
+
+import type { TinySecp256k1Interface as TinySecp256k1InterfaceBip } from 'bip32';
+import type { TinySecp256k1Interface } from 'ecpair';
 
 export const nobleAdapter: TinySecp256k1Interface & TinySecp256k1InterfaceBip = {
   isPoint(p: Uint8Array): boolean {

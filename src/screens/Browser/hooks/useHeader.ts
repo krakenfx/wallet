@@ -1,5 +1,6 @@
+import type { GestureResponderEvent } from 'react-native';
+
 import { useRef } from 'react';
-import { GestureResponderEvent } from 'react-native';
 
 import { useSharedValue } from 'react-native-reanimated';
 

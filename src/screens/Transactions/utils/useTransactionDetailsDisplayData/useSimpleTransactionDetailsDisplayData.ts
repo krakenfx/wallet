@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-import { RealmTransaction } from '@/realm/transactions';
-import { SimpleTransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { RealmTransaction } from '@/realm/transactions';
+import type { SimpleTransactionData } from '@/realm/transactions/getTransactionMetadata';
 
 type Props = {
   assetAmount: string;

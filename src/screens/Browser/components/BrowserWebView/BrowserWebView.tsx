@@ -1,9 +1,12 @@
+import type { GestureResponderEvent, NativeSyntheticEvent } from 'react-native';
+
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
-import { GestureResponderEvent, Platform, StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import WebView from 'react-native-webview';
 
-import { ShouldStartLoadRequest } from 'react-native-webview/lib/WebViewTypes';
+import { useDappMethods } from '@/dAppIntegration/hooks/useDappMethods';
+import { injectGetPageInformationScript, injectProviderScript } from '@/dAppIntegration/scripts';
 
 import { useBrowserAnimationContext } from '../../context/BrowserAnimationContext';
 import { useBrowserContext } from '../../context/BrowserContext';
@@ -17,7 +20,9 @@ import { BrowserLoadingFailure } from '../BrowserLoadingFailure';
 import { BrowserNoSearch } from '../BrowserNoSearch';
 import { BrowserSearchResult } from '../BrowserSearchResult';
 
-import { BrowserWebViewRef } from './BrowserWebView.types';
+import type { BrowserWebViewRef } from './BrowserWebView.types';
+import type { WebViewErrorEvent, WebViewNavigationEvent } from 'react-native-webview/lib/RNCWebViewNativeComponent';
+import type { ShouldStartLoadRequest } from 'react-native-webview/lib/WebViewTypes';
 
 interface BrowserWebViewProps {
   handleTouchMove: (event: GestureResponderEvent) => void;
@@ -43,6 +48,8 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
     onLoadError,
   } = useBrowserContext();
 
+  const { onMessage } = useDappMethods(webViewRef);
+
   const { animatedWebViewStyle } = useBrowserAnimationContext();
 
   const { searchValue, showSearchBar, changeSearchValue } = useSearchContext();
@@ -60,6 +67,15 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
 
     
     return false;
+  };
+
+  const handleLoadEnd = (event: NativeSyntheticEvent<WebViewErrorEvent | WebViewNavigationEvent>) => {
+    
+    if (Platform.OS === 'android' && url) {
+      changeSearchValue(url);
+    }
+
+    onLoadEnd(event);
   };
 
   useImperativeHandle(
@@ -110,20 +126,24 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
           <WebView
             pullToRefreshEnabled
             mediaPlaybackRequiresUserAction
+            allowsInlineMediaPlayback
             ref={webViewRef}
             
             style={[styles.webView, { opacity: hideWebView ? 0 : 1 }]}
             source={{ uri: url }}
             setSupportMultipleWindows={false}
             originWhitelist={['https://', 'http://']}
+            decelerationRate="normal"
             onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
             onNavigationStateChange={onNavigationStateChange}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onLoadStart={onLoadStart}
             onLoadProgress={onLoadProgress}
-            onLoadEnd={onLoadEnd}
+            onLoadEnd={handleLoadEnd}
             onError={onLoadError}
+            onMessage={onMessage}
+            injectedJavaScript={[injectProviderScript, injectGetPageInformationScript].join(' ')}
             renderError={() => <BrowserLoadingFailure />} 
           />
         </Animated.View>
@@ -141,6 +161,5 @@ const styles = StyleSheet.create({
   },
   webView: {
     flex: 1,
-    backgroundColor: 'transparent',
   },
 });

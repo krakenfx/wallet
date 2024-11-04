@@ -1,10 +1,13 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import MaskedView from '@react-native-masked-view/masked-view';
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Svg, { Circle, Defs, G, Mask, Rect } from 'react-native-svg';
 
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 
 type DoubleRowComponentProps = {
   containerStyle: StyleProp<ViewStyle>;

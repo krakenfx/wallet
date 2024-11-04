@@ -1,5 +1,5 @@
-import { FeeOption } from '@/api/types';
-import { RealmishWallet } from '@/onChain/wallets/base';
+import type { FeeOption } from '@/api/types';
+import type { RealmishWallet } from '@/onChain/wallets/base';
 
 export const getDefaultFeeOption = (wallet: RealmishWallet): FeeOption['kind'] | undefined => {
   switch (true) {

@@ -1,6 +1,8 @@
+import type { SharedValue } from 'react-native-reanimated';
+
 import React from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
-import Animated, { Easing, SharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import Animated, { Easing, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import { useTheme } from '@/theme/themes';
 
@@ -29,7 +31,7 @@ export const LoadingBar: React.FC<LoadingBarProps> = ({ percentage }) => {
 const styles = StyleSheet.create({
   container: {
     zIndex: 1,
-    height: 5,
+    height: 3,
     position: 'absolute',
     top: 0,
     left: 0,

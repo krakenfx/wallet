@@ -1,5 +1,7 @@
+import type { ReactElement } from 'react';
+
 import { useNavigation } from '@react-navigation/native';
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
@@ -11,7 +13,8 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
-import { ColorName, useTheme } from '@/theme/themes';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 import loc from '/loc';
 

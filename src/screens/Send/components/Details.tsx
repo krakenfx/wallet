@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { FeeOptionKind } from '@/api/types';
+import type { FeeOptionKind } from '@/api/types';
 import { AddressDisplay } from '@/components/AddressDisplay';
 
 import { Label } from '@/components/Label';
@@ -9,12 +9,13 @@ import { NetworkIcon } from '@/components/NetworkIcon';
 
 import { TransactionDetailItem } from '@/components/Transaction';
 
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 import { getWalletName } from '@/utils/getWalletName';
 
-import { Amounts, TransactionParams } from '../types';
 import { BTCfeeOptionToString } from '../utils/BTCfeeOptionToString';
 import { feeOptionToString } from '../utils/feeOptionToString';
+
+import type { Amounts, TransactionParams } from '../types';
 
 import loc from '/loc';
 

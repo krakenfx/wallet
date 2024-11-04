@@ -4,7 +4,7 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { fetchEnsOwnership } from '@/api/fetchEnsOwnership';
 import { Label } from '@/components/Label';
-import { RealmNft } from '@/realm/nfts';
+import type { RealmNft } from '@/realm/nfts';
 
 import { NFTLinksItem } from './NFTLinksItem';
 

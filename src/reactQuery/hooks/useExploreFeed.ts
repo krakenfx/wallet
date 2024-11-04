@@ -4,11 +4,12 @@ import { fetchExploreFeed } from '@/api/fetchExploreFeed';
 
 const STALE_HOURS = 24;
 const HOUR_IN_MILLISECONDS = 3600000;
-export const useExploreFeed = () => {
+export const useExploreFeed = (slug?: string) => {
+  const queryKey: string = slug ? `explore/${slug}` : `explore`;
   return useQuery({
-    queryKey: ['explore'],
+    queryKey: [queryKey],
     staleTime: STALE_HOURS * HOUR_IN_MILLISECONDS,
     gcTime: Infinity,
-    queryFn: () => fetchExploreFeed().then(res => res),
+    queryFn: () => fetchExploreFeed(slug),
   });
 };

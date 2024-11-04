@@ -1,8 +1,11 @@
-import React, { PropsWithChildren } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { PropsWithChildren } from 'react';
 
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import { StyleSheet, View } from 'react-native';
+
+import type { ColorName } from '@/theme/themes';
 import { useTheme } from '@/theme/themes';
-import { ColorName } from '@/theme/themes';
 
 type Props = {
   backgroundColor: ColorName;

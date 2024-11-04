@@ -1,7 +1,9 @@
-import noop from 'lodash/noop';
-import React, { PropsWithChildren, useContext } from 'react';
+import type { PropsWithChildren } from 'react';
 
-import { ExpandableSheetMethods } from './types';
+import noop from 'lodash/noop';
+import React, { useContext } from 'react';
+
+import type { ExpandableSheetMethods } from './types';
 
 const ExpandableSheetContext = React.createContext<ExpandableSheetMethods>({
   close: noop,
@@ -14,5 +16,10 @@ export const ExpandableSheetContextProvider: React.FC<PropsWithChildren<Expandab
 };
 
 export const useExpandableSheetContext = () => {
-  return useContext(ExpandableSheetContext);
+  const context = useContext(ExpandableSheetContext);
+
+  if (context === undefined) {
+    throw new Error('useExpandableSheetContext must be used within a ExpandableSheetContextProvider');
+  }
+  return context;
 };

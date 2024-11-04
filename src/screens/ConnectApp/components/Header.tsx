@@ -8,9 +8,9 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
-import { sanitizeUrl } from '@/utils/stringUtils';
+import { sanitizeUrl } from '@/utils/stringUtils.ts';
 
-import { Verification } from '../types';
+import type { Verification } from '../types';
 
 import loc from '/loc';
 
@@ -18,29 +18,25 @@ type Props = {
   icon: string;
   name: string;
   url: string;
-  verification: Verification;
+  verification?: Verification;
 };
 
-const getExplainerContentType = (verification: Verification) => {
-  if (verification.isScam) {
-    return EXPLAINER_CONTENT_TYPES.KNOWN_SECURTIY_RISK;
-  }
-
-  if (verification.warning?.severity === 'critical') {
+const getExplainerContentType = (verification?: Verification) => {
+  if (verification?.warning?.severity === 'critical') {
     return EXPLAINER_CONTENT_TYPES.DOMAIN_MISMATCH;
   }
 
-  if (verification.isDomainMatch) {
+  if (verification?.isDomainMatch) {
     return EXPLAINER_CONTENT_TYPES.DOMAIN_MATCH;
   }
 };
 
-const Icon = ({ verification }: { verification: Verification }) => {
-  if (verification.isScam || verification.warning?.severity === 'critical') {
+const Icon = ({ verification }: { verification?: Verification }) => {
+  if (verification?.warning?.severity === 'critical') {
     return <SvgIcon name="warning-filled" color="red400" size={15} />;
   }
 
-  if (verification.isDomainMatch) {
+  if (verification?.isDomainMatch) {
     return <SvgIcon name="check-circle" color="green400" size={15} />;
   }
 
@@ -49,7 +45,7 @@ const Icon = ({ verification }: { verification: Verification }) => {
 
 export const Header = ({ url, icon, name, verification }: Props) => {
   const navigation = useNavigation();
-  const shouldShowExplainer = verification.isScam || verification.isDomainMatch || verification.warning?.severity === 'critical';
+  const shouldShowExplainer = verification?.isDomainMatch || verification?.warning?.severity === 'critical';
   const showExplainer = useCallback(() => {
     const contentType = getExplainerContentType(verification);
 
@@ -60,7 +56,7 @@ export const Header = ({ url, icon, name, verification }: Props) => {
 
   return (
     <View style={styles.header}>
-      <IconWithCoinIcon coinSize={25} iconUri={icon} maskPositionXYNudge={4} maskShape="rounded-square" size={64} />
+      <IconWithCoinIcon coinSize={25} iconUri={icon} maskPositionXYNudge={4} maskShape="circle" size={64} />
       <Label style={styles.headerName} type="boldTitle1" numberOfLines={1}>
         {name}
       </Label>

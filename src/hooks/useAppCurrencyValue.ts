@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useTokenPrice } from '@/realm/tokenPrice';
 import { getAvailableTokenBalance } from '@/realm/tokens';
-import { RealmPendingTransaction } from '@/realm/transactions';
+import type { RealmPendingTransaction } from '@/realm/transactions';
 import { calculateBalance } from '@/utils/calculateBalance';
 
 export const useAppCurrencyValue = (token: { assetId: string; metadata: { decimals: number } } | undefined, balance: string, realmQueueName?: string) => {

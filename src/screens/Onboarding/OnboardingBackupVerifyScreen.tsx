@@ -7,7 +7,7 @@ import { Routes } from '@/Routes';
 import { WalletBackupVerify } from '@/screens/Settings/walletBackup';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { OnboardingNavigationProps } from './OnboardingRouter';
+import type { OnboardingNavigationProps } from './OnboardingRouter';
 
 export const OnboardingBackupVerifyScreen = ({ navigation }: OnboardingNavigationProps<'OnboardingBackupVerify'>) => {
   const { isCloudBackupSuggested } = useWalletBackupSettings();

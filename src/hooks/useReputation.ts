@@ -1,6 +1,7 @@
-import Realm from 'realm';
+import type { AssetMetadata, AssetReputation } from '@/realm/assetMetadata';
+import { getAssetMetadata, useAssetMetadata } from '@/realm/assetMetadata';
 
-import { AssetMetadata, AssetReputation, getAssetMetadata, useAssetMetadata } from '@/realm/assetMetadata';
+import type Realm from 'realm';
 
 export enum REPUTATION {
   WHITELISTED = 'whitelisted',

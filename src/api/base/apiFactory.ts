@@ -1,18 +1,21 @@
-import createClient, { BodySerializer, FetchOptions, HeadersOptions, QuerySerializer } from 'openapi-fetch';
+import { isNil } from 'lodash';
+
+import createClient from 'openapi-fetch';
 import { getBuildNumber, getVersion } from 'react-native-device-info';
 
 import { getApiKey } from '@/secureStore/domains/apiKey';
 
-import { ErrorResult } from '../types';
-
 import BackendConfigurator from './BackendConfigurator';
 import { fetchClient } from './fetchClient';
+
+import type { ErrorResult } from '../types';
+import type { BodySerializer, FetchOptions, HeadersOptions, QuerySerializer } from 'openapi-fetch';
 
 import type { FilterKeys, PathItemObject, PathsWithMethod } from 'openapi-typescript-helpers';
 
 import { HARMONY_CF_CLIENT_ID, HARMONY_CF_CLIENT_SECRET } from '/config';
-import { paths as groundcontrolPaths } from '/generated/groundcontrol';
-import { paths as harmonyPaths } from '/generated/harmony';
+import type { paths as groundcontrolPaths } from '/generated/groundcontrol';
+import type { paths as harmonyPaths } from '/generated/harmony';
 import { getIanaLanguage } from '/loc';
 
 
@@ -166,7 +169,7 @@ export async function getHarmony() {
       const entries = Object.entries(queryParams);
       let s = '';
       entries.forEach(([k, v], i) => {
-        if (!v) {
+        if (isNil(v)) {
           return;
         }
         if (typeof v === 'string') {

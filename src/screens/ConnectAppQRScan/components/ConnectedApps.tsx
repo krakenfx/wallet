@@ -1,11 +1,12 @@
-import { BottomSheetFlatList, BottomSheetModalProps } from '@gorhom/bottom-sheet';
+import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { StackActions, useNavigation } from '@react-navigation/native';
-import { SessionTypes } from '@walletconnect/types';
+
 import React, { forwardRef, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppsListItem } from '@/components/AppsListItem';
-import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheetModal } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
@@ -15,6 +16,9 @@ import { useCurrentAccountNumber } from '@/realm/accounts';
 import { Routes } from '@/Routes';
 
 import { EmptyState } from './EmptyState';
+
+import type { BottomSheetModalProps } from '@gorhom/bottom-sheet';
+import type { SessionTypes } from '@walletconnect/types';
 
 import loc from '/loc';
 import { useWalletConnectActiveSessions } from '/modules/wallet-connect/hooks/useWalletConnectActiveSessions';

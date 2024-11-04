@@ -1,7 +1,8 @@
-import { RealmToken, isTokenInGallery as isTokenInGalleryCheck, useTokensMutations } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
+import { isTokenInGallery as isTokenInGalleryCheck, useTokensMutations } from '@/realm/tokens';
 import { useTokensGalleryMutations } from '@/realm/tokensGallery';
-import { RealmWallet } from '@/realm/wallets';
-import { RemoteAsset } from '@/types';
+import type { RealmWallet } from '@/realm/wallets';
+import type { RemoteAsset } from '@/types';
 import { isRealmObject } from '@/utils/isRealmObject';
 import { isRealmToken } from '@/utils/isRealmToken';
 

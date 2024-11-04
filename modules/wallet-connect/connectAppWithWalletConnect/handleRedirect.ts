@@ -1,7 +1,8 @@
-import { SessionTypes } from '@walletconnect/types';
 import { Linking, NativeModules, Platform } from 'react-native';
 
 import { showToast } from '@/components/Toast';
+
+import type { SessionTypes } from '@walletconnect/types';
 
 import loc from '/loc';
 

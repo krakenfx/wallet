@@ -1,5 +1,5 @@
-import { NativeTokenSymbol } from '@/onChain/wallets/base';
-import { Currency } from '@/screens/Settings/currency';
+import type { NativeTokenSymbol } from '@/onChain/wallets/base';
+import type { Currency } from '@/screens/Settings/currency';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { smallUnit2TokenUnit, tokenUnit2Fiat, tokenUnit2SmallestUnit } from '@/utils/unitConverter';
@@ -44,6 +44,16 @@ export const getDisplayNetworkFee = ({
           ? formatTokenAmount(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10), { currency, highPrecision: true }) + ' Sol'
           : '',
         price: '', 
+      };
+    }
+
+    case 'AVAX': {
+      return {
+        
+        amount: networkFee ? formatTokenAmount(smallUnit2TokenUnit(networkFee, 9).toString(10), { currency, highPrecision: true }) + ' nAVAX' : '',
+        price: networkFee
+          ? formatTokenAmount(smallUnit2TokenUnit(networkFee, nativeTokenDecimals).toString(10), { currency, highPrecision: true }) + ' ' + nativeTokenSymbol
+          : '',
       };
     }
     

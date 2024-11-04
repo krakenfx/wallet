@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
 
-import { SwapTransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { SwapTransactionData } from '@/realm/transactions/getTransactionMetadata';
 import { Routes } from '@/Routes';
 
 import { useSwapTransactionDetailsDisplayData } from '../utils/useTransactionDetailsDisplayData';
 import { useSwapTransactionDisplayData } from '../utils/useTransactionDisplayData';
 
 import { TransactionDataRow } from './TransactionDataRow';
-import { TransactionRowCommonProps } from './types';
+
+import type { TransactionRowCommonProps } from './types';
 
 export interface SwapTransactionRowProps extends TransactionRowCommonProps {
   classifiedTx: SwapTransactionData;

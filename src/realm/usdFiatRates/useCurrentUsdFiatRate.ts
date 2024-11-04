@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 
 import { useObject } from '@/realm/RealmContext';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
-import { REALM_TYPE_FIAT_RATES, RealmFiatRates } from '@/realm/usdFiatRates/schema';
+import type { RealmFiatRates } from '@/realm/usdFiatRates/schema';
+import { REALM_TYPE_FIAT_RATES } from '@/realm/usdFiatRates/schema';
 import { Currency } from '@/screens/Settings/currency';
 
 export const useCurrentUsdFiatRate = () => {

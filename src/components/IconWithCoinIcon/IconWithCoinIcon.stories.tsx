@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 import { SvgIcon } from '../SvgIcon';
 

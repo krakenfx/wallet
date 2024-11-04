@@ -13,7 +13,7 @@ import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { AccountNavigationProps } from './AccountRouter';
+import type { AccountNavigationProps } from './AccountRouter';
 
 import { biometricUnlock } from '/helpers/biometric-unlock';
 import loc from '/loc';

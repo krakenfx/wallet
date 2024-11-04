@@ -1,5 +1,6 @@
+import type { StatusBarStyle } from 'react-native';
+
 import { DarkTheme, useTheme as useThemeBase } from '@react-navigation/native';
-import { StatusBarStyle } from 'react-native';
 
 export const SuperDarkTheme = {
   ...DarkTheme,
@@ -44,7 +45,10 @@ export const SuperDarkTheme = {
 
     
 
+    purple_15: 'rgba(100, 81, 170, 0.15)',
+    purple_20: 'rgba(100, 81, 170, 0.20)',
     purple_40: 'rgba(100, 81, 170, 0.40)',
+    purple_60: 'rgba(100, 81, 170, 0.60)',
 
     transparent: 'rgba(0,0,0,0)',
     red400_15: 'rgba(236, 109, 109, 0.15)',
@@ -54,7 +58,8 @@ export const SuperDarkTheme = {
     iOSKeyboardAccessoryBg: '#1B192B',
     androidDarkBlurBg: '#6363C7',
     androidToastBlur: '#1F154F',
-    swapIconBg: 'rgba(33, 38, 77, 1)',
+    swapIconBorder: '#1A143F',
+    swapIconBg: '#251D4F',
     coreBackground: '#0E0E35',
     blurBackgroundAndroid: '#302C3E', 
     lavenderIndigo: '#8B58F7',

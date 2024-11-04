@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useRealm } from '@/realm/RealmContext';
 
-import { RealmToken } from '../tokens';
+import type { RealmToken } from '../tokens';
 
 export const useTokensGalleryMutations = () => {
   const realm = useRealm();

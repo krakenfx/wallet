@@ -15,6 +15,9 @@ module.exports = {
       },
     ],
     '@typescript-eslint/prefer-ts-expect-error': 'error', 
+    '@typescript-eslint/consistent-type-exports': 'error',
+    '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'separate-type-imports' }],
+    'import/no-duplicates': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',

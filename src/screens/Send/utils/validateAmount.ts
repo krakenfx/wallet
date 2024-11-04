@@ -1,4 +1,4 @@
-import { SuperBigNumber } from '@/utils/SuperBigNumber';
+import type { SuperBigNumber } from '@/utils/SuperBigNumber';
 import { unitConverter } from '@/utils/unitConverter';
 
 export async function validateAmount(amount: string, decimals: number, currentNativeCoinBalance: string): Promise<SuperBigNumber> {

@@ -16,8 +16,11 @@ import { getAvailableTokenBalance } from '../tokens/getAvailableTokenBalance';
 import { useCurrentUsdFiatRate } from '../usdFiatRates';
 
 import { useIsTokenRelevant } from './isTokenRelevant';
-import { FiatValue, REALM_TYPE_TOKEN_PRICE, RealmTokenPrice, TokenPrice } from './schema';
+
+import { REALM_TYPE_TOKEN_PRICE } from './schema';
 import { useTokenPriceMutations } from './useTokenPriceMutations';
+
+import type { FiatValue, RealmTokenPrice, TokenPrice } from './schema';
 
 import { handleError } from '/helpers/errorHandler';
 

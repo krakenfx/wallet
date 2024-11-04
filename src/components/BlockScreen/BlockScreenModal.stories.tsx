@@ -2,11 +2,11 @@ import { useRef } from 'react';
 
 import { View } from 'react-native';
 
-import { BottomSheetModalRef } from '../BottomSheet';
-
 import { Button } from '../Button';
 
 import { BlockScreenModal } from './BlockScreenModal';
+
+import type { BottomSheetModalRef } from '../BottomSheet';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

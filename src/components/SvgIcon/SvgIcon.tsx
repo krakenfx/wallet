@@ -1,22 +1,34 @@
+import type { IconProps } from 'react-icomoon';
+
+import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
+
+import type { AnimatedProps } from 'react-native-reanimated';
+
 import React from 'react';
-import IcoMoon, { IconProps } from 'react-icomoon';
-import { StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import IcoMoon from 'react-icomoon';
+
+import { StyleSheet, View } from 'react-native';
+
 import Animated from 'react-native-reanimated';
 import { Path, Svg } from 'react-native-svg';
 
 import { Label } from '@/components/Label';
-import { Touchable, TouchableProps } from '@/components/Touchable';
-import { ColorName, useTheme } from '@/theme/themes';
+import type { TouchableProps } from '@/components/Touchable';
+import { Touchable } from '@/components/Touchable';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 import { GradientIconBackground } from './GradientIconBackground';
 import iconSet from './selection.json';
-import { IconName } from './types';
+
+import type { IconName } from './types';
 
 const DEFAULT_HIT_SLOP = 6;
 
 export type NonSmallIconName = Exclude<IconName, `small-${string}`>;
+export type { NonSmallIconName as IconName };
 
-export interface SvgIconProps extends Pick<IconProps, 'disableFill' | 'removeInlineStyle'>, Pick<Animated.AnimateProps<ViewProps>, 'entering' | 'exiting'> {
+export interface SvgIconProps extends Pick<IconProps, 'disableFill' | 'removeInlineStyle'>, Pick<AnimatedProps<ViewProps>, 'entering' | 'exiting'> {
   name: NonSmallIconName;
   color?: ColorName;
   bgColor?: ColorName;
@@ -100,5 +112,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export type { NonSmallIconName as IconName };

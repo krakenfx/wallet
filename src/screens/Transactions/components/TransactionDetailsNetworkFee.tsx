@@ -2,8 +2,8 @@ import React from 'react';
 
 import { NetworkFee } from '@/components/NetworkFee';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
-import { NativeTokenSymbol } from '@/onChain/wallets/base';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { NativeTokenSymbol } from '@/onChain/wallets/base';
+import type { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 

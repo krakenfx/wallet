@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
 
+import type { NETWORK_FILTER } from '@/components/NetworkFilter/types';
 import { useFilterInBlacklistedAssets } from '@/realm/settings/useFilterInBlacklistedAssets';
 import { useFilterInUnverifiedAssets } from '@/realm/settings/useFilterInUnverifiedAssets';
 import { useTokens } from '@/realm/tokens';
 
-export const useTokensFilteredByReputationAndNetwork = (networkFilter: string[]) => {
+export const useTokensFilteredByReputationAndNetwork = (networkFilter: NETWORK_FILTER[], forceFilterOutBlacklisted?: boolean) => {
   const unfilteredTokensFromRealm = useTokens();
 
   
-  const filterInBlacklistedAssets = useFilterInBlacklistedAssets();
+  const filterInBlacklistedAssets = useFilterInBlacklistedAssets() && !forceFilterOutBlacklisted;
   const filterInUnverifiedAssets = useFilterInUnverifiedAssets();
   const shouldFilterOutByReputation = useMemo(
     () => !filterInBlacklistedAssets || !filterInUnverifiedAssets,

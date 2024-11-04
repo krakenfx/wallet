@@ -7,7 +7,6 @@ import es_ES from './es-ES.json';
 import fr_FR from './fr-FR.json';
 import it_IT from './it-IT.json';
 
-import { languages } from './languages';
 import nl_NL from './nl-NL.json';
 import pl_PL from './pl-PL.json';
 import pt_BR from './pt-BR.json';
@@ -15,6 +14,8 @@ import ru_RU from './ru-RU.json';
 import tr_TR from './tr-TR.json';
 import uk_UA from './uk-UA.json';
 import vi_VN from './vi-VN.json';
+
+import type { languages } from './languages';
 
 export type LanguageTag = (typeof languages)[number]['tag'];
 

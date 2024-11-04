@@ -5,7 +5,7 @@ import EventEmitter from 'eventemitter3';
 import { reverse } from 'lodash';
 import DefaultPreference from 'react-native-default-preference';
 
-import { Utxo } from './BlueElectrum';
+import type { Utxo } from './BlueElectrum';
 
 
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */

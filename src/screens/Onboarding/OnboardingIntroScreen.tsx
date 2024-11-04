@@ -13,7 +13,8 @@ import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
 import { useCreateWallet } from './hooks/useCreateWallet';
-import { OnboardingNavigationProps } from './OnboardingRouter';
+
+import type { OnboardingNavigationProps } from './OnboardingRouter';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

@@ -1,6 +1,8 @@
+import type { LayoutChangeEvent, LayoutRectangle, StyleProp, ViewStyle } from 'react-native';
+
 import MaskedView from '@react-native-masked-view/masked-view';
 import React, { useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
 type MaskedGradientProps = {

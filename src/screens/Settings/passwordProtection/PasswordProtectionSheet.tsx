@@ -1,10 +1,13 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
-import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheetModal } from '@/components/BottomSheet';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
-import { useLockout } from './hooks/useLockout';
-import { LockScreen, LockScreenRef } from './LockScreen';
+import { LockScreen } from './LockScreen';
+
+import type { useLockout } from './hooks/useLockout';
+import type { LockScreenRef } from './LockScreen';
 
 import loc from '/loc';
 

@@ -2,16 +2,18 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
 
 import { fetchTokenLists } from '@/api/fetchTokenLists';
+import type { NETWORK_FILTER } from '@/components/NetworkFilter/types';
 import { useDepsChanged } from '@/hooks/useDepsChanged';
 import { TESTNET_COINS, networkIdToNetworkName } from '@/onChain/wallets/registry';
 import { RealmSettingsKey } from '@/realm/settings';
 import { useSettingsByKey } from '@/realm/settings/useSettingsByKey';
 import { useTokensFilteredByReputationAndNetwork } from '@/realm/tokens/useTokensFilteredByReputationAndNetwork';
-import { RemoteAsset } from '@/types';
+import type { RemoteAsset } from '@/types';
 import { untilFirstBackslash } from '@/utils/stringUtils';
 
-import { TokenFromTokenLists } from '../types';
 import { adaptTokenFromTokenListsToRemoteAsset } from '../utils/adaptTokenFromTokenListsToRemoteAsset';
+
+import type { TokenFromTokenLists } from '../types';
 
 import { handleError } from '/helpers/errorHandler';
 
@@ -20,7 +22,7 @@ import { handleError } from '/helpers/errorHandler';
 const OMITTED_TOKEN = 'eip155:137/erc20:0x0000000000000000000000000000000000001010';
 
 
-export const useFilteredTokensFromTokenLists = (networkFilter: string[], searchQuery: string): Record<string, RemoteAsset[]> => {
+export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[], searchQuery: string): Record<string, RemoteAsset[]> => {
   const realmTokens = useTokensFilteredByReputationAndNetwork(networkFilter);
   const hasNetworkFilterOrRealmTokensChanged = useDepsChanged([networkFilter, realmTokens.length]);
   const isTestnetEnabled = useSettingsByKey(RealmSettingsKey.isTestnetEnabled);

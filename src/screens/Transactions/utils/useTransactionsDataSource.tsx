@@ -1,29 +1,25 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import { useFocusEffect } from '@react-navigation/native';
 import { startOfDay } from 'date-fns';
 import { groupBy } from 'lodash';
 import React, { useCallback, useMemo, useState } from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { FadeOut } from 'react-native-reanimated';
 
-import { Transaction } from '@/api/types';
+import type { Transaction } from '@/api/types';
 import { ActivityIndicator } from '@/components/ActivityIndicator';
 import { Label } from '@/components/Label';
-import { NETWORK_FILTERS } from '@/components/NetworkFilter/types';
+import type { NETWORK_FILTER } from '@/components/NetworkFilter/types';
 import { omitNetworkIcons } from '@/components/TokenIcon';
 import { useRealmQueue } from '@/realm/hooks/useRealmQueue';
 import { useFilterInBlacklistedAssets, useFilterInUnverifiedAssets, useLanguage } from '@/realm/settings';
 import { useTokenById } from '@/realm/tokens';
-import {
-  REALM_TYPE_PENDING_TRANSACTION,
-  RealmPendingTransaction,
-  RealmTransaction,
-  usePendingNftTransactions,
-  usePendingTransactions,
-  useTransactions,
-} from '@/realm/transactions';
+import type { RealmPendingTransaction, RealmTransaction } from '@/realm/transactions';
+import { REALM_TYPE_PENDING_TRANSACTION, usePendingNftTransactions, usePendingTransactions, useTransactions } from '@/realm/transactions';
 import { getTransactionMetadata } from '@/realm/transactions/getTransactionMetadata';
 import { memoizedJSONParseTx } from '@/realm/transactions/utils';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { TransactionRow } from '@/screens/Transactions/components/TransactionRow';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 
@@ -50,7 +46,7 @@ interface Props {
   navigation: NavigationProps<'Transactions' | 'GlobalActivity' | 'Home'>['navigation'];
   limit?: number;
   skipTimeHeader?: boolean;
-  networkFilter?: NETWORK_FILTERS[];
+  networkFilter?: NETWORK_FILTER[];
   isRecentActivityView?: boolean;
   pageSize?: number;
 }

@@ -1,16 +1,13 @@
-import { CompositeScreenProps } from '@react-navigation/native';
-import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
 
 import { DefaultBackButton } from '@/components/BackButton';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
-import { RouteProps, Routes } from '@/Routes';
+import type { RouteProps, Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 import { validateSchemaVersion } from '@/utils/migrations';
 
-import { WalletCloudBackupScreen, WalletCloudImportSelectScreen } from '../WalletCloudBackup';
-
-import { WalletCloudImportScreen } from '../WalletCloudBackup';
+import { WalletCloudBackupScreen, WalletCloudImportScreen, WalletCloudImportSelectScreen } from '../WalletCloudBackup';
 
 import { OnboardingBackupPromptScreen, OnboardingBackupPromptScreenWithOptions } from './OnboardingBackupPromptScreen';
 import { OnboardingBackupScreeen } from './OnboardingBackupScreeen';
@@ -22,7 +19,10 @@ import { OnboardingOutroScreen } from './OnboardingOutroScreen';
 import { OnboardingPushPromptScreen } from './OnboardingPushPromptScreen';
 import { OnboardingSecureWalletScreen } from './OnboardingSecureWalletScreen';
 
-import { CloudBackupMetadata } from '/modules/cloud-backup';
+import type { CompositeScreenProps } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+import type { CloudBackupMetadata } from '/modules/cloud-backup';
 
 export type OnboardingStackParams = {
   OnboardingIntro: undefined;

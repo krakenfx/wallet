@@ -8,24 +8,31 @@ import { Button } from '@/components/Button';
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { useLanguage } from '@/realm/settings';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
-import { CloudBackupErrorSheet, PasskeyErrorType } from './components/CloudBackupErrorSheet';
-import { CloudBackupSuccessSheet, CloudBackupSuccessSheetRef } from './components/CloudBackupSuccessSheet';
+import { CloudBackupErrorSheet } from './components/CloudBackupErrorSheet';
+
+import { CloudBackupSuccessSheet } from './components/CloudBackupSuccessSheet';
 
 import { getBackupName } from './utils/getBackupName';
+
+import type { PasskeyErrorType } from './components/CloudBackupErrorSheet';
+import type { CloudBackupSuccessSheetRef } from './components/CloudBackupSuccessSheet';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
 import { getDateLocale } from '/loc/date';
-import { CloudBackupError, CloudBackupManager, CloudBackupMetadata } from '/modules/cloud-backup';
+import type { CloudBackupMetadata } from '/modules/cloud-backup';
+import { CloudBackupError, CloudBackupManager } from '/modules/cloud-backup';
 
 type PendingBackup = {
   credentialID: string;

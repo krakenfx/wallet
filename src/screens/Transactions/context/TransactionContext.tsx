@@ -1,12 +1,14 @@
-import React, { PropsWithChildren, useContext } from 'react';
+import type { PropsWithChildren } from 'react';
 
-import { Transaction } from '@/api/types';
-import { BTCTransaction } from '@/onChain/wallets/bitcoin';
+import React, { useContext } from 'react';
 
-import { AssetMetadata } from '@/realm/assetMetadata';
-import { NftMetadata } from '@/realm/nftMetadata';
-import { usePendingTransactionById, useTransactionById } from '@/realm/transactions';
-import { TRANSACTION_PENDING_TYPES, TRANSACTION_TYPES } from '@/realm/transactions/const';
+import type { Transaction } from '@/api/types';
+import type { BTCTransaction } from '@/onChain/wallets/bitcoin';
+
+import type { AssetMetadata } from '@/realm/assetMetadata';
+import type { NftMetadata } from '@/realm/nftMetadata';
+import type { usePendingTransactionById, useTransactionById } from '@/realm/transactions';
+import type { TRANSACTION_PENDING_TYPES, TRANSACTION_TYPES } from '@/realm/transactions/const';
 
 export type TransactionDetailsType = {
   title: string;

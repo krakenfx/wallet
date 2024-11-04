@@ -1,5 +1,7 @@
-import React, { memo } from 'react';
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import { memo } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { getTokenIconFallbackProps } from '/generated/assetIcons';
 

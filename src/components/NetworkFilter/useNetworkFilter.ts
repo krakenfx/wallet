@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { NETWORK_FILTERS } from './types';
+import type { NETWORK_FILTER } from './types';
 
-export const useNetworkFilter = () => {
-  return useState<NETWORK_FILTERS[]>([]);
+export const useNetworkFilter = (initial: NETWORK_FILTER[] = []) => {
+  return useState<NETWORK_FILTER[]>(initial);
 };

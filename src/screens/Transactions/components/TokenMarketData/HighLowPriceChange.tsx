@@ -5,8 +5,9 @@ import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
 import { Label } from '@/components/Label';
 import { useAppCurrency } from '@/realm/settings';
-import { PriceHistoryPeriod, TokenPrice, TokenPriceHighLow } from '@/realm/tokenPrice';
-import { ColorName, useTheme } from '@/theme/themes';
+import type { PriceHistoryPeriod, TokenPrice, TokenPriceHighLow } from '@/realm/tokenPrice';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import loc from '/loc';

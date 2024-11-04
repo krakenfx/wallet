@@ -1,5 +1,7 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React, { useMemo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import calculateLevel from 'react-native-password-strength-meter/src/utils/calculate-level';
 import scorePassword from 'react-native-password-strength-meter/src/utils/score-password';
 
@@ -7,7 +9,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { Label } from '@/components/Label';
 import { ProgressBar } from '@/components/ProgressBar';
-import { ColorName } from '@/theme/themes';
+import type { ColorName } from '@/theme/themes';
 
 import { MIN_PASSWORD_CHARS } from './consts';
 

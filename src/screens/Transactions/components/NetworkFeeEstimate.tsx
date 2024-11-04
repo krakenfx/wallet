@@ -11,7 +11,7 @@ type Props = {
   size: 'small' | 'medium' | 'big';
 };
 
-import { FeeOptionsData } from '@/screens/Send/utils/getFeeOptionsData';
+import type { FeeOptionsData } from '@/screens/Send/utils/getFeeOptionsData';
 
 import { GeneralMarketDataItem } from './TokenMarketData/GeneralMarketDataItem';
 import { commonStyles } from './TokenMarketData/styles';

@@ -5,7 +5,8 @@ import { Platform } from 'react-native';
 import { getVersion } from 'react-native-device-info';
 
 import { getGroundControl } from './base/apiFactory';
-import { TokenConfigurationType } from './types';
+
+import type { TokenConfigurationType } from './types';
 
 import { showGeneralFetchError } from '/helpers/errorHandler';
 import { getIanaLanguage } from '/loc';

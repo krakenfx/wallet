@@ -2,7 +2,8 @@ import { useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
 import React, { forwardRef, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheetModal } from '@/components/BottomSheet';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';

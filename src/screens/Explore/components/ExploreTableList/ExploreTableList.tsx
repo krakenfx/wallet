@@ -1,7 +1,5 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { ExploreListItemContent } from '@/api/types';
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 
@@ -9,11 +7,11 @@ import { Sizes } from '../../ExploreScreen.constants';
 
 import { ExploreTableListItem } from '../ExploreTableListItem/ExploreTableListItem';
 
-import { ExploreTableListProps } from './ExploreTableList.types';
+import type { ExploreTableListProps } from './ExploreTableList.types';
 
 const { Space } = Sizes;
 
-export const ExploreTableList: React.FC<ExploreTableListProps> = ({ title, items = [], style }: ExploreTableListProps) => {
+export const ExploreTableList = ({ title, items = [], style }: ExploreTableListProps) => {
   return (
     <View style={style}>
       {title && (
@@ -23,19 +21,20 @@ export const ExploreTableList: React.FC<ExploreTableListProps> = ({ title, items
       )}
       <View style={styles.items}>
         <GradientItemBackground style={StyleSheet.absoluteFill} />
-        {items.map((item: ExploreListItemContent, index:number) => {
-          return(
+        {items.map((item, index) => {
+          return (
             <ExploreTableListItem
-              key={`${item?.id}_${index}`}
-              title={item?.title}
-              body={item?.body}
-              icon={item?.icon}
-              buttonText={item?.buttonText}
-              buttonLink={item?.buttonLink}
-              iconType={item?.iconVariant}
+              key={`${item.id}_${index}`}
+              title={item.title}
+              body={item.body}
+              icon={item.icon}
+              buttonText={item.buttonText}
+              buttonLink={item.buttonLink}
+              link={item.link}
+              iconType={item.iconVariant}
             />
-          )}
-        )}
+          );
+        })}
       </View>
     </View>
   );

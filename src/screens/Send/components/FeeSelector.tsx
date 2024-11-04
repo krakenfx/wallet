@@ -1,19 +1,22 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { Keyboard, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { Keyboard, StyleSheet, View } from 'react-native';
 import Animated, { CurvedTransition, FadeIn, FadeOut } from 'react-native-reanimated';
 
-import { FeeOption, FeeOptionKind } from '@/api/types';
+import type { FeeOption, FeeOptionKind } from '@/api/types';
 import { Label } from '@/components/Label';
 import { Menu } from '@/components/Menu';
-import { DropdownOptionItem } from '@/components/Menu/DropdownMenu';
+import type { DropdownOptionItem } from '@/components/Menu/DropdownMenu';
 import { NetworkIcon } from '@/components/NetworkIcon';
 import { SvgIcon } from '@/components/SvgIcon';
-import { RealmishWallet } from '@/onChain/wallets/base';
+import type { RealmishWallet } from '@/onChain/wallets/base';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useTheme } from '@/theme/themes';
 
-import { FeeEstimationMap } from '../types';
 import { getFeeOptionsData } from '../utils/getFeeOptionsData';
+
+import type { FeeEstimationMap } from '../types';
 
 import loc from '/loc';
 
@@ -59,7 +62,7 @@ export const FeeSelector = React.memo(
           labelRight: o.amount,
           labelBottomLeft: o.duration,
           labelBottomRight: o.rate,
-        } satisfies DropdownOptionItem<FeeOptionKind>),
+        }) satisfies DropdownOptionItem<FeeOptionKind>,
     );
 
     if (!options.length) {

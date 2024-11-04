@@ -1,23 +1,16 @@
 import { chunk, compact } from 'lodash';
 
-import { DefaultApi, getHarmony } from '@/api/base/apiFactory';
-import { InternalBalance, TokenMetadata, Transaction } from '@/api/types';
-import { AssetMetadata } from '@/realm/assetMetadata';
+import type { DefaultApi } from '@/api/base/apiFactory';
+import { getHarmony } from '@/api/base/apiFactory';
+import type { InternalBalance, TokenMetadata, Transaction } from '@/api/types';
+import type { AssetMetadata } from '@/realm/assetMetadata';
 import { adaptTokenReputationToRealmAssetReputation } from '@/utils/adaptTokenReputationToRealmAssetReputation';
 import { isPromiseFulfilled } from '@/utils/promise';
 
-import {
-  AnyWalletKind,
-  BalanceResponse,
-  FeeOptions,
-  NotSupportedError,
-  PreparedTransaction,
-  SingleAddressNetwork,
-  TotalFee,
-  Transport,
-  WalletData,
-} from './base';
-import { IWalletStorage } from './walletState';
+import { NotSupportedError } from './base';
+
+import type { AnyWalletKind, BalanceResponse, FeeOptions, PreparedTransaction, SingleAddressNetwork, TotalFee, Transport, WalletData } from './base';
+import type { IWalletStorage } from './walletState';
 
 import { WrappedError } from '/helpers/errorHandler';
 

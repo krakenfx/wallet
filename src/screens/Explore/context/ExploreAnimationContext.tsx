@@ -1,11 +1,19 @@
+import type { PropsWithChildren } from 'react';
+
+import type { ViewStyle } from 'react-native';
+
+import type { AnimatedRef } from 'react-native-reanimated';
+
 import { useFocusEffect } from '@react-navigation/native';
-import React, { PropsWithChildren, useCallback, useContext } from 'react';
-import { ViewStyle, useWindowDimensions } from 'react-native';
-import { AnimatedRef, Easing, measure, runOnJS, runOnUI, useAnimatedRef, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import React, { useCallback, useContext } from 'react';
+
+import { useWindowDimensions } from 'react-native';
+
+import { Easing, measure, runOnJS, runOnUI, useAnimatedRef, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useBrowser } from '@/hooks/useBrowser';
-import { BrowserParams } from '@/screens/Browser';
+import type { BrowserParams } from '@/screens/Browser';
 
 import { isInAppBrowserEnabled } from '@/utils/featureFlags';
 

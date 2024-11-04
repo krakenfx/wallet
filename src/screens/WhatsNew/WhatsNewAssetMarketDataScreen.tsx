@@ -1,8 +1,6 @@
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import { FadeIn } from 'react-native-reanimated';
-import Animated from 'react-native-reanimated';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { SimpleSlide } from '@/components/AnimatedSlides';
 import { BottomSheet } from '@/components/BottomSheet';
@@ -12,7 +10,10 @@ import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { RealmSettingsKey, useSettingsMutations } from '@/realm/settings';
 import { useTokenPrices } from '@/realm/tokenPrice';
 import { sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
-import { NavigationProps, Routes } from '@/Routes';
+import { Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+
+import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 import loc from '/loc';
 

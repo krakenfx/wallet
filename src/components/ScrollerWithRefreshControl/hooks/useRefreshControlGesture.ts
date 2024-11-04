@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
-import { NativeScrollEvent } from 'react-native/types';
+
 import { Gesture } from 'react-native-gesture-handler';
 import { runOnJS, useAnimatedReaction, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+
+import type { NativeScrollEvent } from 'react-native/types';
 
 export const useRefreshControlGesture = (onRefresh: () => void, onScrollEvent?: (e: NativeScrollEvent) => void, refreshThreshold = 30, stiffness = 50) => {
   const scrollOffset = useSharedValue(0);

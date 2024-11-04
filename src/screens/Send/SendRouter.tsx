@@ -1,14 +1,23 @@
-import { CompositeScreenProps } from '@react-navigation/native';
-import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import { DefaultBackButton } from '@/components/BackButton';
-import { RouteProps } from '@/Routes';
+import type { RouteProps } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 
-import { SendConfirmRouteParams, SendConfirmScreen } from './SendConfirmScreen';
-import { SendQRScanRouteParams, SendQRScanScreen } from './SendQRScanScreen';
-import { SendRouteParams, SendScreen, navigationOptions as sendScreenOptions } from './SendScreen';
+import { SendConfirmScreen } from './SendConfirmScreen';
+
+import { SendQRScanScreen } from './SendQRScanScreen';
+
+import { SendScreen, navigationOptions as sendScreenOptions } from './SendScreen';
+
+import type { SendConfirmRouteParams } from './SendConfirmScreen';
+import type { SendQRScanRouteParams } from './SendQRScanScreen';
+
+import type { SendRouteParams } from './SendScreen';
+
+import type { CompositeScreenProps } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type SendStackParams = {
   Send: SendRouteParams;
@@ -36,7 +45,7 @@ export const SendRouter = () => {
 };
 
 SendRouter.navigationOptions = {
-  headerShown: false,
+  headerTransparent: true,
 };
 
 export type SendNavigationProps<T extends keyof SendStackParams> = CompositeScreenProps<

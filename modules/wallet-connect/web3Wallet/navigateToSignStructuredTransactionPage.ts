@@ -1,13 +1,72 @@
 import { CommonActions } from '@react-navigation/native';
 
-import { FeeOption } from '@/api/types';
-import { PreparedTransaction } from '@/onChain/wallets/base';
-import { RealmWallet } from '@/realm/wallets';
-import { WalletConnectSignRequest_StructuredTransactionParams } from '@/screens/AppSignRequest/WalletConnectSignRequest_StructuredTransactionScreen';
-import { Warning } from '@/types';
+import type { FeeOption } from '@/api/types';
+import type { PreparedTransaction } from '@/onChain/wallets/base';
+import type { EVMNetwork } from '@/onChain/wallets/evm';
+import { TRANSACTION_TYPES } from '@/realm/transactions/const';
+import type { RealmWallet } from '@/realm/wallets';
+import type { WalletConnectSignRequest_StructuredTransactionParams } from '@/screens/AppSignRequest/WalletConnectSignRequest_StructuredTransactionScreen';
+import type { Currency } from '@/screens/Settings/currency';
+import type { Warning } from '@/types';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
-import { DefinitionList, TransactionContent } from '../types';
+import type { DefinitionList, TransactionContent } from '../types';
+
+import type { TransactionRequest } from 'ethers';
+
+import loc from '/loc';
+import { buildAssetContent, classifyTransaction, getTransactionPageTitle } from '/modules/wallet-connect/web3Wallet/ethereum';
+
+type GetSignStructuredParamsFromTransactionProps = {
+  method: string;
+  preparedTransaction: PreparedTransaction<TransactionRequest>;
+  network: EVMNetwork;
+  currency: Currency;
+  dappName?: string;
+};
+
+export async function getSignStructuredParamsFromTransaction({
+  method,
+  preparedTransaction,
+  network,
+  currency,
+  dappName,
+}: GetSignStructuredParamsFromTransactionProps): Promise<{
+  transactionTitle: string | string[];
+  content: TransactionContent;
+}> {
+  const classifiedTransaction = await classifyTransaction(preparedTransaction.effects);
+  const assetContent = await buildAssetContent(classifiedTransaction, network, currency);
+  const getTransactionContent = (): TransactionContent => {
+    if (classifiedTransaction.kind === 'swap') {
+      return { type: TRANSACTION_TYPES.SWAP, assetContent: [assetContent[0], assetContent[1]] };
+    }
+
+    if (classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL) {
+      return {
+        type: TRANSACTION_TYPES.TOKEN_APPROVAL,
+        assetContent: [assetContent[0]],
+      };
+    }
+
+    if (classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED) {
+      return {
+        type: TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED,
+        subtitle: loc.formatString(loc.appSignRequest.allowAccessDescription, { dappName: dappName || '', tokenSymbol: assetContent[0]?.assetSymbol ?? '' }),
+        assetContent: [],
+      };
+    }
+
+    return { type: 'default', assetContent };
+  };
+  return {
+    transactionTitle: getTransactionPageTitle(classifiedTransaction.type, {
+      method,
+      tokenSymbol: classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED ? (assetContent[0]?.assetSymbol ?? '') : '',
+    }),
+    content: getTransactionContent(),
+  };
+}
 
 type Props = {
   dispatch: (action: ReturnType<typeof CommonActions.navigate>) => void;

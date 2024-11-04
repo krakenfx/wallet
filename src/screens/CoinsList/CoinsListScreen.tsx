@@ -13,22 +13,27 @@ import { omitNetworkIcons } from '@/components/TokenIcon';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useDebounceEffect } from '@/hooks/useDebounceEffect';
 import { useTokenPrices } from '@/realm/tokenPrice';
-import { RealmToken, sortTokensAlphabetically, sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
+import { sortTokensAlphabetically, sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
 import { useTokensGallery } from '@/realm/tokensGallery';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { isRealmObject } from '@/utils/isRealmObject';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { safelyAnimateLayout } from '@/utils/safeLayoutAnimation';
+
+import { tokenItemKeyExtractor } from '@/utils/tokenItemKeyExtractor';
 
 import { RemoteAssetRow } from './components/RemoteAssetRow';
 import { TokenRow } from './components/TokenRow';
 import { GlobalFilter } from './GlobalFilter';
 import { useFilteredTokensFromTokenLists } from './hooks/useFilteredTokensFromTokenLists';
 import { ReputationFilter } from './ReputationFilter';
-import { Item } from './types';
+
 import { SEARCH_SCORE_TO_SORTING_INDEX, getSearchScore } from './utils/getSearchScore';
 import { isRemoteAsset } from './utils/isRemoteAsset';
+
+import type { Item } from './types';
 
 import loc from '/loc';
 
@@ -37,13 +42,6 @@ const isInvalid = (item: Item) => {
 };
 
 const renderItemSeparator = () => <View style={styles.divider} />;
-const itemKeyExtractor = (item: Item, i: number) => {
-  if (isInvalid(item)) {
-    return 'invalid_' + i;
-  }
-
-  return item.assetId;
-};
 
 const getItemType = (item: Item): string => {
   if (isInvalid(item)) {
@@ -185,7 +183,7 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
             automaticallyAdjustContentInsets
             data={canRenderAll ? data : data.slice(0, INITIAL_TO_RENDER)}
             renderItem={renderItem}
-            keyExtractor={itemKeyExtractor}
+            keyExtractor={tokenItemKeyExtractor}
             ItemSeparatorComponent={renderItemSeparator}
             estimatedItemSize={60}
             estimatedListSize={estimatedListSize}

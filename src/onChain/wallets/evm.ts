@@ -1,20 +1,24 @@
 import { hdkey } from '@ethereumjs/wallet';
 
 import { arrayify, isHexString as isEthersHexString } from '@ethersproject/bytes';
-import { SignTypedDataVersion, TypedMessage, signTypedData } from '@metamask/eth-sig-util';
+
+import { signTypedData } from '@metamask/eth-sig-util';
 import { isValidAddress, toBuffer, toChecksumAddress } from 'ethereumjs-util';
-import { BigNumberish, TransactionRequest as EthersTransactionRequest, JsonRpcProvider, Wallet, keccak256 } from 'ethers';
+
+import { JsonRpcProvider, Wallet, keccak256 } from 'ethers';
 import { omit, startsWith } from 'lodash';
 
-import { EVMFeeOption, EVMMessageSimulationInput, EVMSimulationInput, SimulationInput, Transaction } from '@/api/types';
-import { AssetMetadata } from '@/realm/assetMetadata';
-import { RealmNft } from '@/realm/nfts';
-import { RealmToken } from '@/realm/tokens';
+import type { EVMFeeOption, EVMMessageSimulationInput, EVMSimulationInput, SimulationInput, Transaction } from '@/api/types';
+import type { AssetMetadata } from '@/realm/assetMetadata';
+import type { RealmNft } from '@/realm/nfts';
+import type { RealmToken } from '@/realm/tokens';
 import { SuperBigNumber } from '@/utils/SuperBigNumber';
 
 import { getEVMNFTProtocolType, getNFTTransferCall, getTokenTransferCall } from '../protocols/ethereum';
 
-import {
+import { HarmonyTransport } from './HarmonyTransport';
+
+import type {
   BalanceResponse,
   BlockExplorer,
   ExtendedPublicKeyAndChainCode,
@@ -28,8 +32,9 @@ import {
   WalletData,
   WalletDataWithSeed,
 } from './base';
-import { HarmonyTransport } from './HarmonyTransport';
-import { IWalletStorage, WalletStorage } from './walletState';
+import type { IWalletStorage, WalletStorage } from './walletState';
+import type { SignTypedDataVersion, TypedMessage } from '@metamask/eth-sig-util';
+import type { BigNumberish, TransactionRequest as EthersTransactionRequest } from 'ethers';
 
 export interface SignTransactionRequest {
   from?: string;
@@ -50,6 +55,14 @@ export class Etherscan implements BlockExplorer {
   }
 }
 
+export class AvascanCChain implements BlockExplorer {
+  constructor(public host: string) {}
+
+  transactionUri(txId: string): string {
+    return `https://${this.host}/blockchain/c/tx/${txId}`;
+  }
+}
+
 export class EVMNetwork implements Network<EthersTransactionRequest, SignTransactionRequest, EVMFeeOption> {
   label: string;
   blockExplorer?: BlockExplorer;
@@ -64,6 +77,8 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
   isTestnet: boolean;
   nativeTokenLabel?: string;
   defaultGasLimit?: number;
+  gasUnit?: string;
+  blockchainLabel?: string;
 
   constructor(config: {
     label: string;
@@ -76,6 +91,8 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
     disable1559?: boolean;
     isTestnet?: boolean;
     defaultGasLimit?: number;
+    gasUnit?: string;
+    blockchainLabel?: string;
   }) {
     this.label = config.label;
     this.blockExplorer = config.blockExplorer;
@@ -88,6 +105,8 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
     this.isTestnet = config.isTestnet ?? false;
     this.nativeTokenLabel = config.nativeTokenLabel;
     this.defaultGasLimit = config.defaultGasLimit;
+    this.gasUnit = config.gasUnit || 'Gwei';
+    this.blockchainLabel = config.blockchainLabel;
     this.icon =
       config.icon ||
       (({ opacity }) => ({
@@ -229,7 +248,7 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
 
   formatTransactionFee(amount: string): string {
     const fee = new SuperBigNumber(amount).dividedBy(new SuperBigNumber(10).pow(9));
-    return `${fee.isLessThan(1) ? fee.toFixed(4) : fee.toFixed(0)} Gwei`;
+    return `${fee.isLessThan(1) ? fee.toFixed(4) : fee.toFixed(0)} ${this.gasUnit}`;
   }
 }
 

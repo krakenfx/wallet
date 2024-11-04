@@ -1,10 +1,11 @@
+import type { WebViewProps } from 'react-native-webview';
+
 import { useNavigation } from '@react-navigation/native';
 
 import { Linking } from 'react-native';
-import { WebViewProps } from 'react-native-webview';
 
 import { Routes } from '@/Routes';
-import { BrowserParams } from '@/screens/Browser';
+import type { BrowserParams } from '@/screens/Browser';
 import { isInAppBrowserEnabled } from '@/utils/featureFlags';
 
 interface Options extends WebViewProps, Omit<BrowserParams, 'url'> {}

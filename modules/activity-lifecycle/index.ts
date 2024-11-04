@@ -1,4 +1,6 @@
-import { DeviceEventEmitter, EmitterSubscription, NativeModules, Platform } from 'react-native';
+import type { EmitterSubscription } from 'react-native';
+
+import { DeviceEventEmitter, NativeModules, Platform } from 'react-native';
 
 type Event = 'onActivityStarted' | 'onActivityResumed' | 'onActivityPaused' | 'onActivityStopped';
 interface ActivityLifecycleInterface {

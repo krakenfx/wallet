@@ -1,5 +1,5 @@
 import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
-import { SessionProposal } from '@/screens/ConnectApp/types';
+import type { SessionProposal } from '@/screens/ConnectApp/types';
 
 import { SOLANA_MAINNET_ID_WRONG } from '/modules/wallet-connect/solanaShim';
 import { isCAIP2 } from '/modules/wallet-connect/utils';

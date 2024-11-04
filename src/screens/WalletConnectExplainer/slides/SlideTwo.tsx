@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
-import { AnimationMarkers, SequenceSlide, SequenceSlides } from '@/components/AnimatedSlides';
+import type { AnimationMarkers, SequenceSlide } from '@/components/AnimatedSlides';
+import { SequenceSlides } from '@/components/AnimatedSlides';
 
 import loc from '/loc';
 

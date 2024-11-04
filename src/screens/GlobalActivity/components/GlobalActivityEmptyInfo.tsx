@@ -3,7 +3,8 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Label } from '@/components/Label';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 
 import loc from '/loc';
 

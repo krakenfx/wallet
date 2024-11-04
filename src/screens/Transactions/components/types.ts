@@ -1,10 +1,11 @@
-import { ReactElement } from 'react';
-import { StyleProp, ViewStyle } from 'react-native/types';
+import type { ReactElement } from 'react';
 
-import { Transaction } from '@/api/types';
-import { RealmToken } from '@/realm/tokens';
-import { RealmTransaction, TransactionStatus } from '@/realm/transactions';
-import { NavigationProps } from '@/Routes';
+import type { Transaction } from '@/api/types';
+import type { RealmToken } from '@/realm/tokens';
+import type { RealmTransaction, TransactionStatus } from '@/realm/transactions';
+import type { NavigationProps } from '@/Routes';
+
+import type { StyleProp, ViewStyle } from 'react-native/types';
 
 export type TransactionRowCommonProps = {
   item: RealmTransaction;

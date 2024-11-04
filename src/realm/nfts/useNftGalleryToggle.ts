@@ -1,7 +1,8 @@
 import { useLocalStateUpdate } from '@/hooks/useLocalStateUpdate';
 
-import { RealmNft } from './schema';
 import { useNftsMutations } from './useNftsMutations';
+
+import type { RealmNft } from './schema';
 
 export const useNftGalleryToggle = (nft: RealmNft) => {
   const { toggleNftInGallery } = useNftsMutations();

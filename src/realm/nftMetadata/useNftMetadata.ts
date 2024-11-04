@@ -1,16 +1,18 @@
 import { useEffect, useMemo } from 'react';
-import Realm from 'realm';
 
 import { getHarmony } from '@/api/base/apiFactory';
-import { NFTMetadata } from '@/api/types';
+import type { NFTMetadata } from '@/api/types';
 import { useRealmQueue } from '@/realm/hooks/useRealmQueue';
 import { useObject } from '@/realm/RealmContext';
 
 import { useLocalCacheState } from '../hooks/useLocalCacheState';
-import { RealmWallet } from '../wallets';
 
-import { NftMetadata, REALM_TYPE_NFT_METADATA, RealmNftMetadata } from './schema';
+import { REALM_TYPE_NFT_METADATA } from './schema';
 import { useNftMetadataMutations } from './useNftMetadataMutations';
+
+import type { NftMetadata, RealmNftMetadata } from './schema';
+import type { RealmWallet } from '../wallets';
+import type Realm from 'realm';
 
 import { createErrorHandlerWithContext } from '/helpers/errorHandler';
 

@@ -1,8 +1,9 @@
 import { groupBy } from 'lodash';
 import { useMemo } from 'react';
 
-import { NftsCollection } from './schema';
 import { useNfts } from './useNfts';
+
+import type { NftsCollection } from './schema';
 
 export const useNftsCollections = (networkFilter: string[] = []): NftsCollection[] => {
   const nfts = useNfts(false, networkFilter);

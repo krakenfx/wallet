@@ -1,10 +1,16 @@
+import type { PropsWithChildren } from 'react';
+
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import Clipboard from '@react-native-clipboard/clipboard';
-import React, { PropsWithChildren, useCallback, useState } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import React, { useCallback, useState } from 'react';
+
+import { StyleSheet, View } from 'react-native';
 
 import { FadeIn, FadeOut, ZoomIn } from 'react-native-reanimated';
 
-import { SvgIcon, SvgIconProps } from '@/components/SvgIcon';
+import type { SvgIconProps } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { showToast } from '@/components/Toast';
 import { Touchable } from '@/components/Touchable';
 

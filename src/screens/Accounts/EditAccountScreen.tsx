@@ -10,7 +10,7 @@ import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useAccountById, useAccountsMutations } from '@/realm/accounts';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { AccountNavigationProps } from './AccountRouter';
+import type { AccountNavigationProps } from './AccountRouter';
 
 import loc from '/loc';
 

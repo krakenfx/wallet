@@ -5,7 +5,8 @@ import Animated, { FadeIn, FadeOut, runOnJS, useAnimatedReaction, useSharedValue
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
+import type { BottomSheetRef } from '@/components/BottomSheet';
+import { BottomSheet } from '@/components/BottomSheet';
 import { ReputationInfo } from '@/components/Reputation';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';

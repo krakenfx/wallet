@@ -2,7 +2,9 @@ import React, { useMemo } from 'react';
 
 import { SimpleSlide } from '@/components/AnimatedSlides';
 
-import { AppProps, ExampleAppList } from '../components/ExampleAppList';
+import { ExampleAppList } from '../components/ExampleAppList';
+
+import type { AppProps } from '../components/ExampleAppList';
 
 import loc from '/loc';
 

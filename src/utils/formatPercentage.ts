@@ -1,5 +1,5 @@
-import { Currency } from '@/screens/Settings/currency';
-import { Theme } from '@/theme/themes';
+import type { Currency } from '@/screens/Settings/currency';
+import type { Theme } from '@/theme/themes';
 
 import { formatTokenAmount } from './formatTokenAmount';
 

@@ -1,7 +1,14 @@
-import React, { ComponentProps } from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import type { ComponentProps } from 'react';
+
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import type { StopProps } from 'react-native-svg';
+
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
-import Svg, { Defs, LinearGradient, Rect, Stop, StopProps } from 'react-native-svg';
+
+import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
 import { useTheme } from '@/theme/themes';
 

@@ -4,9 +4,9 @@ import { GradientScreenView } from '@/components/Gradients';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { SettingsNavigationProps } from '../SettingsRouter';
-
 import { WalletBackup } from './components';
+
+import type { SettingsNavigationProps } from '../SettingsRouter';
 
 export const SettingsWalletBackupScreen = ({ navigation }: SettingsNavigationProps<'SettingsWalletBackup'>) => {
   const onContinue = useCallback(() => {

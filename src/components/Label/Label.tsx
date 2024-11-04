@@ -1,8 +1,13 @@
-import React from 'react';
-import { Platform, TextProps } from 'react-native';
-import Animated, { AnimateProps } from 'react-native-reanimated';
+import type { TextProps } from 'react-native';
 
-import { Theme, useTheme } from '@/theme/themes';
+import type { AnimateProps } from 'react-native-reanimated';
+
+import { Platform } from 'react-native';
+
+import Animated from 'react-native-reanimated';
+
+import type { Theme } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 export type TypographyKey = keyof typeof Typography;
 
@@ -63,6 +68,7 @@ export const Typography = {
   boldMonospace: { fontSize: 13, fontFamily: Fonts.IBMPlexMono.bold },
   boldLargeMonospace: { fontSize: 15, fontFamily: Fonts.IBMPlexMono.bold },
   mediumBody: { fontSize: 15, fontFamily: Fonts.IBMPlexSans.semiBold, lineHeight: 22 },
+  mediumCaption1: { fontSize: 13, fontFamily: Fonts.IBMPlexSans.semiBold },
   regularTitle1: { fontSize: 18, fontFamily: Fonts.Celias.regular, lineHeight: 26 },
   regularTitle2: { fontSize: 16, fontFamily: Fonts.Celias.regular },
   regularBody: { fontSize: 15, fontFamily: Fonts.IBMPlexSans.regular, lineHeight: 22 },

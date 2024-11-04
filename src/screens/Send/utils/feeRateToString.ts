@@ -1,4 +1,4 @@
-import { RealmishWallet } from '@/onChain/wallets/base';
+import type { RealmishWallet } from '@/onChain/wallets/base';
 import { DogecoinNetwork } from '@/onChain/wallets/dogecoin';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { SolanaNetwork } from '@/onChain/wallets/solana';

@@ -1,10 +1,13 @@
+import type { LayoutChangeEvent, LayoutRectangle, NativeSyntheticEvent, StyleProp, TextLayoutEventData, ViewStyle } from 'react-native';
+
 import { clamp } from 'lodash';
 import React, { useCallback, useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, NativeSyntheticEvent, StyleProp, StyleSheet, TextLayoutEventData, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { Label, LabelProps, TypographyKey } from '@/components/Label';
-import { Theme } from '@/theme/themes';
+import type { LabelProps, TypographyKey } from '@/components/Label';
+import { Label } from '@/components/Label';
+import type { Theme } from '@/theme/themes';
 
 import { Tick } from './Tick';
 

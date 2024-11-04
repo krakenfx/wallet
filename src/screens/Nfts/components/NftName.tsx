@@ -1,8 +1,11 @@
-import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
-import { Label, TypographyKey } from '@/components/Label';
-import { RealmNft } from '@/realm/nfts';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+
+import type { TypographyKey } from '@/components/Label';
+import { Label } from '@/components/Label';
+import type { RealmNft } from '@/realm/nfts';
 
 type Props = {
   nft: RealmNft;

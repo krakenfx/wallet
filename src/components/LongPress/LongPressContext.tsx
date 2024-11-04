@@ -1,10 +1,14 @@
+import type { PropsWithChildren } from 'react';
+
+import type { StyleProp, ViewStyle } from 'react-native';
+import type { AnimatedStyle } from 'react-native-reanimated';
+
 import { noop } from 'lodash';
-import React, { PropsWithChildren, createContext, useContext, useMemo, useRef, useState } from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
-import { AnimatedStyle, Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import React, { createContext, useContext, useMemo, useRef, useState } from 'react';
+import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { useGlobalState } from '@/components/GlobalState';
-import { LongPressOptionItemProps } from '@/components/LongPress/LongPressOptionItem';
+import type { LongPressOptionItemProps } from '@/components/LongPress/LongPressOptionItem';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 
 type PressOutCallback = () => void;

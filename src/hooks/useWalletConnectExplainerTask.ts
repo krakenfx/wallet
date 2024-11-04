@@ -4,7 +4,8 @@ import { useCallback } from 'react';
 import { InteractionManager } from 'react-native';
 
 import { RealmSettingsKey, useSettingsByKey, useSettingsMutations } from '@/realm/settings';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 
 export const useWalletConnectExplainerTask = () => {
   const { setWalletConnectExplainerTaskCompleted } = useSettingsMutations();

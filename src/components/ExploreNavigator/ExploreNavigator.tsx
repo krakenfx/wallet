@@ -1,6 +1,8 @@
-import { NavigationState, useNavigation } from '@react-navigation/native';
+import type { FC } from 'react';
 
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { ExploreTabBar } from '@/components/ExploreTabBar';
 import { useGlobalState } from '@/components/GlobalState';
@@ -9,6 +11,8 @@ import { useOnScanPress } from '@/hooks/useOnScanPress';
 import { Routes } from '@/Routes';
 
 import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
+
+import type { NavigationState } from '@react-navigation/native';
 
 const getRouteFromState = (state: NavigationState): string => {
   const routes = state?.routes ?? [];

@@ -1,7 +1,7 @@
-import { ObjectSchema } from 'realm';
+import type { NativeTokenSymbol } from '@/onChain/wallets/base';
+import type { WalletType } from '@/onChain/wallets/registry';
 
-import { NativeTokenSymbol } from '@/onChain/wallets/base';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { ObjectSchema } from 'realm';
 
 export type Wallet = {
   id: string;

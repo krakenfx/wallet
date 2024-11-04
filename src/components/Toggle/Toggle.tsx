@@ -1,6 +1,11 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import type { SharedValue } from 'react-native-reanimated';
+
 import React from 'react';
-import { StyleProp, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
-import Animated, { Extrapolate, SharedValue, interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+
+import Animated, { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { Label } from '@/components/Label';
 import { useTheme } from '@/theme/themes';

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
-import { Label, TypographyKey } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { TypographyKey } from '@/components/Label';
+import { Label } from '@/components/Label';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useTheme } from '@/theme/themes';
 

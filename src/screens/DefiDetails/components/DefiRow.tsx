@@ -1,4 +1,6 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FadeIn } from 'react-native-reanimated';
 
@@ -8,7 +10,7 @@ import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
 import { Touchable } from '@/components/Touchable';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { parseDefiNetworkTypeToWalletType } from '@/onChain/wallets/registry';
-import { RealmDefi } from '@/realm/defi';
+import type { RealmDefi } from '@/realm/defi';
 import { useIsHideBalancesEnabled } from '@/realm/settings';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';

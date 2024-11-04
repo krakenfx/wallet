@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 
 import { PushNotifications } from '@/api/PushNotifications';
-import { BottomSheetRef } from '@/components/BottomSheet';
+import type { BottomSheetRef } from '@/components/BottomSheet';
 import { PushNotificationPrompt } from '@/components/PushNotificationPrompt';
 import { PromptSheet } from '@/components/Sheets';
 import { useSettingsMutations } from '@/realm/settings';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { handleError } from '/helpers/errorHandler';

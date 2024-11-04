@@ -1,13 +1,13 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import LottieView from 'lottie-react-native';
 import React, { useEffect } from 'react';
-import { Dimensions, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 
 type Props = {
   style?: StyleProp<ViewStyle>;
 };
-
-const windowWidth = Dimensions.get('window').width;
 
 export const Skeleton = (props: Props) => {
   const { style } = props;
@@ -21,6 +21,7 @@ export const Skeleton = (props: Props) => {
   useEffect(() => {
     alpha.value = withRepeat(withTiming(1, { duration: 600 }), -1, true);
   }, [alpha]);
+
   return (
     <View style={[styles.container, style]}>
       <Animated.View style={animatedStyle}>
@@ -33,7 +34,6 @@ export const Skeleton = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    width: windowWidth,
     height: 300,
     borderRadius: 16,
     overflow: 'hidden',

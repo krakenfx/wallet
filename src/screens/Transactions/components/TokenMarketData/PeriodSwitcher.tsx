@@ -6,7 +6,7 @@ import Animated, { CurvedTransition, Extrapolation, interpolate, useAnimatedStyl
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { Touchable } from '@/components/Touchable';
-import { PriceHistoryPeriod } from '@/realm/tokenPrice';
+import type { PriceHistoryPeriod } from '@/realm/tokenPrice';
 import { useTheme } from '@/theme/themes';
 
 import loc from '/loc';

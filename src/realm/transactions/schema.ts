@@ -1,7 +1,11 @@
-import { ObjectSchema } from 'realm';
+import { REALM_TYPE_TRANSACTION_NOTES } from '../transactionNotes';
 
-import { REALM_TYPE_TRANSACTION_NOTES, RealmTransactionNotes } from '../transactionNotes';
-import { REALM_TYPE_WALLET, RealmWallet } from '../wallets';
+import { REALM_TYPE_WALLET } from '../wallets';
+
+import type { RealmTransactionNotes } from '../transactionNotes';
+import type { RealmWallet } from '../wallets';
+
+import type { ObjectSchema } from 'realm';
 
 export interface Transaction {
   id: string;

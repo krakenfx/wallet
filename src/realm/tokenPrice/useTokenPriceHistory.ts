@@ -4,7 +4,8 @@ import { fetchTokenPriceHistory } from '@/api/fetchTokenPriceHistory';
 import { useObject } from '@/realm/RealmContext';
 import { useAppCurrency } from '@/realm/settings';
 import { useTokenPriceHistoryMutations } from '@/realm/tokenPrice';
-import { PriceHistoryPeriod, REALM_TYPE_TOKEN_PRICE_HISTORY, RealmTokenPriceHistory } from '@/realm/tokenPrice/schema';
+import type { PriceHistoryPeriod, RealmTokenPriceHistory } from '@/realm/tokenPrice/schema';
+import { REALM_TYPE_TOKEN_PRICE_HISTORY } from '@/realm/tokenPrice/schema';
 import { getPriceHistoryId } from '@/realm/tokenPrice/utils';
 
 export const useTokenPriceHistory = (assetId: string, period: PriceHistoryPeriod) => {

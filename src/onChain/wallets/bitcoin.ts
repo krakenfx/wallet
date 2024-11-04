@@ -1,22 +1,23 @@
 import * as secp256k1 from '@bitcoinerlab/secp256k1';
 import BigNumber from 'bignumber.js';
-import BIP32Factory, { BIP32Interface } from 'bip32';
+
+import BIP32Factory from 'bip32';
 import * as bitcoin from 'bitcoinjs-lib';
 import coinSelect from 'coinselect';
 import coinSelectSplit from 'coinselect/split';
-import { ECPairAPI, ECPairFactory } from 'ecpair';
+
+import { ECPairFactory } from 'ecpair';
 import { flatMap, reverse } from 'lodash';
 
 import { Buffer } from 'buffer';
 
-import { BaseFeeOption, ReceiveAsset, SendAsset, Transaction, TransactionEffect } from '@/api/types';
-import { RealmToken } from '@/realm/tokens';
+import type { BaseFeeOption, ReceiveAsset, SendAsset, Transaction, TransactionEffect } from '@/api/types';
+import type { RealmToken } from '@/realm/tokens';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
 import * as BlueElectrum from '../blueElectrumModules/BlueElectrum';
-import { VOut } from '../blueElectrumModules/BlueElectrum';
+
 import {
-  HistoryItem,
   estimateFees,
   multiGetBalanceByAddress,
   multiGetHistoryByAddress,
@@ -24,7 +25,14 @@ import {
   splitIntoChunks,
   waitTillConnected,
 } from '../blueElectrumModules/BlueElectrumTyped';
-import {
+
+import { XPUB_PREFIX, refreshSequence, setXPubPrefix } from '../wallets/bitcoinHelpers';
+
+import { ChainAgnostic } from './utils/ChainAgnostic';
+
+import type { VOut } from '../blueElectrumModules/BlueElectrum';
+import type { HistoryItem } from '../blueElectrumModules/BlueElectrumTyped';
+import type {
   BalanceResponse,
   BlockExplorer,
   ExtendedPublicKeyAndChainCode,
@@ -38,10 +46,11 @@ import {
   WalletData,
   WalletDataWithSeed,
 } from '../wallets/base';
-import { XPUB_PREFIX, refreshSequence, setXPubPrefix } from '../wallets/bitcoinHelpers';
-import { IWalletStorage } from '../wallets/walletState';
 
-import { ChainAgnostic } from './utils/ChainAgnostic';
+import type { IWalletStorage } from '../wallets/walletState';
+
+import type { BIP32Interface } from 'bip32';
+import type { ECPairAPI } from 'ecpair';
 
 import loc from '/loc';
 

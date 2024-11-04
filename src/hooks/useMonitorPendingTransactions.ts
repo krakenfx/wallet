@@ -5,7 +5,8 @@ import { getImplForWallet } from '@/onChain/wallets/registry';
 import { useRealm } from '@/realm/RealmContext';
 import { checkTokenGalleryChange } from '@/realm/tokenPrice/utils';
 import { getTokenById, useTokensFetch, useTokensMutations } from '@/realm/tokens';
-import { RealmPendingTransaction, usePendingTransactions, useTransactionMutations } from '@/realm/transactions';
+import type { RealmPendingTransaction } from '@/realm/transactions';
+import { usePendingTransactions, useTransactionMutations } from '@/realm/transactions';
 
 import loc from '/loc';
 

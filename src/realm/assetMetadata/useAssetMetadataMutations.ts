@@ -4,7 +4,9 @@ import Realm from 'realm';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
 
-import { AssetMetadata, REALM_TYPE_ASSET_METADATA } from './schema';
+import { REALM_TYPE_ASSET_METADATA } from './schema';
+
+import type { AssetMetadata } from './schema';
 
 export const useAssetMetadataMutations = () => {
   const realm = useRealm();

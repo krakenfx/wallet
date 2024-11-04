@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 interface Props {
   coinType?: WalletType;

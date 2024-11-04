@@ -9,7 +9,8 @@ import { Label } from '@/components/Label';
 import { BackupMethodSelector } from '@/components/WalletBackup/BackupMethodSelector';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useLanguage } from '@/realm/settings';
-import { NavigationProps, Routes } from '@/Routes';
+import { Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 import { navigationStyle } from '@/utils/navigationStyle';
 

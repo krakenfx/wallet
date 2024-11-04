@@ -6,10 +6,14 @@ import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { LongPressable } from '@/components/LongPress';
-import { LongPressOptionItemProps } from '@/components/LongPress/LongPressOptionItem';
-import { Touchable, TouchableProps } from '@/components/Touchable';
-import { RealmNft, useNftGalleryToggle, useNftsMutations } from '@/realm/nfts';
-import { NavigationProps, Routes } from '@/Routes';
+import type { LongPressOptionItemProps } from '@/components/LongPress/LongPressOptionItem';
+import type { TouchableProps } from '@/components/Touchable';
+import { Touchable } from '@/components/Touchable';
+import { useBrowser } from '@/hooks/useBrowser.tsx';
+import type { RealmNft } from '@/realm/nfts';
+import { useNftGalleryToggle, useNftsMutations } from '@/realm/nfts';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { getLabelsFromNft } from '@/screens/Nfts/utils';
 
 import { ArchiveBadge } from '../components/ArchiveBadge';
@@ -40,6 +44,7 @@ export const NftItem = React.memo(({ nft, navigation, marginBottom, ...touchable
   const { toggleGallery } = useNftGalleryToggle(nft);
   const { toggleNftInArchive } = useNftsMutations();
   const [isLongPressed, setIsLongPressed] = useState(false);
+  const { openURL } = useBrowser();
 
   const longPressOptions = useMemo(() => {
     const explorer = configNftLinks[nft.wallet.type]?.blockchainExplorer;
@@ -63,7 +68,7 @@ export const NftItem = React.memo(({ nft, navigation, marginBottom, ...touchable
       explorer && {
         text: loc.formatString(loc.nftOptions.viewOn, { explorer: explorer.label }),
         iconName: explorer.icon ?? 'placeholder-explorer',
-        onPress: explorer.onPress(nft.metadata.collectionId, nft.metadata.tokenId),
+        onPress: explorer.onPress(nft.metadata.collectionId, nft.metadata.tokenId, openURL),
         spaceBelow: true,
       },
       {

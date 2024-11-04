@@ -1,21 +1,29 @@
+import type { SectionListData, ViewToken } from 'react-native';
+
 import React, { Fragment, useCallback, useMemo, useRef } from 'react';
-import { Platform, SectionListData, StyleSheet, View, ViewToken } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
+import type { BottomSheetRef } from '@/components/BottomSheet';
+import { BottomSheet } from '@/components/BottomSheet';
 import { FadingElement } from '@/components/FadingElement';
 import { ListAnimatedItem } from '@/components/ListAnimatedItem';
 import { ListHeader } from '@/components/ListHeader';
 import { NFTCollectionRow } from '@/components/NFTCollectionRow';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
-import { RealmDefi, useDefi } from '@/realm/defi';
-import { NftsCollection, useNftsArchivedCollection, useNftsCollections } from '@/realm/nfts';
+import type { RealmDefi } from '@/realm/defi';
+import { useDefi } from '@/realm/defi';
+import type { NftsCollection } from '@/realm/nfts';
+import { useNftsArchivedCollection, useNftsCollections } from '@/realm/nfts';
 import { useTokenPrices } from '@/realm/tokenPrice';
-import { RealmToken, sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
-import { NavigationProps, Routes } from '@/Routes';
+import type { RealmToken } from '@/realm/tokens';
+import { sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { DefiRow } from '@/screens/DefiDetails/components/DefiRow';
+import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
 import { isRealmObject } from '@/utils/isRealmObject';
 
 import { useHomeAssetPanelEmitterListener } from './homeAssetPanelEventEmitter';
@@ -222,7 +230,8 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   }, [bottom, defaultSnapPoints]);
 
   const snapPoints = useMemo(() => [minBottomSnapPoint, ...defaultSnapPoints], [defaultSnapPoints, minBottomSnapPoint]);
-  const paddingBottom = useBottomElementSpacing(24);
+  const isExploreEnabled = useFeatureFlagEnabled(FeatureFlag.ExploreScreenEnabled);
+  const paddingBottom = useBottomElementSpacing(isExploreEnabled ? 80 : 24);
 
   const showRecentActivity = useCallback(() => {
     bottomSheetRef.current?.snapToIndex(0);

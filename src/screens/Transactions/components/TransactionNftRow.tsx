@@ -1,18 +1,24 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
-import { Transaction } from '@/api/types';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { StyleSheet, View } from 'react-native';
+
+import type { Transaction } from '@/api/types';
 import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { TokenIconFallback } from '@/components/TokenIcon';
 import { Touchable } from '@/components/Touchable';
 import { useNftMetadata } from '@/realm/nftMetadata';
 
-import { RealmToken, useTokenByAssetId } from '@/realm/tokens';
-import { RealmTransaction, usePendingTransactionById } from '@/realm/transactions';
+import type { RealmToken } from '@/realm/tokens';
+import { useTokenByAssetId } from '@/realm/tokens';
+import type { RealmTransaction } from '@/realm/transactions';
+import { usePendingTransactionById } from '@/realm/transactions';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { NFTTransactionData, getTransactionTitle } from '@/realm/transactions/getTransactionMetadata';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NFTTransactionData } from '@/realm/transactions/getTransactionMetadata';
+import { getTransactionTitle } from '@/realm/transactions/getTransactionMetadata';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 
 import { formatTransactionAddress } from '../utils/formatAddress';

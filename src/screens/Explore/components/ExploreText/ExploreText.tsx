@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import { Label } from '@/components/Label';
 
-import { ExploreTextProps } from './ExploreText.types';
+import type { ExploreTextProps } from './ExploreText.types';
 
 export const ExploreText: React.FC<ExploreTextProps> = ({
   title,

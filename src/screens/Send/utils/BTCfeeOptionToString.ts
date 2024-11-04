@@ -1,4 +1,4 @@
-import { FeeOptionKind } from '@/api/types';
+import type { FeeOptionKind } from '@/api/types';
 
 import loc from '/loc';
 

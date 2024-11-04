@@ -1,25 +1,28 @@
-import { SessionTypes, Verify } from '@walletconnect/types';
-import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
-import Realm from 'realm';
-
-import { EVMFeeOption } from '@/api/types';
+import type { EVMFeeOption } from '@/api/types';
 import { showToast } from '@/components/Toast';
-import { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
-import { WalletStorage, getWalletStorage } from '@/onChain/wallets/walletState';
+import type { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
+import type { WalletStorage } from '@/onChain/wallets/walletState';
+import { getWalletStorage } from '@/onChain/wallets/walletState';
 import { getAppCurrency } from '@/realm/settings/useAppCurrency';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { RealmWallet } from '@/realm/wallets';
-import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
+import type { RealmWallet } from '@/realm/wallets';
+import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { handleRedirect } from '../../connectAppWithWalletConnect/handleRedirect';
-import { ReactNavigationDispatch } from '../../types';
+
 import { getWarningFromSimulation } from '../../utils';
-import { navigateToSignStructuredTransactionPage } from '../navigateToSignStructuredTransactionPage';
+import { getSignStructuredParamsFromTransaction, navigateToSignStructuredTransactionPage } from '../navigateToSignStructuredTransactionPage';
 import { responseRejected } from '../responseRejected';
 import { sessionIsDeepLinked } from '../sessionIsDeepLinked';
 
-import { TransactionObject, WALLET_CONNECT_ETH_SIGN_TYPES } from './types';
-import { adaptTransactionObjectToDefinitionList, buildAssetContent, classifyTransaction, getTransactionPageTitle } from './utils';
+import { WALLET_CONNECT_ETH_SIGN_TYPES } from './types';
+import { adaptTransactionObjectToDefinitionList, classifyTransaction } from './utils';
+
+import type { TransactionObject } from './types';
+import type { ReactNavigationDispatch } from '../../types';
+import type { SessionTypes, Verify } from '@walletconnect/types';
+import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
+import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -75,10 +78,17 @@ export async function handleSessionRequestTransaction({
   
   const currency = getAppCurrency(realm);
 
-  const assetContent = await buildAssetContent(classifiedTransaction, network, currency);
+  const dappName = activeSessions[topic].peer.metadata.name;
+
+  const { transactionTitle, content } = await getSignStructuredParamsFromTransaction({
+    method,
+    network,
+    currency,
+    preparedTransaction,
+    dappName,
+  });
 
   
-  const dappName = activeSessions[topic].peer.metadata.name;
   const { approveSignRequest: approveSignRequest_, fee: fee_ } = await navigateToSignStructuredTransactionPage({
     dispatch,
     wallet: foundWallet,
@@ -87,32 +97,8 @@ export async function handleSessionRequestTransaction({
       name: dappName,
       url: activeSessions[topic].peer.metadata.url,
     },
-    transactionTitle: getTransactionPageTitle(classifiedTransaction.type, {
-      method,
-      tokenSymbol: classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED ? (assetContent[0]?.assetSymbol ?? '') : '',
-    }),
-    content: (function getTransactionContent() {
-      if (classifiedTransaction.kind === 'swap') {
-        return { type: TRANSACTION_TYPES.SWAP, assetContent: [assetContent[0], assetContent[1]] };
-      }
-
-      if (classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL) {
-        return {
-          type: TRANSACTION_TYPES.TOKEN_APPROVAL,
-          assetContent: [assetContent[0]],
-        };
-      }
-
-      if (classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED) {
-        return {
-          type: TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED,
-          subtitle: loc.formatString(loc.appSignRequest.allowAccessDescription, { dappName, tokenSymbol: assetContent[0]?.assetSymbol ?? '' }),
-          assetContent: [],
-        };
-      }
-
-      return { type: 'default', assetContent };
-    })(),
+    transactionTitle,
+    content,
     detailsContent: adaptTransactionObjectToDefinitionList(transaction, network),
     preparedTransaction,
     hideFeeSelector: classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL,

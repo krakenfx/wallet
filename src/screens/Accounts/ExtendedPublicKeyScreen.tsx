@@ -14,7 +14,7 @@ import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 import { showToast } from '@/components/Toast';
 import { TokenIcon } from '@/components/TokenIcon';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { ExtendedPublicKeyQRCode } from './components/ExtendedPublicKeyQRCode';

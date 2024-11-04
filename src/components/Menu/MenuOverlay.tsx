@@ -1,15 +1,26 @@
+import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
+
+import type { WithSpringConfig } from 'react-native-reanimated';
+
 import { BlurView } from '@react-native-community/blur';
 import React, { useEffect, useMemo, useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, TouchableWithoutFeedback, View, useWindowDimensions } from 'react-native';
-import Animated, { WithSpringConfig, interpolate, runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { Platform, StyleSheet, TouchableWithoutFeedback, View, useWindowDimensions } from 'react-native';
+
+import Animated, { interpolate, runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useMenu } from '@/components/Menu/MenuProvider';
 import { useTheme } from '@/theme/themes';
 import { useAndroidBackButton } from '@/utils/useAndroidBackButton';
 
-import { ContextMenu, ContextMenuProps } from './ContextMenu';
-import { DropdownMenu, DropdownMenuProps } from './DropdownMenu';
+import { ContextMenu } from './ContextMenu';
+
+import { DropdownMenu } from './DropdownMenu';
+
+import { TooltipMenu, type TooltipMenuProps } from './TooltipMenu';
+
+import type { ContextMenuProps } from './ContextMenu';
+import type { DropdownMenuProps } from './DropdownMenu';
 
 export type PositionProps = {
   origin: {
@@ -21,7 +32,10 @@ export type PositionProps = {
   menuWidth?: number;
 };
 
-export type PopupMenuProps<T> = (ContextMenuProps & { type: 'context' }) | (DropdownMenuProps<T> & { type: 'dropdown' });
+export type PopupMenuProps<T> =
+  | (ContextMenuProps & { type: 'context' })
+  | (DropdownMenuProps<T> & { type: 'dropdown' })
+  | (TooltipMenuProps & { type: 'tooltip' });
 export type MenuOverlayProps<T = any> = PopupMenuProps<T> & PositionProps;
 
 const springConfig: WithSpringConfig = {
@@ -37,7 +51,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
   const { colors } = useTheme();
   const frame = useSafeAreaFrame();
   const insets = useSafeAreaInsets();
-  const alignTo = origin.x < width / 2 ? 'left' : 'right';
+  const horizontalAlign = origin.x < width / 2 ? 'left' : 'right';
   const transition = useSharedValue(0);
 
   useEffect(() => {
@@ -70,22 +84,45 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
     return height - origin.y - Platform.select({ ios: insets.bottom, default: 0 }) - 16;
   }, [height, insets.bottom, insets.top, origin.y, origin.elementHeight]);
 
-  const horizontalPositionStyle = alignTo === 'left' ? { left: 0 } : { right: 0 };
+  const horizontalPositionStyle = horizontalAlign === 'left' ? { left: 0 } : { right: 0 };
 
   const onLayout = (e: LayoutChangeEvent) => setLayout(e.nativeEvent.layout);
 
-  const animatedStyle = useAnimatedStyle(() => {
+  const positionValues:
+    | {
+        translateOriginY: number;
+        translateOriginX: number;
+        additionalOffset: number;
+        verticalAlign: 'top' | 'bottom';
+      }
+    | undefined = useMemo(() => {
     if (!layout) {
-      return { opacity: 0 };
+      return;
     }
 
     const maxBottom = frame.height - insets.bottom;
     const bottom = layout.height + layout.y;
     
-    const translateOriginX = (layout.width / 2) * (alignTo === 'left' ? -1 : 1);
+    const translateOriginX = (layout.width / 2) * (horizontalAlign === 'left' ? -1 : 1);
     const translateOriginY = layout.height / -2;
     
-    const additionalOffset = bottom > maxBottom ? -layout.height - origin.elementHeight : 0;
+    const verticalAlign = bottom > maxBottom ? 'top' : 'bottom';
+    const additionalOffset = verticalAlign === 'top' ? -layout.height - origin.elementHeight : 0;
+
+    return {
+      verticalAlign,
+      translateOriginX,
+      translateOriginY,
+      additionalOffset,
+    };
+  }, [frame.height, horizontalAlign, insets.bottom, layout, origin.elementHeight]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    if (!positionValues) {
+      return { opacity: 0 };
+    }
+
+    const { translateOriginY, translateOriginX, additionalOffset } = positionValues;
 
     return {
       transform: [
@@ -110,15 +147,20 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
           style={[
             styles.modalContent,
             !!menuWidth && { width: menuWidth },
-            Platform.OS === 'android' && styles.modalAndroid,
+            props.type !== 'tooltip' && Platform.OS === 'android' && styles.modalAndroid,
             horizontalPositionStyle,
             { maxHeight: maxMenuHeight, top: origin.y },
             animatedStyle,
           ]}>
-          <View style={[styles.blurBackground, { backgroundColor: Platform.select({ ios: colors.background, default: colors.androidDarkBlurBg }) }]} />
-          <BlurView blurAmount={60} blurType={'dark'} style={styles.blur}>
-            {props.type === 'context' ? <ContextMenu {...props} onClose={onClose} /> : <DropdownMenu {...props} onClose={onClose} />}
-          </BlurView>
+          {props.type === 'tooltip' && <TooltipMenu horizontalAlign={horizontalAlign} verticalAlign={positionValues?.verticalAlign} {...props} />}
+          {props.type !== 'tooltip' && (
+            <>
+              <View style={[styles.blurBackground, { backgroundColor: Platform.select({ ios: colors.background, default: colors.androidDarkBlurBg }) }]} />
+              <BlurView blurAmount={60} blurType="dark" style={styles.blur}>
+                {props.type === 'context' ? <ContextMenu {...props} onClose={onClose} /> : <DropdownMenu {...props} onClose={onClose} />}
+              </BlurView>
+            </>
+          )}
         </Animated.View>
       </View>
     </TouchableWithoutFeedback>

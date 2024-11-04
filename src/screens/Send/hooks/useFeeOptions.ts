@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { FeeOptionKind } from '@/api/types';
-import { FeeOptions, RealmishWallet } from '@/onChain/wallets/base';
+import type { FeeOptionKind } from '@/api/types';
+import type { FeeOptions, RealmishWallet } from '@/onChain/wallets/base';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 
 import { handleError } from '/helpers/errorHandler';

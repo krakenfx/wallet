@@ -1,4 +1,4 @@
-import { AssetMetadata } from '@/realm/assetMetadata';
+import type { AssetMetadata } from '@/realm/assetMetadata';
 
 export function getSwapMetadata(txnType: string, metadata: { sentMetadata: AssetMetadata | undefined; receiveMetadata: AssetMetadata | undefined }) {
   return txnType === 'swap' && metadata.sentMetadata && metadata.receiveMetadata

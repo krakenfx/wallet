@@ -1,6 +1,11 @@
+import type { StyleProp } from 'react-native';
+
+import type { ImageStyle } from 'react-native-fast-image';
+
 import React, { useCallback, useState } from 'react';
-import { StyleProp, StyleSheet, View } from 'react-native';
-import FastImage, { ImageStyle } from 'react-native-fast-image';
+import { StyleSheet, View } from 'react-native';
+
+import FastImage from 'react-native-fast-image';
 import { Image as RNSvgImage } from 'react-native-svg';
 
 import { ErrorBoundary } from '@/components/ErrorBoundary';

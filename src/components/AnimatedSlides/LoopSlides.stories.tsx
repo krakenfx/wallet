@@ -2,10 +2,10 @@ import { noop } from 'lodash';
 import React from 'react';
 import { View } from 'react-native';
 
-import { NonSmallIconName } from '../SvgIcon';
-
 import { LoopSlides } from './LoopSlides';
-import { AnimationMarkers } from './types';
+
+import type { AnimationMarkers } from './types';
+import type { NonSmallIconName } from '../SvgIcon';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

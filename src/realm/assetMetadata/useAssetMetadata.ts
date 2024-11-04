@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef } from 'react';
-import Realm from 'realm';
 
 import { fetchTokenMetadata } from '@/api/fetchTokenMetadata';
 
@@ -7,8 +6,11 @@ import { useLocalCacheState } from '../hooks/useLocalCacheState';
 import { useRealmQueue } from '../hooks/useRealmQueue';
 import { useObject } from '../RealmContext';
 
-import { AssetMetadata, REALM_TYPE_ASSET_METADATA, RealmAssetMetadata } from './schema';
+import { REALM_TYPE_ASSET_METADATA } from './schema';
 import { useAssetMetadataMutations } from './useAssetMetadataMutations';
+
+import type { AssetMetadata, RealmAssetMetadata } from './schema';
+import type Realm from 'realm';
 
 import { createErrorHandlerWithContext } from '/helpers/errorHandler';
 

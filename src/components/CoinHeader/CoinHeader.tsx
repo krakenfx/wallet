@@ -5,7 +5,7 @@ import { Label } from '@/components/Label';
 import { TokenIcon } from '@/components/TokenIcon';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import type { RealmToken } from '@/realm/tokens';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 import { getLabelName } from '@/utils/getLabelName';
 import { getWalletName } from '@/utils/getWalletName';
 

@@ -8,7 +8,7 @@ import { Label } from '@/components/Label';
 import { LabeledField } from '@/components/LabeledField';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 
 import { useTransactionContext } from '../context/TransactionContext';
 

@@ -1,10 +1,15 @@
-import React, { ReactElement } from 'react';
-import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
+import type { ReactElement } from 'react';
+
+import type { ListRenderItem } from 'react-native';
+
+import React from 'react';
+import { FlatList, StyleSheet } from 'react-native';
 
 import { Label } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
-import { ColorName } from '@/theme/themes';
+import type { ColorName } from '@/theme/themes';
 
 export type ContextMenuItem = {
   title: string;

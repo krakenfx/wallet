@@ -17,8 +17,10 @@ import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsItem, SettingsSectionHeader } from '../components';
-import { SettingsNavigationProps } from '../SettingsRouter';
+
 import { WalletBackupWarning } from '../walletBackup';
+
+import type { SettingsNavigationProps } from '../SettingsRouter';
 
 import loc from '/loc';
 

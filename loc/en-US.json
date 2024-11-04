@@ -132,8 +132,8 @@
     "see_balance": "See your balances and activity",
     "request_approval": "Request approval for transactions",
     "unsupportedNetwork": "Unsupported network",
-    "unsupportedNetworkDescription": "This app uses the {unsupportedNetwork} network which is not supported at this time. Kraken Wallet currently supports apps on the Ethereum, Polygon, Optimism, Arbitrum and Solana networks.",
-    "unsupportedNetworksDescription": "This app uses {unsupportedNetworks} networks which are not supported at this time. Kraken Wallet currently supports apps on the Ethereum, Polygon, Optimism, Arbitrum and Solana networks."
+    "unsupportedNetworkDescription": "This app uses the {unsupportedNetwork} network which is not supported at this time. Kraken Wallet currently supports apps on the Ethereum, Polygon, OP Mainnet, Arbitrum and Solana networks.",
+    "unsupportedNetworksDescription": "This app uses {unsupportedNetworks} networks which are not supported at this time. Kraken Wallet currently supports apps on the Ethereum, Polygon, OP Mainnet, Arbitrum and Solana networks."
   },
   "editAccount": {
     "title": "Edit wallet",
@@ -183,7 +183,8 @@
     "genericTryAgainLater": "Something went wrong, please try again later",
     "connectionError": "Connection error",
     "generalFetchError": "Error, please try again",
-    "offline": "Offline"
+    "offline": "Offline",
+    "exploreSubpage": "Something went wrong opening this content. Please try again later."
   },
   "globalActivity": {
     "title": "Activity",
@@ -207,9 +208,9 @@
     "collection_see_all": "View all",
     "manage": "Manage",
     "total_balance": "Balance",
-    "deposits": "Deposits"
+    "deposits": "DeFi"
   },
-  "explore":{
+  "explore": {
     "disclaimerTitle": "Be careful out there",
     "disclaimerBody": "Tapping on dapps in this section will take you to external URLs and you should always do your own diligence."
   },
@@ -285,7 +286,7 @@
     "polygon": "Polygon",
     "arbitrum": "Arbitrum",
     "base": "Base",
-    "optimism": "Optimism",
+    "optimism": "OP Mainnet",
     "ethereum": "Ethereum",
     "ethereum_sepolia": "Ethereum - Sepolia testnet",
     "solana": "Solana",
@@ -293,7 +294,8 @@
     "dogecoin": "Dogecoin",
     "tezos": "Tezos",
     "blast": "Blast",
-    "linea": "Linea"
+    "linea": "Linea",
+    "avalanche": "Avalanche"
   },
   "nftList": {
     "title": "NFTs",
@@ -521,6 +523,9 @@
     "button": "Agree & Continue"
   },
   "onChainSecurity": {
+    "analysingApp": "Analysing app...",
+    "appSafetyNotVerified": "App safety not verified",
+    "appSafetyNotVerifiedMessage": "We were unable to verify the safety of the app that you are trying to connect to due to a temporary error or outage of our app verification service.\nProceed with caution.",
     "criticalWarning": "Critical Warning",
     "domainMatch": "Domain match",
     "domainMatchInfo": "The domain linked to this request has been verified as this application's domain.",
@@ -624,7 +629,7 @@
     "continue": "Continue",
     "searchPlaceholder": "Select what you want to send",
     "searchEmptyTitle": "No results",
-    "searchEmptyDesc": "Try expading your search",
+    "searchEmptyDesc": "Try expanding your search",
     "assetsEmptyTitle": "No assets available",
     "assetsEmptyDesc": "Your current wallet does not have any assets, try funding your wallet",
     "assetBTCEmptyTitle": "No Bitcoin available",
@@ -644,9 +649,35 @@
     "cryptoAndNft": "NFTs and crypto",
     "crypto": "Crypto",
     "copied": "Address copied",
-    "ethereumAddressLabel": "Includes Layer 2 networks",
+    "ethereumAddressLabel": "Includes Ethereum compatible networks",
     "ethereumExplainerHeading": "Your Ethereum address",
-    "ethereumExplainerBody": "Ethereum's address system extends to Layer 2 networks like Polygon, Arbitrum, Optimism and Base, ensuring your one address works everywhere"
+    "ethereumExplainerBody": "Ethereum's address system extends to Ethereum compatible networks like Polygon, Arbitrum, OP Mainnet, Base, Linea and Avalanche ensuring your one address works everywhere"
+  },
+  "swap": {
+    "title": "Swap",
+    "buttonTitle": "Swap",
+    "balance": "Balance {0}",
+    "amountPlaceholder": "Enter amount",
+    "amountExceedingBalance": "Amount entered exceeds available balance",
+    "selectAsset": "Select Asset",
+    "sourceListHeader": "Your assets",
+    "sourceSearchPlaceholder": "Select asset to swap from",
+    "targetSearchPlaceholder": "Select asset to receive",
+    "findingBestRote": "Finding best route",
+    "emptyState": {
+      "searchEmptyTitle": "No results",
+      "searchEmptyDesc": "Try expading your search",
+      "assetsEmptyTitle": "No assets available",
+      "swappableAssetsEmptyNetworkTitle": "No swappable assets available on selected network",
+      "swappableAssetsEmptyTitle": "No swappable assets available",
+      "assetsEmptyDesc": "Your current wallet does not have any assets, try funding your wallet",
+      "swappableAssetsEmptyDesc": "Your current wallet does not have any assets supported by our swap providers",
+      "swappableAssetsEmptyNetworkDesc": "Your current wallet does not have any assets on selected network that are supported by our swap providers",
+      "goBack": "Go back",
+      "clearSearch": "Clear search",
+      "searchAllNetworks": "Search all networks"
+    },
+    "unsupportedAssetsHidden": "Our swap providers do not yet support {count} of your other asset(s)"
   },
   "scan": {
     "apps": "Apps",
@@ -893,9 +924,9 @@
   "advancedAccountInfo": {
     "derivationPath": "Derivation path",
     "ethereumDerivationPath": "Ethereum derivation path",
-    "ethereumDerivationPathContent": "Ethereum's derivation path is shared with Layer 2 networks like Polygon, Arbitrum, Optimism and Base, meaning the same derivation path is used for all of them.",
+    "ethereumDerivationPathContent": "Ethereum's derivation path is shared with Ethereum compatible networks like Polygon, Arbitrum, OP Mainnet, Base, Linea and Avalanche meaning the same derivation path is used for all of them.",
     "extendedPublicKey": "Extended public key",
-    "includesLayer2Networks": "Includes Layer 2 networks",
+    "includesCompatibleNetworks": "Includes Ethereum compatible networks",
     "pathCopied": "Path copied",
     "title": "{walletName} - info",
     "walletInformation": "Wallet information",

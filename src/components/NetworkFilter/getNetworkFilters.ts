@@ -1,6 +1,6 @@
-import { NETWORK_FILTERS, UINetworkFilters } from './types';
+import type { NETWORK_FILTER, UINetworkFilter } from './types';
 
-export function getNetworkFilters(wasPressed: UINetworkFilters, prevNetworkFilters: NETWORK_FILTERS[], allNetworkFiltersLength: number): NETWORK_FILTERS[] {
+export function getNetworkFilters(wasPressed: UINetworkFilter, prevNetworkFilters: NETWORK_FILTER[]): NETWORK_FILTER[] {
   
   if (wasPressed === 'all') {
     return [];
@@ -13,12 +13,6 @@ export function getNetworkFilters(wasPressed: UINetworkFilters, prevNetworkFilte
     prevNetworkFiltersSet.delete(wasPressed);
   } else {
     prevNetworkFiltersSet.add(wasPressed);
-  }
-
-  
-  const areAllNetworkFiltersSelected = allNetworkFiltersLength === prevNetworkFiltersSet.size;
-  if (areAllNetworkFiltersSelected) {
-    return [];
   }
 
   return [...prevNetworkFiltersSet];

@@ -1,9 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNFS from 'react-native-fs';
-import { ErrorObject, serializeError } from 'serialize-error';
 
-import { ToastConfigProps, showToast } from '@/components/Toast';
+import { serializeError } from 'serialize-error';
+
+import type { ToastConfigProps} from '@/components/Toast';
+import { showToast } from '@/components/Toast';
 import { isShowToastOnAllErrorsEnabledKey } from '@/secureStore/asyncStorageKeys';
+
+import type { ErrorObject} from 'serialize-error';
 
 import loc from '/loc';
 

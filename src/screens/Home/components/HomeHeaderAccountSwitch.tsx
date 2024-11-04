@@ -1,8 +1,10 @@
+import type { NativeSyntheticEvent, TextLayoutEventData } from 'react-native';
+
 import React, { useRef, useState } from 'react';
-import { Dimensions, NativeSyntheticEvent, StyleSheet, TextLayoutEventData, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
 import { AvatarIcon } from '@/components/AvatarIcon';
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { useGlobalState } from '@/components/GlobalState';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';

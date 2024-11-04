@@ -1,19 +1,23 @@
 import { Core } from '@walletconnect/core';
 import { Web3Wallet } from '@walletconnect/web3wallet';
-import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
-import Realm from 'realm';
+
 
 import { showToast } from '@/components/Toast';
-import { REALM_TYPE_WALLET_CONNECT_TOPICS, RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
-import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
+import type { RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
+import { REALM_TYPE_WALLET_CONNECT_TOPICS } from '@/realm/walletConnectTopics';
+import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { enqueueAppRequest } from '../appRequestQueue';
-import { ReactNavigationDispatch } from '../types';
+
 
 import { WalletConnectSessionsManager as WalletConnectSessionsManager_ } from '../WalletConnectSessionsManager';
 
 import { handleSessionProposal } from './handleSessionProposal';
 import { handleSessionRequest } from './handleSessionRequest';
+
+import type { ReactNavigationDispatch } from '../types';
+import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
+import type Realm from 'realm';
 
 import { WALLETCONNECT_PROJECT_ID } from '/config';
 
@@ -104,7 +108,7 @@ export async function initWalletConnectWeb3Wallet(
     if (!hasBeenProposed) {
       sessionProposals.push(String(proposal.id));
       enqueueAppRequest(() => {
-        return handleSessionProposal(proposal, getDispatch_());
+        return handleSessionProposal(proposal, getDispatch_(), getRealm_());
       });
     }
   });

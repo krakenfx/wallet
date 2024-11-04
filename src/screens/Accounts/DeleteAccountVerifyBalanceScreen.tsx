@@ -15,7 +15,7 @@ import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { AccountNavigationProps } from './AccountRouter';
+import type { AccountNavigationProps } from './AccountRouter';
 
 import loc from '/loc';
 

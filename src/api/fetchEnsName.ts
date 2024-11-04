@@ -1,6 +1,6 @@
 import { ethereumNetwork } from '@/onChain/wallets/evmNetworks';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 
 import NameResolver from './NameResolver';
 

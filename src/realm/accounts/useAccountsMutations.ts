@@ -3,17 +3,23 @@ import Realm from 'realm';
 
 import { useWipeStorage } from '@/hooks/useWipeStorage';
 
-import { REALM_TYPE_ACCOUNT, RealmAccount } from '../accounts/schema';
+import { REALM_TYPE_ACCOUNT } from '../accounts/schema';
 import { REALM_TYPE_DEFI } from '../defi';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { REALM_TYPE_NFT } from '../nfts';
 import { useRealm } from '../RealmContext';
-import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey } from '../settings';
+
+import { REALM_TYPE_SETTINGS, RealmSettingsKey } from '../settings';
 import { REALM_TYPE_TOKEN } from '../tokens';
 import { REALM_TYPE_WALLET_TRANSACTION } from '../transactions';
-import { REALM_TYPE_WALLET, RealmWallet } from '../wallets';
+
+import { REALM_TYPE_WALLET } from '../wallets';
 
 import { getAccountName } from './utils';
+
+import type { RealmAccount } from '../accounts/schema';
+import type { RealmSettings } from '../settings';
+import type { RealmWallet } from '../wallets';
 
 interface AddNewAccountProps {
   accountNumber: number;

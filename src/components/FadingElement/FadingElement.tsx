@@ -1,7 +1,15 @@
+import type { PropsWithChildren } from 'react';
+
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import type { LinearGradientProps } from 'react-native-svg';
+
 import MaskedView from '@react-native-masked-view/masked-view';
-import React, { Fragment, PropsWithChildren } from 'react';
-import { Platform, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { Defs, LinearGradient, LinearGradientProps, Rect, Stop, Svg } from 'react-native-svg';
+import React, { Fragment } from 'react';
+
+import { Platform, StyleSheet, View } from 'react-native';
+
+import { Defs, LinearGradient, Rect, Stop, Svg } from 'react-native-svg';
 
 const FadingElementIOS: React.FC<PropsWithChildren<Omit<LinearGradientProps, 'children'>> & { containerStyle?: StyleProp<ViewStyle> }> = ({
   children,

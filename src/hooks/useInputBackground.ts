@@ -1,8 +1,9 @@
+import type { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
+
 import { useCallback } from 'react';
-import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { InputProps } from '@/components/Input';
+import type { InputProps } from '@/components/Input';
 import { useTheme } from '@/theme/themes';
 
 export const useInputBackground = (props: InputProps) => {

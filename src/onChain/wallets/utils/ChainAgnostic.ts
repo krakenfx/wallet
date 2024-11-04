@@ -12,6 +12,7 @@ export class ChainAgnostic {
   static NETWORK_SOLANA_DEVNET = 'solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1';
   static NETWORK_DOGECOIN = 'bip122:1a91e3dace36e2be3bf030a65679fe82';
   static NETWORK_TEZOS = 'tezos:NetXdQprcVkpaWU';
+  static NETWORK_AVALANCHE = 'eip155:43114';
 
   static COIN_ARBITRUM = 'eip155:42161/slip44:60';
   static COIN_ETHEREUM = 'eip155:1/slip44:60';
@@ -25,6 +26,7 @@ export class ChainAgnostic {
   static COIN_SOLANA_DEVNET = 'solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1/slip44:501';
   static COIN_DOGECOIN = 'bip122:1a91e3dace36e2be3bf030a65679fe82/slip44:3';
   static COIN_TEZOS = 'tezos:NetXdQprcVkpaWU/slip44:1729';
+  static COIN_AVALANCHE = 'eip155:43114/slip44:9005';
 }
 
 const CAIP19_REGEX = /^([-a-z0-9]{3,8}):([-_a-zA-Z0-9]{1,32})\/([-a-z0-9]{3,8}):([-.%a-zA-Z0-9]{1,128})(?:\/([-.%a-zA-Z0-9]{1,78}))?$/;

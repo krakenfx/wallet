@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { IconWithCoinIcon, Props as IconWithCoinIconProps } from '@/components/IconWithCoinIcon';
+import type { Props as IconWithCoinIconProps } from '@/components/IconWithCoinIcon';
+import { IconWithCoinIcon } from '@/components/IconWithCoinIcon';
 import { Label } from '@/components/Label';
 import { Touchable } from '@/components/Touchable';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 type Props = {
   iconUri: string;

@@ -3,8 +3,10 @@ import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
-import { ColorName, useTheme } from '@/theme/themes';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 import loc from '/loc';
 

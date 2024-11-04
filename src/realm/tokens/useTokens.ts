@@ -1,9 +1,10 @@
-import Realm from 'realm';
-
 import { useQuery } from '../RealmContext';
 import { getWalletsForMutations, useRealmWallets } from '../wallets';
 
-import { REALM_TYPE_TOKEN, RealmToken } from './schema';
+import { REALM_TYPE_TOKEN } from './schema';
+
+import type { RealmToken } from './schema';
+import type Realm from 'realm';
 
 export const useTokens = (getTokensFromAllWallets?: boolean) => {
   const wallets = useRealmWallets(getTokensFromAllWallets);

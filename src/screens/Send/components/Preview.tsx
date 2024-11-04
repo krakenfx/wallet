@@ -11,12 +11,13 @@ import {
   TransactionPathBTC,
 } from '@/components/Transaction';
 import { useAppCurrency } from '@/realm/settings';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
 import { AddressAnalysisInfo } from '../components/AddressAnalysisInfo';
-import { AddressAnalysis } from '../hooks/useAddressAnalysis';
-import { Amounts, TransactionParams } from '../types';
+
+import type { AddressAnalysis } from '../hooks/useAddressAnalysis';
+import type { Amounts, TransactionParams } from '../types';
 
 import loc from '/loc';
 

@@ -1,13 +1,22 @@
-import { CompositeScreenProps } from '@react-navigation/native';
-import { NativeStackNavigationOptions, NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { RouteProps } from '@/Routes';
+import type { RouteProps } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 
-import { DeleteAccountConfirmParams, DeleteAccountConfirmScreen } from './DeleteAccountConfirmScreen';
-import { DeleteAccountVerifyBalanceParams, DeleteAccountVerifyBalanceScreen } from './DeleteAccountVerifyBalanceScreen';
-import { EditAccountParams, EditAccountScreen } from './EditAccountScreen';
+import { DeleteAccountConfirmScreen } from './DeleteAccountConfirmScreen';
+
+import { DeleteAccountVerifyBalanceScreen } from './DeleteAccountVerifyBalanceScreen';
+
+import { EditAccountScreen } from './EditAccountScreen';
+
+import type { DeleteAccountConfirmParams } from './DeleteAccountConfirmScreen';
+import type { DeleteAccountVerifyBalanceParams } from './DeleteAccountVerifyBalanceScreen';
+
+import type { EditAccountParams } from './EditAccountScreen';
+
+import type { CompositeScreenProps } from '@react-navigation/native';
+import type { NativeStackNavigationOptions, NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type AccountStackParams = {
   DeleteAccountConfirm: DeleteAccountConfirmParams;

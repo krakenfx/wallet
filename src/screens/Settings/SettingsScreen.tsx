@@ -15,8 +15,10 @@ import { BuildInfo } from './BuildInfo';
 import { SettingsItem, SettingsSectionHeader } from './components';
 import { ManageWalletsBadge } from './manageWallets';
 import { PasswordProtectionBadge } from './passwordProtection';
-import { SettingsNavigationProps } from './SettingsRouter';
+
 import { WalletBackupWarning } from './walletBackup';
+
+import type { SettingsNavigationProps } from './SettingsRouter';
 
 import loc from '/loc';
 

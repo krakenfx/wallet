@@ -1,4 +1,4 @@
-import { EVMNetwork, Etherscan } from './evm';
+import { AvascanCChain, EVMNetwork, Etherscan } from './evm';
 
 import loc from '/loc';
 
@@ -120,4 +120,21 @@ export const lineaNetwork = new EVMNetwork({
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
   defaultGasLimit: 21000,
+});
+
+export const avalancheCChainNetwork = new EVMNetwork({
+  chainId: 43114,
+  nativeTokenSlipId: 9005,
+  nativeTokenSymbol: 'AVAX',
+  nativeTokenLabel: 'Avalanche',
+  blockchainLabel: 'C-Chain',
+  label: loc.network.avalanche,
+  blockExplorer: new AvascanCChain('avascan.info'),
+  icon: ({ opacity }) => ({
+    id: 'avax',
+    fgColor: ['#6c4dc2', '#99e3ed', -45],
+    bgColor: `rgba(132, 92, 224, ${opacity})`,
+  }),
+  defaultGasLimit: 21000,
+  gasUnit: 'nAVAX',
 });

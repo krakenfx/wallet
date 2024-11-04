@@ -1,11 +1,11 @@
-import BigNumber from 'bignumber.js';
-
-import { Network } from '@/onChain/wallets/base';
+import type { Network } from '@/onChain/wallets/base';
 import { smallUnit2TokenUnit } from '@/utils/unitConverter';
 
-import { DefinitionList } from '../../../types';
 import { hexToDecimal } from '../../../utils';
-import { TransactionObject } from '../types';
+
+import type { DefinitionList } from '../../../types';
+import type { TransactionObject } from '../types';
+import type BigNumber from 'bignumber.js';
 
 import loc from '/loc';
 

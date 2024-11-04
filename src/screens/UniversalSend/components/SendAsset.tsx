@@ -1,6 +1,8 @@
+import type { ListRenderItem } from 'react-native';
+
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ListRenderItem, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -9,11 +11,15 @@ import { KeyboardAvoider } from '@/components/Keyboard';
 import { Label } from '@/components/Label';
 import { SearchInput } from '@/components/SearchInput';
 import { useDebounceEffect } from '@/hooks/useDebounceEffect';
-import { Network } from '@/onChain/wallets/base';
+import { useTokenSearchQuery } from '@/hooks/useTokenSearchQuery';
+import type { Network } from '@/onChain/wallets/base';
 import { useTokenPrices } from '@/realm/tokenPrice';
-import { RealmToken, sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
+import { sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { safelyAnimateLayout } from '@/utils/safeLayoutAnimation';
+
+import { tokenItemKeyExtractor } from '@/utils/tokenItemKeyExtractor';
 
 import { EmptyState } from './EmptyState';
 import { SendAssetItem } from './SendAssetItem';
@@ -27,14 +33,6 @@ type Props = {
 };
 
 const renderItemSeparator = () => <View style={styles.divider} />;
-
-const itemKeyExtractor = (item: RealmToken, i: number) => {
-  if (!item.isValid()) {
-    return 'invalid_' + i;
-  }
-
-  return item.assetId;
-};
 
 export const SendAsset = ({ supportedNetworks, onAssetSelected, goBack }: Props) => {
   const tokenPrices = useTokenPrices();
@@ -53,20 +51,7 @@ export const SendAsset = ({ supportedNetworks, onAssetSelected, goBack }: Props)
     return sortTokensByFiatValue(tokens.filtered("wallet.nativeTokenCaipId IN $0 AND balance != '0'", nativeTokenIds), tokenPrices);
   }, [supportedNetworks, tokenPrices, tokens]);
 
-  const data = useMemo(() => {
-    if (searchQuery) {
-      const searchQuery_ = searchQuery.toLowerCase();
-      const filteredTokens = compatibleTokens.filter(coin => {
-        const testString = (coin.metadata.label + ' ' + coin.metadata.symbol).toLowerCase();
-
-        
-        return testString.startsWith(searchQuery_) || testString.includes(` ${searchQuery_}`);
-      });
-
-      return filteredTokens;
-    }
-    return compatibleTokens;
-  }, [compatibleTokens, searchQuery]);
+  const data = useTokenSearchQuery(compatibleTokens, searchQuery);
 
   const renderItem: ListRenderItem<RealmToken> = ({ item, index }) => (
     <SendAssetItem token={item} onSelected={onAssetSelected} index={index} shouldAnimateIn={!hasRenderedOnce} />
@@ -117,7 +102,7 @@ export const SendAsset = ({ supportedNetworks, onAssetSelected, goBack }: Props)
             style={styles.scrollView}
             data={data}
             renderItem={renderItem}
-            keyExtractor={itemKeyExtractor}
+            keyExtractor={tokenItemKeyExtractor}
             ItemSeparatorComponent={renderItemSeparator}
             keyboardShouldPersistTaps="handled"
             contentInsetAdjustmentBehavior="automatic"

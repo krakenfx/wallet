@@ -1,5 +1,7 @@
+import type { LayoutChangeEvent } from 'react-native';
+
 import React from 'react';
-import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
 

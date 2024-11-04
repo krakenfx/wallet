@@ -1,5 +1,5 @@
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 
 import { isSupportedNetwork } from '/modules/wallet-connect/utils';
 

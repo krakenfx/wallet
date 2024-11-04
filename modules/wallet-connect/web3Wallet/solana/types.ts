@@ -1,4 +1,4 @@
-import * as web3 from '@solana/web3.js';
+import type * as web3 from '@solana/web3.js';
 
 export enum WALLET_CONNECT_SOLANA_SIGN_TYPES {
   SIGN_MESSAGE = 'solana_signMessage',

@@ -6,14 +6,14 @@ import { Routes } from '@/Routes';
 import { WalletBackup } from '@/screens/Settings/walletBackup';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { OnboardingNavigationProps } from './OnboardingRouter';
+import type { OnboardingNavigationProps } from './OnboardingRouter';
 
 export const OnboardingBackupScreeen = ({ navigation }: OnboardingNavigationProps<'OnboardingBackup'>) => {
   const onContinue = useCallback(() => {
     navigation.navigate(Routes.OnboardingBackupVerify);
   }, [navigation]);
   return (
-    <GradientScreenView>
+    <GradientScreenView testID="OnboardingBackupScreen">
       <WalletBackup onContinue={onContinue} seedVisible />
     </GradientScreenView>
   );

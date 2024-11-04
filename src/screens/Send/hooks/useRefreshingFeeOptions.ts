@@ -1,8 +1,8 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useEffect, useMemo } from 'react';
 
-import { FeeOptionKind } from '@/api/types';
-import { RealmWallet } from '@/realm/wallets';
+import type { FeeOptionKind } from '@/api/types';
+import type { RealmWallet } from '@/realm/wallets';
 
 import { useFeeOptions } from './useFeeOptions';
 

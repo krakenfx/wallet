@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 
 import { useTokenById } from '@/realm/tokens';
-import { TransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { TransactionData } from '@/realm/transactions/getTransactionMetadata';
 import { useShouldFilterOutTransactionByReputation } from '@/realm/transactions/useShouldFilterOutTransactionByReputation';
 
 import { ContractInteractionRow } from './ContractInteractionRow';
 import { SimpleTransactionRow } from './SimpleTransactionRow';
 import { SwapTransactionRow } from './SwapTransactionRow';
 import { TransactionNftRow } from './TransactionNftRow';
-import { TransactionRowCommonProps } from './types';
+
+import type { TransactionRowCommonProps } from './types';
 
 export interface TransactionRowProps extends TransactionRowCommonProps {
   classifiedTx: TransactionData;

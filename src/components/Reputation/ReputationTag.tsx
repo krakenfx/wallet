@@ -3,7 +3,9 @@ import React from 'react';
 import { SvgIcon } from '@/components/SvgIcon';
 import { REPUTATION } from '@/hooks/useReputation';
 
-import { FilterOut, useShouldFilterOut } from './useShouldFilterOut';
+import { useShouldFilterOut } from './useShouldFilterOut';
+
+import type { FilterOut } from './useShouldFilterOut';
 
 export const ReputationTagWhitelisted = () => {
   return <SvgIcon name="verified" color="kraken" size={16} bgColor="light100" />;

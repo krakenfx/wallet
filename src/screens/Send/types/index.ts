@@ -1,7 +1,7 @@
-import { FeeOptionKind } from '@/api/types';
-import { TotalFee } from '@/onChain/wallets/base';
-import { RealmNft } from '@/realm/nfts';
-import { RealmToken } from '@/realm/tokens';
+import type { FeeOptionKind } from '@/api/types';
+import type { TotalFee } from '@/onChain/wallets/base';
+import type { RealmNft } from '@/realm/nfts';
+import type { RealmToken } from '@/realm/tokens';
 
 export type CoinTransactionParams = {
   type: 'coin';

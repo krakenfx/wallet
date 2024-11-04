@@ -7,18 +7,19 @@ import { Sizes } from '../../ExploreScreen.constants';
 import { ExploreTableList } from '../ExploreTableList';
 import { ExploreText } from '../ExploreText';
 
-import { ExploreHeroProps } from './ExploreHero.types';
+import type { ExploreHeroProps } from './ExploreHero.types';
 
 const { Space, Card, Hero } = Sizes;
 
-export const ExploreHero: React.FC<ExploreHeroProps> = ({ title, body, background, cta, type, style }: ExploreHeroProps) => {
+export const ExploreHero = ({ title, body, background, cta, variant, style }: ExploreHeroProps) => {
   const { colors } = useTheme();
-  const isCard: boolean = type === 'Card';
+  const isCard: boolean = variant === 'Card';
   const imageSizes = isCard ? styles.imageCard : styles.imageFullBleed;
   const themedShadow = isCard ? { shadowColor: colors.dark25 } : {};
+  const variantStyle = isCard ? styles.Card : styles.FullBleed;
   return (
     <View style={style}>
-      <View style={[styles.container, themedShadow, styles[type], style]}>
+      <View style={[styles.container, themedShadow, variantStyle, style]}>
         <Image source={{ uri: background }} style={[styles.image, imageSizes]} />
         <View style={[styles.content]}>
           {(title || body) && (

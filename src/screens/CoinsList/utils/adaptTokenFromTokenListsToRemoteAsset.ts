@@ -1,24 +1,15 @@
-import { RemoteAsset } from '@/types';
+import type { RemoteAsset } from '@/types';
 
-import { TokenFromTokenLists } from '../types';
+import { adaptTokenLikeToRemoteAsset } from '@/utils/adaptTokenLikeToRemoteAsset';
 
-export function adaptTokenFromTokenListsToRemoteAsset(tokenFromTokenLists: TokenFromTokenLists): RemoteAsset {
-  const { decimals } = tokenFromTokenLists;
+import type { TokenFromTokenLists } from '../types';
 
-  return {
-    assetId: tokenFromTokenLists.caipId,
-    balance: '0',
-    metadata: {
-      label: tokenFromTokenLists.name ?? '',
-      symbol: tokenFromTokenLists.symbol ?? '',
-      
-      
-      decimals: typeof decimals === 'number' ? decimals : typeof decimals === 'string' ? Number(decimals) : 2,
-      reputation: {
-        whitelists: tokenFromTokenLists.lists,
-        blacklists: [] ,
-      },
-    },
-    type: 'remoteAsset',
-  };
+export function adaptTokenFromTokenListsToRemoteAsset({ caipId, name, symbol, contract_address, decimals }: TokenFromTokenLists): RemoteAsset {
+  return adaptTokenLikeToRemoteAsset({
+    assetId: caipId,
+    name,
+    symbol,
+    address: contract_address,
+    decimals,
+  });
 }

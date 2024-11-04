@@ -1,5 +1,5 @@
 import { getHarmony } from '@/api/base/apiFactory';
-import { TokenListsResult } from '@/api/types';
+import type { TokenListsResult } from '@/api/types';
 
 import { handleError } from '/helpers/errorHandler';
 

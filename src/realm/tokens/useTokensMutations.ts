@@ -1,16 +1,19 @@
 import { useCallback } from 'react';
 import Realm from 'realm';
 
-import { BalanceResponse } from '@/onChain/wallets/base';
-import { RemoteAsset } from '@/types';
+import type { BalanceResponse } from '@/onChain/wallets/base';
+import type { RemoteAsset } from '@/types';
 import { adaptTokenReputationToRealmAssetReputation } from '@/utils/adaptTokenReputationToRealmAssetReputation';
 
-import { REALM_TYPE_ASSET_METADATA, RealmAssetMetadata } from '../assetMetadata';
+import { REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
-import { RealmWallet } from '../wallets';
 
-import { REALM_TYPE_TOKEN, RealmToken, Token } from './schema';
+import { REALM_TYPE_TOKEN } from './schema';
+
+import type { RealmToken, Token } from './schema';
+import type { RealmAssetMetadata } from '../assetMetadata';
+import type { RealmWallet } from '../wallets';
 
 export const useTokensMutations = () => {
   const realm = useRealm();

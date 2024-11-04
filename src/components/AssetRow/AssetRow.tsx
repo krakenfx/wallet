@@ -1,19 +1,21 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
 
 import React, { useCallback, useMemo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useBrowser } from '@/hooks/useBrowser';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
-import { RealmToken } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
 import { useTokensGalleryMutations } from '@/realm/tokensGallery';
 import { useRealmWalletById } from '@/realm/wallets';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
-import { RemoteAsset } from '@/types';
+import type { RemoteAsset } from '@/types';
 import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
 import { getExplorerIcon } from '@/utils/getExplorerIcon';
 import { getWalletName } from '@/utils/getWalletName';
@@ -22,7 +24,7 @@ import { isRealmToken } from '@/utils/isRealmToken';
 import { GradientItemBackground } from '../GradientItemBackground';
 import { Label } from '../Label';
 import { LongPressable } from '../LongPress';
-import { LongPressOptionItemProps } from '../LongPress/LongPressOptionItem';
+
 import { showToast } from '../Toast';
 import { TokenIcon } from '../TokenIcon';
 import { Touchable } from '../Touchable';
@@ -30,12 +32,15 @@ import { Touchable } from '../Touchable';
 import { AssetPriceChangeLabel } from './AssetPriceChangeLabel';
 import { AssetRowAmountInFiat } from './AssetRowAmountInFiat';
 
+import type { LongPressOptionItemProps } from '../LongPress/LongPressOptionItem';
+
 import loc from '/loc';
 
 export type AssetRowProps = {
   token: RealmToken | RemoteAsset;
   options?: Partial<{
     hideZeroAmount: boolean;
+    hideZeroAmountFiat: boolean;
     networkName: WalletType;
     onPress: () => void;
     priceChange: boolean;
@@ -52,7 +57,8 @@ export type AssetRowProps = {
 };
 
 export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
-  const { hideZeroAmount, networkName, showAmountInFiat, onPress, style, priceChange, symbolUnderLabel, tag, testID, walletId, selected } = options;
+  const { hideZeroAmount, networkName, showAmountInFiat, onPress, style, priceChange, symbolUnderLabel, tag, testID, walletId, selected, disableLongPress } =
+    options;
   const wallet = useRealmWalletById(walletId);
   const isNative = token.assetId.includes('slip44:');
   const label = wallet && wallet.nativeTokenLabel && isNative ? getWalletName(wallet.nativeTokenLabel.toLowerCase() as WalletType) : token.metadata.label;
@@ -89,7 +95,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
           </View>
         </View>
         <View style={styles.rightContentContainer}>
-          {showAmountInFiat && <AssetRowAmountInFiat currency={currency} token={token} />}
+          {showAmountInFiat && <AssetRowAmountInFiat currency={currency} token={token} options={options} />}
           {}
           <Label
             type={showSymbolUnderLabel ? 'boldMonospace' : 'regularMonospace'}
@@ -108,7 +114,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
 
   const navigation = useNavigation();
   const longPressOptions = useMemo(() => {
-    if (!isRealmToken(token)) {
+    if (!isRealmToken(token) || disableLongPress) {
       return [];
     }
     const { metadata } = token;
@@ -227,5 +233,8 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: 4,
   },
-  longPress: { marginHorizontal: 14, flex: 1 },
+  longPress: {
+    marginHorizontal: 14,
+    flex: 1,
+  },
 });

@@ -2,7 +2,7 @@ import { debounce } from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import NameResolver from '@/api/NameResolver';
-import { Network } from '@/onChain/wallets/base';
+import type { Network } from '@/onChain/wallets/base';
 
 import { handleError } from '/helpers/errorHandler';
 

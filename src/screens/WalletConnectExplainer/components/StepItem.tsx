@@ -1,9 +1,13 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
-import { Label, LabelProps } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import { Label } from '@/components/Label';
+import type { LabelProps } from '@/components/Label';
+import { SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
 import { useTheme } from '@/theme/themes';
 
 export type StepItemProps = {

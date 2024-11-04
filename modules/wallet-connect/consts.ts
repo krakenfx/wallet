@@ -1,4 +1,4 @@
-import { Network } from '@/onChain/wallets/base';
+import type { Network } from '@/onChain/wallets/base';
 import { Networks } from '@/onChain/wallets/registry';
 
 export const WALLET_CONNECT_SESSION_NAMESPACE_KEY_EVM = 'eip155';

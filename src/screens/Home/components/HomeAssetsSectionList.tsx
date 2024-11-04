@@ -1,6 +1,8 @@
+import type { SectionListProps } from 'react-native';
+
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
 import React, { useEffect, useRef, useState } from 'react';
-import { InteractionManager, Platform, SectionListProps } from 'react-native';
+import { InteractionManager, Platform } from 'react-native';
 
 import { useCurrentAccountNumber } from '@/realm/accounts';
 import { runAfterUISync } from '@/utils/runAfterUISync';

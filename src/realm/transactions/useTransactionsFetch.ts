@@ -5,9 +5,12 @@ import { getImplForWallet } from '@/onChain/wallets/registry';
 import { isPromiseRejected } from '@/utils/promise';
 
 import { useRealm } from '../RealmContext';
-import { RealmWallet, getWalletsForMutations } from '../wallets';
+
+import { getWalletsForMutations } from '../wallets';
 
 import { useTransactionMutations } from './useTransactionMutations';
+
+import type { RealmWallet } from '../wallets';
 
 import { handleError } from '/helpers/errorHandler';
 

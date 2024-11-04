@@ -1,5 +1,3 @@
-import { Configuration } from 'realm';
-
 import { onMigration } from '@/realm/migrations';
 
 import { AccountSchema } from './accounts';
@@ -33,6 +31,8 @@ import { PendingTransactionsSchema, WalletTransactionsSchema } from './transacti
 import { UsdFiatRatesSchema } from './usdFiatRates';
 import { WalletConnectTopicsSchema } from './walletConnectTopics';
 import { WalletAddressCacheSchema, WalletSchema, WalletStateSchema } from './wallets';
+
+import type { Configuration } from 'realm';
 
 export const RealmSchema = [
   WalletConnectTopicsSchema,
@@ -73,7 +73,7 @@ export const RealmSchema = [
 ];
 
 export const realmConfig: Configuration = {
-  schemaVersion: 32,
+  schemaVersion: 33,
   schema: RealmSchema,
   onMigration,
 };

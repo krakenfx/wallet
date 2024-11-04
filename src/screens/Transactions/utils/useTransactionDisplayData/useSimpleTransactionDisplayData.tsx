@@ -1,15 +1,15 @@
 import { useMemo } from 'react';
 
-import { Transaction } from '@/api/types';
-import { AssetMetadata } from '@/realm/assetMetadata';
-import { RealmToken } from '@/realm/tokens';
-import { RealmTransaction } from '@/realm/transactions';
-import { SimpleTransactionData } from '@/realm/transactions/getTransactionMetadata';
-
-import { DisplayData } from '../../components/types';
+import type { Transaction } from '@/api/types';
+import type { AssetMetadata } from '@/realm/assetMetadata';
+import type { RealmToken } from '@/realm/tokens';
+import type { RealmTransaction } from '@/realm/transactions';
+import type { SimpleTransactionData } from '@/realm/transactions/getTransactionMetadata';
 
 import { getTransactionDisplayData } from './getTransactionDisplayData';
 import { useCommonTransactionDisplayData } from './useCommonTransactionDisplayData';
+
+import type { DisplayData } from '../../components/types';
 
 type Props = {
   item: RealmTransaction;

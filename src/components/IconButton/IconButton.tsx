@@ -1,9 +1,15 @@
-import { BlurView, BlurViewProps } from '@react-native-community/blur';
-import React, { Fragment } from 'react';
-import { Platform, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
-import { IconName, SvgIcon } from '@/components/SvgIcon';
-import { Theme, useTheme } from '@/theme/themes';
+import { BlurView } from '@react-native-community/blur';
+import React, { Fragment } from 'react';
+import { Platform, StyleSheet, View } from 'react-native';
+
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
+import type { Theme } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
+
+import type { BlurViewProps } from '@react-native-community/blur';
 
 export interface IconButtonProps {
   name: IconName;

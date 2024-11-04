@@ -5,9 +5,9 @@ import { View } from 'react-native';
 
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
-import { BottomSheetModalRef } from '../BottomSheet';
-
 import { CheckBoxConfirmationSheet } from './';
+
+import type { BottomSheetModalRef } from '../BottomSheet';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

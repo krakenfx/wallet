@@ -2,11 +2,13 @@ import * as bip39 from 'bip39';
 import { useCallback } from 'react';
 
 import { useManageAccount } from '@/hooks/useManageAccount';
-import { ALL_MAINNET_COINS, DEFAULT_GALLERY_COINS, WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
+import { ALL_MAINNET_COINS, DEFAULT_GALLERY_COINS } from '@/onChain/wallets/registry';
 import { useAccountsMutations } from '@/realm/accounts';
 import { useRealmTransaction } from '@/realm/hooks/useRealmTransaction';
 import { useSettingsMutations } from '@/realm/settings';
-import { RealmWallet, useWalletsMutations } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
+import { useWalletsMutations } from '@/realm/wallets';
 import { setSeedInKeychain } from '@/secureStore';
 
 export const useImportWallet = () => {

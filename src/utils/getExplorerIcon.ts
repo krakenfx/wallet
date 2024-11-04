@@ -1,4 +1,4 @@
-import { IconName } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
 
 export const getExplorerIcon = (label: string): IconName => {
   const lowerCaseLabel = label.toLowerCase();

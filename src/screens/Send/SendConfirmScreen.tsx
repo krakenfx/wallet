@@ -1,10 +1,11 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { PushNotifications } from '@/api/PushNotifications';
-import { FeeOption } from '@/api/types';
-import { ExpandableSheet, ExpandableSheetMethods } from '@/components/Sheets';
+import type { FeeOption } from '@/api/types';
+import type { ExpandableSheetMethods } from '@/components/Sheets';
+import { ExpandableSheet } from '@/components/Sheets';
 import { TransactionConfirmationFooter } from '@/components/Transaction';
-import { PreparedTransaction } from '@/onChain/wallets/base';
+import type { PreparedTransaction } from '@/onChain/wallets/base';
 import { EVMNetwork } from '@/onChain/wallets/evm';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { useIsPushPromptNeeded } from '@/realm/settings/useIsPushPromptNeeded';
@@ -14,7 +15,7 @@ import { useRealmWalletById } from '@/realm/wallets';
 import { Routes } from '@/Routes';
 import { showRecentActivity } from '@/screens/Home/components/homeAssetPanelEventEmitter';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
-import { getWalletName } from '@/utils/getWalletName';
+import { getBlockchainLabel } from '@/utils/getBlockchainLabel';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { tokenUnit2SmallestUnit } from '@/utils/unitConverter';
@@ -23,13 +24,17 @@ import { Details } from './components/Details';
 import { FeeSelector } from './components/FeeSelector';
 import { NetworkWarning } from './components/NetworkWarning';
 import { Preview } from './components/Preview';
-import { AddressAnalysis } from './hooks/useAddressAnalysis';
+
 import { useAmounts } from './hooks/useAmounts';
 import { useFeeEstimates } from './hooks/useFeeEstimates';
 import { useRefreshingFeeOptions } from './hooks/useRefreshingFeeOptions';
 import { useTransactionMethods } from './hooks/useTransactionMethods';
-import { SendNavigationProps } from './SendRouter';
-import { ScreenStage, TransactionParams } from './types';
+
+import { ScreenStage } from './types';
+
+import type { AddressAnalysis } from './hooks/useAddressAnalysis';
+import type { SendNavigationProps } from './SendRouter';
+import type { TransactionParams } from './types';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -89,6 +94,12 @@ export const SendConfirmScreen = ({ route, navigation }: SendNavigationProps<'Se
   );
 
   const { getSeed } = useSecuredKeychain();
+
+  useEffect(() => {
+    sheetRef.current?.expand();
+  }, []);
+
+  const onCancel = () => sheetRef.current?.close();
 
   const broadcast = useCallback(async () => {
     try {
@@ -178,6 +189,7 @@ export const SendConfirmScreen = ({ route, navigation }: SendNavigationProps<'Se
 
   return (
     <ExpandableSheet
+      isModal
       dismissible={!isLoading}
       ref={sheetRef}
       onDismiss={onDismiss}
@@ -207,10 +219,11 @@ export const SendConfirmScreen = ({ route, navigation }: SendNavigationProps<'Se
         <TransactionConfirmationFooter
           isLoading={isLoading}
           onConfirm={broadcast}
+          onCancel={onCancel}
           hidden={isSuccess}
           feeSelector={renderFeeSelector()}
           primaryButtonColor={route.params.addressAnalysis?.result?.warning?.severity === 'CRITICAL' ? route.params.addressAnalysis?.accentColor : undefined}
-          additionalInfo={network instanceof EVMNetwork && wallet.type !== 'ethereum' ? <NetworkWarning networkName={getWalletName(wallet.type)} /> : null}
+          additionalInfo={network instanceof EVMNetwork && wallet.type !== 'ethereum' ? <NetworkWarning networkName={getBlockchainLabel(wallet.type)} /> : null}
         />
       }
     />

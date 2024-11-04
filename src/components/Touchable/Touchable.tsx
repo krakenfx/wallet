@@ -1,9 +1,15 @@
-import { throttle } from 'lodash';
-import React, { useCallback } from 'react';
-import { GestureResponderEvent, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import Animated, { AnimatedProps } from 'react-native-reanimated';
+import type { GestureResponderEvent, TouchableOpacityProps } from 'react-native';
 
-import { SupportedFeedbackType, hapticFeedback } from '@/utils/hapticFeedback';
+import type { AnimatedProps } from 'react-native-reanimated';
+
+import { throttle } from 'lodash';
+import { useCallback } from 'react';
+import { TouchableOpacity } from 'react-native';
+
+import Animated from 'react-native-reanimated';
+
+import type { SupportedFeedbackType } from '@/utils/hapticFeedback';
+import { hapticFeedback } from '@/utils/hapticFeedback';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 

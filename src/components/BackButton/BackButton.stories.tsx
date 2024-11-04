@@ -1,11 +1,13 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NativeStackNavigationHelpers } from '@react-navigation/native-stack/lib/typescript/src/types';
+
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '../Button';
 
 import { BackButton } from './BackButton';
+
+import type { NativeStackNavigationHelpers } from '@react-navigation/native-stack/lib/typescript/src/types';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

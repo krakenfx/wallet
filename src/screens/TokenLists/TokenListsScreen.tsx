@@ -11,7 +11,8 @@ import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useDeafultHeaderHeight } from '@/hooks/useDefaultHeaderHeight';
 import { REPUTATION, useReputation } from '@/hooks/useReputation';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 import { navigationStyle } from '@/utils/navigationStyle';
 

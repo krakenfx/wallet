@@ -1,19 +1,22 @@
 import React, { useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { BottomSheet, BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheet } from '@/components/BottomSheet';
 import { CheckBox } from '@/components/CheckBox';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { RealmSettingsKey, useSettingsByKey, useSettingsMutations } from '@/realm/settings';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { CloudBackupErrorSheet, PasskeyErrorType } from './components/CloudBackupErrorSheet';
+import { CloudBackupErrorSheet } from './components/CloudBackupErrorSheet';
 
 import { DeleteBackupConfirmModalSheet } from './components/DeleteBackupConfirmModalSheet';
+
+import type { PasskeyErrorType } from './components/CloudBackupErrorSheet';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

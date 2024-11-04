@@ -1,6 +1,8 @@
+import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
+
 import Clipboard from '@react-native-clipboard/clipboard';
 import React, { useCallback, useState } from 'react';
-import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Label } from '@/components/Label';

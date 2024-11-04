@@ -1,10 +1,11 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import { StackActions, useNavigation } from '@react-navigation/native';
 import React, { useCallback } from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
 
 import { IconButton } from '@/components/IconButton';
 import { Routes } from '@/Routes';
-import { Theme } from '@/theme/themes';
+import type { Theme } from '@/theme/themes';
 
 export interface CloseButtonProps {
   goBackOnly?: boolean;

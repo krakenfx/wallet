@@ -1,4 +1,3 @@
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -7,12 +6,14 @@ import { IconButton } from '@/components/IconButton';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { useSettingsMutations } from '@/realm/settings';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 
 import { SlideFour } from './slides/SlideFour';
 import { SlideOne } from './slides/SlideOne';
 import { SlideThree } from './slides/SlideThree';
 import { SlideTwo } from './slides/SlideTwo';
+
+import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 const pages = [SlideOne, SlideTwo, SlideThree, SlideFour];
 

@@ -4,10 +4,8 @@ import { SequencedTransition } from 'react-native-reanimated';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
-import { ColorName } from '@/theme/themes';
+import type { ColorName } from '@/theme/themes';
 import { runAfterUISync } from '@/utils/runAfterUISync';
-
-import { useExpandableSheetContext } from '../Sheets/ExpandableSheet/ExpandableSheetContext';
 
 import loc from '/loc';
 
@@ -30,7 +28,6 @@ export const TransactionConfirmationFooter: React.FC<Props> = ({
   isLoading: propLoading,
   primaryButtonColor,
 }) => {
-  const { close } = useExpandableSheetContext();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -67,7 +64,7 @@ export const TransactionConfirmationFooter: React.FC<Props> = ({
             ? {
                 testID: 'ButtonCancel',
                 text: loc.transactionDetails.confirmation.cancel,
-                onPress: onCancel ?? close,
+                onPress: onCancel,
               }
             : undefined
         }

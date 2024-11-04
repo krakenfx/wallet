@@ -1,8 +1,10 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React, { useMemo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Svg from 'react-native-svg';
 
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 import { getNetworkIcon } from '/generated/networkIcons';
 

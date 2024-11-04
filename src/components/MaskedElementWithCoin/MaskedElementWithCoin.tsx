@@ -1,10 +1,12 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import MaskedView from '@react-native-masked-view/masked-view';
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Svg, { Circle, Defs, G, Mask, Rect } from 'react-native-svg';
 
 import { NetworkIcon } from '@/components/NetworkIcon';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 export type MaskedElementWithCoinProps = {
   size: number;

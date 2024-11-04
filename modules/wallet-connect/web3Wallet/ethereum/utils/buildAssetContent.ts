@@ -1,10 +1,10 @@
 import { fetchPriceForToken } from '@/api/fetchPriceForToken';
 import { fetchTokenMetadata } from '@/api/fetchTokenMetadata';
-import { TransactionAmountProps } from '@/components/Transaction/TransactionAmount';
-import { Network } from '@/onChain/wallets/base';
-import { WalletType } from '@/onChain/wallets/registry';
-import { TransactionData } from '@/realm/transactions/getTransactionMetadata';
-import { Currency } from '@/screens/Settings/currency';
+import type { TransactionAmountProps } from '@/components/Transaction/TransactionAmount';
+import type { Network } from '@/onChain/wallets/base';
+import type { WalletType } from '@/onChain/wallets/registry';
+import type { TransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { Currency } from '@/screens/Settings/currency';
 import { formatTransactionValueAsNegativeOrPositive } from '@/screens/Transactions/utils/formatTransactionValueAsNegativeOrPositive';
 import { calculateBalance } from '@/utils/calculateBalance';
 import { formatCurrency } from '@/utils/formatCurrency';

@@ -1,5 +1,9 @@
-import React, { ComponentProps, useMemo, useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { ComponentProps } from 'react';
+
+import type { LayoutChangeEvent, LayoutRectangle, StyleProp, ViewStyle } from 'react-native';
+
+import React, { useMemo, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 
 type SizeAwareSVGUriProps = Omit<ComponentProps<typeof SvgUri>, 'onLoad'> & {

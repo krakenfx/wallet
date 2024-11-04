@@ -8,20 +8,22 @@ import Animated, { CurvedTransition, FadeIn, FadeOut } from 'react-native-reanim
 import { ActivityIndicator } from '@/components/ActivityIndicator/ActivityIndicator';
 import { AddressDisplay } from '@/components/AddressDisplay';
 import { CardWarning } from '@/components/CardWarning';
-import { Input, InputMethods } from '@/components/Input';
+import type { InputMethods } from '@/components/Input';
+import { Input } from '@/components/Input';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useKeyboardEvent } from '@/hooks/useKeyboardEvent';
-import { Network } from '@/onChain/wallets/base';
+import type { Network } from '@/onChain/wallets/base';
 import { EVMNetwork } from '@/onChain/wallets/evm';
 import { showPermissionDeniedAlert } from '@/utils/cameraPermissions';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
-import { AddressAnalysis } from '../hooks/useAddressAnalysis';
 import { useNameResolver } from '../hooks/useNameResolver';
 import { useFormField } from '../utils/sendForm';
 
 import { AddressAnalysisInfo } from './AddressAnalysisInfo';
+
+import type { AddressAnalysis } from '../hooks/useAddressAnalysis';
 
 import loc from '/loc';
 

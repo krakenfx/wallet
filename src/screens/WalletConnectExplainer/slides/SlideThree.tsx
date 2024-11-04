@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
-import { AnimationMarkers, LoopSlide, LoopSlides } from '@/components/AnimatedSlides';
+import type { AnimationMarkers, LoopSlide } from '@/components/AnimatedSlides';
+import { LoopSlides } from '@/components/AnimatedSlides';
 
 import loc from '/loc';
 

@@ -1,20 +1,23 @@
-import { SessionTypes } from '@walletconnect/types';
-import { Web3WalletTypes } from '@walletconnect/web3wallet';
-import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
-import Realm from 'realm';
 
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { REALM_TYPE_WALLET, RealmWallet } from '@/realm/wallets/schema';
-import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
+import type { RealmWallet } from '@/realm/wallets/schema';
+import { REALM_TYPE_WALLET } from '@/realm/wallets/schema';
+import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { WALLET_CONNECT_SUPPORTED_SESSION_NAMESPACE_KEYS } from '../consts';
-import { ReactNavigationDispatch } from '../types';
+
 import { isEVMHarmonyTransport, isEVMNetwork, isSolanaNetwork, isSolanaTransport, splitWalletString } from '../utils';
 
 import * as ethereum from './ethereum';
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from './ethereum/types';
 import * as solana from './solana';
 import { WALLET_CONNECT_SOLANA_SIGN_TYPES } from './solana/types';
+
+import type { ReactNavigationDispatch } from '../types';
+import type { SessionTypes } from '@walletconnect/types';
+import type { Web3WalletTypes } from '@walletconnect/web3wallet';
+import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
+import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

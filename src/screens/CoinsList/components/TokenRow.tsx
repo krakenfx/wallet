@@ -4,7 +4,7 @@ import { AssetSwitch } from '@/components/AssetSwitch';
 import { ReputationTag } from '@/components/Reputation';
 import { REPUTATION, useReputation } from '@/hooks/useReputation';
 import { useTokenSwitch } from '@/hooks/useTokenSwitch';
-import { RealmToken } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
 
 interface TokenRowProps {
   token: RealmToken;

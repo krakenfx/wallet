@@ -1,10 +1,11 @@
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React from 'react';
 
 import { CloseButton } from '@/components/CloseButton';
 import { Typography } from '@/components/Label';
 
-import { Theme } from '@/theme/themes';
+import type { Theme } from '@/theme/themes';
+
+import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 export type NavigationOptionsGetter = (theme: Theme) => () => NativeStackNavigationOptions;
 

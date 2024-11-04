@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
-import Realm from 'realm';
 
 import { REPUTATION, getAssetReputation, useReputation } from '@/hooks/useReputation';
 import { getNftMetadata } from '@/realm/nftMetadata';
 
-import { MinimalTransaction, TransactionData, getTransactionMetadata } from './getTransactionMetadata';
+import { getTransactionMetadata } from './getTransactionMetadata';
+
+import type { MinimalTransaction, TransactionData } from './getTransactionMetadata';
+import type Realm from 'realm';
 
 const shouldFilterOutTransactionByReputation = (
   reputation: REPUTATION,

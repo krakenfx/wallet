@@ -1,10 +1,10 @@
-import { FeeOption } from '@/api/types';
-import { PreparedTransaction } from '@/onChain/wallets/base';
+import type { FeeOption } from '@/api/types';
+import type { PreparedTransaction } from '@/onChain/wallets/base';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { IWalletStorage } from '@/onChain/wallets/walletState';
-import { RealmWallet } from '@/realm/wallets';
+import type { IWalletStorage } from '@/onChain/wallets/walletState';
+import type { RealmWallet } from '@/realm/wallets';
 
-import { NftTransactionParams } from '../types';
+import type { NftTransactionParams } from '../types';
 
 export function getNFTTransactionMethods<TType, TRequest, TFeeOption extends FeeOption>(
   wallet: RealmWallet,

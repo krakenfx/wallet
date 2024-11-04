@@ -8,7 +8,7 @@ import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyVal
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useAppCurrency, useIsHideBalancesEnabled } from '@/realm/settings';
-import { RealmToken } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
 import { getAvailableTokenBalance } from '@/realm/tokens/getAvailableTokenBalance';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';

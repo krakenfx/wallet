@@ -1,7 +1,10 @@
-import React from 'react';
-import { Platform, StyleProp, StyleSheet, TextInputProps, TextStyle } from 'react-native';
+import type { StyleProp, TextInputProps, TextStyle } from 'react-native';
 
-import { Input, InputProps } from '@/components/Input';
+import React from 'react';
+import { Platform, StyleSheet } from 'react-native';
+
+import type { InputProps } from '@/components/Input';
+import { Input } from '@/components/Input';
 import { SvgIcon } from '@/components/SvgIcon';
 
 interface SearchInputProps extends InputProps {

@@ -3,7 +3,7 @@ import LottieView from 'lottie-react-native';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
@@ -12,7 +12,7 @@ import { MissingBiometricsSheet } from '@/components/MissingBiometricsSheet';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { OnboardingNavigationProps } from './OnboardingRouter';
+import type { OnboardingNavigationProps } from './OnboardingRouter';
 
 import { SECURITY_ENROLLED_NONE, enableBiometrics, getSupportedAuthentication } from '/helpers/biometric-unlock';
 import loc from '/loc';

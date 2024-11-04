@@ -1,8 +1,12 @@
-import React, { MutableRefObject, PropsWithChildren, useContext, useRef } from 'react';
-import { LayoutChangeEvent, ViewStyle, useWindowDimensions } from 'react-native';
+import type { MutableRefObject, PropsWithChildren } from 'react';
+
+import type { LayoutChangeEvent, ViewStyle } from 'react-native';
+
+import React, { useContext, useRef } from 'react';
+import { useWindowDimensions } from 'react-native';
 import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { InputMethods } from '@/components/Input';
+import type { InputMethods } from '@/components/Input';
 
 interface BrowserAnimationContextProps {
   onGoBack: () => void;

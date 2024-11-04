@@ -4,11 +4,13 @@ import { GradientScreenView } from '@/components/Gradients';
 import { decryptRealmEncryptionKey, decryptSeedWithUserPassword } from '@/secureStore';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { SettingsNavigationProps } from '../SettingsRouter';
-
 import { usePasswordProtectionEnabled } from './hooks';
 import { useLockout } from './hooks/useLockout';
-import { LockScreen, LockScreenRef } from './LockScreen';
+
+import { LockScreen } from './LockScreen';
+
+import type { LockScreenRef } from './LockScreen';
+import type { SettingsNavigationProps } from '../SettingsRouter';
 
 import loc from '/loc';
 

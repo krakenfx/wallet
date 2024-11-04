@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AssetRow, AssetRowProps } from '@/components/AssetRow';
+import type { AssetRowProps } from '@/components/AssetRow';
+import { AssetRow } from '@/components/AssetRow';
 import { useRefreshKey } from '@/hooks/useRefreshKey';
 import { useRealmWalletById } from '@/realm/wallets';
 import { runAfterUISync } from '@/utils/runAfterUISync';

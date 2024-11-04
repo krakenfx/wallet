@@ -1,20 +1,19 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Skeleton } from '@/components/Skeleton';
 
 import { Sizes } from '../../ExploreScreen.constants';
 
-export const ExploreHeroSkeleton: React.FC = () => {
+export const ExploreHeroSkeleton = () => {
   return <Skeleton style={styles.hero} />;
 };
-export const ExploreMediumCardSkeleton: React.FC = () => {
+export const ExploreMediumCardSkeleton = () => {
   return <Skeleton style={styles.mediumCard} />;
 };
-export const ExploreSmallCardSkeleton: React.FC = () => {
+export const ExploreSmallCardSkeleton = () => {
   return <Skeleton style={styles.smallCard} />;
 };
-export const ExploreListSkeleton: React.FC = () => {
+export const ExploreListSkeleton = () => {
   return (
     <>
       <Skeleton style={[styles.text, styles.textHeadline]} />
@@ -23,7 +22,7 @@ export const ExploreListSkeleton: React.FC = () => {
     </>
   );
 };
-export const ExploreTextSkeleton: React.FC = () => {
+export const ExploreTextSkeleton = () => {
   return (
     <>
       <Skeleton style={[styles.text, styles.textHeadline]} />

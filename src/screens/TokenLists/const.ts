@@ -1,4 +1,4 @@
-import { TokenListNames } from './types';
+import type { TokenListNames } from './types';
 
 export const DEFAULT_TOKEN_LISTS: TokenListNames[] = [
   'Kraken',

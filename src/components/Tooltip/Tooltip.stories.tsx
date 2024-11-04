@@ -20,15 +20,27 @@ const TooltipMeta: Meta<typeof Tooltip> = {
   component: Tooltip,
   decorators: [
     Story => (
-      <View>
+      <View style={{ padding: 24 }}>
         <Story />
       </View>
     ),
   ],
+  argTypes: {
+    horizontalAlign: {
+      options: ['left', 'right'],
+      control: { type: 'select' },
+    },
+    verticalAlign: {
+      options: ['top', 'bottom'],
+      control: { type: 'select' },
+    },
+  },
   args: {
-    containerStyle: { margin: 16 },
+    containerStyle: {},
+    horizontalAlign: 'left',
+    verticalAlign: 'top',
+    horizontalTipOffset: 32,
     style: {},
-    delayMs: 0,
   },
   render: function Render(args) {
     return (

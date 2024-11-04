@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BottomSheet } from '@/components/BottomSheet';
 import { SvgIcon } from '@/components/SvgIcon';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 
 import { useTheme } from '@/theme/themes';
 import { navigationStyle } from '@/utils/navigationStyle';

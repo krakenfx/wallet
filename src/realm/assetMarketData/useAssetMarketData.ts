@@ -4,8 +4,10 @@ import { fetchAssetMarketData } from '@/api/fetchAssetMarketData';
 import { useObject } from '@/realm/RealmContext';
 import { useAppCurrency } from '@/realm/settings';
 
-import { REALM_TYPE_ASSET_MARKET_DATA, RealmAssetMarketData } from './schema';
+import { REALM_TYPE_ASSET_MARKET_DATA } from './schema';
 import { useAssetMarketDataMutations } from './useAssetMarketDataMutations';
+
+import type { RealmAssetMarketData } from './schema';
 
 import { createErrorHandlerWithContext } from '/helpers/errorHandler';
 

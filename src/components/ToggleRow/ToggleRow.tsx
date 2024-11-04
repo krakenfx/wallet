@@ -1,4 +1,6 @@
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 

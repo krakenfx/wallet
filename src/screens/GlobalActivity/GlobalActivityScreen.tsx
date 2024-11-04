@@ -9,8 +9,9 @@ import { NetworkFilter, useNetworkFilter } from '@/components/NetworkFilter';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { refreshAllTransactions } from '@/realm/refreshManagerHooks';
 import { useTransactionsFetch } from '@/realm/transactions';
-import { NavigationProps } from '@/Routes';
-import { TransactionListItem, useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
+import type { NavigationProps } from '@/Routes';
+import type { TransactionListItem } from '@/screens/Transactions/utils/useTransactionsDataSource';
+import { useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 

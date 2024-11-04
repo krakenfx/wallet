@@ -1,21 +1,24 @@
 import { useNavigation } from '@react-navigation/native';
-import { FlashList, FlashListProps } from '@shopify/flash-list';
+
+import { FlashList } from '@shopify/flash-list';
 import React, { useCallback } from 'react';
 import { StyleSheet } from 'react-native';
 import { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { UINetworkFilters } from '@/components/NetworkFilter/types';
-import { RealmNft } from '@/realm/nfts';
-import { NavigationProps } from '@/Routes';
+import type { UINetworkFilter } from '@/components/NetworkFilter/types';
+import type { RealmNft } from '@/realm/nfts';
+import type { NavigationProps } from '@/Routes';
 
 import { realmListToFlashListData } from '@/utils/realmListToFlashListData';
 
 import { NFT_SIZE, NftItem } from './NftItem';
 import { NftListEmptyState } from './NftListEmptyState';
 
+import type { FlashListProps } from '@shopify/flash-list';
+
 type Props = Pick<FlashListProps<RealmNft>, 'data' | 'refreshControl'> & {
-  networkFilter?: UINetworkFilters[];
+  networkFilter?: UINetworkFilter[];
 };
 
 const keyExtractor = (item: RealmNft, i: number) => {

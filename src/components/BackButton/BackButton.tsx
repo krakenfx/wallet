@@ -2,7 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 
-import { IconButton, IconButtonProps } from '@/components/IconButton';
+import type { IconButtonProps } from '@/components/IconButton';
+import { IconButton } from '@/components/IconButton';
 
 export const BackButton: React.FC<Omit<IconButtonProps, 'name'>> = props => {
   const navigation = useNavigation();

@@ -1,12 +1,16 @@
+import type { StyleProp, TextInputProps, TextStyle, ViewStyle } from 'react-native';
+
 import React, { useEffect, useImperativeHandle, useRef } from 'react';
-import { StyleProp, StyleSheet, TextInput, TextInputProps, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import { StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { KeyboardDoneInputAccessoryView } from '@/components/Keyboard';
-import { Label, Typography, TypographyKey } from '@/components/Label';
+import type { LabelProps, TypographyKey } from '@/components/Label';
+import { Label, Typography } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useInputBackground } from '@/hooks/useInputBackground';
-import { ColorName, useTheme } from '@/theme/themes';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
 export interface InputProps extends Omit<TextInputProps, 'style'> {
@@ -17,7 +21,10 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   right?: React.ReactElement;
   footerLeft?: LocalizedString;
   footerRight?: LocalizedString;
+  footerLeftProps?: LabelProps;
+  footerRightProps?: LabelProps;
   containerStyle?: StyleProp<ViewStyle>;
+  backgroundStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
   inputWrapperStyle?: StyleProp<TextStyle>;
   inputStyle?: StyleProp<TextStyle>;
@@ -34,6 +41,7 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   borderColorOnFocus?: ColorName;
   borderColorOnBlur?: ColorName;
   backgroundColor?: ColorName;
+  errorInside?: boolean;
 }
 
 export type InputMethods = {
@@ -78,6 +86,7 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
       placeholder,
       placeholderStyle,
       textAlign,
+      errorInside,
       ...props
     },
     ref,
@@ -104,6 +113,15 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
     );
 
     const handlePress = () => inputRef.current?.focus();
+
+    const error = props.errorText && (
+      <Animated.View style={styles.error} entering={FadeIn} exiting={FadeOut} testID={props.errorMessageTestID ?? 'InputErrorMessage'}>
+        <SvgIcon name="warning-filled" color="red400" size={16} />
+        <Label type="regularCaption1" color="red400">
+          {props.errorText}
+        </Label>
+      </Animated.View>
+    );
 
     let input = (
       <TextInput
@@ -136,30 +154,24 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
     return (
       <View style={containerStyle}>
         <TouchableWithoutFeedback onPress={handlePress} testID={testID}>
-          <Animated.View style={[styles.container, style, backgroundStyle]}>
+          <Animated.View style={[styles.container, style, backgroundStyle, props.backgroundStyle]}>
             {input}
             {(!!footerLeft || !!footerRight) && (
               <Animated.View style={styles.footerContainer} testID={`Footer-${testID}`}>
                 {footerLeft && (
-                  <Label entering={FadeIn} exiting={FadeOut} type="regularBody" style={[!!footerRight && styles.footerLeft]}>
+                  <Label entering={FadeIn} exiting={FadeOut} type="regularBody" style={[!!footerRight && styles.footerLeft]} {...props.footerLeftProps}>
                     {footerLeft}
                   </Label>
                 )}
-                <Label type="mediumBody" color="light50" style={styles.footerRight} testID={`FooterRight-${testID}`}>
+                <Label type="mediumBody" color="light50" style={styles.footerRight} testID={`FooterRight-${testID}`} {...props.footerRightProps}>
                   {footerRight}
                 </Label>
               </Animated.View>
             )}
+            {!!errorInside && error}
           </Animated.View>
         </TouchableWithoutFeedback>
-        {props.errorText && (
-          <Animated.View style={styles.error} entering={FadeIn} exiting={FadeOut} testID={props.errorMessageTestID ?? 'InputErrorMessage'}>
-            <SvgIcon name="warning-filled" color="red400" size={16} />
-            <Label type="regularCaption1" color="red400">
-              {props.errorText}
-            </Label>
-          </Animated.View>
-        )}
+        {!errorInside && error}
         {!hideDoneAccessoryView && <KeyboardDoneInputAccessoryView />}
       </View>
     );

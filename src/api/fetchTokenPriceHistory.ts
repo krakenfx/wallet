@@ -1,6 +1,6 @@
-import { PriceHistoryPeriod, TokenPriceHistory } from '@/realm/tokenPrice';
+import type { PriceHistoryPeriod, TokenPriceHistory } from '@/realm/tokenPrice';
 import { getPriceHistoryId } from '@/realm/tokenPrice/utils';
-import { Currency } from '@/screens/Settings/currency';
+import type { Currency } from '@/screens/Settings/currency';
 import { CHART_DATA_ITEMS_COUNT } from '@/screens/Transactions/components/TokenMarketData/utils';
 import { interpolateChartData } from '@/utils/interpolateChartData';
 

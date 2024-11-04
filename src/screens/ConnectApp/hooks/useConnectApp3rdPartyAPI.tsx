@@ -7,12 +7,15 @@ import { useRealm } from '@/realm/RealmContext';
 import { useRealmWallets } from '@/realm/wallets';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
-import { ConnectAppParams } from '../ConnectAppScreen';
-import { UI_STATE, _3rdPartyData } from '../types';
+import type { ConnectWalletConnectAppParams } from '../ConnectWalletConnectAppScreen';
+import type { UI_STATE, _3rdPartyData } from '../types';
 
 import { connectAppWithWalletConnect } from '/modules/wallet-connect/connectAppWithWalletConnect';
 
-export const useConnectApp3rdPartyAPI = (_3rdPartyAPI: ConnectAppParams, setUIState: React.Dispatch<React.SetStateAction<UI_STATE>>): _3rdPartyData => {
+export const useConnectApp3rdPartyAPI = (
+  _3rdPartyAPI: ConnectWalletConnectAppParams,
+  setUIState: React.Dispatch<React.SetStateAction<UI_STATE>>,
+): _3rdPartyData => {
   const [_3rdPartyAPIData, set3rdPartyAPIData] = useState<_3rdPartyData>({});
   const allWalletsForCurrentAccount = useRealmWallets();
   const currentAccountNumber = useCurrentAccountNumber();

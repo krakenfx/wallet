@@ -1,6 +1,7 @@
-import { FlashList } from '@shopify/flash-list';
+import type { NativeScrollEvent } from 'react-native';
+
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Image, InteractionManager, NativeScrollEvent, StyleSheet, View } from 'react-native';
+import { Image, InteractionManager, StyleSheet, View } from 'react-native';
 import { runOnJS } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -18,20 +19,26 @@ import { useAssetMetadataFetch } from '@/realm/assetMetadata';
 import { useResolvedAssetBalance, useTokenById, useTokensFetch } from '@/realm/tokens';
 import { useTransactionsFetch } from '@/realm/transactions/useTransactionsFetch';
 import { useRealmWalletById } from '@/realm/wallets';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 
 import { useTheme } from '@/theme/themes';
-import { AssetBalanceId } from '@/types';
+import type { AssetBalanceId } from '@/types';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
+import { isSwapSupportedForToken } from '../Swap/utils/isSwapSupportedForToken';
+
+import { TokenActionButtons } from './components/TokenActionButtons';
 import { SheetPosition } from './components/TokenMarketData/utils';
 import { SMALL_SHEET_MIN_HEIGHT, TokenMarketDataBottomSheet, defaultSheetPosition } from './components/TokenMarketDataBottomSheet';
-import { TokenSendReceiveButtons } from './components/TokenSendReceiveButtons';
 import { TransactionsTokenHeader } from './components/TransactionsTokenHeader';
 
 import { refreshingTransactionsEvent, showRefreshingTransactionsToast } from './utils/showRefreshingTransactionsToast';
-import { TransactionListItem, useTransactionsDataSource } from './utils/useTransactionsDataSource';
+
+import { useTransactionsDataSource } from './utils/useTransactionsDataSource';
+
+import type { TransactionListItem } from './utils/useTransactionsDataSource';
+import type { FlashList } from '@shopify/flash-list';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -49,6 +56,8 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
   const realmWallet = useRealmWalletById(walletId)!;
   const token = useTokenById(tokenId);
   const { colors } = useTheme();
+
+  const canSwap = isSwapSupportedForToken(token);
 
   const isOnline = useIsOnline();
 
@@ -177,7 +186,7 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
           ListHeaderComponent={
             <>
               {token ? <TransactionsTokenHeader token={token} testID="TokenScreen" /> : null}
-              <TokenSendReceiveButtons navigation={navigation} assetBalanceId={params.assetBalanceId} />
+              <TokenActionButtons navigation={navigation} assetBalanceId={params.assetBalanceId} canSwap={canSwap} />
               {dataSource && dataSource?.length > 0 && (
                 <ListHeader buttonTestID="TokenScreen-BottomSheet-Heading" title={loc.transactionTile.activity} style={styles.header} />
               )}

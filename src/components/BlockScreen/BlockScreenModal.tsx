@@ -1,8 +1,11 @@
 import React, { forwardRef } from 'react';
 
-import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheetModal } from '@/components/BottomSheet';
 
-import { BlockScreenContent, BlockScreenProps } from './BlockScreenContent';
+import { BlockScreenContent } from './BlockScreenContent';
+
+import type { BlockScreenProps } from './BlockScreenContent';
 
 export const BlockScreenModal = forwardRef<BottomSheetModalRef, BlockScreenProps>((props, ref) => {
   return (

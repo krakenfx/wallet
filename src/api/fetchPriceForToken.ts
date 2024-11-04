@@ -1,4 +1,4 @@
-import { FiatValue, TokenPrice } from '@/realm/tokenPrice';
+import type { FiatValue, TokenPrice } from '@/realm/tokenPrice';
 import { Currency } from '@/screens/Settings/currency/types';
 
 import { getHarmony } from './base/apiFactory';

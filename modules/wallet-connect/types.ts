@@ -1,11 +1,11 @@
-import { NavigationHelpers, ParamListBase } from '@react-navigation/native';
 
-import { SessionTypes } from '@walletconnect/types';
 
-import { TransactionAmountProps } from '@/components/Transaction/TransactionAmount';
-import { TRANSACTION_TYPES } from '@/realm/transactions/const';
+import type { TransactionAmountProps } from '@/components/Transaction/TransactionAmount';
+import type { TRANSACTION_TYPES } from '@/realm/transactions/const';
 
-import { EIP712 } from './web3Wallet/ethereum';
+import type { EIP712 } from './web3Wallet/ethereum';
+import type { NavigationHelpers, ParamListBase } from '@react-navigation/native';
+import type { SessionTypes } from '@walletconnect/types';
 
 export type SessionNamespace =
   | {

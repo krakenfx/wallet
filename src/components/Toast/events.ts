@@ -1,6 +1,6 @@
 import EventEmitter from 'eventemitter3';
 
-import { HideToastProps, ToastConfigProps } from '@/components/Toast/Toast';
+import type { HideToastProps, ToastConfigProps } from '@/components/Toast/Toast';
 
 export const toastEmitter = new EventEmitter();
 

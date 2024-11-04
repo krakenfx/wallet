@@ -1,4 +1,4 @@
-import { FeeOption } from '@/api/types';
+import type { FeeOption } from '@/api/types';
 
 export const getFeeOptionAmount = (option: FeeOption): string => {
   if ('is1559' in option) {

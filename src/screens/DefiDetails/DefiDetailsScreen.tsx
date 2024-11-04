@@ -1,7 +1,9 @@
+import type { SectionListData } from 'react-native';
+
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
-import { SectionListData, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { AnimatedNumbers } from '@/components/AnimatedNumbers';
 import { BottomSheet } from '@/components/BottomSheet';
@@ -11,10 +13,11 @@ import { LargeHeader } from '@/components/LargeHeader';
 import { ListHeader } from '@/components/ListHeader';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { parseDefiNetworkTypeToWalletType } from '@/onChain/wallets/registry';
-import { RealmDefiPosition, useDefiById } from '@/realm/defi';
+import type { RealmDefiPosition } from '@/realm/defi';
+import { useDefiById } from '@/realm/defi';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { navigationStyle } from '@/utils/navigationStyle';
 

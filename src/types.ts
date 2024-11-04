@@ -1,3 +1,5 @@
+import type { WalletType } from './onChain/wallets/registry';
+
 export type AssetBalanceId =
   | string
   | {
@@ -11,10 +13,12 @@ export type RemoteAssetMetadata = {
   label: string;
   symbol: string;
   decimals: number;
+  tokenAddress: string | null;
   reputation: {
     whitelists: string[];
     blacklists: string[];
   };
+  walletType: WalletType;
 };
 
 export type RemoteAsset = {

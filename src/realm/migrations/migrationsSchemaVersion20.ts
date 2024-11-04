@@ -1,6 +1,8 @@
 import Realm from 'realm';
 
-import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey } from '../settings';
+import { REALM_TYPE_SETTINGS, RealmSettingsKey } from '../settings';
+
+import type { RealmSettings } from '../settings';
 
 
 export const migrationsSchemaVersion20 = (oldRealm: Realm, newRealm: Realm) => {

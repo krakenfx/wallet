@@ -1,4 +1,5 @@
-import { Currency, CurrencyInfo, getCurrencyInfo } from '@/screens/Settings/currency/types';
+import type { Currency, CurrencyInfo } from '@/screens/Settings/currency/types';
+import { getCurrencyInfo } from '@/screens/Settings/currency/types';
 
 export type FormatTokenAmountOptions = {
   compact?: boolean;

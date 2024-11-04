@@ -8,7 +8,8 @@ import { useMonitorPendingTransactions } from '@/hooks/useMonitorPendingTransact
 import { useRealm } from '@/realm/RealmContext';
 import { useRegisterRefreshManager } from '@/realm/refreshManagerHooks';
 import { useLanguage } from '@/realm/settings';
-import { REALM_TYPE_WALLET, RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
+import { REALM_TYPE_WALLET } from '@/realm/wallets';
 import { AccountRouter, AdvancedAccountInfoScreen, ExtendedPublicKeyScreen } from '@/screens/Accounts';
 import {
   WalletConnectSignRequest_GenericMessageScreen,
@@ -16,13 +17,13 @@ import {
   WalletConnectSignRequest_StructuredTransactionScreen,
 } from '@/screens/AppSignRequest';
 import { CoinsListScreen } from '@/screens/CoinsList';
-import { ConnectAppScreen } from '@/screens/ConnectApp';
+import { ConnectAppScreen, ConnectWalletConnectAppScreen } from '@/screens/ConnectApp';
 import { ConnectAppQRScanScreen } from '@/screens/ConnectAppQRScan';
 import { DebugScreen } from '@/screens/DebugScreen';
 import { DefiDetailsScreen } from '@/screens/DefiDetails';
 import { EditNoteScreen } from '@/screens/EditNoteScreen';
 import { ExplainerScreen } from '@/screens/Explainer';
-import { ExploreScreen } from '@/screens/Explore';
+import { ExploreScreen, ExploreSubpageScreen } from '@/screens/Explore';
 import { GlobalActivityScreen } from '@/screens/GlobalActivity';
 import { HomeScreen } from '@/screens/Home';
 import { ManageAssetsGlobalFilterScreen } from '@/screens/ManageAssetsGlobalFilter';
@@ -31,8 +32,7 @@ import { MarketDataInfoScreen } from '@/screens/MarketDataInfoScreen';
 import { ManageNftScreen, NftCollectionScreen, NftImageGalleryScreen, NftsScreen, ViewNftScreen } from '@/screens/Nfts';
 import { OnboardingRouter } from '@/screens/Onboarding';
 import { ReceiveScreen, UniversalReceiveScreen } from '@/screens/Receive';
-import { SendRouter } from '@/screens/Send';
-import { SendQRScanScreen } from '@/screens/Send';
+import { SendQRScanScreen, SendRouter } from '@/screens/Send';
 import { AppDetailsScreen, ConnectedAppsScreen, DiagnosticsScreen, LanguageScreen, NotificationsScreen, SettingsRouter } from '@/screens/Settings';
 import { TokenListsScreen } from '@/screens/TokenLists';
 import { TransactionDetailsScreen, TransactionsScreen } from '@/screens/Transactions';
@@ -44,9 +44,12 @@ import { WhatsNewAssetMarketDataScreen, WhatsNewBlastScreen, WhatsNewLongPressSc
 import { useConnectionManager } from '@/utils/useConnectionManager';
 
 import { DefaultBackButton } from './components/BackButton';
-import { RouteProps } from './Routes';
+
 import { BrowserScreen } from './screens/Browser';
+import { SwapScreen } from './screens/Swap';
 import { useTheme } from './theme/themes';
+
+import type { RouteProps } from './Routes';
 
 import { saveLanguage } from '/loc';
 import { useHandleConnectToDappWalletConnectRequests } from '/modules/wallet-connect/hooks';
@@ -90,6 +93,11 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="Browser" component={BrowserScreen} options={BrowserScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="WalletBackupPrompt" component={WalletBackupPromptScreen} options={WalletBackupPromptScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="CoinsList" component={CoinsListScreen} options={CoinsListScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen
+        name="ConnectWalletConnectApp"
+        component={ConnectWalletConnectAppScreen}
+        options={ConnectWalletConnectAppScreen.navigationOptions(theme)}
+      />
       <DefaultStack.Screen name="ConnectApp" component={ConnectAppScreen} options={ConnectAppScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ConnectedApps" component={ConnectedAppsScreen} options={ConnectedAppsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Debug" component={DebugScreen} options={DebugScreen.navigationOptions(theme)} />
@@ -145,6 +153,8 @@ const NavigationStack = () => {
         options={WalletConnectSignRequest_StructuredTransactionScreen.navigationOptions(theme)}
       />
       <DefaultStack.Screen name="Explore" component={ExploreScreen} options={ExploreScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="ExploreSubpage" component={ExploreSubpageScreen} options={ExploreSubpageScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="Swap" component={SwapScreen} options={SwapScreen.navigationOptions(theme)} />
     </DefaultStack.Navigator>
   );
 };

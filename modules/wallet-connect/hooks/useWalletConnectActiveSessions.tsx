@@ -1,12 +1,13 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { SessionTypes } from '@walletconnect/types';
-import { IWeb3Wallet } from '@walletconnect/web3wallet';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useRealm } from '@/realm/RealmContext';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
+
+import type { SessionTypes } from '@walletconnect/types';
+import type { IWeb3Wallet } from '@walletconnect/web3wallet';
 
 import { WalletConnectSessionsManager, deleteStaleSessionsFromRealm, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
 

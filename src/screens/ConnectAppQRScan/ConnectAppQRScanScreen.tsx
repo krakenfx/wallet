@@ -1,13 +1,14 @@
-import { BottomSheetFooter, BottomSheetFooterProps } from '@gorhom/bottom-sheet';
+import { BottomSheetFooter } from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useFocusEffect } from '@react-navigation/native';
-import { BarcodeScanningResult, PermissionStatus, useCameraPermissions } from 'expo-camera';
+
+import { PermissionStatus, useCameraPermissions } from 'expo-camera';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Path, Svg } from 'react-native-svg';
 
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { Camera } from '@/components/Camera';
 import { CloseButton } from '@/components/CloseButton';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
@@ -15,12 +16,14 @@ import { GradientScreenView } from '@/components/Gradients';
 import { Label } from '@/components/Label';
 import { useRealm } from '@/realm/RealmContext';
 import { useWalletConnectTopicsMutations } from '@/realm/walletConnectTopics/useWalletConnectTopicsMutations';
-import { NavigationProps, NoParamsRoute } from '@/Routes';
-import { Routes } from '@/Routes';
+import { type NavigationProps, type NoParamsRoute, Routes } from '@/Routes';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { ConnectedApps } from './components/ConnectedApps';
+
+import type { BottomSheetFooterProps } from '@gorhom/bottom-sheet';
+import type { BarcodeScanningResult } from 'expo-camera';
 
 import loc from '/loc';
 import { handleConnectToDappWalletConnectUri } from '/modules/wallet-connect/handleConnectToDappWalletConnectUri';
