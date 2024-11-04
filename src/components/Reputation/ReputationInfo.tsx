@@ -7,8 +7,11 @@ import { REPUTATION, useReputation } from '@/hooks/useReputation';
 
 import { BlackListedReputationAccordion } from './BlackListedReputationAccordion';
 import { UnverifiedReputationAccordion } from './UnverifiedReputationAccordion';
-import { FilterOut, useShouldFilterOut } from './useShouldFilterOut';
+
+import { useShouldFilterOut } from './useShouldFilterOut';
 import { WhitelistReputationAccordion } from './WhitelistReputationAccordion';
+
+import type { FilterOut } from './useShouldFilterOut';
 
 import loc from '/loc';
 

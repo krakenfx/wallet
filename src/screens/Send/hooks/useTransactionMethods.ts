@@ -1,13 +1,14 @@
 import { useMemo } from 'react';
 
-import { FeeOption } from '@/api/types';
+import type { FeeOption } from '@/api/types';
 import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 
-import { TransactionParams } from '../types';
 import { getCoinTransactionMethods } from '../utils/getCoinTransactionMethods';
 import { getNFTTransactionMethods } from '../utils/getNFTTransactionMethods';
 import { getTokenTransactionMethods } from '../utils/getTokenTransactionMethods';
+
+import type { TransactionParams } from '../types';
 
 export function useTransactionMethods<TType, TRequest, TFeeOption extends FeeOption>(wallet: RealmWallet, params?: TransactionParams) {
   const getWalletStorage = useGetWalletStorage();

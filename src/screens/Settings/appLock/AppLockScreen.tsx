@@ -2,7 +2,7 @@ import { AuthenticationType, SecurityLevel } from 'expo-local-authentication';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { GradientScreenView } from '@/components/Gradients';
 import { MissingBiometricsSheet } from '@/components/MissingBiometricsSheet';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';

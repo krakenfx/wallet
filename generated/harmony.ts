@@ -74,9 +74,21 @@ export interface paths {
     
     get: operations["ResolveEnsName"];
   };
+  "/v1/rpc": {
+    
+    post: operations["Rpc"];
+  };
   "/v1/simulate": {
     
     post: operations["Simulate"];
+  };
+  "/v1/swap/tokenList/from": {
+    
+    get: operations["SwapFromTokenList"];
+  };
+  "/v1/swap/tokenList/to": {
+    
+    get: operations["SwapToTokenList"];
   };
   "/v1/tokenlist": {
     
@@ -502,6 +514,21 @@ export interface components {
     "Result_ResolvedName-or-null_": {
       content: components["schemas"]["ResolvedName"] | null;
     };
+    RpcRequestResult: {
+      
+      jsonrpc: "2.0";
+    } & ({
+      result: unknown;
+    } | {
+      error: {
+        message?: string;
+        
+        code: number;
+      };
+    });
+    Result_RpcRequestResult_: {
+      content: components["schemas"]["RpcRequestResult"];
+    };
     
     ReceiveAsset: {
       amount: string;
@@ -673,6 +700,35 @@ export interface components {
     };
     EVMSimulationInput: components["schemas"]["EVMTransactionSimulationInput"] | components["schemas"]["EVMMessageSimulationInput"];
     SimulationInput: components["schemas"]["SolanaSimulationInput"] | components["schemas"]["EVMSimulationInput"];
+    TokenType: {
+      logoURI?: string;
+      
+      decimals?: number;
+      symbol?: string;
+      name?: string;
+      address: string;
+      chainId: string;
+    };
+    TokenDict: {
+      [key: string]: components["schemas"]["TokenType"];
+    };
+    SwapFromTokenListResult: {
+      fromTokens: {
+        [key: string]: components["schemas"]["TokenDict"];
+      };
+    };
+    Result_SwapFromTokenListResult_: {
+      content: components["schemas"]["SwapFromTokenListResult"];
+    };
+    SwapToTokenListResult: {
+      fromNetwork: string;
+      toTokens: {
+        [key: string]: components["schemas"]["TokenDict"];
+      };
+    };
+    Result_SwapToTokenListResult_: {
+      content: components["schemas"]["SwapToTokenListResult"];
+    };
     TokenCountType: {
       blacklists: {
         [key: string]: number;
@@ -910,8 +966,8 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": {
-          address?: string;
-          url?: string;
+          caip10Accounts?: string[];
+          url: string;
         };
       };
     };
@@ -1287,6 +1343,32 @@ export interface operations {
     };
   };
   
+  Rpc: {
+    
+    requestBody: {
+      content: {
+        "application/json": {
+          network: string;
+          request: unknown;
+        };
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_RpcRequestResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
   Simulate: {
     parameters: {
       query: {
@@ -1305,6 +1387,52 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Result_SimulationResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  SwapFromTokenList: {
+    parameters: {
+      query: {
+        fromNetworks: string[];
+        isShortList?: boolean;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_SwapFromTokenListResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  SwapToTokenList: {
+    parameters: {
+      query: {
+        fromNetwork: string;
+        isShortList?: boolean;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_SwapToTokenListResult_"];
         };
       };
       

@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react';
-import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native/types';
+
+import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native/types';
 
 export const useRefreshControlScrollProps = (onRefresh: () => void, onScrollEvent?: (e: NativeScrollEvent) => void, refreshThreshold = 30) => {
   const hasTriggered = useRef<boolean>(false);

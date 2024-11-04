@@ -1,7 +1,9 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import { BlurView } from '@react-native-community/blur';
 import differenceInDays from 'date-fns/differenceInDays';
 import React, { useMemo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';

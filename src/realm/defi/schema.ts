@@ -1,6 +1,7 @@
-import { ObjectSchema } from 'realm';
+import { REALM_TYPE_WALLET } from '../wallets';
 
-import { REALM_TYPE_WALLET, RealmWallet } from '../wallets';
+import type { RealmWallet } from '../wallets';
+import type { ObjectSchema } from 'realm';
 
 export type DefiSublabel = {
   label: string | number;

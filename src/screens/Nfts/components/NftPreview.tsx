@@ -1,6 +1,8 @@
+import type { OnLoadEvent } from 'react-native-fast-image';
+
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import FastImage, { OnLoadEvent } from 'react-native-fast-image';
+import FastImage from 'react-native-fast-image';
 
 import Animated, { FadeIn } from 'react-native-reanimated';
 

@@ -1,8 +1,8 @@
-import { ProposalTypes } from '@walletconnect/types';
-
-import { SessionProposal } from '@/screens/ConnectApp/types';
+import type { SessionProposal } from '@/screens/ConnectApp/types';
 
 import { getRequiresWrongSolanaID } from './getRequiresWrongSolanaID';
+
+import type { ProposalTypes } from '@walletconnect/types';
 
 import { SHIM_replaceWrongSolanaMainnetID } from '/modules/wallet-connect/solanaShim';
 import { isCAIP2 } from '/modules/wallet-connect/utils';

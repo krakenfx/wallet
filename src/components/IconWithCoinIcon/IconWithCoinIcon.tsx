@@ -1,10 +1,12 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React, { useState } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Defs, G, Mask, Circle as RNCircle, Rect, Svg } from 'react-native-svg';
 
 import { ImageSvg } from '@/components/ImageSvg';
 import { NetworkIcon } from '@/components/NetworkIcon';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 const CIRCLE = 'circle';
 const COIN_BORDER_SIZE = 2;

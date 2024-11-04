@@ -1,5 +1,5 @@
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { BottomSheetMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
+
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
 import * as bip39 from 'bip39';
@@ -21,18 +21,18 @@ import {
 import Animated, { CurvedTransition, FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Share from 'react-native-share';
-import { ErrorObject } from 'serialize-error';
 
 import BackendConfigurator from '@/api/base/BackendConfigurator';
 import { PushNotifications } from '@/api/PushNotifications';
-import { TokenConfigurationType } from '@/api/types';
+import type { TokenConfigurationType } from '@/api/types';
 import { BottomSheet } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Input } from '@/components/Input';
-import { Label, TypographyKey } from '@/components/Label';
+import type { TypographyKey } from '@/components/Label';
+import { Label } from '@/components/Label';
 import { Menu } from '@/components/Menu';
-import { DropdownOptionItem } from '@/components/Menu/DropdownMenu';
+import type { DropdownOptionItem } from '@/components/Menu/DropdownMenu';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useBottomSheetPadding } from '@/hooks/useBottomSheetPadding';
@@ -50,6 +50,9 @@ import { FeatureFlag, useFeatureFlag } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { showToast } from '../components/Toast';
+
+import type { BottomSheetMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
+import type { ErrorObject } from 'serialize-error';
 
 import { ALT_GROUNDCONTROL_BASE_URIS, ALT_HARMONY_BASE_URIS, DEFAULT_GROUNDCONTROL_BASE_URI, DEFAULT_HARMONY_BASE_URI } from '/config';
 import {
@@ -130,8 +133,8 @@ export const DebugScreen = () => {
   const deviceInfoRef = useRef<BottomSheetMethods>(null);
   const backendConfigRef = useRef<BottomSheetMethods>(null);
 
-  const [isICloudBackupEnabled, setIsICloudBackupEnabled] = useFeatureFlag(FeatureFlag.iCloudBackupEnabled);
   const [isExploreScreenEnabled, setIsExploreScreenEnabled] = useFeatureFlag(FeatureFlag.ExploreScreenEnabled);
+  const [isSwapEnabled, setIsSwapEnabled] = useFeatureFlag(FeatureFlag.swapsEnabled);
   const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag(FeatureFlag.NewNetworksEnabled);
   const [isInAppBrowserEnabled, setIsInAppBrowserEnabled] = useFeatureFlag(FeatureFlag.InAppBrowserEnabled);
 
@@ -268,15 +271,15 @@ export const DebugScreen = () => {
         {!!Config.INTERNAL_RELEASE && isPasskeySupported && (
           <>
             <SettingsBox isFirst isHighlighted>
-              <SettingsSwitch icon="wallet" text="Enable iCloud backup" enabled={isICloudBackupEnabled} onToggle={setIsICloudBackupEnabled} />
-            </SettingsBox>
-            <SettingsBox isLast isHighlighted style={styles.spacing}>
-              <Label type="regularCaption1">Enables iCloud backup</Label>
               <Button
                 size="small"
-                text="Remove metadata"
+                style={styles.flex}
+                text="Remove iCloud backup metadata"
                 onPress={() => CloudBackupManager.setKnownBackups([]).then(() => showToast({ text: 'Metadata of existing backups removed', type: 'success' }))}
               />
+            </SettingsBox>
+            <SettingsBox isLast isHighlighted style={styles.spacing}>
+              <Label type="regularCaption1">Removes all metadata of existing backups stored in iCloud key-value store</Label>
             </SettingsBox>
           </>
         )}
@@ -293,6 +296,16 @@ export const DebugScreen = () => {
             </SettingsBox>
             <SettingsBox isLast isHighlighted style={styles.spacing}>
               <Label type="regularCaption1">When enabled, app will display a button that leads to Explore Feed </Label>
+            </SettingsBox>
+          </>
+        )}
+        {!!Config.INTERNAL_RELEASE && (
+          <>
+            <SettingsBox isFirst isHighlighted>
+              <SettingsSwitch icon="swap" text="Enable Swaps" enabled={isSwapEnabled} onToggle={setIsSwapEnabled} />
+            </SettingsBox>
+            <SettingsBox isLast isHighlighted style={styles.spacing}>
+              <Label type="regularCaption1">When enabled, app will display a swap interface</Label>
             </SettingsBox>
           </>
         )}

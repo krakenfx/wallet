@@ -1,4 +1,4 @@
-import { ExploreContentRow } from '@/api/types';
+import type { ExploreContentRow } from '@/api/types';
 
 const isContentRow = (row: unknown): row is ExploreContentRow => {
   const xRow = row as ExploreContentRow;

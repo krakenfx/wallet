@@ -1,13 +1,14 @@
+import type { ColorValue } from 'react-native';
+
 import createHash from 'create-hash';
-import { ColorValue } from 'react-native';
 
-import { FeeOption, InternalBalance, SimulationResult, TokenMetadata, Transaction, TransactionEffect } from '@/api/types';
-import { AssetMetadata } from '@/realm/assetMetadata';
-import { Nft } from '@/realm/nfts';
-import { RealmToken } from '@/realm/tokens';
+import type { FeeOption, InternalBalance, SimulationResult, TokenMetadata, Transaction, TransactionEffect } from '@/api/types';
+import type { AssetMetadata } from '@/realm/assetMetadata';
+import type { Nft } from '@/realm/nfts';
+import type { RealmToken } from '@/realm/tokens';
 
-import { WalletType } from './registry';
-import { IWalletStorage } from './walletState';
+import type { WalletType } from './registry';
+import type { IWalletStorage } from './walletState';
 
 export interface PreparedTransaction<T = unknown> {
   data: T;
@@ -51,7 +52,7 @@ export type ExtendedPublicKeyAndChainCode = {
   chainCode?: ArrayBuffer;
 };
 
-export type NativeTokenSymbol = 'BTC' | 'DOGE' | 'ETH' | 'MATIC' | 'SOL' | 'TEZ';
+export type NativeTokenSymbol = 'BTC' | 'DOGE' | 'ETH' | 'MATIC' | 'SOL' | 'TEZ' | 'AVAX';
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -65,6 +66,7 @@ export interface Network<TransactionType = unknown, TransactionRequest = unknown
   nativeTokenLabel?: string;
   paymentUriPrefix?: string;
   blockExplorer?: BlockExplorer;
+  blockchainLabel?: string;
   icon?: NetworkIcon;
   isAddressValid(address: string): boolean;
   deriveAddress(data: WalletData): Promise<string>;

@@ -1,10 +1,12 @@
+import type { ImageRequireSource } from 'react-native';
+
 import { uniq } from 'lodash';
 import React, { useMemo } from 'react';
-import { Image, ImageRequireSource, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Label } from '@/components/Label';
-import { Network } from '@/onChain/wallets/base';
+import type { Network } from '@/onChain/wallets/base';
 import { getNetworkName } from '@/onChain/wallets/registry';
 
 import loc from '/loc';

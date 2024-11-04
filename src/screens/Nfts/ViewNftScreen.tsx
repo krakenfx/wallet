@@ -1,7 +1,6 @@
-import BottomSheetView, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useEffect } from 'react';
-import { useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import Animated, { Extrapolation, interpolate, runOnJS, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -17,7 +16,8 @@ import { Label } from '@/components/Label';
 import { useDeafultHeaderHeight } from '@/hooks/useDefaultHeaderHeight';
 import { useNftById, useNftsMutations } from '@/realm/nfts';
 import { useNftGalleryToggle } from '@/realm/nfts/useNftGalleryToggle';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -34,6 +34,8 @@ import { NftName } from './components/NftName';
 import { NftPreview } from './components/NftPreview';
 import { NftTraits } from './components/NftTraits';
 import { useGalleryTransiton } from './hooks/useGalleryTransition';
+
+import type BottomSheetView from '@gorhom/bottom-sheet';
 
 import { handleError } from '/helpers/errorHandler';
 

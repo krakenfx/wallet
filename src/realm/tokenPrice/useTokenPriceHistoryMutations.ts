@@ -4,7 +4,8 @@ import Realm from 'realm';
 import { useRealmTransaction } from '@/realm/hooks/useRealmTransaction';
 import { useRealm } from '@/realm/RealmContext';
 
-import { REALM_TYPE_TOKEN_PRICE_HISTORY, TokenPriceHistory } from '@/realm/tokenPrice/schema';
+import type { TokenPriceHistory } from '@/realm/tokenPrice/schema';
+import { REALM_TYPE_TOKEN_PRICE_HISTORY } from '@/realm/tokenPrice/schema';
 
 export const useTokenPriceHistoryMutations = () => {
   const realm = useRealm();

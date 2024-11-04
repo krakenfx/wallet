@@ -3,8 +3,9 @@ import React, { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { RealmNft, useNfts } from '@/realm/nfts';
-import { NavigationProps } from '@/Routes';
+import type { RealmNft } from '@/realm/nfts';
+import { useNfts } from '@/realm/nfts';
+import type { NavigationProps } from '@/Routes';
 import { NftItem } from '@/screens/Nfts/components/NftItem';
 
 export const HomeNFTGallery = () => {

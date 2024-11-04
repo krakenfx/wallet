@@ -1,9 +1,9 @@
-import { CompositeScreenProps } from '@react-navigation/native';
-import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import { DefaultBackButton } from '@/components/BackButton';
-import { RouteProps, Routes } from '@/Routes';
+import type { RouteProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 
 import { WalletCloudBackupDeleteScreen, WalletCloudBackupScreen } from '../WalletCloudBackup';
@@ -20,6 +20,9 @@ import { SettingsScreen } from './SettingsScreen';
 import { SupportScreen } from './support';
 import { SettingsBackupVerifyScreen, SettingsWalletBackupMethodScreen, SettingsWalletBackupScreen } from './walletBackup';
 import { SettingsDisplaySeedScreen } from './walletBackup/SettingsDisplaySeedScreen';
+
+import type { CompositeScreenProps } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type SettingsStackParams = {
   About: undefined;

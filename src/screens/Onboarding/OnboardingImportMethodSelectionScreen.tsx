@@ -7,7 +7,7 @@ import { BackupMethodSelector } from '@/components/WalletBackup/BackupMethodSele
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { OnboardingNavigationProps } from './OnboardingRouter';
+import type { OnboardingNavigationProps } from './OnboardingRouter';
 
 import loc from '/loc';
 import { CloudBackupManager } from '/modules/cloud-backup';
@@ -25,10 +25,11 @@ export const OnboardingImportMethodSelectionScreen = ({ navigation }: Onboarding
   const navigateToManualImport = () => navigation.navigate(Routes.OnboardingImportWallet);
 
   return (
-    <MainGradientView style={styles.container}>
+    <MainGradientView style={styles.container} testID="OnboardingImportWalletMethodSelection">
       <LargeHeaderPage title={loc.onboardingImportMethod.title} subtitle={loc.onboardingImportMethod.subtitle}>
         <View style={styles.selectors}>
           <BackupMethodSelector
+            testID="ManualBackupSelector"
             icon={
               <IconButton
                 size={24}

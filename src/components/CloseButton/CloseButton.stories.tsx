@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NativeStackNavigationHelpers } from '@react-navigation/native-stack/lib/typescript/src/types';
+
 import React, { useState } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -11,6 +11,8 @@ import { colorsControl } from '@/utils/storybook';
 import { Button } from '../Button';
 
 import { CloseButton } from './CloseButton';
+
+import type { NativeStackNavigationHelpers } from '@react-navigation/native-stack/lib/typescript/src/types';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

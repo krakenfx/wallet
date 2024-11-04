@@ -1,4 +1,3 @@
-import { SessionTypes } from '@walletconnect/types';
 import { useCameraPermissions } from 'expo-camera';
 import React, { useCallback, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
@@ -15,14 +14,17 @@ import { useManageAccount } from '@/hooks/useManageAccount';
 import { useAccountById } from '@/realm/accounts/useAccountById';
 import { useWalletConnectTopicsMutations } from '@/realm/walletConnectTopics/useWalletConnectTopicsMutations';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { showPermissionDeniedAlert } from '@/utils/cameraPermissions';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { AppDetailsParams } from '../AppDetailsScreen';
 import { ActivityIndicatorView } from '../components/ActivityIndicatorView';
 
 import { ConnectedAppsEmptyState } from './ConnectedAppsEmptyState';
+
+import type { AppDetailsParams } from '../AppDetailsScreen';
+import type { SessionTypes } from '@walletconnect/types';
 
 import { showAlert } from '/helpers/showAlert';
 
@@ -49,7 +51,7 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
   const { switchAccount } = useManageAccount();
   const accountWallets = useRealmWallets(false, route.params.accountNumber);
   const [_, requestPermission] = useCameraPermissions();
-  const { deleteSession } = useWalletConnectTopicsMutations()
+  const { deleteSession } = useWalletConnectTopicsMutations();
 
   useHeaderTitle(loc.connectedApps.list.title);
 
@@ -84,8 +86,8 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
               const errors: Error[] = [];
               await WalletConnectSessionsManager.disconnectSession(topic, {
                 onSuccess: () => {
-                  deleteSession(topic)
-                }
+                  deleteSession(topic);
+                },
               }).catch(err => {
                 errors.push(err);
               });
@@ -139,8 +141,8 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
       activeSessions.map(session => {
         return WalletConnectSessionsManager.disconnectSession(session.topic, {
           onSuccess: () => {
-            deleteSession(session.topic)
-          }
+            deleteSession(session.topic);
+          },
         }).catch(err => {
           errors.push(err);
         });

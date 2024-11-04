@@ -1,6 +1,7 @@
 import { format, isToday, isYesterday } from 'date-fns';
 
-import loc, { LanguageTag } from '/loc';
+import loc from '/loc';
+import type { LanguageTag } from '/loc';
 import { getDateLocale } from '/loc/date';
 
 export const formatTransactionGroupDate = (time: Date | string, currentLanguage: LanguageTag) => {

@@ -1,6 +1,7 @@
-import { ObjectSchema } from 'realm';
+import { REALM_TYPE_WALLET } from '../wallets';
 
-import { REALM_TYPE_WALLET, RealmWallet } from '../wallets';
+import type { RealmWallet } from '../wallets';
+import type { ObjectSchema } from 'realm';
 
 export const REALM_TYPE_ACCOUNT = 'Account';
 export const AccountSchema: ObjectSchema = {

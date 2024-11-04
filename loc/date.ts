@@ -1,6 +1,8 @@
 import { de, enGB, enUS, es, fr, it, nl, pl, ptBR, ru, tr, uk, vi } from 'date-fns/locale';
 
-import { LanguageTag, getCurrentLanguage } from './';
+import { getCurrentLanguage } from './';
+
+import type { LanguageTag } from './';
 
 export const getDateLocale = (currentLanguage?: LanguageTag) => {
   const _currentLanguage = currentLanguage || getCurrentLanguage();

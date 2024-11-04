@@ -1,7 +1,9 @@
+import type { SharedValue } from 'react-native-reanimated';
+
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-import Animated, { SharedValue } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Touchable } from '@/components/Touchable';

@@ -8,11 +8,13 @@ import nacl from 'tweetnacl';
 
 import { Buffer } from 'buffer';
 
-import { SolanaFeeOption, SolanaSimulationInput, SolanaSimulationResult } from '@/api/types';
-import { Nft } from '@/realm/nfts';
-import { RealmToken } from '@/realm/tokens';
+import type { SolanaFeeOption, SolanaSimulationInput, SolanaSimulationResult } from '@/api/types';
+import type { Nft } from '@/realm/nfts';
+import type { RealmToken } from '@/realm/tokens';
 
-import {
+import { HarmonyTransport } from './HarmonyTransport';
+
+import type {
   BlockExplorer,
   ExtendedPublicKeyAndChainCode,
   NativeTokenSymbol,
@@ -23,8 +25,7 @@ import {
   WalletData,
   WalletDataWithSeed,
 } from './base';
-import { HarmonyTransport } from './HarmonyTransport';
-import { WalletStorage } from './walletState';
+import type { WalletStorage } from './walletState';
 
 function getSolanaKeyPair(seedHex: string, derivationPath: string): web3.Keypair {
   const privateKey = ed25519.derivePath(derivationPath, seedHex).key;

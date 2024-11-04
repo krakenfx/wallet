@@ -12,12 +12,14 @@ const FEATURE_FLAGS_ENABLED = __DEV__ || Config.INTERNAL_RELEASE;
 export enum FeatureFlag {
   AssetMarketDataEnabled = 'AssetMarketDataEnabled',
   ExploreScreenEnabled = 'ExploreScreenEnabled',
-  iCloudBackupEnabled = 'iCloudBackupEnabled',
   NewNetworksEnabled = 'NewNetworksEnabled',
   InAppBrowserEnabled = 'InAppBrowserEnabled',
+  swapsEnabled = 'swapsEnabled',
 }
 
-export const NEW_NETWORKS = [ChainAgnostic.NETWORK_LINEA] as const;
+export const NEW_NON_EVM_NETWORKS = [] as const;
+export const NEW_EVM_NETWORKS = [ChainAgnostic.NETWORK_LINEA, ChainAgnostic.NETWORK_AVALANCHE] as const;
+export const NEW_NETWORKS = [...NEW_EVM_NETWORKS, ...NEW_NON_EVM_NETWORKS] as const;
 
 export function getFeatureFlagsFromStorage<FMap = Record<FeatureFlag, boolean | undefined>>(): FMap {
   const result = {} as FMap;

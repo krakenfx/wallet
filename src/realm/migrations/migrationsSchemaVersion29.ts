@@ -1,7 +1,8 @@
-import Realm from 'realm';
-
 import { DEFAULT_GALLERY_COINS, isNetworkCoin } from '@/onChain/wallets/registry';
-import { REALM_TYPE_TOKEN, RealmToken } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
+import { REALM_TYPE_TOKEN } from '@/realm/tokens';
+
+import type Realm from 'realm';
 
 
 

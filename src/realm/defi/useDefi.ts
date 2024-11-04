@@ -1,9 +1,10 @@
-import Realm from 'realm';
-
 import { useQuery } from '../RealmContext';
 import { getWalletsForMutations, useRealmWallets } from '../wallets';
 
-import { REALM_TYPE_DEFI, RealmDefi } from './schema';
+import { REALM_TYPE_DEFI } from './schema';
+
+import type { RealmDefi } from './schema';
+import type Realm from 'realm';
 
 export const useDefi = () => {
   const wallets = useRealmWallets();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgProps } from 'react-native-svg';
+import type { SvgProps } from 'react-native-svg';
 import memoize from 'lodash/memoize';
 
 import i1 from 'kraken-wallet-cryptoicons/src/$based.svg';

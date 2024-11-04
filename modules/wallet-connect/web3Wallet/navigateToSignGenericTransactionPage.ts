@@ -1,12 +1,12 @@
 import { CommonActions } from '@react-navigation/native';
 
-import { FeeOption } from '@/api/types';
-import { PreparedTransaction, RealmishWallet } from '@/onChain/wallets/base';
-import { WalletConnectSignRequest_GenericTransactionParams } from '@/screens/AppSignRequest/WalletConnectSignRequest_GenericTransactionScreen';
-import { Warning } from '@/types';
+import type { FeeOption } from '@/api/types';
+import type { PreparedTransaction, RealmishWallet } from '@/onChain/wallets/base';
+import type { WalletConnectSignRequest_GenericTransactionParams } from '@/screens/AppSignRequest/WalletConnectSignRequest_GenericTransactionScreen';
+import type { Warning } from '@/types';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
-import { DefinitionList } from '../types';
+import type { DefinitionList } from '../types';
 
 export function navigateToSignGenericTransactionPage(
   dispatch: (action: ReturnType<typeof CommonActions.navigate>) => void,

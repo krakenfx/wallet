@@ -1,12 +1,15 @@
-import Realm from 'realm';
-
 import { NEW_NETWORKS, isNewNetworksEnabled } from '@/utils/featureFlags';
 
 import { useCurrentAccountNumber } from '../accounts';
 import { useQuery } from '../RealmContext';
-import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey } from '../settings';
 
-import { REALM_TYPE_WALLET, RealmWallet } from './schema';
+import { REALM_TYPE_SETTINGS, RealmSettingsKey } from '../settings';
+
+import { REALM_TYPE_WALLET } from './schema';
+
+import type { RealmWallet } from './schema';
+import type { RealmSettings } from '../settings';
+import type Realm from 'realm';
 
 
 export const useRealmWallets = (showAllWallets = false, accountNumber?: number) => {
@@ -36,6 +39,8 @@ export const getWalletsForMutations = (realm: Realm, showAllWallets = false) => 
   if (showAllWallets) {
     return wallets;
   }
+
   const currentAccountNumber = realm.objectForPrimaryKey<RealmSettings>(REALM_TYPE_SETTINGS, RealmSettingsKey.accountNumber);
+
   return wallets.filtered(`accountIdx = ${currentAccountNumber?.value}`);
 };

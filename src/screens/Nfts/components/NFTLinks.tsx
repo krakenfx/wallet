@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { NonSmallIconName } from '@/components/SvgIcon';
-import { OpenURL, useBrowser } from '@/hooks/useBrowser';
-import { WalletType } from '@/onChain/wallets/registry';
-import { RealmNft } from '@/realm/nfts';
+import type { NonSmallIconName } from '@/components/SvgIcon';
+import type { OpenURL } from '@/hooks/useBrowser';
+import { useBrowser } from '@/hooks/useBrowser';
+import type { WalletType } from '@/onChain/wallets/registry';
+import type { RealmNft } from '@/realm/nfts';
 
 import { NFTLinksItem } from './NFTLinksItem';
 
@@ -60,6 +61,9 @@ const openOpenseaPolygon = (collectionId: string, tokenId: string, openURL: Open
 const openOpenseaBase = (collectionId: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://opensea.io/assets/base/${collectionId}/${tokenId}`);
 };
+const openOpenseaAvalanche = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://opensea.io/assets/avalanche/${collectionId}/${tokenId}`);
+};
 
 
 const openMagicEden = (_: string, tokenId: string, openURL: OpenURL) => {
@@ -71,19 +75,17 @@ const openTensorSolana = (_: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://www.tensor.trade/item/${tokenId}`);
 };
 
+const openAvascan = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://avascan.info/blockchain/c/erc721/${collectionId}/nft/${tokenId}`);
+};
+
 type NFTLinkItemConfig = {
   label: string;
-  onPress: /* eslint-disable @typescript-eslint/no-explicit-any */ (...args: any[]) => any;
+  onPress: (collectionId: string, tokenId: string, openUrlRL: OpenURL) => () => void;
   icon?: NonSmallIconName;
 };
-export const configNftLinks: Record<
-  WalletType,
-  | {
-      blockchainExplorer: NFTLinkItemConfig;
-      marketplaces: NFTLinkItemConfig[];
-    }
-  | undefined
-> = {
+
+export const configNftLinks = {
   ethereum: {
     blockchainExplorer: {
       label: 'Etherscan',
@@ -172,7 +174,22 @@ export const configNftLinks: Record<
   },
   HDsegwitBech32: undefined,
   dogecoin: undefined,
-};
+  avalanche: {
+    blockchainExplorer: {
+      label: 'Avascan',
+      onPress: openAvascan,
+      icon: 'avascan',
+    },
+    marketplaces: [{ label: 'Opensea', onPress: openOpenseaAvalanche, icon: 'opensea' }],
+  },
+} as const satisfies Record<
+  WalletType,
+  | {
+      blockchainExplorer: NFTLinkItemConfig;
+      marketplaces: NFTLinkItemConfig[];
+    }
+  | undefined
+>;
 
 export const NFTLinks: React.FC<NFTLinksProps> = ({ nft: { metadata }, walletType }) => {
   const nftLinksItems = configNftLinks[walletType];

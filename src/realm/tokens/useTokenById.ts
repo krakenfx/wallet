@@ -1,8 +1,10 @@
-import { AssetBalanceId } from '@/types';
+import type { AssetBalanceId } from '@/types';
 
 import { useObject } from '../RealmContext';
 
-import { REALM_TYPE_TOKEN, RealmToken } from './schema';
+import { REALM_TYPE_TOKEN } from './schema';
+
+import type { RealmToken } from './schema';
 
 export const useTokenById = <T extends string | undefined>(id: T) => {
   return useObject<RealmToken, T>(REALM_TYPE_TOKEN, id, 'id');

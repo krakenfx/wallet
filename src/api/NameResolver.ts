@@ -1,4 +1,4 @@
-import { Network } from '@/onChain/wallets/base';
+import type { Network } from '@/onChain/wallets/base';
 import { EVMNetwork } from '@/onChain/wallets/evm';
 
 import { getHarmony } from './base/apiFactory';

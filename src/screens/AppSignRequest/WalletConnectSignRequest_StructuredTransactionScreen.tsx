@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
-import { FeeOption } from '@/api/types';
+import type { FeeOption } from '@/api/types';
 import { BlockScreenSheet } from '@/components/BlockScreen';
 import { CardWarningFromWarning } from '@/components/CardWarning';
 import { ExpandableSheet } from '@/components/Sheets';
-import { PreparedTransaction } from '@/onChain/wallets/base';
+import type { PreparedTransaction } from '@/onChain/wallets/base';
 import { useRealmWalletById } from '@/realm/wallets';
-import { NavigationProps } from '@/Routes';
-import { Warning } from '@/types';
+import type { NavigationProps } from '@/Routes';
+import type { Warning } from '@/types';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AssetContent } from './components/AssetContent';
@@ -17,7 +17,7 @@ import { ExpandedDetailsContent } from './components/ExpandedDetailsContent';
 import { Header } from './components/Header';
 
 import loc from '/loc';
-import { DefinitionList, TransactionContent } from '/modules/wallet-connect/types';
+import type { DefinitionList, TransactionContent } from '/modules/wallet-connect/types';
 
 export interface WalletConnectSignRequest_StructuredTransactionParams {
   walletId: string;

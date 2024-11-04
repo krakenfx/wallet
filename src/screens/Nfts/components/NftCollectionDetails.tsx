@@ -1,10 +1,12 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
-import { RealmNft } from '@/realm/nfts';
+import type { RealmNft } from '@/realm/nfts';
 
 type Props = {
   nft: RealmNft;

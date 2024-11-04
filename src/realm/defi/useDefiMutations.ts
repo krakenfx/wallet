@@ -1,13 +1,15 @@
 import { useCallback } from 'react';
 import Realm from 'realm';
 
-import { DeFiProtocol } from '@/api/types';
+import type { DeFiProtocol } from '@/api/types';
 
 import { useRealm } from '../RealmContext';
-import { RealmWallet } from '../wallets';
 
-import { Defi, REALM_TYPE_DEFI, RealmDefi } from './schema';
+import { REALM_TYPE_DEFI } from './schema';
 import { getDefisForMutations } from './useDefi';
+
+import type { Defi, RealmDefi } from './schema';
+import type { RealmWallet } from '../wallets';
 
 import { handleError } from '/helpers/errorHandler';
 

@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
 
-import { ContractInteractionData } from '@/realm/transactions/getTransactionMetadata';
+import type { ContractInteractionData } from '@/realm/transactions/getTransactionMetadata';
 import { Routes } from '@/Routes';
 
 import { useContractInteractionDetailsDisplayData } from '../utils/useTransactionDetailsDisplayData';
 import { useContractInteractionDisplayData } from '../utils/useTransactionDisplayData';
 
 import { TransactionDataRow } from './TransactionDataRow';
-import { TransactionRowCommonProps } from './types';
+
+import type { TransactionRowCommonProps } from './types';
 
 export interface ContractInteractionRowProps extends TransactionRowCommonProps {
   classifiedTx: ContractInteractionData;

@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { MenuProvider } from '@/components/Menu';
-import { RealmAccount } from '@/realm/accounts';
+import type { RealmAccount } from '@/realm/accounts';
 import { SecuredRealmProvider } from '@/realm/SecuredRealmProvider';
 
 import { WalletItem } from './WalletItem';

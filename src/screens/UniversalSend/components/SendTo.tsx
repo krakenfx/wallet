@@ -1,16 +1,19 @@
+import type { SectionListData, SectionListRenderItem } from 'react-native';
+
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { SectionListData, SectionListRenderItem, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
 import { useBottomSheetPadding } from '@/hooks/useBottomSheetPadding';
-import { Network } from '@/onChain/wallets/base';
+import type { Network } from '@/onChain/wallets/base';
 import { Networks } from '@/onChain/wallets/registry';
-import { RealmAccount, useAccounts, useCurrentAccountNumber } from '@/realm/accounts';
+import { useAccounts, useCurrentAccountNumber } from '@/realm/accounts';
+import type { RealmAccount } from '@/realm/accounts';
 import { AddressSelector } from '@/screens/Send/components/AddressSelector';
-import { AddressAnalysis } from '@/screens/Send/hooks/useAddressAnalysis';
+import type { AddressAnalysis } from '@/screens/Send/hooks/useAddressAnalysis';
 import { useFormContext } from '@/screens/Send/utils/sendForm';
 
 import { AccountReceiveItem } from './AccountReceiveItem';

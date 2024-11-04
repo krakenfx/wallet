@@ -1,11 +1,14 @@
 
 import Realm from 'realm';
 
-import { REALM_TYPE_WALLET_ADDRESS_CACHE, REALM_TYPE_WALLET_STATE, WalletAddressCacheItem, WalletState } from '@/realm/wallets';
+import type { WalletAddressCacheItem, WalletState } from '@/realm/wallets';
+import { REALM_TYPE_WALLET_ADDRESS_CACHE, REALM_TYPE_WALLET_STATE } from '@/realm/wallets';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
-import { NotSupportedError, RealmishWallet } from './base';
+import { NotSupportedError } from './base';
 import { getImplForWallet } from './registry';
+
+import type { RealmishWallet } from './base';
 
 export interface IWalletStorage<T> {
   state: T;
@@ -14,7 +17,11 @@ export interface IWalletStorage<T> {
 
 
 export class WalletStorage<T> implements IWalletStorage<T> {
-  constructor(private realm: Realm, public state: T, private walletId: string) {}
+  constructor(
+    private realm: Realm,
+    public state: T,
+    private walletId: string,
+  ) {}
 
   async getAddress(derivationPath: string, creatorFunc: () => Promise<string>): Promise<string> {
     const cacheItem = this.realm

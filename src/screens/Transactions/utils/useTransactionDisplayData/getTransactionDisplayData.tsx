@@ -1,19 +1,22 @@
+import type { ReactElement } from 'react';
+
 import BigNumber from 'bignumber.js';
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { Transaction } from '@/api/types';
+import type { Transaction } from '@/api/types';
 import { SvgIcon } from '@/components/SvgIcon';
 import { SwapIcon } from '@/components/SwapIcon';
 import { SwapIconHorizontal } from '@/components/SwapIconHorizontal';
 import { ContractInteraction, TokenIcon } from '@/components/TokenIcon';
-import { WalletType } from '@/onChain/wallets/registry';
-import { AssetMetadata } from '@/realm/assetMetadata';
-import { RealmToken } from '@/realm/tokens';
-import { RealmTransaction } from '@/realm/transactions';
+import type { WalletType } from '@/onChain/wallets/registry';
+import type { AssetMetadata } from '@/realm/assetMetadata';
+import type { RealmToken } from '@/realm/tokens';
+import type { RealmTransaction } from '@/realm/transactions';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { TransactionData, getTransactionTitle } from '@/realm/transactions/getTransactionMetadata';
-import { RealmWallet } from '@/realm/wallets';
+import type { TransactionData } from '@/realm/transactions/getTransactionMetadata';
+import { getTransactionTitle } from '@/realm/transactions/getTransactionMetadata';
+import type { RealmWallet } from '@/realm/wallets';
 import { unitConverter } from '@/utils/unitConverter';
 
 import { formatTransactionAddress } from '../formatAddress';

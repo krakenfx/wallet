@@ -1,13 +1,19 @@
+import type { AccessibilityProps } from 'react-native';
+
 import { omit, upperFirst } from 'lodash';
 import React from 'react';
-import { AccessibilityProps, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import { ActivityIndicator } from '@/components/ActivityIndicator';
-import { Label, TypographyKey } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
-import { Touchable, TouchableProps } from '@/components/Touchable';
-import { ColorName, useTheme } from '@/theme/themes';
+import type { TypographyKey } from '@/components/Label';
+import { Label } from '@/components/Label';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
+import type { TouchableProps } from '@/components/Touchable';
+import { Touchable } from '@/components/Touchable';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 export type ButtonSize = 'small' | 'medium' | 'large' | 'extraLarge';
 

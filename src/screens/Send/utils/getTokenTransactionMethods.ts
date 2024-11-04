@@ -1,12 +1,12 @@
-import { FeeOption } from '@/api/types';
-import { PreparedTransaction } from '@/onChain/wallets/base';
+import type { FeeOption } from '@/api/types';
+import type { PreparedTransaction } from '@/onChain/wallets/base';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { IWalletStorage } from '@/onChain/wallets/walletState';
-import { RealmWallet } from '@/realm/wallets';
-
-import { TokenTransactionParams } from '../types';
+import type { IWalletStorage } from '@/onChain/wallets/walletState';
+import type { RealmWallet } from '@/realm/wallets';
 
 import { validateAmount } from './validateAmount';
+
+import type { TokenTransactionParams } from '../types';
 
 export function getTokenTransactionMethods<TType, TRequest, TFeeOption extends FeeOption>(
   wallet: RealmWallet,

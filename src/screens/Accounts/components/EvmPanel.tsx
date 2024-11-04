@@ -13,7 +13,7 @@ import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 
-import { FeatureFlag, NEW_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
+import { FeatureFlag, NEW_EVM_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
 
 import { DerivationPath } from './DerivationPath';
 
@@ -32,7 +32,7 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
     ChainAgnostic.NETWORK_ARBITRUM,
     ChainAgnostic.NETWORK_OPTIMISM,
     ChainAgnostic.NETWORK_BASE,
-    ...(isNewNetworksEnabled ? NEW_NETWORKS : []),
+    ...(isNewNetworksEnabled ? NEW_EVM_NETWORKS : []),
   ];
 
   return (
@@ -47,7 +47,7 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
             </View>
             <Touchable onPress={showExplainer} style={styles.row}>
               <Label type="regularCaption1" color="light75">
-                {loc.advancedAccountInfo.includesLayer2Networks}
+                {loc.advancedAccountInfo.includesCompatibleNetworks}
               </Label>
               <SvgIcon name="info-circle" color="light50" size={16} />
             </Touchable>

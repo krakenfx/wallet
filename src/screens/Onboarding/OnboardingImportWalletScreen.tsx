@@ -1,6 +1,8 @@
+import type { NativeSyntheticEvent, TextInputKeyPressEventData } from 'react-native';
+
 import Clipboard from '@react-native-clipboard/clipboard';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Keyboard, NativeSyntheticEvent, ScrollView, StyleSheet, TextInput, TextInputKeyPressEventData, View } from 'react-native';
+import { Keyboard, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 import Animated, { FadeIn, FadeOut, SequencedTransition, runOnJS } from 'react-native-reanimated';
@@ -22,8 +24,10 @@ import { OnboardingHeader } from './components/OnboardingHeader';
 import { OnboardingWordButton } from './components/OnboardingWordButton';
 import { useImportScreenAnimatedValues } from './hooks/useImportScreenAnimatedValues';
 import { useImportWallet } from './hooks/useImportWallet';
-import { OnboardingNavigationProps } from './OnboardingRouter';
+
 import { getSeedWordIndex } from './utils/getSeedWordIndex';
+
+import type { OnboardingNavigationProps } from './OnboardingRouter';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -226,7 +230,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
   });
 
   return (
-    <GradientScreenView>
+    <GradientScreenView testID="OnboardingImportWalletScreen">
       <View style={styles.container} onLayout={layoutHandlers.container}>
         <OnboardingHeader
           title={validator.wasInvalid ? loc.onboardingImportWallet.headerInvalid : loc.onboardingImportWallet.header}

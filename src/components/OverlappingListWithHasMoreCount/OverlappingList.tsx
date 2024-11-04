@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+
 import { StyleSheet, View } from 'react-native';
 
 type Props = { items: ReactNode[]; offsetSize: number };

@@ -1,5 +1,5 @@
-import { Transaction } from '@/api/types';
-import { BTCTransaction } from '@/onChain/wallets/bitcoin';
+import type { Transaction } from '@/api/types';
+import type { BTCTransaction } from '@/onChain/wallets/bitcoin';
 
 
 

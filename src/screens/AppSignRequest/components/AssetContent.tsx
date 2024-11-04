@@ -4,7 +4,7 @@ import { DoubleRow } from '@/components/DoubleRow';
 import { TransactionAmount } from '@/components/Transaction';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
 
-import { TransactionContent } from '/modules/wallet-connect/types';
+import type { TransactionContent } from '/modules/wallet-connect/types';
 
 type Props = {
   content: TransactionContent;

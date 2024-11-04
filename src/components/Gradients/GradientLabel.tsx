@@ -1,7 +1,9 @@
-import React from 'react';
-import { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
-import { Label, LabelProps } from '@/components/Label';
+import React from 'react';
+
+import type { LabelProps } from '@/components/Label';
+import { Label } from '@/components/Label';
 
 import { GradientMask } from './GradientMask';
 

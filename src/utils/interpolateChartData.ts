@@ -1,4 +1,4 @@
-import { TokenPriceHistoryItem } from '@/realm/tokenPrice';
+import type { TokenPriceHistoryItem } from '@/realm/tokenPrice';
 
 
 const interpolate = (x0: number, y0: number, x1: number, y1: number, x: number): number => {

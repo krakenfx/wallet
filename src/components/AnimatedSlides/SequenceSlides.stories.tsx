@@ -1,10 +1,10 @@
 import { noop } from 'lodash';
 import React from 'react';
 
-import { IconName } from '../SvgIcon';
-
 import { SequenceSlides } from './SequenceSlides';
-import { AnimationMarkers } from './types';
+
+import type { AnimationMarkers } from './types';
+import type { IconName } from '../SvgIcon';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

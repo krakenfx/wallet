@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { PushNotifications } from '@/api/PushNotifications';
-import { TokenConfigurationType } from '@/api/types';
+import type { TokenConfigurationType } from '@/api/types';
 import { GradientScreenView } from '@/components/Gradients';
 import { useGetSubscribeNotifications } from '@/hooks/useGetSubscribeNotifications';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';

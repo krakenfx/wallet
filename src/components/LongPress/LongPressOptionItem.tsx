@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Label } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useTheme } from '@/theme/themes';
 

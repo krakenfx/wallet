@@ -7,7 +7,8 @@ import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 import { refreshAllTransactions } from '@/realm/refreshManagerHooks';
 import { useTransactionMutations } from '@/realm/transactions';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { useTransactionsDataSource } from '@/screens/Transactions/utils/useTransactionsDataSource';
 
 import loc from '/loc';

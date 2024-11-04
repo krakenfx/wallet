@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import FastImage, { type Source } from 'react-native-fast-image';
+
+import { useNftById } from '@/realm/nfts';
+
+import { ImageSvg } from '../ImageSvg';
 
 import { getDefaultAvatar } from './getDefaultAvatar';
 
 import type { AvatarIconProps } from './AvatarIcon.types';
 
-
 export const AvatarIcon: React.FC<AvatarIconProps> = ({ accountNumber, accountAvatar }) => {
-  const source = accountAvatar !== null ? { uri: accountAvatar } : getDefaultAvatar(accountNumber);
-  return <FastImage source={source} resizeMode={FastImage.resizeMode.contain} style={styles.image} />;
+  const getImageSource = useCallback(
+    (): Source => (accountAvatar !== null ? { uri: accountAvatar } : getDefaultAvatar(accountNumber)),
+    [accountNumber, accountAvatar],
+  );
+
+  const [source, setSource] = useState(getImageSource());
+
+  useEffect(() => {
+    setSource(getImageSource());
+  }, [getImageSource]);
+
+  const handleError = () => {
+    setSource(getDefaultAvatar(accountNumber));
+  };
+
+  
+  
+  const nft = useNftById(accountAvatar ?? undefined);
+  if (nft?.metadata?.imageUrl) {
+    return <ImageSvg uri={nft.metadata.imageUrl} contentType={nft.metadata.contentType} style={styles.image} />;
+  }
+
+  return <FastImage source={source} resizeMode={FastImage.resizeMode.contain} style={styles.image} onError={handleError} />;
 };
 
 const styles = StyleSheet.create({

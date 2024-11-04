@@ -1,10 +1,8 @@
-import { FeeOption, FeeOptionKind } from '@/api/types';
-import { RealmishWallet } from '@/onChain/wallets/base';
+import type { FeeOption, FeeOptionKind } from '@/api/types';
+import type { RealmishWallet } from '@/onChain/wallets/base';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { Currency } from '@/screens/Settings/currency';
+import type { Currency } from '@/screens/Settings/currency';
 import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
-
-import { FeeEstimationMap } from '../types';
 
 import { BTCfeeOptionToString } from './BTCfeeOptionToString';
 import { feeOptionToString } from './feeOptionToString';
@@ -13,6 +11,8 @@ import { feeRateToString } from './feeRateToString';
 import { getFeeOptionAmount } from './getFeeOptionAmount';
 import { getTimeEstimate } from './getTimeEstimate';
 import { totalFeeToFiatStringSafe } from './totalFeeToFiatString';
+
+import type { FeeEstimationMap } from '../types';
 
 export interface FeeOptionsData {
   id: FeeOptionKind;

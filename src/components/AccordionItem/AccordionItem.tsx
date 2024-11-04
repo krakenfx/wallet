@@ -1,6 +1,11 @@
+import type { ViewStyle } from 'react-native';
+
+import type { SharedValue } from 'react-native-reanimated';
+
 import React from 'react';
-import { StyleSheet, View, ViewStyle } from 'react-native';
-import Animated, { Easing, SharedValue, useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
+import { StyleSheet, View } from 'react-native';
+
+import Animated, { Easing, useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 
 interface Props {
   isExpanded: SharedValue<boolean>;

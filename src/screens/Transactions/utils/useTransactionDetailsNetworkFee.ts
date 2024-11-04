@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { NativeTokenSymbol } from '@/onChain/wallets/base';
+import type { NativeTokenSymbol } from '@/onChain/wallets/base';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useTokenPrice } from '@/realm/tokenPrice';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';

@@ -1,12 +1,15 @@
+import type { PropsWithChildren } from 'react';
+
+import type { GestureResponderEvent, LayoutChangeEvent, LayoutRectangle } from 'react-native';
+
 import React, { useEffect, useRef } from 'react';
-import { PropsWithChildren } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, View } from 'react-native';
-import { GestureResponderEvent } from 'react-native';
+import { View } from 'react-native';
 
 import { Touchable } from '@/components/Touchable';
 
-import { PopupMenuProps } from './MenuOverlay';
 import { useMenu } from './MenuProvider';
+
+import type { PopupMenuProps } from './MenuOverlay';
 
 type OwnProps = {
   menuYOffset?: number;
@@ -18,17 +21,9 @@ type OwnProps = {
   testID?: string;
 };
 
-export function Menu<T>({
-  children,
-  menuYOffset = 8,
-  menuXOffset = 0,
-  menuWidth,
-  onShow,
-  disabled,
-  refreshKey,
-  testID,
-  ...props
-}: PropsWithChildren & PopupMenuProps<T> & OwnProps) {
+export type MenuComponentProps<T> = PropsWithChildren & PopupMenuProps<T> & OwnProps;
+
+export function Menu<T>({ children, menuYOffset = 8, menuXOffset = 0, menuWidth, onShow, disabled, refreshKey, testID, ...props }: MenuComponentProps<T>) {
   const menu = useMenu();
   const layout = useRef<LayoutRectangle>();
 

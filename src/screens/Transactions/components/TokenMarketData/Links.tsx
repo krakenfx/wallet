@@ -4,10 +4,11 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useBrowser } from '@/hooks/useBrowser';
-import { AssetMetadata } from '@/realm/assetMetadata';
+import type { AssetMetadata } from '@/realm/assetMetadata';
 
 import loc from '/loc';
 

@@ -2,9 +2,9 @@ import { AuthenticationType } from 'expo-local-authentication';
 import React, { useEffect, useRef } from 'react';
 import { Platform, View } from 'react-native';
 
-import { BottomSheetModalRef } from '../BottomSheet';
-
 import { MissingBiometricsSheet } from './MissingBiometricsSheet';
+
+import type { BottomSheetModalRef } from '../BottomSheet';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

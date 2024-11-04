@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+
+import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Label } from '@/components/Label';
-import { DefiSublabel } from '@/realm/defi';
+import type { DefiSublabel } from '@/realm/defi';
 
 interface SubLabelProps {
   text: string | number;

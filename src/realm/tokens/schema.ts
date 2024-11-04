@@ -1,10 +1,15 @@
-import { ObjectSchema } from 'realm';
+import { REALM_TYPE_ASSET_MARKET_DATA } from '../assetMarketData';
+import { REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
+import { REALM_TYPE_TOKEN_PRICE } from '../tokenPrice';
+import { REALM_TYPE_PENDING_TRANSACTION } from '../transactions';
+import { REALM_TYPE_WALLET } from '../wallets';
 
-import { REALM_TYPE_ASSET_MARKET_DATA, RealmAssetMarketData } from '../assetMarketData';
-import { REALM_TYPE_ASSET_METADATA, RealmAssetMetadata } from '../assetMetadata';
-import { REALM_TYPE_TOKEN_PRICE, RealmTokenPrice } from '../tokenPrice';
-import { REALM_TYPE_PENDING_TRANSACTION, RealmPendingTransaction } from '../transactions';
-import { REALM_TYPE_WALLET, RealmWallet } from '../wallets';
+import type { RealmAssetMarketData } from '../assetMarketData';
+import type { RealmAssetMetadata } from '../assetMetadata';
+import type { RealmTokenPrice } from '../tokenPrice';
+import type { RealmPendingTransaction } from '../transactions';
+import type { RealmWallet } from '../wallets';
+import type { ObjectSchema } from 'realm';
 
 export type Token = {
   id: string;

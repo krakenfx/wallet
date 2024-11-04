@@ -1,10 +1,11 @@
-import BigNumber from 'bignumber.js';
 import React from 'react';
 
 import { CardWarning } from '@/components/CardWarning';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 
 import { formatCurrency } from '@/utils/formatCurrency';
+
+import type BigNumber from 'bignumber.js';
 
 import loc from '/loc';
 

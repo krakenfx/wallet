@@ -1,7 +1,7 @@
 import { getHarmony } from '@/api/base/apiFactory';
 import { fetchClient } from '@/api/base/fetchClient';
-import { NftWithRawMetadata, RawNftMetadata } from '@/api/fetchNfts';
-import { NFT } from '@/api/types';
+import type { NftWithRawMetadata, RawNftMetadata } from '@/api/fetchNfts';
+import type { NFT } from '@/api/types';
 
 import { handleError } from '/helpers/errorHandler';
 

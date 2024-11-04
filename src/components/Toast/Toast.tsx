@@ -1,17 +1,25 @@
+import type { SharedValue } from 'react-native-reanimated';
+
 import Clipboard from '@react-native-clipboard/clipboard';
 import { BlurView } from '@react-native-community/blur';
-import LottieView, { LottieViewProps } from 'lottie-react-native';
+import LottieView from 'lottie-react-native';
 import React, { useEffect } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { SharedValue, interpolate, runOnJS, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { interpolate, runOnJS, useAnimatedStyle } from 'react-native-reanimated';
 
-import { Label, LabelProps } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { LabelProps } from '@/components/Label';
+import { Label } from '@/components/Label';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { useDeafultHeaderHeight } from '@/hooks/useDefaultHeaderHeight';
-import { Routes } from '@/Routes';
-import { Theme, useTheme } from '@/theme/themes';
-import { SupportedFeedbackType, hapticFeedback } from '@/utils/hapticFeedback';
+import type { Routes } from '@/Routes';
+import type { Theme } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
+import type { SupportedFeedbackType } from '@/utils/hapticFeedback';
+import { hapticFeedback } from '@/utils/hapticFeedback';
+
+import type { LottieViewProps } from 'lottie-react-native';
 
 type WhiteOrBlackListRoutes =
   | {

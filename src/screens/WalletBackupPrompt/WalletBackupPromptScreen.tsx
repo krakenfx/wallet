@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import { BottomSheetRef } from '@/components/BottomSheet';
+import type { BottomSheetRef } from '@/components/BottomSheet';
 import { PromptSheet } from '@/components/Sheets';
 import { useSettingsMutations } from '@/realm/settings';
 import { navigationStyle } from '@/utils/navigationStyle';

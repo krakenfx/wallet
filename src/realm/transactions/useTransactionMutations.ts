@@ -1,17 +1,22 @@
 import { useCallback } from 'react';
 import Realm from 'realm';
 
-import { Transaction } from '@/api/types';
+import type { Transaction } from '@/api/types';
 import { tokenUnit2SmallestUnit } from '@/utils/unitConverter';
 
 import { useRealm } from '../RealmContext';
 
-import { REALM_TYPE_TOKEN, RealmToken, getAvailableTokenBalance } from '../tokens';
-import { REALM_TYPE_TRANSACTION_NOTES, RealmTransactionNotes } from '../transactionNotes';
-import { RealmWallet } from '../wallets';
+import { REALM_TYPE_TOKEN, getAvailableTokenBalance } from '../tokens';
 
-import { PendingTransaction, REALM_TYPE_PENDING_TRANSACTION, REALM_TYPE_WALLET_TRANSACTION, RealmPendingTransaction, RealmTransaction } from './schema';
+import { REALM_TYPE_TRANSACTION_NOTES } from '../transactionNotes';
+
+import { REALM_TYPE_PENDING_TRANSACTION, REALM_TYPE_WALLET_TRANSACTION } from './schema';
 import { convertToTimestamp, getCombinedTransactionId } from './utils';
+
+import type { PendingTransaction, RealmPendingTransaction, RealmTransaction } from './schema';
+import type { RealmToken } from '../tokens';
+import type { RealmTransactionNotes } from '../transactionNotes';
+import type { RealmWallet } from '../wallets';
 
 export const useTransactionMutations = () => {
   const realm = useRealm();

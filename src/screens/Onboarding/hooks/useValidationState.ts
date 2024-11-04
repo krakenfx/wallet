@@ -1,7 +1,8 @@
 import { defaults } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
 
-import { ColorName, useTheme } from '@/theme/themes';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 export type ValidationState = undefined | 'valid' | 'invalid';
 

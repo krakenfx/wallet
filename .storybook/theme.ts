@@ -1,4 +1,4 @@
-import { Theme } from '@storybook/react-native';
+import type { Theme } from '@storybook/react-native';
 import { SuperDarkTheme } from '../src/theme/themes';
 
 type DeepPartial<T> = T extends object

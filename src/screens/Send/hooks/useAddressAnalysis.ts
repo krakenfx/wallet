@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { AnalyseAddressResult } from '@/api/types';
-import { Network } from '@/onChain/wallets/base';
+import type { AnalyseAddressResult } from '@/api/types';
+import type { Network } from '@/onChain/wallets/base';
 import { EVMNetwork } from '@/onChain/wallets/evm';
 import { evmHarmonyTransport } from '@/onChain/wallets/registry';
 import { useRealm } from '@/realm/RealmContext';
 import { getWalletsForMutations } from '@/realm/wallets';
-import { ColorName } from '@/theme/themes';
+import type { ColorName } from '@/theme/themes';
 
-import { NetworkFilter, parseAddressAnalysis } from '../utils/parseAddressAnalysis';
+import { parseAddressAnalysis } from '../utils/parseAddressAnalysis';
+
+import type { NetworkFilter } from '../utils/parseAddressAnalysis';
 
 import { handleError } from '/helpers/errorHandler';
 

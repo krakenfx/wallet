@@ -3,9 +3,9 @@ import bs58 from 'bs58';
 
 import { Buffer } from 'buffer';
 
-import { DefinitionList } from '../../types';
+import type { SolanaSignTransaction } from './types';
+import type { DefinitionList } from '../../types';
 
-import { SolanaSignTransaction } from './types';
 
 export function adaptSolanaSignTransactionToDefinitionList(data: SolanaSignTransaction): DefinitionList {
   const definitionList: DefinitionList = [];

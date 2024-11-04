@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { CardWarning } from '@/components/CardWarning';
 import { GradientScreenView } from '@/components/Gradients';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
@@ -10,10 +10,11 @@ import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsCheckItem, SettingsCheckItemsBox, SettingsInfoBox, SettingsSwitch } from '../components';
-import { SettingsNavigationProps } from '../SettingsRouter';
 
 import { usePasswordProtectionEnabled } from './hooks';
 import { PasswordChangeInfoSheet } from './PasswordChangeInfoSheet';
+
+import type { SettingsNavigationProps } from '../SettingsRouter';
 
 import { biometricUnlock, isBiometricEnabled } from '/helpers/biometric-unlock';
 import loc from '/loc';

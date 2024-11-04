@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Label } from '@/components/Label';
-import { RealmNft } from '@/realm/nfts';
+import type { RealmNft } from '@/realm/nfts';
 import { useTheme } from '@/theme/themes';
 
 import { NFTLinksItem } from './NFTLinksItem';

@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { ColorName } from '@/theme/themes';
-
-import { IconName } from '../SvgIcon';
+import type { ColorName } from '@/theme/themes';
 
 import { IconButton } from './IconButton';
+
+import type { IconName } from '../SvgIcon';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -28,7 +28,6 @@ const COLOR_OPTIONS: ColorName[] = [
   'iOSKeyboardAccessoryBg',
   'androidDarkBlurBg',
   'androidToastBlur',
-  'swapIconBg',
   'coreBackground',
   'blurBackgroundAndroid',
   'lavenderIndigo',

@@ -1,7 +1,10 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import type { AnimateStyle } from 'react-native-reanimated';
+
 import format from 'date-fns/format';
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { AnimateStyle } from 'react-native-reanimated';
+import { StyleSheet, View } from 'react-native';
 
 import { TransactionHeader } from '@/components/Transaction';
 import { TRANSACTION_PENDING_TYPES, TRANSACTION_TYPES } from '@/realm/transactions/const';
@@ -62,7 +65,7 @@ const TransactionStickyHeaderContent: React.FC<TransactionStickyHeaderContentPro
               ? format(new Date(pendingTransaction.time * 1000), 'd LLLL yyyy・h:mmaaa')
               : undefined
           }
-          badge={badge ?? (pendingTransaction?.isValid() && pendingTransaction) ? 'pending' : undefined}
+          badge={(badge ?? (pendingTransaction?.isValid() && pendingTransaction)) ? 'pending' : undefined}
         />
       );
     }

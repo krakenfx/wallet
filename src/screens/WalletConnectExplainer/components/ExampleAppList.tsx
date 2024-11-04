@@ -1,5 +1,7 @@
+import type { ImageSourcePropType } from 'react-native';
+
 import React from 'react';
-import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import Animated, { Keyframe } from 'react-native-reanimated';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';

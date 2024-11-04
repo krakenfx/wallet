@@ -2,7 +2,8 @@ import React from 'react';
 
 import { StyleSheet, View } from 'react-native';
 
-import { MaskedElementWithCoin, MaskedElementWithCoinProps } from '@/components/MaskedElementWithCoin';
+import type { MaskedElementWithCoinProps } from '@/components/MaskedElementWithCoin';
+import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
 
 import { Networks } from '@/onChain/wallets/registry';
 

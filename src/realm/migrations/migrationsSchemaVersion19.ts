@@ -1,6 +1,6 @@
-import Realm from 'realm';
-
 import { REALM_TYPE_PENDING_TRANSACTION } from '../transactions';
+
+import type Realm from 'realm';
 
 
 export const migrationsSchemaVersion19 = (oldRealm: Realm, newRealm: Realm) => {

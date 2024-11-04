@@ -1,10 +1,10 @@
-import { SessionTypes } from '@walletconnect/types';
-import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 
-import { SessionNamespace } from './types';
+import type { SessionNamespace } from './types';
+import type { SessionTypes } from '@walletconnect/types';
+import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

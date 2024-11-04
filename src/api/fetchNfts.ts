@@ -1,12 +1,13 @@
 import { chunk } from 'lodash';
 
-import { RealmishWallet } from '@/onChain/wallets/base';
+import type { RealmishWallet } from '@/onChain/wallets/base';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { RealmNftMetadata } from '@/realm/nftMetadata';
+import type { RealmNftMetadata } from '@/realm/nftMetadata';
 import { isPromiseFulfilled } from '@/utils/promise';
 
 import { APIResponseError, getHarmony } from './base/apiFactory';
-import { NFT, NFTMetadata } from './types';
+
+import type { NFT, NFTMetadata } from './types';
 
 export type RawNftMetadata = Omit<NFTMetadata, 'isNFT'>;
 export type NftWithRawMetadata = NFT & {

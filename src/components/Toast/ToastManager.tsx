@@ -5,8 +5,9 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { Easing, runOnJS, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import { FullWindowOverlay } from 'react-native-screens';
 
-import { HideToastProps, Toast, ToastConfigProps, ToastState } from '@/components/Toast';
-import { Routes } from '@/Routes';
+import type { HideToastProps, ToastConfigProps } from '@/components/Toast';
+import { Toast, ToastState } from '@/components/Toast';
+import type { Routes } from '@/Routes';
 
 import { ToastEmitter, toastEmitter } from './events';
 

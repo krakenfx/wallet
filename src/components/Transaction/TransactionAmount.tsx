@@ -1,12 +1,15 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
-import { TokenIcon, TokenIconProps } from '@/components/TokenIcon';
+import type { TokenIconProps } from '@/components/TokenIcon';
+import { TokenIcon } from '@/components/TokenIcon';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { formatCurrency } from '@/utils/formatCurrency';
 

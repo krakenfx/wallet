@@ -1,8 +1,9 @@
 import * as bitcoin from 'bitcoinjs-lib';
 
-import { WalletData } from './base';
 import { BitcoinElectrumTransport, BitcoinNetwork, deriveRoot } from './bitcoin';
 import { XPUB_PREFIX, ZPUB_PREFIX } from './bitcoinHelpers';
+
+import type { WalletData } from './base';
 
 const transport = new BitcoinElectrumTransport();
 

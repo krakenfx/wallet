@@ -1,7 +1,9 @@
 import { getAvailableTokenBalance } from '@/realm/tokens';
 import { unitConverter } from '@/utils/unitConverter';
 
-import { FormatTokenAmountOptions, formatTokenAmount } from './formatTokenAmount';
+import { formatTokenAmount } from './formatTokenAmount';
+
+import type { FormatTokenAmountOptions } from './formatTokenAmount';
 
 type Token = {
   balance: string;

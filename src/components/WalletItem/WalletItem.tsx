@@ -4,13 +4,14 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AvatarIcon } from '@/components/AvatarIcon';
-import { GradientItemBackground, GradientItemBackgroundProps } from '@/components/GradientItemBackground';
+import type { GradientItemBackgroundProps } from '@/components/GradientItemBackground';
+import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { IconButton } from '@/components/IconButton';
 import { Label } from '@/components/Label';
 import { Menu } from '@/components/Menu';
 import { Touchable } from '@/components/Touchable';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
-import { RealmAccount } from '@/realm/accounts';
+import type { RealmAccount } from '@/realm/accounts';
 import { useAppCurrency } from '@/realm/settings';
 import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';

@@ -1,9 +1,11 @@
 import { useCallback, useRef } from 'react';
 
-import { NftWithCachedMetadata, fetchNfts } from '@/api/fetchNfts';
+import type { NftWithCachedMetadata } from '@/api/fetchNfts';
+import { fetchNfts } from '@/api/fetchNfts';
 import { fetchRawNftMetadata } from '@/api/fetchRawNftMetadata';
-import { NFT } from '@/api/types';
-import { REALM_TYPE_NFT_METADATA, RealmNftMetadata } from '@/realm/nftMetadata';
+import type { NFT } from '@/api/types';
+import type { RealmNftMetadata } from '@/realm/nftMetadata';
+import { REALM_TYPE_NFT_METADATA } from '@/realm/nftMetadata';
 import { useNftsMutations } from '@/realm/nfts/useNftsMutations';
 import { useRealm } from '@/realm/RealmContext';
 import { getWalletsForMutations } from '@/realm/wallets';

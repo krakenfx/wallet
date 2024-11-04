@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
-import { RealmDefiToken } from '@/realm/defi';
+import type { RealmDefiToken } from '@/realm/defi';
 
 import { useColorByCategory } from '../utils';
 

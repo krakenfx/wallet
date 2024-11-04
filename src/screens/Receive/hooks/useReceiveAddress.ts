@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
-import { Network, Transport } from '@/onChain/wallets/base';
+import type { Network, Transport } from '@/onChain/wallets/base';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
 import { handleError } from '/helpers/errorHandler';

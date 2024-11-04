@@ -3,16 +3,19 @@ import { StyleSheet } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
 
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { BrowserHeader } from './components/BrowserHeader';
-import { BrowserWebView, BrowserWebViewRef } from './components/BrowserWebView';
+
+import { BrowserWebView } from './components/BrowserWebView';
 import { BrowserAnimationContextProvider } from './context/BrowserAnimationContext';
 import { BrowserContextProvider } from './context/BrowserContext';
 import { SearchContextProvider } from './context/SearchContext';
 import { useHeader } from './hooks/useHeader';
+
+import type { BrowserWebViewRef } from './components/BrowserWebView';
 
 export type BrowserParams = {
   url?: string;

@@ -1,6 +1,8 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { CardWarning } from '@/components/CardWarning';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';

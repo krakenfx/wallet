@@ -1,6 +1,6 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import AnimatedLottieView from 'lottie-react-native';
-import React from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
 
 type Props = {
   size?: number;

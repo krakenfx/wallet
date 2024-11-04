@@ -1,11 +1,19 @@
-import React, { PropsWithChildren, useContext, useState } from 'react';
+import type { PropsWithChildren } from 'react';
 
-import { NativeSyntheticEvent, Platform } from 'react-native';
-import { SharedValue, useSharedValue } from 'react-native-reanimated';
-import { WebViewErrorEvent, WebViewNavigationEvent } from 'react-native-webview/lib/RNCWebViewNativeComponent';
-import { WebViewNavigation, WebViewProgressEvent } from 'react-native-webview/lib/WebViewTypes';
+import type { NativeSyntheticEvent } from 'react-native';
+
+import type { SharedValue } from 'react-native-reanimated';
+
+import React, { useContext, useState } from 'react';
+
+import { Platform } from 'react-native';
+
+import { useSharedValue } from 'react-native-reanimated';
 
 import { getHttpsUrlOrGoogleSearchUrl } from '../utils/getHttpsUrlOrGoogleSearchUrl';
+
+import type { WebViewErrorEvent, WebViewNavigationEvent } from 'react-native-webview/lib/RNCWebViewNativeComponent';
+import type { WebViewNavigation, WebViewProgressEvent } from 'react-native-webview/lib/WebViewTypes';
 
 interface BrowserContextProps {
   initialUrl: string | undefined;

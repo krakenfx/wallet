@@ -6,11 +6,15 @@ import { getImplForWallet } from '@/onChain/wallets/registry';
 import { getWalletStorage } from '@/onChain/wallets/walletState';
 import { isPromiseFulfilled, isPromiseRejected } from '@/utils/promise';
 
-import { AssetMetadata, REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
+import { REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
 import { useTokensMutations } from '../tokens';
-import { RealmWallet, getWalletsForMutations } from '../wallets';
+
+import { getWalletsForMutations } from '../wallets';
+
+import type { AssetMetadata } from '../assetMetadata';
+import type { RealmWallet } from '../wallets';
 
 import { handleError } from '/helpers/errorHandler';
 

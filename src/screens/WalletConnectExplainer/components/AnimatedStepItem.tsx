@@ -4,7 +4,9 @@ import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
 import { useTheme } from '@/theme/themes';
 
-import { StepItem, StepItemProps } from './StepItem';
+import { StepItem } from './StepItem';
+
+import type { StepItemProps } from './StepItem';
 
 type Props = StepItemProps & {
   isActive?: boolean;

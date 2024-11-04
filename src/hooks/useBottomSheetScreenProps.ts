@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 
-import { BottomSheetRef } from '@/components/BottomSheet';
-import { NavigationProps, RouteProps } from '@/Routes';
+import type { BottomSheetRef } from '@/components/BottomSheet';
+import type { NavigationProps, RouteProps } from '@/Routes';
 
 
 export function useBottomSheetScreenProps<T extends keyof RouteProps>(navigation: NavigationProps<T>['navigation']) {

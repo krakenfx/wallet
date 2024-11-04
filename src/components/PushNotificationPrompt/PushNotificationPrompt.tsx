@@ -1,6 +1,8 @@
+import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
+
 import LottieView from 'lottie-react-native';
 import React, { useCallback } from 'react';
-import { StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { SequencedTransition } from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 

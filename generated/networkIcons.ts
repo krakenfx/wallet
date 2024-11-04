@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgProps } from 'react-native-svg';
+import type { SvgProps } from 'react-native-svg';
 
 import i1 from 'kraken-wallet-network-icons/src/arbitrum.svg';
 import i2 from 'kraken-wallet-network-icons/src/aurora.svg';

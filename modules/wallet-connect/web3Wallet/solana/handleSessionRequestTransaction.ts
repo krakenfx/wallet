@@ -1,21 +1,24 @@
-import { SessionTypes, Verify } from '@walletconnect/types';
-import { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
-import Realm from 'realm';
 
-import { RealmishWallet } from '@/onChain/wallets/base';
-import { SolanaHarmonyTransport, SolanaNetwork } from '@/onChain/wallets/solana';
-import { WalletStorage, getWalletStorage } from '@/onChain/wallets/walletState';
-import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
+import type { RealmishWallet } from '@/onChain/wallets/base';
+import type { SolanaHarmonyTransport, SolanaNetwork } from '@/onChain/wallets/solana';
+import type { WalletStorage} from '@/onChain/wallets/walletState';
+import { getWalletStorage } from '@/onChain/wallets/walletState';
+import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { handleRedirect } from '../../connectAppWithWalletConnect/handleRedirect';
-import { ReactNavigationDispatch } from '../../types';
+
 import { getWarningFromSimulation } from '../../utils';
 import { navigateToSignGenericTransactionPage } from '../navigateToSignGenericTransactionPage';
 import { responseRejected } from '../responseRejected';
 import { sessionIsDeepLinked } from '../sessionIsDeepLinked';
 
-import { SolanaSignTransaction } from './types';
 import { adaptSolanaSignTransactionToDefinitionList, getWalletConnectRespondSessionRequestResult } from './utils';
+
+import type { SolanaSignTransaction } from './types';
+import type { ReactNavigationDispatch } from '../../types';
+import type { SessionTypes, Verify } from '@walletconnect/types';
+import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
+import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

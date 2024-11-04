@@ -1,5 +1,5 @@
-import { TokenReputation } from '@/api/types';
-import { AssetReputation } from '@/realm/assetMetadata';
+import type { TokenReputation } from '@/api/types';
+import type { AssetReputation } from '@/realm/assetMetadata';
 
 
 export const adaptTokenReputationToRealmAssetReputation = (tr?: TokenReputation | AssetReputation): AssetReputation => {

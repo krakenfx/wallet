@@ -1,4 +1,4 @@
-import { Transaction } from '@/api/types';
+import type { Transaction } from '@/api/types';
 import { TRANSACTION_PENDING_TYPES, TRANSACTION_TYPES } from '@/realm/transactions/const';
 
 import { formatAddress } from './formatAddress';

@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Label, LabelProps } from '@/components/Label';
-import { IconName } from '@/components/SvgIcon';
+import type { LabelProps } from '@/components/Label';
+import { Label } from '@/components/Label';
+import type { IconName } from '@/components/SvgIcon';
 import { Switch } from '@/components/Switch';
 import { SettingsIcon } from '@/screens/Settings/components/SettingsIcon';
 

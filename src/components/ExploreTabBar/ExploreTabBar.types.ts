@@ -1,4 +1,4 @@
-import { IconName } from '../SvgIcon';
+import type { IconName } from '../SvgIcon';
 
 export type ExploreTabBarProps = {
   onTabLeftPress: () => void;

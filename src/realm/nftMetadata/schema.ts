@@ -1,4 +1,4 @@
-import { ObjectSchema } from 'realm';
+import type { ObjectSchema } from 'realm';
 
 export type NftMetadata = {
   assetId: string;

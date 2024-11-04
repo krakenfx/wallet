@@ -1,17 +1,22 @@
 import { useNavigation } from '@react-navigation/native';
-import { FlashList, FlashListProps } from '@shopify/flash-list';
+
+import { FlashList } from '@shopify/flash-list';
 import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { UINetworkFilters } from '@/components/NetworkFilter/types';
+import type { UINetworkFilter } from '@/components/NetworkFilter/types';
 import { COLLECTION_ROW_SIZE, NFTCollectionRow } from '@/components/NFTCollectionRow';
-import { NftsCollection, useNftsArchivedCollection, useNftsCollections } from '@/realm/nfts';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NftsCollection } from '@/realm/nfts';
+import { useNftsArchivedCollection, useNftsCollections } from '@/realm/nfts';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 
 import { ArchivedNftsIcon } from './ArchivedNftsIcon';
 import { NftListEmptyState } from './NftListEmptyState';
+
+import type { FlashListProps } from '@shopify/flash-list';
 
 const Separator = () => <View style={styles.divider} />;
 
@@ -21,7 +26,7 @@ const SEPARATOR_SIZE = 6;
 const ITEM_HEIGHT = COLLECTION_ROW_SIZE + SEPARATOR_SIZE;
 
 type Props = {
-  networkFilter: UINetworkFilters[];
+  networkFilter: UINetworkFilter[];
   refreshControl: FlashListProps<NftsCollection>['refreshControl'];
 };
 

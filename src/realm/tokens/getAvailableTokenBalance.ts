@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 
-import { RealmPendingTransaction } from '../transactions';
+import type { RealmPendingTransaction } from '../transactions';
 
 export const getAvailableTokenBalance = (token: {
   balance: string;

@@ -1,4 +1,6 @@
-import { DependencyList, useRef } from 'react';
+import type { DependencyList } from 'react';
+
+import { useRef } from 'react';
 
 export const useDepsChanged = (deps?: DependencyList): boolean => {
   const lastDeps = useRef<DependencyList>();

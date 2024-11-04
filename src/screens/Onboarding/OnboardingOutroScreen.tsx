@@ -12,7 +12,7 @@ import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useNoopAndroidBackButton } from '@/utils/useAndroidBackButton';
 
-import { OnboardingNavigationProps } from './OnboardingRouter';
+import type { OnboardingNavigationProps } from './OnboardingRouter';
 
 import { URLs } from '/config';
 import loc from '/loc';

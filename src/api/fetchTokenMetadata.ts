@@ -1,6 +1,6 @@
 import { getHarmony } from '@/api/base/apiFactory';
-import { TokenMetadata } from '@/api/types';
-import { AssetMetadata } from '@/realm/assetMetadata';
+import type { TokenMetadata } from '@/api/types';
+import type { AssetMetadata } from '@/realm/assetMetadata';
 
 import { adaptTokenReputationToRealmAssetReputation } from '../utils/adaptTokenReputationToRealmAssetReputation';
 

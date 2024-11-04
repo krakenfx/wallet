@@ -1,5 +1,5 @@
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { Currency } from '@/screens/Settings/currency';
+import type { Currency } from '@/screens/Settings/currency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { isBtc } from '@/utils/isBtc';
 import { unitConverter } from '@/utils/unitConverter';

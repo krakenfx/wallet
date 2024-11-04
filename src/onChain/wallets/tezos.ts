@@ -7,11 +7,12 @@ import * as ed25519 from 'ed25519-hd-key';
 
 import { Buffer } from 'buffer';
 
-import { RealmToken } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
 
-import { BlockExplorer, ExtendedPublicKeyAndChainCode, NativeTokenSymbol, Network, NetworkIcon, WalletData, WalletDataWithSeed } from './base';
 import { HarmonyTransport } from './HarmonyTransport';
 import { ChainAgnostic } from './utils/ChainAgnostic';
+
+import type { BlockExplorer, ExtendedPublicKeyAndChainCode, NativeTokenSymbol, Network, NetworkIcon, WalletData, WalletDataWithSeed } from './base';
 
 import loc from '/loc';
 

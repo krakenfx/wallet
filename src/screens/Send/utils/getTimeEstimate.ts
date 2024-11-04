@@ -1,6 +1,6 @@
 import { addSeconds, formatDistanceStrict } from 'date-fns';
 
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 import { getDateLocale } from '/loc/date';
 
@@ -13,6 +13,7 @@ const timePerBlockInSecondsMap: Partial<Record<WalletType, number>> = {
   base: 2,
   HDsegwitBech32: 10 * 60,
   linea: 2,
+  avalanche: 2,
 };
 
 export const getTimeEstimate = (type: WalletType, estimatedTimeBlocks: number) => {

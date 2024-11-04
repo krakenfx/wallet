@@ -4,7 +4,8 @@ import { fetchDefiPositions } from '@/api/fetchDefiPositions';
 import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
 import { DefiNetworks, getImplForWallet } from '@/onChain/wallets/registry';
 import { useRealm } from '@/realm/RealmContext';
-import { RealmWallet, getWalletsForMutations } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
+import { getWalletsForMutations } from '@/realm/wallets';
 
 import { useUsdFiatRatesMutations } from '../usdFiatRates';
 

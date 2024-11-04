@@ -1,10 +1,11 @@
-import BottomSheetView from '@gorhom/bottom-sheet';
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 
 import { Button } from '@/components/Button';
 
 import { ExploreDisclaimerSheet } from './ExploreDisclaimerSheet';
+
+import type BottomSheetView from '@gorhom/bottom-sheet';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

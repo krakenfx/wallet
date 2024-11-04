@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { FeeOptionKind } from '@/api/types';
+import type { FeeOptionKind } from '@/api/types';
 import { Label } from '@/components/Label';
 import { ToggleRow } from '@/components/ToggleRow';
-import { RealmishWallet } from '@/onChain/wallets/base';
+import type { RealmishWallet } from '@/onChain/wallets/base';
 
 import { feeOptionToString } from './utils/feeOptionToString';
 

@@ -1,8 +1,10 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { NetworkIcon } from '@/components/NetworkIcon';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 
 import { getNetworkName } from '/modules/wallet-connect/utils';
 

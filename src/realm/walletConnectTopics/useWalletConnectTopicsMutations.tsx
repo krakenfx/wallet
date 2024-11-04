@@ -4,7 +4,9 @@ import Realm from 'realm';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
 
-import { REALM_TYPE_WALLET_CONNECT_TOPICS, RealmWalletConnectTopics } from './schema';
+import { REALM_TYPE_WALLET_CONNECT_TOPICS } from './schema';
+
+import type { RealmWalletConnectTopics } from './schema';
 
 import { handleError } from '/helpers/errorHandler';
 
@@ -28,7 +30,7 @@ export const useWalletConnectTopicsMutations = () => {
             Realm.UpdateMode.Never,
           );
         });
-      } catch(e) {
+      } catch (e) {
         handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
       }
     },

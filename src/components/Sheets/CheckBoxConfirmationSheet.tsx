@@ -2,12 +2,13 @@ import { BottomSheetView } from '@gorhom/bottom-sheet';
 import React, { forwardRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheetModal } from '@/components/BottomSheet';
 import { CheckBox } from '@/components/CheckBox';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
 
-import { ButtonProps } from '../Button';
+import type { ButtonProps } from '../Button';
 
 type Props = {
   title: string;

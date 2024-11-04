@@ -5,7 +5,8 @@ import { Linking } from 'react-native';
 import { useInitialUrl } from '@/hooks/useInitialUrl';
 import { useRealm } from '@/realm/RealmContext';
 import { useWalletConnectTopicsMutations } from '@/realm/walletConnectTopics/useWalletConnectTopicsMutations';
-import { REALM_TYPE_WALLET, RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
+import { REALM_TYPE_WALLET } from '@/realm/wallets';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
 import { handleConnectToDappWalletConnectUri } from '../handleConnectToDappWalletConnectUri';

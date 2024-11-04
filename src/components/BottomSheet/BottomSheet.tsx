@@ -1,18 +1,14 @@
-import BottomSheetBase, {
-  BottomSheetBackdrop,
-  BottomSheetBackdropProps,
-  BottomSheetBackgroundProps,
-  BottomSheetModal as BottomSheetBaseModal,
-  BottomSheetModalProps,
-  BottomSheetProps,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import type { ScrollViewProps, StyleProp, ViewStyle } from 'react-native';
+
+import type { WithSpringConfig } from 'react-native-reanimated';
+
+import BottomSheetBase, { BottomSheetBackdrop, BottomSheetModal as BottomSheetBaseModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import { HeaderHeightContext } from '@react-navigation/elements';
-import { FlashList, FlashListProps } from '@shopify/flash-list';
+import { FlashList } from '@shopify/flash-list';
 import React, { forwardRef, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Platform, ScrollViewProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
-import Animated, { WithSpringConfig, useAnimatedStyle } from 'react-native-reanimated';
+import { Platform, StyleSheet, View, useWindowDimensions } from 'react-native';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { CriticalWarningBackground } from '@/components/CriticalWarningBackground';
@@ -20,6 +16,9 @@ import { useTheme } from '@/theme/themes';
 import { useAndroidBackButton } from '@/utils/useAndroidBackButton';
 
 import { useGlobalState } from '../GlobalState';
+
+import type { BottomSheetBackdropProps, BottomSheetBackgroundProps, BottomSheetModalProps, BottomSheetProps } from '@gorhom/bottom-sheet';
+import type { FlashListProps } from '@shopify/flash-list';
 
 import { SheetGradientView } from '/modules/gradient-view';
 
@@ -88,7 +87,7 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
   const [, setShowNavTabs] = useGlobalState('showNavTabs');
   const handleChange = useCallback(
     (newIndex: number) => {
-      setShowNavTabs( newIndex === -1)
+      setShowNavTabs(newIndex === -1);
       setCurrentIndex(newIndex);
       onChange?.(newIndex);
     },

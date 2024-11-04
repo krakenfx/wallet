@@ -6,7 +6,9 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 
 import { useSettingsMutations } from '@/realm/settings';
 
-import { UI_STATE, Verification } from '../types';
+import { UI_STATE } from '../types';
+
+import type { Verification } from '../types';
 
 import { biometricUnlock } from '/helpers/biometric-unlock';
 
@@ -16,13 +18,13 @@ interface FooterProps {
   isDataComplete: boolean;
   shouldDisableConfirmation: boolean;
   uiState: UI_STATE.none | UI_STATE.loading | UI_STATE.complete;
-  verification: Verification;
+  verification?: Verification;
   approveSession?: () => Promise<void>;
   rejectSession?: () => Promise<void>;
 }
 
 export const Footer: React.FC<FooterProps> = ({ uiState, isDataComplete, shouldDisableConfirmation, verification, approveSession, rejectSession }) => {
-  const isCriticalWarning = verification.warning?.severity === 'critical';
+  const isCriticalWarning = verification?.warning?.severity === 'critical';
   const { setWalletConnectExplainerTaskCompleted } = useSettingsMutations();
 
   const handleApproveSession = async () => {

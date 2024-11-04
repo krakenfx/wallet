@@ -1,10 +1,10 @@
-import { Transaction } from '@/api/types';
-import { RealmAssetMetadata } from '@/realm/assetMetadata';
-import { RealmToken } from '@/realm/tokens';
-import { RealmTransaction } from '@/realm/transactions';
+import type { Transaction } from '@/api/types';
+import type { RealmAssetMetadata } from '@/realm/assetMetadata';
+import type { RealmToken } from '@/realm/tokens';
+import type { RealmTransaction } from '@/realm/transactions';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { SimpleTransactionData, SwapTransactionData, TransactionData } from '@/realm/transactions/getTransactionMetadata';
-import { RealmWallet } from '@/realm/wallets';
+import type { SimpleTransactionData, SwapTransactionData, TransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { RealmWallet } from '@/realm/wallets';
 
 export const mockContextToken = {
   id: 'foobar',

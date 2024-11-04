@@ -3,9 +3,12 @@ import Realm from 'realm';
 
 import { useRealm } from '../RealmContext';
 
-import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey } from './schema';
+import { REALM_TYPE_SETTINGS, RealmSettingsKey } from './schema';
 
-import { LanguageTag, saveLanguage } from '/loc';
+import type { RealmSettings } from './schema';
+
+import type { LanguageTag } from '/loc';
+import { saveLanguage } from '/loc';
 
 export const useLanguageSetMutation = () => {
   const realm = useRealm();

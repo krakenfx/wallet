@@ -7,8 +7,9 @@ import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
 import { OverlappingListWithHasMoreCount } from '@/components/OverlappingListWithHasMoreCount';
-import { Touchable, TouchableProps } from '@/components/Touchable';
-import { NftsCollection } from '@/realm/nfts';
+import type { TouchableProps } from '@/components/Touchable';
+import { Touchable } from '@/components/Touchable';
+import type { NftsCollection } from '@/realm/nfts';
 import { useRealmWalletById } from '@/realm/wallets';
 import { useTheme } from '@/theme/themes';
 

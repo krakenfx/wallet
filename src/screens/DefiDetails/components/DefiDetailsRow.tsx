@@ -1,7 +1,9 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { RealmDefiPosition } from '@/realm/defi';
+import type { RealmDefiPosition } from '@/realm/defi';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 
 import { BalanceLabel } from './BalanceLabel';

@@ -3,8 +3,10 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { StyleSheet, View } from 'react-native';
 
-import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
-import { FloatingBottomButtons, FloatingBottomButtonsProps } from '@/components/FloatingBottomButtons';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheetModal } from '@/components/BottomSheet';
+import type { FloatingBottomButtonsProps } from '@/components/FloatingBottomButtons';
+import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 
 import { Label } from '@/components/Label';
 

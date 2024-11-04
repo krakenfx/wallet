@@ -3,7 +3,8 @@ import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
-import { Theme, useTheme } from '@/theme/themes';
+import type { Theme } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 import loc from '/loc';
 

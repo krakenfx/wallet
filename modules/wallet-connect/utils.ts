@@ -1,16 +1,19 @@
-import { SessionTypes, Verify } from '@walletconnect/types';
 
-import { SimulationResult } from '@/api/types';
-import { Network } from '@/onChain/wallets/base';
+import type { SimulationResult } from '@/api/types';
+import type { Network } from '@/onChain/wallets/base';
 import { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
-import { WalletType, networkIdToNetworkName } from '@/onChain/wallets/registry';
+import type { WalletType} from '@/onChain/wallets/registry';
+import { networkIdToNetworkName } from '@/onChain/wallets/registry';
 import { SolanaHarmonyTransport, SolanaNetwork } from '@/onChain/wallets/solana';
-import { Verification } from '@/screens/ConnectApp/types';
+import type { Verification } from '@/screens/ConnectApp/types';
 
-import { Warning } from '@/types';
+import type { Warning } from '@/types';
 
-import { WALLET_CONNECT_SUPPORTED_NETWORKS, WALLET_CONNECT_SUPPORTED_NETWORK_IDS } from './consts';
+import { WALLET_CONNECT_SUPPORTED_NETWORK_IDS } from './consts';
 import { SHIM_replaceWrongSolanaMainnetID } from './solanaShim';
+
+import type { WALLET_CONNECT_SUPPORTED_NETWORKS} from './consts';
+import type { SessionTypes, Verify } from '@walletconnect/types';
 
 import loc from '/loc';
 
@@ -93,25 +96,11 @@ export function loopOverAllSessionNamespaceAccounts(session: SessionTypes.Struct
 }
 
 export function getVerificationFromWalletConnectVerify(verified: Verify.Context['verified']): Verification {
-  const isScam = !!verified.isScam;
   const isDomainMatch = verified.validation === 'VALID';
-
-  if (isScam) {
-    return {
-      isDomainMatch,
-      isScam,
-      warning: {
-        severity: 'critical',
-        heading: loc.onChainSecurity.knownSecurityRisk,
-        message: loc.onChainSecurity.knownSecurityRiskMessage,
-      },
-    };
-  }
 
   if (verified.validation === 'INVALID' ) {
     return {
       isDomainMatch,
-      isScam,
       warning: {
         severity: 'critical',
         heading: loc.onChainSecurity.domainMismatchWarning,
@@ -121,7 +110,6 @@ export function getVerificationFromWalletConnectVerify(verified: Verify.Context[
   }
 
   return {
-    isScam,
     isDomainMatch,
   };
 }

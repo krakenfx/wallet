@@ -1,14 +1,16 @@
-import LottieView, { LottieViewProps } from 'lottie-react-native';
+import LottieView from 'lottie-react-native';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { AnimatedStepItem } from '@/screens/WalletConnectExplainer/components/AnimatedStepItem';
 
-import { AnimationMarkers } from './types';
+import type { AnimationMarkers } from './types';
+import type { LottieViewProps } from 'lottie-react-native';
 
 export type LoopSlide = {
   title: string;

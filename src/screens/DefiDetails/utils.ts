@@ -1,4 +1,5 @@
-import { Theme, useTheme } from '@/theme/themes';
+import type { Theme } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 export const useColorByCategory = (category: string, value: number) => {
   const { colors } = useTheme();

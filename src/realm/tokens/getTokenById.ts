@@ -1,6 +1,7 @@
-import Realm from 'realm';
+import type { RealmToken } from '@/realm/tokens/schema';
+import { REALM_TYPE_TOKEN } from '@/realm/tokens/schema';
 
-import { REALM_TYPE_TOKEN, RealmToken } from '@/realm/tokens/schema';
+import type Realm from 'realm';
 
 export const getTokenById = (realm: Realm, id: string | null) => {
   if (!id) {

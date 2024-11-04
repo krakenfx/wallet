@@ -1,4 +1,3 @@
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { BackHandler, StyleSheet } from 'react-native';
 import Animated, { Extrapolate, interpolate, useAnimatedReaction, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
@@ -6,14 +5,19 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { useNftById } from '@/realm/nfts';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
 import { ImageGalleryControls } from './components/ImageGalleryControls';
-import { NftImageGalleryItem, NftImageGalleryItemRef, PanDismiss } from './components/NftImageGalleryItem';
-import { useGalleryTransiton } from './hooks/useGalleryTransition';
-import { ViewNftRouteParams } from './ViewNftScreen';
+
+import { NftImageGalleryItem, PanDismiss } from './components/NftImageGalleryItem';
+
+import type { NftImageGalleryItemRef } from './components/NftImageGalleryItem';
+import type { useGalleryTransiton } from './hooks/useGalleryTransition';
+import type { ViewNftRouteParams } from './ViewNftScreen';
+import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 export type TransitionConfig = {
   duration: number;

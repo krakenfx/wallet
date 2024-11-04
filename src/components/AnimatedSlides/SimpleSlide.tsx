@@ -1,13 +1,20 @@
+import type { PropsWithChildren } from 'react';
+
+import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
+
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import LottieView, { LottieViewProps } from 'lottie-react-native';
-import React, { PropsWithChildren, useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
+import LottieView from 'lottie-react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInUp, FadeOut } from 'react-native-reanimated';
 
 import { FadingElement } from '@/components/FadingElement';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
-import { Label, TypographyKey } from '@/components/Label';
+import type { TypographyKey } from '@/components/Label';
+import { Label } from '@/components/Label';
 import { useBottomSheetPadding } from '@/hooks/useBottomSheetPadding';
+
+import type { LottieViewProps } from 'lottie-react-native';
 
 type Props = {
   onButtonPress: () => void;

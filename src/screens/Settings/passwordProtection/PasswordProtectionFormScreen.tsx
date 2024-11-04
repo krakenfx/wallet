@@ -1,5 +1,7 @@
+import type { TextInput } from 'react-native';
+
 import React, { useRef, useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { CurvedTransition } from 'react-native-reanimated';
 
 import { CardWarning } from '@/components/CardWarning';
@@ -13,10 +15,11 @@ import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsSwitch } from '../components';
 import { SettingsBox } from '../components/SettingsBox';
-import { SettingsNavigationProps } from '../SettingsRouter';
 
 import { MIN_PASSWORD_CHARS } from './consts';
 import { PasswordStrengthMeter } from './PasswordStrengthMeter';
+
+import type { SettingsNavigationProps } from '../SettingsRouter';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

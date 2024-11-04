@@ -1,5 +1,9 @@
-import React, { Dispatch, useCallback, useEffect, useRef, useState } from 'react';
-import { NativeMethods, StyleSheet, View } from 'react-native';
+import type { Dispatch } from 'react';
+
+import type { NativeMethods } from 'react-native';
+
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { Button } from '@/components/Button';
@@ -7,7 +11,7 @@ import { Label } from '@/components/Label';
 import { useTheme } from '@/theme/themes';
 
 import loc from '/loc';
-import { DefinitionList } from '/modules/wallet-connect/types';
+import type { DefinitionList } from '/modules/wallet-connect/types';
 
 type Props = {
   content: DefinitionList;

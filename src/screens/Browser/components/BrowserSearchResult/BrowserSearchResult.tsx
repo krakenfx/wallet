@@ -19,7 +19,7 @@ export const BrowserSearchResult = () => {
           <Image source={require('@/assets/images/google/googleIcon.png')} />
         </View>
 
-        <Label type="regularBody" color="light100">
+        <Label style={styles.label} type="regularBody" color="light100" numberOfLines={1} ellipsizeMode="tail">
           Look up “{searchValue}”
         </Label>
       </Touchable>
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     alignItems: 'center',
     gap: 16,
+  },
+  label: {
+    width: '90%',
   },
   iconContainer: {
     justifyContent: 'center',

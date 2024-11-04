@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { IconButton } from '@/components/IconButton';
+import { AvatarIcon } from '@/components/AvatarIcon';
 import { Label } from '@/components/Label';
 import { Touchable } from '@/components/Touchable';
-import { RealmAccount } from '@/realm/accounts';
+import type { RealmAccount } from '@/realm/accounts';
 
 type Props = {
   account: RealmAccount;
@@ -16,7 +16,9 @@ export const AccountReceiveItem = ({ account, sendToAccount }: Props) => {
 
   return (
     <Touchable onPress={onPress} style={styles.container} testID="WalletReceiveItem">
-      <IconButton name="wallet" style={styles.icon} containerStyle={styles.iconContainer} size={24} />
+      <View style={styles.avatarContainer}>
+        <AvatarIcon accountNumber={account.accountNumber} accountAvatar={account.avatar} />
+      </View>
       <Label type="boldTitle2">{account.accountCustomName}</Label>
     </Touchable>
   );
@@ -29,11 +31,8 @@ const styles = StyleSheet.create({
     gap: 12,
     paddingVertical: 12,
   },
-  icon: {
+  avatarContainer: {
     width: 40,
     height: 40,
-  },
-  iconContainer: {
-    borderRadius: 20,
   },
 });

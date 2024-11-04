@@ -1,5 +1,3 @@
-import { ProposalTypes } from '@walletconnect/types';
-import { Web3WalletTypes } from '@walletconnect/web3wallet';
 import LottieView from 'lottie-react-native';
 import React from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
@@ -8,10 +6,14 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context';
 import { CardWarning, CardWarningFromWarning } from '@/components/CardWarning';
 import { ConnectAppPermissions } from '@/components/ConnectAppPermissions';
 
-import { UI_STATE, Verification } from '../types';
+import { UI_STATE } from '../types';
 
 import { Header } from './Header';
 import { Info } from './Info';
+
+import type { Verification } from '../types';
+import type { ProposalTypes } from '@walletconnect/types';
+import type { Web3WalletTypes } from '@walletconnect/web3wallet';
 
 import { capitalizeFirstLetter } from '/helpers/capitalizeFirstLetter';
 import loc from '/loc';
@@ -32,8 +34,10 @@ type PreviewProps = {
   unsupportedRequiredNetworks: string[];
   supportedNetworks: string[];
   uiState: UI_STATE.none | UI_STATE.loading | UI_STATE.complete;
-  verification: Verification;
+  verification?: Verification;
   isDataComplete: boolean;
+  isMalicious: boolean | null;
+  dismissedWarning: boolean;
 };
 
 export const Preview: React.FC<PreviewProps> = ({
@@ -44,8 +48,11 @@ export const Preview: React.FC<PreviewProps> = ({
   verification,
   unsupportedRequiredNetworks,
   supportedNetworks,
+  isMalicious,
+  dismissedWarning,
 }: PreviewProps) => {
   const { height } = useSafeAreaFrame();
+  const maybeMalicious = isMalicious === null;
 
   if (uiState === UI_STATE.loading || !isDataComplete) {
     return (
@@ -74,7 +81,19 @@ export const Preview: React.FC<PreviewProps> = ({
           <CardWarning title={loc.connectApp.unsupportedNetwork} description={formatCardWarningDescription(unsupportedRequiredNetworks)} type="negative" />
         ) : (
           <View style={styles.permissionsContainer}>
-            {verification.warning && <CardWarningFromWarning warning={verification.warning} />}
+            {}
+            {maybeMalicious ? (
+              <CardWarning title={loc.onChainSecurity.appSafetyNotVerified} description={loc.onChainSecurity.appSafetyNotVerifiedMessage} type="warning" />
+            ) : null}
+
+            {}
+            {dismissedWarning ? (
+              <CardWarning title={loc.onChainSecurity.knownSecurityRisk} description={loc.onChainSecurity.knownSecurityRiskMessage} type="negative" />
+            ) : null}
+
+            {}
+            {verification?.warning && isMalicious !== true && <CardWarningFromWarning warning={verification.warning} />}
+
             <ConnectAppPermissions />
           </View>
         )}

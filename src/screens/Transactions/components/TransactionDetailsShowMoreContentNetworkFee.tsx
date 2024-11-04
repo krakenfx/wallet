@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
 import { LabeledField } from '@/components/LabeledField';
-import { NativeTokenSymbol } from '@/onChain/wallets/base';
+import type { NativeTokenSymbol } from '@/onChain/wallets/base';
 
 import { useTransactionDetailsNetworkFee } from '../utils/useTransactionDetailsNetworkFee';
 

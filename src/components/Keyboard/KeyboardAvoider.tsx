@@ -1,6 +1,11 @@
+import type { ViewProps } from 'react-native';
+
+import type { AnimateProps } from 'react-native-reanimated';
+
 import React from 'react';
-import { Platform, StyleSheet, ViewProps } from 'react-native';
-import Animated, { AnimateProps, Extrapolation, interpolate, useAnimatedKeyboard, useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
+import { Platform, StyleSheet } from 'react-native';
+
+import Animated, { Extrapolation, interpolate, useAnimatedKeyboard, useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {

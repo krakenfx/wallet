@@ -1,4 +1,4 @@
-import { SvgProps } from 'react-native-svg';
+import type { SvgProps } from 'react-native-svg';
 
 import oneInch from './images/1inch.svg';
 import aave from './images/aave.svg';
@@ -16,7 +16,8 @@ import synthetix from './images/synthetix.svg';
 import tokenNameService from './images/tokenNameService.svg';
 import uniswap from './images/uniswap.svg';
 import zerion from './images/zerion.svg';
-import { TokenListNames, TokenListNamesWithFallback } from './types';
+
+import type { TokenListNames, TokenListNamesWithFallback } from './types';
 
 import loc from '/loc';
 

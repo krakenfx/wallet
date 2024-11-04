@@ -2,7 +2,8 @@ import { useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 import React, { useMemo } from 'react';
 
-import { BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
+import type { BottomSheetRef } from '@/components/BottomSheet';
+import { BottomSheet } from '@/components/BottomSheet';
 
 type Props = {
   Prompt: React.FC<{ onLayout: ReturnType<typeof useBottomSheetDynamicSnapPoints>['handleContentLayout'] }>;

@@ -1,7 +1,11 @@
-import { ObjectSchema } from 'realm';
+import { REALM_TYPE_NFT_METADATA } from '../nftMetadata';
 
-import { REALM_TYPE_NFT_METADATA, RealmNftMetadata } from '../nftMetadata';
-import { REALM_TYPE_WALLET, RealmWallet } from '../wallets';
+import { REALM_TYPE_WALLET } from '../wallets';
+
+import type { RealmNftMetadata } from '../nftMetadata';
+import type { RealmWallet } from '../wallets';
+
+import type { ObjectSchema } from 'realm';
 
 type NftTrait = {
   traitType: string;

@@ -1,9 +1,9 @@
 import { isObject } from 'lodash';
 
-import { DefinitionList } from '../../../types';
-import { EIP712 } from '../types';
-
 import { sanitizeEIP712 } from './sanitizeEIP712';
+
+import type { DefinitionList } from '../../../types';
+import type { EIP712 } from '../types';
 
 export function adaptEIP712ToDefinitionList(eip712: EIP712): DefinitionList {
   const data = sanitizeEIP712(eip712);

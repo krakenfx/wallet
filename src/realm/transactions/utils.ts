@@ -1,4 +1,4 @@
-import { Transaction } from '@/api/types';
+import type { Transaction } from '@/api/types';
 
 export const getCombinedTransactionId = (walletId: string, txId: string) => `${walletId}:${txId}`;
 

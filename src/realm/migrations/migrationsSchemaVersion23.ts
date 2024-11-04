@@ -1,12 +1,21 @@
 import Realm from 'realm';
 
 import { makeWalletId } from '@/onChain/wallets/base';
-import { WalletType, getImplForType } from '@/onChain/wallets/registry';
-import { REALM_TYPE_ASSET_METADATA, RealmAssetMetadata } from '@/realm/assetMetadata';
+import type { WalletType } from '@/onChain/wallets/registry';
+import { getImplForType } from '@/onChain/wallets/registry';
+import type { RealmAssetMetadata } from '@/realm/assetMetadata';
+import { REALM_TYPE_ASSET_METADATA } from '@/realm/assetMetadata';
 
-import { REALM_TYPE_ACCOUNT, RealmAccount } from '../accounts';
-import { REALM_TYPE_TOKEN, RealmToken } from '../tokens/schema';
-import { REALM_TYPE_WALLET, RealmWallet } from '../wallets/schema';
+import { REALM_TYPE_ACCOUNT } from '../accounts';
+
+import { REALM_TYPE_TOKEN } from '../tokens/schema';
+
+import { REALM_TYPE_WALLET } from '../wallets/schema';
+
+import type { RealmAccount } from '../accounts';
+import type { RealmToken } from '../tokens/schema';
+
+import type { RealmWallet } from '../wallets/schema';
 
 
 export const migrationsSchemaVersion23 = (oldRealm: Realm, newRealm: Realm) => {

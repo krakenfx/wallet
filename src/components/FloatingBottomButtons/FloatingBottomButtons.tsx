@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { Button, ButtonProps } from '@/components/Button';
-import { FloatingBottomContainer, FloatingBottomContainerProps } from '@/components/FloatingBottomContainer';
+import type { ButtonProps } from '@/components/Button';
+import { Button } from '@/components/Button';
+import type { FloatingBottomContainerProps } from '@/components/FloatingBottomContainer';
+import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 
 export interface FloatingBottomButtonsProps extends FloatingBottomContainerProps {
   primary: ButtonProps;

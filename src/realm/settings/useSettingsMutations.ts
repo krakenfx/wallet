@@ -1,14 +1,16 @@
 import { useCallback } from 'react';
 import Realm from 'realm';
 
-import { Currency } from '@/screens/Settings/currency';
+import type { Currency } from '@/screens/Settings/currency';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
 import { useAssetMarketDataMutations } from '../assetMarketData';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useWalletsMutations } from '../wallets';
 
-import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey, SettingsType } from './schema';
+import { REALM_TYPE_SETTINGS, RealmSettingsKey } from './schema';
+
+import type { RealmSettings, SettingsType } from './schema';
 
 export const useSettingsMutations = () => {
   const { runInTransaction } = useRealmTransaction();

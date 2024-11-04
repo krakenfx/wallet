@@ -7,7 +7,7 @@ import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useBrowser } from '@/hooks/useBrowser';
-import { AssetExplorer } from '@/realm/assetMetadata';
+import type { AssetExplorer } from '@/realm/assetMetadata';
 
 import { getExplorerIcon } from '@/utils/getExplorerIcon';
 

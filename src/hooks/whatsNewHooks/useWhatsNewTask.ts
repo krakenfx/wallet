@@ -3,9 +3,9 @@ import { useCallback } from 'react';
 import { InteractionManager } from 'react-native';
 
 import { useIsTaskCompleted } from '@/hooks/whatsNewHooks/useIsTaskCompleted';
-import { SettingsType } from '@/realm/settings';
+import type { SettingsType } from '@/realm/settings';
 
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps, Routes } from '@/Routes';
 
 type WhatsNewRoutes = Extract<keyof typeof Routes, `WhatsNew${string}`>;
 

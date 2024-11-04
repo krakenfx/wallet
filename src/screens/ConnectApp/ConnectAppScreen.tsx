@@ -1,55 +1,28 @@
-import { Verify } from '@walletconnect/types';
-import React, { useState } from 'react';
+import React from 'react';
 
-import { BlockScreenSheet } from '@/components/BlockScreen';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { ConnectAppWithBlock } from '@/screens/ConnectApp/components/ConnectAppWithBlock';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { ConnectAppUI } from './components/ConnectAppUI';
-import { useConnectApp3rdPartyAPI } from './hooks/useConnectApp3rdPartyAPI';
-import { SessionProposal, UI_STATE } from './types';
+import type { UI_STATE, Verification } from './types';
 
-import loc from '/loc';
-import { getVerificationFromWalletConnectVerify } from '/modules/wallet-connect/utils';
-
-export type ConnectAppParams = { walletConnectV2: { proposal: SessionProposal }; onDone: () => void; verified: Verify.Context['verified'] };
+export type ConnectAppParams = {
+  onApprove: () => Promise<void>;
+  onReject: () => Promise<void>;
+  isMalicious: boolean | null;
+  verification?: Verification;
+  appMetadata?: {
+    url: string;
+    name: string;
+    icon: string;
+  };
+  networkIDs?: string[];
+  requiredNetworkIDs?: string[];
+  uiState: UI_STATE.none | UI_STATE.loading | UI_STATE.complete | undefined;
+};
 
 export const ConnectAppScreen = ({ route }: NavigationProps<'ConnectApp'>) => {
-  const verification = getVerificationFromWalletConnectVerify(route.params.verified);
-  const [showBlockScreen, setShowBlockScreen] = useState(verification.isScam);
-
-  const [uiState, setUIState] = useState(UI_STATE.loading);
-  const _3rdPartyAPI = useConnectApp3rdPartyAPI(route.params, setUIState);
-  const rejectSession = async () => {
-    await _3rdPartyAPI.rejectSession?.();
-    route.params.onDone();
-  };
-
-  if (showBlockScreen) {
-    return (
-      <BlockScreenSheet
-        onGoBack={rejectSession}
-        onProceed={() => setShowBlockScreen(false)}
-        title={loc.onChainSecurity.knownSecurityRiskExclamation}
-        message={loc.onChainSecurity.knownSecurityRiskMessage}
-      />
-    );
-  }
-
-  return (
-    <ConnectAppUI
-      appMetadata={_3rdPartyAPI.appMetadata}
-      networkIDs={_3rdPartyAPI.networkIDs}
-      requiredNetworkIDs={_3rdPartyAPI.requiredNetworkIDs}
-      uiState={uiState}
-      approveSession={async () => {
-        await _3rdPartyAPI.approveSession?.();
-        route.params.onDone();
-      }}
-      rejectSession={rejectSession}
-      verification={verification}
-    />
-  );
+  return <ConnectAppWithBlock {...route.params} />;
 };
 
 ConnectAppScreen.navigationOptions = navigationStyle({

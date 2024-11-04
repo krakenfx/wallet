@@ -2,19 +2,27 @@ import { useCallback } from 'react';
 import Realm from 'realm';
 
 import { makeWalletId } from '@/onChain/wallets/base';
-import { TESTNET_COINS, WalletType, getImplForType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
+import { TESTNET_COINS, getImplForType } from '@/onChain/wallets/registry';
 import { getWalletName } from '@/utils/getWalletName';
 
-import { REALM_TYPE_ACCOUNT, RealmAccount } from '../accounts';
-import { REALM_TYPE_ASSET_METADATA, RealmAssetMetadata } from '../assetMetadata';
+import { REALM_TYPE_ACCOUNT } from '../accounts';
+
+import { REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
 import { REALM_TYPE_DEFI } from '../defi';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { REALM_TYPE_NFT } from '../nfts';
 import { useRealm } from '../RealmContext';
-import { REALM_TYPE_TOKEN, RealmToken, useTokensFetch } from '../tokens';
+
+import { REALM_TYPE_TOKEN, useTokensFetch } from '../tokens';
 import { REALM_TYPE_WALLET_TRANSACTION } from '../transactions';
 
-import { REALM_TYPE_WALLET, RealmWallet } from './schema';
+import { REALM_TYPE_WALLET } from './schema';
+
+import type { RealmWallet } from './schema';
+import type { RealmAccount } from '../accounts';
+import type { RealmAssetMetadata } from '../assetMetadata';
+import type { RealmToken } from '../tokens';
 
 import { handleError } from '/helpers/errorHandler';
 

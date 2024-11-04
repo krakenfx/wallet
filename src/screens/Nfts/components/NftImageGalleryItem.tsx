@@ -1,3 +1,5 @@
+import type { SharedValue, WithSpringConfig } from 'react-native-reanimated';
+
 import React, { useCallback, useImperativeHandle, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -5,8 +7,6 @@ import FastImage from 'react-native-fast-image';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
-  SharedValue,
-  WithSpringConfig,
   interpolate,
   runOnJS,
   useAnimatedReaction,
@@ -20,7 +20,7 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import { SizeAwareSVGUri } from '@/components/SizeAwareSVGUri';
 
-import { TransitionConfig } from '../NftImageGalleryScreen';
+import type { TransitionConfig } from '../NftImageGalleryScreen';
 
 export type NftImageGalleryItemProps = {
   uri: string;

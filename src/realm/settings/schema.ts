@@ -1,8 +1,8 @@
-import { ObjectSchema } from 'realm';
+import type { Currency } from '@/screens/Settings/currency';
 
-import { Currency } from '@/screens/Settings/currency';
+import type { ObjectSchema } from 'realm';
 
-import { LanguageTag } from '/loc';
+import type { LanguageTag } from '/loc';
 
 export enum RealmSettingsKey {
   accountNumber = 'accountNumber',

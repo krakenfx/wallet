@@ -1,9 +1,9 @@
-import { SessionProposal } from '@/screens/ConnectApp/types';
+import type { SessionProposal } from '@/screens/ConnectApp/types';
 
 import { getChainsEip155, getChainsSolana } from './getChainsForSessionNamespace';
 
 import { WALLET_CONNECT_SESSION_NAMESPACE_KEY_EVM, WALLET_CONNECT_SESSION_NAMESPACE_KEY_SOLANA } from '/modules/wallet-connect/consts';
-import { SessionNamespace } from '/modules/wallet-connect/types';
+import type { SessionNamespace } from '/modules/wallet-connect/types';
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from '/modules/wallet-connect/web3Wallet/ethereum/types';
 import { WALLET_CONNECT_SOLANA_SIGN_TYPES } from '/modules/wallet-connect/web3Wallet/solana/types';
 

@@ -4,7 +4,8 @@ import { StyleSheet, View } from 'react-native';
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useTheme } from '@/theme/themes';
 

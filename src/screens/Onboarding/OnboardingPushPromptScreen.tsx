@@ -8,7 +8,7 @@ import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useNoopAndroidBackButton } from '@/utils/useAndroidBackButton';
 
-import { OnboardingNavigationProps } from './OnboardingRouter';
+import type { OnboardingNavigationProps } from './OnboardingRouter';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

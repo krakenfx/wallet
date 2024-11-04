@@ -1,9 +1,12 @@
+import type { NativeSyntheticEvent, TextLayoutEventData } from 'react-native';
+
 import React, { useState } from 'react';
-import { NativeSyntheticEvent, StyleSheet, TextLayoutEventData, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, FadeIn, FadeOut, useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { Label, Typography } from '@/components/Label';
-import { IconName, SvgIcon } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { stripHtmlTags } from '@/utils/stripHtmlTags';
 

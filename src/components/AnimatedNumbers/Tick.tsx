@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, FadeIn, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { Label, TypographyKey } from '@/components/Label';
-import { Theme } from '@/theme/themes';
+import type { TypographyKey } from '@/components/Label';
+import { Label } from '@/components/Label';
+import type { Theme } from '@/theme/themes';
 
 const numberRange = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const getPosition = (value: string, height?: number) => {

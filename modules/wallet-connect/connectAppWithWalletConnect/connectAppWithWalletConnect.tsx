@@ -1,10 +1,12 @@
-import React from 'react';
-import Realm from 'realm';
+import type React from 'react';
 
-import { REALM_TYPE_WALLET_CONNECT_TOPICS, RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
-import { RealmWallet } from '@/realm/wallets';
-import { SessionProposal, UI_STATE, _3rdPartyData } from '@/screens/ConnectApp/types';
-import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
+
+import type { RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
+import { REALM_TYPE_WALLET_CONNECT_TOPICS } from '@/realm/walletConnectTopics';
+import type { RealmWallet } from '@/realm/wallets';
+import type { SessionProposal, _3rdPartyData } from '@/screens/ConnectApp/types';
+import { UI_STATE } from '@/screens/ConnectApp/types';
+import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { buildSessionNamespace } from './buildSessionNamespace';
 import { getAccountsFromMatchedWallets } from './getAccountsFromMatchedWallets';
@@ -12,8 +14,11 @@ import { getMatchedWallets } from './getMatchedWallets';
 import { getRequestedNetworkIDs } from './getRequestedNetworkIDs';
 import { handleRedirect } from './handleRedirect';
 
+import type Realm from 'realm';
+
 import { handleError } from '/helpers/errorHandler';
-import { ReactNavigationDispatch, WalletConnectSessionsManager, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
+import type { ReactNavigationDispatch} from '/modules/wallet-connect';
+import { WalletConnectSessionsManager, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
 
 type Props = {
   dispatch: ReactNavigationDispatch;

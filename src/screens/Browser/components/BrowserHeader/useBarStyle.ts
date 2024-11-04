@@ -1,4 +1,6 @@
-import { Easing, SharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import type { SharedValue } from 'react-native-reanimated';
+
+import { Easing, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 interface Options {
   isExpanded: boolean;

@@ -1,4 +1,6 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import type { PropsWithChildren } from 'react';
+
+import { useEffect, useState } from 'react';
 import { InteractionManager } from 'react-native';
 
 import { useCurrentAccountNumber } from '@/realm/accounts/useCurrentAccountNumber';

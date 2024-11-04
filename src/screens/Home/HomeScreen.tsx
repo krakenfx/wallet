@@ -6,16 +6,16 @@ import { ScrollViewWithRefreshControl } from '@/components/ScrollerWithRefreshCo
 import { useAppInitTasks } from '@/hooks/useAppInitTasks';
 import { usePushNotificationsRegisterRemoteNotification } from '@/hooks/usePushNotificationsRegisterRemoteNotifications';
 import { useRefreshStateActions } from '@/realm/refreshManagerHooks';
-import { NavigationProps } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
+import { HomeActionButtons } from './components/HomeActionButtons';
 import { HomeAssetsPanel } from './components/HomeAssetsPanel';
 import { HomeBalance } from './components/HomeBalance';
 import { HomeHeaderAccountSwitch } from './components/HomeHeaderAccountSwitch';
 import { HomeHeaderRight } from './components/HomeHeaderRight';
 import { RecentActivity } from './components/RecentActivity';
-import { UniversalSendReceiveButtons } from './components/UniversalSendReceiveButtons';
 import { WaitForAccountSwitchSettled } from './components/WaitForAccountSwitchSettled';
 
 import { useInitWalletConnect } from '/modules/wallet-connect/hooks';
@@ -52,7 +52,7 @@ export const HomeScreen = ({ navigation }: NavigationProps<'Home'>) => {
       <View style={styles.rootView} testID="HomeScreen">
         <ScrollViewWithRefreshControl onRefresh={pullToRefresh}>
           <HomeBalance />
-          <UniversalSendReceiveButtons navigation={navigation} />
+          <HomeActionButtons navigation={navigation} />
           <WaitForAccountSwitchSettled>
             <RecentActivity navigation={navigation} />
           </WaitForAccountSwitchSettled>

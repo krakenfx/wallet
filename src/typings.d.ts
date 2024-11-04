@@ -1,6 +1,6 @@
 import type { LocalizedStringsMethods } from 'react-localization';
 
-import { Simplify } from 'type-fest';
+import type { Simplify } from 'type-fest';
 
 declare global {
   type LocalizedString = ReturnType<LocalizedStringsMethods['formatString']>;

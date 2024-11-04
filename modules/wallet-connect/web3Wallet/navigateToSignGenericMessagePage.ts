@@ -1,10 +1,10 @@
 import { CommonActions } from '@react-navigation/native';
 
-import { WalletConnectSignRequest_GenericMessageParams } from '@/screens/AppSignRequest';
-import { Warning } from '@/types';
+import type { WalletConnectSignRequest_GenericMessageParams } from '@/screens/AppSignRequest';
+import type { Warning } from '@/types';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
-import { DefinitionList, GenericMessage, ReactNavigationDispatch } from '../types';
+import type { DefinitionList, GenericMessage, ReactNavigationDispatch } from '../types';
 
 export function navigateToSignGenericMessagePage(
   dispatch: ReactNavigationDispatch,

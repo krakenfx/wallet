@@ -1,13 +1,15 @@
+import type { SharedValue } from 'react-native-reanimated';
+
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { SharedValue, runOnJS, useAnimatedReaction, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
 import { CloseButton } from '@/components/CloseButton';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useDeafultHeaderHeight } from '@/hooks/useDefaultHeaderHeight';
-import { RealmNft } from '@/realm/nfts';
+import type { RealmNft } from '@/realm/nfts';
 import { useNftGalleryToggle } from '@/realm/nfts/useNftGalleryToggle';
 
 import { NftCollectionDetails } from './NftCollectionDetails';

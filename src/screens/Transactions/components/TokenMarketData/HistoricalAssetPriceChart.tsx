@@ -9,14 +9,8 @@ import { Label, Typography } from '@/components/Label';
 import { ScalableLabel } from '@/components/ScalableLabel';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useAppCurrency } from '@/realm/settings';
-import {
-  PriceHistoryPeriod,
-  RealmTokenPriceHighLow,
-  RealmTokenPriceHistoryItem,
-  TokenPriceHighLow,
-  TokenPriceHistoryItem,
-  useTokenPriceHistory,
-} from '@/realm/tokenPrice';
+import type { PriceHistoryPeriod, RealmTokenPriceHighLow, RealmTokenPriceHistoryItem, TokenPriceHighLow, TokenPriceHistoryItem } from '@/realm/tokenPrice';
+import { useTokenPriceHistory } from '@/realm/tokenPrice';
 import { useTokenById } from '@/realm/tokens';
 import { useTheme } from '@/theme/themes';
 import { formatCurrency } from '@/utils/formatCurrency';

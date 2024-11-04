@@ -2,15 +2,15 @@ import { useMemo } from 'react';
 
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
-import { TransactionData } from '@/realm/transactions/getTransactionMetadata';
-import { DisplayData } from '@/screens/Transactions/components/types';
+import type { TransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { DisplayData } from '@/screens/Transactions/components/types';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { unitConverter } from '@/utils/unitConverter';
 
 import { formatTransactionValueAsNegativeOrPositive } from '../formatTransactionValueAsNegativeOrPositive';
 
-import { getTransactionDisplayData } from './getTransactionDisplayData';
+import type { getTransactionDisplayData } from './getTransactionDisplayData';
 
 type Props = ReturnType<typeof getTransactionDisplayData>;
 export const useCommonTransactionDisplayData = (props: Props, classifiedTx: TransactionData): DisplayData => {

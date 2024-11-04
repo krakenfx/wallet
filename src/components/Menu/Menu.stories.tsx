@@ -1,10 +1,10 @@
 import { noop } from 'lodash';
-import React, { PropsWithChildren } from 'react';
-import { View } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
-import { IconButton } from '../IconButton';
+import { typographyControl } from '@/utils/storybook';
 
-import { DropdownMenuProps } from './DropdownMenu';
+import { Label } from '../Label';
 
 import { Menu, MenuProvider } from './';
 
@@ -16,7 +16,7 @@ const MenuMeta: Meta<typeof Menu> = {
   decorators: [
     Story => (
       <MenuProvider>
-        <View style={{ padding: 30, justifyContent: 'center', flex: 1 }}>
+        <View style={{ padding: 24, justifyContent: 'center', flex: 1 }}>
           <Story />
         </View>
       </MenuProvider>
@@ -26,9 +26,7 @@ const MenuMeta: Meta<typeof Menu> = {
 
 export default MenuMeta;
 
-type Story = StoryObj<typeof Menu>;
-
-export const ContextMenu: Story = {
+export const ContextMenu: StoryObj<typeof Menu> = {
   args: {
     type: 'context',
     menuYOffset: 10,
@@ -59,26 +57,34 @@ export const ContextMenu: Story = {
     ],
   },
   render: function Render(args) {
-    return (
+    const MenuComponent = (
       <Menu {...args}>
-        <IconButton name="more" onPress={noop} />
+        <Label>Show menu</Label>
       </Menu>
+    );
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.row}>
+          {MenuComponent}
+          {MenuComponent}
+        </View>
+        <View style={styles.row}>
+          {MenuComponent}
+          {MenuComponent}
+        </View>
+      </View>
     );
   },
 };
 
-interface DropdownMenuStoryProps extends DropdownMenuProps<number> {
-  showIcons: boolean;
-}
-
-export const DropdownMenu: StoryObj<DropdownMenuStoryProps> = {
+export const DropdownMenu: StoryObj<typeof Menu> = {
   args: {
+    type: 'dropdown',
     title: 'Lorem Ipsum',
     onSelect: noop,
     selectedId: 1,
-    labelLeftType: 'boldBody', 
-    disabled: false,
-    showIcons: false,
+    labelLeftType: 'boldBody',
     options: [
       {
         id: 1,
@@ -86,7 +92,6 @@ export const DropdownMenu: StoryObj<DropdownMenuStoryProps> = {
         labelBottomLeft: '',
         labelRight: '',
         labelBottomRight: '',
-        icon: 'pencil',
       },
       {
         id: 2,
@@ -94,7 +99,6 @@ export const DropdownMenu: StoryObj<DropdownMenuStoryProps> = {
         labelBottomLeft: '',
         labelRight: '',
         labelBottomRight: '',
-        icon: 'apps',
       },
       {
         id: 3,
@@ -102,7 +106,6 @@ export const DropdownMenu: StoryObj<DropdownMenuStoryProps> = {
         labelBottomLeft: '',
         labelRight: '',
         labelBottomRight: '',
-        icon: 'tool',
       },
       {
         id: 4,
@@ -110,16 +113,70 @@ export const DropdownMenu: StoryObj<DropdownMenuStoryProps> = {
         labelBottomLeft: '',
         labelRight: '',
         labelBottomRight: '',
-        icon: 'trash',
       },
     ],
-  } as DropdownMenuStoryProps,
-  render: function Render({ showIcons, options, ...rest }: PropsWithChildren<DropdownMenuStoryProps>) {
-    const optionsWithIcons = showIcons ? options : options.map(option => ({ ...option, icon: undefined }));
-    return (
-      <Menu type="dropdown" {...rest} options={optionsWithIcons}>
-        <IconButton name="more" onPress={noop} />
+  },
+  argTypes: {
+    labelLeftType: typographyControl,
+  },
+  render: function Render(props) {
+    const MenuComponent = (
+      <Menu {...props}>
+        <Label>Show menu</Label>
       </Menu>
+    );
+    return (
+      <View style={styles.container}>
+        <View style={styles.row}>
+          {MenuComponent}
+          {MenuComponent}
+        </View>
+        <View style={styles.row}>
+          {MenuComponent}
+          {MenuComponent}
+        </View>
+      </View>
     );
   },
 };
+
+export const TooltipMenu: StoryObj<typeof Menu> = {
+  args: {
+    type: 'tooltip',
+    tooltip: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime amet magnam deserunt officia odio',
+  },
+  render: function Render(props) {
+    const MenuComponent = (
+      <Menu menuYOffset={12} {...props}>
+        <Label>Show tooltip</Label>
+      </Menu>
+    );
+    return (
+      <View style={styles.flex}>
+        <View style={styles.row}>
+          {MenuComponent}
+          {MenuComponent}
+        </View>
+        <View style={styles.flex} />
+        <View style={styles.row}>
+          {MenuComponent}
+          {MenuComponent}
+        </View>
+      </View>
+    );
+  },
+};
+
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});

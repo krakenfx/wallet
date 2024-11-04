@@ -5,7 +5,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { SvgIcon } from '@/components/SvgIcon';
-import { RealmAssetMarketData } from '@/realm/assetMarketData';
+import type { RealmAssetMarketData } from '@/realm/assetMarketData';
 
 import { useAppCurrency } from '@/realm/settings';
 import { Routes } from '@/Routes';

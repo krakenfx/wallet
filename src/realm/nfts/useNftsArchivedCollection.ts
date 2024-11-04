@@ -1,6 +1,8 @@
 import { ARCHIVED_NFT } from './consts';
-import { NftsCollection } from './schema';
+
 import { useNfts } from './useNfts';
+
+import type { NftsCollection } from './schema';
 
 import loc from '/loc';
 

@@ -6,7 +6,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 
 import { Label } from '@/components/Label';
-import { AssetMarketDataPercentageChange } from '@/realm/assetMarketData';
+import type { AssetMarketDataPercentageChange } from '@/realm/assetMarketData';
 import { useAppCurrency } from '@/realm/settings';
 
 import { useTheme } from '@/theme/themes';
@@ -28,6 +28,8 @@ const parsePercentageKeyLabel = (key: keyof AssetMarketDataPercentageChange): st
     case 'month':
       return '1M';
   }
+
+  return undefined;
 };
 
 const PercentageChangeItem = ({ time, percentageChange }: ItemProps) => {

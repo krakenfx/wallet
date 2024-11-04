@@ -1,10 +1,12 @@
+import type { EntryExitAnimationFunction } from 'react-native-reanimated';
+
 import React, { useCallback, useMemo } from 'react';
-import Animated, { EntryExitAnimationFunction, withTiming } from 'react-native-reanimated';
+import Animated, { withTiming } from 'react-native-reanimated';
 
 import { AssetRow } from '@/components/AssetRow';
 import { ReputationTag } from '@/components/Reputation';
 import { REPUTATION, useReputation } from '@/hooks/useReputation';
-import { RealmToken } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
 
 type Props = {
   token: RealmToken;
@@ -39,6 +41,7 @@ export const SendAssetItem = ({ token, index, shouldAnimateIn, onSelected }: Pro
       hideZeroAmount: false,
       showAmountInFiat: true,
       walletId: token.walletId,
+      disableLongPress: true,
       readonly: false,
     }),
     [onPress, reputation, token.assetId, token.walletId],

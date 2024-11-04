@@ -9,11 +9,12 @@ import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 
 import { NetworkIcon } from '@/components/NetworkIcon';
-import { SvgIcon, SvgIconProps } from '@/components/SvgIcon';
+import type { SvgIconProps } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
 
 import { Touchable } from '@/components/Touchable';
 
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 import { useTheme } from '@/theme/themes';

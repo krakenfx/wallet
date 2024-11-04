@@ -3,15 +3,15 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import NameResolver from '@/api/NameResolver';
-import { Transaction } from '@/api/types';
+import type { Transaction } from '@/api/types';
 import { Button } from '@/components/Button';
 import { ExpandableSheet } from '@/components/Sheets';
 import { useBrowser } from '@/hooks/useBrowser';
-import { BTCTransaction } from '@/onChain/wallets/bitcoin';
+import type { BTCTransaction } from '@/onChain/wallets/bitcoin';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { memoizedJSONParseTx, usePendingTransactionById, useTransactionById } from '@/realm/transactions';
-import { RealmWallet } from '@/realm/wallets';
-import { NavigationProps } from '@/Routes';
+import type { RealmWallet } from '@/realm/wallets';
+import type { NavigationProps } from '@/Routes';
 
 import { isInAppBrowserEnabled } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -19,8 +19,11 @@ import { navigationStyle } from '@/utils/navigationStyle';
 import { TransactionDetails } from './components/TransactionDetails';
 import { TransactionShowMoreContent } from './components/TransactionShowMoreContent';
 import { TransactionStickyHeader } from './components/TransactionStickyHeader';
-import { TransactionContextProvider, TransactionDetailsType } from './context/TransactionContext';
+
+import { TransactionContextProvider } from './context/TransactionContext';
 import { openExplorer } from './utils/openExplorer';
+
+import type { TransactionDetailsType } from './context/TransactionContext';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';

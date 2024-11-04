@@ -1,5 +1,7 @@
+import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
+
 import { useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import { Extrapolation, KeyboardState, interpolate, useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 

@@ -5,7 +5,7 @@ import { AddressDisplay } from '@/components/AddressDisplay';
 import { Label } from '@/components/Label';
 
 import loc from '/loc';
-import { DefinitionList } from '/modules/wallet-connect/types';
+import type { DefinitionList } from '/modules/wallet-connect/types';
 
 type Props = {
   content: DefinitionList;

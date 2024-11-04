@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Platform, StyleSheet } from 'react-native';
+import { type NativeSyntheticEvent, Platform, StyleSheet, type TextInputFocusEventData } from 'react-native';
 
 import Animated from 'react-native-reanimated';
 
@@ -17,12 +17,35 @@ import loc from '/loc';
 
 const INPUT_HEIGHT = 45;
 
+interface Selection {
+  start: number;
+  end: number;
+}
+
 export const BrowserSearchInput = () => {
   const { searchValue, handleSearch, changeSearchValue, clearSearch } = useSearchContext();
+  const [selection, setSelection] = useState<Selection | undefined>();
 
   const { inputRef, animatedButtonStyle, animatedPlaceholderStyle, animatedInputStyle, onInputContainerLayout } = useBrowserAnimationContext();
 
-  const onChangeText = (text: string) => changeSearchValue(text);
+  const onChangeText = (text: string) => {
+    if (Platform.OS === 'android' && selection) {
+      setSelection(undefined);
+    }
+
+    changeSearchValue(text);
+  };
+
+  const selectTextOnFocus = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    
+    if (Platform.OS === 'android') {
+      setSelection({ start: 0, end: searchValue?.length });
+    } else {
+      event.currentTarget.setNativeProps({
+        selection: { start: 0, end: searchValue?.length },
+      });
+    }
+  };
 
   return (
     <Animated.View style={animatedInputStyle} onLayout={onInputContainerLayout}>
@@ -30,9 +53,11 @@ export const BrowserSearchInput = () => {
         ref={inputRef}
         autoFocus
         autoCapitalize="none"
+        selection={selection}
         placeholder={loc.browser.searchOnChain}
         placeholderStyle={animatedPlaceholderStyle}
         value={searchValue}
+        onFocus={selectTextOnFocus}
         onChangeText={onChangeText}
         
         onEndEditing={handleSearch}

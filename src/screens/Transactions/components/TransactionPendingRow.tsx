@@ -1,8 +1,13 @@
+import type { FC } from 'react';
+
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import BigNumber from 'bignumber.js';
 import LottieView from 'lottie-react-native';
-import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+
+import { StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { Label } from '@/components/Label';
@@ -14,7 +19,7 @@ import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings';
 import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
 import { getAvailableTokenBalance, useTokenById } from '@/realm/tokens';
-import { RealmPendingTransaction } from '@/realm/transactions';
+import type { RealmPendingTransaction } from '@/realm/transactions';
 import { TRANSACTION_PENDING_TYPES } from '@/realm/transactions/const';
 import { Routes } from '@/Routes';
 import { formatTransactionAddress } from '@/screens/Transactions/utils/formatAddress';

@@ -1,6 +1,6 @@
 import Keychain, { ACCESSIBLE, ACCESS_CONTROL, STORAGE_TYPE } from 'react-native-keychain';
 
-import { KeychainKey } from './keys';
+import type { KeychainKey } from './keys';
 
 export const isSecureDevice = async () => {
   return !!(await Keychain.getSupportedBiometryType());

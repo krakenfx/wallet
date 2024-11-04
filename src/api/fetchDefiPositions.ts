@@ -1,5 +1,6 @@
 import { getHarmony } from './base/apiFactory';
-import { DeFiProtocol } from './types';
+
+import type { DeFiProtocol } from './types';
 
 export type DefiPositionsResponse = {
   fiatRates: { [iso: string]: string };

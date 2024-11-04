@@ -9,7 +9,8 @@ import { LabeledField } from '@/components/LabeledField';
 
 import { useAppCurrency } from '@/realm/settings';
 import { TRANSACTION_PENDING_TYPES, TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { isBtc } from '@/utils/isBtc';
 import { smallUnit2TokenUnit } from '@/utils/unitConverter';

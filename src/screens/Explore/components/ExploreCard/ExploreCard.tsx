@@ -3,42 +3,35 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 
+import { Touchable } from '@/components/Touchable';
 import { useTheme } from '@/theme/themes';
 
-import { useExploreAnimationContext } from '../../context/ExploreAnimationContext';
 import { Sizes } from '../../ExploreScreen.constants';
 
+import { useExploreLink } from '../../hooks/useExploreLink';
 import { ExploreText } from '../ExploreText';
 
-import { ExploreCardProps } from './ExploreCard.types';
+import type { ExploreCardProps } from './ExploreCard.types';
 
 const { Space, Card, FloatingIcon } = Sizes;
 
-export const ExploreCard: React.FC<ExploreCardProps> = ({ title, body, floatingIcon, buttonText, buttonLink, background, size, style }: ExploreCardProps) => {
+export const ExploreCard = ({ title, body, floatingIcon, link, background, size, style }: ExploreCardProps) => {
   const { colors } = useTheme();
   const themedShadow = { shadowColor: colors.dark25 };
-
-  const { openLinkWithTransition } = useExploreAnimationContext();
-
+  const handleExploreLink = useExploreLink(link);
   return (
-    <View style={style}>
-      <View style={[styles.container, themedShadow, styles[size], style]}>
-        <Image source={{ uri: background }} style={[styles.image, styles[size]]} />
-        {floatingIcon && <Image source={{ uri: floatingIcon }} style={styles.bleedImage} />}
-        <View style={[styles.content, !!floatingIcon && styles.contentWithFloatingIcon]}>
-          {(title || body) && <ExploreText title={title} body={body} style={styles.text} />}
-          {buttonLink && buttonText && (
-            <Button
-              text={buttonText}
-              onPress={() => {
-                openLinkWithTransition(buttonLink);
-              }}
-              style={styles.button}
-            />
-          )}
+    <Touchable onPress={handleExploreLink}>
+      <View style={style}>
+        <View style={[styles.container, themedShadow, styles[size], style]}>
+          <Image source={{ uri: background }} style={[styles.image, styles[size]]} />
+          {floatingIcon && <Image source={{ uri: floatingIcon }} style={styles.bleedImage} />}
+          <View style={[styles.content, !!floatingIcon && styles.contentWithFloatingIcon]}>
+            {(title || body) && <ExploreText title={title} body={body} style={styles.text} />}
+            {link && <Button text={link?.text} onPress={handleExploreLink} style={styles.button} />}
+          </View>
         </View>
       </View>
-    </View>
+    </Touchable>
   );
 };
 

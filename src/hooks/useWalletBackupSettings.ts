@@ -2,12 +2,9 @@ import { useMemo } from 'react';
 
 import { RealmSettingsKey, useSettingsByKey, useSettingsMutations } from '@/realm/settings';
 
-import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
-
 import { isPasskeySupported } from '/modules/cloud-backup';
 
 export const useWalletBackupSettings = () => {
-  const isFeatureEnabled = useFeatureFlagEnabled(FeatureFlag.iCloudBackupEnabled);
   const { setCloudBackupCompleted, setCloudBackupDismissed, setManualBackupDismissed } = useSettingsMutations();
 
   const cloudBackupCredentialID = useSettingsByKey(RealmSettingsKey.cloudBackupCredentialID);
@@ -16,7 +13,7 @@ export const useWalletBackupSettings = () => {
   const isManualBackupDismissed = !!useSettingsByKey(RealmSettingsKey.isManualBackupDismissed);
 
   return useMemo(() => {
-    const isCloudBackupSupported = isFeatureEnabled && isPasskeySupported;
+    const isCloudBackupSupported = isPasskeySupported;
     const isCloudBackupCompleted = !!cloudBackupCredentialID;
     const isCloudBackupNeeded = isCloudBackupSupported && !isCloudBackupCompleted;
     const isCloudBackupSuggested = isCloudBackupNeeded && !isCloudBackupDismissed;
@@ -48,7 +45,6 @@ export const useWalletBackupSettings = () => {
       isAnyBackupSuggested,
     };
   }, [
-    isFeatureEnabled,
     cloudBackupCredentialID,
     isCloudBackupDismissed,
     isManualBackupCompleted,

@@ -1,9 +1,12 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React, { useMemo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
-import { ColorName, useTheme } from '@/theme/themes';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
 
 type Props = {
   totalBars: number;

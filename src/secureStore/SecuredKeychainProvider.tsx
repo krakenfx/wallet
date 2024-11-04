@@ -1,8 +1,12 @@
-import React, { PropsWithChildren, createContext, useCallback, useContext, useMemo, useRef } from 'react';
+import type { PropsWithChildren } from 'react';
+
+import React, { createContext, useCallback, useContext, useMemo, useRef } from 'react';
+
 import { Keyboard } from 'react-native';
 
 import { useLockout } from '@/screens/Settings/passwordProtection/hooks/useLockout';
-import { PasswordProtectionModalRef, PasswordProtectionSheet, Rationale } from '@/screens/Settings/passwordProtection/PasswordProtectionSheet';
+import { PasswordProtectionSheet } from '@/screens/Settings/passwordProtection/PasswordProtectionSheet';
+import type { PasswordProtectionModalRef, Rationale } from '@/screens/Settings/passwordProtection/PasswordProtectionSheet';
 
 import { getAppLockSecret, retrieveMnemonic, retrieveSeed } from './domains';
 import { KeychainKey, getFromKeychain } from './keychain';

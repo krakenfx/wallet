@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { FeeOption } from '@/api/types';
+import type { FeeOption } from '@/api/types';
 import { Label } from '@/components/Label';
-import { PreparedTransaction } from '@/onChain/wallets/base';
+import type { PreparedTransaction } from '@/onChain/wallets/base';
 import { useTokenPrice } from '@/realm/tokenPrice';
 import { useRealmWalletById } from '@/realm/wallets';
 

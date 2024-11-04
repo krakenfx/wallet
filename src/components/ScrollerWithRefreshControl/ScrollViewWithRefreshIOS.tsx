@@ -1,6 +1,8 @@
+import type { NativeScrollEvent } from 'react-native';
+import type { AnimatedScrollViewProps } from 'react-native-reanimated';
+
 import React from 'react';
-import { NativeScrollEvent } from 'react-native';
-import Animated, { AnimatedScrollViewProps } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 import { useRefreshControlScrollProps } from './hooks/useRefreshControlScrollProps';
 

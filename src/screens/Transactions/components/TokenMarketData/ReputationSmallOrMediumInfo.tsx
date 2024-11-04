@@ -4,7 +4,8 @@ import { StyleSheet, View } from 'react-native';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
-import { FilterOut, useShouldFilterOut } from '@/components/Reputation/useShouldFilterOut';
+import type { FilterOut } from '@/components/Reputation/useShouldFilterOut';
+import { useShouldFilterOut } from '@/components/Reputation/useShouldFilterOut';
 import { WhitelistIcons } from '@/components/Reputation/WhitelistIcons';
 import { SvgIcon } from '@/components/SvgIcon';
 import { REPUTATION, useReputation, useReputationLists } from '@/hooks/useReputation';

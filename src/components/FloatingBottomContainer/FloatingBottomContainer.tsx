@@ -1,6 +1,13 @@
-import React, { Fragment, PropsWithChildren } from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
-import Animated, { AnimateStyle } from 'react-native-reanimated';
+import type { PropsWithChildren } from 'react';
+
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import type { AnimateStyle } from 'react-native-reanimated';
+
+import React, { Fragment } from 'react';
+import { StyleSheet } from 'react-native';
+
+import Animated from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { KeyboardAvoider } from '@/components/Keyboard';

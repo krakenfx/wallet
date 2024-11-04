@@ -1,5 +1,9 @@
-import React, { PropsWithChildren } from 'react';
-import { StyleProp, StyleSheet, TextProps, View, ViewStyle } from 'react-native';
+import type { PropsWithChildren } from 'react';
+
+import type { StyleProp, TextProps, ViewStyle } from 'react-native';
+
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Label } from '@/components/Label';

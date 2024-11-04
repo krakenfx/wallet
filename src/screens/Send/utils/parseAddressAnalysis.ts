@@ -1,6 +1,6 @@
 import { groupBy, uniqWith } from 'lodash';
 
-import { AddressAnalysisWarning, AnalyseAddressResult } from '@/api/types';
+import type { AddressAnalysisWarning, AnalyseAddressResult } from '@/api/types';
 
 const collapseWarningsToMessage = (warnings: AddressAnalysisWarning[]) => warnings.map(w => w.message).join('\n');
 

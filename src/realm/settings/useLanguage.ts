@@ -6,7 +6,7 @@ import { languages } from '../../../loc/languages';
 import { RealmSettingsKey } from './schema';
 import { useSettingsByKey } from './useSettingsByKey';
 
-import { LanguageTag } from '/loc';
+import type { LanguageTag } from '/loc';
 
 export const useLanguage = (): LanguageTag => {
   const settingsLanguage = useSettingsByKey(RealmSettingsKey.language);

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
 import { useAssetMetadata } from '@/realm/assetMetadata';
-import { RealmTransaction } from '@/realm/transactions';
-import { SwapTransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { RealmTransaction } from '@/realm/transactions';
+import type { SwapTransactionData } from '@/realm/transactions/getTransactionMetadata';
 
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 

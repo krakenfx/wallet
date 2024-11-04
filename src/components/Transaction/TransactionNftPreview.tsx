@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { NftBlock } from '@/components/NftBlock';
 import { useCurrentAccountNumber } from '@/realm/accounts';
-import { NftMetadata } from '@/realm/nftMetadata';
+import type { NftMetadata } from '@/realm/nftMetadata';
 import { useNftById } from '@/realm/nfts';
 
 type Props = {

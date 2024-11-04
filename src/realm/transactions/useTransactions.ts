@@ -1,20 +1,22 @@
 import { useMemo } from 'react';
 
-import { NETWORK_FILTERS } from '@/components/NetworkFilter/types';
+import type { NETWORK_FILTER } from '@/components/NetworkFilter/types';
 
 import { useCurrentAccountNumber } from '../accounts';
 import { useQuery, useRealm } from '../RealmContext';
 import { useFilterInBlacklistedAssets, useFilterInUnverifiedAssets } from '../settings';
 
-import { REALM_TYPE_WALLET_TRANSACTION, RealmTransaction } from './schema';
+import { REALM_TYPE_WALLET_TRANSACTION } from './schema';
 import { filterTransactionsByAssetInvolvement, filterTransactionsByNetwork } from './transactionFilters';
 import { getShouldFilterOutTransactionByReputation } from './useShouldFilterOutTransactionByReputation';
 import { memoizedJSONParseTx } from './utils';
 
+import type { RealmTransaction } from './schema';
+
 interface Props {
   assetId?: string;
   walletId?: string;
-  networkFilter?: NETWORK_FILTERS[];
+  networkFilter?: NETWORK_FILTER[];
   ignoredIds: string[];
 }
 

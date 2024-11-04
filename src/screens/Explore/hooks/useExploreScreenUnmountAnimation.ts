@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/reanimated2/animation/springUtils';
+import type { SpringConfig } from 'react-native-reanimated/lib/typescript/reanimated2/animation/springUtils';
 
 const SPRING_CONFIG: SpringConfig = {
   mass: 1,

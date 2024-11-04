@@ -11,4 +11,8 @@ module.exports = {
     'test-id/pascalcase': 'error',
     'jest/no-disabled-tests': 'off',
   },
+  parserOptions: {
+    project: true,
+    tsconfigRootDir: __dirname,
+  },
 };

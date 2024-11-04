@@ -1,8 +1,10 @@
+import type { ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Typography } from '@/components/Label';
-import { IconName } from '@/components/SvgIcon';
+import type { IconName } from '@/components/SvgIcon';
 import { Networks } from '@/onChain/wallets/registry';
 import { SuperDarkTheme } from '@/theme/themes';
 
@@ -159,7 +161,7 @@ export const ICON_OPTIONS: IconName[] = [
   'link-zealy',
   'asset-coin',
   'un-archive',
-  'compass'
+  'compass',
 ];
 
 export const iconsControl = {

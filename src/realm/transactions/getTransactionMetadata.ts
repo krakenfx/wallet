@@ -1,5 +1,6 @@
-import { Transaction, TransactionEffect } from '@/api/types';
-import { CAIP19, parseCAIP19 } from '@/onChain/wallets/utils/ChainAgnostic';
+import type { Transaction, TransactionEffect } from '@/api/types';
+import { parseCAIP19 } from '@/onChain/wallets/utils/ChainAgnostic';
+import type { CAIP19 } from '@/onChain/wallets/utils/ChainAgnostic';
 import { formatTransactionAddress } from '@/screens/Transactions/utils/formatAddress';
 
 import { TRANSACTION_TYPES, TYPE_ERC1155, TYPE_ERC721 } from './const';

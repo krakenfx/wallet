@@ -1,7 +1,12 @@
-import React, { ReactElement } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { ReactElement } from 'react';
 
-import { CloseButton, CloseButtonProps } from '@/components/CloseButton';
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+
+import type { CloseButtonProps } from '@/components/CloseButton';
+import { CloseButton } from '@/components/CloseButton';
 import { Label } from '@/components/Label';
 
 export interface ModalNavigationHeader {

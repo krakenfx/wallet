@@ -1,14 +1,15 @@
+import type { WalletType } from '@/onChain/wallets/registry';
 import { networkIdToNetworkName } from '@/onChain/wallets/registry';
 
-import { Token } from '@/realm/tokens/schema';
+import type { Token } from '@/realm/tokens/schema';
 import { untilFirstBackslash } from '@/utils/stringUtils';
 
-export const getNetworkNameFromAssetId = (assetId: string) => {
+export const getNetworkNameFromAssetId = (assetId: string): WalletType => {
   const networkId = (assetId.match(untilFirstBackslash) || []).join();
 
   
   
-  return networkId.startsWith('solana:') ? 'solana' : networkIdToNetworkName[networkId] ?? '';
+  return networkId.startsWith('solana:') ? 'solana' : (networkIdToNetworkName[networkId] ?? '');
 };
 
 export const isTokenInGallery = (inGallery: Token['inGallery']) => {

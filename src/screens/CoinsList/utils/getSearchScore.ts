@@ -1,4 +1,4 @@
-import { Item } from '../types';
+import type { Item } from '../types';
 
 
 
@@ -94,16 +94,16 @@ export const getSearchScore = (searchQuery: string, { metadata: { label, symbol,
       ? SEARCH_SCORE_CONFIG.symbol.exact
       : SEARCH_SCORE_CONFIG.symbol.startsWith
     : symbol_.endsWith(searchQuery)
-    ? SEARCH_SCORE_CONFIG.symbol.endsWith
-    : 0;
+      ? SEARCH_SCORE_CONFIG.symbol.endsWith
+      : 0;
 
   const labelScore = label_.startsWith(searchQuery)
     ? label_ === searchQuery
       ? SEARCH_SCORE_CONFIG.label.exact
       : SEARCH_SCORE_CONFIG.label.startsWith
     : label_.includes(` ${searchQuery}`)
-    ? SEARCH_SCORE_CONFIG.label.wordStartsWith
-    : 0;
+      ? SEARCH_SCORE_CONFIG.label.wordStartsWith
+      : 0;
 
   
   

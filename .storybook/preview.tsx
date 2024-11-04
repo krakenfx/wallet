@@ -1,6 +1,6 @@
 import React from 'react';
 import RNBootSplash from 'react-native-bootsplash';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import type { Preview } from '@storybook/react';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,6 +13,12 @@ RNBootSplash.hide();
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    ...Platform.select({
+      android: {
+        marginTop: -(StatusBar.currentHeight ?? 0),
+        paddingTop: StatusBar.currentHeight ?? 0,
+      },
+    }),
     backgroundColor: SuperDarkTheme.colors.background,
     justifyContent: 'center',
   },

@@ -1,14 +1,22 @@
+// Current tsconfig is based on following sources:
+// https://github.com/tsconfig/bases/blob/031273b815ff7f672c7c9057fb7d19ef363054b1/bases/react-native.json
+// https://github.com/tsconfig/bases/blob/031273b815ff7f672c7c9057fb7d19ef363054b1/bases/strictest.json
+// https://www.totaltypescript.com/tsconfig-cheat-sheet
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "allowJs": false,
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     "noErrorTruncation": true,
     /* Completeness */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["./src/*"],
       "/*": ["./*"]
     }
-  }
+  },
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }

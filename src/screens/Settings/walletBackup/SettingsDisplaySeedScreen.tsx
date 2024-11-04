@@ -8,9 +8,9 @@ import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
-import { SettingsNavigationProps } from '../SettingsRouter';
-
 import { SettingsSeedScrollFooter } from './SettingsSeedScrollFooter';
+
+import type { SettingsNavigationProps } from '../SettingsRouter';
 
 import loc from '/loc';
 

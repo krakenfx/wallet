@@ -3,9 +3,13 @@ import Realm from 'realm';
 
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
 import { useRealm } from '../RealmContext';
-import { REALM_TYPE_TOKEN, RealmToken } from '../tokens';
 
-import { AssetMarketData, REALM_TYPE_ASSET_MARKET_DATA, RealmAssetMarketData } from './schema';
+import { REALM_TYPE_TOKEN } from '../tokens';
+
+import { REALM_TYPE_ASSET_MARKET_DATA } from './schema';
+
+import type { AssetMarketData, RealmAssetMarketData } from './schema';
+import type { RealmToken } from '../tokens';
 
 export const useAssetMarketDataMutations = () => {
   const realm = useRealm();

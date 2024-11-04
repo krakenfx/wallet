@@ -1,5 +1,9 @@
-import { DebounceSettings, debounce } from 'lodash';
-import { DependencyList, EffectCallback, useCallback, useEffect } from 'react';
+import type { DependencyList, EffectCallback } from 'react';
+
+import { debounce } from 'lodash';
+import { useCallback, useEffect } from 'react';
+
+import type { DebounceSettings } from 'lodash';
 
 export const useDebounceEffect = (effect: EffectCallback, dependencies: DependencyList, delay?: number, options?: DebounceSettings): void => {
   

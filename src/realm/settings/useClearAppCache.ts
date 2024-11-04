@@ -6,7 +6,7 @@ import { hideToast } from '@/components/Toast';
 import { Routes } from '@/Routes';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
-import { REALM_TYPE_ACCOUNT, RealmAccount } from '../accounts';
+import { REALM_TYPE_ACCOUNT } from '../accounts';
 import { REALM_TYPE_ASSET_MARKET_DATA } from '../assetMarketData';
 import { REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
 import { REALM_TYPE_DEFI } from '../defi';
@@ -16,8 +16,12 @@ import { REALM_TYPE_NFT_METADATA } from '../nftMetadata';
 import { REALM_TYPE_NFT } from '../nfts';
 import { refreshingAllEvent, useRefreshStateActions } from '../refreshManagerHooks';
 import { REALM_TYPE_TOKEN_PRICE } from '../tokenPrice';
-import { REALM_TYPE_TOKEN, RealmToken } from '../tokens';
+
+import { REALM_TYPE_TOKEN } from '../tokens';
 import { REALM_TYPE_PENDING_TRANSACTION, REALM_TYPE_WALLET_TRANSACTION } from '../transactions';
+
+import type { RealmAccount } from '../accounts';
+import type { RealmToken } from '../tokens';
 
 export const useClearAppCache = () => {
   const { runInTransaction } = useRealmTransaction();

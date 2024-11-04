@@ -1,4 +1,6 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FadeIn } from 'react-native-reanimated';
 

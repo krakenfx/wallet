@@ -1,6 +1,8 @@
+import type { SwitchProps } from 'react-native';
+
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
-import { Switch as StateLessSwitch, SwitchProps } from 'react-native';
+import { Switch as StateLessSwitch } from 'react-native';
 
 import { useTheme } from '@/theme/themes';
 

@@ -1,14 +1,19 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { Label } from '@/components/Label';
 
-import { IconName, SvgIcon } from '@/components/SvgIcon';
-import { Touchable, TouchableProps } from '@/components/Touchable';
-import { ColorName, useTheme } from '@/theme/themes';
-import { Warning } from '@/types';
+import type { IconName } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon';
+import type { TouchableProps } from '@/components/Touchable';
+import { Touchable } from '@/components/Touchable';
+import type { ColorName } from '@/theme/themes';
+import { useTheme } from '@/theme/themes';
+import type { Warning } from '@/types';
 
 export type CardWarningProps = TouchableProps & {
   buttonText?: string;

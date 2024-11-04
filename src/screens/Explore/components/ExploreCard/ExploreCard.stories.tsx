@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ExploreAnimationContextProvider } from '../../context/ExploreAnimationContext';
 import { ExploreRow } from '../ExploreRow';
 
 import { ExploreCard } from './ExploreCard';
@@ -13,12 +14,19 @@ const ExploreCardMeta: Meta<typeof ExploreCard> = {
     size: 'Large',
     buttonLink: 'https://www.kraken.com',
     background: 'https://placehold.co/342x409@2x/orange/orange/png?text=Large+Card',
+    link: {
+      isInternal: false,
+      url: 'https://www.kraken.com',
+      text: 'Learn more',
+    },
   },
   decorators: [
     Story => (
-      <ExploreRow>
-        <Story />
-      </ExploreRow>
+      <ExploreAnimationContextProvider animateScreenUnmount={() => {}}>
+        <ExploreRow>
+          <Story />
+        </ExploreRow>
+      </ExploreAnimationContextProvider>
     ),
   ],
 };

@@ -8,15 +8,17 @@ import { Label } from '@/components/Label';
 import { Toggle } from '@/components/Toggle';
 import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
-import { Network } from '@/onChain/wallets/base';
+import type { Network } from '@/onChain/wallets/base';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useTokenPrice } from '@/realm/tokenPrice';
-import { RealmToken, getAvailableTokenBalance, useTokenByAssetId } from '@/realm/tokens';
+import type { RealmToken } from '@/realm/tokens';
+import { getAvailableTokenBalance, useTokenByAssetId } from '@/realm/tokens';
 import { Currency } from '@/screens/Settings/currency';
 import { useTheme } from '@/theme/themes';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { isBtc } from '@/utils/isBtc';
+import { sanitizeNumericValue } from '@/utils/sanitizeNumericValue';
 import { unitConverter } from '@/utils/unitConverter';
 
 import { Input } from '../../../components/Input';
@@ -38,21 +40,6 @@ export interface AmountInputRef {
   getFiatAmount: () => string;
   showFeeError: () => void;
 }
-
-const sanitizeValue = (value: string) => {
-  let newValue = value.replace(',', '.');
-  
-  if (newValue.startsWith('.')) {
-    newValue = `0${newValue}`;
-  }
-  
-  if (/^0\d/.test(newValue)) {
-    newValue = newValue.replace(/^0+/, '');
-  }
-  
-  newValue = newValue.replace(/[^0-9.]+/g, '').replace(/(\..*?)\.+/g, '$1');
-  return newValue;
-};
 
 export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, network, currentFeeEstimate, onToggleCurrency }, ref) => {
   const [assetAmount, setAssetAmount] = useState('');
@@ -161,7 +148,7 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
   const onChangeAmount = useCallback(
     (changedValue: string) => {
       setIsMaxAmount(false);
-      const newAmount = sanitizeValue(changedValue);
+      const newAmount = sanitizeNumericValue(changedValue);
       if (inputInFiatCurrency) {
         setFiatAmount(newAmount);
         updateAssetAmount(newAmount);

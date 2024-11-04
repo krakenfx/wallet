@@ -51,8 +51,7 @@ export const RealmQueueProvider = ({ children }: Props) => {
       queue.current[queueName] = [];
     }
     queue.current[queueName].push(callback);
-  },
-  []);
+  }, []);
 
   const commitRealmTransactionQueue = useCallback(
     (queueName: string) => {

@@ -6,7 +6,8 @@ import { useRealmWalletById } from '@/realm/wallets';
 import { useFeeEstimates } from '@/screens/Send/hooks/useFeeEstimates';
 import { useFeeOptions } from '@/screens/Send/hooks/useFeeOptions';
 import { getDefaultFeeOption } from '@/screens/Send/utils/getDefaultFeeOption';
-import { FeeOptionsData, getFeeOptionsData } from '@/screens/Send/utils/getFeeOptionsData';
+import type { FeeOptionsData } from '@/screens/Send/utils/getFeeOptionsData';
+import { getFeeOptionsData } from '@/screens/Send/utils/getFeeOptionsData';
 
 export const useNetworkFeeEstimate = (walletId: string, disabled?: boolean): FeeOptionsData | undefined => {
   const wallet = useRealmWalletById(walletId);

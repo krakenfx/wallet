@@ -6,13 +6,15 @@ import { useGlobalState } from '@/components/GlobalState';
 import { hideToast, showToast } from '@/components/Toast';
 import { Routes } from '@/Routes';
 
-import { REALM_TYPE_ACCOUNT, RealmAccount, useAccountsMutations, useCurrentAccountNumber } from './accounts';
+import { REALM_TYPE_ACCOUNT, useAccountsMutations, useCurrentAccountNumber } from './accounts';
 import { useDefiFetch } from './defi';
 import { useNftsFetch } from './nfts';
 import { useRealm } from './RealmContext';
 import { useTokenPriceFetch } from './tokenPrice';
 import { useTokensFetch } from './tokens';
 import { useTransactionsFetch } from './transactions';
+
+import type { RealmAccount } from './accounts';
 
 import loc from '/loc';
 

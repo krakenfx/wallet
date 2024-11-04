@@ -1,7 +1,9 @@
 import { useCallback } from 'react';
-import Realm from 'realm';
 
 import { useRealm } from '../RealmContext';
+
+import type Realm from 'realm';
+
 
 export function useRealmTransaction() {
   const realm = useRealm();

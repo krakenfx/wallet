@@ -2,7 +2,7 @@ module.exports = function (api) {
   const presets = [
     [
       'module:@react-native/babel-preset',
-      
+      // @see https://solanacookbook.com/integrations/react-native.html
       { unstable_transformProfile: 'hermes-stable' },
     ],
   ];
@@ -17,7 +17,7 @@ module.exports = function (api) {
   ];
 
   if (process?.env?.JEST_WORKER_ID) {
-    
+    // we are inside jest unit tests, provide only basic aliases
     plugins.unshift([
       'module-resolver',
       {
@@ -31,7 +31,7 @@ module.exports = function (api) {
     ]);
     api.cache.never();
   } else {
-    
+    // we are inside RN, so we need to provide unexisting in this runtime modules
     plugins.unshift([
       'module-resolver',
       {
@@ -52,8 +52,8 @@ module.exports = function (api) {
     presets,
     plugins,
     overrides: [
-      
-      
+      // fixes "Class private methods are not enabled"
+      // @see https://github.com/ethers-io/ethers.js/issues/4307
       {
         test: './node_modules/ethers',
         plugins: [

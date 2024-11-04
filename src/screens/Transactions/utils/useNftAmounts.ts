@@ -3,10 +3,10 @@ import { useMemo } from 'react';
 
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
-import { RealmToken } from '@/realm/tokens';
-import { RealmTransaction } from '@/realm/transactions';
+import type { RealmToken } from '@/realm/tokens';
+import type { RealmTransaction } from '@/realm/transactions';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { NFTTransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { NFTTransactionData } from '@/realm/transactions/getTransactionMetadata';
 
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
 

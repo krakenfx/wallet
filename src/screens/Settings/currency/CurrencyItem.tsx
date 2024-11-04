@@ -6,7 +6,10 @@ import { Label } from '@/components/Label';
 import { Touchable } from '@/components/Touchable';
 
 import { CurrencyIcon } from './CurrencyIcon';
-import { Currency, getCurrencyInfo, getLocalizedCurrencyName } from './types';
+
+import { getCurrencyInfo, getLocalizedCurrencyName } from './types';
+
+import type { Currency } from './types';
 
 interface Props {
   currency: Currency;

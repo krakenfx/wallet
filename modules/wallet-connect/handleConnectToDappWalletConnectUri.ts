@@ -1,11 +1,12 @@
-import Realm from 'realm';
 
-import { showToast } from '@/components/Toast';
-import { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
+import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
+
+import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
-import { ReactNavigationDispatch, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
+import type { ReactNavigationDispatch} from '/modules/wallet-connect';
+import { initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
 import { isWalletConnectURI, isWalletConnectURIV1, isWalletConnectURIV2 } from '/modules/wallet-connect/utils';
 
 
@@ -37,7 +38,6 @@ export async function handleConnectToDappWalletConnectUri(
     try {
       const web3wallet = await initWalletConnectWeb3Wallet(realm, dispatch, getSeed);
 
-      showToast({ type: 'info', text: loc.walletConnect.action_in_progress, duration: 1000 });
       await web3wallet.core.pairing.pair({ uri: result });
       validSubmittedQRCodesCache.push(result);
     } catch (e) {

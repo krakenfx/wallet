@@ -6,8 +6,9 @@ import { useRealmWalletById } from '@/realm/wallets';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { unitConverter } from '@/utils/unitConverter';
 
-import { Amounts, FeeEstimationMap, TransactionParams } from '../types';
 import { totalFeeToFiatString } from '../utils/totalFeeToFiatString';
+
+import type { Amounts, FeeEstimationMap, TransactionParams } from '../types';
 
 interface UseAmountsProps {
   transactionParams: TransactionParams;

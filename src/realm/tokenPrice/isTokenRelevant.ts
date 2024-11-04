@@ -3,8 +3,10 @@ import { useCallback } from 'react';
 import { isNetworkCoin } from '@/onChain/wallets/registry';
 
 import { useFilterInBlacklistedAssets } from '../settings';
-import { RealmToken } from '../tokens';
+
 import { isTokenInGallery } from '../tokens/utils';
+
+import type { RealmToken } from '../tokens';
 
 
 const isTokenRelevant = (token: RealmToken, filterInBlacklistedAssets?: boolean) => {

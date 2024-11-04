@@ -5,6 +5,8 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { ZoomInEasyUp } from 'react-native-reanimated';
+
 import { Button } from '@/components/Button';
 import { IconButton } from '@/components/IconButton';
 import { Label } from '@/components/Label';
@@ -64,7 +66,7 @@ export const BackupMethodSelectionView: React.FC<Props> = ({ onCloudBackupSelect
   );
 
   const renderTooltip = (text: string) => (
-    <Tooltip containerStyle={styles.tooltip} delayMs={TOOLTIP_DELAY_MS}>
+    <Tooltip entering={ZoomInEasyUp.duration(450).delay(TOOLTIP_DELAY_MS)} containerStyle={styles.tooltip}>
       <Label color="light75" type="regularBody">
         {text}
       </Label>
@@ -87,6 +89,7 @@ export const BackupMethodSelectionView: React.FC<Props> = ({ onCloudBackupSelect
         centerIcon
       />,
       <BackupMethodSelector
+        testID="ManualBackupSelector"
         key="manualBackupSelector"
         icon={<IconButton size={24} name="pencil" style={[styles.iconSize, styles.iconRadius]} containerStyle={styles.iconRadius} />}
         onPress={onManualBackupSelected}

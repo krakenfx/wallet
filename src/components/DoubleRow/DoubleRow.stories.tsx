@@ -3,11 +3,12 @@ import { View } from 'react-native';
 
 import { DoubleRow } from '@/components/DoubleRow';
 
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 import { iconsControl } from '@/utils/storybook';
 
-import { TokenIconProps } from '../TokenIcon';
 import { TransactionAmount } from '../Transaction';
+
+import type { TokenIconProps } from '../TokenIcon';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

@@ -1,11 +1,14 @@
-import { BottomSheetFlatList, BottomSheetFlatListMethods, useBottomSheetDynamicSnapPoints, useBottomSheetModal } from '@gorhom/bottom-sheet';
+import type { ListRenderItem } from 'react-native';
+
+import { BottomSheetFlatList, useBottomSheetDynamicSnapPoints, useBottomSheetModal } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 import noop from 'lodash/noop';
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
-import { ListRenderItem, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { cancelActiveRequestsAndInvalidateCache } from '@/api/base/fetchClient';
-import { BottomSheetModal, BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheetModal } from '@/components/BottomSheet';
 
 import { Button, LARGE_BUTTON_SIZE } from '@/components/Button';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
@@ -14,10 +17,13 @@ import { showToast } from '@/components/Toast';
 import { WALLET_ITEM_HEIGHT, WalletItem } from '@/components/WalletItem';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useManageAccount } from '@/hooks/useManageAccount';
-import { RealmAccount, useAccounts, useCurrentAccountNumber } from '@/realm/accounts';
+import type { RealmAccount } from '@/realm/accounts';
+import { useAccounts, useCurrentAccountNumber } from '@/realm/accounts';
 import { Routes } from '@/Routes';
 import { WalletBackupWarning } from '@/screens/Settings/walletBackup';
 import { useIsOnline } from '@/utils/useConnectionManager';
+
+import type { BottomSheetFlatListMethods } from '@gorhom/bottom-sheet';
 
 import loc from '/loc';
 

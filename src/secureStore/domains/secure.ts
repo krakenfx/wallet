@@ -12,7 +12,10 @@ import { retryPromise } from '@/utils/retryPromise';
 import { isRealmInAppEverInitialisedKey } from '../asyncStorageKeys';
 import { clearAllKeychainValues, getFromKeychain, removeFromKeychain, setInKeychain } from '../keychain';
 import { KeychainKey } from '../keychain/keys';
-import { Encoding, arrayBufferToHexString, decryptBuffer, decryptValue, encryptBuffer, encryptValue, hexStringToInt8Array } from '../utils';
+
+import { arrayBufferToHexString, decryptBuffer, decryptValue, encryptBuffer, encryptValue, hexStringToInt8Array } from '../utils';
+
+import type { Encoding } from '../utils';
 
 import { isBiometricEnabled } from '/helpers/biometric-unlock';
 

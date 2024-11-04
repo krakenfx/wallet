@@ -10,7 +10,7 @@ import { useIsTestnetEnabled } from '@/realm/settings/useIsTestnetEnabled';
 import { Routes } from '@/Routes';
 import { SettingsItem, SettingsSwitch } from '@/screens/Settings/components';
 import { SettingsBox } from '@/screens/Settings/components/SettingsBox';
-import { SettingsNavigationProps } from '@/screens/Settings/SettingsRouter';
+import type { SettingsNavigationProps } from '@/screens/Settings/SettingsRouter';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import loc from '/loc';

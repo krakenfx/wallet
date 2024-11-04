@@ -1,12 +1,14 @@
+import type { ViewStyle } from 'react-native';
+
 import React, { useCallback, useRef } from 'react';
-import { ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
 import { useLongPress } from './LongPressContext';
-import { LongPressOptionItemProps } from './LongPressOptionItem';
+
+import type { LongPressOptionItemProps } from './LongPressOptionItem';
 
 interface Props {
   children: React.ReactNode;

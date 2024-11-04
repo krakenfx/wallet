@@ -1,7 +1,7 @@
-import { ProposalTypes } from '@walletconnect/types';
-import { Web3WalletTypes } from '@walletconnect/web3wallet';
+import type { Warning } from '@/types';
 
-import { Warning } from '@/types';
+import type { ProposalTypes } from '@walletconnect/types';
+import type { Web3WalletTypes } from '@walletconnect/web3wallet';
 
 export type SessionProposal = Omit<Web3WalletTypes.BaseEventArgs<ProposalTypes.Struct>, 'topic'>;
 
@@ -25,6 +25,5 @@ export type _3rdPartyData = Partial<{
 
 export type Verification = {
   isDomainMatch: boolean;
-  isScam: boolean;
   warning?: Warning;
 };

@@ -1,4 +1,4 @@
-import { Source } from 'react-native-fast-image';
+import type { Source } from 'react-native-fast-image';
 
 const avatarImages: Source[] = [
   require('@/assets/images/avatars/avatar-1.webp'),
@@ -111,4 +111,4 @@ const mapToRange = (num: number): number => {
 export const getDefaultAvatar = (number: number): Source => {
   const numInRange = mapToRange(number);
   return avatarImages[numInRange];
-}
+};

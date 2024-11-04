@@ -5,7 +5,7 @@ import { iconsControl } from '@/utils/storybook';
 
 import { ExploreTabBar } from './ExploreTabBar';
 
-import { ExploreTabBarProps } from './ExploreTabBar.types';
+import type { ExploreTabBarProps } from './ExploreTabBar.types';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

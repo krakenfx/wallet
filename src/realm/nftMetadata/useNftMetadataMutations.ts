@@ -1,14 +1,15 @@
 import { useCallback } from 'react';
 import Realm from 'realm';
 
-import { NftWithRawMetadata } from '@/api/fetchNfts';
+import type { NftWithRawMetadata } from '@/api/fetchNfts';
 import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { useRealmTransaction } from '@/realm/hooks/useRealmTransaction';
 import { useRealm } from '@/realm/RealmContext';
 
-import { RealmWallet } from '../wallets';
+import { REALM_TYPE_NFT_METADATA } from './schema';
 
-import { NftMetadata, REALM_TYPE_NFT_METADATA, RealmNftMetadata } from './schema';
+import type { NftMetadata, RealmNftMetadata } from './schema';
+import type { RealmWallet } from '../wallets';
 
 import loc from '/loc';
 

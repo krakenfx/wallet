@@ -3,8 +3,9 @@ import React from 'react';
 import { AssetRow } from '@/components/AssetRow';
 import { ReputationTag } from '@/components/Reputation';
 import { REPUTATION, useReputation } from '@/hooks/useReputation';
-import { RealmToken } from '@/realm/tokens';
-import { NavigationProps, Routes } from '@/Routes';
+import type { RealmToken } from '@/realm/tokens';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 
 interface TokenRowProps {
   token: RealmToken;

@@ -1,4 +1,3 @@
-import BottomSheetView from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
 import React, { useCallback, useRef } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
@@ -12,9 +11,12 @@ import { showToast } from '@/components/Toast';
 import { useCurrentAccountNumber } from '@/realm/accounts';
 import { useNftById, useNftsMutations } from '@/realm/nfts';
 import { useNftGalleryToggle } from '@/realm/nfts/useNftGalleryToggle';
-import { NavigationProps, Routes } from '@/Routes';
+import type { NavigationProps } from '@/Routes';
+import { Routes } from '@/Routes';
 import { ActionButton } from '@/screens/Nfts/components/ActionButton';
 import { navigationStyle } from '@/utils/navigationStyle';
+
+import type BottomSheetView from '@gorhom/bottom-sheet';
 
 import loc from '/loc';
 

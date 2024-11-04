@@ -1,12 +1,16 @@
-import React, { ComponentProps } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import Animated, { AnimateStyle } from 'react-native-reanimated';
+import type { ComponentProps } from 'react';
+import type { StyleProp, ViewStyle } from 'react-native';
+import type { AnimateStyle } from 'react-native-reanimated';
+
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
 import { SvgIcon } from '@/components/SvgIcon';
-import { WalletType } from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 import { useTheme } from '@/theme/themes';
 
 import { TransactionBadge } from './TransactionBadge';
@@ -20,10 +24,10 @@ type Props = {
     size?: number;
   };
   useFallbackIcon?: boolean;
-  date?: string;
+  date?: string | undefined;
   name?: string;
   url?: string;
-  badge?: ComponentProps<typeof TransactionBadge>['type'];
+  badge?: ComponentProps<typeof TransactionBadge>['type'] | undefined;
   testID?: string;
 };
 

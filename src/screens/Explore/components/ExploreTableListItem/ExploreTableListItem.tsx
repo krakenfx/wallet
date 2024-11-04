@@ -3,39 +3,27 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 
-import { useExploreAnimationContext } from '../../context/ExploreAnimationContext';
+import { Touchable } from '@/components/Touchable';
+
 import { Sizes } from '../../ExploreScreen.constants';
+import { useExploreLink } from '../../hooks/useExploreLink';
 import { ExploreText } from '../ExploreText';
 
-import { ExploreTableListItemProps } from './ExploreTableListItem.types';
+import type { ExploreTableListItemProps } from './ExploreTableListItem.types';
 
 const { Space, ListIcon } = Sizes;
 
-export const ExploreTableListItem: React.FC<ExploreTableListItemProps> = ({
-  title,
-  body,
-  buttonText,
-  buttonLink,
-  icon,
-  iconType,
-}: ExploreTableListItemProps) => {
-  const { openLinkWithTransition } = useExploreAnimationContext();
+export const ExploreTableListItem = ({ title, body, link, icon, iconType }: ExploreTableListItemProps) => {
+  const handleExploreLink = useExploreLink(link);
+
   return (
-    <View style={styles.container}>
-      {icon && <Image style={[styles.icon, styles[iconType ?? 'RoudedCorners']]} source={{ uri: icon }} />}
-      {(title || body) && <ExploreText style={styles.text} title={title} body={body} bodyColor="light50" bodyType="regularCaption1" />}
-      {buttonText && (
-        <Button
-          text={buttonText}
-          onPress={() => {
-            if (buttonLink) {
-              openLinkWithTransition(buttonLink);
-            }
-          }}
-          style={styles.button}
-        />
-      )}
-    </View>
+    <Touchable onPress={handleExploreLink}>
+      <View style={styles.container}>
+        {icon && <Image style={[styles.icon, styles[iconType ?? 'RoudedCorners']]} source={{ uri: icon }} />}
+        {(title || body) && <ExploreText style={styles.text} title={title} body={body} bodyColor="light50" bodyType="regularCaption1" />}
+        {link && <Button text={link?.text} onPress={handleExploreLink} style={styles.button} />}
+      </View>
+    </Touchable>
   );
 };
 

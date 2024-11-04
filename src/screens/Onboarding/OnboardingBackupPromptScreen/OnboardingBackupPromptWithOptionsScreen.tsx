@@ -2,7 +2,7 @@ import React, { useCallback, useLayoutEffect, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { BackButton } from '@/components/BackButton';
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
 import { BackupMethodSelectionView } from '@/components/WalletBackup';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
@@ -12,9 +12,9 @@ import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useAndroidBackButton } from '@/utils/useAndroidBackButton';
 
-import { OnboardingNavigationProps } from '../OnboardingRouter';
-
 import { SkipWarningSheet } from './SkipWarningSheet';
+
+import type { OnboardingNavigationProps } from '../OnboardingRouter';
 
 import loc from '/loc';
 
@@ -59,7 +59,7 @@ export const OnboardingBackupPromptScreenWithOptions = ({ navigation }: Onboardi
 
   const headerLeft = useCallback(() => <BackButton onPress={handleBackAction} />, [handleBackAction]);
 
-  const headerRight = useCallback(() => <Button text={loc.onboarding_secure_wallet.skip} testID="SkipSecureWalletButton" onPress={handleSkip} />, [handleSkip]);
+  const headerRight = useCallback(() => <Button text={loc.onboarding_secure_wallet.skip} testID="SkipButton" onPress={handleSkip} />, [handleSkip]);
 
   useLayoutEffect(() => {
     navigation.setOptions({ headerRight, headerLeft });
@@ -70,7 +70,7 @@ export const OnboardingBackupPromptScreenWithOptions = ({ navigation }: Onboardi
   };
 
   return (
-    <MainGradientView style={styles.container}>
+    <MainGradientView style={styles.container} testID="OnboardingBackupPromptWithOptions">
       <BackupMethodSelectionView
         onSkip={handleSkip}
         onShowExplainer={navigateToExplainer}

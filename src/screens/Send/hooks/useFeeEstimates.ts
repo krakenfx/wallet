@@ -2,17 +2,17 @@ import { useFocusEffect } from '@react-navigation/native';
 import { fromPairs } from 'lodash';
 import { useCallback, useMemo, useState } from 'react';
 
-import { FeeOption, FeeOptionKind } from '@/api/types';
+import type { FeeOption, FeeOptionKind } from '@/api/types';
 import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
-import { FeeOptions, PreparedTransaction } from '@/onChain/wallets/base';
+import type { FeeOptions, PreparedTransaction } from '@/onChain/wallets/base';
 import { PrepareError } from '@/onChain/wallets/bitcoin';
 import { EVMNetwork } from '@/onChain/wallets/evm';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
-import { FeeEstimationMap } from '../types';
+import type { FeeEstimationMap } from '../types';
 
 import { handleError } from '/helpers/errorHandler';
 

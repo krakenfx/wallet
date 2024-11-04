@@ -1,8 +1,10 @@
+import type { LayoutRectangle } from 'react-native';
+
 import React, { useState } from 'react';
-import { LayoutRectangle } from 'react-native';
 import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
-import { Label, LabelProps } from '@/components/Label';
+import type { LabelProps } from '@/components/Label';
+import { Label } from '@/components/Label';
 
 type Props = LabelProps & {
   scale: number;

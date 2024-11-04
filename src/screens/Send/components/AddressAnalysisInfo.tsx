@@ -1,11 +1,13 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, { CurvedTransition, FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { CardWarning } from '@/components/CardWarning';
 import { Label } from '@/components/Label';
 
-import { AddressAnalysis } from '../hooks/useAddressAnalysis';
+import type { AddressAnalysis } from '../hooks/useAddressAnalysis';
 
 import loc from '/loc';
 

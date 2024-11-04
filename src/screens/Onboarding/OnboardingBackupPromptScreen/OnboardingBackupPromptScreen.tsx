@@ -3,7 +3,7 @@ import React, { useCallback, useLayoutEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { BackButton } from '@/components/BackButton';
-import { BottomSheetModalRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
 import { LargeHeaderPage } from '@/components/LargeHeaderPage';
@@ -12,9 +12,9 @@ import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useAndroidBackButton } from '@/utils/useAndroidBackButton';
 
-import { OnboardingNavigationProps } from '../OnboardingRouter';
-
 import { SkipWarningSheet } from './SkipWarningSheet';
+
+import type { OnboardingNavigationProps } from '../OnboardingRouter';
 
 import loc from '/loc';
 

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { useAssetMetadata } from '@/realm/assetMetadata';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
-import { SimpleTransactionData } from '@/realm/transactions/getTransactionMetadata';
+import type { SimpleTransactionData } from '@/realm/transactions/getTransactionMetadata';
 import { Routes } from '@/Routes';
 
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '../utils/types';
@@ -10,7 +10,8 @@ import { useSimpleTransactionDetailsDisplayData } from '../utils/useTransactionD
 import { useSimpleTransactionDisplayData } from '../utils/useTransactionDisplayData/useSimpleTransactionDisplayData';
 
 import { TransactionDataRow } from './TransactionDataRow';
-import { TransactionRowCommonProps } from './types';
+
+import type { TransactionRowCommonProps } from './types';
 
 export interface SimpleTransactionRowProps extends TransactionRowCommonProps {
   classifiedTx: SimpleTransactionData;

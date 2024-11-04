@@ -1,6 +1,6 @@
-import BigNumber from 'bignumber.js';
-
 import { SuperBigNumber } from '@/utils/SuperBigNumber';
+
+import type BigNumber from 'bignumber.js';
 
 export function smallUnit2TokenUnit(amountOfSMallUnits: BigNumber.Value, decimals: number) {
   return new SuperBigNumber(amountOfSMallUnits).dividedBy(Math.pow(10, decimals));

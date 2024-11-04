@@ -1,4 +1,4 @@
-import BottomSheetRef, { BottomSheetView } from '@gorhom/bottom-sheet';
+import { BottomSheetView } from '@gorhom/bottom-sheet';
 import React, { forwardRef, useEffect } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
@@ -8,7 +8,8 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 
-import { ExploreDisclaimerSheetProps } from './ExploreDisclaimerSheet.types';
+import type { ExploreDisclaimerSheetProps } from './ExploreDisclaimerSheet.types';
+import type BottomSheetRef from '@gorhom/bottom-sheet';
 
 import loc from '/loc';
 

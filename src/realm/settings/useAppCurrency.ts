@@ -1,12 +1,15 @@
 import { useMemo } from 'react';
 import { Platform } from 'react-native';
 import * as RNLocalize from 'react-native-localize';
-import Realm from 'realm';
 
-import { Currency, CurrencyInfo, getCurrencyInfo } from '@/screens/Settings/currency';
+import type { CurrencyInfo } from '@/screens/Settings/currency';
+import { Currency, getCurrencyInfo } from '@/screens/Settings/currency';
 
-import { REALM_TYPE_SETTINGS, RealmSettings, RealmSettingsKey, SettingsType } from './schema';
+import { REALM_TYPE_SETTINGS, RealmSettingsKey } from './schema';
 import { useSettingsByKey } from './useSettingsByKey';
+
+import type { RealmSettings, SettingsType } from './schema';
+import type Realm from 'realm';
 
 type AppCurrency = {
   currency: Currency;

@@ -1,5 +1,5 @@
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import { RealmWallet } from '@/realm/wallets';
+import type { RealmWallet } from '@/realm/wallets';
 
 import { createErrorHandlerWithContext } from '/helpers/errorHandler';
 import { SOLANA_MAINNET_ID_WRONG } from '/modules/wallet-connect/solanaShim';

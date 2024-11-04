@@ -1,6 +1,6 @@
 import { getHarmony } from '@/api/base/apiFactory';
-import { AssetMarketData } from '@/realm/assetMarketData';
-import { Currency } from '@/screens/Settings/currency';
+import type { AssetMarketData } from '@/realm/assetMarketData';
+import type { Currency } from '@/screens/Settings/currency';
 
 import { handleError } from '/helpers/errorHandler';
 

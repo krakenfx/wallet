@@ -1,5 +1,7 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { AddressDisplay } from '@/components/AddressDisplay';
 import { GradientItemBackground } from '@/components/GradientItemBackground';

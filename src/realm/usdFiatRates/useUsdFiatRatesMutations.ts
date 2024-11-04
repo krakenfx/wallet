@@ -1,9 +1,10 @@
 import { useCallback } from 'react';
 import Realm from 'realm';
 
-import { DefiPositionsResponse } from '@/api/fetchDefiPositions';
+import type { DefiPositionsResponse } from '@/api/fetchDefiPositions';
 import { useRealm } from '@/realm/RealmContext';
-import { REALM_TYPE_FIAT_RATES, RealmFiatRates } from '@/realm/usdFiatRates/schema';
+import type { RealmFiatRates } from '@/realm/usdFiatRates/schema';
+import { REALM_TYPE_FIAT_RATES } from '@/realm/usdFiatRates/schema';
 
 export const useUsdFiatRatesMutations = () => {
   const realm = useRealm();

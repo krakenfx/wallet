@@ -1,22 +1,47 @@
-import React, { PropsWithChildren } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { PropsWithChildren } from 'react';
 
-import Animated, { ZoomInEasyUp } from 'react-native-reanimated';
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+
+import Animated, { type AnimatedProps } from 'react-native-reanimated';
 
 import { useTheme } from '@/theme/themes';
 
-interface Props extends PropsWithChildren {
+import type { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
+
+export interface Props extends PropsWithChildren {
   containerStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
-  delayMs?: number;
+  horizontalAlign?: 'left' | 'right';
+  verticalAlign?: 'top' | 'bottom';
+  horizontalTipOffset?: number;
+  entering?: AnimatedProps<ViewProps>['entering'];
+  exiting?: AnimatedProps<ViewProps>['exiting'];
 }
 
-export const Tooltip: React.FC<Props> = ({ children, containerStyle, delayMs = 0, style }) => {
+const TIP_SIZE = 12;
+
+export const Tooltip: React.FC<Props> = ({
+  children,
+  horizontalTipOffset = 32,
+  containerStyle,
+  horizontalAlign = 'right',
+  verticalAlign = 'bottom',
+  entering,
+  exiting,
+  style,
+}) => {
   const { colors } = useTheme();
 
+  const horizontalStyle = { [horizontalAlign]: horizontalTipOffset };
+  const verticalStyle = verticalAlign === 'top' ? styles.tipBottom : styles.tipTop;
+  const tipStyle: StyleProp<ViewStyle> = [horizontalStyle, verticalStyle];
+
   return (
-    <Animated.View entering={ZoomInEasyUp.duration(450).delay(delayMs)} style={containerStyle}>
-      <View style={[styles.tip, { backgroundColor: colors.tooltipColor }]} />
+    <Animated.View entering={entering} exiting={exiting} style={containerStyle}>
+      <View style={[styles.tip, { backgroundColor: colors.tooltipColor }, tipStyle]} />
       <View style={[styles.content, { backgroundColor: colors.tooltipColor }, style]}>{children}</View>
     </Animated.View>
   );
@@ -24,12 +49,16 @@ export const Tooltip: React.FC<Props> = ({ children, containerStyle, delayMs = 0
 
 const styles = StyleSheet.create({
   tip: {
-    width: 12,
-    height: 12,
+    width: TIP_SIZE,
+    height: TIP_SIZE,
     position: 'absolute',
     transform: [{ rotate: '45deg' }],
-    right: 32,
-    top: -6,
+  },
+  tipTop: {
+    top: -TIP_SIZE / 2,
+  },
+  tipBottom: {
+    bottom: -TIP_SIZE / 2,
   },
   content: {
     borderRadius: 12,

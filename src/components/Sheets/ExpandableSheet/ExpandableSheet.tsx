@@ -1,8 +1,15 @@
-import { BottomSheetFooterProps, BottomSheetScrollView, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
-import React, { RefObject, forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { RefObject } from 'react';
+
+import type { LayoutChangeEvent, LayoutRectangle, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleProp, ViewStyle } from 'react-native';
+
+import type { AnimateStyle } from 'react-native-reanimated';
+
+import { BottomSheetScrollView, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+
+import { StyleSheet, View } from 'react-native';
+
 import Animated, {
-  AnimateStyle,
   interpolate,
   scrollTo,
   useAnimatedReaction,
@@ -14,11 +21,14 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BottomSheet, BottomSheetRef } from '@/components/BottomSheet';
+import type { BottomSheetModalRef } from '@/components/BottomSheet';
+import { BottomSheet, BottomSheetModal } from '@/components/BottomSheet';
 
 import { ExpandableSheetContextProvider } from './ExpandableSheetContext';
 import { ExpandableSheetFooter } from './ExpandableSheetFooter';
-import { ExpandableSheetMethods } from './types';
+
+import type { ExpandableSheetMethods } from './types';
+import type { BottomSheetFooterProps } from '@gorhom/bottom-sheet';
 
 export type ExpandableSheetProps = {
   PreviewComponent: React.ReactNode;
@@ -29,13 +39,13 @@ export type ExpandableSheetProps = {
   onDismiss?: () => void;
   dismissible?: boolean;
   extraPaddingBottom?: number;
+  isModal?: boolean;
 };
 
 
-
 export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableSheetProps>(
-  ({ PreviewComponent, DetailsComponent, FloatingButtonsComponent, StickyHeaderComponent, onDismiss, dismissible, extraPaddingBottom = 16 }, ref) => {
-    const sheetRef = useRef<BottomSheetRef>(null);
+  ({ PreviewComponent, DetailsComponent, FloatingButtonsComponent, StickyHeaderComponent, onDismiss, dismissible, extraPaddingBottom = 16, isModal }, ref) => {
+    const modalSheetRef = useRef<BottomSheetModalRef>(null);
     const scrollRef = useAnimatedRef<ScrollView>();
     const animatedIndex = useSharedValue<number>(0);
     const animatedPosition = useSharedValue<number>(0);
@@ -65,11 +75,22 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
 
     const sheetMethods = useMemo(
       () => ({
-        close: () => sheetRef.current?.close(),
-        collapse: () => sheetRef.current?.collapse(),
-        expand: () => sheetRef.current?.expand(),
+        close: () => {
+          if (isModal) {
+            modalSheetRef.current?.dismiss();
+          } else {
+            modalSheetRef.current?.close();
+          }
+        },
+        collapse: () => modalSheetRef.current?.collapse(),
+        expand: () => {
+          if (isModal) {
+            modalSheetRef.current?.present();
+          }
+          modalSheetRef.current?.expand();
+        },
       }),
-      [],
+      [isModal],
     );
 
     useImperativeHandle(ref, () => sheetMethods, [sheetMethods]);
@@ -152,10 +173,12 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
       [stickyHeaderLayout?.height],
     );
 
+    const SheetComponent = isModal ? BottomSheetModal : BottomSheet;
+
     return (
       <ExpandableSheetContextProvider {...sheetMethods}>
-        <BottomSheet
-          ref={sheetRef}
+        <SheetComponent
+          ref={modalSheetRef}
           handleAndroidBackButton
           dismissible={dismissible}
           contentHeight={animatedContentHeight}
@@ -184,7 +207,7 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
 
             {canShowMore && <Animated.View style={collapsedContentStyle}>{DetailsComponent}</Animated.View>}
           </BottomSheetScrollView>
-        </BottomSheet>
+        </SheetComponent>
       </ExpandableSheetContextProvider>
     );
   },

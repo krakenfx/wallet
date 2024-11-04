@@ -1,9 +1,12 @@
-import { FlashList, FlashListProps } from '@shopify/flash-list';
+import { FlashList } from '@shopify/flash-list';
 import React, { forwardRef } from 'react';
-import { NativeScrollEvent } from 'react-native/types';
+
 import Animated from 'react-native-reanimated';
 
 import { useRefreshControlScrollProps } from './hooks/useRefreshControlScrollProps';
+
+import type { FlashListProps } from '@shopify/flash-list';
+import type { NativeScrollEvent } from 'react-native/types';
 
 type Props<T> = Omit<FlashListProps<T>, 'scrollEventThrottle' | 'onScrollBeginDrag'> & {
   onRefresh: () => void;

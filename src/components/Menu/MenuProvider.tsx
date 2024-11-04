@@ -1,9 +1,13 @@
+import type { PropsWithChildren } from 'react';
+
 import noop from 'lodash/noop';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 
-import { MenuOverlay, MenuOverlayProps, PopupMenuProps } from './MenuOverlay';
+import { MenuOverlay } from './MenuOverlay';
+
+import type { MenuOverlayProps, PopupMenuProps } from './MenuOverlay';
 
 interface MenuContextProps {
   hide: () => void;

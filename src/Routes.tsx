@@ -1,35 +1,39 @@
-import { NavigatorScreenParams } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-
-import { AccountStackParams } from '@/screens/Accounts/AccountRouter';
-import { AdvancedAccountInfoParams } from '@/screens/Accounts/AdvancedAccountInfoScreen';
-import { ExtendedPublicKeyParams } from '@/screens/Accounts/ExtendedPublicKeyScreen';
-import {
+import type { AccountStackParams } from '@/screens/Accounts/AccountRouter';
+import type { AdvancedAccountInfoParams } from '@/screens/Accounts/AdvancedAccountInfoScreen';
+import type { ExtendedPublicKeyParams } from '@/screens/Accounts/ExtendedPublicKeyScreen';
+import type {
   WalletConnectSignRequest_GenericMessageParams,
   WalletConnectSignRequest_GenericTransactionParams,
   WalletConnectSignRequest_StructuredTransactionParams,
 } from '@/screens/AppSignRequest';
-import { BrowserParams } from '@/screens/Browser';
-import { ConnectAppParams } from '@/screens/ConnectApp';
-import { ScanQRCodeParams } from '@/screens/ConnectAppQRScan';
-import { DefiDetailsRouteParams } from '@/screens/DefiDetails';
-import { EditNoteParams } from '@/screens/EditNoteScreen';
-import { ExplainerProps } from '@/screens/Explainer';
-import { ManageAssetsGlobalFilterParams } from '@/screens/ManageAssetsGlobalFilter';
-import { ManageNftParams } from '@/screens/Nfts/ManageNftScreen';
-import { NftCollectionParams } from '@/screens/Nfts/NftCollectionScreen';
-import { NftImageGalleryRouteParams } from '@/screens/Nfts/NftImageGalleryScreen';
-import { ViewNftRouteParams } from '@/screens/Nfts/ViewNftScreen';
-import { OnboardingStackParams } from '@/screens/Onboarding/OnboardingRouter';
-import { ReceiveRouteProps } from '@/screens/Receive';
-import { SendStackParams } from '@/screens/Send/SendRouter';
-import { AppDetailsParams } from '@/screens/Settings/AppDetailsScreen';
-import { ConnectedAppsParams } from '@/screens/Settings/ConnectedApps';
-import { SettingsStackParams } from '@/screens/Settings/SettingsRouter';
-import { TokenListsParams } from '@/screens/TokenLists';
-import { TransactionDetailsParams, TransactionsRouteProps } from '@/screens/Transactions';
-import { TriggeredPushPromptParams } from '@/screens/TriggerredPushPromptScreen';
-import { UniversalSendRouteParams } from '@/screens/UniversalSend';
+import type { BrowserParams } from '@/screens/Browser';
+import type { ConnectAppParams } from '@/screens/ConnectApp/ConnectAppScreen';
+import type { ConnectWalletConnectAppParams } from '@/screens/ConnectApp/ConnectWalletConnectAppScreen';
+import type { ScanQRCodeParams } from '@/screens/ConnectAppQRScan';
+import type { DefiDetailsRouteParams } from '@/screens/DefiDetails';
+import type { EditNoteParams } from '@/screens/EditNoteScreen';
+import type { ExplainerProps } from '@/screens/Explainer';
+import type { ManageAssetsGlobalFilterParams } from '@/screens/ManageAssetsGlobalFilter';
+import type { ManageNftParams } from '@/screens/Nfts/ManageNftScreen';
+import type { NftCollectionParams } from '@/screens/Nfts/NftCollectionScreen';
+import type { NftImageGalleryRouteParams } from '@/screens/Nfts/NftImageGalleryScreen';
+import type { ViewNftRouteParams } from '@/screens/Nfts/ViewNftScreen';
+import type { OnboardingStackParams } from '@/screens/Onboarding/OnboardingRouter';
+import type { ReceiveRouteProps } from '@/screens/Receive';
+import type { SendStackParams } from '@/screens/Send/SendRouter';
+import type { AppDetailsParams } from '@/screens/Settings/AppDetailsScreen';
+import type { ConnectedAppsParams } from '@/screens/Settings/ConnectedApps';
+import type { SettingsStackParams } from '@/screens/Settings/SettingsRouter';
+import type { TokenListsParams } from '@/screens/TokenLists';
+import type { TransactionDetailsParams, TransactionsRouteProps } from '@/screens/Transactions';
+import type { TriggeredPushPromptParams } from '@/screens/TriggerredPushPromptScreen';
+import type { UniversalSendRouteParams } from '@/screens/UniversalSend';
+
+import type { ExploreSubpageNavigationParams } from './screens/Explore/ExploreSubpageScreen';
+
+import type { SwapScreenParams } from './screens/Swap';
+import type { NavigatorScreenParams } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 
 type ExcludeRealmObject<T> = {
@@ -55,6 +59,8 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     WalletBackupPrompt: undefined;
     WalletCloudBackupScreen: { origin: Routes } | undefined;
     CoinsList: undefined;
+    ConnectAppScreen: ConnectAppParams;
+    ConnectWalletConnectApp: ConnectWalletConnectAppParams;
     ConnectApp: ConnectAppParams;
     ConnectAppQRScan: ScanQRCodeParams | undefined;
     ConnectedApps: ConnectedAppsParams;
@@ -62,6 +68,8 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     DefiDetails: DefiDetailsRouteParams;
     Diagnostics: undefined;
     Explore: undefined;
+    ExploreSubpage: ExploreSubpageNavigationParams;
+    Swap: SwapScreenParams | undefined;
     EditNote: EditNoteParams;
     Explainer: ExplainerProps;
     ExtendedPublicKey: ExtendedPublicKeyParams;
@@ -114,6 +122,7 @@ export enum Routes {
   WhatsNewAssetMarketData = 'WhatsNewAssetMarketData',
   WalletBackupPrompt = 'WalletBackupPrompt',
   CoinsList = 'CoinsList',
+  ConnectWalletConnectApp = 'ConnectWalletConnectApp',
   ConnectApp = 'ConnectApp',
   ConnectedApps = 'ConnectedApps',
   ConnectAppQRScan = 'ConnectAppQRScan',
@@ -122,6 +131,7 @@ export enum Routes {
   Debug = 'Debug',
   Diagnostics = 'Diagnostics',
   Explore = 'Explore',
+  ExploreSubpage = 'ExploreSubpage',
   EditNote = 'EditNote',
   Explainer = 'Explainer',
   ExtendedPublicKey = 'ExtendedPublicKey',
@@ -159,6 +169,7 @@ export enum Routes {
   Settings = 'Settings',
   Support = 'Support',
   SettingsRoot = 'SettingsRoot',
+  Swap = 'Swap',
   TokenLists = 'TokenLists',
   TransactionDetails = 'TransactionDetails',
   Transactions = 'Transactions',

@@ -1,5 +1,9 @@
-import React, { FC } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type { FC } from 'react';
+
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 
