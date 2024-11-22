@@ -1,10 +1,9 @@
-
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import type { RealmWallet } from '@/realm/wallets';
 
 import type { SessionNamespace } from './types';
+import type { IWalletKit } from '@reown/walletkit/dist/types/types/client';
 import type { SessionTypes } from '@walletconnect/types';
-import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -15,7 +14,7 @@ export interface WCSessionsManager {
   disconnectAccountSessions(accountWallets: RealmResults<RealmWallet>): void;
   getAccountWalletAddresses(accountWallets: RealmResults<RealmWallet>): Promise<string[]>;
   getAccountSessions(accountWallets: RealmResults<RealmWallet>): Promise<Record<string, SessionTypes.Struct>>;
-  setWeb3Wallet(web3Wallet: IWeb3Wallet): void;
+  setWeb3Wallet(web3Wallet: IWalletKit): void;
 }
 
 export const userDisconnectReason = {
@@ -23,27 +22,19 @@ export const userDisconnectReason = {
   message: 'User disconnected',
 };
 
-
 function logger({ type, message }: { type: string; message: string }) {
   console.log(type, message);
 }
-
-
-
-
 
 function getWalletAddressFromWCAccount(wcAccount: string): string {
   return wcAccount.split(':').reverse()?.[0] ?? '';
 }
 
-
-
-
 export class WalletConnectSessionsManager implements WCSessionsManager {
-  private _web3Wallet?: IWeb3Wallet;
+  private _web3Wallet?: IWalletKit;
   private _usedDeepLink: boolean = false;
 
-  setWeb3Wallet(web3Wallet: IWeb3Wallet) {
+  setWeb3Wallet(web3Wallet: IWalletKit) {
     this._web3Wallet = web3Wallet;
   }
 
@@ -92,14 +83,11 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
       });
   }
 
-  
   async getAccountSessions(accountWallets: RealmResults<RealmWallet>) {
-    
     try {
       const allAccountSessions = (await this._web3Wallet?.getActiveSessions()) ?? {};
       const accountWalletAddresses = await this.getAccountWalletAddresses(accountWallets);
 
-      
       const accountSessions: Record<string, SessionTypes.Struct> = {};
 
       Object.entries(allAccountSessions).forEach(([k, v]) => {
@@ -114,12 +102,8 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
           });
 
           if (isFoundInWallets) {
-            
             accountSessions[k] = { ...v };
 
-            
-            
-            
             break;
           }
         }
@@ -143,7 +127,6 @@ export class WalletConnectSessionsManager implements WCSessionsManager {
   }
 
   async disconnectAllSessionsForAllAccounts(callback?: { onError?: (error: Error) => void; onSuccess?: (topic: string) => void }) {
-    
     try {
       const topics = Object.keys((await this._web3Wallet?.getActiveSessions()) || {});
 

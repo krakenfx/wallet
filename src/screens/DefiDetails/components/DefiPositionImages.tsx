@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { ImageSvg } from '@/components/ImageSvg';

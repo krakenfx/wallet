@@ -1,5 +1,5 @@
 import { BottomSheetView } from '@gorhom/bottom-sheet';
-import React, { forwardRef, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import type { BottomSheetModalRef } from '@/components/BottomSheet';

@@ -103,7 +103,6 @@ const avatarImages: Source[] = [
   require('@/assets/images/avatars/avatar-100.webp'),
 ];
 
-
 const mapToRange = (num: number): number => {
   return ((num % 100) + 100) % 100;
 };

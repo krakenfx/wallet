@@ -11,13 +11,11 @@ export interface TransactionStatus {
   status?: 'succeeded' | 'failed';
 }
 
-
 export interface ContractInteractionData extends TransactionStatus {
   kind: 'contract';
   type: TRANSACTION_TYPES.CONTRACT_INTERACTION;
   effects: TransactionEffect[];
 }
-
 
 export interface SimpleTransactionData extends TransactionStatus {
   kind: 'simple';
@@ -63,8 +61,6 @@ export interface SwapTransactionData extends TransactionStatus {
 
 export type TransactionData = ContractInteractionData | SimpleTransactionData | SwapTransactionData | NFTTransactionData;
 
-
-
 export type MinimalTransaction = Pick<Transaction, 'effects' | 'protocolInfo'> & { status?: TransactionStatus['status'] };
 
 function assetIsNFT(assetId: string) {
@@ -106,17 +102,14 @@ const isTokenApprovalUnlimited = (amount?: string) => {
   return isUnlimited;
 };
 
-
 export const getTransactionMetadata = (tx: MinimalTransaction): TransactionData => {
   const effects = tx.effects ?? [];
   const status = tx.status;
 
-  
   if (effects.length > 1 && effects.find(e => e.type === 'token-approval')) {
     return getTransactionMetadata({ effects: effects.filter(e => e.type !== 'token-approval'), status });
   }
 
-  
   const effect = effects[0];
 
   if (!effect) {
@@ -173,7 +166,6 @@ export const getTransactionMetadata = (tx: MinimalTransaction): TransactionData 
       };
 
     case 'token-approval':
-      
       return {
         kind: 'simple',
         type: isTokenApprovalUnlimited(effect.amount) ? TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED : TRANSACTION_TYPES.TOKEN_APPROVAL,
@@ -204,7 +196,7 @@ export const getTransactionMetadata = (tx: MinimalTransaction): TransactionData 
           status,
         };
       }
-      
+
       return {
         kind: 'swap',
         type: TRANSACTION_TYPES.SWAP,
@@ -242,11 +234,11 @@ export const getTransactionMetadata = (tx: MinimalTransaction): TransactionData 
           status,
         };
       }
-      
+
       return {
         kind: 'simple',
         type: TRANSACTION_TYPES.DEPOSIT,
-        
+
         effect: effect.depositedAmounts[0] as { amount: string; assetId: string },
         status,
       };

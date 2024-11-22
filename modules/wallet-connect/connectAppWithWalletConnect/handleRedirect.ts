@@ -37,7 +37,6 @@ export const handleRedirect = async (session: SessionTypes.Struct, toastType: 'r
   try {
     if (session.peer.metadata.redirect?.native) {
       Linking.openURL(session.peer.metadata.redirect?.native).catch(() => {
-        
         if (session.peer.metadata.redirect?.universal) {
           Linking.openURL(session.peer.metadata.redirect?.universal);
         } else {

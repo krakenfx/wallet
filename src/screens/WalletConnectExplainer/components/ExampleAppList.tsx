@@ -1,6 +1,6 @@
+import type React from 'react';
 import type { ImageSourcePropType } from 'react-native';
 
-import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import Animated, { Keyframe } from 'react-native-reanimated';
 

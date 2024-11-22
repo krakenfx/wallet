@@ -1,5 +1,5 @@
 import { times } from 'lodash';
-import React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 
 import { AssetPlaceholer } from '../AssetPlaceholder';

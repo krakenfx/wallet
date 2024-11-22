@@ -1,6 +1,5 @@
 import * as bitcoin from 'bitcoinjs-lib';
 
-
 export function Legacy_scriptPubKeyToAddress(scriptPubKey: string): string | false {
   try {
     const scriptPubKey2 = Buffer.from(scriptPubKey, 'hex');
@@ -15,7 +14,6 @@ export function Legacy_scriptPubKeyToAddress(scriptPubKey: string): string | fal
   }
 }
 
-
 export function SegwitBech32_scriptPubKeyToAddress(scriptPubKey: string) {
   try {
     const scriptPubKey2 = Buffer.from(scriptPubKey, 'hex');
@@ -27,7 +25,6 @@ export function SegwitBech32_scriptPubKeyToAddress(scriptPubKey: string) {
     return false;
   }
 }
-
 
 export function SegwitP2SH_scriptPubKeyToAddress(scriptPubKey: string) {
   try {

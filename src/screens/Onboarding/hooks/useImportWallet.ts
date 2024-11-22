@@ -32,7 +32,6 @@ export const useImportWallet = () => {
       const wallets: Partial<Record<WalletType, RealmWallet>> = {};
 
       return runInTransaction(async () => {
-        
         for (const type of ALL_MAINNET_COINS) {
           const wallet = addNewWallet({
             type,

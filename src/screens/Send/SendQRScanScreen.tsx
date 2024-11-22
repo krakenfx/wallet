@@ -1,5 +1,5 @@
 import { PermissionStatus, useCameraPermissions } from 'expo-camera';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 

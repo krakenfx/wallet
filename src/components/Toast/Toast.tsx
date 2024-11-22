@@ -3,7 +3,7 @@ import type { SharedValue } from 'react-native-reanimated';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { BlurView } from '@react-native-community/blur';
 import LottieView from 'lottie-react-native';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { interpolate, runOnJS, useAnimatedStyle } from 'react-native-reanimated';
@@ -38,7 +38,7 @@ export type ToastConfigProps = {
   type: 'error' | 'info' | 'success';
   topOffset?: number;
   noIcon?: boolean;
-  duration?: number; 
+  duration?: number;
   dismissMode?: DismissMode;
   id?: string;
   testID?: string;
@@ -54,7 +54,6 @@ export enum ToastState {
   IN = 1,
   OUT = 2,
 }
-
 
 type DismissMode = 'auto' | 'onlyManual' | 'preventManual' | 'event';
 

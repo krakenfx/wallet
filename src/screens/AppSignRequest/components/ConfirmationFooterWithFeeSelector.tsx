@@ -1,4 +1,5 @@
-import React from 'react';
+import type React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 
 import type { FeeOption } from '@/api/types';
@@ -57,7 +58,7 @@ export const ConfirmationFooterWithFeeSelector: React.FC<ConfirmationFooterWithF
             cells={
               showFeeSelector
                 ? [
-                    <Label type="boldCaption1" color="light75">
+                    <Label key="label" type="boldCaption1" color="light75">
                       {loc.send.network_fee}
                     </Label>,
                     <FeeSelector
@@ -74,7 +75,7 @@ export const ConfirmationFooterWithFeeSelector: React.FC<ConfirmationFooterWithF
                       key="info_1"
                     />,
                   ]
-                : [<AccountName accountIdx={wallet.accountIdx ?? -1 } key="info_0" />]
+                : [<AccountName accountIdx={wallet.accountIdx ?? -1} key="info_0" />]
             }
           />
         </View>

@@ -4,7 +4,6 @@ import { AppState, Platform } from 'react-native';
 import { isAuthenticating } from '/helpers/biometric-unlock';
 import ActivityLifecycle from '/modules/activity-lifecycle';
 
-
 function useAppStateAndroid() {
   const [appState, setAppState] = useState(AppState.currentState);
 
@@ -22,7 +21,6 @@ function useAppStateAndroid() {
 
   return appState;
 }
-
 
 function useAppStateAndroidOldApi() {
   const [appState, setAppState] = useState(AppState.currentState);

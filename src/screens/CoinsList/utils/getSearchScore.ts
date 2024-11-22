@@ -1,39 +1,29 @@
 import type { Item } from '../types';
 
-
-
 const SEARCH_SCORE_CONFIG = {
   symbol: {
-    exact: 100, 
-    startsWith: 20, 
-    endsWith: 10, 
-    noMatch: 0, 
+    exact: 100,
+    startsWith: 20,
+    endsWith: 10,
+    noMatch: 0,
   },
   label: {
-    exact: 50, 
-    startsWith: 10, 
-    wordStartsWith: 2, 
-    noMatch: 0, 
+    exact: 50,
+    startsWith: 10,
+    wordStartsWith: 2,
+    noMatch: 0,
   },
   tokenList: {
-    kraken: 10, 
+    kraken: 10,
     noMatch: 0,
   },
 };
-
-
-
-
-
-
 
 export const buildSearchScoreToSortingIndex = () => {
   const scoreSets = Object.values(SEARCH_SCORE_CONFIG).map(scores => Object.values(scores));
   const allPossibleScores: number[][] = [];
 
-  
   scoreSets[0].forEach(score => {
-    
     const sets = [...scoreSets].slice(1);
 
     let lastCombination = [[score]];
@@ -66,10 +56,6 @@ export const buildSearchScoreToSortingIndex = () => {
 
   const sums = allPossibleScores.map(s => s.reduce((acc, cur) => acc + cur, 0)).sort((a, b) => b - a);
 
-  
-  
-  
-  
   const indexMap: Record<string, number> = Array.from(new Set(sums)).reduce((acc, curr, i) => {
     return {
       ...acc,
@@ -77,7 +63,6 @@ export const buildSearchScoreToSortingIndex = () => {
     };
   }, {});
 
-  
   delete indexMap['0'];
 
   return indexMap;
@@ -105,8 +90,6 @@ export const getSearchScore = (searchQuery: string, { metadata: { label, symbol,
       ? SEARCH_SCORE_CONFIG.label.wordStartsWith
       : 0;
 
-  
-  
   const tokenListScore =
     symbolScore + labelScore > 0 && reputation?.whitelists && reputation?.whitelists.includes('Kraken') ? SEARCH_SCORE_CONFIG.tokenList.kraken : 0;
 

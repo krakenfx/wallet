@@ -19,11 +19,7 @@ const AddressQRCode = ({ style, value, isLogoRendered = true, logoSize = 90, siz
     <View style={[styles.qrCodeContainer, { borderColor: colors.light100 }, style]} testID="ReceiveAddressQRCodeContainer">
       <QRCode
         value={value}
-        {...(isLogoRendered
-          ? {
-              
-            }
-          : {})}
+        {...(isLogoRendered ? {} : {})}
         size={size}
         logoSize={logoSize}
         color={colors.background}

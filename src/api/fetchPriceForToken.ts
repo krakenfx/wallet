@@ -6,7 +6,6 @@ import { getHarmony } from './base/apiFactory';
 const getEmptyResponse = (assetId: string) => {
   const fiatValue: TokenPrice['fiatValue'] = {};
 
-  
   Object.values(Currency).forEach(currency => {
     fiatValue[currency] = { value: '0', source: 'none' } as FiatValue;
   });

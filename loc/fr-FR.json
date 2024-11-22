@@ -44,7 +44,7 @@
       "advanced_info": "Informations avancées",
       "connected_apps": "Applications connectées",
       "delete": "Supprimer",
-      "edit": "Modifier"
+      "edit": "Personnaliser"
     },
     "walletDelete": {
       "error": "Le portefeuille n’a pas été supprimé, veuillez réessayer",
@@ -136,6 +136,7 @@
     "to": "Vers",
     "typed_message_signing_request": "Demande de signature {type}",
     "typedMessageSigningRequest": "Demande de signature {type}",
+    "unknownApp": "Application inconnue",
     "withdrawal": "Retrait"
   },
   "assetOptions": {
@@ -146,6 +147,12 @@
     "send": "Envoyer",
     "viewDetails": "Voir les détails",
     "viewOn": "Afficher sur {explorer}"
+  },
+  "avaxLineaWelcoming": {
+    "buttonText": "Cela me semble bien",
+    "part1": "Votre portefeuille prend désormais en charge Avalanche, la blockchain hautement évolutive offrant une finalité ultra-rapide, et Linea, l’Ethereum L2 conçu pour des transactions sécurisées et peu coûteuses.",
+    "part2": "Grâce à ces nouvelles intégrations, vous pouvez consulter les soldes d’actifs, diffuser des transactions, collectionner des NFT, surveiller les positions DeFi et vous connecter à des DApp sur les deux réseaux.",
+    "title": "Avalanche et Linea sont maintenant disponibles !"
   },
   "backupWallet": {
     "backup": "Sauvegarder",
@@ -439,8 +446,11 @@
   },
   "explore": {
     "continueAccessibilityHint": "Accepter l’avis de non-responsabilité et continuer",
-    "disclaimerBody": "Le fait d’appuyer sur les applications décentralisées dans cette section vous redirigera vers des URL externes, et vous devez toujours procéder à vos propres vérifications.",
-    "disclaimerTitle": "Faites preuve de prudence"
+    "disclaimerBody": "Veuillez noter que cette fonctionnalité contient du contenu fourni par des tierces parties. Référez-vous aux conditions pertinentes des Conditions de service.",
+    "disclaimerTitle": "Bienvenue sur Explore !",
+    "errorBody": "L’application n’a pas pu charger le contenu de cette page. Réessayez plus tard",
+    "errorTitle": "Une erreur est survenue.",
+    "rewardPrefix": "Gains"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -616,7 +626,7 @@
     "assets": "Actifs",
     "collection": "NFT",
     "collection_see_all": "Afficher tout",
-    "deposits": "Dépôts",
+    "deposits": "DeFi",
     "manage": "Gérer",
     "total_balance": "Solde"
   },
@@ -701,6 +711,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
     "ethereum_sepolia": "Ethereum - Testnet Sepolia",
+    "ink_sepolia": "Ink - Sepolia testnet",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -928,11 +939,16 @@
       "title": "Recherche de sous-portefeuilles"
     },
     "importSubWallets": {
+      "hasABalance": "Dispose d’un solde",
+      "hasBalance": "Contient des fonds",
+      "importingWallets": "Importation de {subWalletsCount} portefeuilles…",
+      "importingWalletsOne": "Importation de 1 portefeuille…",
       "importWallets": "Importer {subWalletsCount} portefeuilles",
       "importWalletsOne": "Importer 1 portefeuille",
       "subtitle": "Nous avons trouvé {subWalletsCount} portefeuilles présentant une activité ou un solde. Sélectionnez tous les portefeuilles que vous souhaitez importer.",
       "subtitleOneWallet": "Nous avons trouvé 1 portefeuille présentant une activité ou un solde.",
       "title": "Sélectionnez les portefeuilles à importer",
+      "wallet": "Portefeuille",
       "walletsFound": "{subWalletsCount} portefeuilles trouvés",
       "walletsFoundOne": "1 portefeuille trouvé"
     },
@@ -982,7 +998,7 @@
     "appConnectMediumWarning": "L’application qui envoie la demande ne peut pas être vérifiée.",
     "appFlagged": "Application signalée !",
     "appSafetyNotVerified": "Sécurité de l’application non vérifiée",
-    "appSafetyNotVerifiedMessage": "Nous n’avons pas pu vérifier la sécurité de l’application à laquelle vous essayez de vous connecter. Veuillez faire preuve de prudence.",
+    "appSafetyNotVerifiedMessage": "Nous n’avons pas pu vérifier la sécurité de l’application à laquelle vous essayez de vous connecter en raison d’une erreur temporaire ou d’une panne de notre service de vérification des applications. Veuillez faire preuve de prudence.",
     "appSignMessageCriticalWarning": "Nous pensons que cette application est malveillante et qu’il serait dangereux de signer le message. L’approbation peut entraîner une perte de fonds.",
     "appSignMessageMediumWarning": "L’application qui envoie la demande ne peut pas être vérifiée.",
     "appSignTransactionCriticalWarning": "Nous pensons que cette application est malveillante et qu’il serait dangereux de signer la transaction. L’approbation peut entraîner une perte de fonds.",
@@ -1003,6 +1019,7 @@
     "knownSecurityRiskInfo": "Ce site Web est signalé comme dangereux par plusieurs fournisseurs de solutions de sécurité. Pour protéger vos actifs, ne vous y connectez PAS.",
     "knownSecurityRiskMessage": "Ce site Web est signalé comme dangereux par plusieurs fournisseurs de solutions de sécurité. Quittez immédiatement ce site pour éviter que vos actifs ne soient retirés",
     "messageFlagged": "Message signalé !",
+    "punycodeDomainRiskMessage": "L’adresse de ce site Web contient des caractères non standards. Cette technique est communément utilisée par les escrocs pour se faire passer pour des sites Web légitimes. Pour votre sécurité, il est recommandé de ne pas saisir de données sensibles et de ne pas vos rendre sur ce site Web.",
     "returnToSafety": "Revenir en lieu sûr",
     "signTransactionCriticalWarning": "Nous pensons que cette transaction est malveillante et qu’il serait dangereux de la signer. L’approbation peut entraîner une perte de fonds.",
     "transactionFlagged": "Transaction signalée !",
@@ -1271,6 +1288,10 @@
     "amountPlaceholder": "Saisir le montant",
     "balance": "Solde {0}",
     "buttonTitle": "Échanger",
+    "confirmation": {
+      "cancel": "Annuler",
+      "confirm": "Confirmer"
+    },
     "emptyState": {
       "assetsEmptyDesc": "Actuellement, votre portefeuille ne contient aucun actif, essayez d’en déposer dans votre portefeuille",
       "assetsEmptyTitle": "Aucun actif disponible",
@@ -1285,6 +1306,56 @@
       "swappableAssetsEmptyTitle": "Aucun actif à échanger disponible"
     },
     "findingBestRote": "Recherche du meilleur itinéraire",
+    "route": {
+      "bridgeCost": {
+        "hint": "Les frais de pont sont des frais facturés par le fournisseur d’échange pour le transfert d’actifs entre différentes blockchains au cours de l’échange.",
+        "title": "Frais de pont"
+      },
+      "krakenFee": {
+        "hint": "Kraken Wallet ne facture aucuns frais pour les échanges. Nous proposons ce service gratuitement pour soutenir l’adoption de la technologie crypto et de la blockchain.",
+        "title": "Frais Kraken",
+        "value": "GRATUIT"
+      },
+      "minumumOutput": {
+        "hint": "En cas de glissement, il s’agit du montant minimum de l’actif cible que vous recevrez lorsque la transaction aboutira.",
+        "title": "Sortie minimum"
+      },
+      "networkFee": {
+        "hint": "Les frais de réseau sont des frais payés aux validateurs de blockchain pour le traitement et la confirmation de votre transaction.",
+        "title": "Frais de réseau"
+      },
+      "priceImpact": {
+        "hint": "L’impact sur le prix est la différence entre le prix du marché et le prix de l’échange. Il dépend de la taille de votre transaction par rapport à la liquidité du pool.",
+        "title": "Impact sur le prix"
+      },
+      "rate": "Taux",
+      "slippage": {
+        "hint": "Le glissement correspond à la différence entre le prix attendu et le prix final d’un actif. Si le prix évolue défavorablement au-delà de la tolérance de glissement fixée, la transaction sera annulée.",
+        "title": "Glissement"
+      },
+      "swapRate": "Taux de l’échange",
+      "transactionFees": "Frais de transaction",
+      "typeSelection": {
+        "bestValue": {
+          "desc": "Meilleure valeur globale",
+          "name": "Meilleure valeur"
+        },
+        "fastest": {
+          "desc": "Vitesse de transaction la plus rapide",
+          "name": "Échange le plus rapide"
+        },
+        "title": "Trouver un itinéraire d’échange avec"
+      },
+      "unsupportedRoute": {
+        "desc": "Vous pouvez essayer d’échanger votre actif contre un token majeur de la liste disponible, puis effectuer un échange séparé pour obtenir l’actif qui vous intéresse. La réussite de cette approche n’est pas garantie.",
+        "title": "Il n’y a pas d’itinéraire disponible pour la transaction que vous avez saisie."
+      }
+    },
+    "routePath": {
+      "bridge": "Bridge via {name}",
+      "swap": "Échange via {name}",
+      "title": "Itinéraire d’échange"
+    },
     "selectAsset": "Sélectionner un actif",
     "sourceListHeader": "Vos actifs",
     "sourceSearchPlaceholder": "Sélectionner un actif à échanger",

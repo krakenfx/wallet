@@ -9,7 +9,6 @@ export const decodeQrCodeAddress = (data?: string): string | BIP21Data | undefin
     try {
       return decode(data);
     } catch (e) {
-      
       return data.replace(PREFIX_REGEX, '').replace(SUFFIX_REGEX, '');
     }
   }

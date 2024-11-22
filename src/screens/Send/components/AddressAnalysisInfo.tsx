@@ -1,6 +1,6 @@
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import React from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { CurvedTransition, FadeIn, FadeOut } from 'react-native-reanimated';
 

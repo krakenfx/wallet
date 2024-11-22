@@ -46,7 +46,6 @@ export interface SignTransactionRequest {
   dAppOrigin?: string;
 }
 
-
 export class Etherscan implements BlockExplorer {
   constructor(public host: string) {}
 
@@ -96,7 +95,7 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
   }) {
     this.label = config.label;
     this.blockExplorer = config.blockExplorer;
-    this.nativeTokenDecimals = 18; 
+    this.nativeTokenDecimals = 18;
     this.chainId = config.chainId;
     this.nativeTokenSymbol = config.nativeTokenSymbol;
     this.caipId = `eip155:${config.chainId}`;
@@ -139,7 +138,7 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
   async deriveAddress(data: WalletData) {
     const publicKeyBuffer = Buffer.from(data.extendedPublicKey);
     const publicKeyHash = keccak256(publicKeyBuffer);
-    const address = '0x' + publicKeyHash.slice(-40); 
+    const address = '0x' + publicKeyHash.slice(-40);
     return toChecksumAddress(address);
   }
 
@@ -228,12 +227,6 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
       /* eslint-disable-next-line no-empty */
     } catch (_: unknown) {}
 
-    
-    
-    
-    
-    
-
     let version = 'v1';
     if (typeof parsedData === 'object' && (parsedData.types || parsedData.primaryType || parsedData.domain)) {
       version = 'v4';
@@ -264,9 +257,6 @@ export class EVMHarmonyTransport extends HarmonyTransport<EthersTransactionReque
     const harmony = await this.getHarmony();
     const thisAddress = await network.deriveAddress(walletData);
 
-    
-    
-    
     const txPayload: EthersTransactionRequest = {
       to: transaction.to,
       from: transaction.from || thisAddress,
@@ -278,17 +268,10 @@ export class EVMHarmonyTransport extends HarmonyTransport<EthersTransactionReque
       nonce: transaction.nonce ? Number(transaction.nonce) : undefined,
     };
 
-    
-    
-    
-    
-    
     if (final) {
       setTransactionGasFee(txPayload, fee);
     }
 
-    
-    
     const { content } = await harmony.POST('/v1/simulate', {
       params: { query: { network: network.caipId } },
       body: {
@@ -301,7 +284,6 @@ export class EVMHarmonyTransport extends HarmonyTransport<EthersTransactionReque
       throw new Error('Unexpected simulation result');
     }
 
-    
     txPayload.nonce = txPayload.nonce ?? content.nonce;
     txPayload.gasLimit = txPayload.gasLimit ?? padGasLimit(content.gasUsed);
 
@@ -367,7 +349,7 @@ function setTransactionGasFee(tx: EthersTransactionRequest, fee: EVMFeeOption | 
   if (!fee) {
     return;
   }
-  if (fee.is1559 === true ) {
+  if (fee.is1559 === true) {
     tx.maxPriorityFeePerGas = fee.maxPriorityFeePerGas;
     tx.maxFeePerGas = fee.maxFeePerGas;
     tx.type = 2;
@@ -375,7 +357,6 @@ function setTransactionGasFee(tx: EthersTransactionRequest, fee: EVMFeeOption | 
     tx.gasPrice = fee.fee;
   }
 }
-
 
 export class EVMRPCTransport implements Transport<unknown, SignTransactionRequest, unknown, EVMNetwork, EVMFeeOption> {
   provider: JsonRpcProvider;
@@ -431,7 +412,6 @@ export class EVMRPCTransport implements Transport<unknown, SignTransactionReques
     throw new Error('Method not implemented.');
   }
 
-  
   async fetchTransactions(
     _network: EVMNetwork,
     _wallet: WalletData,
@@ -439,11 +419,9 @@ export class EVMRPCTransport implements Transport<unknown, SignTransactionReques
     _handle: (txs: Transaction[]) => Promise<boolean>,
   ): Promise<void> {}
 
-  
   async prepareTransaction(network: EVMNetwork, walletData: WalletData, state: unknown, transaction: SignTransactionRequest, fee?: EVMFeeOption) {
     const thisAddress = await network.deriveAddress(walletData);
 
-    
     const nonce = Number(transaction.nonce ?? (await this.provider.getTransactionCount(await network.deriveAddress(walletData))));
 
     const txPayload: EthersTransactionRequest = {
@@ -461,12 +439,10 @@ export class EVMRPCTransport implements Transport<unknown, SignTransactionReques
       throw new Error('Could not query latest block');
     }
 
-    
     if (!txPayload.gasLimit) {
       try {
         txPayload.gasLimit = await estimateGasWithPadding(txPayload, this.provider, latestBlock.gasLimit);
       } catch (e) {
-        
         console.error(e);
         throw new Error('unable to determine a gas limit');
       }
@@ -504,7 +480,7 @@ async function estimateTransactionCost(
     throw new Error('prepared tx object is missing gas limit');
   }
   let amount;
-  if (fee.is1559 === true ) {
+  if (fee.is1559 === true) {
     amount = BigInt(tx.data.gasLimit) * BigInt(fee.maxFeePerGas);
   } else {
     amount = BigInt(tx.data.gasLimit) * BigInt(fee.fee);
@@ -530,27 +506,19 @@ interface TypedDataTypes {
   [additionalProperties: string]: MessageTypeProperty[];
 }
 
-
 export async function estimateGasWithPadding(
   txPayload: EthersTransactionRequest,
   provider: JsonRpcProvider,
   latestBlockGasLimit: bigint,
   paddingFactor: number = 1.1,
 ): Promise<bigint> {
-  
-  
-  
   const payloadForEstimate = omit(txPayload, ['gasPrice', 'maxFeePerGas', 'maxPriorityFeePerGas', 'gasLimit']);
   const estimatedGas = await provider.estimateGas(payloadForEstimate);
 
-  
-  
   const adjustedBlockGasLimit = (latestBlockGasLimit * 90n) / 100n;
 
-  
   const paddedGas = padGasLimit(estimatedGas, paddingFactor);
 
-  
   if (adjustedBlockGasLimit > paddedGas) {
     return paddedGas;
   }
@@ -565,7 +533,6 @@ export async function estimateGasWithPadding(
 function padGasLimit(gas: bigint | number, paddingFactor: number = 1.1) {
   return (BigInt(gas) * BigInt(Math.round(paddingFactor * 100))) / 100n;
 }
-
 
 export function hexStr(data: BigNumberish | undefined) {
   if (data === undefined) {

@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientPanelFooter, GradientPanelHeader } from '@/components/GradientPanel';
@@ -32,6 +32,8 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
     ChainAgnostic.NETWORK_ARBITRUM,
     ChainAgnostic.NETWORK_OPTIMISM,
     ChainAgnostic.NETWORK_BASE,
+    ChainAgnostic.NETWORK_LINEA,
+    ChainAgnostic.NETWORK_AVALANCHE,
     ...(isNewNetworksEnabled ? NEW_EVM_NETWORKS : []),
   ];
 

@@ -1,20 +1,16 @@
-import type { ViewStyle } from 'react-native';
-
+import type React from 'react';
 import type { SharedValue } from 'react-native-reanimated';
 
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
 import Animated, { Easing, useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 
 interface Props {
   isExpanded: SharedValue<boolean>;
-  children: React.ReactElement | React.ReactElement[];
-  style?: ViewStyle;
+  children: React.ReactNode | undefined;
+  style?: StyleProp<ViewStyle>;
   duration?: number;
 }
-
-
 
 export function AccordionItem({ isExpanded, children, style, duration = 300 }: Props) {
   const height = useSharedValue(0);
@@ -46,8 +42,6 @@ const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
     position: 'absolute',
-    display: 'flex',
-    alignItems: 'center',
   },
   animatedView: {
     width: '100%',

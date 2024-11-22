@@ -1,6 +1,6 @@
+import type React from 'react';
 import type { AnimatedScrollViewProps } from 'react-native-reanimated';
 
-import React from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 

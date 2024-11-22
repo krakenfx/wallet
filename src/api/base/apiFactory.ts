@@ -18,7 +18,6 @@ import type { paths as groundcontrolPaths } from '/generated/groundcontrol';
 import type { paths as harmonyPaths } from '/generated/harmony';
 import { getIanaLanguage } from '/loc';
 
-
 class APIFetchError extends Error {
   constructor(
     readonly original: Error,
@@ -35,7 +34,6 @@ class APIFetchError extends Error {
     };
   }
 }
-
 
 export class APIResponseError extends Error {
   constructor(
@@ -64,19 +62,16 @@ function makeFetchAPI() {
     const url = request;
 
     const init = _init || {};
-    
-    
+
     const headers = new Headers(init.headers);
     init.headers = headers;
 
-    
     Object.entries(getHarmonyHeaders(url)).forEach(([key, value]) => {
       if (value) {
         headers.set(key, value);
       }
     });
 
-    
     if (url.indexOf('/pow/') === -1) {
       const apiKey = await getApiKey();
       headers.set('Authorization', apiKey);
@@ -89,7 +84,6 @@ function makeFetchAPI() {
     ).join('');
     headers.set('x-request-id', requestId);
 
-    
     headers.set('x-client-version', `${getVersion()}-${getBuildNumber()}`);
 
     try {
@@ -109,7 +103,6 @@ interface ClientOptions extends Omit<RequestInit, 'headers'> {
   bodySerializer?: BodySerializer<unknown>;
   headers?: HeadersOptions;
 }
-
 
 export default function createThrowingClient<Paths extends Record<string, PathItemObject>>(clientOptions: ClientOptions = {}) {
   const client = createClient<Paths>(clientOptions);
@@ -139,7 +132,6 @@ function getHarmonyHeaders(url: string) {
       };
     case url.startsWith('https://pp-wallet'): {
       return {
-        
         'CF-Access-Client-Id': HARMONY_CF_CLIENT_ID,
         'CF-Access-Client-Secret': HARMONY_CF_CLIENT_SECRET,
         'Accept-Language': getIanaLanguage(),
@@ -173,7 +165,6 @@ export async function getHarmony() {
           return;
         }
         if (typeof v === 'string') {
-          
           v = encodeURIComponent(v as string);
         }
         if (Array.isArray(v)) {

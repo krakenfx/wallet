@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import type React from 'react';
+
+import { useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { BlockScreenSheet } from '@/components/BlockScreen';
@@ -22,9 +24,9 @@ import type { DefinitionList, GenericMessage } from '/modules/wallet-connect/typ
 export interface WalletConnectSignRequest_GenericMessageParams {
   accountIdx: number;
   metadata: {
-    imageUrl: string;
-    name: string;
-    url: string;
+    imageUrl?: string;
+    name?: string;
+    url?: string;
   };
   genericMessage: GenericMessage;
   detailsContent: DefinitionList;
@@ -90,9 +92,9 @@ export const WalletConnectSignRequest_GenericMessageScreen = ({ route, navigatio
 
 interface PreviewProps {
   metadata: {
-    imageUrl: string;
-    name: string;
-    url: string;
+    imageUrl?: string;
+    name?: string;
+    url?: string;
   };
   warning?: Warning;
   genericMessage: GenericMessage;

@@ -54,23 +54,22 @@ export const useWalletsMutations = () => {
         });
         const account = realm.objectForPrimaryKey<RealmAccount>(REALM_TYPE_ACCOUNT, newWallet.accountIdx);
         if (account) {
-          
           account.wallets.push(wallet);
         }
-        
+
         realm.create<RealmToken>(REALM_TYPE_TOKEN, {
           id: `${wallet.id}:${wallet.nativeTokenCaipId}`,
           assetId: network.nativeTokenCaipId,
           walletId: wallet.id,
           balance: '0',
-          inGallery: newWallet.addToGallery ? 'manuallyAdded' : null, 
+          inGallery: newWallet.addToGallery ? 'manuallyAdded' : null,
           wallet,
           metadata: realm.create<RealmAssetMetadata>(
             REALM_TYPE_ASSET_METADATA,
             {
               assetId: wallet.nativeTokenCaipId,
               symbol: wallet.nativeTokenSymbol,
-              label: getWalletName(wallet.type), 
+              label: getWalletName(wallet.type),
               decimals: wallet.nativeTokenDecimals,
             },
             Realm.UpdateMode.Modified,
@@ -87,7 +86,6 @@ export const useWalletsMutations = () => {
     (walletType2delete: string) => {
       console.log('--- delete Wallet Type HOOK', walletType2delete);
       runInTransaction(() => {
-        
         const tokensToDelete = realm.objects(REALM_TYPE_TOKEN).filtered(`wallet.type = '${walletType2delete}'`);
         realm.delete(tokensToDelete);
         const defiToDelete = realm.objects(REALM_TYPE_DEFI).filtered(`wallet.type = '${walletType2delete}'`);
@@ -96,7 +94,7 @@ export const useWalletsMutations = () => {
         realm.delete(nftsToDelete);
         const transactionsToDelete = realm.objects(REALM_TYPE_WALLET_TRANSACTION).filtered(`wallet.type = '${walletType2delete}'`);
         realm.delete(transactionsToDelete);
-        
+
         const walletsToDelete = realm.objects(REALM_TYPE_WALLET).filtered(`type = '${walletType2delete}'`);
         realm.delete(walletsToDelete);
       });
@@ -112,7 +110,7 @@ export const useWalletsMutations = () => {
       const createWallets = async () => {
         runInTransaction(async () => {
           const existingAccounts = realm.objects<RealmAccount>(REALM_TYPE_ACCOUNT);
-          
+
           const walletsToAdd = [];
           for (const account of existingAccounts) {
             const existingWalletTypes = account.wallets.map(w => w.type);

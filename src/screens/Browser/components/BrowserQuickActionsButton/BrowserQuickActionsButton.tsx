@@ -1,5 +1,3 @@
-import { noop } from 'lodash';
-
 import { StyleSheet, View } from 'react-native';
 
 import Share from 'react-native-share';
@@ -10,10 +8,13 @@ import { SvgIcon } from '@/components/SvgIcon';
 
 import { useBrowserContext } from '../../context/BrowserContext';
 
+import { useConnectionContext } from '../../context/ConnectionContext';
+
 import loc from '/loc';
 
 export const BrowserQuickActionsButton = () => {
   const { url, onRefreshPage } = useBrowserContext();
+  const { isConnected, handleDisconnect } = useConnectionContext();
 
   const share = () => {
     if (!url) {
@@ -34,19 +35,16 @@ export const BrowserQuickActionsButton = () => {
       icon: 'share',
       onPress: share,
     },
-    {
-      title: loc.browser.quickActions.connectedApps,
-      icon: 'star',
-      onPress: noop,
-    },
-    
-    {
+  ];
+
+  if (isConnected) {
+    items.push({
       title: loc.browser.quickActions.disconnect,
       tintColor: 'red400',
       icon: 'plug-disconnected',
-      onPress: noop,
-    },
-  ];
+      onPress: handleDisconnect,
+    });
+  }
 
   return (
     <View style={styles.container}>

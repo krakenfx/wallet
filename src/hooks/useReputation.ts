@@ -16,7 +16,6 @@ export const getReputation = (assetMetadata?: AssetMetadata | null): REPUTATION 
   const isBlacklisted = (assetMetadata?.reputation?.blacklists ?? []).length > 0;
   const isWhitelisted = (assetMetadata?.reputation?.whitelists ?? []).length > 0;
 
-  
   return isBlacklisted ? REPUTATION.BLACKLISTED : isWhitelisted ? REPUTATION.WHITELISTED : REPUTATION.UNVERIFIED;
 };
 

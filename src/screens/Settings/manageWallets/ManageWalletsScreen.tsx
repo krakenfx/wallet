@@ -1,5 +1,5 @@
 import { noop } from 'lodash';
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Image, ScrollView, StyleSheet } from 'react-native';
 
 import { useAnimatedStyle, withTiming } from 'react-native-reanimated';

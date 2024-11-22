@@ -44,7 +44,7 @@
       "advanced_info": "Erweiterte Informationen",
       "connected_apps": "Verbundene Apps",
       "delete": "Entfernen",
-      "edit": "Bearbeiten"
+      "edit": "Anpassen"
     },
     "walletDelete": {
       "error": "Die Wallet wurde nicht entfernt, bitte versuche es erneut",
@@ -136,6 +136,7 @@
     "to": "Bis",
     "typed_message_signing_request": "Anfrage zur Unterzeichnung {type}",
     "typedMessageSigningRequest": "{type} Anfrage zur Unterzeichnung",
+    "unknownApp": "Unbekannte App",
     "withdrawal": "Auszahlung"
   },
   "assetOptions": {
@@ -146,6 +147,12 @@
     "send": "Senden",
     "viewDetails": "Details anzeigen",
     "viewOn": "Anzeigen auf {explorer}"
+  },
+  "avaxLineaWelcoming": {
+    "buttonText": "Hört sich gut an",
+    "part1": "Deine Wallet unterstützt nun Avalanche, die hochgradig skalierbare Blockchain mit extrem schneller Transaktionsgültigkeit, und Linea, die Ethereum L2 für sichere und kostengünstige Transaktionen.",
+    "part2": "Dank dieser neuen Integrationen kannst du dir nun Asset-Guthaben ansehen, Transaktionen übertragen, NFTs sammeln, DeFi-Positionen überwachen und dich in beiden Netzwerken mit DApps verbinden.",
+    "title": "Avalanche und Linea werden endlich unterstützt!"
   },
   "backupWallet": {
     "backup": "Absicherung",
@@ -439,8 +446,11 @@
   },
   "explore": {
     "continueAccessibilityHint": "Haftungsausschluss akzeptieren und fortfahren",
-    "disclaimerBody": "Wenn du in diesem Abschnitt auf DApps tippst, wirst du auf externe URLs weitergeleitet. Hierbei empfiehlt es sich, Vorsicht walten zu lassen.",
-    "disclaimerTitle": "Sei dort draußen vorsichtig"
+    "disclaimerBody": "Bitte beachte, dass dieses Feature Inhalte enthält, die von Dritten bereitgestellt werden. Weitere Informationen findest du in den entsprechenden Bestimmungen der Nutzungsbedingungen.",
+    "disclaimerTitle": "Willkommen bei Explore!",
+    "errorBody": "Der Inhalt dieser Seite konnte in der App nicht geladen werden. Versuche es später erneut",
+    "errorTitle": "Etwas ist schiefgelaufen",
+    "rewardPrefix": "Earn"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin XPUB",
@@ -616,7 +626,7 @@
     "assets": "Assets",
     "collection": "NFTs",
     "collection_see_all": "Alle ansehen",
-    "deposits": "Einzahlungen",
+    "deposits": "DeFi",
     "manage": "Verwalten",
     "total_balance": "Guthaben"
   },
@@ -701,6 +711,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – Goerli Testnet",
     "ethereum_sepolia": "Ethereum – Sepolia Testnet",
+    "ink_sepolia": "Ink – Sepolia Testnet",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -928,11 +939,16 @@
       "title": "Suche nach untergeordneten Wallets läuft"
     },
     "importSubWallets": {
+      "hasABalance": "Hat ein Guthaben",
+      "hasBalance": "Enthält Mittel",
+      "importingWallets": "{subWalletsCount} Wallets werden importiert ...",
+      "importingWalletsOne": "1 Wallet wird importiert ...",
       "importWallets": "{subWalletsCount} Wallets importieren",
       "importWalletsOne": "1 Wallet importieren",
       "subtitle": "Wir haben {subWalletsCount} Wallets mit Aktivität oder Guthaben gefunden. Wähle alle Wallets aus, die du importieren möchtest.",
       "subtitleOneWallet": "Wir haben 1 Wallet mit Aktivität oder Guthaben gefunden.",
       "title": "Zu importierende Wallets auswählen",
+      "wallet": "Wallet",
       "walletsFound": "{subWalletsCount} Wallets gefunden",
       "walletsFoundOne": "1 Wallet gefunden"
     },
@@ -982,7 +998,7 @@
     "appConnectMediumWarning": "Die App, die die Anfrage sendet, kann nicht verifiziert werden.",
     "appFlagged": "App gemeldet!",
     "appSafetyNotVerified": "App-Sicherheit nicht verifiziert",
-    "appSafetyNotVerifiedMessage": "Wir konnten die Sicherheit der App, mit der du eine Verbindung herstellen möchtest, nicht verifizieren. Sei bitte vorsichtig.",
+    "appSafetyNotVerifiedMessage": "Wir konnten die Sicherheit der App, mit der du dich verbinden möchtest, nicht verifizieren. Grund dafür ist ein vorübergehender Fehler oder ein Systemausfall unseres Dienstes zur App-Verifizierung. Sei bitte vorsichtig.",
     "appSignMessageCriticalWarning": "Wir glauben, dass diese App bösartig ist und die Unterzeichnung der Nachricht nicht sicher ist. Eine Zustimmung kann zum Verlust von Mitteln führen.",
     "appSignMessageMediumWarning": "Die App, die die Anfrage sendet, kann nicht verifiziert werden.",
     "appSignTransactionCriticalWarning": "Wir glauben, dass diese App bösartig ist und die Unterzeichnung der Transaktion unsicher ist. Eine Zustimmung kann zum Verlust von Mitteln führen.",
@@ -1003,6 +1019,7 @@
     "knownSecurityRiskInfo": "Diese Website wird von mehreren Sicherheitsanbietern als unsicher eingestuft. Um deine Assets zu schützen, darfst du dich NICHT mit ihr verbinden.",
     "knownSecurityRiskMessage": "Diese Website wird von mehreren Sicherheitsanbietern als unsicher eingestuft. Verlasse sie sofort und schütze so deine Assets vor Diebstahl.",
     "messageFlagged": "Nachricht gemeldet!",
+    "punycodeDomainRiskMessage": "Die Adresse dieser Website enthält nicht standardisierte Zeichen. Es handelt sich dabei um eine verbreitete Methode, die von Betrügern verwendet wird, um sich als seriöse Website auszugeben. Zu deiner Sicherheit empfehlen wir dir, keine sensiblen Daten einzugeben und nicht weiter auf dieser Website zu verweilen.",
     "returnToSafety": "Zurück zum sicheren Bereich",
     "signTransactionCriticalWarning": "Wir glauben, dass diese Transaktion bösartig und die Unterzeichnung unsicher ist. Eine Zustimmung kann zum Verlust von Mitteln führen.",
     "transactionFlagged": "Transaktion gemeldet!",
@@ -1271,6 +1288,10 @@
     "amountPlaceholder": "Gib den Betrag ein",
     "balance": "Guthaben {0}",
     "buttonTitle": "Swap",
+    "confirmation": {
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen"
+    },
     "emptyState": {
       "assetsEmptyDesc": "Es gibt keine Assets auf deiner aktuellen Wallet, bitte lade deine Wallet auf",
       "assetsEmptyTitle": "Keine Assets verfügbar",
@@ -1285,6 +1306,56 @@
       "swappableAssetsEmptyTitle": "Keine Swap-fähigen Assets verfügbar"
     },
     "findingBestRote": "Bester Weg wird gesucht",
+    "route": {
+      "bridgeCost": {
+        "hint": "Bridge-Kosten sind Gebühren, die vom Swap-Anbieter erhoben werden, damit während des Swaps Assets zwischen verschiedenen Blockchains übertragen werden.",
+        "title": "Bridge-Kosten"
+      },
+      "krakenFee": {
+        "hint": "Bei Kraken Wallet werden keine Gebühren für Swaps fällig. Wir bieten diesen Service kostenlos an, um die Akzeptanz von Krypto und Blockchain-Technologie zu fördern.",
+        "title": "Kraken Gebühr",
+        "value": "KOSTENLOS"
+      },
+      "minumumOutput": {
+        "hint": "Wenn es zu Slippage kommt, ist dies der Mindestbetrag des Zielassets, den du erhältst, wenn die Transaktion erfolgreich vonstattengeht.",
+        "title": "Minimaler Output"
+      },
+      "networkFee": {
+        "hint": "Eine Netzwerkgebühr wird an Netzwerk-Validatoren gezahlt, damit deine Transaktionen verarbeitet und bestätigt werden.",
+        "title": "Netzwerkgebühr"
+      },
+      "priceImpact": {
+        "hint": "Die Preisauswirkung ist der Unterschied zwischen dem Marktpreis und dem Swap-Preis. Sie ist abhängig vom Umfang deines Trades im Verhältnis zur Liquidität im Pool.",
+        "title": "Preisauswirkung"
+      },
+      "rate": "Kurs",
+      "slippage": {
+        "hint": "Slippage ist die Differenz zwischen dem erwarteten Preis und dem endgültigen Preis eines Assets. Wenn der Preis sich zu deinen Ungunsten über die festgelegte Slippage-Toleranz hinaus ändert, wird die Transaktion abgebrochen.",
+        "title": "Slippage"
+      },
+      "swapRate": "Swap-Kurs",
+      "transactionFees": "Transaktionsgebühren",
+      "typeSelection": {
+        "bestValue": {
+          "desc": "Bester Gesamtwert",
+          "name": "Bester Wert"
+        },
+        "fastest": {
+          "desc": "Höchste Transaktionsgeschwindigkeit",
+          "name": "Schnellster Swap"
+        },
+        "title": "Finde eine Swap-Route mit"
+      },
+      "unsupportedRoute": {
+        "desc": "Du kannst versuchen, dein Asset mit einem verfügbaren großen Token zu swappen, und dann einen separaten Swap vornehmen, um dein gewünschtes Asset zu erhalten. Diese Herangehensweise funktioniert nicht immer.",
+        "title": "Für deine eingegebene Transaktion sind keine verfügbaren Routen vorhanden."
+      }
+    },
+    "routePath": {
+      "bridge": "Bridge mit {name}",
+      "swap": "Swap mit {name}",
+      "title": "Swap-Route"
+    },
     "selectAsset": "Asset auswählen",
     "sourceListHeader": "Deine Assets",
     "sourceSearchPlaceholder": "Asset für den Swap auswählen",

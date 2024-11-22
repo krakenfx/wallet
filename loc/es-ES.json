@@ -44,7 +44,7 @@
       "advanced_info": "Información avanzada",
       "connected_apps": "Aplicaciones conectadas",
       "delete": "Eliminar",
-      "edit": "Editar"
+      "edit": "Personalizar"
     },
     "walletDelete": {
       "error": "No se ha eliminado el monedero. Inténtalo de nuevo",
@@ -136,6 +136,7 @@
     "to": "A",
     "typed_message_signing_request": "{type} Solicitud de firma",
     "typedMessageSigningRequest": "{type} Solicitud de firma",
+    "unknownApp": "Aplicación desconocida",
     "withdrawal": "Retiro"
   },
   "assetOptions": {
@@ -146,6 +147,12 @@
     "send": "Enviar",
     "viewDetails": "Ver detalles",
     "viewOn": "Ver en {explorer}"
+  },
+  "avaxLineaWelcoming": {
+    "buttonText": "Me gusta",
+    "part1": "Tu monedero ahora es compatible con Avalanche, la blockchain altamente escalable con una finalidad ultrarrápida, y Linea, la L2 de Ethereum diseñada para transacciones seguras y de bajo coste.",
+    "part2": "Con estas nuevas integraciones, puedes ver balances de activos, emitir transacciones, cobrar NFT, supervisar posiciones DeFi y conectarte a aplicaciones descentralizadas en ambas redes.",
+    "title": "¡Ya ha llegado la Atención al cliente de Avalanche y Linea!"
   },
   "backupWallet": {
     "backup": "Respaldar",
@@ -439,8 +446,11 @@
   },
   "explore": {
     "continueAccessibilityHint": "Aceptar el aviso legal y continuar",
-    "disclaimerBody": "Al pulsar sobre las DApp en esta sección, accederás a URL externas y siempre debes hacer tus propias comprobaciones.",
-    "disclaimerTitle": "Ten cuidado"
+    "disclaimerBody": "Ten en cuenta que esta función incluye contenidos proporcionados por terceros. Consulta las condiciones pertinentes de los Términos de servicio.",
+    "disclaimerTitle": "Te damos la bienvenida a Explorar",
+    "errorBody": "La aplicación no ha podido cargar el contenido de esta página. Inténtelo de nuevo más tarde",
+    "errorTitle": "Algo salió mal",
+    "rewardPrefix": "Ganar"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "xPub de Bitcoin",
@@ -616,7 +626,7 @@
     "assets": "Activos",
     "collection": "NFT",
     "collection_see_all": "Ver todo",
-    "deposits": "Depósitos",
+    "deposits": "DeFi",
     "manage": "Gestionar",
     "total_balance": "Balance"
   },
@@ -701,6 +711,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
     "ethereum_sepolia": "Ethereum - Testnet de Sepolia",
+    "ink_sepolia": "Ink - Sepolia testnet",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -928,11 +939,16 @@
       "title": "Buscando submonederos"
     },
     "importSubWallets": {
+      "hasABalance": "Tiene un balance",
+      "hasBalance": "Contiene fondos",
+      "importingWallets": "Importando {subWalletsCount} monederos...",
+      "importingWalletsOne": "Importando 1 monedero...",
       "importWallets": "Importar {subWalletsCount} monederos",
       "importWalletsOne": "Importar 1 monedero",
       "subtitle": "Hemos encontrado {subWalletsCount} monederos con actividad o balances. Selecciona los monederos que quieras importar.",
       "subtitleOneWallet": "Hemos encontrado 1 monederos con actividad o balances.",
       "title": "Selecciona los monederos que importar",
+      "wallet": "Monedero",
       "walletsFound": "{subWalletsCount} monederos encontrados",
       "walletsFoundOne": "1 monedero encontrado"
     },
@@ -982,7 +998,7 @@
     "appConnectMediumWarning": "No se puede verificar la aplicación que ha enviado la solicitud.",
     "appFlagged": "¡Aplicación sospechosa!",
     "appSafetyNotVerified": "No se ha verificado la seguridad de la aplicación",
-    "appSafetyNotVerifiedMessage": "No hemos podido verificar la seguridad de la aplicación a la que intentas conectarte. Procede con precaución.",
+    "appSafetyNotVerifiedMessage": "No hemos podido verificar la seguridad de la aplicación a la que intentas conectarte debido a un error temporal o a una interrupción de nuestro servicio de verificación de aplicaciones. Procede con precaución.",
     "appSignMessageCriticalWarning": "Creemos que esta aplicación es maliciosa y no es seguro firmar el mensaje. La aprobación puede conllevar la pérdida de fondos.",
     "appSignMessageMediumWarning": "No se puede verificar la aplicación que ha enviado la solicitud.",
     "appSignTransactionCriticalWarning": "Creemos que esta aplicación es maliciosa y no es seguro firmar la transacción. La aprobación puede conllevar la pérdida de fondos.",
@@ -1003,6 +1019,7 @@
     "knownSecurityRiskInfo": "Varios proveedores de seguridad clasifican esta web como no segura. Para proteger tus activos, NO te conectes a ella.",
     "knownSecurityRiskMessage": "Varios proveedores de seguridad clasifican esta web como no segura. Sal inmediatamente para evitar que vacíen tus activos",
     "messageFlagged": "¡Mensaje sospechoso!",
+    "punycodeDomainRiskMessage": "La dirección de este sitio web contiene caracteres no estándar. Se trata de una técnica habitual utilizada por los estafadores para hacerse pasar por sitios web legítimos. Por tu seguridad, te recomendamos que no introduzcas información confidencial ni continúes en este sitio web.",
     "returnToSafety": "Regresar por seguridad",
     "signTransactionCriticalWarning": "Creemos que esta transacción es maliciosa y no es seguro firmar. La aprobación puede conllevar la pérdida de fondos.",
     "transactionFlagged": "¡Transacción sospechosa!",
@@ -1271,6 +1288,10 @@
     "amountPlaceholder": "Introduzca un importe",
     "balance": "Balance {0}",
     "buttonTitle": "Swap",
+    "confirmation": {
+      "cancel": "Cancelar",
+      "confirm": "Confirmar"
+    },
     "emptyState": {
       "assetsEmptyDesc": "Tu monedero actual no incluye ningún activo, trata de ingresar fondos.",
       "assetsEmptyTitle": "No hay activos disponibles.",
@@ -1285,6 +1306,56 @@
       "swappableAssetsEmptyTitle": "No hay activos intercambiables disponibles"
     },
     "findingBestRote": "Buscando mejor ruta",
+    "route": {
+      "bridgeCost": {
+        "hint": "Un coste de puente es una comisión que aplica el proveedor del swap por transferir activos entre diferentes blockchains durante el swap.",
+        "title": "Coste de puente"
+      },
+      "krakenFee": {
+        "hint": "Kraken Wallet no cobra ninguna comisión por los swaps. Ofrecemos este servicio de forma gratuita para apoyar la adopción de la tecnología de criptomonedas y blockchain.",
+        "title": "Tarifa de Kraken",
+        "value": "GRATIS"
+      },
+      "minumumOutput": {
+        "hint": "Si se produce un deslizamiento, es la cantidad mínima del activo fijo que recibirá cuando la operación se realice.",
+        "title": "Cantidad mínima de salida"
+      },
+      "networkFee": {
+        "hint": "Una comisión de red es un cargo que se paga a los validadores de la blockchain por procesar y confirmar tu transacción.",
+        "title": "Tarifa de red"
+      },
+      "priceImpact": {
+        "hint": "El impacto del precio es la diferencia entre el precio de mercado y el precio del swap. Depende del tamaño de tu operación en relación con la liquidez del pool.",
+        "title": "Impacto del precio"
+      },
+      "rate": "Tarifa",
+      "slippage": {
+        "hint": "El deslizamiento es la diferencia entre el precio previsto y el precio final de un activo. Si el precio cambia desfavorablemente por encima de la tolerancia de deslizamiento establecida, la operación se cancelará.",
+        "title": "Deslizamiento"
+      },
+      "swapRate": "Tarifa de swap",
+      "transactionFees": "Tarifas por transacción",
+      "typeSelection": {
+        "bestValue": {
+          "desc": "Mejor valor global",
+          "name": "Mejor valor"
+        },
+        "fastest": {
+          "desc": "Mayor velocidad de transacción",
+          "name": "Swap más rápido"
+        },
+        "title": "Encontrar la ruta de swap con"
+      },
+      "unsupportedRoute": {
+        "desc": "Puedes intentar intercambiar tu activo por un token mayor de la lista disponible, y, a continuación, realizar un intercambio por separado para obtener el activo que deseas. El éxito de este enfoque no está garantizado.",
+        "title": "No hay rutas disponibles para la transacción introducida."
+      }
+    },
+    "routePath": {
+      "bridge": "Puente a través de {name}",
+      "swap": "Intercambio a través de {name}",
+      "title": "Ruta de swap"
+    },
     "selectAsset": "Seleccionar activo",
     "sourceListHeader": "Tus activos",
     "sourceSearchPlaceholder": "Seleccionar activo que se desea intercambiar",

@@ -43,11 +43,9 @@ export const refreshTokenPrices = debounce(() => {
 const DELAY_REFRESH_TRANSACTION_FIRST_CALL = 3000;
 const DELAY_REFRESH_TRANSACTION_ADDITIONAL_CALL = 15000;
 export const refreshAllTransactions = debounce(() => {
-  
   setTimeout(() => refreshEmitter.emit(RefreshEmitter.refreshAllTransactions), DELAY_REFRESH_TRANSACTION_FIRST_CALL);
   setTimeout(() => refreshEmitter.emit(RefreshEmitter.refreshAllTransactions), DELAY_REFRESH_TRANSACTION_ADDITIONAL_CALL);
 }, DEBOUNCE_FETCH_TIME);
-
 
 export const useRegisterRefreshManager = () => {
   const { fetchTokenPrices } = useTokenPriceFetch();
@@ -90,7 +88,7 @@ const showRefreshDataUpToDate = async () =>
     hapticFeedbackOnShow: 'notificationSuccess',
     text: loc._.upToDate,
     testID: 'UpToDateToast',
-    duration: 1000, 
+    duration: 1000,
     blackListRoutes: [Routes.Onboarding, Routes.Browser],
   });
 
@@ -120,21 +118,17 @@ export const useRefreshStateActions = () => {
       setIsRefreshing(true);
       preventRefresh.current = true;
 
-      const fetchResults: boolean[] = []; 
+      const fetchResults: boolean[] = [];
       if (showToast === 'immediately') {
         await showRefreshLoading();
       } else if (showToast === 'delayed') {
         timeoutId.current = setTimeout(showRefreshLoading, REFRESH_TOAST_TIMEOUT);
       }
 
-      
       fetchAndUpdateNfts();
       fetchAndUpdateDefi();
       fetchAllTransactionsForAllNetworks();
-      
 
-      
-      
       fetchResults.push(await fetchAndUpdateTokens());
       fetchResults.push(await fetchTokenPrices());
 
@@ -147,7 +141,6 @@ export const useRefreshStateActions = () => {
       setIsRefreshing(false);
       preventRefresh.current = false;
 
-      
       if (!fetchResults.includes(false) && showToast !== 'none') {
         showRefreshDataUpToDate();
       }

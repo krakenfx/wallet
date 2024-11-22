@@ -17,7 +17,6 @@ const getAuthOptions = (hasBiometry: boolean): Keychain.Options =>
         storage: STORAGE_TYPE.AES,
       };
 
-
 export const setInKeychain = async (key: KeychainKey, password: string, withAppLock: boolean = false) => {
   const hasBiometry = await isSecureDevice();
   const biometricAuthOptions = withAppLock ? getAuthOptions(hasBiometry) : undefined;
@@ -31,7 +30,7 @@ export const setInKeychain = async (key: KeychainKey, password: string, withAppL
   };
 
   if (hasBiometry) {
-    await Keychain.resetGenericPassword({ service: key }); 
+    await Keychain.resetGenericPassword({ service: key });
   }
   const savingResult = await Keychain.setGenericPassword(key, password, options);
 

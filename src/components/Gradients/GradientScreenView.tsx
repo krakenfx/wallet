@@ -1,7 +1,8 @@
+import type React from 'react';
 import type { ViewProps } from 'react-native';
 
 import { HeaderHeightContext } from '@react-navigation/elements';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useDeafultHeaderHeight } from '@/hooks/useDefaultHeaderHeight';
@@ -12,7 +13,6 @@ interface Props extends ViewProps {
   insetHeaderHeight?: boolean;
   fallbackToDefaultHeader?: boolean;
 }
-
 
 export const GradientScreenView: React.FC<Props> = ({ children, insetHeaderHeight = true, fallbackToDefaultHeader, ...props }) => {
   const headerheight = useContext(HeaderHeightContext);

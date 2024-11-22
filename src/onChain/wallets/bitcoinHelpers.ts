@@ -5,18 +5,13 @@ import { Buffer } from 'buffer';
 
 import { multiGetHistoryByAddress, waitTillConnected } from '../blueElectrumModules/BlueElectrumTyped';
 
-
 export async function refreshSequence(startingIndex: number, getAddress: (c: number) => Promise<string>) {
   await waitTillConnected();
 
-  
-  
   const maxIndex = 1000;
 
-  
   const gapLimit = 20;
 
-  
   const generateChunkAddresses = async (chunkNum: number) => {
     const ret = [];
     for (let c = gapLimit * chunkNum; c < gapLimit * (chunkNum + 1); c++) {
@@ -28,16 +23,13 @@ export async function refreshSequence(startingIndex: number, getAddress: (c: num
   let lastChunkWithUsedAddressesNum: number | null = null;
   let lastHistoriesWithUsedAddresses = null;
 
-  
   for (let c = 0; c < Math.round(maxIndex / gapLimit); c++) {
     const histories = await multiGetHistoryByAddress(await generateChunkAddresses(c));
     const historiesFlat = flatMap(Object.values(histories));
     if (historiesFlat.length > 0) {
-      
       lastChunkWithUsedAddressesNum = c;
       lastHistoriesWithUsedAddresses = histories;
     } else {
-      
       break;
     }
   }
@@ -45,18 +37,16 @@ export async function refreshSequence(startingIndex: number, getAddress: (c: num
   let lastUsedIndex = 0;
 
   if (lastHistoriesWithUsedAddresses && lastChunkWithUsedAddressesNum !== null) {
-    
     for (let c = lastChunkWithUsedAddressesNum * gapLimit; c < lastChunkWithUsedAddressesNum * gapLimit + gapLimit; c++) {
       const address = await getAddress(c);
       if (lastHistoriesWithUsedAddresses[address] && lastHistoriesWithUsedAddresses[address].length > 0) {
-        lastUsedIndex = Math.max(c, lastUsedIndex) + 1; 
+        lastUsedIndex = Math.max(c, lastUsedIndex) + 1;
       }
     }
   }
 
   return lastUsedIndex;
 }
-
 
 export function parseSecret(newSecret: string) {
   let secret = newSecret.trim().replace('bitcoin:', '').replace('BITCOIN:', '');
@@ -69,7 +59,6 @@ export function parseSecret(newSecret: string) {
     secret = secret.toLowerCase();
   }
 
-  
   const re = /\[([^\]]+)\](.*)/;
   const m = secret.match(re);
   if (m && m.length === 3) {
@@ -87,7 +76,7 @@ export function parseSecret(newSecret: string) {
 
   try {
     let parsedSecret;
-    
+
     if (secret.trim().length > 0) {
       try {
         parsedSecret = JSON.parse(secret);
@@ -99,7 +88,6 @@ export function parseSecret(newSecret: string) {
     }
     if (parsedSecret && parsedSecret.keystore && parsedSecret.keystore.xpub) {
       if (parsedSecret.keystore.ckcc_xfp) {
-        
         masterFingerprint = Number(parsedSecret.keystore.ckcc_xfp);
       } else if (parsedSecret.keystore.root_fingerprint) {
         masterFingerprint = Number(parsedSecret.keystore.root_fingerprint);
@@ -116,7 +104,7 @@ export function parseSecret(newSecret: string) {
         use_with_hardware_wallet = true;
       }
     }
-    
+
     if (parsedSecret && parsedSecret.ExtPubKey && parsedSecret.MasterFingerprint && parsedSecret.AccountKeyPath) {
       secret = parsedSecret.ExtPubKey;
       const mfp = Buffer.from(parsedSecret.MasterFingerprint, 'hex').reverse().toString('hex');
@@ -131,11 +119,11 @@ export function parseSecret(newSecret: string) {
 
   if (!_derivationPath) {
     if (secret.startsWith('xpub')) {
-      _derivationPath = "m/44'/0'/0'"; 
+      _derivationPath = "m/44'/0'/0'";
     } else if (secret.startsWith('ypub')) {
-      _derivationPath = "m/49'/0'/0'"; 
+      _derivationPath = "m/49'/0'/0'";
     } else if (secret.startsWith('zpub')) {
-      _derivationPath = "m/84'/0'/0'"; 
+      _derivationPath = "m/84'/0'/0'";
     }
   }
 
@@ -147,7 +135,6 @@ export function parseSecret(newSecret: string) {
     use_with_hardware_wallet,
   };
 }
-
 
 export const XPUB_PREFIX = '0488b21e';
 

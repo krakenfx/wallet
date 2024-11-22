@@ -1,9 +1,9 @@
+import type React from 'react';
 import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
 
 import type { SharedValue } from 'react-native-reanimated';
 
 import { BottomSheetFooter } from '@gorhom/bottom-sheet';
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Animated, { Extrapolate, interpolate, useAnimatedStyle } from 'react-native-reanimated';
@@ -56,7 +56,6 @@ export const ExpandableSheetFooter: React.FC<Props<Record<string, never>>> = ({
     onLayout(e.nativeEvent.layout);
   };
 
-  
   const containerStyle = useAnimatedStyle(() => {
     const firstSnap = snapPoints.value[0];
     if (typeof firstSnap !== 'number') {

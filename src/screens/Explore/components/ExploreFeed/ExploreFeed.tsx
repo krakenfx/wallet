@@ -1,4 +1,3 @@
-import React from 'react';
 import { View } from 'react-native';
 
 import type { ExploreContentRow } from '@/api/types';
@@ -15,11 +14,7 @@ export const ExploreFeed = ({ feedData, loaded }: ExploreFeedProps) => {
   return (
     <View>
       {loaded && feedData.length > 0
-        ? feedData.map((content: ExploreContentRow, index: number) => (
-            <ExploreRow key={`${content.id}_${index}`} index={index}>
-              <ExploreContent data={content} />
-            </ExploreRow>
-          ))
+        ? feedData.map((content: ExploreContentRow, index: number) => <ExploreContent key={content.id} data={content} index={index} />)
         : skeletons.map((Skeleton, index) => (
             <ExploreRow key={`skeleton_${index}`} index={index}>
               <Skeleton />

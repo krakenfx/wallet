@@ -52,7 +52,10 @@ export async function getSignStructuredParamsFromTransaction({
     if (classifiedTransaction.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED) {
       return {
         type: TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED,
-        subtitle: loc.formatString(loc.appSignRequest.allowAccessDescription, { dappName: dappName || '', tokenSymbol: assetContent[0]?.assetSymbol ?? '' }),
+        subtitle: loc.formatString(loc.appSignRequest.allowAccessDescription, {
+          dappName: dappName ?? loc.appSignRequest.unknownApp,
+          tokenSymbol: assetContent[0]?.assetSymbol ?? '',
+        }),
         assetContent: [],
       };
     }
@@ -72,9 +75,9 @@ type Props = {
   dispatch: (action: ReturnType<typeof CommonActions.navigate>) => void;
   wallet: RealmWallet;
   metadata: {
-    imageUrl: string;
-    name: string;
-    url: string;
+    imageUrl?: string;
+    name?: string;
+    url?: string;
   };
   transactionTitle: string | string[];
   content: TransactionContent;

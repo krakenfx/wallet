@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 
 import { FlashList } from '@shopify/flash-list';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

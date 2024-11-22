@@ -2,7 +2,7 @@ import type { SectionListData } from 'react-native';
 
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
 import { capitalize } from 'lodash';
-import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AnimatedNumbers } from '@/components/AnimatedNumbers';

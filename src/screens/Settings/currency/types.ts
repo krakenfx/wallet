@@ -1,9 +1,6 @@
 import loc from '/loc';
 
 export enum Currency {
-  
-  
-  
   USD = 'USD',
   EUR = 'EUR',
   GBP = 'GBP',
@@ -11,8 +8,6 @@ export enum Currency {
   AUD = 'AUD',
   CHF = 'CHF',
   JPY = 'JPY',
-  
-  
 }
 
 export interface CurrencyInfo {
@@ -26,9 +21,6 @@ export interface CurrencyInfo {
 }
 
 const currencyInfoMap: Record<Currency, CurrencyInfo> = {
-  
-  
-  
   [Currency.USD]: {
     minimumFractionDigits: 2,
     nameKey: 'usDollar',
@@ -84,8 +76,6 @@ const currencyInfoMap: Record<Currency, CurrencyInfo> = {
     decimalSeparator: '.',
     groupSeparator: ',',
   },
-  
-  
 };
 
 export function getCurrencyInfo(currency: Currency): CurrencyInfo {
@@ -94,12 +84,6 @@ export function getCurrencyInfo(currency: Currency): CurrencyInfo {
 
 export function getLocalizedCurrencyName(currency: Currency): string {
   switch (currency) {
-    
-    
-    
-    
-    
-    
     case Currency.USD:
       return loc.currency.usDollar;
     case Currency.GBP:
@@ -114,10 +98,7 @@ export function getLocalizedCurrencyName(currency: Currency): string {
       return loc.currency.canadianDollar;
     case Currency.JPY:
       return loc.currency.japaneseYen;
-    
-    
-    
-    
+
     default:
       return getCurrencyInfo(currency).nameKey;
   }

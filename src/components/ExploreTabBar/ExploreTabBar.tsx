@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import { BlurView } from '@react-native-community/blur';
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 
 import Animated, { FadeInDown, FadeOutDown, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';

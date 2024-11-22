@@ -1,5 +1,5 @@
 import { noop } from 'lodash';
-import React from 'react';
+
 import { View } from 'react-native';
 
 import { FloatingBottomButtons } from './FloatingBottomButtons';

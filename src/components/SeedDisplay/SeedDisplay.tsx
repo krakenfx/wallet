@@ -1,7 +1,7 @@
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import { times } from 'lodash';
-import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector, ScrollView } from 'react-native-gesture-handler';
 import Animated, { FadeOut, runOnJS } from 'react-native-reanimated';

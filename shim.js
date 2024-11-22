@@ -1,8 +1,5 @@
-
 import 'react-native-get-random-values';
 import 'react-native-url-polyfill/auto';
-
-
 
 import '@walletconnect/react-native-compat';
 
@@ -28,14 +25,11 @@ if (typeof Buffer === 'undefined') {
   global.Buffer = require('buffer').Buffer;
 }
 
-
 const isDev = typeof __DEV__ === 'boolean' && __DEV__;
 process.env.NODE_ENV = isDev ? 'development' : 'production';
 if (typeof localStorage !== 'undefined') {
   localStorage.debug = isDev ? '*' : '';
 }
-
-
 
 require('crypto');
 

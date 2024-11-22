@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import type React from 'react';
+
+import { useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
 import type { TypographyKey } from '@/components/Label';
@@ -21,6 +23,7 @@ export type DropdownOptionItem<T> = {
 export type DropdownMenuProps<T> = {
   options: DropdownOptionItem<T>[];
   title?: string;
+  checkSelected?: boolean;
   selectedId: T;
   closeOnSelect?: boolean;
   labelLeftType?: TypographyKey;
@@ -31,6 +34,7 @@ export function DropdownMenu<T>({
   title,
   options,
   selectedId: initiallySelectedId,
+  checkSelected,
   labelLeftType,
   onSelect,
   closeOnSelect = true,
@@ -41,7 +45,7 @@ export function DropdownMenu<T>({
   const [selectedId, setSelectedId] = useState(initiallySelectedId);
 
   const renderTitle = () => (
-    <Label type="boldCaption1" style={styles.dropdownTitle} color="light50">
+    <Label type="mediumCaption1" style={styles.dropdownTitle} color="light50">
       {title}
     </Label>
   );
@@ -68,7 +72,7 @@ export function DropdownMenu<T>({
           onPress={() => {
             onItemSelected(item);
           }}>
-          {item.id === selectedId && <View style={[styles.dropDownHighlight, { backgroundColor: theme.colors.light15 }]} />}
+          {item.id === selectedId && <View style={[styles.dropDownHighlight, { backgroundColor: theme.colors.purple_40 }]} />}
           <View style={styles.left}>
             {item.icon && typeof item.icon === 'string' ? <SvgIcon name={item.icon} /> : item.icon}
             <Label type={labelLeftType}>{item.labelLeft}</Label>
@@ -80,6 +84,7 @@ export function DropdownMenu<T>({
           </View>
           <View style={styles.right}>
             {!!item.labelRight && <Label type="boldMonospace">{item.labelRight}</Label>}
+            {item.id === selectedId && checkSelected && <SvgIcon name="check-circle-filled" size={16} />}
             {!!item.labelBottomRight && (
               <Label type="regularCaption1" color="light50">
                 {item.labelBottomRight}
@@ -95,6 +100,7 @@ export function DropdownMenu<T>({
 const styles = StyleSheet.create({
   dropdownTitle: {
     marginBottom: 16,
+    marginLeft: 16,
   },
   dropdownItem: {
     flexDirection: 'row',

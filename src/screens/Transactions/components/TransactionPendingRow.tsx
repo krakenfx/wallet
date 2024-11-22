@@ -5,7 +5,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BigNumber from 'bignumber.js';
 import LottieView from 'lottie-react-native';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
@@ -44,17 +44,6 @@ interface Props {
 
 const DELAY_TIME_TO_REFRESH_ALL = 3000;
 
-
-
-
-
-
-
-
-
-
-
-
 export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed, onDisappear, containerStyle }) => {
   const tokenId = item.tokenId || contextTokenId;
   const token = useTokenById(tokenId);
@@ -72,26 +61,17 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
   const balancesHidden = useIsHideBalancesEnabled();
 
   const amountToShow = useMemo(() => {
-    
     if (isNft) {
       return fee ?? '0';
     }
 
-    
-    if (isNativeAssetView && kind === 'send' ) {
-      
-      
-      
-      
-
-      
+    if (isNativeAssetView && kind === 'send') {
       const tokenAmountAndNetworkFee =
         fee && amount ? (BigNumber(amount).isGreaterThan(0) ? BigNumber(amount).negated() : BigNumber(amount)).minus(BigNumber(fee)).toString(10) : '0';
 
       return tokenAmountAndNetworkFee;
     }
 
-    
     return amount ?? '0';
   }, [amount, fee, isNft, isNativeAssetView, kind]);
   const metadata = isNft
@@ -113,7 +93,6 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
   const tokenAmountWithSymbol = tokenAmount === '' ? '' : `${tokenAmount} ${metadata.symbol}`;
   const tokenDisplay = useBalanceDisplay(tokenAmountWithSymbol);
 
-  
   const detailsAmount = (isNft ? fee : amount) ?? '0';
 
   const detailsAmountFormatted = useMemo(() => {
@@ -134,7 +113,6 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
   );
   const detailsAmountInCurrencyFormatted = formatCurrency(detailsAmountInCurrency, { currency });
 
-  
   const networkFee = isBtc && item.fee ? smallUnit2TokenUnit(item.fee, metadata.decimals).toFixed() : item.fee;
 
   const transactionDetailsMetadata = useMemo(() => {

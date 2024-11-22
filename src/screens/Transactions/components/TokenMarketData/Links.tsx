@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
@@ -18,9 +17,7 @@ interface Props {
 
 type LinkIconName = Extract<IconName, `link-${string}`>;
 
-
 type Unlink<Str extends string> = Str extends `link-${infer Rest}` ? Rest : never;
-
 
 type UnlinkedIconName = Unlink<LinkIconName>;
 

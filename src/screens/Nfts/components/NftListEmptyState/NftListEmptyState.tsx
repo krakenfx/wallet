@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
@@ -39,7 +39,6 @@ const TEXT_CONTENT = {
 
 export const NftListEmptyState = ({ nftList, networkFilter }: NftListEmptyStateProps) => {
   const { heading, subheading } = useMemo(() => {
-    
     if (networkFilter.length === 1 && networkFilter.includes(NETWORK_FILTER.blast)) {
       return {
         heading: loc.nftList.everythingEmptyState.selectedNetworks.blastHeading,

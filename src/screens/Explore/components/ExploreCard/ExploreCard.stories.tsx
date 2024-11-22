@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ExploreAnimationContextProvider } from '../../context/ExploreAnimationContext';
 import { ExploreRow } from '../ExploreRow';
 

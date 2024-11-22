@@ -1,6 +1,8 @@
+import type React from 'react';
+
 import { useNavigationState } from '@react-navigation/native';
 import { defaults, isEqual, remove } from 'lodash';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { Easing, runOnJS, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import { FullWindowOverlay } from 'react-native-screens';
@@ -35,7 +37,7 @@ export const ToastManager: React.FC = () => {
   }, [currentProps, currentRouteName]);
 
   useEffect(() => {
-    const routeName = navigationState?.routes[navigationState.index ?? 0 ].name as Routes;
+    const routeName = navigationState?.routes[navigationState.index ?? 0].name as Routes;
     setCurrentRouteName(routeName);
   }, [navigationState]);
 
@@ -59,7 +61,6 @@ export const ToastManager: React.FC = () => {
     (newProps: ToastConfigProps) => {
       const mergedProps = defaults(newProps, defaultProps);
       if (currentProps) {
-        
         if (![...queue.current, currentProps].find(props => isEqual(props, mergedProps))) {
           queue.current.unshift(newProps);
         }
@@ -73,7 +74,6 @@ export const ToastManager: React.FC = () => {
           withTiming(ToastState.IN, { duration: 0 }, finished => {
             if (finished && !['onlyManual', 'event'].includes(mergedProps.dismissMode || '')) {
               if (mergedProps?.id) {
-                
                 runOnJS(removeToastByIdFromQueue)(mergedProps.id);
               }
               hideToast();
@@ -86,7 +86,6 @@ export const ToastManager: React.FC = () => {
   );
 
   useEffect(() => {
-    
     if (!currentProps) {
       const nextProps = queue.current?.pop();
       if (nextProps) {
@@ -121,7 +120,7 @@ export const ToastManager: React.FC = () => {
       if (currentProps?.id === id) {
         hideToast();
       }
-      
+
       removeToastByIdFromQueue(id);
     },
     [currentProps?.id, hideToast, removeToastByIdFromQueue],

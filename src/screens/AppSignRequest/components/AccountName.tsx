@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
@@ -22,6 +21,6 @@ const styles = StyleSheet.create({
     flexShrink: 2,
   },
   label: {
-    minWidth: 100, 
+    minWidth: 100,
   },
 });

@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { ExploreTabBar } from '@/components/ExploreTabBar';
 import { useGlobalState } from '@/components/GlobalState';
@@ -33,12 +33,12 @@ export const ExploreNavigator: FC = () => {
   const onWalletPress = useCallback(() => {
     navigation.navigate(Routes.Home);
     setShowNavTabs(true);
-  }, [navigation]);
+  }, [navigation, setShowNavTabs]);
 
   const onExplorePress = useCallback(() => {
     navigation.navigate(Routes.Explore);
     setShowNavTabs(true);
-  }, [navigation]);
+  }, [navigation, setShowNavTabs]);
 
   useEffect(() => {
     let unsubscribe;
@@ -51,9 +51,11 @@ export const ExploreNavigator: FC = () => {
   }, [navigation, isExploreEnabled]);
 
   useEffect(() => {
-    setCanShowNav(ALLOWED_ROUTES.map((s: string) => s).includes(currentRoute));
+    const isAllowed = ALLOWED_ROUTES.map((s: string) => s).includes(currentRoute);
+    setCanShowNav(isAllowed);
+    setShowNavTabs(isAllowed);
     setTabIndex(currentRoute === Routes.Explore ? 1 : 0);
-  }, [currentRoute]);
+  }, [currentRoute, setShowNavTabs]);
 
   if (!isExploreEnabled) {
     return null;

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import { DoubleRow } from '@/components/DoubleRow';
 import { TransactionAmount, TransactionAmountWithAppCurrency, TransactionNftPreview, TransactionPath } from '@/components/Transaction';
@@ -28,7 +28,6 @@ export const TransactionDetails: React.FC<TransactionDetailsProps> = ({ assetId 
   const { network } = getImplForWallet(transaction.wallet);
 
   switch (transactionDetailsMetadata.transactionType) {
-    
     case TRANSACTION_TYPES.NFT_BUY:
     case TRANSACTION_TYPES.NFT_MINT:
     case TRANSACTION_TYPES.NFT_SELL: {
@@ -82,8 +81,6 @@ export const TransactionDetails: React.FC<TransactionDetailsProps> = ({ assetId 
       );
     }
 
-    
-    
     case TRANSACTION_PENDING_TYPES.SEND:
     case TRANSACTION_PENDING_TYPES.RECEIVE: {
       if (transaction?.isValid()) {
@@ -91,7 +88,6 @@ export const TransactionDetails: React.FC<TransactionDetailsProps> = ({ assetId 
         const isReceive = transactionDetailsMetadata.transactionType === TRANSACTION_PENDING_TYPES.RECEIVE;
         const { from, to } = transactionDetailsMetadata.pendingMetadata ?? {};
 
-        
         return (
           <>
             {!transactionDetailsMetadata.isNft && (
@@ -129,7 +125,6 @@ export const TransactionDetails: React.FC<TransactionDetailsProps> = ({ assetId 
       return null;
     }
 
-    
     case TRANSACTION_TYPES.SEND:
     case TRANSACTION_TYPES.RECEIVE: {
       const { sender, recipient } = getAddressesFromParsedTransaction(parsedTransaction);
@@ -172,7 +167,6 @@ export const TransactionDetails: React.FC<TransactionDetailsProps> = ({ assetId 
         return null;
       }
 
-      
       const { sent, receive } = transactionDetailsMetadata.swapMetadata!;
       const { spent, receive: receive_ } = effect;
 
@@ -315,8 +309,6 @@ export const TransactionDetails: React.FC<TransactionDetailsProps> = ({ assetId 
       );
     }
 
-    
-    
     default: {
       return null;
     }

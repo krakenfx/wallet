@@ -43,7 +43,6 @@ export const useTokensFetch = () => {
     const accountWallets = getWalletsForMutations(realm);
     const results = await Promise.allSettled(
       accountWallets.map(async wallet => {
-        
         if (wallet.isValid()) {
           const { network, transport } = getImplForWallet(wallet);
           const walletStorage = await getWalletStorage(realm, wallet, true);
@@ -69,7 +68,6 @@ export const useTokensFetch = () => {
     return results.length === suceessResults.length;
   }, [getTokenMetadata, realm, runInTransaction, saveTokensToRealm]);
 
-  
   const fetchBalance = useCallback(
     async (wallet: RealmWallet, refreshState: boolean) => {
       const { network, transport } = getImplForWallet(wallet);

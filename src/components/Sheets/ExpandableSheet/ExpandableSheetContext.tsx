@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from 'react';
-
 import noop from 'lodash/noop';
-import React, { useContext } from 'react';
+import React, { type PropsWithChildren } from 'react';
+
+import { useContext } from 'react';
 
 import type { ExpandableSheetMethods } from './types';
 

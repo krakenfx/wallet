@@ -1,4 +1,6 @@
-import React, { useCallback } from 'react';
+import type React from 'react';
+
+import { useCallback } from 'react';
 
 import { Keyboard, StyleSheet } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
@@ -36,7 +38,7 @@ export const AmountPercentageSelector: React.FC<{ token: RealmToken }> = ({ toke
   const onSelect = useCallback(
     (o: PercentageOption) => {
       Keyboard.dismiss();
-      const balanceCut = new SuperBigNumber(token.balance).multipliedBy(o).toFixed(token.metadata.decimals);
+      const balanceCut = new SuperBigNumber(token.balance).multipliedBy(o).toFixed(0);
       const balanceCutInTokenUnit = unitConverter.smallUnit2TokenUnit(balanceCut, token.metadata.decimals);
       const amountFormatted = formatTokenAmount(balanceCutInTokenUnit.toString(10), {
         compact: true,

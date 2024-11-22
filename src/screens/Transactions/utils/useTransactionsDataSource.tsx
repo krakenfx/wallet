@@ -3,7 +3,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { startOfDay } from 'date-fns';
 import { groupBy } from 'lodash';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { FadeOut } from 'react-native-reanimated';
 
@@ -79,7 +79,6 @@ const getItemType = (item: TransactionListItem): string => {
   const txData = getTransactionMetadata(memoizedJSONParseTx(item.data));
   switch (txData.kind) {
     case 'simple': {
-      
       return omitNetworkIcons[txData.effect.assetId] ? 'simple_noicon' : 'simple';
     }
     default:

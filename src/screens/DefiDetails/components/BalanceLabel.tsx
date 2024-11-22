@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 
-import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Label } from '@/components/Label';

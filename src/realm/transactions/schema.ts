@@ -29,12 +29,12 @@ export const REALM_TYPE_WALLET_TRANSACTION = 'WalletTransaction';
 export const WalletTransactionsSchema: ObjectSchema = {
   name: REALM_TYPE_WALLET_TRANSACTION,
   properties: {
-    id: 'string', 
+    id: 'string',
     transactionId: 'string',
     walletId: 'string',
 
-    data: 'string', 
-    assetIds: 'string[]', 
+    data: 'string',
+    assetIds: 'string[]',
 
     time: 'int',
     fee: 'string?',
@@ -48,10 +48,6 @@ export const WalletTransactionsSchema: ObjectSchema = {
       objectType: REALM_TYPE_TRANSACTION_NOTES,
       optional: true,
     },
-
-    
-    
-    
   },
   primaryKey: 'id',
 };
@@ -68,8 +64,8 @@ export type PendingTransaction = {
   from?: string;
   to?: string;
   time?: number;
-  confirmed?: boolean; 
-  additionalStatus?: 'invalidated'; 
+  confirmed?: boolean;
+  additionalStatus?: 'invalidated';
 };
 
 export type RealmPendingTransaction = RealmTypeOf<
@@ -84,8 +80,8 @@ export const REALM_TYPE_PENDING_TRANSACTION = 'PendingTransaction';
 export const PendingTransactionsSchema: ObjectSchema = {
   name: REALM_TYPE_PENDING_TRANSACTION,
   properties: {
-    id: 'string', 
-    transactionId: 'string', 
+    id: 'string',
+    transactionId: 'string',
     walletId: 'string',
     wallet: {
       type: 'object',
@@ -99,12 +95,12 @@ export const PendingTransactionsSchema: ObjectSchema = {
     tokenId: 'string?',
     amount: 'string?',
     fee: 'string?',
-    kind: 'string', 
-    type: 'string', 
+    kind: 'string',
+    type: 'string',
     from: 'string?',
     to: 'string?',
     time: 'int?',
-    confirmed: 'bool?', 
+    confirmed: 'bool?',
     additionalStatus: 'string?',
   },
   primaryKey: 'id',

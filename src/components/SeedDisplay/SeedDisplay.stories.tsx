@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { RectangleView } from '@/utils/storybook';
@@ -22,7 +22,6 @@ const SeedDisplayMeta: Meta<typeof SeedDisplay> = {
 
     const onSeedReveal = async () => setShowSeed(true);
 
-    
     useEffect(() => {
       setShowSeed(isSeedVisible);
     }, [isSeedVisible]);

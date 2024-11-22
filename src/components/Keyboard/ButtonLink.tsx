@@ -1,6 +1,6 @@
 import type { TouchableOpacityProps } from 'react-native';
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 import { Label } from '@/components/Label';
 import { Touchable } from '@/components/Touchable';

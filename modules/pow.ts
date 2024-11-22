@@ -5,7 +5,6 @@ export async function solvePowChallenge(difficulty: number, challengeD: string):
   let attempts = 0;
   const t0 = Date.now();
 
-  
   /* eslint-disable-next-line no-constant-condition */
   while (true) {
     const solution = attempts.toString(16);

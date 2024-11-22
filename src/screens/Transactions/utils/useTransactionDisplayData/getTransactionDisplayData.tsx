@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 
 import BigNumber from 'bignumber.js';
-import React from 'react';
+
 import { StyleSheet } from 'react-native';
 
 import type { Transaction } from '@/api/types';
@@ -66,35 +66,22 @@ export const getTransactionDisplayData = ({
 
   switch (classifiedTx.kind) {
     case 'swap': {
-      
       icon = <SwapIcon sentAsset={txSwapSentMetadata} receivedAsset={txSwapReceiveMetadata} testID={`Icon-${testID}`} />;
 
-      
       if (isGlobalView) {
         displayAssetMetadata = txSwapReceiveMetadata;
         displayAssetId = classifiedTx.receive.assetId;
         displayAssetAmount = classifiedTx.receive.amount;
-      }
-
-      
-      else if (contextToken?.assetId === classifiedTx.sent.assetId) {
+      } else if (contextToken?.assetId === classifiedTx.sent.assetId) {
         isSwapSent = true;
         displayAssetMetadata = txSwapSentMetadata;
         displayAssetId = classifiedTx.sent.assetId;
         displayAssetAmount = classifiedTx.sent.amount;
-      }
-
-      
-      else if (contextToken?.assetId === classifiedTx.receive.assetId) {
+      } else if (contextToken?.assetId === classifiedTx.receive.assetId) {
         displayAssetMetadata = txSwapReceiveMetadata;
         displayAssetId = classifiedTx.receive.assetId;
         displayAssetAmount = classifiedTx.receive.amount;
-      }
-
-      
-      
-      
-      else {
+      } else {
         isNetworkFee = true;
         displayAssetMetadata = contextToken.metadata;
         displayAssetId = contextToken?.assetId;
@@ -114,7 +101,6 @@ export const getTransactionDisplayData = ({
       break;
     }
     case 'simple': {
-      
       const shouldShowNetworkFee =
         (classifiedTx.type === TRANSACTION_TYPES.TOKEN_APPROVAL ||
           classifiedTx.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED ||
@@ -127,18 +113,11 @@ export const getTransactionDisplayData = ({
         displayAssetMetadata = txMetadata;
         displayAssetId = classifiedTx.effect.assetId;
         displayAssetAmount = classifiedTx.effect.amount;
-      }
-
-      
-      
-      else if (classifiedTx.effect.assetId === contextToken.assetId && classifiedTx.type !== TRANSACTION_TYPES.TOKEN_APPROVAL) {
+      } else if (classifiedTx.effect.assetId === contextToken.assetId && classifiedTx.type !== TRANSACTION_TYPES.TOKEN_APPROVAL) {
         displayAssetMetadata = txMetadata;
         displayAssetId = classifiedTx.effect.assetId;
         displayAssetAmount = classifiedTx.effect.amount;
-      }
-
-      
-      else if (shouldShowNetworkFee) {
+      } else if (shouldShowNetworkFee) {
         isNetworkFee = true;
         displayAssetMetadata = contextToken.metadata;
         displayAssetId = contextToken?.assetId;
@@ -146,7 +125,6 @@ export const getTransactionDisplayData = ({
           .negated()
           .toString(10);
 
-        
         detailsAssetAmount = classifiedTx.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED ? '' : classifiedTx.effect.amount;
         detailsAssetId = classifiedTx.effect.assetId;
 
@@ -156,29 +134,18 @@ export const getTransactionDisplayData = ({
           classifiedTx.type === TRANSACTION_TYPES.SEND
             ? String(loc.formatString(loc.transactionTile.nativeAssetView.send, { assetSymbol }))
             : loc.transactionTile.nativeAssetView.approval;
-      }
-
-      
-      
-      else if (isNativeAsset && item.fee && classifiedTx.type !== TRANSACTION_TYPES.RECEIVE) {
+      } else if (isNativeAsset && item.fee && classifiedTx.type !== TRANSACTION_TYPES.RECEIVE) {
         displayAssetMetadata = contextToken.metadata;
         displayAssetId = contextToken?.assetId;
         displayAssetAmount = BigNumber(item.fee).negated().toString(10);
-      }
-
-      
-      else {
+      } else {
         displayAssetId = undefined;
         displayAssetAmount = undefined;
       }
 
-      
       if (shouldShowNetworkFee) {
         icon = <SvgIcon name="gas-fee" style={styles.icon} gradientIconBackground />;
-      }
-
-      
-      else if (wallet.nativeTokenCaipId === classifiedTx.effect.assetId) {
+      } else if (wallet.nativeTokenCaipId === classifiedTx.effect.assetId) {
         icon = (
           <TokenIcon
             forceOmitNetworkIcon={!isGlobalView}
@@ -191,10 +158,7 @@ export const getTransactionDisplayData = ({
             wallet={wallet}
           />
         );
-      }
-
-      
-      else {
+      } else {
         icon = <TokenIcon size={IMG_SIZE} tokenSymbol={txMetadata?.symbol ?? ''} wallet={wallet} forceOmitNetworkIcon={!isGlobalView} style={styles.image} />;
       }
       break;
@@ -202,17 +166,12 @@ export const getTransactionDisplayData = ({
     case 'contract': {
       if (isGlobalView) {
         displayAssetMetadata = txMetadata;
-      }
-      
-      
-      else if (!item.fee) {
+      } else if (!item.fee) {
         displayAssetId = undefined;
         displayAssetAmount = undefined;
 
         title = loc.transactionTile.type.contractInteractionAffected;
-      }
-      
-      else if (isNativeAsset) {
+      } else if (isNativeAsset) {
         isNetworkFee = true;
         description = loc.transactionTile.nativeAssetView.contractInteraction;
         displayAssetMetadata = contextToken.metadata;
@@ -238,17 +197,15 @@ export const getTransactionDisplayData = ({
     }
   }
 
-  
   const isBtc = wallet.type === 'HDsegwitBech32';
   let btcFeesInSmallestUnit;
   if (isBtc && item.fee) {
     btcFeesInSmallestUnit = unitConverter.tokenUnit2SmallestUnit(item.fee, displayAssetMetadata?.decimals ?? 8).toNumber();
   }
-  
+
   const tokenAmountAndNetworkFee =
     classifiedTx.type !== TRANSACTION_TYPES.RECEIVE && isNativeAsset && !isNetworkFee && item.fee && displayAssetAmount
-      ? 
-        (BigNumber(displayAssetAmount).isGreaterThan(0) ? BigNumber(displayAssetAmount).negated() : BigNumber(displayAssetAmount))
+      ? (BigNumber(displayAssetAmount).isGreaterThan(0) ? BigNumber(displayAssetAmount).negated() : BigNumber(displayAssetAmount))
           .minus(BigNumber(btcFeesInSmallestUnit || item.fee))
           .toString(10)
       : undefined;
@@ -260,8 +217,6 @@ export const getTransactionDisplayData = ({
       ? classifiedTx.description
       : parsedTx.protocolInfo?.projectId || formatTransactionAddress(parsedTx.metadata?.target, classifiedTx.type ?? ''));
 
-  
-  
   const isNativeAssetViewTokenOnlyTransaction = isNativeAsset && (!displayAssetAmount || displayAssetAmount === '0' || displayAssetAmount === 'NaN');
 
   return {

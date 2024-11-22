@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -65,7 +65,7 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
   const { isFormValid } = useFormContext();
   const [isSimulationLoading, setIsSimulationLoading] = useState(false);
   const [inputInFiatCurrency, setInputInFiatCurrency] = useState(false);
-  
+
   const [__, _, tokenId] = useResolvedAssetBalance('assetBalanceId' in params ? params.assetBalanceId : undefined);
   const token = useTokenById(tokenId);
 
@@ -81,13 +81,11 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
       };
     }
     return {
-      
       walletId: token!.walletId,
       token: token!,
     };
   }, [nft, token]);
 
-  
   const wallet = useRealmWalletById(data.walletId);
 
   const { network } = getImplForWallet(wallet);
@@ -111,7 +109,6 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
       };
     }
     if (!token || !amount || !Number(amount)) {
-      
       return;
     }
     return {
@@ -215,8 +212,6 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
         throw Error('Internal error: missing fee');
       }
 
-      
-      
       await getWalletStorage(wallet, true);
 
       const senderLabel = await getSenderLabel();

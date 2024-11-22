@@ -1,5 +1,5 @@
 import noop from 'lodash/noop';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { ExpandableSheet } from '@/components/Sheets';
 import { hapticFeedback } from '@/utils/hapticFeedback';
@@ -10,12 +10,12 @@ import { Footer } from './Footer';
 import { Preview } from './Preview';
 
 import type { Verification } from '../types';
+import type { WalletKitTypes } from '@reown/walletkit';
 import type { ProposalTypes } from '@walletconnect/types';
-import type { Web3WalletTypes } from '@walletconnect/web3wallet';
 
 import { useWalletConnectSupportedNetworkIds } from '/modules/wallet-connect/hooks';
 
-type SessionProposal = Omit<Web3WalletTypes.BaseEventArgs<ProposalTypes.Struct>, 'topic'>;
+type SessionProposal = Omit<WalletKitTypes.BaseEventArgs<ProposalTypes.Struct>, 'topic'>;
 
 export interface ConnectAppParams {
   proposal: SessionProposal;
@@ -25,7 +25,7 @@ type Props = {
   appMetadata?: {
     url: string;
     name: string;
-    icon: string;
+    icon?: string;
   };
   networkIDs?: string[];
   requiredNetworkIDs?: string[];
@@ -51,7 +51,7 @@ export const ConnectApp = ({
   const isDataComplete =
     appMetadata !== undefined && approveSession !== undefined && networkIDs !== undefined && requiredNetworkIDs !== undefined && rejectSession !== undefined;
   const walletConnectSupportedNetworkIds = useWalletConnectSupportedNetworkIds();
-  
+
   const unsupportedRequiredNetworks: string[] = (requiredNetworkIDs || []).filter(networkID => !walletConnectSupportedNetworkIds.includes(networkID));
   const hasUnsupportedRequiredNetworks = unsupportedRequiredNetworks.length > 0;
   const supportedNetworks: string[] = (networkIDs || []).filter(networkID => walletConnectSupportedNetworkIds.includes(networkID));

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import type { NonSmallIconName } from '@/components/SvgIcon';
 import type { OpenURL } from '@/hooks/useBrowser';
@@ -16,7 +16,6 @@ type NFTLinksProps = {
 const openENSDomains = (name: string, openURL: OpenURL) => {
   return () => openURL(`https://app.ens.domains/${name}`);
 };
-
 
 const openEtherscan = (collectionId: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://etherscan.io/nft/${collectionId}/${tokenId}`);
@@ -44,8 +43,6 @@ const openSolscan = (_: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://solscan.io/token/${tokenId}`);
 };
 
-
-
 const openOpenseaEthereum = (collectionId: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://opensea.io/assets/ethereum/${collectionId}/${tokenId}`);
 };
@@ -65,11 +62,9 @@ const openOpenseaAvalanche = (collectionId: string, tokenId: string, openURL: Op
   return () => openURL(`https://opensea.io/assets/avalanche/${collectionId}/${tokenId}`);
 };
 
-
 const openMagicEden = (_: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://magiceden.io/item-details/${tokenId}`);
 };
-
 
 const openTensorSolana = (_: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://www.tensor.trade/item/${tokenId}`);
@@ -77,6 +72,10 @@ const openTensorSolana = (_: string, tokenId: string, openURL: OpenURL) => {
 
 const openAvascan = (collectionId: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://avascan.info/blockchain/c/erc721/${collectionId}/nft/${tokenId}`);
+};
+
+const openInkSepoliaExplorer = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://explorer-sepolia.inkonchain.com/token/${collectionId}/instance/${tokenId}`);
 };
 
 type NFTLinkItemConfig = {
@@ -181,6 +180,14 @@ export const configNftLinks = {
       icon: 'avascan',
     },
     marketplaces: [{ label: 'Opensea', onPress: openOpenseaAvalanche, icon: 'opensea' }],
+  },
+  inkSepolia: {
+    blockchainExplorer: {
+      label: 'Blockscout',
+      onPress: openInkSepoliaExplorer,
+      icon: 'blockscout',
+    },
+    marketplaces: [],
   },
 } as const satisfies Record<
   WalletType,

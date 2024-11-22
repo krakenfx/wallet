@@ -1,5 +1,5 @@
 import { AuthenticationType } from 'expo-local-authentication';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Platform, View } from 'react-native';
 
 import { MissingBiometricsSheet } from './MissingBiometricsSheet';

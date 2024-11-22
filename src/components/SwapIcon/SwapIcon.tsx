@@ -1,5 +1,5 @@
 import MaskedView from '@react-native-masked-view/masked-view';
-import React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 import Svg, { Circle, Defs, G, Mask } from 'react-native-svg';
 
@@ -14,7 +14,6 @@ export interface Props {
   receivedAsset?: Asset;
   testID?: string;
 }
-
 
 export function SwapIcon({ sentAsset, receivedAsset }: Props) {
   const size = 28;

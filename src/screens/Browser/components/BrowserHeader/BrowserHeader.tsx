@@ -1,6 +1,6 @@
+import type React from 'react';
 import type { SharedValue } from 'react-native-reanimated';
 
-import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import Animated from 'react-native-reanimated';

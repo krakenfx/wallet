@@ -2,7 +2,7 @@ import type { StyleProp, TextInputProps, TextStyle, ViewStyle } from 'react-nati
 
 import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import { StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import Animated, { type AnimatedStyle, FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { KeyboardDoneInputAccessoryView } from '@/components/Keyboard';
 import type { LabelProps, TypographyKey } from '@/components/Label';
@@ -27,7 +27,7 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   backgroundStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
   inputWrapperStyle?: StyleProp<TextStyle>;
-  inputStyle?: StyleProp<TextStyle>;
+  inputStyle?: StyleProp<AnimatedStyle<StyleProp<TextStyle>>>;
   shrinkInput?: boolean;
   transparent?: boolean;
   type?: TypographyKey;
@@ -65,6 +65,8 @@ const Placeholder = ({
     </Animated.View>
   );
 };
+
+const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 
 export const Input = React.forwardRef<InputMethods, InputProps>(
   (
@@ -124,7 +126,7 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
     );
 
     let input = (
-      <TextInput
+      <AnimatedInput
         ref={inputRef}
         style={[styles.inputReset, { color: colors.light100 }, Typography[type || 'regularBody'], { lineHeight: undefined }, inputStyle]}
         selectionColor={colors.kraken}

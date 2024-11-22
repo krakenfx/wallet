@@ -1,6 +1,6 @@
 import type { NativeScrollEvent } from 'react-native';
 
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Image, InteractionManager, StyleSheet, View } from 'react-native';
 import { runOnJS } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -80,8 +80,7 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
       showIndicator && showRefreshingTransactionsToast();
       try {
         console.log('[Transactions & Balance] fetching');
-        
-        
+
         await Promise.all([
           fetchTransactions(realmWallet, true),
           fetchBalance(realmWallet, false),

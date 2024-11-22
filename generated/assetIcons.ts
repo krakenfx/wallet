@@ -1,4 +1,4 @@
-import React from 'react';
+
 import type { SvgProps } from 'react-native-svg';
 import memoize from 'lodash/memoize';
 
@@ -3679,7 +3679,7 @@ const mapNetworkNameToTokenSymbol: Record<string, string> = {
   ethereumTestnetSepolia: 'eth',
   HDsegwitBech32: 'btc',
   optimism: 'op',
-  polygon: 'matic',
+  polygon: 'pol',
   solana: 'sol',
   solanaDevnet: 'sol'
 };

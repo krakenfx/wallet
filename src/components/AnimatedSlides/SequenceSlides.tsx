@@ -1,5 +1,7 @@
+import type React from 'react';
+
 import LottieView from 'lottie-react-native';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeInUp, FadeOutDown, SlideOutLeft } from 'react-native-reanimated';
 

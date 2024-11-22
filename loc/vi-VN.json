@@ -44,7 +44,7 @@
       "advanced_info": "Thông tin nâng cao",
       "connected_apps": "Ứng dụng được kết nối",
       "delete": "Xóa",
-      "edit": "Chỉnh sửa"
+      "edit": "Tùy chỉnh"
     },
     "walletDelete": {
       "error": "Chưa xóa ví, vui lòng thử lại",
@@ -136,6 +136,7 @@
     "to": "Đến",
     "typed_message_signing_request": "Yêu cầu ký {type}",
     "typedMessageSigningRequest": "Yêu cầu ký {type}",
+    "unknownApp": "Ứng dụng không xác định",
     "withdrawal": "Rút"
   },
   "assetOptions": {
@@ -146,6 +147,12 @@
     "send": "Gửi",
     "viewDetails": "Xem chi tiết",
     "viewOn": "Xem trên {explorer}"
+  },
+  "avaxLineaWelcoming": {
+    "buttonText": "Nghe hay đấy",
+    "part1": "Ví của bạn hiện hỗ trợ Avalanche, blockchain có khả năng mở rộng cao với tốc độ xử lý cực nhanh, và Linea, Ethereum L2 được thiết kế cho các giao dịch an toàn, chi phí thấp.",
+    "part2": "Với những tích hợp mới này, bạn có thể xem số dư tài sản, phát sóng giao dịch, thu thập NFT, theo dõi vị thế defi và kết nối với dapp trên cả hai mạng.",
+    "title": "Hỗ trợ Avalanche và Linea đã có mặt!"
   },
   "backupWallet": {
     "backup": "Hỗ trợ",
@@ -439,8 +446,11 @@
   },
   "explore": {
     "continueAccessibilityHint": "Chấp nhận tuyên bố từ chối trách nhiệm và tiếp tục",
-    "disclaimerBody": "Khi chạm vào dapp trong phần này, bạn sẽ được chuyển đến các URL bên ngoài và bạn nên luôn tự mình tìm hiểu.",
-    "disclaimerTitle": "Hãy cẩn thận ở ngoài đó"
+    "disclaimerBody": "Xin lưu ý tính năng này có chứa nội dung do bên thứ ba cung cấp. Tham khảo các điều khoản có liên quan trong Điều khoản dịch vụ.",
+    "disclaimerTitle": "Chào mừng đến với Explore!",
+    "errorBody": "Ứng dụng không thể tải nội dung trong trang này. Hãy thử lại sau",
+    "errorTitle": "Đã xảy ra lỗi",
+    "rewardPrefix": "Kiếm được"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -616,7 +626,7 @@
     "assets": "Tài sản",
     "collection": "NFT",
     "collection_see_all": "Xem tất cả",
-    "deposits": "Nạp",
+    "deposits": "DeFi",
     "manage": "Quản lý",
     "total_balance": "Số dư"
   },
@@ -701,6 +711,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Mạng thử nghiệm Goerli",
     "ethereum_sepolia": "Ethereum - Mạng thử nghiệm Sepolia",
+    "ink_sepolia": "Ink - Mạng thử nghiệm Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -928,11 +939,16 @@
       "title": "Đang tìm ví phụ"
     },
     "importSubWallets": {
+      "hasABalance": "Có số dư",
+      "hasBalance": "Có tiền",
+      "importingWallets": "Đang nhập {subWalletsCount} ví...",
+      "importingWalletsOne": "Đang nhập 1 ví...",
       "importWallets": "Nhập {subWalletsCount} ví",
       "importWalletsOne": "Nhập 1 ví",
       "subtitle": "Chúng tôi tìm thấy {subWalletsCount} ví có hoạt động hoặc số dư. Chọn tất cả ví bạn muốn nhập.",
       "subtitleOneWallet": "Chúng tôi tìm thấy 1 ví có hoạt động hoặc số dư.",
       "title": "Chọn ví để nhập",
+      "wallet": "Ví",
       "walletsFound": "Đã tìm thấy {subWalletsCount} ví",
       "walletsFoundOne": "Đã tìm thấy 1 ví"
     },
@@ -982,7 +998,7 @@
     "appConnectMediumWarning": "Không thể xác minh ứng dụng gửi yêu cầu.",
     "appFlagged": "Cảnh báo ứng dụng!",
     "appSafetyNotVerified": "Tính an toàn của ứng dụng chưa được xác minh",
-    "appSafetyNotVerifiedMessage": "Chúng tôi không thể xác minh tính an toàn của ứng dụng mà bạn đang cố gắng kết nối. Hãy tiến hành một cách thận trọng.",
+    "appSafetyNotVerifiedMessage": "Chúng tôi không thể xác minh tính an toàn của ứng dụng mà bạn đang cố gắng kết nối do lỗi tạm thời hoặc sự cố ngừng hoạt động của dịch vụ xác minh ứng dụng. Hãy tiến hành một cách thận trọng.",
     "appSignMessageCriticalWarning": "Chúng tôi tin rằng ứng dụng này độc hại và tin nhắn không an toàn để ký. Nếu phê duyệt, bạn sẽ có thể bị mất tiền.",
     "appSignMessageMediumWarning": "Không thể xác minh ứng dụng gửi yêu cầu.",
     "appSignTransactionCriticalWarning": "Chúng tôi tin rằng ứng dụng này độc hại và giao dịch không an toàn để ký. Nếu phê duyệt, bạn sẽ có thể bị mất tiền.",
@@ -1003,6 +1019,7 @@
     "knownSecurityRiskInfo": "Trang web này bị nhiều nhà cung cấp bảo mật cảnh báo là không an toàn. Để bảo vệ tài sản của bạn, KHÔNG kết nối với trang web đó.",
     "knownSecurityRiskMessage": "Trang web này bị nhiều nhà cung cấp bảo mật cảnh báo là không an toàn. Rời đi ngay để bảo vệ tài sản của bạn không bị rút cạn",
     "messageFlagged": "Cảnh báo tin nhắn!",
+    "punycodeDomainRiskMessage": "Địa chỉ trang web này chứa các ký tự không chuẩn. Đây là một kỹ thuật thường được kẻ lừa đảo sử dụng để mạo danh các trang web hợp pháp. Vì sự an toàn của bạn, chúng tôi khuyên bạn không nên nhập thông tin nhạy cảm hoặc tiếp tục truy cập trang web này.",
     "returnToSafety": "Trở về an toàn",
     "signTransactionCriticalWarning": "Chúng tôi tin rằng giao dịch này là giao dịch độc hại và không an toàn để ký. Nếu phê duyệt, bạn sẽ có thể bị mất tiền.",
     "transactionFlagged": "Cảnh báo giao dịch!",
@@ -1271,6 +1288,10 @@
     "amountPlaceholder": "Nhập số tiền",
     "balance": "Số dư {0}",
     "buttonTitle": "Hoán đổi",
+    "confirmation": {
+      "cancel": "Hủy",
+      "confirm": "Xác nhận"
+    },
     "emptyState": {
       "assetsEmptyDesc": "Ví hiện tại của bạn không có bất kỳ tài sản nào, hãy thử nạp tiền vào ví của bạn",
       "assetsEmptyTitle": "Hiện không có tài sản nào",
@@ -1285,6 +1306,56 @@
       "swappableAssetsEmptyTitle": "Không có tài sản có thể hoán đổi nào"
     },
     "findingBestRote": "Tìm lộ trình tốt nhất",
+    "route": {
+      "bridgeCost": {
+        "hint": "Chi phí cầu nối là khoản phí do nhà cung cấp dịch vụ hoán đổi tính khi chuyển tài sản giữa các blockchain khác nhau trong quá trình hoán đổi.",
+        "title": "Chi phí cầu nối"
+      },
+      "krakenFee": {
+        "hint": "Kraken Wallet không tính bất kỳ khoản phí nào cho việc hoán đổi. Chúng tôi cung cấp dịch vụ này miễn phí để hỗ trợ việc áp dụng công nghệ tiền điện tử và blockchain.",
+        "title": "Phí Kraken",
+        "value": "MIỄN PHÍ"
+      },
+      "minumumOutput": {
+        "hint": "Nếu xảy ra trượt giá, đây là số tiền tối thiểu của tài sản mục tiêu mà bạn sẽ nhận được khi giao dịch thành công.",
+        "title": "Đầu ra tối thiểu"
+      },
+      "networkFee": {
+        "hint": "Phí mạng là khoản phí phải trả cho bên xác thực blockchain để xử lý và xác nhận giao dịch của bạn.",
+        "title": "Phí mạng"
+      },
+      "priceImpact": {
+        "hint": "Tác động giá là sự chênh lệch giữa giá thị trường và giá hoán đổi. Điều này phụ thuộc vào quy mô giao dịch của bạn so với tính thanh khoản trong nhóm.",
+        "title": "Tác động giá"
+      },
+      "rate": "Tỷ giá",
+      "slippage": {
+        "hint": "Trượt giá là sự chênh lệch giữa giá dự kiến ​​và giá cuối cùng của một tài sản. Nếu giá thay đổi bất lợi vượt quá mức trượt giá đã thiết lập, giao dịch sẽ bị hủy.",
+        "title": "Trượt giá"
+      },
+      "swapRate": "Tỷ giá hoán đổi",
+      "transactionFees": "Phí giao dịch",
+      "typeSelection": {
+        "bestValue": {
+          "desc": "Giá trị tổng thể tốt nhất",
+          "name": "Giá trị tốt nhất"
+        },
+        "fastest": {
+          "desc": "Tốc độ giao dịch nhanh nhất",
+          "name": "Hoán đổi nhanh nhất"
+        },
+        "title": "Tìm lộ trình hoán đổi với"
+      },
+      "unsupportedRoute": {
+        "desc": "Bạn có thể thử hoán đổi tài sản của mình để lấy một token lớn từ danh sách có sẵn, sau đó thực hiện một lần hoán đổi riêng để có được tài sản bạn muốn. Sự thành công của cách tiếp cận này không được đảm bảo.",
+        "title": "Không có lộ trình nào khả dụng cho giao dịch bạn đã nhập."
+      }
+    },
+    "routePath": {
+      "bridge": "Cầu nối thông qua {name}",
+      "swap": "Hoán đổi thông qua {name}",
+      "title": "Lộ trình hoán đổi"
+    },
     "selectAsset": "Chọn tài sản",
     "sourceListHeader": "Tài sản của bạn",
     "sourceSearchPlaceholder": "Chọn tài sản để hoán đổi",

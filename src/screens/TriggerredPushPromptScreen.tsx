@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 import { PushNotifications } from '@/api/PushNotifications';
 import type { BottomSheetRef } from '@/components/BottomSheet';

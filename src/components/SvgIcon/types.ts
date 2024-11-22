@@ -1,7 +1,3 @@
-
-
-
-
 export type IconName =
   | 'wallet'
   | 'shield-tick'
@@ -59,6 +55,7 @@ export type IconName =
   | 'x-circle'
   | 'info-circle'
   | 'check-circle'
+  | 'check-circle-empty'
   | 'warning'
   | 'sheet'
   | 'terms'
@@ -66,6 +63,7 @@ export type IconName =
   | 'comment'
   | 'compass'
   | 'slippage'
+  | 'bridge'
   | 'kraken'
   | 'star-filled'
   | 'no-internet'
@@ -195,6 +193,7 @@ export type IconName =
   | 'small-x-circle'
   | 'small-info-circle'
   | 'small-check-circle'
+  | 'small-check-circle-empty'
   | 'small-warning'
   | 'small-sheet'
   | 'small-terms'
@@ -202,6 +201,7 @@ export type IconName =
   | 'small-comment'
   | 'small-compass'
   | 'small-slippage'
+  | 'small-bridge'
   | 'small-kraken'
   | 'small-star-filled'
   | 'small-no-internet'

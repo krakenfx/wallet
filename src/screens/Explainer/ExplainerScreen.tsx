@@ -1,5 +1,5 @@
 import { BottomSheetScrollView, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -42,7 +42,6 @@ export type ExplainerModalProps = {
   contentType: EXPLAINER_CONTENT_TYPES;
 };
 
-
 export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explainer'>) => {
   const theme = useTheme();
   const { contentType } = route.params;
@@ -51,7 +50,6 @@ export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explaine
   const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const content = useMemo(() => {
-    
     switch (contentType) {
       case EXPLAINER_CONTENT_TYPES.TOKEN_LISTS:
         return <ExplainerTokenLists />;

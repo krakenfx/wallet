@@ -93,7 +93,7 @@ export const TransactionDataRow = React.memo(
     status,
   }: TransactionDataRowProps) => {
     const pendingTx = usePendingTransactionById(item.id);
-    
+
     const showRow = !(pendingTx !== undefined && pendingTx.isValid() && !pendingTx.confirmed);
 
     const shouldShowAssetAmountAndNetworkFees = Boolean(assetAmountAndNetworkFee && assetAmountAndNetworkFeeInCurrencyFormatted);

@@ -27,7 +27,7 @@ export const TokenPriceFiatValueSchema: ObjectSchema = {
   name: REALM_TYPE_TOKEN_PRICE_FIAT_VALUE,
   embedded: true,
   properties: {
-    values: 'mixed' ,
+    values: 'mixed',
   },
 };
 
@@ -39,7 +39,7 @@ export const TokenPriceSchema: ObjectSchema = {
     fiatValue: {
       type: 'dictionary',
       objectType: REALM_TYPE_TOKEN_PRICE_FIAT_CURRENCY,
-    } ,
+    },
   },
   primaryKey: 'assetId',
 };
@@ -125,9 +125,9 @@ export type TokenPriceHistory = {
   assetId: string;
   prices: TokenPriceHistoryItem[];
   period: PriceHistoryPeriod;
-  priceHistoryId: string; 
+  priceHistoryId: string;
   highLow?: TokenPriceHighLow;
-  updatedAt: Date; 
+  updatedAt: Date;
 };
 
 export type RealmTokenPriceHistory = RealmTypeOf<TokenPriceHistory>;

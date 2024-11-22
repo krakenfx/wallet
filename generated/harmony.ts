@@ -18,6 +18,10 @@ export interface paths {
     
     get: operations["GetBalances"];
   };
+  "/v2/balances": {
+    
+    post: operations["GetBalancesV2"];
+  };
   "/v1/broadcast": {
     
     post: operations["Broadcast"];
@@ -26,9 +30,13 @@ export interface paths {
     
     get: operations["GetMainPageContent"];
   };
-  "/v1/explore/{pageSlug}": {
+  "/v1/explore/page/{pageSlug}": {
     
     get: operations["GetPageContentBySlug"];
+  };
+  "/v1/explore/content/{contentId}": {
+    
+    get: operations["GetContentById"];
   };
   "/v1/fee": {
     
@@ -85,6 +93,10 @@ export interface paths {
   "/v1/swap/tokenList/from": {
     
     get: operations["SwapFromTokenList"];
+  };
+  "/v1/swap/quote": {
+    
+    post: operations["SwapQuote"];
   };
   "/v1/swap/tokenList/to": {
     
@@ -207,6 +219,13 @@ export interface components {
     "Result_InternalBalance-Array_": {
       content: components["schemas"]["InternalBalance"][];
     };
+    
+    "Record_string.InternalBalance-Array_": Record<string, never>;
+    
+    "Record_string.boolean_": Record<string, never>;
+    "Result_Record_string.InternalBalance-Array_-or-Record_string.boolean__": {
+      content: components["schemas"]["Record_string.InternalBalance-Array_"] | components["schemas"]["Record_string.boolean_"];
+    };
     BroadcastReceipt: {
       transactionId: string;
     };
@@ -217,14 +236,17 @@ export interface components {
     "ExploreContentVariant.Text": "Text";
     
     ExploreTextContent: {
-      body?: string;
-      title?: string;
       id: string;
+      
+      isDynamicContent: false;
+      title?: string;
+      body?: string;
     };
     ExploreTextContentRow: {
-      content: components["schemas"]["ExploreTextContent"][];
-      variant: components["schemas"]["ExploreContentVariant.Text"];
       id: string;
+      content: components["schemas"]["ExploreTextContent"][];
+      hasDynamicContent: boolean;
+      variant: components["schemas"]["ExploreContentVariant.Text"];
     };
     
     "ExploreContentVariant.Card": "Card";
@@ -244,66 +266,83 @@ export interface components {
     };
     ExploreLink: components["schemas"]["ExploreLinkExternal"] | components["schemas"]["ExploreLinkInternal"];
     ExploreCardContent: {
-      link?: components["schemas"]["ExploreLink"];
-      buttonLink?: string;
-      buttonText?: string;
-      floatingIcon?: string;
-      background: string;
-      size: components["schemas"]["ExploreCardSize"];
-      body?: string;
-      title?: string;
       id: string;
+      
+      isDynamicContent: false;
+      title?: string;
+      body?: string;
+      size: components["schemas"]["ExploreCardSize"];
+      background: string;
+      floatingIcon?: string;
+      buttonText?: string;
+      buttonLink?: string;
+      link?: components["schemas"]["ExploreLink"];
+      info?: string;
     };
     ExploreCardContentRow: {
-      content: components["schemas"]["ExploreCardContent"][];
-      variant: components["schemas"]["ExploreContentVariant.Card"];
       id: string;
+      content: components["schemas"]["ExploreCardContent"][];
+      hasDynamicContent: boolean;
+      variant: components["schemas"]["ExploreContentVariant.Card"];
+      cardSize: components["schemas"]["ExploreCardSize"];
     };
     
     "ExploreContentVariant.List": "List";
     
     ExploreListIconVariant: "Square" | "RoudedCorners" | "Circle";
     ExploreListItemContent: {
-      link?: components["schemas"]["ExploreLink"];
-      buttonLink?: string;
-      buttonText?: string;
-      iconVariant?: components["schemas"]["ExploreListIconVariant"];
-      icon?: string;
-      body?: string;
-      title?: string;
       id: string;
+      
+      isDynamicContent: false;
+      title?: string;
+      body?: string;
+      icon?: string;
+      iconVariant?: components["schemas"]["ExploreListIconVariant"];
+      buttonText?: string;
+      buttonLink?: string;
+      link?: components["schemas"]["ExploreLink"];
     };
     ExploreListContent: {
-      items: components["schemas"]["ExploreListItemContent"][];
-      title?: string;
       id: string;
+      
+      isDynamicContent: false;
+      title?: string;
+      items: components["schemas"]["ExploreListItemContent"][];
     };
     ExploreListContentRow: {
-      content: components["schemas"]["ExploreListContent"][];
-      variant: components["schemas"]["ExploreContentVariant.List"];
       id: string;
+      content: components["schemas"]["ExploreListContent"][];
+      hasDynamicContent: boolean;
+      variant: components["schemas"]["ExploreContentVariant.List"];
     };
     
     "ExploreContentVariant.Hero": "Hero";
     
     ExploreHeroVariant: "Card" | "FullBleed";
     ExploreHeroContent: {
-      cta?: components["schemas"]["ExploreListItemContent"];
-      background: string;
-      body?: string;
-      title: string;
-      variant: components["schemas"]["ExploreHeroVariant"];
       id: string;
+      
+      isDynamicContent: false;
+      variant: components["schemas"]["ExploreHeroVariant"];
+      title: string;
+      body?: string;
+      background: string;
+      cta?: components["schemas"]["ExploreListItemContent"];
     };
     ExploreHeroContentRow: {
-      content: components["schemas"]["ExploreHeroContent"][];
-      variant: components["schemas"]["ExploreContentVariant.Hero"];
       id: string;
+      content: components["schemas"]["ExploreHeroContent"][];
+      hasDynamicContent: boolean;
+      variant: components["schemas"]["ExploreContentVariant.Hero"];
+      heroVariant: components["schemas"]["ExploreHeroVariant"];
     };
     
     ExploreContentRow: components["schemas"]["ExploreTextContentRow"] | components["schemas"]["ExploreCardContentRow"] | components["schemas"]["ExploreListContentRow"] | components["schemas"]["ExploreHeroContentRow"];
     "Result_ExploreContentRow-Array_": {
       content: components["schemas"]["ExploreContentRow"][];
+    };
+    Result_ExploreContentRow_: {
+      content: components["schemas"]["ExploreContentRow"];
     };
     
     FeeOptionKind: "slow" | "medium" | "fast" | "default";
@@ -720,6 +759,78 @@ export interface components {
     Result_SwapFromTokenListResult_: {
       content: components["schemas"]["SwapFromTokenListResult"];
     };
+    SwapQuoteAsset: {
+      assetId: string;
+      amount?: string;
+    };
+    SwapRouteProvider: {
+      name: string;
+      id: string;
+      icon: string;
+      
+      type: "swap" | "bridge";
+    };
+    SwapRouteFee: {
+      feeAsset: components["schemas"]["SwapQuoteAsset"];
+      
+      type: "gas" | "bridge";
+    };
+    SwapRouteTXStep: {
+      fromAsset: components["schemas"]["SwapQuoteAsset"];
+      toAsset: components["schemas"]["SwapQuoteAsset"];
+      
+      timeEstimate?: number;
+      provider: components["schemas"]["SwapRouteProvider"];
+      fees: components["schemas"]["SwapRouteFee"][];
+    };
+    SwapRoute: {
+      txSteps: components["schemas"]["SwapRouteTXStep"][];
+      
+      timeEstimate: number;
+      
+      maximumTime: number;
+    };
+    SwapQuote: {
+      from: components["schemas"]["SwapQuoteAsset"];
+      to: components["schemas"]["SwapQuoteAsset"];
+      route: components["schemas"]["SwapRoute"];
+      minAmountOut: string;
+      
+      swapSlippage: number;
+      
+      bridgeSlippage?: number;
+    };
+    SwapApprovalTxData: {
+      data: string;
+      toAddress: string;
+      fromAddress: string;
+    };
+    SwapTxData: {
+      data: string;
+      
+      txType: "eth_sendTransaction" | "eth_signMessage";
+    };
+    SwapQuoteResult: {
+      quote: components["schemas"]["SwapQuote"];
+      approvalTxData?: components["schemas"]["SwapApprovalTxData"];
+      swapTxData: components["schemas"]["SwapTxData"];
+    };
+    Result_SwapQuoteResult_: {
+      content: components["schemas"]["SwapQuoteResult"];
+    };
+    
+    SwapQuoteRouteType: "value" | "speed";
+    SwapQuoteRequest: {
+      from: {
+        amount: string;
+        assetId: string;
+      };
+      to: {
+        assetId: string;
+      };
+      fromAddress: string;
+      routeType: components["schemas"]["SwapQuoteRouteType"];
+    };
     SwapToTokenListResult: {
       fromNetwork: string;
       toTokens: {
@@ -1014,6 +1125,32 @@ export interface operations {
     };
   };
   
+  GetBalancesV2: {
+    requestBody: {
+      content: {
+        "application/json": {
+          backend?: string;
+          hasBalance?: boolean;
+          caip10Accounts: string[];
+        };
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_Record_string.InternalBalance-Array_-or-Record_string.boolean__"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
   Broadcast: {
     parameters: {
       query: {
@@ -1067,6 +1204,32 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Result_ExploreContentRow-Array_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  GetContentById: {
+    parameters: {
+      query: {
+        address: string;
+        network: string;
+      };
+      path: {
+        contentId: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_ExploreContentRow_"];
         };
       };
       
@@ -1410,6 +1573,28 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Result_SwapFromTokenListResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  SwapQuote: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["SwapQuoteRequest"];
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_SwapQuoteResult_"];
         };
       };
       

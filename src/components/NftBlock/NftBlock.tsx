@@ -1,7 +1,7 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import assert from 'assert';

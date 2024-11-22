@@ -1,4 +1,5 @@
-import React from 'react';
+import type React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
@@ -17,6 +18,7 @@ import { useWalletByAssetId } from '@/realm/wallets/useWalletByAssetId';
 import { useTheme } from '@/theme/themes';
 
 import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
 import { isBtc } from '@/utils/isBtc';
 import { unitConverter } from '@/utils/unitConverter';
@@ -25,25 +27,26 @@ import { SwapAssetSelector } from '../SwapAssetSelector';
 
 import { useSwapContext } from '../SwapContext';
 
-import type { SwapTargetAsset } from '../../types';
+import type { SwapRouteUIData, SwapTargetAsset } from '../../types';
 
 import loc from '/loc';
 
 type Props = {
   asset: SwapTargetAsset;
+  route?: SwapRouteUIData;
   onChange: () => void;
   showUnlistedExplainer: () => void;
 };
 
-export const TargetAssetBlock: React.FC<Props> = ({ asset, onChange, showUnlistedExplainer }) => {
+export const TargetAssetBlock: React.FC<Props> = ({ asset, route, onChange, showUnlistedExplainer }) => {
   const wallet = useWalletByAssetId(asset.assetId);
 
   const reputation = useReputation(asset.assetId);
 
   const {
     loadingState: [isLoading],
-    swapRouteState: [swapData],
     amountInputFocusState: [isAmountInputFocused],
+    refreshFlashStyle,
   } = useSwapContext();
 
   const opacityStyle = useAnimatedStyle(() => ({
@@ -52,13 +55,24 @@ export const TargetAssetBlock: React.FC<Props> = ({ asset, onChange, showUnliste
 
   const { currency } = useAppCurrency();
 
-  const amount = swapData?.receiveTokenAmount ?? '0';
   const balanceDisplay = useBalanceDisplay(loc.swap.balance);
   const price = useTokenPrice({ assetId: asset.assetId }) ?? 0;
 
   const { colors } = useTheme();
 
-  const footerLeft = !!amount && !isNaN(Number(amount)) ? formatCurrency(unitConverter.tokenUnit2Fiat(amount, price).toString(10), { currency }) : undefined;
+  const amount = route?.output ?? '0';
+
+  const outputFormatted = formatTokenAmount(unitConverter.smallUnit2TokenUnit(amount, asset.metadata.decimals).toString(10), {
+    compact: true,
+    currency,
+    highPrecision: true,
+    isBtc: isBtc({ assetId: asset.assetId }),
+  });
+
+  const footerLeft =
+    !!amount && !isNaN(Number(amount))
+      ? formatCurrency(unitConverter.smallestUnit2Fiat(amount, asset.metadata.decimals, price).toString(10), { currency })
+      : undefined;
   const tokenAmountFormatted = formatTokenAmountFromToken(asset, { compact: true, currency, highPrecision: true, isBtc: isBtc({ assetId: asset.assetId }) });
   const footerRight = loc.formatString(balanceDisplay, `${tokenAmountFormatted} ${asset.metadata.symbol}`);
 
@@ -75,7 +89,8 @@ export const TargetAssetBlock: React.FC<Props> = ({ asset, onChange, showUnliste
       <GradientItemBackground backgroundType="modal" key={String(skipReputationBadge)} />
       <View>
         <Input
-          value={isLoading ? undefined : amount}
+          inputStyle={refreshFlashStyle}
+          value={isLoading ? undefined : outputFormatted}
           editable={false}
           type="boldDisplay5"
           backgroundColor="transparent"
@@ -88,6 +103,9 @@ export const TargetAssetBlock: React.FC<Props> = ({ asset, onChange, showUnliste
           footerLeftProps={{
             type: 'mediumCaption1',
             color: 'light50',
+            style: refreshFlashStyle,
+            entering: undefined,
+            exiting: undefined,
           }}
         />
         {isLoading && (

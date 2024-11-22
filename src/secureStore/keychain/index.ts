@@ -6,14 +6,12 @@ import { KeychainKey } from './keys';
 
 import { biometricUnlock } from '/helpers/biometric-unlock';
 
-
 export const getFromKeychain = async <T extends boolean>(
   key: KeychainKey,
   withAppLock?: boolean,
   throwOnError?: T,
 ): Promise<T extends true ? string : string | false> => {
   try {
-    
     const showExpoPrompt = Platform.OS === 'android' || !(await isSecureDevice());
     if (withAppLock && showExpoPrompt) {
       if (!(await biometricUnlock(false))) {
@@ -34,7 +32,7 @@ export const getFromKeychain = async <T extends boolean>(
       if (!(e instanceof Error && e.message === 'No credentials')) {
         console.error('[getFromKeychain] FAILED (false) for key: ', key, ' ', e);
       }
-      return false as T extends true ? string : false; 
+      return false as T extends true ? string : false;
     }
   }
 };

@@ -21,14 +21,12 @@ export function useTransactionsFetch() {
 
   const isFetchingAll = useRef<boolean>(false);
 
-  
   const fetchTransactions = useCallback(
     async (wallet: RealmWallet, refreshState: boolean) => {
       const { network, transport } = getImplForWallet(wallet);
 
       const walletStorage = await getWalletStorage(wallet, refreshState);
       await transport.fetchTransactions(network, wallet, walletStorage, async txs => {
-        
         return saveTransactionsToRealm(wallet, txs);
       });
     },

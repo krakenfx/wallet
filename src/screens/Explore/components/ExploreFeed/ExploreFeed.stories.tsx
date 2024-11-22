@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { StyleSheet, View } from 'react-native';
 
@@ -16,13 +16,17 @@ const mockData: ExploreContentRow[] = [
   {
     id: '163f0b7c-4d8d-4e5e-86b9-16f85d7a5bb4',
     variant: 'Hero',
+    hasDynamicContent: false,
+    heroVariant: 'Card',
     content: [
       {
         title: 'Hero Explore on-chain',
         body: 'Start your journey, Farcaster is your gateway to a decentralized social network',
         variant: 'Card',
         background: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/0701b38f4b931be180762a314737d4e33a45094e-342x409.png',
+        isDynamicContent: false,
         cta: {
+          isDynamicContent: false,
           id: '163f0b7c-4d8d-4e5e-86b9-16f85d7a5bb4',
           icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/39c31cf9b5061093bfdd3a77bd34495cb497a156-40x40.png',
           iconVariant: 'RoudedCorners',
@@ -43,12 +47,15 @@ const mockData: ExploreContentRow[] = [
   {
     id: 'e4082f4f-5b2d-4fb9-8a38-b06578e4f454',
     variant: 'List',
+    hasDynamicContent: false,
     content: [
       {
         id: 'e4082f4f-5b2d-4fb9-8a38-b06578e4f454',
         title: 'Hot Defi Apps',
+        isDynamicContent: false,
         items: [
           {
+            isDynamicContent: false,
             id: '1666ff0cac53',
             title: 'Test Page',
             body: 'this goes to a test page',
@@ -63,6 +70,7 @@ const mockData: ExploreContentRow[] = [
             },
           },
           {
+            isDynamicContent: false,
             id: '1666ff0cac53',
             title: 'Uniswap',
             body: 'Decentralized trading protocol',
@@ -77,6 +85,7 @@ const mockData: ExploreContentRow[] = [
             },
           },
           {
+            isDynamicContent: false,
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/bf0998cbd3974def6716dfee6fe18bebb8a82e5b-40x40.png',
             iconVariant: 'RoudedCorners',
             buttonText: 'Open',
@@ -91,6 +100,7 @@ const mockData: ExploreContentRow[] = [
             body: 'Swap infrastructure & aggregator',
           },
           {
+            isDynamicContent: false,
             id: '16885b5acd7a',
             title: 'Aave',
             body: 'Earn and borrow',
@@ -105,6 +115,7 @@ const mockData: ExploreContentRow[] = [
             },
           },
           {
+            isDynamicContent: false,
             iconVariant: 'RoudedCorners',
             buttonText: 'Open',
             buttonLink: 'https://pump.fun/board',
@@ -119,6 +130,7 @@ const mockData: ExploreContentRow[] = [
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/33814347ccb4dd09b0be890382231419b1abddb7-40x40.png',
           },
           {
+            isDynamicContent: false,
             body: 'Popular bridging platform',
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/6f6275eb86b84c9678799f76caf4deb567418908-40x40.png',
             iconVariant: 'Circle',
@@ -139,8 +151,11 @@ const mockData: ExploreContentRow[] = [
   {
     id: '6dd27fea-c419-4505-8791-874613b9aa62',
     variant: 'Card',
+    hasDynamicContent: false,
+    cardSize: 'Medium',
     content: [
       {
+        isDynamicContent: false,
         buttonLink: 'https://ens.domains/',
         link: {
           isInternal: false,
@@ -160,12 +175,15 @@ const mockData: ExploreContentRow[] = [
   {
     id: 'ad37b3e0-465a-41d6-8a9e-8bd95ef6529c',
     variant: 'List',
+    hasDynamicContent: false,
     content: [
       {
         id: 'ad37b3e0-465a-41d6-8a9e-8bd95ef6529c',
         title: 'Staking Apps',
+        isDynamicContent: false,
         items: [
           {
+            isDynamicContent: false,
             title: 'Lido',
             body: 'Largest liquid staking platform',
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/bd654edf9fc2310dbe6995ec5c2d926922aa1d27-40x40.png',
@@ -180,6 +198,7 @@ const mockData: ExploreContentRow[] = [
             id: 'd6b4e37dd492',
           },
           {
+            isDynamicContent: false,
             title: 'RocketPool',
             body: 'Liquid & node staking',
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/329e4c8eed8d2aca5472b02e282f281b94a7cbe6-40x40.png',
@@ -194,6 +213,7 @@ const mockData: ExploreContentRow[] = [
             id: '2498c1199aa9',
           },
           {
+            isDynamicContent: false,
             iconVariant: 'RoudedCorners',
             buttonText: 'Open',
             buttonLink: 'https://marinade.finance/',
@@ -208,6 +228,7 @@ const mockData: ExploreContentRow[] = [
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/d30809e1a8b634bdf17dda755a90cf6c6c001d60-40x40.png',
           },
           {
+            isDynamicContent: false,
             buttonText: 'Open',
             buttonLink: 'https://www.eigenlayer.xyz/',
             link: {
@@ -222,6 +243,7 @@ const mockData: ExploreContentRow[] = [
             iconVariant: 'RoudedCorners',
           },
           {
+            isDynamicContent: false,
             iconVariant: 'Circle',
             buttonText: 'Open',
             buttonLink: 'https://www.jito.wtf/stakers/',

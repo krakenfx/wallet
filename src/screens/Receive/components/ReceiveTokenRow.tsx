@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FadeIn } from 'react-native-reanimated';
 
@@ -44,6 +43,8 @@ export const ReceiveTokenRow = ({ token, onQRcodePress, showEthereumExplainer }:
     ChainAgnostic.NETWORK_ARBITRUM,
     ChainAgnostic.NETWORK_OPTIMISM,
     ChainAgnostic.NETWORK_BASE,
+    ChainAgnostic.NETWORK_LINEA,
+    ChainAgnostic.NETWORK_AVALANCHE,
     ...(isNewNetworksEnabled ? NEW_EVM_NETWORKS : []),
   ];
 

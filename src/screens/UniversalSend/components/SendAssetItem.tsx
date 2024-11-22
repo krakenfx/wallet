@@ -1,6 +1,6 @@
 import type { EntryExitAnimationFunction } from 'react-native-reanimated';
 
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import Animated, { withTiming } from 'react-native-reanimated';
 
 import { AssetRow } from '@/components/AssetRow';

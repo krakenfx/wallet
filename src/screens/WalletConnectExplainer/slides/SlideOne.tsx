@@ -1,4 +1,3 @@
-import React from 'react';
 import { FadeIn } from 'react-native-reanimated';
 
 import { SimpleSlide } from '@/components/AnimatedSlides';

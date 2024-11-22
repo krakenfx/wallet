@@ -1,5 +1,7 @@
+import type React from 'react';
+
 import { FlashList } from '@shopify/flash-list';
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';

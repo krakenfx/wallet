@@ -1,5 +1,4 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { AvatarIcon } from '@/components/AvatarIcon';
 import { Label } from '@/components/Label';
@@ -16,9 +15,7 @@ export const AccountReceiveItem = ({ account, sendToAccount }: Props) => {
 
   return (
     <Touchable onPress={onPress} style={styles.container} testID="WalletReceiveItem">
-      <View style={styles.avatarContainer}>
-        <AvatarIcon accountNumber={account.accountNumber} accountAvatar={account.avatar} />
-      </View>
+      <AvatarIcon accountNumber={account.accountNumber} accountAvatar={account.avatar} />
       <Label type="boldTitle2">{account.accountCustomName}</Label>
     </Touchable>
   );
@@ -30,9 +27,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
     paddingVertical: 12,
-  },
-  avatarContainer: {
-    width: 40,
-    height: 40,
   },
 });

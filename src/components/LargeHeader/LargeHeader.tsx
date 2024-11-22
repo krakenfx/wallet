@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from 'react';
 
+import type React from 'react';
 import type { StyleProp, TextProps, ViewStyle } from 'react-native';
 
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientLabel } from '@/components/Gradients';
@@ -41,14 +41,12 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   mainLabel: {
-    
-    
     lineHeight: 64,
     minHeight: 65,
     width: '100%',
   },
   children: {
-    marginTop: -6, 
+    marginTop: -6,
   },
   mainLabelContainer: {
     marginBottom: 4,

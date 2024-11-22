@@ -1,5 +1,6 @@
+import type React from 'react';
+
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 
 import type { IconButtonProps } from '@/components/IconButton';
@@ -17,9 +18,8 @@ export const BackButton: React.FC<Omit<IconButtonProps, 'name'>> = props => {
 
 const styles = StyleSheet.create({
   backButton: {
-    marginRight: Platform.select({ android: 8, default: 2 }), 
+    marginRight: Platform.select({ android: 8, default: 2 }),
   },
 });
-
 
 export const DefaultBackButton = () => <BackButton />;

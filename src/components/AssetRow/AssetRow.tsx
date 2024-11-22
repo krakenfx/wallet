@@ -3,7 +3,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
 
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
@@ -12,7 +12,7 @@ import type { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import type { RealmToken } from '@/realm/tokens';
 import { useTokensGalleryMutations } from '@/realm/tokensGallery';
-import { useRealmWalletById } from '@/realm/wallets';
+import { type RealmWallet, useRealmWalletById } from '@/realm/wallets';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 import type { RemoteAsset } from '@/types';
@@ -56,12 +56,23 @@ export type AssetRowProps = {
   }>;
 };
 
+const getAssetLabel = (wallet: RealmWallet | undefined, token: RealmToken | RemoteAsset, isNative: boolean) => {
+  if (wallet && wallet.nativeTokenLabel && isNative) {
+    try {
+      return getWalletName(wallet.nativeTokenLabel.toLowerCase() as WalletType);
+    } catch (error) {
+      return wallet.nativeTokenLabel;
+    }
+  }
+  return token.metadata.label;
+};
+
 export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
   const { hideZeroAmount, networkName, showAmountInFiat, onPress, style, priceChange, symbolUnderLabel, tag, testID, walletId, selected, disableLongPress } =
     options;
   const wallet = useRealmWalletById(walletId);
   const isNative = token.assetId.includes('slip44:');
-  const label = wallet && wallet.nativeTokenLabel && isNative ? getWalletName(wallet.nativeTokenLabel.toLowerCase() as WalletType) : token.metadata.label;
+  const label = getAssetLabel(wallet, token, isNative);
   const { currency } = useAppCurrency();
   const showPriceChangeUnderLabel = priceChange;
   const showSymbolUnderLabel = !showPriceChangeUnderLabel && symbolUnderLabel;
@@ -76,7 +87,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
     return (
       <>
         <View style={styles.leftContentContainer} testID="AssetRowContentContainer">
-          {(wallet || networkName !== undefined)  && (
+          {(wallet || networkName !== undefined) && (
             <TokenIcon wallet={wallet} tokenId={token.assetId} tokenSymbol={token.metadata.symbol} networkName={networkName} />
           )}
           <View style={styles.labelAndLabelContainer}>
@@ -108,61 +119,68 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
         </View>
       </>
     );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [balanceDisplay, currency, label, networkName, showAmountInFiat, showPriceChangeUnderLabel, showSymbolUnderLabel, tag, testID, token, wallet]);
 
   const containerStyle = useMemo(() => [style, styles.container], [style]);
 
   const navigation = useNavigation();
-  const longPressOptions = useMemo(() => {
-    if (!isRealmToken(token) || disableLongPress) {
-      return [];
-    }
-    const { metadata } = token;
-    const explorer = metadata?.explorers && metadata.explorers.length > 0 && metadata.explorers[0];
-    const data: (LongPressOptionItemProps | undefined | false)[] = [
-      {
-        text: loc.assetOptions.viewDetails,
-        iconName: 'asset-coin',
-        onPress: onPress,
-      },
-      wallet && {
-        text: loc.assetOptions.send,
-        iconName: 'send',
-        onPress: () => {
-          navigation.navigate(Routes.SendStack, { screen: 'Send', params: { assetBalanceId: { assetId: token.assetId, walletId: wallet.id } } });
+  const longPressOptions = useMemo(
+    () => {
+      if (!isRealmToken(token) || disableLongPress) {
+        return [];
+      }
+      const { metadata } = token;
+      const explorer = metadata?.explorers && metadata.explorers.length > 0 && metadata.explorers[0];
+      const data: (LongPressOptionItemProps | undefined | false)[] = [
+        {
+          text: loc.assetOptions.viewDetails,
+          iconName: 'asset-coin',
+          onPress: onPress,
         },
-      },
-      wallet && {
-        text: loc.assetOptions.receive,
-        iconName: 'receive',
-        onPress: () => {
-          navigation.navigate(Routes.Receive, { assetBalanceId: { assetId: token.assetId, walletId: wallet.id } });
+        wallet && {
+          text: loc.assetOptions.send,
+          iconName: 'send',
+          onPress: () => {
+            navigation.navigate(Routes.SendStack, { screen: 'Send', params: { assetBalanceId: { assetId: token.assetId, walletId: wallet.id } } });
+          },
         },
-        spaceBelow: true,
-      },
-      !!metadata?.tokenAddress && {
-        text: loc.assetOptions.copyContractAddress,
-        iconName: 'copy',
-        onPress: () => {
-          showToast({ type: 'success', text: loc.assetOptions.copied });
-          Clipboard.setString(metadata.tokenAddress as string);
-          navigation.navigate(Routes.Explainer, { contentType: EXPLAINER_CONTENT_TYPES.CONTRACT_ADDRESS });
+        wallet && {
+          text: loc.assetOptions.receive,
+          iconName: 'receive',
+          onPress: () => {
+            navigation.navigate(Routes.Receive, { assetBalanceId: { assetId: token.assetId, walletId: wallet.id } });
+          },
+          spaceBelow: true,
         },
-      },
-      explorer && {
-        text: loc.formatString(loc.assetOptions.viewOn, { explorer: explorer.name }),
-        iconName: getExplorerIcon(explorer.name),
-        onPress: () => openURL(explorer.url),
-        spaceBelow: true,
-      },
-      {
-        text: loc.assetOptions.hideAsset,
-        iconName: 'eye-off',
-        onPress: () => removeTokenFromGallery(token),
-      },
-    ];
-    return data.filter(o => !!o);
-  }, [removeTokenFromGallery, navigation, onPress, token, wallet]);
+        !!metadata?.tokenAddress && {
+          text: loc.assetOptions.copyContractAddress,
+          iconName: 'copy',
+          onPress: () => {
+            showToast({ type: 'success', text: loc.assetOptions.copied });
+            Clipboard.setString(metadata.tokenAddress as string);
+            navigation.navigate(Routes.Explainer, { contentType: EXPLAINER_CONTENT_TYPES.CONTRACT_ADDRESS });
+          },
+        },
+        explorer && {
+          text: loc.formatString(loc.assetOptions.viewOn, { explorer: explorer.name }),
+          iconName: getExplorerIcon(explorer.name),
+          onPress: () => openURL(explorer.url),
+          spaceBelow: true,
+        },
+        {
+          text: loc.assetOptions.hideAsset,
+          iconName: 'eye-off',
+          onPress: () => removeTokenFromGallery(token),
+        },
+      ];
+      return data.filter(o => !!o);
+    },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [removeTokenFromGallery, navigation, onPress, token, wallet],
+  );
 
   const renderTouchableElement = useCallback(
     () => (

@@ -1,6 +1,7 @@
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Defs, G, Mask, Circle as RNCircle, Rect, Svg } from 'react-native-svg';
 

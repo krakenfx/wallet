@@ -1,9 +1,9 @@
-import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { useTheme } from '@/theme/themes';
 
 import { Sizes } from '../../ExploreScreen.constants';
+import { ExploreCardContrastOverlay } from '../ExploreCardContrastOverlay/ExploreCardContrastOverlay';
 import { ExploreTableList } from '../ExploreTableList';
 import { ExploreText } from '../ExploreText';
 
@@ -17,19 +17,25 @@ export const ExploreHero = ({ title, body, background, cta, variant, style }: Ex
   const imageSizes = isCard ? styles.imageCard : styles.imageFullBleed;
   const themedShadow = isCard ? { shadowColor: colors.dark25 } : {};
   const variantStyle = isCard ? styles.Card : styles.FullBleed;
+
   return (
     <View style={style}>
       <View style={[styles.container, themedShadow, variantStyle, style]}>
-        <Image source={{ uri: background }} style={[styles.image, imageSizes]} />
+        <View style={[styles.imageContainer, imageSizes]}>
+          <Image source={{ uri: background }} style={[styles.image, imageSizes]} />
+          <ExploreCardContrastOverlay width={imageSizes.width} height={imageSizes.height} />
+        </View>
         <View style={[styles.content]}>
           {(title || body) && (
             <ExploreText
               titleType="boldDisplay3"
               titleStyle={styles.centerText}
               title={title}
+              titleLines={2}
               bodyType="regularBody"
               bodyStyle={[styles.centerText, { marginTop: Space.half, marginBottom: Space.s1 }]}
               body={body}
+              bodyLines={3}
               style={styles.text}
             />
           )}
@@ -57,7 +63,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginBottom: 0,
   },
-  image: { borderRadius: Space.s2 + Space.third, position: 'absolute', width: Card.width, height: Card.large },
+  imageContainer: { borderRadius: Space.s2 + Space.third, position: 'absolute', overflow: 'hidden' },
+  image: { position: 'absolute', width: Card.width, height: Card.large },
   imageCard: {
     width: Card.width,
     height: Card.large,

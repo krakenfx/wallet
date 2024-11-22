@@ -1,10 +1,9 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
-import { Label } from '@/components/Label';
+import { Label, type LabelProps } from '@/components/Label';
 import type { TokenIconProps } from '@/components/TokenIcon';
 import { TokenIcon } from '@/components/TokenIcon';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
@@ -13,20 +12,23 @@ import type { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { formatCurrency } from '@/utils/formatCurrency';
 
+import { Skeleton } from '../Skeleton';
+
 export type TransactionAmountProps = {
   attached?: boolean;
   label?: string;
 
-  
-  assetAmount: StringNumber; 
-  assetFiatAmount?: StringNumber; 
+  assetAmount: StringNumber;
+  assetFiatAmount?: StringNumber;
 
-  
-  assetNetwork: WalletType; 
-  assetSymbol?: string; 
+  assetNetwork: WalletType;
+  assetSymbol?: string;
   containerStyle?: StyleProp<ViewStyle>;
   testID?: string;
   tokenIconProps?: TokenIconProps;
+  assetAmountLabelProps?: LabelProps;
+  fiatAmountLabelProps?: LabelProps;
+  isLoading?: boolean;
 };
 
 export const TransactionAmount = ({
@@ -37,6 +39,9 @@ export const TransactionAmount = ({
   attached,
   containerStyle,
   label,
+  assetAmountLabelProps,
+  fiatAmountLabelProps,
+  isLoading,
   ...props
 }: TransactionAmountProps) => {
   if (!assetSymbol) {
@@ -63,13 +68,19 @@ export const TransactionAmount = ({
         </View>
       ) : (
         <View style={styles.assetAmounts}>
-          <Label type="boldDisplay2" adjustsFontSizeToFit numberOfLines={1} testID={`AssetAmount-${props.testID}`}>
-            {assetAmount}
+          <Label type="boldDisplay2" adjustsFontSizeToFit numberOfLines={1} testID={`AssetAmount-${props.testID}`} {...assetAmountLabelProps}>
+            {isLoading ? ' ' : assetAmount}
           </Label>
-          <Label type="regularMonospace" color="light50" style={styles.fiatAmount} testID={`FiatAmount-${props.testID}`}>
+          <Label type="regularMonospace" color="light50" style={styles.fiatAmount} testID={`FiatAmount-${props.testID}`} {...fiatAmountLabelProps}>
             {}
-            {assetFiatAmount || ' '}
+            {isLoading ? ' ' : assetFiatAmount || ' '}
           </Label>
+          {isLoading && (
+            <View style={styles.loadingOverlay}>
+              <Skeleton style={styles.skeletonBig} />
+              <Skeleton style={styles.skeletonSmall} />
+            </View>
+          )}
         </View>
       )}
     </View>
@@ -118,6 +129,22 @@ const styles = StyleSheet.create({
   },
   assetSymbol: {
     flexShrink: 2,
+  },
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'flex-end',
+    justifyContent: 'space-evenly',
+    gap: 8,
+  },
+  skeletonBig: {
+    width: 132,
+    height: 30,
+    borderRadius: 10,
+  },
+  skeletonSmall: {
+    width: 82,
+    height: 22,
+    borderRadius: 8,
   },
 });
 

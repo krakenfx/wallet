@@ -1,5 +1,5 @@
 import { noop } from 'lodash';
-import React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 
 import { typographyControl } from '@/utils/storybook';

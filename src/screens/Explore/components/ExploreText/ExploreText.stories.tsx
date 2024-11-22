@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ExploreRow } from '../ExploreRow';
 
 import { ExploreText } from './ExploreText';

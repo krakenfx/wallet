@@ -1,5 +1,4 @@
 import { noop } from 'lodash';
-import React from 'react';
 
 import { SequenceSlides } from './SequenceSlides';
 

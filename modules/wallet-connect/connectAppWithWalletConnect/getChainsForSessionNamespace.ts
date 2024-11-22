@@ -1,7 +1,5 @@
 import { untilSecondColon } from '@/utils/stringUtils';
 
-
-
 function getChainsForSessionNamespace(accountsFromMatchedWallets: string[], networkPrefix: string) {
   const chains = accountsFromMatchedWallets
     .map(account => {

@@ -10,16 +10,15 @@ export const useWhatsNewQueue = () => {
   const assetMarketDataTask = useWhatsNewTask(RealmSettingsKey.whatsNewIsAssetMarketDataCompleted, Routes.WhatsNewAssetMarketData);
   const longPressTask = useWhatsNewTask(RealmSettingsKey.whatsNewIsLongPressCompleted, Routes.WhatsNewLongPress);
   const isInitialised = useRef(false);
-  const queue = useMemo(() => [blastTask, assetMarketDataTask, longPressTask], [assetMarketDataTask, blastTask, longPressTask]);
+  const avaxLineaTask = useWhatsNewTask(RealmSettingsKey.isAvaxLineaTaskModalCompleted, Routes.WhatsNewAvaxLinea);
+  const queue = useMemo(() => [avaxLineaTask, blastTask, assetMarketDataTask, longPressTask], [avaxLineaTask, assetMarketDataTask, blastTask, longPressTask]);
 
   useEffect(() => {
     if (isInitialised.current) {
-      
       return;
     }
     isInitialised.current = true;
 
-    
     for (const welcomeTask of queue) {
       if (!welcomeTask.isTaskCompleted) {
         welcomeTask.task();

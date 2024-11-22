@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';

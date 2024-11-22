@@ -58,7 +58,6 @@ export const useNftsFetch = () => {
       const nftsFetched = results.filter(isPromiseFulfilled).map(({ value }) => value);
       runInTransaction(() => {
         nftsFetched.forEach(({ nfts, wallet }) => {
-          
           if (wallet.isValid()) {
             saveNftsToRealm(nfts, wallet);
           }

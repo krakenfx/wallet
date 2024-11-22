@@ -1,6 +1,7 @@
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { PushNotifications } from '@/api/PushNotifications';
@@ -27,7 +27,6 @@ export const NotificationsScreen = () => {
 
   useHeaderTitle(loc.settings.notifications);
 
-  
   useEffect(() => {
     (async () => {
       const hasPermission = await PushNotifications.getInstance().hasPermission();
@@ -39,7 +38,6 @@ export const NotificationsScreen = () => {
     })();
   }, []);
 
-  
   useEffect(() => {
     (async () => {
       if (!token || !isOnline) {
@@ -54,29 +52,24 @@ export const NotificationsScreen = () => {
     })();
   }, [isOnline, token]);
 
-  
   const onLevelToggle = async (levelName: 'level_all', newValue: boolean) => {
     if (!isOnline) {
       return;
     }
     if (!token) {
-      
-      
       await PushNotifications.getInstance().registerRemoteNotifications();
     }
     if (newValue) {
       subscribeToNotifications();
     }
 
-    
     await PushNotifications.getInstance().changeSubscriptionLevel(levelName, newValue);
 
     if (newValue) {
       setPushPromptNeeded(false);
     }
-    
+
     setTokenConfig(prevTokenConfig => {
-      
       const newConfig: TokenConfigurationType = Object.assign({}, prevTokenConfig);
       newConfig[levelName] = newValue;
 

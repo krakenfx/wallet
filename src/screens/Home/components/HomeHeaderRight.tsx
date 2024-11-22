@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { SvgIcon } from '@/components/SvgIcon';
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    
+
     marginRight: 28 - 20,
   },
   gap: {

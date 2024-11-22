@@ -1,9 +1,10 @@
+import type React from 'react';
 import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
 
 import type { WithSpringConfig } from 'react-native-reanimated';
 
 import { BlurView } from '@react-native-community/blur';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Platform, StyleSheet, TouchableWithoutFeedback, View, useWindowDimensions } from 'react-native';
 
 import Animated, { interpolate, runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
@@ -30,6 +31,7 @@ export type PositionProps = {
     elementHeight: number;
   };
   menuWidth?: number;
+  preferTop?: boolean;
 };
 
 export type PopupMenuProps<T> =
@@ -44,7 +46,7 @@ const springConfig: WithSpringConfig = {
   damping: 18,
 };
 
-export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth, ...props }) => {
+export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth, preferTop, ...props }) => {
   const [layout, setLayout] = useState<LayoutRectangle>();
   const { height, width } = useWindowDimensions();
   const { hide, setVisible } = useMenu();
@@ -55,12 +57,10 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
   const transition = useSharedValue(0);
 
   useEffect(() => {
-    
     transition.value = withSpring(1, springConfig);
   }, [transition]);
 
   const onClose = () => {
-    
     setVisible(false);
     transition.value = withSpring(0, springConfig, finished => {
       if (finished) {
@@ -75,12 +75,10 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
   });
 
   const maxMenuHeight = useMemo(() => {
-    
     if (origin.y - origin.elementHeight / 2 > height / 2) {
-      
       return origin.y - insets.top - origin.elementHeight;
     }
-    
+
     return height - origin.y - Platform.select({ ios: insets.bottom, default: 0 }) - 16;
   }, [height, insets.bottom, insets.top, origin.y, origin.elementHeight]);
 
@@ -101,12 +99,14 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
     }
 
     const maxBottom = frame.height - insets.bottom;
+    const minTop = insets.top;
+    const top = layout.y;
     const bottom = layout.height + layout.y;
-    
+
     const translateOriginX = (layout.width / 2) * (horizontalAlign === 'left' ? -1 : 1);
     const translateOriginY = layout.height / -2;
-    
-    const verticalAlign = bottom > maxBottom ? 'top' : 'bottom';
+
+    const verticalAlign = (preferTop && top >= minTop) || bottom > maxBottom ? 'top' : 'bottom';
     const additionalOffset = verticalAlign === 'top' ? -layout.height - origin.elementHeight : 0;
 
     return {
@@ -115,7 +115,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
       translateOriginY,
       additionalOffset,
     };
-  }, [frame.height, horizontalAlign, insets.bottom, layout, origin.elementHeight]);
+  }, [frame.height, horizontalAlign, insets.bottom, insets.top, layout, origin.elementHeight, preferTop]);
 
   const animatedStyle = useAnimatedStyle(() => {
     if (!positionValues) {
@@ -153,11 +153,18 @@ export const MenuOverlay: React.FC<MenuOverlayProps<any>> = ({ origin, menuWidth
             animatedStyle,
           ]}>
           {props.type === 'tooltip' && <TooltipMenu horizontalAlign={horizontalAlign} verticalAlign={positionValues?.verticalAlign} {...props} />}
-          {props.type !== 'tooltip' && (
+          {props.type === 'dropdown' && (
+            <View style={[{ backgroundColor: colors.coreBackground }, styles.dropdown]}>
+              <View style={{ backgroundColor: colors.purple_30 }}>
+                <DropdownMenu {...props} onClose={onClose} />
+              </View>
+            </View>
+          )}
+          {props.type === 'context' && (
             <>
               <View style={[styles.blurBackground, { backgroundColor: Platform.select({ ios: colors.background, default: colors.androidDarkBlurBg }) }]} />
               <BlurView blurAmount={60} blurType="dark" style={styles.blur}>
-                {props.type === 'context' ? <ContextMenu {...props} onClose={onClose} /> : <DropdownMenu {...props} onClose={onClose} />}
+                <ContextMenu {...props} onClose={onClose} />
               </BlurView>
             </>
           )}
@@ -195,6 +202,10 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     borderRadius: 16,
     opacity: 0.3,
+  },
+  dropdown: {
+    borderRadius: 16,
+    overflow: 'hidden',
   },
   blur: {
     borderRadius: 16,

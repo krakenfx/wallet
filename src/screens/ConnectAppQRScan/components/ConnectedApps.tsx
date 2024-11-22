@@ -1,7 +1,7 @@
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { StackActions, useNavigation } from '@react-navigation/native';
 
-import React, { forwardRef, useCallback, useMemo } from 'react';
+import { forwardRef, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppsListItem } from '@/components/AppsListItem';
@@ -53,7 +53,6 @@ export const ConnectedApps = forwardRef<BottomSheetModalRef, ConnectedAppsProps>
       const items: JSX.Element[] = [];
 
       loopOverAllSessionNamespaceAccounts(session, (account, i) => {
-        
         const network = getNetworkNameFromWalletString(account);
 
         items.push(
@@ -71,6 +70,8 @@ export const ConnectedApps = forwardRef<BottomSheetModalRef, ConnectedAppsProps>
 
       return <>{items}</>;
     },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [rightElement],
   );
 

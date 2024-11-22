@@ -1,18 +1,16 @@
-import type { ViewProps } from 'react-native';
+import type React from 'react';
 
-import type { AnimateProps } from 'react-native-reanimated';
+import { Platform, StyleSheet, type ViewProps } from 'react-native';
 
-import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import Animated, { type AnimateProps, useAnimatedStyle } from 'react-native-reanimated';
 
-import Animated, { Extrapolation, interpolate, useAnimatedKeyboard, useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useKeyboardOffset } from '@/hooks/useKeyboardOffset';
 
 type Props = {
   extraOffset?: number;
-  absolutePosition?: boolean; 
-  useBottomInset?: boolean; 
-  offsetBottomInsetWhenOpen?: boolean; 
+  absolutePosition?: boolean;
+  useBottomInset?: boolean;
+  offsetBottomInsetWhenOpen?: boolean;
 };
 export const KeyboardAvoider: React.FC<AnimateProps<ViewProps> & Props> = ({
   children,
@@ -23,22 +21,13 @@ export const KeyboardAvoider: React.FC<AnimateProps<ViewProps> & Props> = ({
   useBottomInset = true,
   ...viewProps
 }) => {
-  const keyboard = useAnimatedKeyboard({ isStatusBarTranslucentAndroid: true });
-  const insets = useSafeAreaInsets();
-
-  const defaultOffset = useDerivedValue(() => (useBottomInset ? insets.bottom : 0), [insets]);
+  const keyboardOffset = useKeyboardOffset(extraOffset, offsetBottomInsetWhenOpen, useBottomInset);
 
   const paddingStyle = useAnimatedStyle(() => {
-    const negativeOffset = offsetBottomInsetWhenOpen
-      ? interpolate(keyboard.height.value, [0, insets.bottom], [0, insets.bottom], {
-          extrapolateRight: Extrapolation.CLAMP,
-        })
-      : 0;
-
     return {
-      paddingBottom: defaultOffset.value + keyboard.height.value - negativeOffset + extraOffset,
+      paddingBottom: keyboardOffset.value,
     };
-  }, [insets]);
+  });
 
   return (
     <Animated.View style={[absolutePosition && styles.absolute, style, paddingStyle]} {...viewProps}>

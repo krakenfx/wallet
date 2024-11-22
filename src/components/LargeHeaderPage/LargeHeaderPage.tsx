@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from 'react';
 
+import type React from 'react';
 import type { StyleProp, TextProps, ViewStyle } from 'react-native';
 
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 

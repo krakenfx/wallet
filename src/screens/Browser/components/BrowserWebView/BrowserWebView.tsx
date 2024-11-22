@@ -1,12 +1,13 @@
 import type { GestureResponderEvent, NativeSyntheticEvent } from 'react-native';
 
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import WebView from 'react-native-webview';
 
 import { useDappMethods } from '@/dAppIntegration/hooks/useDappMethods';
-import { injectGetPageInformationScript, injectProviderScript } from '@/dAppIntegration/scripts';
+import { useRandomSecret } from '@/dAppIntegration/hooks/useRandomSecret.ts';
+import { getInjectedScriptString } from '@/dAppIntegration/scripts';
 
 import { useBrowserAnimationContext } from '../../context/BrowserAnimationContext';
 import { useBrowserContext } from '../../context/BrowserContext';
@@ -15,6 +16,7 @@ import { useSearchContext } from '../../context/SearchContext';
 
 import { getHttpsUrl } from '../../utils/getHttpsUrl';
 
+import { BrowserBlockaidWarningSheet } from '../BrowserBlockaidWarningSheet';
 import { LoadingBar } from '../BrowserLoadingBar';
 import { BrowserLoadingFailure } from '../BrowserLoadingFailure';
 import { BrowserNoSearch } from '../BrowserNoSearch';
@@ -48,7 +50,9 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
     onLoadError,
   } = useBrowserContext();
 
-  const { onMessage } = useDappMethods(webViewRef);
+  const secret = useRandomSecret();
+
+  const { onMessage, disconnect } = useDappMethods(webViewRef, secret);
 
   const { animatedWebViewStyle } = useBrowserAnimationContext();
 
@@ -65,12 +69,10 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
       setUrl(httpsUrl);
     }
 
-    
     return false;
   };
 
   const handleLoadEnd = (event: NativeSyntheticEvent<WebViewErrorEvent | WebViewNavigationEvent>) => {
-    
     if (Platform.OS === 'android' && url) {
       changeSearchValue(url);
     }
@@ -106,51 +108,55 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
       reloadPage: () => {
         webViewRef.current?.reload();
       },
+      disconnect,
     }),
-    [navigationState, webViewRef],
+    [webViewRef, navigationState, error, setShouldDisplayWebView, disconnect],
   );
 
   const isSearchResultVisible = showSearchBar && searchValue !== '';
   const hideWebView = !shouldDisplayWebView || error || isSearchResultVisible;
 
   return (
-    <View style={styles.container}>
-      {isLoading ? <LoadingBar percentage={loadingPercentage} /> : null}
+    <>
+      <View style={styles.container}>
+        {isLoading ? <LoadingBar percentage={loadingPercentage} /> : null}
 
-      {isSearchResultVisible ? <BrowserSearchResult /> : null}
+        {isSearchResultVisible ? <BrowserSearchResult /> : null}
 
-      {error ? <BrowserLoadingFailure /> : null}
+        {error ? <BrowserLoadingFailure /> : null}
 
-      {url ? (
-        <Animated.View style={[{ flex: 1, display: hideWebView ? 'none' : 'flex' }, animatedWebViewStyle]}>
-          <WebView
-            pullToRefreshEnabled
-            mediaPlaybackRequiresUserAction
-            allowsInlineMediaPlayback
-            ref={webViewRef}
-            
-            style={[styles.webView, { opacity: hideWebView ? 0 : 1 }]}
-            source={{ uri: url }}
-            setSupportMultipleWindows={false}
-            originWhitelist={['https://', 'http://']}
-            decelerationRate="normal"
-            onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
-            onNavigationStateChange={onNavigationStateChange}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onLoadStart={onLoadStart}
-            onLoadProgress={onLoadProgress}
-            onLoadEnd={handleLoadEnd}
-            onError={onLoadError}
-            onMessage={onMessage}
-            injectedJavaScript={[injectProviderScript, injectGetPageInformationScript].join(' ')}
-            renderError={() => <BrowserLoadingFailure />} 
-          />
-        </Animated.View>
-      ) : (
-        <BrowserNoSearch />
-      )}
-    </View>
+        {url ? (
+          <Animated.View style={[{ flex: 1, display: hideWebView ? 'none' : 'flex' }, animatedWebViewStyle]}>
+            <WebView
+              pullToRefreshEnabled
+              mediaPlaybackRequiresUserAction
+              allowsInlineMediaPlayback
+              ref={webViewRef}
+              style={[styles.webView, { opacity: hideWebView ? 0 : 1 }]}
+              source={{ uri: url }}
+              setSupportMultipleWindows={false}
+              originWhitelist={['https://', 'http://']}
+              decelerationRate="normal"
+              onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+              onNavigationStateChange={onNavigationStateChange}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onLoadStart={onLoadStart}
+              onLoadProgress={onLoadProgress}
+              onLoadEnd={handleLoadEnd}
+              onError={onLoadError}
+              onMessage={onMessage}
+              injectedJavaScript={getInjectedScriptString(secret, Platform.OS)}
+              renderError={() => <BrowserLoadingFailure />}
+            />
+          </Animated.View>
+        ) : (
+          <BrowserNoSearch />
+        )}
+      </View>
+
+      <BrowserBlockaidWarningSheet url={url} />
+    </>
   );
 });
 

@@ -4,8 +4,6 @@ import { StyleSheet, View } from 'react-native';
 
 type Props = { items: ReactNode[]; offsetSize: number };
 
-
-
 export const OverlappingList = ({ items, offsetSize }: Props) => {
   const itemsLength = items.length;
   const itemsLengthExcludeLast = itemsLength - 1;

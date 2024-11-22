@@ -1,5 +1,7 @@
+import type React from 'react';
+
 import { BottomSheetView } from '@gorhom/bottom-sheet';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { StyleSheet, View } from 'react-native';
 
@@ -46,77 +48,82 @@ export const CloudBackupErrorSheet: React.FC<Props> = ({ type, onClose, onRetry 
 
   const { colors } = useTheme();
 
-  const content = useMemo(() => {
-    switch (type) {
-      case 'passkeyErrorReading': {
-        return (
-          <PasskeyErrorContent
-            suggestKeychainSettings
-            title={loc.walletCloudBackupError.noPasskeyFound.title}
-            description={loc.walletCloudBackupError.noPasskeyFound.description}
-            suggestManualImport
-          />
-        );
-      }
-      case 'passkeyErrorWriting': {
-        return (
-          <PasskeyErrorContent
-            suggestKeychainSettings
-            title={loc.walletCloudBackupError.errorCreatingPasskey.title}
-            description={loc.walletCloudBackupError.ensureICloudKeychainOn}
-          />
-        );
-      }
-      case 'passkeyErrorDeleting': {
-        return (
-          <PasskeyErrorContent
-            suggestKeychainSettings
-            title={loc.walletCloudBackupError.errorDeletingPasskey.title}
-            description={loc.walletCloudBackupError.ensureICloudKeychainOn}
-            suggestSupport={false}>
-            <View style={[styles.divider, { backgroundColor: colors.light15 }]} />
-            <Label type="regularBody" color="light75">
-              {loc.walletCloudBackupError.errorDeletingPasskey.deletedPasskeyPossibility}
-            </Label>
-          </PasskeyErrorContent>
-        );
-      }
-      case 'passkeyErrorInactive': {
-        return (
-          <PasskeyErrorContent
-            title={loc.walletCloudBackupError.errorInactive.title}
-            subtitle={loc.walletCloudBackupError.errorInactive.subtitle}
-            description={loc.walletCloudBackupError.errorInactive.description}
-            suggestSupport={false}
-          />
-        );
-      }
-      case 'passkeyErrorUserCanceledRegistration': {
-        return (
-          <PasskeyErrorContent
-            title={loc.walletCloudBackupError.userCanceledBackup.title}
-            description={loc.walletCloudBackupError.userCanceledBackup.description}
-            suggestSupport={false}
-          />
-        );
-      }
-      case 'passkeyErrorWritingWrongDevice':
-        return (
-          <PasskeyErrorContent
-            title={loc.walletCloudBackupError.errorCreatingBackup.title}
-            description={loc.walletCloudBackupError.errorCreatingBackup.description}>
-            <Label type="regularBody" color="light75">
-              {loc.walletCloudBackupError.errorCreatingBackup.tryAgainRegular}
-              <Label type="boldBody" color="light75">
-                {loc.walletCloudBackupError.errorCreatingBackup.tryAgainBold}
+  const content = useMemo(
+    () => {
+      switch (type) {
+        case 'passkeyErrorReading': {
+          return (
+            <PasskeyErrorContent
+              suggestKeychainSettings
+              title={loc.walletCloudBackupError.noPasskeyFound.title}
+              description={loc.walletCloudBackupError.noPasskeyFound.description}
+              suggestManualImport
+            />
+          );
+        }
+        case 'passkeyErrorWriting': {
+          return (
+            <PasskeyErrorContent
+              suggestKeychainSettings
+              title={loc.walletCloudBackupError.errorCreatingPasskey.title}
+              description={loc.walletCloudBackupError.ensureICloudKeychainOn}
+            />
+          );
+        }
+        case 'passkeyErrorDeleting': {
+          return (
+            <PasskeyErrorContent
+              suggestKeychainSettings
+              title={loc.walletCloudBackupError.errorDeletingPasskey.title}
+              description={loc.walletCloudBackupError.ensureICloudKeychainOn}
+              suggestSupport={false}>
+              <View style={[styles.divider, { backgroundColor: colors.light15 }]} />
+              <Label type="regularBody" color="light75">
+                {loc.walletCloudBackupError.errorDeletingPasskey.deletedPasskeyPossibility}
               </Label>
-            </Label>
-          </PasskeyErrorContent>
-        );
-      default:
-        return null;
-    }
-  }, [type]);
+            </PasskeyErrorContent>
+          );
+        }
+        case 'passkeyErrorInactive': {
+          return (
+            <PasskeyErrorContent
+              title={loc.walletCloudBackupError.errorInactive.title}
+              subtitle={loc.walletCloudBackupError.errorInactive.subtitle}
+              description={loc.walletCloudBackupError.errorInactive.description}
+              suggestSupport={false}
+            />
+          );
+        }
+        case 'passkeyErrorUserCanceledRegistration': {
+          return (
+            <PasskeyErrorContent
+              title={loc.walletCloudBackupError.userCanceledBackup.title}
+              description={loc.walletCloudBackupError.userCanceledBackup.description}
+              suggestSupport={false}
+            />
+          );
+        }
+        case 'passkeyErrorWritingWrongDevice':
+          return (
+            <PasskeyErrorContent
+              title={loc.walletCloudBackupError.errorCreatingBackup.title}
+              description={loc.walletCloudBackupError.errorCreatingBackup.description}>
+              <Label type="regularBody" color="light75">
+                {loc.walletCloudBackupError.errorCreatingBackup.tryAgainRegular}
+                <Label type="boldBody" color="light75">
+                  {loc.walletCloudBackupError.errorCreatingBackup.tryAgainBold}
+                </Label>
+              </Label>
+            </PasskeyErrorContent>
+          );
+        default:
+          return null;
+      }
+    },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [type],
+  );
 
   const buttonProps: FloatingBottomButtonsProps = useMemo(() => {
     switch (type) {

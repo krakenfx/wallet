@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { DoubleRow } from '@/components/DoubleRow';
 import { TransactionAmount } from '@/components/Transaction';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';

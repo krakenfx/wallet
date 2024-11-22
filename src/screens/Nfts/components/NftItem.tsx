@@ -46,39 +46,44 @@ export const NftItem = React.memo(({ nft, navigation, marginBottom, ...touchable
   const [isLongPressed, setIsLongPressed] = useState(false);
   const { openURL } = useBrowser();
 
-  const longPressOptions = useMemo(() => {
-    const explorer = configNftLinks[nft.wallet.type]?.blockchainExplorer;
-    const data: (LongPressOptionItemProps | undefined | false)[] = [
-      {
-        text: loc.nftOptions.viewDetails,
-        onPress: nftPressed,
-        iconName: 'nft',
-      },
-      {
-        text: loc.nftOptions.send,
-        onPress: () => navigation.navigate(Routes.SendStack, { screen: Routes.Send, params: { nftAssetId: nft.assetId } }),
-        iconName: 'send',
-        spaceBelow: true,
-      },
-      {
-        text: nft.inGallery ? loc.nftOptions.unfavorite : loc.nftOptions.favorite,
-        onPress: toggleGallery,
-        iconName: nft.inGallery ? 'star-filled' : 'star',
-      },
-      explorer && {
-        text: loc.formatString(loc.nftOptions.viewOn, { explorer: explorer.label }),
-        iconName: explorer.icon ?? 'placeholder-explorer',
-        onPress: explorer.onPress(nft.metadata.collectionId, nft.metadata.tokenId, openURL),
-        spaceBelow: true,
-      },
-      {
-        text: nft.isArchived ? loc.nftOptions.unarchive : loc.nftOptions.archive,
-        onPress: () => toggleNftInArchive(nft),
-        iconName: nft.isArchived ? 'un-archive' : 'archive',
-      },
-    ];
-    return data.filter(o => !!o);
-  }, [navigation, nft, nftPressed, toggleGallery, toggleNftInArchive]);
+  const longPressOptions = useMemo(
+    () => {
+      const explorer = configNftLinks[nft.wallet.type]?.blockchainExplorer;
+      const data: (LongPressOptionItemProps | undefined | false)[] = [
+        {
+          text: loc.nftOptions.viewDetails,
+          onPress: nftPressed,
+          iconName: 'nft',
+        },
+        {
+          text: loc.nftOptions.send,
+          onPress: () => navigation.navigate(Routes.SendStack, { screen: Routes.Send, params: { nftAssetId: nft.assetId } }),
+          iconName: 'send',
+          spaceBelow: true,
+        },
+        {
+          text: nft.inGallery ? loc.nftOptions.unfavorite : loc.nftOptions.favorite,
+          onPress: toggleGallery,
+          iconName: nft.inGallery ? 'star-filled' : 'star',
+        },
+        explorer && {
+          text: loc.formatString(loc.nftOptions.viewOn, { explorer: explorer.label }),
+          iconName: explorer.icon ?? 'placeholder-explorer',
+          onPress: explorer.onPress(nft.metadata.collectionId, nft.metadata.tokenId, openURL),
+          spaceBelow: true,
+        },
+        {
+          text: nft.isArchived ? loc.nftOptions.unarchive : loc.nftOptions.archive,
+          onPress: () => toggleNftInArchive(nft),
+          iconName: nft.isArchived ? 'un-archive' : 'archive',
+        },
+      ];
+      return data.filter(o => !!o);
+    },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [navigation, nft, nftPressed, toggleGallery, toggleNftInArchive],
+  );
 
   const onLongPressStart = () => {
     setIsLongPressed(true);

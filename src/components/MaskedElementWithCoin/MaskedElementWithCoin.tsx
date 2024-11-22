@@ -1,6 +1,7 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import MaskedView from '@react-native-masked-view/masked-view';
+
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Svg, { Circle, Defs, G, Mask, Rect } from 'react-native-svg';
@@ -14,7 +15,7 @@ export type MaskedElementWithCoinProps = {
   coinType: WalletType | 'walletTypeUnknown';
   coinSize: number;
   coinBorderSize?: number;
-  
+
   coinPosition?: {
     top: number;
     left: number;

@@ -1,6 +1,6 @@
-import type { PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import type { Transaction } from '@/api/types';
 import type { BTCTransaction } from '@/onChain/wallets/bitcoin';

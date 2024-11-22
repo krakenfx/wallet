@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { ExploreListItemContent } from '@/api/types';
 
 import { ExploreAnimationContextProvider } from '../../context/ExploreAnimationContext';
@@ -11,6 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const mockCta = (title: string): ExploreListItemContent => {
   return {
+    isDynamicContent: false,
     id: 'cta',
     title,
     body: 'This is the body copy on a Hero Component',

@@ -1,8 +1,8 @@
 import type { ReactElement } from 'react';
 
+import type React from 'react';
 import type { ListRenderItem } from 'react-native';
 
-import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
 import { Label } from '@/components/Label';

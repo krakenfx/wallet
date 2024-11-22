@@ -1,12 +1,13 @@
-
 import '@ethersproject/shims';
 
 import type { PropsWithChildren } from 'react';
 
+import type React from 'react';
+
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClientProvider } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LogBox, Platform, StatusBar, StyleSheet, Text, type TextProps, UIManager } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -31,8 +32,6 @@ import { runMigrations } from './utils/migrations';
 
 import { appendLog, applogFilePath, handleError } from '/helpers/errorHandler';
 
-
-
 type _Text = typeof Text & { defaultProps: Partial<TextProps> };
 (Text as _Text).defaultProps = (Text as _Text).defaultProps || {};
 (Text as _Text).defaultProps.allowFontScaling = false;
@@ -52,7 +51,6 @@ LogBox.ignoreLogs([
 
 console.log('applogFilePath:', applogFilePath);
 if (!__DEV__) {
-  
   const _log = (...args: unknown[]) => appendLog(args, 'log');
   console.log = console.warn = console.error = _log;
 }
@@ -64,7 +62,6 @@ if (Platform.OS === 'android') {
 }
 
 if (Platform.OS === 'android') {
-  
   StatusBar.setTranslucent(true);
 }
 

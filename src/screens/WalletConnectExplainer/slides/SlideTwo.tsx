@@ -1,4 +1,6 @@
-import React, { useMemo } from 'react';
+import type React from 'react';
+
+import { useMemo } from 'react';
 
 import type { AnimationMarkers, SequenceSlide } from '@/components/AnimatedSlides';
 import { SequenceSlides } from '@/components/AnimatedSlides';

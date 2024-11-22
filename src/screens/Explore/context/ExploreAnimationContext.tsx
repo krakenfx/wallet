@@ -1,11 +1,9 @@
-import type { PropsWithChildren } from 'react';
-
 import type { ViewStyle } from 'react-native';
 
 import type { AnimatedRef } from 'react-native-reanimated';
 
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useContext } from 'react';
+import React, { type PropsWithChildren, useCallback, useContext } from 'react';
 
 import { useWindowDimensions } from 'react-native';
 
@@ -101,17 +99,13 @@ export const ExploreAnimationContextProvider: React.FC<PropsWithChildren<Explore
       return;
     }
 
-    
     animateScreenUnmount();
 
-    
     const contentXShift = url ? (screenWidth / 0.6) * -1 : Sizes.Space.s2 + 4 - (containerWidth.value - measurements.contentWidth) / 2;
     translateContentX.value = withTiming(contentXShift, TRANSITION_CONFIG);
 
-    
     const containerYShift = insets.top + 5 - measurements.containerPageY;
 
-    
     const inputTargetWidth = containerWidth.value;
     containerWidth.value = withTiming(containerWidth.value - WIDTH_REDUCTION, TRANSITION_CONFIG);
     searchBarContainerX.value = withTiming(LEFT_SHIFT, TRANSITION_CONFIG);
@@ -134,14 +128,18 @@ export const ExploreAnimationContextProvider: React.FC<PropsWithChildren<Explore
     });
   };
 
-  
   useFocusEffect(
-    useCallback(() => {
-      searchBarContainerX.value = 0;
-      searchBarContainerY.value = 0;
-      containerWidth.value = screenWidth - Sizes.Space.s2 * 2;
-      translateContentX.value = 0;
-    }, []),
+    useCallback(
+      () => {
+        searchBarContainerX.value = 0;
+        searchBarContainerY.value = 0;
+        containerWidth.value = screenWidth - Sizes.Space.s2 * 2;
+        translateContentX.value = 0;
+      },
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [],
+    ),
   );
 
   return (

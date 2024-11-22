@@ -18,7 +18,6 @@ export function getCoinTransactionMethods<TType, TRequest, TFeeOption extends Fe
   const create = async (): Promise<TRequest> => {
     const amountSmallestUnits = await validateAmount(amount, network.nativeTokenDecimals, token.balance);
 
-    
     if (network.createMaxPaymentTransaction && useMaxAmount) {
       return network.createMaxPaymentTransaction(wallet, address);
     }

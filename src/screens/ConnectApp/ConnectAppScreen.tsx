@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { NavigationProps } from '@/Routes';
 import { ConnectAppWithBlock } from '@/screens/ConnectApp/components/ConnectAppWithBlock';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -14,7 +12,7 @@ export type ConnectAppParams = {
   appMetadata?: {
     url: string;
     name: string;
-    icon: string;
+    icon?: string;
   };
   networkIDs?: string[];
   requiredNetworkIDs?: string[];

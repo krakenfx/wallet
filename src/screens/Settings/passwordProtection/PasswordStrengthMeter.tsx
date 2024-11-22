@@ -1,6 +1,7 @@
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import calculateLevel from 'react-native-password-strength-meter/src/utils/calculate-level';
 import scorePassword from 'react-native-password-strength-meter/src/utils/score-password';

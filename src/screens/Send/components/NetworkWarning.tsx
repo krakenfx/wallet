@@ -1,4 +1,5 @@
-import React from 'react';
+import type React from 'react';
+
 import { Alert, StyleSheet } from 'react-native';
 
 import { CardWarning } from '@/components/CardWarning';

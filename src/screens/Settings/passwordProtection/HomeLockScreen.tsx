@@ -1,5 +1,5 @@
 import { BlurView } from '@react-native-community/blur';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Platform, StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';

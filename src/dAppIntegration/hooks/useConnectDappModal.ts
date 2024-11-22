@@ -14,16 +14,14 @@ import { useWalletConnectSupportedNetworkIds } from '/modules/wallet-connect/hoo
 export const useConnectDappModal = () => {
   const { navigate, goBack } = useNavigation();
 
-  
-
   const wallet = useWalletByType('ethereum');
   const networkIds = useWalletConnectSupportedNetworkIds('evm');
 
   const openModal = useCallback(
-    async (pageInfo: PageInfo) => {
+    async (pageInfo: PageInfo | null, domain: string, baseUrl: string) => {
       const accounts = await getAccountsFromMatchedWallets([wallet], false);
       const allAccounts = accounts.eip155;
-      const analyseUrlResult = await analyseUrl(pageInfo.url, allAccounts);
+      const analyseUrlResult = await analyseUrl(baseUrl, allAccounts);
 
       return new Promise((resolve, reject) => {
         navigate(Routes.ConnectApp, {
@@ -38,9 +36,9 @@ export const useConnectDappModal = () => {
             goBack();
           },
           appMetadata: {
-            url: pageInfo.url,
-            icon: pageInfo.icon,
-            name: pageInfo.url,
+            url: baseUrl,
+            icon: pageInfo?.iconUrl,
+            name: pageInfo?.title ?? domain,
           },
           networkIDs: networkIds,
           requiredNetworkIDs: [],

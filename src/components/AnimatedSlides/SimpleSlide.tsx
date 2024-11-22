@@ -1,10 +1,11 @@
 import type { PropsWithChildren } from 'react';
 
+import type React from 'react';
 import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
 
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import LottieView from 'lottie-react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInUp, FadeOut } from 'react-native-reanimated';
 
@@ -42,7 +43,7 @@ export const SimpleSlide: React.FC<PropsWithChildren & Props> = ({
     setLottieLayout(animationHeight ? { ...e.nativeEvent.layout, height: animationHeight } : e.nativeEvent.layout);
   };
 
-  const paddingBottom = useBottomSheetPadding(false, -100 + 16); 
+  const paddingBottom = useBottomSheetPadding(false, -100 + 16);
 
   return (
     <View style={styles.flex}>

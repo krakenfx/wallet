@@ -29,7 +29,6 @@ const defaultProps: Props = {
   defaultCallbackDelay: 1000,
 };
 
-
 export const useValidationState = (props: Props = {}) => {
   const { initialState, resetWhenInvalid, resetDelay, defaultCallbackDelay } = defaults(props, defaultProps);
   const [state, setState] = useState<ValidationState>(initialState);

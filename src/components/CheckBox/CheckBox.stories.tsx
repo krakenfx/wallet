@@ -1,5 +1,5 @@
 import { useArgs } from '@storybook/preview-api';
-import React from 'react';
+
 import { View } from 'react-native';
 
 import { CheckBox } from '@/components/CheckBox';

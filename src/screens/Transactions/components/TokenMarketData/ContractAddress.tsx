@@ -1,6 +1,6 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Animated, { FadeIn, FadeOut, ZoomIn } from 'react-native-reanimated';
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 18,
     borderBottomRightRadius: 18,
     overflow: 'hidden',
-    minWidth: 44, 
+    minWidth: 44,
   },
   contractAddress: { flex: 1, paddingRight: 6 },
   networkIcon: {

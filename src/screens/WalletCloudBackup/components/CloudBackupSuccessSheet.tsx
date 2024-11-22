@@ -1,6 +1,6 @@
 import { BottomSheetView } from '@gorhom/bottom-sheet';
 import LottieView from 'lottie-react-native';
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { BottomSheetModal } from '@/components/BottomSheet';

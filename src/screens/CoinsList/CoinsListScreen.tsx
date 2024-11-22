@@ -1,5 +1,5 @@
 import sortBy from 'lodash/sortBy';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -38,7 +38,7 @@ import type { Item } from './types';
 import loc from '/loc';
 
 const isInvalid = (item: Item) => {
-  return !item  || (isRealmObject(item) && !item.isValid());
+  return !item || (isRealmObject(item) && !item.isValid());
 };
 
 const renderItemSeparator = () => <View style={styles.divider} />;
@@ -60,7 +60,6 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
   const tokenPrices = useTokenPrices();
   const tokensGallery = useTokensGallery();
 
-  
   const tokensFromRealm = useTokensFilteredByReputationAndNetwork(networkFilter);
   const { withBalance, withoutBalance } = useMemo(() => {
     return {
@@ -76,15 +75,12 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
     );
   }, [tokensFromRealm, tokenPrices]);
 
-  
   const tokens: Item[] = useMemo(() => {
     if (searchQuery) {
       const searchKey = searchQuery.charAt(0).toLowerCase();
 
-      
       const tokensFromTokenListsPreFiltered = [...(tokensFromTokenLists[searchKey] || [])];
 
-      
       return withBalance.concat(sortBy(tokensFromTokenListsPreFiltered.concat([...withoutBalance] as []), sortTokensAlphabetically.lodash) as []);
     }
     return tokenGalleryAndNativeTokens;
@@ -97,7 +93,6 @@ export const CoinsListScreen = ({ navigation }: NavigationProps<'CoinsList'>) =>
 
     const searchQuery_ = searchQuery.toLowerCase();
 
-    
     const tokensGroupedBySearchScore = {
       withBalance: Object.keys(SEARCH_SCORE_TO_SORTING_INDEX).map(() => [] as Item[]),
       withoutBalance: Object.keys(SEARCH_SCORE_TO_SORTING_INDEX).map(() => [] as Item[]),

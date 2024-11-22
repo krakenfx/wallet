@@ -21,7 +21,7 @@ export type AddressDisplayProps = {
   hasSpaces?: boolean;
   showButton?: boolean;
   ensName?: string;
-  showEnsNameOnly?: boolean; 
+  showEnsNameOnly?: boolean;
   anyNumberOfLines?: boolean;
 };
 

@@ -1,6 +1,6 @@
-import type { PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { Platform } from 'react-native';
 
@@ -48,7 +48,6 @@ export const SearchContextProvider: React.FC<PropsWithChildren> = ({ children })
       return;
     }
 
-    
     if (Platform.OS === 'android') {
       setShouldDisplayWebView(false);
     }

@@ -10,11 +10,11 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': [
       'error',
       {
-        'ts-expect-error': 'allow-with-description', 
-        'ts-ignore': false, 
+        'ts-expect-error': 'allow-with-description',
+        'ts-ignore': false,
       },
     ],
-    '@typescript-eslint/prefer-ts-expect-error': 'error', 
+    '@typescript-eslint/prefer-ts-expect-error': 'error',
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'separate-type-imports' }],
     'import/no-duplicates': 'error',

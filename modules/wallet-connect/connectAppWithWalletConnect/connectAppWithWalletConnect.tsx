@@ -1,6 +1,5 @@
 import type React from 'react';
 
-
 import type { RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
 import { REALM_TYPE_WALLET_CONNECT_TOPICS } from '@/realm/walletConnectTopics';
 import type { RealmWallet } from '@/realm/wallets';
@@ -17,7 +16,7 @@ import { handleRedirect } from './handleRedirect';
 import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
-import type { ReactNavigationDispatch} from '/modules/wallet-connect';
+import type { ReactNavigationDispatch } from '/modules/wallet-connect';
 import { WalletConnectSessionsManager, initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
 
 type Props = {
@@ -27,8 +26,6 @@ type Props = {
   wallets: RealmResults<RealmWallet>;
   getSeed: SecuredKeychainContext['getSeed'];
 };
-
-
 
 export const connectAppWithWalletConnect = async (
   sessionProposal: SessionProposal,
@@ -47,7 +44,6 @@ export const connectAppWithWalletConnect = async (
   const result: _3rdPartyData = {};
   setUIState(UI_STATE.loading);
 
-  
   const web3Wallet = await initWalletConnectWeb3Wallet(realm, dispatch, getSeed);
 
   setUIState(UI_STATE.none);
@@ -80,10 +76,9 @@ export const connectAppWithWalletConnect = async (
 
   result.approveSession = async () => {
     setUIState(UI_STATE.loading);
-    await new Promise(resolve => setTimeout(resolve, 500)); 
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     if (matchedWallets.length === 0) {
-      
       setUIState(UI_STATE.none);
       return;
     }
@@ -102,7 +97,6 @@ export const connectAppWithWalletConnect = async (
             resolveApproveSession();
           },
           onSuccess: async response => {
-            
             const session = realm.objectForPrimaryKey<RealmWalletConnectTopics>(REALM_TYPE_WALLET_CONNECT_TOPICS, response.pairingTopic);
             if (!session) {
               throw new Error('Realm proposal not found');

@@ -16,7 +16,6 @@ import type { FeeEstimationMap } from '../types';
 
 import { handleError } from '/helpers/errorHandler';
 
-
 type SimulationData = PreparedTransaction | ((fee: FeeOption) => Promise<PreparedTransaction | void>) | null;
 
 export const useFeeEstimates = (
@@ -40,9 +39,7 @@ export const useFeeEstimates = (
     if (typeof simulation === 'object') {
       return simulation;
     }
-    
-    
-    
+
     const fee = options.find(o => o.kind === selectedFee) ?? options[0];
     if (typeof simulation === 'function') {
       return await runAfterUISync(() => simulation(fee));

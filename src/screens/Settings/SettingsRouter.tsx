@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
 
 import { DefaultBackButton } from '@/components/BackButton';
 import type { RouteProps } from '@/Routes';

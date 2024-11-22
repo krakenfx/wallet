@@ -1,4 +1,5 @@
-import React from 'react';
+import type React from 'react';
+
 import { StyleSheet } from 'react-native';
 
 import type { ButtonProps } from '@/components/Button';

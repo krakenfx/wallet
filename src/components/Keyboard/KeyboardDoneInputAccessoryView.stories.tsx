@@ -1,4 +1,3 @@
-import React from 'react';
 import { Platform, StyleSheet, TextInput, View } from 'react-native';
 
 import { SuperDarkTheme } from '@/theme/themes';

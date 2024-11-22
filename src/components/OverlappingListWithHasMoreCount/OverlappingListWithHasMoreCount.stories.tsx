@@ -1,4 +1,3 @@
-import React from 'react';
 import { View } from 'react-native';
 
 import { SuperDarkTheme } from '@/theme/themes';
@@ -40,13 +39,13 @@ export const Basic: Story = {
       <OverlappingListWithHasMoreCount
         {...args}
         items={[
-          <View>
+          <View key="ethereum">
             <NetworkIcon networkName="ethereum" size={20} />
           </View>,
-          <View>
+          <View key="blast">
             <NetworkIcon networkName="blast" size={20} />
           </View>,
-          <View>
+          <View key="base">
             <NetworkIcon networkName="base" size={20} />
           </View>,
         ]}

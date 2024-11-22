@@ -1,7 +1,7 @@
 import type { ImageRequireSource } from 'react-native';
 
 import { uniq } from 'lodash';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';

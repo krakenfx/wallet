@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { NetworkFee } from '@/components/NetworkFee';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 import type { NativeTokenSymbol } from '@/onChain/wallets/base';
@@ -19,8 +17,6 @@ type Props = {
   networkFee?: string | null;
   networkName: WalletType | 'walletTypeUnknown';
 };
-
-
 
 const NORMAL_USE_AMOUNT = ['BTC', 'DOGE', 'SOL'];
 const NORMAL_USE_PRICE = ['BTC', 'DOGE'];

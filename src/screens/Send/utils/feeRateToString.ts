@@ -9,7 +9,6 @@ export const feeRateToString = (feerate: string, wallet?: RealmishWallet): strin
     return;
   }
 
-  
   const { network } = getImplForWallet(wallet);
   if (network.formatTransactionFee) {
     return network.formatTransactionFee(feerate);

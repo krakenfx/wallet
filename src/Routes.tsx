@@ -35,7 +35,6 @@ import type { SwapScreenParams } from './screens/Swap';
 import type { NavigatorScreenParams } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-
 type ExcludeRealmObject<T> = {
   [K in keyof T]: T[K] extends Realm.Object ? never : T[K];
 };
@@ -54,6 +53,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     Browser: BrowserParams;
     AppLock: undefined;
     WhatsNewBlast: undefined;
+    WhatsNewAvaxLinea: undefined;
     WhatsNewAssetMarketData: undefined;
     WhatsNewLongPress: undefined;
     WalletBackupPrompt: undefined;
@@ -117,6 +117,7 @@ export enum Routes {
   AdvancedSettings = 'AdvancedSettings',
   AppDetails = 'AppDetails',
   Browser = 'Browser',
+  WhatsNewAvaxLinea = 'WhatsNewAvaxLinea',
   WhatsNewBlast = 'WhatsNewBlast',
   WhatsNewLongPress = 'WhatsNewLongPress',
   WhatsNewAssetMarketData = 'WhatsNewAssetMarketData',
@@ -156,6 +157,8 @@ export enum Routes {
   OnboardingWalletCloudImport = 'OnboardingWalletCloudImport',
   OnboardingWalletCloudImportSelection = 'OnboardingWalletCloudImportSelection',
   OnboardingImportMethodSelection = 'OnboardingImportMethodSelection',
+  OnboardingImportSubWallets = 'OnboardingImportSubWallets',
+  OnboardingImportSubWalletsSuccess = 'OnboardingImportSubWalletsSuccess',
   OnboardingImportWallet = 'OnboardingImportWallet',
   OnboardingIntro = 'OnboardingIntro',
   OnboardingOutro = 'OnboardingOutro',
@@ -178,7 +181,6 @@ export enum Routes {
   WalletConnectSignRequest_GenericTransaction = 'WalletConnectSignRequest_GenericTransaction',
   WalletConnectSignRequest_StructuredTransaction = 'WalletConnectSignRequest_StructuredTransaction',
 
-  
   About = 'About',
   AppLock = 'AppLock',
   DeleteAccountConfirm = 'DeleteAccountConfirm',
@@ -196,12 +198,10 @@ export enum Routes {
   SettingsWalletCloudBackupDelete = 'SettingsWalletCloudBackupDelete',
   SettingsDisplaySeed = 'SettingsDisplaySeed',
 
-  
   Send = 'Send',
   SendConfirm = 'SendConfirm',
   SendQRScan = 'SendQRScan',
 }
-
 
 /* eslint-disable @typescript-eslint/no-namespace */
 declare global {

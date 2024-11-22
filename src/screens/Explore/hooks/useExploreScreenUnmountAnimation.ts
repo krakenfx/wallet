@@ -21,13 +21,18 @@ export const useExploreScreenUnmountAnimation = () => {
   }));
 
   useFocusEffect(
-    useCallback(() => {
-      navigation.setOptions({
-        headerShown: true,
-      });
+    useCallback(
+      () => {
+        navigation.setOptions({
+          headerShown: true,
+        });
 
-      translateY.value = withSpring(0, SPRING_CONFIG);
-    }, []),
+        translateY.value = withSpring(0, SPRING_CONFIG);
+      },
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [],
+    ),
   );
 
   const animateScreenUnmount = () => {

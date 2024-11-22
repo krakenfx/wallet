@@ -8,7 +8,6 @@ import { isTokenInGallery } from '../tokens/utils';
 
 import type { RealmToken } from '../tokens';
 
-
 const isTokenRelevant = (token: RealmToken, filterInBlacklistedAssets?: boolean) => {
   if (
     !isNetworkCoin(token.assetId) &&

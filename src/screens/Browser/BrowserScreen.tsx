@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
@@ -12,6 +12,7 @@ import { BrowserHeader } from './components/BrowserHeader';
 import { BrowserWebView } from './components/BrowserWebView';
 import { BrowserAnimationContextProvider } from './context/BrowserAnimationContext';
 import { BrowserContextProvider } from './context/BrowserContext';
+import { ConnectionContextProvider } from './context/ConnectionContext';
 import { SearchContextProvider } from './context/SearchContext';
 import { useHeader } from './hooks/useHeader';
 
@@ -37,32 +38,40 @@ export const BrowserScreen = ({ navigation, route }: NavigationProps<'Browser'>)
 
   const onNavigateForward = () => webViewRef.current?.navigateForward();
 
-  const onGoBack = () => navigation.goBack();
+  const onExitBrowser = () => navigation.goBack();
+
+  const triggerNativeDisconnect = () => webViewRef.current?.disconnect();
 
   const { headerExpanded, onExpandHeader, handleTouchStart, handleTouchMove } = useHeader();
 
   const { url, customTransitionAnimation, goBackAnimations } = route.params;
 
-  useLayoutEffect(() => {
-    if (customTransitionAnimation) {
-      navigation.setOptions({
-        animation: customTransitionAnimation,
-      });
-    }
-  }, []);
+  useLayoutEffect(
+    () => {
+      if (customTransitionAnimation) {
+        navigation.setOptions({
+          animation: customTransitionAnimation,
+        });
+      }
+    },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   return (
     <BrowserContextProvider
       initialUrl={url}
-      isConnectedToDapp={false}
-      onGoBack={onGoBack}
+      onExitBrowser={onExitBrowser}
       onRefreshPage={onRefreshPage}
       onNavigateBack={onNavigateBack}
       onNavigateForward={onNavigateForward}>
       <SearchContextProvider>
-        <BrowserAnimationContextProvider onGoBack={onGoBack} goBackAnimations={goBackAnimations}>
+        <BrowserAnimationContextProvider onExitBrowser={onExitBrowser} goBackAnimations={goBackAnimations}>
           <GradientScreenView style={styles.container}>
-            <BrowserHeader headerExpanded={headerExpanded} onExpandHeader={onExpandHeader} />
+            <ConnectionContextProvider triggerNativeDisconnect={triggerNativeDisconnect}>
+              <BrowserHeader headerExpanded={headerExpanded} onExpandHeader={onExpandHeader} />
+            </ConnectionContextProvider>
 
             <BrowserWebView ref={webViewRef} handleTouchStart={handleTouchStart} handleTouchMove={handleTouchMove} />
           </GradientScreenView>

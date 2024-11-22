@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
@@ -65,6 +64,6 @@ export const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: -6, 
+    marginBottom: -6,
   },
 });

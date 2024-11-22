@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import type { Props as IconWithCoinIconProps } from '@/components/IconWithCoinIcon';

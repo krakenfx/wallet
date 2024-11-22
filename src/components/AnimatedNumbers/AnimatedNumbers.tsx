@@ -16,13 +16,12 @@ export type AnimatedNumbersProps = Omit<LabelProps, 'numberOfLines' | 'children'
   type: 'headerBalance' | 'boldLargeMonospace' | 'boldTitleMarketDataPercentageLarge' | 'boldTitleMarketDataPercentage';
   height?: number;
   fontSize: number;
-  
-  
+
   glyphSize: number;
   ticker?: string;
   tickerType?: TypographyKey;
   tickerFontSize?: number;
-  tickerBottomOffset?: number; 
+  tickerBottomOffset?: number;
   prefix?: string;
   suffix?: string;
   style?: StyleProp<ViewStyle>;
@@ -57,7 +56,6 @@ export const AnimatedNumbers = React.memo(
       ({ nativeEvent: { lines } }: NativeSyntheticEvent<TextLayoutEventData>) => {
         const totalWidth = lines.reduce((acc, line) => line.width + acc, 0);
         if (!containerLayout) {
-          
           return;
         }
 
@@ -124,7 +122,6 @@ export const AnimatedNumbers = React.memo(
       return null;
     }, [color, type, fontSize, lineHeight, suffix, tickerBottomOffset, tickerFontSize, tickerType, ticker]);
 
-    
     const renderShadowNode = useCallback(
       () => (
         <Label style={[styles.shadowNode, { fontSize, lineHeight }]} onTextLayout={handleTextLayout}>

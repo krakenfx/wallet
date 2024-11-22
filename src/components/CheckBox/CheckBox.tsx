@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
@@ -17,16 +16,16 @@ export const CheckBox = ({ checked, title, onPress, testID }: Props) => {
   const { colors } = useTheme();
 
   return (
-    <View style={styles.container}>
-      <Touchable testID={testID} onPress={onPress} style={[styles.checkbox, { borderColor: colors.light15 }, checked && { backgroundColor: colors.kraken }]}>
+    <Touchable testID={testID} style={styles.container} onPress={onPress}>
+      <View style={[styles.checkbox, { borderColor: colors.light15 }, checked && { backgroundColor: colors.kraken }]}>
         {checked && <SvgIcon name="checkmark" size={20} />}
-      </Touchable>
+      </View>
       {title && (
         <Label type="regularCaption1" color="light75" style={styles.label}>
           {title}
         </Label>
       )}
-    </View>
+    </Touchable>
   );
 };
 

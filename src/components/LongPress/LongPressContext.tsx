@@ -1,10 +1,11 @@
 import type { PropsWithChildren } from 'react';
 
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import type { AnimatedStyle } from 'react-native-reanimated';
 
 import { noop } from 'lodash';
-import React, { createContext, useContext, useMemo, useRef, useState } from 'react';
+import { createContext, useContext, useMemo, useRef, useState } from 'react';
 import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { useGlobalState } from '@/components/GlobalState';
@@ -49,7 +50,7 @@ const ADDITIONAL_SCALE_DURATION = 100;
 const INITIAL_OPACITY = 0.3;
 const INITIAL_OPTIONS_SCALE = 0;
 const DELAY_OPACITY_OUT = 200;
-const MARGIN_X = 12 + 12; 
+const MARGIN_X = 12 + 12;
 const END_SCALE = 1.02;
 
 export const LongPressProvider: React.FC<PropsWithChildren> = ({ children }) => {
@@ -78,7 +79,6 @@ export const LongPressProvider: React.FC<PropsWithChildren> = ({ children }) => 
   const [, setShowNavTabs] = useGlobalState('showNavTabs');
 
   const onLongPress = (item: React.ReactNode, positionX: number, positionY: number, onPressOutCallback?: () => void) => {
-    
     top.value = positionY;
     left.value = positionX;
 
@@ -88,20 +88,15 @@ export const LongPressProvider: React.FC<PropsWithChildren> = ({ children }) => 
 
     setSelectedItem(item);
 
-    opacity.value = withTiming(1, { duration: DURATION }); 
+    opacity.value = withTiming(1, { duration: DURATION });
 
-    
     scale.value = withTiming(END_SCALE, { duration: DURATION + ADDITIONAL_SCALE_DURATION, easing: Easing.inOut(Easing.linear) }, () => {
-      
       translateY.value = withTiming(-(positionY - topDistance), {
         duration: DURATION,
         easing: Easing.inOut(Easing.cubic),
       });
       optionsScale.value = withTiming(1, { duration: DURATION });
       if (positionX !== 0) {
-        
-        
-        
         translateX.value = withTiming(-positionX + MARGIN_X, {
           duration: DURATION,
           easing: Easing.inOut(Easing.cubic),
@@ -109,12 +104,10 @@ export const LongPressProvider: React.FC<PropsWithChildren> = ({ children }) => 
       }
     });
 
-    
     setShowNavTabs(false);
   };
 
   const onPressOut = (skipAnimation?: boolean, callback?: PressOutCallback) => {
-    
     setShowNavTabs(true);
 
     if (pressOutCallback.current) {
@@ -133,8 +126,7 @@ export const LongPressProvider: React.FC<PropsWithChildren> = ({ children }) => 
 
       return;
     }
-    
-    
+
     translateY.value = withTiming(
       0,
       {
@@ -146,7 +138,7 @@ export const LongPressProvider: React.FC<PropsWithChildren> = ({ children }) => 
         callback && runOnJS(callback)();
       },
     );
-    
+
     scale.value = withTiming(1, { duration: DURATION });
     translateX.value = withTiming(0, { duration: DURATION, easing: Easing.inOut(Easing.ease) });
     optionsScale.value = withTiming(INITIAL_OPTIONS_SCALE, { duration: DURATION, easing: Easing.inOut(Easing.ease) });

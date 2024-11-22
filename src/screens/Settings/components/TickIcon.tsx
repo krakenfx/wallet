@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SvgIcon } from '@/components/SvgIcon';
 
 export const TickIcon = ({ enabled }: { enabled: boolean }) => {

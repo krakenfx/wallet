@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useEffect, useState } from 'react';
 import Config from 'react-native-config';
 
-import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { featureFlagsKey } from '@/secureStore/asyncStorageKeys';
 
 import { createErrorHandlerWithContext, handleError } from '/helpers/errorHandler';
@@ -15,10 +14,11 @@ export enum FeatureFlag {
   NewNetworksEnabled = 'NewNetworksEnabled',
   InAppBrowserEnabled = 'InAppBrowserEnabled',
   swapsEnabled = 'swapsEnabled',
+  onboardingImportDiscoveryEnabled = 'onboardingImportDiscoveryEnabled',
 }
 
 export const NEW_NON_EVM_NETWORKS = [] as const;
-export const NEW_EVM_NETWORKS = [ChainAgnostic.NETWORK_LINEA, ChainAgnostic.NETWORK_AVALANCHE] as const;
+export const NEW_EVM_NETWORKS = [] as const;
 export const NEW_NETWORKS = [...NEW_EVM_NETWORKS, ...NEW_NON_EVM_NETWORKS] as const;
 
 export function getFeatureFlagsFromStorage<FMap = Record<FeatureFlag, boolean | undefined>>(): FMap {
@@ -49,10 +49,9 @@ export async function saveFeatureFlagsToStorage() {
   }
 }
 
-const featureFlagObj = getFeatureFlagsFromStorage(); 
+const featureFlagObj = getFeatureFlagsFromStorage();
 
 function isFeatureEnabled(key: FeatureFlag) {
-  
   return !!(__DEV__ || Config.INTERNAL_RELEASE) && !!featureFlagObj[key];
 }
 
@@ -75,7 +74,7 @@ export function isInAppBrowserEnabled() {
 }
 
 export const useFeatureFlag = (key: FeatureFlag) => {
-  const [isFeatureFlagEnabled, setIsFeatureFlagEnabled] = useState(false); 
+  const [isFeatureFlagEnabled, setIsFeatureFlagEnabled] = useState(false);
 
   useEffect(() => {
     setIsFeatureFlagEnabled(isFeatureEnabled(key));

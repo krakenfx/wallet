@@ -3,6 +3,7 @@ import { onMigration } from '@/realm/migrations';
 import { AccountSchema } from './accounts';
 import { AssetMarketDataPercentageChangeSchema, AssetMarketDataSchema } from './assetMarketData';
 import { AssetExplorerSchema, AssetLinksSchema, AssetMetadataSchema, AssetReputationSchema } from './assetMetadata';
+import { DappWalletPermissionsSchema } from './dappIntegration';
 import {
   DefiAncillaryStatSchema,
   DefiPositionMetadataSchema,
@@ -70,10 +71,11 @@ export const RealmSchema = [
   TokenPriceHistorySchema,
   TokenPriceHighLowItem,
   TokenPriceHighLow,
+  DappWalletPermissionsSchema,
 ];
 
 export const realmConfig: Configuration = {
-  schemaVersion: 33,
+  schemaVersion: 36,
   schema: RealmSchema,
   onMigration,
 };

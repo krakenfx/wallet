@@ -8,7 +8,6 @@ type Props = {
   size: number;
 };
 
-
 export const ExtendedPublicKeyQRCode = ({ value, size }: Props) => {
   const { colors } = useTheme();
 

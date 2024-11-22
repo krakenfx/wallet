@@ -1,5 +1,4 @@
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import React from 'react';
 
 import { StyleSheet, View } from 'react-native';
 

@@ -1,5 +1,5 @@
 import LottieView from 'lottie-react-native';
-import React from 'react';
+
 import { StyleSheet } from 'react-native';
 
 import Animated, { FadeIn } from 'react-native-reanimated';

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Image, StyleSheet, View } from 'react-native';
 
@@ -68,7 +68,6 @@ export const WalletCloudBackupScreen = ({ navigation, route }: NavigationProps<'
       if (e instanceof Error) {
         switch (e.code) {
           case CloudBackupError.no_credentials_found: {
-            
             setPasskeyError('passkeyErrorWritingWrongDevice');
             return;
           }

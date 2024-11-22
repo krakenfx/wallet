@@ -2,7 +2,7 @@ import { useHeaderHeight } from '@react-navigation/elements';
 
 import { keyBy, sortBy } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Keyboard, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
@@ -19,7 +19,7 @@ import { useTokenSearchQuery } from '@/hooks/useTokenSearchQuery';
 import type { WalletType } from '@/onChain/wallets/registry';
 import { networkIdToNetworkName } from '@/onChain/wallets/registry';
 import { useSwapTargetListQuery } from '@/reactQuery/hooks/useSwapTargetListQuery';
-import { sortTokensAlphabetically, useTokens } from '@/realm/tokens';
+import { getNetworkNameFromAssetId, sortTokensAlphabetically, useTokens } from '@/realm/tokens';
 import type { RealmWallet } from '@/realm/wallets';
 import { useRealmWallets } from '@/realm/wallets';
 import { runAfterUISync } from '@/utils/runAfterUISync';
@@ -44,23 +44,32 @@ type Props = {
   onAssetSelected: (token: SwapTargetAsset) => void;
   onSearchInputFocused: () => void;
   goBack: () => void;
+  onClose: () => void;
 };
 
 const renderItemSeparator = () => <View style={styles.divider} />;
 
 export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
-  ({ goBack, onAssetSelected, currentAsset, sourceAssetWallet, onSearchInputFocused }, ref) => {
+  ({ goBack, onAssetSelected, currentAsset, sourceAssetWallet, onSearchInputFocused, onClose }, ref) => {
     const walletMap = keyBy(Array.from(useRealmWallets()), 'type');
     const userTokenMap = keyBy(Array.from(useTokens()), 'assetId');
 
-    const [networkFilter, setNetworkFilter] = useNetworkFilter([getNetworkFilterFromCaip(sourceAssetWallet.caipId)]);
+    const currentAssetNetwork = currentAsset ? getNetworkNameFromAssetId(currentAsset.assetId) : undefined;
+    const currentAssetWallet = currentAssetNetwork ? walletMap[currentAssetNetwork] : undefined;
+
+    const latestFilter = useMemo(
+      () => [getNetworkFilterFromCaip(currentAssetWallet?.caipId ?? sourceAssetWallet.caipId)],
+      [currentAssetWallet?.caipId, sourceAssetWallet.caipId],
+    );
+
+    const [networkFilter, setNetworkFilter] = useNetworkFilter(latestFilter);
 
     const [inputValue, setInputValue] = useState<string>('');
     const [searchQuery, setSearchQuery] = useState<string>(inputValue);
 
     useEffect(() => {
-      setNetworkFilter([getNetworkFilterFromCaip(sourceAssetWallet.caipId)]);
-    }, [setNetworkFilter, sourceAssetWallet]);
+      setNetworkFilter(latestFilter);
+    }, [latestFilter, setNetworkFilter]);
 
     const { data: swapListData, isLoading } = useSwapTargetListQuery(sourceAssetWallet.caipId, !searchQuery, SWAP_LIST_CACHE_DURATION);
 
@@ -74,7 +83,7 @@ export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
         const walletType: WalletType | undefined = networkIdToNetworkName[networkCaip];
 
         if (!walletType) {
-          return; 
+          return;
         }
 
         if (networkFilter.length === 0 || networkFilter.includes(getNetworkFilterFromCaip(networkCaip))) {
@@ -142,7 +151,16 @@ export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
     );
 
     return (
-      <BottomSheet index={-1} ref={ref} snapPoints={snapPoints} topInset={headerHeight} onClose={Keyboard.dismiss}>
+      <BottomSheet
+        index={-1}
+        ref={ref}
+        snapPoints={snapPoints}
+        topInset={headerHeight}
+        onChange={index => {
+          if (index === -1) {
+            onClose();
+          }
+        }}>
         <Animated.View style={styles.header}>
           <SearchInput onFocus={onSearchInputFocused} value={inputValue} placeholder={loc.swap.targetSearchPlaceholder} onChangeText={onChangeText} />
         </Animated.View>
@@ -161,6 +179,7 @@ export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
               keyExtractor={tokenItemKeyExtractor}
               ItemSeparatorComponent={renderItemSeparator}
               contentContainerStyle={styles.list}
+              keyboardShouldPersistTaps="handled"
             />
           </FadingElement>
         </KeyboardAvoider>

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useIsAppLockUsed } from '../appLock/hooks';
 import { TickIcon } from '../components';
 

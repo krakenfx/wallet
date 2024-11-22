@@ -24,14 +24,11 @@ export async function validateCleanKeychainOnInstall() {
   const hasRealmKey = await retryPromise(async () => !!(await getFromKeychain(KeychainKey.realmEncryptionKey, false, true)));
 
   if (!isRealmInAppEverInitialised) {
-    
     await clearAllKeychainValues();
     if (Realm.exists({ schema: RealmSchema })) {
-      
       Realm.deleteFile({ schema: RealmSchema });
     }
   } else if (!hasRealmKey) {
-    
     await clearAllKeychainValues();
     await cleanAsyncStorage();
     Realm.deleteFile({ schema: RealmSchema });
@@ -64,8 +61,6 @@ export async function getRealmEncryptionKey(encryptionPassword?: string): Promis
 }
 
 export async function getAppLockSecret() {
-  
-  
   const shouldThrowOnError = await isBiometricEnabled();
   return await getFromKeychain(KeychainKey.appLockSecretKey, true, shouldThrowOnError);
 }

@@ -1,6 +1,6 @@
+import type React from 'react';
 import type { ViewStyle } from 'react-native';
 
-import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Typography } from '@/components/Label';

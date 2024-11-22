@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { ImageSvg } from '@/components/ImageSvg';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   headerLabel: {
     justifyContent: 'center',
-    flexBasis: '70%', 
+    flexBasis: '70%',
   },
   headerIcon: {
     marginRight: 8,

@@ -1,6 +1,6 @@
 import type { SectionListData, ViewToken } from 'react-native';
 
-import React, { Fragment, useCallback, useMemo, useRef } from 'react';
+import { Fragment, useCallback, useMemo, useRef } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -83,7 +83,7 @@ const isIos = Platform.OS === 'ios';
 const DISTANCE_TO_RECENT_ACTIVITY = 320;
 
 export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
-  const tokens = useTokensFilteredByReputationAndNetwork([] );
+  const tokens = useTokensFilteredByReputationAndNetwork([]);
   const tokenPrices = useTokenPrices();
   const nftsCollection = useNftsCollections().slice(0, COLLECTIONS_TO_SHOW);
   const defiDeposits = useDefi();
@@ -209,7 +209,6 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
     transform: [{ translateY: -stickyHeaderIndex.value * HEADER_HEIGHT }],
   }));
 
-  
   const onViewableItemsChanged = useCallback(
     (info: { viewableItems: Array<ViewToken> }) => {
       const header = info.viewableItems.find(item => item.key === '0');
@@ -270,7 +269,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
-    marginTop: -HEADER_HEIGHT - 8, 
+    marginTop: -HEADER_HEIGHT - 8,
   },
   headerStyle: {
     height: HEADER_HEIGHT,
@@ -296,6 +295,6 @@ const styles = StyleSheet.create({
   },
   firstHeader: {
     marginTop: 0,
-    transform: [{ scale: 0 }], 
+    transform: [{ scale: 0 }],
   },
 });

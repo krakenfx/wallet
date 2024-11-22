@@ -1,4 +1,3 @@
-
 import type { RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
 import { REALM_TYPE_WALLET_CONNECT_TOPICS } from '@/realm/walletConnectTopics';
 

@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, Platform, StyleSheet } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 
@@ -11,12 +11,12 @@ import { biometricUnlock } from '/helpers/biometric-unlock';
 import loc from '/loc';
 import BootTime from '/modules/boot-time';
 
-const maxLockTimeWithoutBioCheck = 1000 * 60; 
+const maxLockTimeWithoutBioCheck = 1000 * 60;
 
 export const AppInBackground = () => {
   const appState = useAppState();
   const { colors } = useTheme();
-  const [isLocked, setIsLocked] = useState(false); 
+  const [isLocked, setIsLocked] = useState(false);
 
   const lastLockTime = useRef<number>(0);
   const alertVisible = useRef<boolean>(false);

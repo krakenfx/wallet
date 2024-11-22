@@ -1,5 +1,5 @@
 import { LinearGradient, vec } from '@shopify/react-native-skia';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { CurvedTransition } from 'react-native-reanimated';
 import { CartesianChart, Line } from 'victory-native';
@@ -69,8 +69,6 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
 
   useEffect(() => {
     if (data && data.highLow && !dataInitialised) {
-      
-      
       setHighLowData((data.highLow as RealmTokenPriceHighLow).toJSON());
     }
   }, [data, dataInitialised]);

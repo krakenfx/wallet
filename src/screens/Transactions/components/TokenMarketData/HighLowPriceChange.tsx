@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';

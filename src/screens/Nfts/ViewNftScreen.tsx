@@ -1,6 +1,6 @@
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import Animated, { Extrapolation, interpolate, runOnJS, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -100,7 +100,6 @@ export const ViewNftScreen = ({ navigation, route }: NavigationProps<'ViewNft'>)
     imagePreviewVisibity.value = withDelay(
       transitionConfig.initialDelay ?? 0,
       withTiming(0, { duration: transitionConfig.duration }, () => {
-        
         const snapIndex = sheetRef.current?.snapToIndex;
 
         if (snapIndex) {
@@ -108,7 +107,7 @@ export const ViewNftScreen = ({ navigation, route }: NavigationProps<'ViewNft'>)
         }
       }),
     );
-    
+
     sheetRef.current?.snapToPosition(1);
   };
 

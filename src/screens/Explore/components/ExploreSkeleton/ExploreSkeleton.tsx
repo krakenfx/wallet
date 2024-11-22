@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import type { ExploreCardSize, ExploreContentRow } from '@/api/types';
 import { Skeleton } from '@/components/Skeleton';
 
 import { Sizes } from '../../ExploreScreen.constants';
@@ -30,6 +31,32 @@ export const ExploreTextSkeleton = () => {
       <Skeleton style={[styles.text, styles.textShort]} />
     </>
   );
+};
+
+const ExploreCardSkeleton = ({ size }: { size: ExploreCardSize }) => {
+  switch (size) {
+    case 'Small':
+      return <ExploreSmallCardSkeleton />;
+    case 'Large':
+      return <ExploreHeroSkeleton />;
+    case 'Medium':
+    default:
+      return <ExploreMediumCardSkeleton />;
+  }
+};
+
+export const PlaceholderSkeleton = ({ data }: { data: ExploreContentRow }) => {
+  switch (data.variant) {
+    case 'Hero':
+      return <ExploreHeroSkeleton />;
+    case 'Card':
+      return <ExploreCardSkeleton size={data?.cardSize} />;
+    case 'List':
+      return <ExploreListSkeleton />;
+    case 'Text':
+    default:
+      return <ExploreTextSkeleton />;
+  }
 };
 
 const styles = StyleSheet.create({

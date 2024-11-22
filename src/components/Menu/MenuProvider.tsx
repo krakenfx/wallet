@@ -1,7 +1,5 @@
-import type { PropsWithChildren } from 'react';
-
 import noop from 'lodash/noop';
-import React, { useState } from 'react';
+import React, { type PropsWithChildren, useCallback, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 
@@ -29,19 +27,22 @@ export const MenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [props, setProps] = useState<MenuOverlayProps>();
   const [visible, setVisible] = useState(false);
 
-  const show = (newProps: MenuOverlayProps) => {
+  const show = useCallback((newProps: MenuOverlayProps) => {
     setProps(newProps);
     setVisible(true);
-  };
+  }, []);
 
-  const update = (newProps: PopupMenuProps<any>) => {
-    setProps({ ...props, ...newProps } as MenuOverlayProps);
-  };
+  const update = useCallback(
+    (newProps: PopupMenuProps<any>) => {
+      setProps({ ...props, ...newProps } as MenuOverlayProps);
+    },
+    [props],
+  );
 
-  const hide = () => {
+  const hide = useCallback(() => {
     setProps(undefined);
     setVisible(false);
-  };
+  }, []);
 
   const Container = Platform.OS === 'ios' ? FullWindowOverlay : View;
 

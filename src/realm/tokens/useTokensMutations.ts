@@ -51,7 +51,6 @@ export const useTokensMutations = () => {
                   description: record.metadata.description,
                   reputation,
                   updateRequired: false,
-                  
                 },
                 Realm.UpdateMode.Modified,
               ),
@@ -64,11 +63,6 @@ export const useTokensMutations = () => {
           }
         }
 
-        
-        
-        
-        
-        
         if (isSolanaWallet) {
           const solanaTokensNeedingZeroBalance = realm.objects(REALM_TYPE_TOKEN).filtered('walletId = $0 AND assetId == NONE $1', wallet.id, solanaTokensSaved);
 
@@ -99,7 +93,7 @@ export const useTokensMutations = () => {
               {
                 assetId: token.assetId,
                 symbol: token.metadata.symbol ?? '',
-                
+
                 label: token.metadata.label ?? '',
                 decimals: token.metadata.decimals,
                 reputation: token.metadata.reputation,
@@ -107,7 +101,7 @@ export const useTokensMutations = () => {
               Realm.UpdateMode.Modified,
             ),
           },
-          Realm.UpdateMode.Never ,
+          Realm.UpdateMode.Never,
         );
       });
     },

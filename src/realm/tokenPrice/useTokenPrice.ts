@@ -32,9 +32,7 @@ export interface PriceProps {
   realmQueueName?: string;
 }
 
-
 export const useTokenPriceFiatValue = ({ assetId, realmQueueName, refresh }: PriceProps): FiatValue | undefined => {
-  
   const tokenPrice = useObject<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE, assetId, 'assetId');
   const { setTokenPrice } = useTokenPriceMutations();
   const { currency } = useAppCurrency();
@@ -85,26 +83,23 @@ export const useTokenPriceFiatValue = ({ assetId, realmQueueName, refresh }: Pri
   }, [currency, localCacheValue, tokenPrice?.fiatValue]);
 };
 
-
 export const useTokenPrice = ({ assetId, realmQueueName, refresh }: PriceProps): number | undefined => {
   const fiatValue = useTokenPriceFiatValue({ assetId, realmQueueName, refresh });
   return fiatValue?.value !== undefined ? parseFloat(fiatValue.value) : undefined;
 };
-
 
 export const useTokenPriceChangePercentage = ({ assetId, realmQueueName, refresh }: PriceProps): number | undefined => {
   const fiatValue = useTokenPriceFiatValue({ assetId, realmQueueName, refresh });
   return fiatValue?.changePercentage24HR !== undefined ? parseFloat(fiatValue.changePercentage24HR) : undefined;
 };
 
-
 export const useTokenPriceGetter = () => {
   const realm = useRealm();
   const { currency } = useAppCurrency();
 
   const getTokenPrice = useCallback(
-    (token: string): number | undefined => {
-      const tokenPrice = realm.objectForPrimaryKey<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE, token);
+    (assetId: string): number | undefined => {
+      const tokenPrice = realm.objectForPrimaryKey<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE, assetId);
       const value = tokenPrice?.fiatValue[currency]?.value;
       return value !== undefined ? parseFloat(value) : undefined;
     },
@@ -119,7 +114,6 @@ export const useTokenPriceGetter = () => {
 export const useTokenPrices = () => {
   return useQuery<RealmTokenPrice>(REALM_TYPE_TOKEN_PRICE);
 };
-
 
 export const useDefiNonTokenizedPositionsTotalBalance = (): number => {
   const defis = useDefi();
@@ -164,7 +158,7 @@ export const useTotalWalletBalance = (): number => {
         balance: realTokenBalance,
         decimals: token.metadata.decimals,
       });
-      
+
       balance = balance > 0 ? balance : 0;
 
       return accumulator + balance;

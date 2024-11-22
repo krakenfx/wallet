@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import { AssetSwitch } from '@/components/AssetSwitch';
 import { ReputationTag } from '@/components/Reputation';

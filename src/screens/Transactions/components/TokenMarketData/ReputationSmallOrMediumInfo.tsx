@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { StyleSheet, View } from 'react-native';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
@@ -86,11 +84,7 @@ const BlackListedReputationInfo = ({ size }: SizeProps) => {
   );
 };
 
-export const ReputationSmallOrMediumInfo = ({
-  assetId,
-  size,
-  filterOut = { reputation: [], coinDesignation: ['network' ] },
-}: Props) => {
+export const ReputationSmallOrMediumInfo = ({ assetId, size, filterOut = { reputation: [], coinDesignation: ['network'] } }: Props) => {
   const reputation = useReputation(assetId);
   const shouldFilterOut = useShouldFilterOut({ assetId, reputation }, filterOut);
 

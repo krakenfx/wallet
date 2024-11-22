@@ -22,13 +22,12 @@ export const useDefiMutations = () => {
           `walletId = "${wallet.id}" AND NOT id IN $0`,
           records.map(r => r.id),
         );
-        realm.delete(toDelete); 
+        realm.delete(toDelete);
 
         for (const record of records) {
           try {
             realm.create<RealmDefi>(REALM_TYPE_DEFI, { ...(record as Defi), walletId: wallet.id, wallet }, Realm.UpdateMode.Modified);
           } catch (e) {
-            
             handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
           }
         }

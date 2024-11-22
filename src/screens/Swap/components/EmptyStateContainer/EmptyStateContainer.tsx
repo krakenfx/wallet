@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EmptySearchResult } from '../EmptySearchResult';
 import { EmptyStateAssetList } from '../EmptyStateAssetList';
 import { ListLoadingState } from '../ListLoadingState';

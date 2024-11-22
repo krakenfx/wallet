@@ -1,12 +1,10 @@
 import { QueryClient } from '@tanstack/react-query';
 
-
 export const DEFAULT_CACHE_TIME = 10 * 1000;
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      
       staleTime: DEFAULT_CACHE_TIME,
     },
   },
@@ -24,7 +22,6 @@ export async function fetchClient(url: RequestInfo, opts: RequestInit = {}) {
   let urlString;
   let method;
 
-  
   if (typeof url === 'string') {
     method = opts?.method ?? 'GET';
     urlString = url;
@@ -51,7 +48,7 @@ export async function fetchClient(url: RequestInfo, opts: RequestInit = {}) {
   } catch (err) {
     if (err instanceof Error && err.name === 'AbortError') {
       console.log(`request timeout: ${url} x-request-id: ${requestId}`);
-      throw new Error(`Request to ${url2domain(String(url))} timed out`); 
+      throw new Error(`Request to ${url2domain(String(url))} timed out`);
     } else {
       console.error(`request to ${String(url)} failed with error: ${err instanceof Error ? err.message : String(err)} x-request-id: ${requestId}`);
       throw err;

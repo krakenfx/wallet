@@ -1,5 +1,3 @@
-
-
 import BigNumber from 'bignumber.js';
 
 const DECIMAL_SIGN_REGEX = /[.]/;

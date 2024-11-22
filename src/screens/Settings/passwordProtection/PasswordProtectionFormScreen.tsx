@@ -1,6 +1,6 @@
 import type { TextInput } from 'react-native';
 
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { CurvedTransition } from 'react-native-reanimated';
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 
@@ -12,11 +10,11 @@ import { useSearchContext } from '../../context/SearchContext';
 export const BrowserGoBackButton = () => {
   const { shouldRunAnimations, animatedButtonStyle, onAnimateTransition } = useBrowserAnimationContext();
   const { showSearchBar, changeSearchValue } = useSearchContext();
-  const { onGoBack } = useBrowserContext();
+  const { onExitBrowser } = useBrowserContext();
 
   const onPressGoBackButton = () => {
     if (!shouldRunAnimations || !showSearchBar) {
-      onGoBack();
+      onExitBrowser();
       return;
     }
 

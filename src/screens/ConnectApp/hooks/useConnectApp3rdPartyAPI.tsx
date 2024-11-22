@@ -37,13 +37,9 @@ export const useConnectApp3rdPartyAPI = (
         set3rdPartyAPIData(__3rdPartyAPIData);
         return;
       }
-
-      
     })();
 
-    return () => {
-      
-    };
+    return () => {};
   }, [allWalletsForCurrentAccount, currentAccountNumber, dispatch, goBack, realm, setUIState, _3rdPartyAPI, getSeed]);
 
   return _3rdPartyAPIData;

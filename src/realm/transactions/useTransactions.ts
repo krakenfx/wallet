@@ -48,7 +48,6 @@ export const useTransactions = ({ walletId, assetId, networkFilter, ignoredIds }
 
   return useMemo(() => {
     const transactionsFilteredByReputation = sortedTransactions.filter(
-      
       tx => !getShouldFilterOutTransactionByReputation(realm, memoizedJSONParseTx(tx.data), filterInUnverifiedAssets, filterInBlacklistedAssets),
     );
     return filterTransactionsByAssetInvolvement(transactionsFilteredByReputation, assetId);

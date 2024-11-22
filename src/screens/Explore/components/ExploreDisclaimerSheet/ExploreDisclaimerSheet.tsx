@@ -1,5 +1,5 @@
 import { BottomSheetView } from '@gorhom/bottom-sheet';
-import React, { forwardRef, useEffect } from 'react';
+import { forwardRef, useLayoutEffect } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { BottomSheet } from '@/components/BottomSheet';
@@ -14,9 +14,9 @@ import type BottomSheetRef from '@gorhom/bottom-sheet';
 import loc from '/loc';
 
 export const ExploreDisclaimerSheet = forwardRef<BottomSheetRef, ExploreDisclaimerSheetProps>(({ onDismiss, onClose, onContinue, onMount = () => {} }, ref) => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     onMount();
-  }, []);
+  }, [onMount]);
 
   return (
     <BottomSheet

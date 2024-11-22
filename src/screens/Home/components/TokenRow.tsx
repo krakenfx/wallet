@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import { AssetRow } from '@/components/AssetRow';
 import { ReputationTag } from '@/components/Reputation';

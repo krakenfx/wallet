@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { ExploreListItemContent } from '@/api/types';
 
 import { ExploreAnimationContextProvider } from '../../context/ExploreAnimationContext';
@@ -11,6 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const mockItems: ExploreListItemContent[] = [
   {
+    isDynamicContent: false,
     id: '79775d93-3fd8-447a-858c-23bd7bbb7dbb',
     title: 'Aave',
     body: 'Earn and borrow',
@@ -25,6 +24,7 @@ const mockItems: ExploreListItemContent[] = [
     },
   },
   {
+    isDynamicContent: false,
     id: 'b07c6555-67f8-4193-add8-1e68d76efa37',
     title: 'Spark',
     body: 'Maker-based lending protocol',
@@ -39,6 +39,7 @@ const mockItems: ExploreListItemContent[] = [
     },
   },
   {
+    isDynamicContent: false,
     id: '2214fa57-ad89-45c6-b432-3cd4e2fc698f',
     title: 'Compound',
     body: 'Autonomous interest rate protocol',
