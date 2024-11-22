@@ -1,7 +1,7 @@
 import type { ListRenderItem } from 'react-native';
 
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

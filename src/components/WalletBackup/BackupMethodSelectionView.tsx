@@ -1,6 +1,8 @@
+import type React from 'react';
+
 import { useHeaderHeight } from '@react-navigation/elements';
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { ScrollView } from 'react-native-gesture-handler';

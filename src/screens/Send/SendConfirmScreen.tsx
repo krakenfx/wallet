@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { PushNotifications } from '@/api/PushNotifications';
 import type { FeeOption } from '@/api/types';
@@ -133,13 +133,12 @@ export const SendConfirmScreen = ({ route, navigation }: SendNavigationProps<'Se
           kind: 'send',
           type: transactionParams.type,
           to: transactionParams.address,
-          time: Math.round(new Date().getTime() / 1000), 
+          time: Math.round(new Date().getTime() / 1000),
           fee: amounts?.fee?.amount,
         },
         wallet,
       );
 
-      
       const pushInstance = PushNotifications.getInstance();
       if (await pushInstance.getDeviceToken()) {
         await pushInstance.subscribeTransactionsToPushNotifications([txId]);

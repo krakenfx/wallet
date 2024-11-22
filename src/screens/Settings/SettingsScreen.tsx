@@ -1,4 +1,3 @@
-import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -25,9 +24,6 @@ import loc from '/loc';
 export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'SettingsRoot'>) => {
   const { navigate } = navigation;
 
-  
-  
-  
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const _lang = useLanguage();
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import Svg from 'react-native-svg';
 
 import { OverlappingListWithHasMoreCount } from '@/components/OverlappingListWithHasMoreCount';

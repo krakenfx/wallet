@@ -1,10 +1,9 @@
-import type { ComponentProps } from 'react';
-
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { StopProps } from 'react-native-svg';
 
-import React from 'react';
+import React, { type ComponentProps } from 'react';
+
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 

@@ -1,6 +1,6 @@
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import React from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, { interpolate, useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
 
@@ -17,7 +17,7 @@ type ViewPagerPage = {
 type ViewPagerProps = {
   left: ViewPagerPage;
   right: ViewPagerPage;
-  
+
   secondaryComponent?: React.ReactElement;
   toggleTestID?: string;
   containerStyle?: StyleProp<ViewStyle>;

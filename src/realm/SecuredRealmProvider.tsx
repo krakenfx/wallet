@@ -1,4 +1,6 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import type React from 'react';
+
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import { HomeLockScreen } from '@/screens/Settings/passwordProtection';
 import { getRealmEncryptionKey } from '@/secureStore';

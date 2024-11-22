@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import type { EVMFeeOption } from '@/api/types';
 import { getImplForWallet } from '@/onChain/wallets/registry';
@@ -13,105 +13,126 @@ import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
 import { openSignMessageApproveModal } from '../openSignMessageApproveModal';
 import { openSignTransactionModal } from '../openSignTransactionApprovalModal';
-import { RpcMethods } from '../types';
-import { type PageInfo } from '../types';
+import { type PageInfo, RpcMethod } from '../types';
 
 import { isEVMHarmonyTransport, isEVMNetwork } from '/modules/wallet-connect/utils';
 import { type TransactionObject, ethSignFnMap } from '/modules/wallet-connect/web3Wallet/ethereum';
 
-const getSignMsg = (method: RpcMethods, params: [string, string]) => {
-  if (method === RpcMethods.personal_sign) {
-    return params[0];
-  }
-  return params[1];
-};
-
-export const useDappSignRequests = (wallet: RealmWallet, pageInfo: PageInfo) => {
+export const useDappSignRequests = (wallet: RealmWallet, pageInfo: PageInfo | null) => {
   const { getSeed } = useSecuredKeychain();
   const realm = useRealm();
   const { dispatch } = useNavigation();
   const { currency } = useAppCurrency();
+  const { network, transport } = useMemo(() => getImplForWallet(wallet), [wallet]);
 
-  const signMessage = useCallback(
-    async (method: RpcMethods, requestParams: unknown[]) => {
-      const { network, transport } = getImplForWallet(wallet);
-
-      if (!isEVMHarmonyTransport(transport) || !isEVMNetwork(network)) {
-        
-        return false;
+  const signEvmMessage = useCallback(
+    async (method: RpcMethod, params: unknown[], domain: string, baseUrl: string) => {
+      if (!isEVMNetwork(network) || !isEVMHarmonyTransport(transport)) {
+        throw new Error(`Can't sign an EVM message with a non-EVM wallet`);
       }
 
-      const approved = await openSignMessageApproveModal({ method, requestParams, wallet, dispatch, pageInfo });
+      const approved = await openSignMessageApproveModal({ method, params, wallet, dispatch, pageInfo, transport, network, domain, baseUrl });
+
       if (approved) {
         const seed = await getSeed('sign');
-        if (!seed) {
-          
-          throw Error('No seed');
-        }
-        const msg = getSignMsg(method, requestParams as [string, string]);
 
-        return await network[ethSignFnMap[method]](
+        if (seed === false) {
+          return;
+        }
+
+        return network[ethSignFnMap[method]](
           {
             ...wallet,
             seed: {
               data: seed,
             },
           },
-          msg,
+          (method === RpcMethod.personal_sign ? params[0] : params[1]) as string,
         );
       }
     },
-    [dispatch, getSeed, pageInfo, wallet],
+    [transport, network, wallet, dispatch, pageInfo, getSeed],
   );
 
-  const signTransaction = useCallback(
-    async (method: RpcMethods, requestParams: unknown[]) => {
-      const { network, transport } = getImplForWallet(wallet);
+  const signEvmTransaction = useCallback(
+    async (method: RpcMethod, params: unknown[], domain: string, baseUrl: string) => {
       if (!isEVMHarmonyTransport(transport) || !isEVMNetwork(network)) {
-        return false;
+        throw new Error(`Can't sign an EVM transaction with a non-EVM wallet`);
       }
-      const transaction = requestParams[0] as TransactionObject;
-      const approveObject = await openSignTransactionModal({ method, network, transaction, wallet, dispatch, transport, pageInfo, realm, currency });
 
-      if (approveObject?.approveSignRequest) {
-        const seed = await getSeed('sign');
+      const transaction = params[0] as TransactionObject;
 
-        if (!seed) {
-          
-          throw Error('No seed');
-        }
+      const approveObject = await openSignTransactionModal({
+        method,
+        network,
+        transaction,
+        wallet,
+        dispatch,
+        transport,
+        pageInfo,
+        realm,
+        currency,
+        domain,
+        baseUrl,
+      });
 
-        const fee = approveObject.fee as EVMFeeOption;
-        try {
-          const finalPreparedTransaction = await transport.prepareTransaction(
-            network,
-            wallet,
-            (await getWalletStorage(realm, wallet, true)) as WalletStorage<unknown>,
-            { ...transaction },
-            fee,
-            true,
-          );
-          const result = await network.signTransaction(
-            {
-              ...wallet,
-              seed: {
-                data: seed,
-              },
-            },
-            finalPreparedTransaction.data,
-          );
-          return await transport.broadcastTransaction(network, result);
-        } catch (error) {
-          
-          console.log(error);
-        }
+      if (!approveObject.approveSignRequest) {
+        return;
       }
+
+      const seed = await getSeed('sign');
+
+      if (seed === false) {
+        return;
+      }
+
+      const fee = approveObject.fee as EVMFeeOption;
+
+      const finalPreparedTransaction = await transport.prepareTransaction(
+        network,
+        wallet,
+        (await getWalletStorage(realm, wallet, true)) as WalletStorage<unknown>,
+        { ...transaction },
+        fee,
+        true,
+      );
+
+      return network.signTransaction(
+        {
+          ...wallet,
+          seed: {
+            data: seed,
+          },
+        },
+        finalPreparedTransaction.data,
+      );
     },
-    [currency, dispatch, getSeed, pageInfo, realm, wallet],
+    [transport, network, wallet, dispatch, pageInfo, realm, currency, getSeed],
   );
 
-  return {
-    signTransaction,
-    signMessage,
-  };
+  const signAndSendEvmTransaction = useCallback(
+    async (method: RpcMethod, params: unknown[], domain: string, baseUrl: string) => {
+      if (!isEVMNetwork(network)) {
+        throw new Error(`Can't sign an EVM transaction with a non-EVM wallet`);
+      }
+
+      const signature = await signEvmTransaction(method, params, domain, baseUrl);
+
+      if (signature === undefined) {
+        return;
+      }
+
+      return transport.broadcastTransaction(network, signature);
+    },
+    [network, signEvmTransaction, transport],
+  );
+
+  return useMemo(
+    () => ({
+      signEvmMessage,
+      signEvmTransaction,
+      signAndSendEvmTransaction,
+    }),
+    [signEvmMessage, signEvmTransaction, signAndSendEvmTransaction],
+  );
 };

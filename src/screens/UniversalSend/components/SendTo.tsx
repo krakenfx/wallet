@@ -1,7 +1,7 @@
 import type { SectionListData, SectionListRenderItem } from 'react-native';
 
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 

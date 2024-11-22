@@ -1,5 +1,5 @@
 import { BlurView } from '@react-native-community/blur';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 

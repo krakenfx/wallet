@@ -1,7 +1,7 @@
+import type React from 'react';
 import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
 
 import { StackActions, useNavigation } from '@react-navigation/native';
-import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { SequencedTransition } from 'react-native-reanimated';
 

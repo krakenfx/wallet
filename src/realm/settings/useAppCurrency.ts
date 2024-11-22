@@ -20,14 +20,11 @@ export const getDeviceCurrency = () => {
   const deviceCurrencies = RNLocalize.getCurrencies();
   let deviceCurrency;
 
-  
-  
   if (Platform.OS === 'ios') {
     deviceCurrency = [...deviceCurrencies].reverse().find(dc => {
       return dc in Currency;
     });
   } else {
-    
     deviceCurrency = deviceCurrencies[0];
   }
 

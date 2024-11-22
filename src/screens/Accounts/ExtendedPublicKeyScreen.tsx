@@ -1,7 +1,7 @@
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useIsFocused } from '@react-navigation/native';
-import React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
@@ -42,7 +42,7 @@ export const ExtendedPublicKeyScreen = ({ route, navigation }: NavigationProps<'
     }
   };
   const { width } = useSafeAreaFrame();
-  const qrCodeSize = width - 96; 
+  const qrCodeSize = width - 96;
 
   return (
     <BottomSheet dismissible={useIsFocused()} animatedIndex={sheetIndex} snapPoints={['100%']} {...bottomSheetProps}>

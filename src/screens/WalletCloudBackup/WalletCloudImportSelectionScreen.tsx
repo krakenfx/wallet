@@ -1,5 +1,5 @@
 import { sortBy } from 'lodash';
-import React from 'react';
+
 import { Image, StyleSheet, View } from 'react-native';
 
 import { ScrollView } from 'react-native-gesture-handler';

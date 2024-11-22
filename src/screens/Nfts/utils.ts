@@ -5,8 +5,6 @@ interface Labels {
   secondaryLabel: string;
 }
 
-
-
 export const getLabelsFromNft = (nft?: { metadata?: Pick<NftMetadata, 'name' | 'collectionName'> }): Labels => {
   if (nft?.metadata?.name) {
     return {

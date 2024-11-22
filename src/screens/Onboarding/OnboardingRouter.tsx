@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { DefaultBackButton } from '@/components/BackButton';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
@@ -13,6 +13,8 @@ import { OnboardingBackupPromptScreen, OnboardingBackupPromptScreenWithOptions }
 import { OnboardingBackupScreeen } from './OnboardingBackupScreeen';
 import { OnboardingBackupVerifyScreen } from './OnboardingBackupVerifyScreen';
 import { OnboardingImportMethodSelectionScreen } from './OnboardingImportMethodSelectionScreen';
+import { OnboardingImportSubWalletsScreen } from './OnboardingImportSubWalletsScreen';
+import { OnboardingImportSubWalletsSuccessScreen } from './OnboardingImportSubWalletsSuccessScreen';
 import { OnboardingImportWalletScreen } from './OnboardingImportWalletScreen';
 import { OnboardingIntroScreen } from './OnboardingIntroScreen';
 import { OnboardingOutroScreen } from './OnboardingOutroScreen';
@@ -33,6 +35,10 @@ export type OnboardingStackParams = {
   OnboardingImportMethodSelection: undefined;
   OnboardingWalletCloudImportSelection: {
     backups: CloudBackupMetadata[];
+  };
+  OnboardingImportSubWallets: undefined;
+  OnboardingImportSubWalletsSuccess: {
+    subWalletIds: number[];
   };
   OnboardingSecureWallet: undefined;
   OnboardingWalletCloudBackup: {
@@ -114,6 +120,16 @@ export const OnboardingRouter = () => {
           />
         </>
       )}
+      <OnboardingStack.Screen
+        name="OnboardingImportSubWallets"
+        component={OnboardingImportSubWalletsScreen}
+        options={OnboardingImportSubWalletsScreen.navigationOptions(theme)}
+      />
+      <OnboardingStack.Screen
+        name="OnboardingImportSubWalletsSuccess"
+        component={OnboardingImportSubWalletsSuccessScreen}
+        options={OnboardingImportSubWalletsSuccessScreen.navigationOptions(theme)}
+      />
       <OnboardingStack.Screen
         name="OnboardingSecureWallet"
         component={OnboardingSecureWalletScreen}

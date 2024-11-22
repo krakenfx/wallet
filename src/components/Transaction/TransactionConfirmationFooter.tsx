@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SequencedTransition } from 'react-native-reanimated';
 
@@ -31,8 +33,6 @@ export const TransactionConfirmationFooter: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    
-    
     runAfterUISync(() => {
       setIsLoading(propLoading);
     });

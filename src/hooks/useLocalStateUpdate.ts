@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
-
 export function useLocalStateUpdate<T>(initialValue: T, setUpstreamValue: (value: T) => void) {
   const [localValue, setLocalValue] = useState<T>(initialValue);
   const updatedManually = useRef<boolean>(false);

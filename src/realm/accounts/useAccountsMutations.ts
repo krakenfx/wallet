@@ -48,7 +48,6 @@ export const useAccountsMutations = () => {
         account.wallets.push(wallet);
       });
 
-      
       realm.create<RealmSettings>(
         REALM_TYPE_SETTINGS,
         {
@@ -97,11 +96,9 @@ export const useAccountsMutations = () => {
   );
 
   const deleteAccount = async (accountNumberToDelete: number): Promise<{ removedLastAccount: boolean }> => {
-    
     const currentAccountNumber = realm.objectForPrimaryKey<RealmSettings>(REALM_TYPE_SETTINGS, RealmSettingsKey.accountNumber);
     const deletingCurrentAccount = currentAccountNumber && currentAccountNumber.value === accountNumberToDelete;
 
-    
     const existingAccounts = realm.objects<RealmAccount>(REALM_TYPE_ACCOUNT);
     if (deletingCurrentAccount && existingAccounts.length === 1) {
       await wipeStorage();
@@ -110,13 +107,10 @@ export const useAccountsMutations = () => {
       };
     }
     realm.write(() => {
-      
       realm.delete(realm.objectForPrimaryKey<RealmAccount>(REALM_TYPE_ACCOUNT, accountNumberToDelete));
 
-      
       const wallets = realm.objects<RealmWallet>(REALM_TYPE_WALLET).filtered(`accountIdx = ${accountNumberToDelete}`);
 
-      
       wallets.forEach(realmWallet => {
         realm.delete(realm.objects(REALM_TYPE_WALLET_TRANSACTION).filtered(`walletId = '${realmWallet.id}'`));
         realm.delete(realm.objects(REALM_TYPE_DEFI).filtered(`walletId = '${realmWallet.id}'`));
@@ -124,13 +118,10 @@ export const useAccountsMutations = () => {
         realm.delete(realm.objects(REALM_TYPE_TOKEN).filtered(`walletId = '${realmWallet.id}'`));
       });
 
-      
       realm.delete(wallets);
 
-      
       const remainingAccounts = realm.objects<RealmAccount>(REALM_TYPE_ACCOUNT);
 
-      
       realm.create<RealmSettings>(
         REALM_TYPE_SETTINGS,
         {

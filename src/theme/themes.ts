@@ -15,8 +15,6 @@ export const SuperDarkTheme = {
   colors: {
     ...DarkTheme.colors,
 
-    
-
     kraken: '#7538F5',
     background: '#0D0D2E',
 
@@ -43,10 +41,10 @@ export const SuperDarkTheme = {
     dark25: 'rgba(0, 0, 0, 0.25)',
     dark15: 'rgba(0, 0, 0, 0.15)',
 
-    
-
+    purple_10: 'rgba(100, 81, 170, 0.10)',
     purple_15: 'rgba(100, 81, 170, 0.15)',
     purple_20: 'rgba(100, 81, 170, 0.20)',
+    purple_30: 'rgba(100, 81, 170, 0.30)',
     purple_40: 'rgba(100, 81, 170, 0.40)',
     purple_60: 'rgba(100, 81, 170, 0.60)',
 
@@ -61,7 +59,7 @@ export const SuperDarkTheme = {
     swapIconBorder: '#1A143F',
     swapIconBg: '#251D4F',
     coreBackground: '#0E0E35',
-    blurBackgroundAndroid: '#302C3E', 
+    blurBackgroundAndroid: '#302C3E',
     lavenderIndigo: '#8B58F7',
     tooltipColor: '#3E367C',
   },

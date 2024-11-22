@@ -12,13 +12,12 @@ import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 import { handleConnectToDappWalletConnectUri } from '../handleConnectToDappWalletConnectUri';
 import { matchPairingTopic } from '../utils';
 
-
 export const useHandleConnectToDappWalletConnectRequests = () => {
   const realm = useRealm();
   const { getSeed } = useSecuredKeychain();
   const navigation = useNavigation();
   const { saveTopicToRealm } = useWalletConnectTopicsMutations();
-  
+
   const handleConnectToDappWalletConnectRequests = useCallback(
     (event: { url: string }) => {
       const url = event.url;
@@ -35,7 +34,7 @@ export const useHandleConnectToDappWalletConnectRequests = () => {
           if (pairingTopic) {
             const topic = '';
             const isDeepLinked = true;
-            
+
             saveTopicToRealm(pairingTopic, topic, isDeepLinked);
             handleConnectToDappWalletConnectUri(uri, realm, navigation.dispatch, getSeed);
           }
@@ -45,28 +44,28 @@ export const useHandleConnectToDappWalletConnectRequests = () => {
     [realm, navigation.dispatch, getSeed, saveTopicToRealm],
   );
 
-  
   const { initialUrl, processingInitialUrl } = useInitialUrl();
 
   if (!processingInitialUrl && initialUrl) {
     handleConnectToDappWalletConnectRequests({ url: initialUrl });
   }
 
-  
-  useEffect(() => {
-    const listener = Linking.addEventListener('url', handleConnectToDappWalletConnectRequests);
-    return () => {
-      listener.remove();
-    };
-  }, []);
+  useEffect(
+    () => {
+      const listener = Linking.addEventListener('url', handleConnectToDappWalletConnectRequests);
+      return () => {
+        listener.remove();
+      };
+    },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 };
 
 const isConnectToDappWalletConnectRequest = (url: string, queryParams: URLSearchParams): string | false => {
   const uri = url.startsWith('wc:') ? url : queryParams.get('uri');
 
-  
-  
-  
   const isSessionRequest = uri?.includes('requestId');
 
   return uri && !isSessionRequest ? uri : false;

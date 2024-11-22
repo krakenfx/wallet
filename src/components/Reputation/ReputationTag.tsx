@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SvgIcon } from '@/components/SvgIcon';
 import { REPUTATION } from '@/hooks/useReputation';
 
@@ -25,11 +23,7 @@ type ReputationTagProps = {
   filterOut?: FilterOut;
 };
 
-export const ReputationTag = ({
-  assetId = '',
-  reputation,
-  filterOut = { reputation: [], coinDesignation: ['network' ] },
-}: ReputationTagProps) => {
+export const ReputationTag = ({ assetId = '', reputation, filterOut = { reputation: [], coinDesignation: ['network'] } }: ReputationTagProps) => {
   const shouldFilterOut = useShouldFilterOut({ assetId, reputation }, filterOut);
 
   if (shouldFilterOut) {

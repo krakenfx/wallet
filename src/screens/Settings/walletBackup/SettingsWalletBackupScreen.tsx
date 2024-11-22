@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { Routes } from '@/Routes';

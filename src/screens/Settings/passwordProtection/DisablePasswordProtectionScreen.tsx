@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { decryptRealmEncryptionKey, decryptSeedWithUserPassword } from '@/secureStore';
@@ -25,7 +25,7 @@ export const DisablePasswordProtectionScreen = ({ navigation }: SettingsNavigati
     async (password: string) => {
       try {
         setIsLoading(true);
-        
+
         if (seedEncrypted) {
           await decryptSeedWithUserPassword(password);
         }

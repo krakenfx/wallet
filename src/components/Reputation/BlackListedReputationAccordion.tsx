@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+
 import { StyleSheet } from 'react-native';
 
 import { CardWarning } from '@/components/CardWarning';

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import NameResolver from '@/api/NameResolver';
 import { AddressDisplay } from '@/components/AddressDisplay';
@@ -36,7 +36,6 @@ export const AddressesAndDescription: React.FC<Pick<NavigationProps<'Transaction
   };
 
   switch (transactionDetailsMetadata.transactionType) {
-    
     case TRANSACTION_TYPES.NFT_BUY:
     case TRANSACTION_TYPES.NFT_SELL:
     case TRANSACTION_TYPES.NFT_MINT: {
@@ -92,8 +91,6 @@ export const AddressesAndDescription: React.FC<Pick<NavigationProps<'Transaction
       );
     }
 
-    
-    
     case TRANSACTION_PENDING_TYPES.SEND:
     case TRANSACTION_PENDING_TYPES.RECEIVE: {
       if (!transaction?.isValid()) {
@@ -131,7 +128,6 @@ export const AddressesAndDescription: React.FC<Pick<NavigationProps<'Transaction
       );
     }
 
-    
     case TRANSACTION_TYPES.SEND:
     case TRANSACTION_TYPES.RECEIVE: {
       if (!parsedTransaction) {
@@ -188,7 +184,7 @@ export const AddressesAndDescription: React.FC<Pick<NavigationProps<'Transaction
         return assetAmountFormatted;
       };
       const defaultNotes = getDefaultTransactionNotes({
-        address: spent.recipient, 
+        address: spent.recipient,
         assetAmount: '-' + formatAssetAmount(spent.amount, sent.assetId, sent.decimals),
         assetSymbol: sent.symbol,
         assetAmountReceived: formatAssetAmount(receive_.amount, receive.assetId, receive.decimals),
@@ -250,13 +246,7 @@ export const AddressesAndDescription: React.FC<Pick<NavigationProps<'Transaction
         address: target,
         transactionType: transactionDetailsMetadata.transactionType,
         transactionState: parsedTransaction.status,
-        
-        
-        
-        
-        
-        
-        
+
         transactionTitle: transactionDetailsMetadata.title,
       });
 
@@ -302,8 +292,6 @@ export const AddressesAndDescription: React.FC<Pick<NavigationProps<'Transaction
       );
     }
 
-    
-    
     default: {
       const defaultNotes = getDefaultTransactionNotes({
         transactionType: transactionDetailsMetadata.transactionType,
@@ -325,7 +313,6 @@ interface LabeledAddressProps {
   label: string;
   address?: string;
 }
-
 
 const LabeledAddress: React.FC<LabeledAddressProps> = ({ label, address }) => {
   if (!address) {

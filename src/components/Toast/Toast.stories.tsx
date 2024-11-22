@@ -1,4 +1,3 @@
-import React from 'react';
 import { View } from 'react-native';
 
 import { useSharedValue } from 'react-native-reanimated';
@@ -46,7 +45,6 @@ export const Basic: Story = {
 
     const onDismiss = () => {
       'worklet';
-      
     };
 
     return <Toast {...args} dismissMode="preventManual" visibility={visibility} onDismiss={onDismiss} />;

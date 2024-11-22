@@ -2,7 +2,7 @@ import type { StyleProp } from 'react-native';
 
 import type { ImageStyle } from 'react-native-fast-image';
 
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import FastImage from 'react-native-fast-image';
@@ -15,7 +15,7 @@ import { useIsSvgImage } from '@/hooks/useIsSvgImage';
 import { useRefreshKey } from '@/hooks/useRefreshKey';
 import { useTheme } from '@/theme/themes';
 
-interface ImageSvgProps {
+export interface ImageSvgProps {
   uri?: string | null;
   contentType?: string | null;
   fallbackIconSize?: number;
@@ -64,7 +64,7 @@ export const ImageSvg = ({ uri, contentType, width, height, testID, style, mask,
       ) : mask ? (
         <RNSvgImage width={width} height={height} href={uri} mask={mask} />
       ) : (
-        <FastImage onError={onError} style={[{ width, height }, style, { backgroundColor: colors.light15 }]} source={{ uri }} resizeMode="cover" />
+        <FastImage onError={onError} style={[{ width, height }, { backgroundColor: colors.light15 }, style]} source={{ uri }} resizeMode="cover" />
       )}
     </ErrorBoundary>
   );

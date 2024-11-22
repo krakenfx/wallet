@@ -14,6 +14,7 @@ const timePerBlockInSecondsMap: Partial<Record<WalletType, number>> = {
   HDsegwitBech32: 10 * 60,
   linea: 2,
   avalanche: 2,
+  inkSepolia: 2,
 };
 
 export const getTimeEstimate = (type: WalletType, estimatedTimeBlocks: number) => {

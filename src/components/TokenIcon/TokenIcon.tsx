@@ -25,33 +25,29 @@ export type TokenIconProps = Partial<{
   wallet?: Pick<RealmWallet, 'nativeTokenLabel' | 'type'>;
 }>;
 
-
-
 export const omitNetworkIcons = {
-  
   [ChainAgnostic.COIN_BITCOIN]: 'HDsegwitBech32',
-  
+
   [ChainAgnostic.COIN_DOGECOIN]: 'dogecoin',
-  
+
   [ChainAgnostic.COIN_ETHEREUM]: 'ethereum',
-  
+
   [ChainAgnostic.COIN_POLYGON]: 'polygon',
-  
+
   [ChainAgnostic.COIN_SOLANA]: 'solana',
-  
+
   'eip155:42161/erc20:0x912ce59144191c1204e64559fe8253a0e49e6548': 'arbitrum',
-  
+
   'eip155:10/erc20:0x4200000000000000000000000000000000000042': 'optimism',
-  
+
   [ChainAgnostic.COIN_AVALANCHE]: 'avalanche',
 };
-
 
 export const TokenIcon = React.memo(
   ({ tokenId, tokenSymbol, wallet, style, size = 40, networkName, forceOmitNetworkIcon, forceNetworkIcon, testID }: TokenIconProps) => {
     const networkName_ = wallet?.nativeTokenLabel || networkName || '';
     const Source = useMemo(() => (tokenSymbol ? getTokenIcon(tokenSymbol) : getTokenIconFromNetworkName(networkName_)), [networkName_, tokenSymbol]);
-    
+
     const isOnlyNetworkProvided = !!networkName && !tokenId && !tokenSymbol;
     const isInOmitNetworkIcons = wallet && wallet?.type === omitNetworkIcons[tokenId ?? ''];
     const omitNetworkIcon = !forceNetworkIcon && (isOnlyNetworkProvided || isInOmitNetworkIcons || forceOmitNetworkIcon);

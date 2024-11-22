@@ -1,6 +1,7 @@
-import { noop } from 'lodash';
-import React, { useRef } from 'react';
+import type React from 'react';
 
+import { noop } from 'lodash';
+import { useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '../Button';

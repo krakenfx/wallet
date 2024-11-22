@@ -1,7 +1,7 @@
-import type { Dispatch, PropsWithChildren, SetStateAction } from 'react';
-
 import noop from 'lodash/noop';
-import React, { useContext, useState } from 'react';
+import React, { type Dispatch, type PropsWithChildren, type SetStateAction } from 'react';
+
+import { useContext, useState } from 'react';
 
 interface ContextProps {
   isRefreshing: ReturnType<typeof useState<boolean>>;

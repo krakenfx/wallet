@@ -1,6 +1,6 @@
 import type { NativeSyntheticEvent, TextLayoutEventData } from 'react-native';
 
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 
 import { AvatarIcon } from '@/components/AvatarIcon';
@@ -52,14 +52,12 @@ const styles = StyleSheet.create({
     marginLeft: -4,
     marginRight: 5,
     padding: 3,
-    width: 38,
-    height: 38,
   },
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    maxWidth: Dimensions.get('window').width - 140, 
-    marginLeft: 27 - 18, 
+    maxWidth: Dimensions.get('window').width - 140,
+    marginLeft: 27 - 18,
     paddingRight: 16,
     flexDirection: 'row',
   },
@@ -67,6 +65,6 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   labelExpanded: {
-    flexGrow: 1, 
+    flexGrow: 1,
   },
 });

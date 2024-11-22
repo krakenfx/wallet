@@ -1,5 +1,3 @@
-
-
 import type { TransactionAmountProps } from '@/components/Transaction/TransactionAmount';
 import type { TRANSACTION_TYPES } from '@/realm/transactions/const';
 
@@ -28,7 +26,6 @@ export type TransactionContent =
   | { type: TRANSACTION_TYPES.SWAP; assetContent: [TransactionAmountProps, TransactionAmountProps] }
   | { type: TRANSACTION_TYPES.TOKEN_APPROVAL; assetContent: [TransactionAmountProps] }
   | { type: TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED; subtitle: string | string[]; assetContent: [] };
-
 
 export type GenericMessage = {
   type: 'generic-message';

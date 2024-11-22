@@ -1,5 +1,5 @@
 import { noop } from 'lodash';
-import React from 'react';
+
 import { FadeIn } from 'react-native-reanimated';
 
 import { BottomSheet } from '@/components/BottomSheet';

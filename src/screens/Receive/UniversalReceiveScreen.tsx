@@ -1,7 +1,7 @@
 import type { SectionListData, SectionListRenderItem } from 'react-native';
 
 import { BottomSheetSectionList, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { BottomSheet } from '@/components/BottomSheet';

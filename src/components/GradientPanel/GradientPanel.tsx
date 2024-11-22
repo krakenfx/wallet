@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from 'react';
 
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';

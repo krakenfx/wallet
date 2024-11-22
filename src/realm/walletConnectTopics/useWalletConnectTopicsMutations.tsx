@@ -17,7 +17,7 @@ export const useWalletConnectTopicsMutations = () => {
   const saveTopicToRealm = useCallback(
     (pairingTopic: string, topic: string, isDeepLinked: boolean) => {
       console.log('[useWalletConnectTopicsMutations] saving topic ' + topic);
-      
+
       try {
         runInTransaction(() => {
           realm.create<RealmWalletConnectTopics>(

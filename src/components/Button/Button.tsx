@@ -1,6 +1,7 @@
 import type { AccessibilityProps } from 'react-native';
 
 import { omit, upperFirst } from 'lodash';
+
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
@@ -136,8 +137,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    
-    
+
     gap: 4,
   },
   loadingText: {

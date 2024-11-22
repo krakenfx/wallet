@@ -7,7 +7,7 @@ import { isEVMNetwork, isSolanaNetwork } from '/modules/wallet-connect/utils';
 
 export async function getAccountsFromMatchedWallets(
   matchedWallets: RealmWallet[],
-  requiresWrongSolanaID: boolean, 
+  requiresWrongSolanaID: boolean,
 ): Promise<{ eip155: string[]; solana: string[] }> {
   const accountsFromMatchedWallets: { eip155: string[]; solana: string[] } = { eip155: [], solana: [] };
 
@@ -24,7 +24,6 @@ export async function getAccountsFromMatchedWallets(
       if (isSolanaNetwork(network)) {
         const address = await network.deriveAddress(wallet).catch(createErrorHandlerWithContext('ERROR_CONTEXT_PLACEHOLDER'));
 
-        
         accountsFromMatchedWallets.solana.push(`${requiresWrongSolanaID ? SOLANA_MAINNET_ID_WRONG : network.caipId}:${address}`);
       }
     }),

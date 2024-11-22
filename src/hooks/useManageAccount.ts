@@ -57,7 +57,7 @@ export const useManageAccount = () => {
       if (lastCreatedAccount === undefined) {
         throw Error('No existing account to increment');
       }
-      
+
       const nextAccountNumber = lastCreatedAccount.accountNumber + 1;
       const wallets: Partial<Record<WalletType, RealmWallet>> = {};
       runInTransaction(async () => {

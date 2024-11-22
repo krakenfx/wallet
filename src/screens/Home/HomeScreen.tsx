@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
@@ -20,12 +20,10 @@ import { WaitForAccountSwitchSettled } from './components/WaitForAccountSwitchSe
 
 import { useInitWalletConnect } from '/modules/wallet-connect/hooks';
 
-
 const AUTO_REFRESH_INTERVAL = 120_000;
 
 export const HomeScreen = ({ navigation }: NavigationProps<'Home'>) => {
   const isOnline = useIsOnline();
-
   usePushNotificationsRegisterRemoteNotification();
   useInitWalletConnect();
   useAppInitTasks();
@@ -45,7 +43,7 @@ export const HomeScreen = ({ navigation }: NavigationProps<'Home'>) => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [refreshAll]);
 
   return (
     <GradientScreenView>

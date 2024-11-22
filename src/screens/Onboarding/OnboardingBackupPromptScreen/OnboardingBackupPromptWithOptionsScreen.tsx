@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useRef } from 'react';
+import { useCallback, useLayoutEffect, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { BackButton } from '@/components/BackButton';

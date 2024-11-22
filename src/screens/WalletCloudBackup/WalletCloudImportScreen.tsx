@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Image, StyleSheet, View } from 'react-native';
 
@@ -9,6 +9,7 @@ import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import type { NavigationProps } from '@/Routes';
 import { Routes } from '@/Routes';
 
+import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
@@ -30,6 +31,7 @@ export const WalletCloudImportScreen = ({ navigation, route }: NavigationProps<'
   const { importWallet } = useImportWallet();
   const [hasReadData, setHasReadData] = useState(false);
   const [passkeyError, setPasskeyError] = useState<PasskeyErrorType>();
+  const isOnboardingImportDiscoveryEnabled = useFeatureFlagEnabled(FeatureFlag.onboardingImportDiscoveryEnabled);
 
   const successSheetRef = useRef<CloudBackupSuccessSheetRef>(null);
 
@@ -50,7 +52,7 @@ export const WalletCloudImportScreen = ({ navigation, route }: NavigationProps<'
         throw Error('Failed to import phrase');
       }
       setCloudBackupCompleted(response.credentialID);
-      navigation.replace(Routes.OnboardingSecureWallet);
+      navigation.replace(isOnboardingImportDiscoveryEnabled ? Routes.OnboardingImportSubWallets : Routes.OnboardingSecureWallet);
     } catch (e) {
       setHasReadData(false);
       if (e instanceof Error && e.code === CloudBackupError.user_canceled) {

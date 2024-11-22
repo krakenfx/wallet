@@ -1,4 +1,4 @@
-import type { ViewProps} from 'react-native';
+import type { ViewProps } from 'react-native';
 
 import { requireNativeComponent } from 'react-native';
 

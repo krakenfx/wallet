@@ -1,6 +1,6 @@
+import type React from 'react';
 import type { SharedValue } from 'react-native-reanimated';
 
-import React from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 

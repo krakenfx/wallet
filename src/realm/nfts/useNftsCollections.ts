@@ -11,7 +11,6 @@ export const useNftsCollections = (networkFilter: string[] = []): NftsCollection
   return useMemo(() => {
     const groupedNfts = groupBy(nfts, 'metadata.collectionId');
     return Object.entries(groupedNfts).map(([id, groupedNftEntry]): NftsCollection => {
-      
       const {
         metadata: { collectionName, collectionImageUrl },
         walletId,

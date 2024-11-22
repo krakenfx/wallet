@@ -4,11 +4,9 @@ import { useRealm } from '../RealmContext';
 
 import type Realm from 'realm';
 
-
 export function useRealmTransaction() {
   const realm = useRealm();
 
-  
   const runInTransaction = useCallback(
     function <T extends (arg0: Realm) => any>(callback: T): ReturnType<T> {
       const shouldHandleTransaction = !realm.isInTransaction;

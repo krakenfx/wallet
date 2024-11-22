@@ -24,10 +24,11 @@ export enum RealmSettingsKey {
   storeReviewTaskCompleted = 'storeReviewTaskCompleted',
   storeReviewSubmitted = 'storeReviewSubmitted',
   hideBalances = 'hideBalances',
-  
+
   isBlastModalCompleted = 'isBlastModalCompleted',
   whatsNewIsAssetMarketDataCompleted = 'whatsNewIsAssetMarketDataCompleted',
   whatsNewIsLongPressCompleted = 'whatsNewIsLongPressCompleted',
+  isAvaxLineaTaskModalCompleted = 'isAvaxLineaTaskModalCompleted',
 }
 
 export type SettingsType = {
@@ -53,6 +54,7 @@ export type SettingsType = {
   [RealmSettingsKey.isBlastModalCompleted]: boolean;
   [RealmSettingsKey.whatsNewIsAssetMarketDataCompleted]: boolean;
   [RealmSettingsKey.whatsNewIsLongPressCompleted]: boolean;
+  [RealmSettingsKey.isAvaxLineaTaskModalCompleted]: boolean;
 };
 
 export type Settings = {

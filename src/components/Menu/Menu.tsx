@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react';
 
 import type { GestureResponderEvent, LayoutChangeEvent, LayoutRectangle } from 'react-native';
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { View } from 'react-native';
 
 import { Touchable } from '@/components/Touchable';
@@ -15,39 +15,59 @@ type OwnProps = {
   menuYOffset?: number;
   menuXOffset?: number;
   menuWidth?: number;
+  preferTop?: boolean;
   onShow?: () => void;
   disabled?: boolean;
-  refreshKey?: unknown; 
+  refreshKey?: unknown;
   testID?: string;
 };
 
 export type MenuComponentProps<T> = PropsWithChildren & PopupMenuProps<T> & OwnProps;
 
-export function Menu<T>({ children, menuYOffset = 8, menuXOffset = 0, menuWidth, onShow, disabled, refreshKey, testID, ...props }: MenuComponentProps<T>) {
+export function Menu<T>({
+  children,
+  menuYOffset = 8,
+  menuXOffset = 0,
+  menuWidth,
+  preferTop,
+  onShow,
+  disabled,
+  refreshKey,
+  testID,
+  ...props
+}: MenuComponentProps<T>) {
   const menu = useMenu();
   const layout = useRef<LayoutRectangle>();
+  const isCurrentMenuShown = useRef<boolean>(false);
 
   const showMenu = ({ nativeEvent }: GestureResponderEvent) => {
     if (!layout.current) {
       return;
     }
+    isCurrentMenuShown.current = true;
     onShow?.();
     menu.show({
       ...props,
       origin: {
-        
         y: nativeEvent.pageY + layout.current.height - nativeEvent.locationY + menuYOffset,
         x: nativeEvent.pageX,
         offsetX: menuXOffset,
-        
+
         elementHeight: layout.current.height + menuYOffset * 2,
       },
       menuWidth,
+      preferTop,
     });
   };
 
   useEffect(() => {
     if (!menu.isShown) {
+      isCurrentMenuShown.current = false;
+    }
+  }, [menu.isShown]);
+
+  useEffect(() => {
+    if (!isCurrentMenuShown.current) {
       return;
     }
     menu.update(props);

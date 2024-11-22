@@ -6,7 +6,6 @@ import { Buffer } from 'buffer';
 import type { SolanaSignTransaction } from './types';
 import type { DefinitionList } from '../../types';
 
-
 export function adaptSolanaSignTransactionToDefinitionList(data: SolanaSignTransaction): DefinitionList {
   const definitionList: DefinitionList = [];
 

@@ -17,7 +17,6 @@ export const useExploreLink = (link: ExploreLink | undefined) => {
     return noop;
   }
 
-  
   if (link?.isInternal) {
     return () => {
       try {
@@ -28,7 +27,6 @@ export const useExploreLink = (link: ExploreLink | undefined) => {
     };
   }
 
-  
   if (!link?.isInternal) {
     return () => {
       openLinkWithTransition(link?.url);

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { GradientScreenView } from '@/components/Gradients';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -9,7 +9,6 @@ import type { SettingsNavigationProps } from '../SettingsRouter';
 
 export const SettingsBackupVerifyScreen = ({ navigation }: SettingsNavigationProps<'SettingsBackupVerify'>) => {
   const handleVerifySuccess = useCallback(() => {
-    
     navigation.pop(2);
   }, [navigation]);
 

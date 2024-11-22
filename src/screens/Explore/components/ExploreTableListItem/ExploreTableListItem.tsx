@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
@@ -20,7 +19,9 @@ export const ExploreTableListItem = ({ title, body, link, icon, iconType }: Expl
     <Touchable onPress={handleExploreLink}>
       <View style={styles.container}>
         {icon && <Image style={[styles.icon, styles[iconType ?? 'RoudedCorners']]} source={{ uri: icon }} />}
-        {(title || body) && <ExploreText style={styles.text} title={title} body={body} bodyColor="light50" bodyType="regularCaption1" />}
+        {(title || body) && (
+          <ExploreText style={styles.text} title={title} body={body} bodyColor="light50" bodyType="regularCaption1" titleLines={1} bodyLines={1} />
+        )}
         {link && <Button text={link?.text} onPress={handleExploreLink} style={styles.button} />}
       </View>
     </Touchable>

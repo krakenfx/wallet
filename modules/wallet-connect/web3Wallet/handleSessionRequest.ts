@@ -1,4 +1,3 @@
-
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import type { RealmWallet } from '@/realm/wallets/schema';
 import { REALM_TYPE_WALLET } from '@/realm/wallets/schema';
@@ -14,24 +13,23 @@ import * as solana from './solana';
 import { WALLET_CONNECT_SOLANA_SIGN_TYPES } from './solana/types';
 
 import type { ReactNavigationDispatch } from '../types';
+import type { WalletKitTypes } from '@reown/walletkit';
+import type { IWalletKit } from '@reown/walletkit/dist/types/types/client';
 import type { SessionTypes } from '@walletconnect/types';
-import type { Web3WalletTypes } from '@walletconnect/web3wallet';
-import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
 
 type SessionRequestParams = {
-  web3Wallet: IWeb3Wallet;
-  event: Web3WalletTypes.SessionRequest;
+  web3Wallet: IWalletKit;
+  event: WalletKitTypes.SessionRequest;
   dispatch: ReactNavigationDispatch;
   realm: Realm;
   getSeed: SecuredKeychainContext['getSeed'];
 };
 
 export async function handleSessionRequest({ event, dispatch, realm, web3Wallet, getSeed }: SessionRequestParams) {
-  
   try {
     const {
       topic,
@@ -46,14 +44,12 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
       return handleError('Topic not found', 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
 
-    
     const supportedWallet = findSupportedWallet({ activeSessions, chainId, topic });
 
     if (!supportedWallet) {
       return handleError('Account not found', 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
 
-    
     const foundWallet: RealmWallet | undefined = await findUserWallet(realm, supportedWallet);
 
     if (!foundWallet) {
@@ -67,7 +63,6 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
     const { network, transport } = getImplForWallet(foundWallet);
 
     switch (method) {
-      
       case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN:
       case WALLET_CONNECT_ETH_SIGN_TYPES.PERSONAL_SIGN:
       case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V4:
@@ -80,7 +75,6 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
           break;
         }
 
-        
         if (!ethereum.areMessageRequestParamsValid(requestParams)) {
           handleError('Invalid  request params', 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
           break;
@@ -104,7 +98,6 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
         break;
       }
 
-      
       case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TRANSACTION:
       case WALLET_CONNECT_ETH_SIGN_TYPES.SEND_TRANSACTION: {
         if (!isEVMNetwork(network) || !isEVMHarmonyTransport(transport)) {
@@ -135,7 +128,6 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
         break;
       }
 
-      
       case WALLET_CONNECT_SOLANA_SIGN_TYPES.SIGN_MESSAGE: {
         if (!isSolanaNetwork(network)) {
           handleError(`Unsupported network: ${network}`, 'ERROR_CONTEXT_PLACEHOLDER', {
@@ -161,7 +153,6 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
         break;
       }
 
-      
       case WALLET_CONNECT_SOLANA_SIGN_TYPES.SIGN_TRANSACTION: {
         if (!isSolanaNetwork(network) || !isSolanaTransport(transport)) {
           handleError(`Unsupported network: ${network}`, 'ERROR_CONTEXT_PLACEHOLDER', {
@@ -200,7 +191,6 @@ export async function handleSessionRequest({ event, dispatch, realm, web3Wallet,
   }
 }
 
-
 function findSupportedWallet({ activeSessions, chainId, topic }: { activeSessions: Record<string, SessionTypes.Struct>; chainId: string; topic: string }) {
   let result;
 
@@ -217,10 +207,7 @@ function findSupportedWallet({ activeSessions, chainId, topic }: { activeSession
   return result;
 }
 
-
 async function findUserWallet(realm: Realm, supportedWallet: string): Promise<RealmWallet | undefined> {
-  
-  
   const allWalletsForAllAccounts = realm.objects<RealmWallet>(REALM_TYPE_WALLET) ?? [];
   const [chain, chainID, address] = splitWalletString(supportedWallet);
 

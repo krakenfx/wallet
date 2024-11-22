@@ -13,7 +13,9 @@ export type ExploreTextProps = {
   titleType?: TypographyKey;
   titleStyle?: StyleProp<AnimatedStyle<StyleProp<TextStyle>>>;
   titleColor?: TextColor;
+  titleLines?: number;
   bodyType?: TypographyKey;
   bodyStyle?: StyleProp<AnimatedStyle<StyleProp<TextStyle>>>;
   bodyColor?: TextColor;
+  bodyLines?: number;
 };

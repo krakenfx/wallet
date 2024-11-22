@@ -1,3 +1,4 @@
+import type React from 'react';
 import type { ScrollViewProps, StyleProp, ViewStyle } from 'react-native';
 
 import type { WithSpringConfig } from 'react-native-reanimated';
@@ -6,7 +7,7 @@ import BottomSheetBase, { BottomSheetBackdrop, BottomSheetModal as BottomSheetBa
 import { BlurView } from '@react-native-community/blur';
 import { HeaderHeightContext } from '@react-navigation/elements';
 import { FlashList } from '@shopify/flash-list';
-import React, { forwardRef, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { forwardRef, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -40,12 +41,12 @@ type BottomSheetBlurProps = BottomSheetBackgroundProps & Pick<CustomProps, 'isWa
 export type BottomSheetRef = BottomSheetBase;
 export type BottomSheetModalRef = BottomSheetBaseModal;
 
-const Backdrop = (props: BottomSheetBackdropProps & { dismissible: boolean; onBackdropPress?: () => void }) => {
+export const Backdrop = (props: BottomSheetBackdropProps & { dismissible: boolean; onBackdropPress?: () => void }) => {
   const { colors } = useTheme();
   return (
     <BottomSheetBackdrop
       {...props}
-      style={[StyleSheet.absoluteFill, { backgroundColor: colors.background }]}
+      style={[StyleSheet.absoluteFill, { backgroundColor: colors.background }, props.style]}
       opacity={0.7}
       disappearsOnIndex={-1}
       appearsOnIndex={0}
@@ -91,6 +92,8 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
       setCurrentIndex(newIndex);
       onChange?.(newIndex);
     },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [onChange],
   );
 
@@ -134,8 +137,8 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
     backdropComponent: renderBackdrop,
     handleIndicatorStyle: styles.handle,
     enablePanDownToClose: dismissible,
-    onClose: onDismiss, 
-    onDismiss, 
+    onClose: onDismiss,
+    onDismiss,
     onChange: handleAndroidBackButton ? handleChange : onChange,
     containerHeight: height - headerHeight,
     overDragResistanceFactor: 5,
@@ -161,7 +164,6 @@ const BottomSheetBlur = (props: BottomSheetBlurProps) => {
 
   const { colors } = useTheme();
 
-  
   const gradientSizeStyle = useAnimatedStyle(() => ({
     transform: [
       { translateY: -availableHeight / 2 },

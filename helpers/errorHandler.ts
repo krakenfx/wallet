@@ -3,14 +3,13 @@ import RNFS from 'react-native-fs';
 
 import { serializeError } from 'serialize-error';
 
-import type { ToastConfigProps} from '@/components/Toast';
+import type { ToastConfigProps } from '@/components/Toast';
 import { showToast } from '@/components/Toast';
 import { isShowToastOnAllErrorsEnabledKey } from '@/secureStore/asyncStorageKeys';
 
-import type { ErrorObject} from 'serialize-error';
+import type { ErrorObject } from 'serialize-error';
 
 import loc from '/loc';
-
 
 type BabelErrorContext = `ERROR_CONTEXT_${'PLACEHOLDER'}`;
 
@@ -18,9 +17,7 @@ export const applogFilePath = RNFS.DocumentDirectoryPath + '/app.log';
 
 export const recentErrors: { timestamp: Date; error: ErrorObject; context: string }[] = [];
 
-const logfileSizeCutoff = 100 * 1024 * 1024; 
-
-
+const logfileSizeCutoff = 100 * 1024 * 1024;
 
 let loggingTofileEnabled = false;
 export function enableLoggingToFile() {
@@ -37,13 +34,10 @@ export function isLoggingToFileEnabled() {
   return loggingTofileEnabled;
 }
 
-
-
 RNFS.stat(applogFilePath)
   .then(statResult => {
     loggingTofileEnabled = true;
     if (statResult.size >= logfileSizeCutoff) {
-      
       RNFS.writeFile(applogFilePath, '', 'utf8');
     }
   })
@@ -52,7 +46,7 @@ RNFS.stat(applogFilePath)
 export function appendLog(contents: string | unknown[], context: string = 'unknown') {
   if (!loggingTofileEnabled) {
     return;
-  } 
+  }
   try {
     const contents2write = typeof contents === 'string' ? contents : JSON.stringify(contents);
     return RNFS.appendFile(applogFilePath, `${new Date()} context=${context} ${contents2write}\n`, 'utf8');
@@ -86,7 +80,6 @@ export function disableShowToastOnAllErrors() {
 export function isShowToastOnAllErrorsEnabled() {
   return showToastOnAllErrorsEnabled;
 }
-
 
 export function createErrorHandlerWithContext(context: BabelErrorContext) {
   return (reason: unknown) => handleError(reason, context);
@@ -166,7 +159,6 @@ function jsonToPretty(json: any): string {
 
 const GENERAL_FETCH_ERROR = 'GENERAL_FETCH_ERROR';
 
-
 export const showGeneralFetchError = (context: BabelErrorContext, e?: unknown) => {
   handleError(e, context, { text: loc.errors.generalFetchError, id: GENERAL_FETCH_ERROR });
 };
@@ -183,7 +175,7 @@ export class WrappedError<T> extends Error {
     readonly original: T,
     message: string,
   ) {
-    super(message );
+    super(message);
   }
 
   static from(e: unknown, message: string) {

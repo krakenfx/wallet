@@ -1,11 +1,12 @@
 import type { PropsWithChildren } from 'react';
 
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { LinearGradientProps } from 'react-native-svg';
 
 import MaskedView from '@react-native-masked-view/masked-view';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 import { Platform, StyleSheet, View } from 'react-native';
 
@@ -34,7 +35,6 @@ const FadingElementIOS: React.FC<PropsWithChildren<Omit<LinearGradientProps, 'ch
     </MaskedView>
   );
 };
-
 
 export const FadingElement = Platform.select({ ios: FadingElementIOS, default: Fragment });
 

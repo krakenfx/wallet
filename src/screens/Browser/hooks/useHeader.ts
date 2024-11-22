@@ -16,7 +16,6 @@ export const useHeader = () => {
   const initialTouchY = useRef(0);
 
   const handleTouchStart = (event: GestureResponderEvent) => {
-    
     initialTouchY.current = event.nativeEvent.pageY;
   };
 
@@ -29,13 +28,11 @@ export const useHeader = () => {
     }
 
     if (currentTouchY < initialTouchY.current && headerExpanded.value) {
-      
       onCollapseHeader();
       return;
     }
 
     if (currentTouchY > initialTouchY.current && !headerExpanded.value) {
-      
       onExpandHeader();
     }
   };

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { CloseButton } from '@/components/CloseButton';
 import { Typography } from '@/components/Label';
 

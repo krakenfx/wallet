@@ -1,6 +1,5 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import React from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 

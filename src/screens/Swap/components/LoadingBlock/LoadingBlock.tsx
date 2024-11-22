@@ -1,24 +1,32 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import type React from 'react';
+
+import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
+
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { ActivityIndicator } from '@/components/ActivityIndicator';
 
 import { Label } from '@/components/Label';
 
-import { useTheme } from '@/theme/themes';
+import { type ColorName, useTheme } from '@/theme/themes';
 
 import loc from '/loc';
 
-export const LoadingBlock: React.FC = () => {
+type Props = {
+  backgroundColor?: ColorName;
+  containerStyle?: StyleProp<ViewStyle>;
+};
+
+export const LoadingBlock: React.FC<Props> = ({ backgroundColor = 'purple_20', containerStyle }) => {
   const { colors } = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.purple_20 }]}>
+    <Animated.View entering={FadeIn} exiting={FadeOut} style={[styles.container, { backgroundColor: colors[backgroundColor] }, containerStyle]}>
       <ActivityIndicator />
       <Label type="boldTitle2" color="light75">
         {loc.swap.findingBestRote}
       </Label>
-    </View>
+    </Animated.View>
   );
 };
 

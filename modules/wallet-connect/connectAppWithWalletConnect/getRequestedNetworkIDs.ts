@@ -18,8 +18,6 @@ export function getRequestedNetworkIDs(sessionProposal: SessionProposal): {
   const assignRequestedNetworkIDs = (namespaceKey: string, namespace: ProposalTypes.BaseRequiredNamespace, isRequired: boolean) => {
     const isKeyCAIP2 = isCAIP2(namespaceKey);
 
-    
-    
     (isKeyCAIP2 ? [namespaceKey] : namespace.chains || []).map(chain => {
       if (chain) {
         const id = SHIM_replaceWrongSolanaMainnetID(chain);
@@ -35,7 +33,7 @@ export function getRequestedNetworkIDs(sessionProposal: SessionProposal): {
     });
   };
 
-  Object.entries(sessionProposal.params?.requiredNamespaces ?? {}).forEach(([k, v]) => assignRequestedNetworkIDs(k, v, true ));
+  Object.entries(sessionProposal.params?.requiredNamespaces ?? {}).forEach(([k, v]) => assignRequestedNetworkIDs(k, v, true));
   Object.entries(sessionProposal.params?.optionalNamespaces ?? {}).forEach(([k, v]) => assignRequestedNetworkIDs(k, v, false));
 
   return {

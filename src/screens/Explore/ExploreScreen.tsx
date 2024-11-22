@@ -1,9 +1,7 @@
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
-
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useGlobalState } from '@/components/GlobalState';
 import { useExploreFeed } from '@/reactQuery/hooks/useExploreFeed';
@@ -18,6 +16,7 @@ import { HomeHeaderRight } from '../Home/components/HomeHeaderRight';
 
 import { ExploreDisclaimerSheet } from './components/ExploreDisclaimerSheet';
 import { ExploreFeed } from './components/ExploreFeed';
+import { ExploreFeedError } from './components/ExploreFeedError/ExploreFeedError';
 import { ExploreScrollView } from './components/ExploreScrollView';
 import { ExploreSearchBar } from './components/ExploreSearch';
 import { ExploreAnimationContextProvider } from './context/ExploreAnimationContext';
@@ -27,7 +26,7 @@ import { useExploreScreenUnmountAnimation } from './hooks/useExploreScreenUnmoun
 import type BottomSheetRef from '@gorhom/bottom-sheet';
 
 export const ExploreScreen = ({ navigation }: NavigationProps<'Explore'>) => {
-  const { isFetched, isSuccess, data = [] } = useExploreFeed();
+  const { isError, isFetched, isSuccess, data = [] } = useExploreFeed();
   const [, setShowNavTabs] = useGlobalState('showNavTabs');
   const sheetRef = useRef<BottomSheetRef>(null);
   const hasAcceptedWarning = !!useSettingsByKey(RealmSettingsKey.hasAcceptedExploreWarning);
@@ -52,19 +51,19 @@ export const ExploreScreen = ({ navigation }: NavigationProps<'Explore'>) => {
     setShowNavTabs(false);
   };
 
-  const insets = useSafeAreaInsets();
-
   useFocusEffect(() => {
-    if (hasAcceptedWarning) {
-      setShowNavTabs(true);
-    }
+    setShowNavTabs(hasAcceptedWarning);
   });
 
   const { animatedStyle, animateScreenUnmount } = useExploreScreenUnmountAnimation();
 
+  if (isError) {
+    return <ExploreFeedError />;
+  }
+
   return (
     <ExploreAnimationContextProvider animateScreenUnmount={animateScreenUnmount}>
-      <ExploreScrollView style={{ paddingTop: insets.top + Sizes.Space.s4 }}>
+      <ExploreScrollView>
         {isInAppBrowserEnabled() ? (
           <View style={styles.searchBarContainer}>
             <ExploreSearchBar />

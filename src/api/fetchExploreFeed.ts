@@ -8,7 +8,7 @@ import { handleError } from '/helpers/errorHandler';
 
 export async function fetchExploreFeed(slug?: string): Promise<ExploreContentRow[]> {
   const harmony = await getHarmony();
-  const path = slug ? '/v1/explore/{pageSlug}' : '/v1/explore';
+  const path = slug ? '/v1/explore/page/{pageSlug}' : '/v1/explore';
   const params = slug ? { params: { path: { pageSlug: slug } } } : {};
 
   try {

@@ -17,7 +17,6 @@ export const checkTokenGalleryChange = (token: RealmToken, price: RealmTokenPric
   const tokenReputation = getReputation(token.metadata);
   const isNativeToken = Object.values(ChainAgnostic).includes(token.assetId);
   if (tokenReputation === REPUTATION.WHITELISTED || isNativeToken) {
-    
     if (parseFloat(token.balance) > 0) {
       return 'autoAdded';
     }
@@ -25,13 +24,12 @@ export const checkTokenGalleryChange = (token: RealmToken, price: RealmTokenPric
   }
 
   if (tokenReputation === REPUTATION.UNVERIFIED) {
-    
     const priceUsdValue = price.fiatValue[Currency.USD].value;
     const value = priceUsdValue !== undefined ? parseFloat(priceUsdValue) : 0;
     const balanceInUsd = calculateBalance({ price: value, balance: token.balance, decimals: token.metadata.decimals });
 
     return balanceInUsd >= MIN_USD_BALANCE_FOR_GALLERY ? 'autoAdded' : 'autoRemoved';
   }
-  
+
   return undefined;
 };

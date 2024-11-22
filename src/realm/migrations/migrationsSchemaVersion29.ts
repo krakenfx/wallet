@@ -4,8 +4,6 @@ import { REALM_TYPE_TOKEN } from '@/realm/tokens';
 
 import type Realm from 'realm';
 
-
-
 export const migrationsSchemaVersion29 = (oldRealm: Realm, newRealm: Realm) => {
   if (oldRealm.schemaVersion < 29) {
     const oldObjects = oldRealm.objects<RealmToken>(REALM_TYPE_TOKEN);

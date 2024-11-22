@@ -1,5 +1,5 @@
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useLayoutEffect, useMemo } from 'react';
+import { useCallback, useLayoutEffect, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { GradientScreenView } from '@/components/Gradients';
@@ -57,7 +57,6 @@ export const NftCollectionScreen = ({ navigation, route }: NavigationProps<'NftC
   useFocusEffect(
     useCallback(() => {
       if (!collection?.nfts.length) {
-        
         navigation.goBack();
       }
     }, [collection?.nfts.length, navigation]),

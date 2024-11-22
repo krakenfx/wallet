@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
 
 import type { RouteProps } from '@/Routes';
 import { useTheme } from '@/theme/themes';

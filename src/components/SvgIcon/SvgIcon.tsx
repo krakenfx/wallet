@@ -4,7 +4,6 @@ import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
 
 import type { AnimatedProps } from 'react-native-reanimated';
 
-import React from 'react';
 import IcoMoon from 'react-icomoon';
 
 import { StyleSheet, View } from 'react-native';

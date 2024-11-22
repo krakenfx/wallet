@@ -1,5 +1,6 @@
+import type React from 'react';
+
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
 
 import { SvgIcon } from '@/components/SvgIcon';
 import { Routes } from '@/Routes';

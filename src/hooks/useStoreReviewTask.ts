@@ -16,17 +16,22 @@ export const useStoreReviewTask = () => {
   const taskCompleted = useSettingsByKey(RealmSettingsKey.storeReviewTaskCompleted);
   const { setSettings } = useSettingsMutations();
   const { openURL } = useBrowser();
-  const onNegativeAnswer = useCallback(async () => {
-    const feedbackRequested = await showAlert(
-      loc.storeReview.nagativeAlertTitle,
-      loc.storeReview.negativeAlertMessage,
-      loc.storeReview.sendFeedback,
-      loc.storeReview.notReally,
-    );
-    if (feedbackRequested) {
-      openURL(URLs.supportContact);
-    }
-  }, []);
+  const onNegativeAnswer = useCallback(
+    async () => {
+      const feedbackRequested = await showAlert(
+        loc.storeReview.nagativeAlertTitle,
+        loc.storeReview.negativeAlertMessage,
+        loc.storeReview.sendFeedback,
+        loc.storeReview.notReally,
+      );
+      if (feedbackRequested) {
+        openURL(URLs.supportContact);
+      }
+    },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   const runIfNeeded = useCallback(() => {
     if (taskCompleted) {

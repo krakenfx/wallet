@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { type NativeSyntheticEvent, Platform, StyleSheet, type TextInputFocusEventData } from 'react-native';
 
@@ -37,7 +37,6 @@ export const BrowserSearchInput = () => {
   };
 
   const selectTextOnFocus = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    
     if (Platform.OS === 'android') {
       setSelection({ start: 0, end: searchValue?.length });
     } else {
@@ -59,7 +58,6 @@ export const BrowserSearchInput = () => {
         value={searchValue}
         onFocus={selectTextOnFocus}
         onChangeText={onChangeText}
-        
         onEndEditing={handleSearch}
         onSubmitEditing={handleSearch}
         testID="BrowserSearchBarInput"

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import { AssetSwitch } from '@/components/AssetSwitch';
 import { useTokenSwitch } from '@/hooks/useTokenSwitch';
@@ -32,8 +32,8 @@ export const RemoteAssetRow: React.FC<RemoteAssetRowProps> = ({ remoteAsset, tok
       value={isTokenInGallery}
       onValueChange={onSwitch}
       options={{
-        networkName: wallet.type,
-        walletId: wallet.id,
+        networkName: wallet?.type,
+        walletId: wallet?.id,
         hideZeroAmount: true,
         showAmountInFiat: false,
         symbolUnderLabel: true,

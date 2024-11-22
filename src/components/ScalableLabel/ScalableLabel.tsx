@@ -1,6 +1,7 @@
+import type React from 'react';
 import type { LayoutRectangle } from 'react-native';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import type { LabelProps } from '@/components/Label';

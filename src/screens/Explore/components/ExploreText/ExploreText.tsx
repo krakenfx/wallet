@@ -1,4 +1,5 @@
-import React from 'react';
+import type React from 'react';
+
 import { View } from 'react-native';
 
 import { Label } from '@/components/Label';
@@ -12,20 +13,22 @@ export const ExploreText: React.FC<ExploreTextProps> = ({
   titleType,
   titleColor,
   titleStyle,
+  titleLines,
   bodyType,
   bodyColor,
   bodyStyle,
+  bodyLines,
 }: ExploreTextProps) => {
   return (
     (title || body) && (
       <View style={style}>
         {title && (
-          <Label type={titleType || 'boldTitle1'} color={titleColor || 'light100'} style={titleStyle}>
+          <Label type={titleType || 'boldTitle1'} color={titleColor || 'light100'} style={titleStyle} numberOfLines={titleLines}>
             {title}
           </Label>
         )}
         {body && (
-          <Label type={bodyType || 'mediumBody'} color={bodyColor || 'light75'} style={bodyStyle}>
+          <Label type={bodyType || 'mediumBody'} color={bodyColor || 'light75'} style={bodyStyle} numberOfLines={bodyLines}>
             {body}
           </Label>
         )}

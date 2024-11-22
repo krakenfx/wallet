@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { BottomSheetModal } from '@/components/BottomSheet';

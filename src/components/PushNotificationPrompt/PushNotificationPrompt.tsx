@@ -1,7 +1,8 @@
+import type React from 'react';
 import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
 
 import LottieView from 'lottie-react-native';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SequencedTransition } from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
@@ -40,7 +41,6 @@ export const PushNotificationPrompt: React.FC<Props> = ({
   const subscribe = useCallback(async () => {
     const pn = PushNotifications.getInstance();
     try {
-      
       await pn.requestPermissions();
       onAllow();
     } catch (error) {
@@ -50,7 +50,7 @@ export const PushNotificationPrompt: React.FC<Props> = ({
     try {
       await pn.registerRemoteNotifications();
       await pn.saveTokenConfiguration();
-      await subscribeToNotifications(); 
+      await subscribeToNotifications();
       onSubscribed?.();
     } catch (error) {
       onError(error);

@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
@@ -29,12 +29,10 @@ export const ExtendedPublicKey = ({ accountNumber, extendedPublicKey }: { accoun
     return { wallet: btcWallet, network: btcNetwork };
   }, [account.wallets]);
 
-  
   if (!wallet || !network) {
     return null;
   }
 
-  
   const showExtendedPublicKey = async () => {
     setIsGettingXpub(true);
 

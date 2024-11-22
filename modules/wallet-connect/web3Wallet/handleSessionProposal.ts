@@ -10,11 +10,11 @@ import { getMatchedWallets } from '../connectAppWithWalletConnect/getMatchedWall
 import { getRequestedNetworkIDs } from '../connectAppWithWalletConnect/getRequestedNetworkIDs.ts';
 
 import type { ReactNavigationDispatch } from '../types';
-import type { Web3WalletTypes } from '@walletconnect/web3wallet';
+import type { WalletKitTypes } from '@reown/walletkit';
 
 import loc from '/loc';
 
-export async function handleSessionProposal(proposal: Web3WalletTypes.SessionProposal, dispatch: ReactNavigationDispatch, realm: Realm): Promise<void> {
+export async function handleSessionProposal(proposal: WalletKitTypes.SessionProposal, dispatch: ReactNavigationDispatch, realm: Realm): Promise<void> {
   hapticFeedback.impactHeavy();
   void showToast({
     duration: 300,
@@ -22,7 +22,6 @@ export async function handleSessionProposal(proposal: Web3WalletTypes.SessionPro
     type: 'info',
   });
 
-  
   const url = proposal?.verifyContext?.verified?.origin ?? proposal.params.proposer.metadata.url;
   const wallets = getWalletsForMutations(realm);
   const { requestedNetworkIDs, requiresWrongSolanaID } = getRequestedNetworkIDs(proposal);

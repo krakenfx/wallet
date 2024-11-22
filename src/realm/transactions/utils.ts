@@ -4,14 +4,12 @@ export const getCombinedTransactionId = (walletId: string, txId: string) => `${w
 
 export function convertToTimestamp(timestamp: string | number): number {
   if (typeof timestamp === 'string' && timestamp.startsWith('0x')) {
-    
     return parseInt(timestamp, 16);
   }
   if (typeof timestamp === 'number') {
-    
     return timestamp;
   }
-  
+
   throw new Error('Invalid timestamp format');
 }
 

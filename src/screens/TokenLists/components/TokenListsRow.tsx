@@ -2,7 +2,7 @@ import type { ViewStyle } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import noop from 'lodash/noop';
-import React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 import Svg from 'react-native-svg';
 
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 6,
     marginBottom: 8,
-    minHeight: 20, 
+    minHeight: 20,
   },
   header: {
     flexDirection: 'row',

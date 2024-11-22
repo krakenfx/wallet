@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
@@ -19,10 +17,7 @@ interface Props {
   assetId?: string;
   filterOut?: FilterOut;
 }
-export const ReputationInfo = ({
-  assetId = '',
-  filterOut = { reputation: [], coinDesignation: ['network' ] },
-}: Props) => {
+export const ReputationInfo = ({ assetId = '', filterOut = { reputation: [], coinDesignation: ['network'] } }: Props) => {
   const reputation = useReputation(assetId);
   const shouldFilterOut = useShouldFilterOut({ assetId, reputation }, filterOut);
 

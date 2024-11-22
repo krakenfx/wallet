@@ -26,7 +26,6 @@ export const SwapTransactionRow = React.memo(({ item, classifiedTx, parsedTx, co
   const { detailsAssetAmount, assetAmount, detailsAssetAmountInCurrency, appCurrencyValue, description, title } = displayData;
 
   const transactionDetailsDisplayData = useSwapTransactionDetailsDisplayData({
-    
     assetAmount: detailsAssetAmount === undefined ? assetAmount : detailsAssetAmount,
     appCurrencyValue: detailsAssetAmountInCurrency === undefined ? appCurrencyValue : detailsAssetAmountInCurrency,
     classifiedTx,

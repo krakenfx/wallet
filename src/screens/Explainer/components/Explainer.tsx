@@ -1,11 +1,8 @@
 import type { PropsWithChildren } from 'react';
 
-import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
-
-
 
 /* eslint-disable-next-line import/no-unresolved */
 import checkMarkImage from '@/screens/Explainer/images/checkMark.png';
@@ -67,16 +64,19 @@ export const ExplainerTokenLists = () => (
     {loc.tokenLists.description}
   </Explainer>
 );
+
 export const ExplainerUnverifiedLists = () => (
   <Explainer image={<Image source={checkMarkImage} />} heading={loc.tokenLists.unverifiedButtonLink}>
     {loc.tokenLists.unverifiedExplainerDescription}
   </Explainer>
 );
+
 export const ExplainerWhitelistedKraken = () => (
   <Explainer image={<Image source={checkMarkImage} />} heading={loc.tokenLists.verifiedKraken}>
     {loc.tokenLists.verifiedInfoKraken}
   </Explainer>
 );
+
 export const ExplainerBlacklisted = () => (
   <Explainer image={<Image source={require('@/assets/images/common/exclamation.png')} style={styles.image} />} heading={loc.tokenLists.likelySpamHelp}>
     {loc.tokenLists.likelySpamInfo}
@@ -102,26 +102,31 @@ export const ExplainerTokenContract = () => (
     })}
   </Explainer>
 );
+
 export const ExplainerEthereumAddress = () => (
   <Explainer image={<Image source={ethereumAddress} />} heading={loc.universalReceive.ethereumExplainerHeading}>
     {loc.universalReceive.ethereumExplainerBody}
   </Explainer>
 );
+
 export const ExplainerEthereumDerivationPath = () => (
   <Explainer image={<Image source={ethereumAddress} />} heading={loc.advancedAccountInfo.ethereumDerivationPath}>
     {loc.advancedAccountInfo.ethereumDerivationPathContent}
   </Explainer>
 );
+
 export const ExplainerDomainMatch = () => (
   <Explainer image={<Image source={checkMarkImage} />} heading={loc.onChainSecurity.domainMatch}>
     {loc.onChainSecurity.domainMatchInfo}
   </Explainer>
 );
+
 export const ExplainerDomainMismatch = () => (
   <Explainer image={<Image source={require('@/assets/images/common/exclamation.png')} />} heading={loc.onChainSecurity.domainMismatch}>
     {loc.onChainSecurity.domainMismatchInfo}
   </Explainer>
 );
+
 export const ExplainerKnownSecurityRisk = () => (
   <Explainer image={<Image source={require('@/assets/images/common/exclamation.png')} />} heading={loc.onChainSecurity.knownSecurityRisk}>
     {loc.onChainSecurity.knownSecurityRiskInfo}

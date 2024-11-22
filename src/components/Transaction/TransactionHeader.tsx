@@ -2,7 +2,6 @@ import type { ComponentProps } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import type { AnimateStyle } from 'react-native-reanimated';
 
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 

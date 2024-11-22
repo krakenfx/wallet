@@ -1,7 +1,7 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import { BlurView } from '@react-native-community/blur';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 
 import type { IconName } from '@/components/SvgIcon';
@@ -31,7 +31,6 @@ const blurProps: BlurViewProps = {
 export const IconButton = ({ onPress, name, testID, blurred, size = 16, backgroundColor = 'light15', style, containerStyle }: IconButtonProps) => {
   const { colors } = useTheme();
 
-  
   const { component: OptionalBlur, props: optionalBlurProps } =
     blurred && Platform.OS === 'ios'
       ? {

@@ -1,5 +1,5 @@
 import LottieView from 'lottie-react-native';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';

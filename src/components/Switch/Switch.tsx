@@ -1,7 +1,8 @@
+import type React from 'react';
 import type { SwitchProps } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Switch as StateLessSwitch } from 'react-native';
 
 import { useTheme } from '@/theme/themes';
@@ -13,7 +14,6 @@ type Props = SwitchProps & {
 };
 
 const UPDATE_LOCAL_STATE_WITH_VALUE_FROM_PROPS_TIMEOUT = 1000;
-
 
 export const Switch: React.FC<Props> = ({ value, onValueChange, ...props }) => {
   const [switchValue, setSwitchValue] = useState(value);
@@ -31,7 +31,6 @@ export const Switch: React.FC<Props> = ({ value, onValueChange, ...props }) => {
   );
 
   const updateValueFromProps = () => {
-    
     setSwitchValue(latest.current);
   };
 

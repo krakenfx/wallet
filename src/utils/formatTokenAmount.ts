@@ -3,8 +3,7 @@ import { getCurrencyInfo } from '@/screens/Settings/currency/types';
 
 export type FormatTokenAmountOptions = {
   compact?: boolean;
-  
-  
+
   currency: Currency;
 } & (
   | {
@@ -26,7 +25,7 @@ export const formatTokenAmount = (tokenAmount: string, { compact = false, curren
 
   const tokenAmountNumberAbs = Math.abs(tokenAmountNumber);
   const isNegative = tokenAmountNumber < 0;
-  const shouldDisplayCompact = compact && tokenAmountNumberAbs >= 1000000; 
+  const shouldDisplayCompact = compact && tokenAmountNumberAbs >= 1000000;
   const currencyInfo = getCurrencyInfo(currency);
 
   let numberToFormat = tokenAmountNumber;
@@ -35,7 +34,6 @@ export const formatTokenAmount = (tokenAmount: string, { compact = false, curren
   let prefix = '';
   let postfix = '';
 
-  
   if (!highPrecision) {
     if (tokenAmountNumberAbs < 0.0001) {
       numberToFormat = 0.0001;
@@ -43,7 +41,7 @@ export const formatTokenAmount = (tokenAmount: string, { compact = false, curren
       prefix = isNegative ? '-<' : '<';
     } else if (tokenAmountNumberAbs < 10) {
       maximumFractionDigits = 4;
-    }  else {
+    } else {
       if (shouldDisplayCompact) {
         [numberToFormat, postfix] = getCompactNumberToFormat(tokenAmountNumber, tokenAmountNumberAbs);
         maximumFractionDigits = 1;
@@ -53,14 +51,13 @@ export const formatTokenAmount = (tokenAmount: string, { compact = false, curren
     }
   }
 
-  
   if (highPrecision) {
     if (isBtc) {
       if (tokenAmountNumberAbs < 1) {
         maximumFractionDigits = 8;
       } else if (tokenAmountNumberAbs < 10) {
         maximumFractionDigits = 6;
-      }  else {
+      } else {
         if (shouldDisplayCompact) {
           [numberToFormat, postfix] = getCompactNumberToFormat(tokenAmountNumber, tokenAmountNumberAbs);
           maximumFractionDigits = 3;
@@ -77,7 +74,7 @@ export const formatTokenAmount = (tokenAmount: string, { compact = false, curren
         maximumFractionDigits = 8;
       } else if (tokenAmountNumberAbs < 10) {
         maximumFractionDigits = 6;
-      }  else {
+      } else {
         if (shouldDisplayCompact) {
           [numberToFormat, postfix] = getCompactNumberToFormat(tokenAmountNumber, tokenAmountNumberAbs);
           maximumFractionDigits = 3;
@@ -88,52 +85,46 @@ export const formatTokenAmount = (tokenAmount: string, { compact = false, curren
     }
   }
 
-  const formatted = Intl.NumberFormat(
-    
-    'en-US',
-    {
-      style: 'decimal',
-      currency,
-      minimumFractionDigits,
-      maximumFractionDigits,
-    },
-  ).format(numberToFormat);
+  const formatted = Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    currency,
+    minimumFractionDigits,
+    maximumFractionDigits,
+  }).format(numberToFormat);
 
   const formattedWithOverrides = applyOverrides(formatted, currencyInfo);
 
   return `${prefix}${formattedWithOverrides}${postfix}`;
 };
 
-
 const applyOverrides = (tokenAmountFormatted: string, currencyInfo: CurrencyInfo) => {
   let result = tokenAmountFormatted;
 
   switch (currencyInfo.symbol) {
     case 'CHF':
-      result = result.replace(',', currencyInfo.groupSeparator );
+      result = result.replace(',', currencyInfo.groupSeparator);
       break;
     case 'EUR':
-      result = result.replace('.', '<@>'); 
-      result = result.replaceAll(',', currencyInfo.groupSeparator ); 
-      result = result.replace('<@>', currencyInfo.decimalSeparator ); 
+      result = result.replace('.', '<@>');
+      result = result.replaceAll(',', currencyInfo.groupSeparator);
+      result = result.replace('<@>', currencyInfo.decimalSeparator);
       break;
   }
 
   return result;
 };
 
-
 export const getCompactNumberToFormat = (tokenAmountNumber: number, tokenAmountNumberAbs: number): [number, string] => {
   let compactNumberToFormat = tokenAmountNumber;
   let postfix = '';
 
-  if (tokenAmountNumberAbs >= 1e6  && tokenAmountNumberAbs < 1e9 ) {
+  if (tokenAmountNumberAbs >= 1e6 && tokenAmountNumberAbs < 1e9) {
     compactNumberToFormat = tokenAmountNumber / 1e6;
     postfix = 'M';
-  } else if (tokenAmountNumberAbs >= 1e9  && tokenAmountNumberAbs < 1e12 ) {
+  } else if (tokenAmountNumberAbs >= 1e9 && tokenAmountNumberAbs < 1e12) {
     compactNumberToFormat = tokenAmountNumber / 1e9;
     postfix = 'B';
-  } else if (tokenAmountNumberAbs >= 1e12  && tokenAmountNumberAbs < 1e15 ) {
+  } else if (tokenAmountNumberAbs >= 1e12 && tokenAmountNumberAbs < 1e15) {
     compactNumberToFormat = tokenAmountNumber / 1e12;
     postfix = 'T';
   }

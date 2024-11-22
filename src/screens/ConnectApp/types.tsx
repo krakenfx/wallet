@@ -1,9 +1,9 @@
 import type { Warning } from '@/types';
 
+import type { WalletKitTypes } from '@reown/walletkit';
 import type { ProposalTypes } from '@walletconnect/types';
-import type { Web3WalletTypes } from '@walletconnect/web3wallet';
 
-export type SessionProposal = Omit<Web3WalletTypes.BaseEventArgs<ProposalTypes.Struct>, 'topic'>;
+export type SessionProposal = Omit<WalletKitTypes.BaseEventArgs<ProposalTypes.Struct>, 'topic'>;
 
 export const enum UI_STATE {
   none = 'none',

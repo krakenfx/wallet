@@ -1,14 +1,11 @@
+import { WalletKit } from '@reown/walletkit';
 import { Core } from '@walletconnect/core';
-import { Web3Wallet } from '@walletconnect/web3wallet';
 
-
-import { showToast } from '@/components/Toast';
 import type { RealmWalletConnectTopics } from '@/realm/walletConnectTopics';
 import { REALM_TYPE_WALLET_CONNECT_TOPICS } from '@/realm/walletConnectTopics';
 import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { enqueueAppRequest } from '../appRequestQueue';
-
 
 import { WalletConnectSessionsManager as WalletConnectSessionsManager_ } from '../WalletConnectSessionsManager';
 
@@ -16,7 +13,7 @@ import { handleSessionProposal } from './handleSessionProposal';
 import { handleSessionRequest } from './handleSessionRequest';
 
 import type { ReactNavigationDispatch } from '../types';
-import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
+import type { IWalletKit } from '@reown/walletkit/dist/types/types/client';
 import type Realm from 'realm';
 
 import { WALLETCONNECT_PROJECT_ID } from '/config';
@@ -32,8 +29,7 @@ const metadata = {
   icons: ['https://www.kraken.com/_assets/icons/apple-touch-icon.png'],
 };
 
-export let web3Wallet: IWeb3Wallet | undefined;
-
+export let web3Wallet: IWalletKit | undefined;
 
 let dispatch_: ReactNavigationDispatch;
 const getDispatch_ = (): ReactNavigationDispatch => dispatch_;
@@ -43,13 +39,9 @@ const getRealm_ = (): Realm => realm_;
 
 export const WalletConnectSessionsManager = new WalletConnectSessionsManager_();
 
-
-
 const sessionProposals: string[] = [];
 
-
-
-export const deleteStaleSessionsFromRealm = async (realm: Realm, web3Wallet: IWeb3Wallet) => {
+export const deleteStaleSessionsFromRealm = async (realm: Realm, web3Wallet: IWalletKit) => {
   const realmWalletConnectSessions = realm.objects<RealmWalletConnectTopics>(REALM_TYPE_WALLET_CONNECT_TOPICS);
   const activeSessions = await web3Wallet.getActiveSessions();
   const realmSessionTopicsToDelete: string[] = [];
@@ -60,7 +52,6 @@ export const deleteStaleSessionsFromRealm = async (realm: Realm, web3Wallet: IWe
   }
   if (realmSessionTopicsToDelete.length > 0) {
     realm.write(() => {
-      
       const query = `topic IN {"${realmSessionTopicsToDelete.join('", "')}"}`;
       const realmSessionsToDelete = realm.objects(REALM_TYPE_WALLET_CONNECT_TOPICS).filtered(query);
       realm.delete(realmSessionsToDelete);
@@ -68,13 +59,11 @@ export const deleteStaleSessionsFromRealm = async (realm: Realm, web3Wallet: IWe
   }
 };
 
-
 export async function initWalletConnectWeb3Wallet(
   realm: Realm,
   dispatch: ReactNavigationDispatch,
   getSeed: SecuredKeychainContext['getSeed'],
-): Promise<IWeb3Wallet> {
-  
+): Promise<IWalletKit> {
   realm_ = realm;
   dispatch_ = dispatch;
 
@@ -82,8 +71,7 @@ export async function initWalletConnectWeb3Wallet(
     return web3Wallet;
   }
 
-  
-  web3Wallet = await Web3Wallet.init({
+  web3Wallet = await WalletKit.init({
     core,
     metadata,
   });
@@ -104,7 +92,6 @@ export async function initWalletConnectWeb3Wallet(
   web3Wallet.on('session_proposal', proposal => {
     const hasBeenProposed = sessionProposals.includes(String(proposal.id));
 
-    
     if (!hasBeenProposed) {
       sessionProposals.push(String(proposal.id));
       enqueueAppRequest(() => {
@@ -113,8 +100,5 @@ export async function initWalletConnectWeb3Wallet(
     }
   });
 
-  web3Wallet.on('auth_request', () => showToast({ type: 'info', icon: 'plug-disconnected', text: 'Action not implemented: auth_request' }));
-
   return web3Wallet;
-  
 }

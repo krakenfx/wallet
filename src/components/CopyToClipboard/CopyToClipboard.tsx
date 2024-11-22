@@ -1,9 +1,10 @@
 import type { PropsWithChildren } from 'react';
 
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { StyleSheet, View } from 'react-native';
 
@@ -23,8 +24,6 @@ const onCopyToClipboard = (copiedString: string, text = loc._.copyToClipboard) =
     text,
   });
 };
-
-
 
 const SHOW_CHECKMARK_DURATION = 4300;
 

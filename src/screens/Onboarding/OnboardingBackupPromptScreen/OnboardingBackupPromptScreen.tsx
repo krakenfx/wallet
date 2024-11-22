@@ -1,5 +1,5 @@
 import LottieView from 'lottie-react-native';
-import React, { useCallback, useLayoutEffect, useRef } from 'react';
+import { useCallback, useLayoutEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { BackButton } from '@/components/BackButton';

@@ -1,7 +1,7 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import { StackActions, useNavigation } from '@react-navigation/native';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { IconButton } from '@/components/IconButton';
 import { Routes } from '@/Routes';

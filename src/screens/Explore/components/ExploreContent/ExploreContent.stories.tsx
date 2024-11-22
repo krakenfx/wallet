@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { StyleSheet, View } from 'react-native';
 
@@ -18,13 +18,17 @@ const mockData: ExploreContentRow[] = [
   {
     id: '163f0b7c-4d8d-4e5e-86b9-16f85d7a5bb4',
     variant: 'Hero',
+    hasDynamicContent: false,
+    heroVariant: 'Card',
     content: [
       {
         title: 'Hero Explore on-chain',
         body: 'Start your journey, Farcaster is your gateway to a decentralized social network',
         variant: 'Card',
         background: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/0701b38f4b931be180762a314737d4e33a45094e-342x409.png',
+        isDynamicContent: false,
         cta: {
+          isDynamicContent: false,
           id: '163f0b7c-4d8d-4e5e-86b9-16f85d7a5bb4',
           icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/39c31cf9b5061093bfdd3a77bd34495cb497a156-40x40.png',
           iconVariant: 'RoudedCorners',
@@ -45,12 +49,15 @@ const mockData: ExploreContentRow[] = [
   {
     id: 'e4082f4f-5b2d-4fb9-8a38-b06578e4f454',
     variant: 'List',
+    hasDynamicContent: false,
     content: [
       {
+        isDynamicContent: false,
         id: 'e4082f4f-5b2d-4fb9-8a38-b06578e4f454',
         title: 'Hot Defi Apps',
         items: [
           {
+            isDynamicContent: false,
             id: '1666ff0cac53',
             title: 'Test Page',
             body: 'this goes to a test page',
@@ -65,6 +72,7 @@ const mockData: ExploreContentRow[] = [
             },
           },
           {
+            isDynamicContent: false,
             id: '1666ff0cac53',
             title: 'Uniswap',
             body: 'Decentralized trading protocol',
@@ -79,6 +87,7 @@ const mockData: ExploreContentRow[] = [
             },
           },
           {
+            isDynamicContent: false,
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/bf0998cbd3974def6716dfee6fe18bebb8a82e5b-40x40.png',
             iconVariant: 'RoudedCorners',
             buttonText: 'Open',
@@ -93,6 +102,7 @@ const mockData: ExploreContentRow[] = [
             body: 'Swap infrastructure & aggregator',
           },
           {
+            isDynamicContent: false,
             id: '16885b5acd7a',
             title: 'Aave',
             body: 'Earn and borrow',
@@ -107,6 +117,7 @@ const mockData: ExploreContentRow[] = [
             },
           },
           {
+            isDynamicContent: false,
             iconVariant: 'RoudedCorners',
             buttonText: 'Open',
             buttonLink: 'https://pump.fun/board',
@@ -121,6 +132,7 @@ const mockData: ExploreContentRow[] = [
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/33814347ccb4dd09b0be890382231419b1abddb7-40x40.png',
           },
           {
+            isDynamicContent: false,
             body: 'Popular bridging platform',
             icon: 'https://cdn.sanity.io/images/51n36hrp/web3-explore/6f6275eb86b84c9678799f76caf4deb567418908-40x40.png',
             iconVariant: 'Circle',
@@ -141,8 +153,11 @@ const mockData: ExploreContentRow[] = [
   {
     id: '6dd27fea-c419-4505-8791-874613b9aa62',
     variant: 'Card',
+    hasDynamicContent: false,
+    cardSize: 'Medium',
     content: [
       {
+        isDynamicContent: false,
         buttonLink: 'https://ens.domains/',
         link: {
           isInternal: false,
@@ -175,7 +190,14 @@ const ExploreContentMeta: Meta<typeof ExploreContent> = {
           <View style={{ flexDirection: 'row', position: 'absolute', bottom: 16, width: '100%', gap: 16, justifyContent: 'center' }}>
             {mockData.map(item => {
               return (
-                <Button text={`${item.variant}`} onPress={() => setSelectedContent(item)} size="small" color="kraken" disabled={item === selectedContent} />
+                <Button
+                  key={item.id}
+                  text={`${item.variant}`}
+                  onPress={() => setSelectedContent(item)}
+                  size="small"
+                  color="kraken"
+                  disabled={item === selectedContent}
+                />
               );
             })}
           </View>

@@ -1,9 +1,9 @@
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { AnimateStyle } from 'react-native-reanimated';
 
 import format from 'date-fns/format';
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { TransactionHeader } from '@/components/Transaction';
@@ -33,7 +33,6 @@ const TransactionStickyHeaderContent: React.FC<TransactionStickyHeaderContentPro
   const badge = parsedTransaction && 'status' in parsedTransaction && parsedTransaction.status === 'failed' ? 'failed' : undefined;
 
   switch (transactionDetailsMetadata.transactionType) {
-    
     case TRANSACTION_TYPES.NFT_BUY:
     case TRANSACTION_TYPES.NFT_MINT:
     case TRANSACTION_TYPES.NFT_SELL: {
@@ -53,8 +52,6 @@ const TransactionStickyHeaderContent: React.FC<TransactionStickyHeaderContentPro
       return <TransactionHeader heading={transactionDetailsMetadata.title} date={formatTransactionTime(transaction.time)} badge={badge} />;
     }
 
-    
-    
     case TRANSACTION_PENDING_TYPES.SEND:
     case TRANSACTION_PENDING_TYPES.RECEIVE: {
       return (
@@ -70,7 +67,6 @@ const TransactionStickyHeaderContent: React.FC<TransactionStickyHeaderContentPro
       );
     }
 
-    
     case TRANSACTION_TYPES.SEND:
     case TRANSACTION_TYPES.RECEIVE: {
       return <TransactionHeader heading={transactionDetailsMetadata.title} date={formatTransactionTime(transaction.time)} badge={badge} />;

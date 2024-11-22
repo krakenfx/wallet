@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { ZoomIn, ZoomOut } from 'react-native-reanimated';
 
@@ -19,7 +18,7 @@ import { WaitForAccountSwitchSettled } from './WaitForAccountSwitchSettled';
 
 import loc from '/loc';
 
-const UPDATE_BALANCE_DEBOUNCE = 2000; 
+const UPDATE_BALANCE_DEBOUNCE = 2000;
 
 export const HomeBalance = () => {
   const { setHideBalances } = useSettingsMutations();

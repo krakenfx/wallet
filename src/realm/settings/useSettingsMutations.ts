@@ -79,7 +79,7 @@ export const useSettingsMutations = () => {
   const setAppCurrency = useCallback(
     (value: Currency) => {
       setSettings(RealmSettingsKey.currency, value);
-      deleteAllAssetMarketData(); 
+      deleteAllAssetMarketData();
     },
     [deleteAllAssetMarketData, setSettings],
   );

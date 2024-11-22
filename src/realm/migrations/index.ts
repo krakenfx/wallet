@@ -8,4 +8,6 @@ export * from './migrationsSchemaVersion27';
 export * from './migrationsSchemaVersion29';
 export * from './migrationsSchemaVersion31';
 export * from './migrationsSchemaVersion33';
+export * from './migrationsSchemaVersion35';
+export * from './migrationsSchemaVersion36';
 export * from './onMigration';

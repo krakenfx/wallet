@@ -47,7 +47,7 @@ export type NftImageGalleryItemRef = {
 const DISMISS_OFFSET_THRESHOLD = 50;
 const DISMISS_OFFSET_MAX = 200;
 const MAX_ZOOM_SCALE = 3;
-const MAX_SVG_SCALE = 2; 
+const MAX_SVG_SCALE = 2;
 
 export enum PanDismiss {
   NONE = 0,
@@ -66,10 +66,6 @@ const dismissAnimationConfig: WithSpringConfig = {
 export const NftImageGalleryItem = React.forwardRef<NftImageGalleryItemRef, NftImageGalleryItemProps>(
   ({ uri, imageSize, isSvg, transitionValues, transitionConfig, initialScaleType = 'contain', controlsVisibility, onClose }, ref) => {
     const dimensions = useSafeAreaFrame();
-
-    
-    
-    
 
     const { width, height } = useMemo(
       () =>
@@ -112,7 +108,6 @@ export const NftImageGalleryItem = React.forwardRef<NftImageGalleryItemRef, NftI
 
     const { panDismiss, screenExit, screenExitOrPanDismiss } = transitionValues;
 
-    
     useAnimatedReaction(
       () => {
         if (scale.value !== initialScale) {
@@ -138,7 +133,6 @@ export const NftImageGalleryItem = React.forwardRef<NftImageGalleryItemRef, NftI
       [controlsVisibility],
     );
 
-    
     const dismissGallery = useCallback(() => {
       'worklet';
       toggleControls(false);
@@ -164,11 +158,9 @@ export const NftImageGalleryItem = React.forwardRef<NftImageGalleryItemRef, NftI
       })
       .onEnd(() => {
         if (scale.value > MAX_ZOOM_SCALE) {
-          
           scale.value = withTiming(MAX_ZOOM_SCALE);
         }
         if (scale.value < zoomOutDismissThreshold) {
-          
           panDismiss.value = withTiming(PanDismiss.FINISHED);
           dismissGallery();
         } else if (scale.value < initialScale) {
@@ -187,33 +179,28 @@ export const NftImageGalleryItem = React.forwardRef<NftImageGalleryItemRef, NftI
         translateY.value = translateYOffset.value + event.translationY;
       })
       .onEnd(event => {
-        
         if (scale.value === scaleInfo.scaleContain) {
           const offset = Math.max(Math.abs(event.translationX), Math.abs(event.translationY));
           if (offset > DISMISS_OFFSET_THRESHOLD) {
-            
             panDismiss.value = withTiming(PanDismiss.FINISHED);
             dismissGallery();
             return;
           }
-          
+
           translateY.value = withTiming(0);
           translateX.value = withTiming(0);
         } else {
-          
           const newTranslateX = translateXOffset.value + event.translationX;
           const scaledImageWidth = width * scale.value;
-          
+
           const maxTranslateX = scaledImageWidth <= dimensions.width ? 0 : (scaledImageWidth - dimensions.width) / 2;
           const minTranslateX = -maxTranslateX;
 
-          
           if (newTranslateX > maxTranslateX) {
             translateX.value = withTiming(maxTranslateX);
           } else if (newTranslateX < minTranslateX) {
             translateX.value = withTiming(minTranslateX);
           } else {
-            
             translateX.value = withDecay({
               velocity: event.velocityX,
               clamp: [minTranslateX, maxTranslateX],
@@ -263,9 +250,8 @@ export const NftImageGalleryItem = React.forwardRef<NftImageGalleryItemRef, NftI
 
     const animatedScaleStyle = useAnimatedStyle(() => ({
       transform: [
-        
         { scale: scale.value },
-        
+
         {
           scale: interpolate(panDismiss.value, [PanDismiss.NONE, PanDismiss.BEGIN, PanDismiss.END], [1, 1, transitionConfig.dismissScale ?? 1]),
         },

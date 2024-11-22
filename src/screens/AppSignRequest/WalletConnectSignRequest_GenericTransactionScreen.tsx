@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import type { FeeOption } from '@/api/types';
@@ -53,7 +53,7 @@ export const WalletConnectSignRequest_GenericTransactionScreen = ({ route, navig
   }, [content]);
 
   const handleApprove = (feeOption: FeeOption | null) => {
-    onApprove(feeOption );
+    onApprove(feeOption);
     goBack();
   };
 

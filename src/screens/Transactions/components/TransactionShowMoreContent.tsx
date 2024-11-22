@@ -1,5 +1,6 @@
+import type React from 'react';
+
 import format from 'date-fns/format';
-import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { AddressDisplay } from '@/components/AddressDisplay';

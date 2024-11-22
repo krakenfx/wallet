@@ -25,7 +25,6 @@ STORYBOOK_ENABLED=true
 Stories capture the rendered state of a UI component. They are stored in files ending with `.stories.tsx`. Here's how you can write a story:
 
 ```tsx
-import React from 'react';
 import { View } from 'react-native';
 
 import { Button } from './Button';

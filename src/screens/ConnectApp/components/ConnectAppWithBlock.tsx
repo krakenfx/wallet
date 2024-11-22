@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { BlockScreenSheet } from '@/components/BlockScreen';
 
@@ -16,7 +16,7 @@ export type Props = {
   appMetadata?: {
     url: string;
     name: string;
-    icon: string;
+    icon?: string;
   };
   networkIDs?: string[];
   requiredNetworkIDs?: string[];

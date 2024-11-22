@@ -17,10 +17,7 @@ import type { TokenFromTokenLists } from '../types';
 
 import { handleError } from '/helpers/errorHandler';
 
-
-
 const OMITTED_TOKEN = 'eip155:137/erc20:0x0000000000000000000000000000000000001010';
-
 
 export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[], searchQuery: string): Record<string, RemoteAsset[]> => {
   const realmTokens = useTokensFilteredByReputationAndNetwork(networkFilter);
@@ -29,12 +26,9 @@ export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[],
   const [whitelistedTokens, setWhitelistedTokens] = useState<TokenFromTokenLists[]>([]);
   const [filteredWhitelistedTokens, setFilteredWhitelistedTokens] = useState<Record<string, RemoteAsset[]>>({});
 
-  
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        
-        
         try {
           const response = await fetchTokenLists();
           if ((response?.content?.whitelist || []).length > 0) {
@@ -48,23 +42,16 @@ export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[],
     }, []),
   );
 
-  
-  
-  
   useEffect(
     function filterWhitelistedTokens() {
       const isEmpty = Object.keys(filteredWhitelistedTokens).length === 0;
 
       if (searchQuery && (hasNetworkFilterOrRealmTokensChanged || isEmpty)) {
-        
         const searchQueryMap: Record<string, RemoteAsset[]> = {};
 
-        
         const realmAndOmittedTokensMap = realmTokens.reduce((acc: Record<string, string>, cur) => {
           acc[cur.assetId] = '';
 
-          
-          
           if (cur.assetId.startsWith('solana')) {
             acc[cur.assetId.toLowerCase()] = '';
           }
@@ -76,7 +63,6 @@ export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[],
         const supportedNetworks = (() => {
           const supportedNetworks_: Record<string, string> = { ...networkIdToNetworkName };
 
-          
           if (!isTestnetEnabled) {
             Object.entries(supportedNetworks_).forEach(([k, v]) => {
               if (TESTNET_COINS.includes(v as (typeof TESTNET_COINS)[number])) {
@@ -85,7 +71,6 @@ export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[],
             });
           }
 
-          
           Object.keys(supportedNetworks_).forEach(k => {
             delete supportedNetworks_[k];
 
@@ -98,18 +83,14 @@ export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[],
         whitelistedTokens.forEach(whitelistToken => {
           const networkId = (whitelistToken.caipId.match(untilFirstBackslash) || []).join().toLowerCase();
 
-          
-          
           if (!(networkId in supportedNetworks)) {
             return;
           }
 
-          
           if (whitelistToken.caipId in realmAndOmittedTokensMap) {
             return;
           }
 
-          
           if (networkFilter.length > 0) {
             if (networkFilter.some(f => whitelistToken.caipId.startsWith(f))) {
               const remoteAsset = adaptTokenFromTokenListsToRemoteAsset(whitelistToken);
@@ -133,22 +114,18 @@ export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[],
   return filteredWhitelistedTokens;
 };
 
-
 const MAX_KEYS_FROM_TOKEN_NAME = 4;
 export function addKeysToSearchQueryMap(
   tokenFromTokenLists: TokenFromTokenLists,
   remoteAsset: RemoteAsset,
   searchQueryMap: Record<string, RemoteAsset[]>,
 ): void {
-  
-  
   const wasAdded: Record<string, string> = {};
   const keyFromSymbol = (tokenFromTokenLists.symbol ?? '').trim();
   const keysFromName = (tokenFromTokenLists.name ?? '').trim().split(' ').slice(0, MAX_KEYS_FROM_TOKEN_NAME);
 
   keysFromName.push(keyFromSymbol);
 
-  
   for (let i = 0, ii = keysFromName.length; i < ii; i++) {
     const key = keysFromName[i];
 
@@ -169,10 +146,6 @@ export function addKeysToSearchQueryMap(
     }
   }
 
-  
-  
-  
-  
   if (keyFromSymbol.charAt(0) === '$') {
     const char = keyFromSymbol.charAt(1).toLowerCase();
 

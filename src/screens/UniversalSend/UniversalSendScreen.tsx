@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { BottomSheet } from '@/components/BottomSheet';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';

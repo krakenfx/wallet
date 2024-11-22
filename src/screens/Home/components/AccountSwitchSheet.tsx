@@ -3,7 +3,7 @@ import type { ListRenderItem } from 'react-native';
 import { BottomSheetFlatList, useBottomSheetDynamicSnapPoints, useBottomSheetModal } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 import noop from 'lodash/noop';
-import React, { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { cancelActiveRequestsAndInvalidateCache } from '@/api/base/fetchClient';
@@ -77,7 +77,7 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
       const isFirst = index === 0;
       const isLast = index === accounts.length - 1;
       const isCurrent = accountNumber === item.accountNumber;
-      const BOTTOM_LIST_MARGIN = LARGE_BUTTON_SIZE + bottomSpacing + 32; 
+      const BOTTOM_LIST_MARGIN = LARGE_BUTTON_SIZE + bottomSpacing + 32;
 
       return (
         <>
@@ -98,7 +98,6 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
 
   const handleBottomSheetChange = (index: number) => {
     if (index > -1) {
-      
       listRef.current?.scrollToIndex({ index: accounts.length - 1, viewPosition: 0 });
     }
   };
@@ -118,7 +117,7 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
         </View>
         <WalletBackupWarning showDismissable={false} />
         <BottomSheetFlatList
-          style={{ maxHeight: WALLET_ITEM_HEIGHT * 9 }} 
+          style={{ maxHeight: WALLET_ITEM_HEIGHT * 9 }}
           data={accounts}
           keyExtractor={account => String(account.accountNumber)}
           renderItem={renderItem}

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { noop } from 'lodash';
-import React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 
 import { AvatarIcon } from '@/components/AvatarIcon';
@@ -69,7 +69,7 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
       <GradientItemBackground backgroundType={isCurrentAccount ? 'modalLight' : backgroundType} />
       <View style={styles.left}>
         <View style={styles.avatarContainer}>
-          <AvatarIcon accountNumber={account.accountNumber} accountAvatar={account.avatar} />
+          <AvatarIcon accountNumber={account.accountNumber} accountAvatar={account.avatar} avatarSize={36} />
         </View>
         <View style={styles.walletInfo}>
           <Label type="boldTitle2">{accountCustomName}</Label>
@@ -116,8 +116,6 @@ export const WalletItem = ({ isFirst, isLast, isCurrentAccount, account, onPress
 const styles = StyleSheet.create({
   avatarContainer: {
     marginRight: 12,
-    width: 36,
-    height: 36,
   },
   container: {
     paddingHorizontal: 24,

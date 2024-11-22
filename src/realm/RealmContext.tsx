@@ -1,5 +1,6 @@
+import type React from 'react';
+
 import { createRealmContext } from '@realm/react';
-import React from 'react';
 
 import { realmConfig } from './realmSchema';
 
@@ -13,8 +14,6 @@ interface Props {
 export const RealmProvider = ({ children, encryptionKey }: Props) => {
   return <ReactRealmProvider encryptionKey={encryptionKey}>{children}</ReactRealmProvider>;
 };
-
-
 
 function useObject<T, K = string>(
   type: string,

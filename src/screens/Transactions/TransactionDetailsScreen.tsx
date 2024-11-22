@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { StyleSheet } from 'react-native';
 
@@ -71,7 +71,6 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
 
   const onOpenExplorer = () => {
     if (isInAppBrowserEnabled()) {
-      
       navigation.goBack();
     }
 

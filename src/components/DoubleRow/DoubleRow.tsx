@@ -1,7 +1,7 @@
+import type React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import MaskedView from '@react-native-masked-view/masked-view';
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Svg, { Circle, Defs, G, Mask, Rect } from 'react-native-svg';
@@ -67,13 +67,13 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
-    marginBottom: 1,
+    marginBottom: 0.5,
   },
   containerBottom: {
     borderRadius: 0,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
-    marginTop: 1,
+    marginTop: 0.5,
   },
   iconContainer: {
     ...StyleSheet.absoluteFillObject,

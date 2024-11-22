@@ -31,22 +31,16 @@ type CloudBackupErrorCode = {
 };
 
 interface CloudBackupNativeInterface {
-  
   register(accountName: string): Promise<CredentialResult>;
 
-  
   readData(credentialID: string | null): Promise<ReadResult>;
 
-  
   writeData(credentialID: string, data: string): Promise<CredentialResult>;
 
-  
   getKnownCredentials(): Promise<string[]>;
 
-  
   setKnownCredentials(credentials: string[]): Promise<void>;
 
-  
   addKnownCredential(credential: string): Promise<void>;
 
   errorCode: CloudBackupErrorCode;

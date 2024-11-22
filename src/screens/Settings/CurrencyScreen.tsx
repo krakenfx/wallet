@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -17,12 +17,7 @@ import loc from '/loc';
 const sortCurrencies = (deviceCurrency: string, language: LanguageTag) => {
   const currencies = Object.values(Currency);
 
-  const sortedCurrencies: Currency[] = [
-    
-    
-    
-    
-  ];
+  const sortedCurrencies: Currency[] = [];
 
   const ALPHABETICAL_ASCENDING_INDEX = 3;
 
@@ -57,16 +52,12 @@ const sortCurrencies = (deviceCurrency: string, language: LanguageTag) => {
     }
 
     if (alphabeticalComparision < 0) {
-      
-      
       const alphabetizedCurrencies = sortedCurrencies.slice(ALPHABETICAL_ASCENDING_INDEX);
       alphabetizedCurrencies.push(currency);
       alphabetizedCurrencies.sort((a, b) => getLocalizedCurrencyName(a).localeCompare(getLocalizedCurrencyName(b), language));
       sortedCurrencies.splice(ALPHABETICAL_ASCENDING_INDEX, Infinity, ...alphabetizedCurrencies);
       return;
     }
-
-    
   });
 
   return sortedCurrencies;

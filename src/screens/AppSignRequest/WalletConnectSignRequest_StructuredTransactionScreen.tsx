@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import type { FeeOption } from '@/api/types';
@@ -22,9 +22,9 @@ import type { DefinitionList, TransactionContent } from '/modules/wallet-connect
 export interface WalletConnectSignRequest_StructuredTransactionParams {
   walletId: string;
   metadata: {
-    imageUrl: string;
-    name: string;
-    url: string;
+    imageUrl?: string;
+    name?: string;
+    url?: string;
   };
   transactionTitle: string | string[];
   content: TransactionContent;
@@ -62,7 +62,7 @@ export const WalletConnectSignRequest_StructuredTransactionScreen = ({
   const hasSubtitle = 'subtitle' in content;
 
   const handleApprove = (feeOption: FeeOption | null) => {
-    onApprove(feeOption );
+    onApprove(feeOption);
     goBack();
   };
 

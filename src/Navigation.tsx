@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect } from 'react';
-import * as React from 'react';
 
 import { useCheckAndSetFontScale } from '@/hooks/useCheckAndSetFontScale';
 import { useDebugInfo } from '@/hooks/useDebugInfo';
@@ -40,7 +39,7 @@ import { TriggeredPushPromptScreen } from '@/screens/TriggerredPushPromptScreen'
 import { UniversalSendScreen } from '@/screens/UniversalSend';
 import { WalletBackupPromptScreen } from '@/screens/WalletBackupPrompt';
 import { WalletConnectExplainerScreen } from '@/screens/WalletConnectExplainer';
-import { WhatsNewAssetMarketDataScreen, WhatsNewBlastScreen, WhatsNewLongPressScreen } from '@/screens/WhatsNew';
+import { WhatsNewAssetMarketDataScreen, WhatsNewAvaxLineaScreen, WhatsNewBlastScreen, WhatsNewLongPressScreen } from '@/screens/WhatsNew';
 import { useConnectionManager } from '@/utils/useConnectionManager';
 
 import { DefaultBackButton } from './components/BackButton';
@@ -135,6 +134,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="SendQRScan" component={SendQRScanScreen} options={SendQRScanScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="WalletConnectExplainer" component={WalletConnectExplainerScreen} options={WalletConnectExplainerScreen.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewBlast" component={WhatsNewBlastScreen} options={WhatsNewBlastScreen.navigationOptions} />
+      <DefaultStack.Screen name="WhatsNewAvaxLinea" component={WhatsNewAvaxLineaScreen} options={WhatsNewAvaxLineaScreen.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewAssetMarketData" component={WhatsNewAssetMarketDataScreen} options={WhatsNewAssetMarketDataScreen.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewLongPress" component={WhatsNewLongPressScreen} options={WhatsNewLongPressScreen.navigationOptions} />
       <DefaultStack.Screen

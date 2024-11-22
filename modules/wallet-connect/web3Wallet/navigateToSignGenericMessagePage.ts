@@ -10,15 +10,15 @@ export function navigateToSignGenericMessagePage(
   dispatch: ReactNavigationDispatch,
   accountIdx: number,
   metadata: {
-    imageUrl: string;
-    name: string;
-    url: string;
+    imageUrl?: string;
+    name?: string;
+    url?: string;
   },
   genericMessage: GenericMessage,
   detailsContent: DefinitionList,
   warning?: Warning,
-): Promise<boolean> {
-  return new Promise(resolve => {
+) {
+  return new Promise<boolean>(resolve => {
     const params: WalletConnectSignRequest_GenericMessageParams = {
       accountIdx,
       metadata,

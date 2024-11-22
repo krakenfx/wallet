@@ -11,7 +11,6 @@ import type { RealmWallet } from './schema';
 import type { RealmSettings } from '../settings';
 import type Realm from 'realm';
 
-
 export const useRealmWallets = (showAllWallets = false, accountNumber?: number) => {
   const currentAccountNumber = useCurrentAccountNumber();
 
@@ -30,7 +29,6 @@ export const useRealmWallets = (showAllWallets = false, accountNumber?: number) 
     [accountNumber, currentAccountNumber, showAllWallets],
   );
 };
-
 
 export const getWalletsForMutations = (realm: Realm, showAllWallets = false) => {
   const wallets = isNewNetworksEnabled()

@@ -9,7 +9,6 @@ import type BigNumber from 'bignumber.js';
 
 import loc from '/loc';
 
-
 function checkForNaN(bigNumber: BigNumber, fallback: string): string {
   return bigNumber.isNaN() ? fallback : bigNumber.toString(10);
 }
@@ -24,7 +23,6 @@ export function adaptTransactionObjectToDefinitionList(transaction: TransactionO
     { title: loc.appSignRequest.to, description: transaction.to },
     { title: loc.appSignRequest.from, description: transaction.from },
     { title: loc.appSignRequest.nonce, description: hexToDecimal(transaction.nonce) },
-    
   ];
 
   return result as { title: string; description: string }[];

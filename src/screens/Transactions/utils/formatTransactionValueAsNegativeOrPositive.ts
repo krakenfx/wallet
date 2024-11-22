@@ -11,8 +11,6 @@ const TRANSACTION_TYPES_FORMATTED_AS_NEGATIVE: string[] = [
 
 const TRANSACTION_TYPES_FORMATTED_AS_POSITIVE: string[] = [TRANSACTION_TYPES.TOKEN_APPROVAL, TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED];
 
-
-
 export function formatTransactionValueAsNegativeOrPositive(
   value: number | string,
   transactionType: string,
@@ -31,7 +29,6 @@ export function formatTransactionValueAsNegativeOrPositive(
 
   let stringValue = String(value);
 
-  
   if (transactionType === TRANSACTION_TYPES.NFT_SELL) {
     return stringValue;
   }
@@ -41,12 +38,10 @@ export function formatTransactionValueAsNegativeOrPositive(
     : TRANSACTION_TYPES_FORMATTED_AS_NEGATIVE.includes(transactionType) || Boolean(options?.isSwapSent) || Boolean(options?.isNetworkFee);
   const isNegative = stringValue.startsWith('-');
 
-  
   if (shouldFormatAsNegative && !isNegative) {
     stringValue = '-' + value;
   }
 
-  
   if (!shouldFormatAsNegative && isNegative) {
     stringValue = stringValue.slice(1);
   }

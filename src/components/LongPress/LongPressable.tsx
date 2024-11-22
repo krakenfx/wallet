@@ -1,6 +1,7 @@
+import type React from 'react';
 import type { ViewStyle } from 'react-native';
 
-import React, { useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 

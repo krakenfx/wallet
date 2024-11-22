@@ -9,7 +9,7 @@ export const useTokenSearchQuery = <T extends RealmToken | RemoteAsset>(tokens: 
       const searchQuery_ = searchQuery.toLowerCase();
       const filteredTokens = tokens.filter(t => {
         const testString = (t.metadata.label + ' ' + t.metadata.symbol + ' ' + t.metadata.tokenAddress).toLowerCase();
-        
+
         return testString.startsWith(searchQuery_) || testString.includes(` ${searchQuery_}`);
       });
 

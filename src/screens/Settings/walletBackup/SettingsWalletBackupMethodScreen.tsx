@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { GradientScreenView } from '@/components/Gradients';
 import { BackupMethodSelectionView } from '@/components/WalletBackup';
 import { Routes } from '@/Routes';

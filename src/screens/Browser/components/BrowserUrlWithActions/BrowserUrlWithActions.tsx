@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
@@ -8,12 +7,14 @@ import { useTheme } from '@/theme/themes';
 
 import { useBrowserContext } from '../../context/BrowserContext';
 
+import { BrowseConnectionIcon } from '../BrowserConnectionIcon';
+import { BrowserLockIcon } from '../BrowserLockIcon';
 import { BrowserQuickActionsButton } from '../BrowserQuickActionsButton/BrowserQuickActionsButton';
 
 export const BrowserUrlWithActions = () => {
   const { colors } = useTheme();
 
-  const { cleanUrl, isConnectedToDapp, navigationState, error, onNavigateBack, onNavigateForward } = useBrowserContext();
+  const { cleanUrl, navigationState, error, onNavigateBack, onNavigateForward } = useBrowserContext();
 
   const { handleShowSearch } = useSearchContext();
 
@@ -28,11 +29,11 @@ export const BrowserUrlWithActions = () => {
       {}
       <TouchableWithoutFeedback onPress={handleShowSearch}>
         <View style={styles.mainWrapper} testID="BrowserSearchBarUrlWithActions">
-          {!error && <SvgIcon name="lock" color="light50" size={16} />}
+          {!error && <BrowserLockIcon />}
 
           <Text style={{ color: colors.light100 }}>{cleanUrl}</Text>
 
-          {isConnectedToDapp ? <SvgIcon name="plug-connected" color="light50" size={16} /> : <SvgIcon name="plug-disconnected" color="light15" size={16} />}
+          <BrowseConnectionIcon />
         </View>
       </TouchableWithoutFeedback>
 

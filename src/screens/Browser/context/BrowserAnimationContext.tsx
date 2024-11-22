@@ -1,15 +1,15 @@
-import type { MutableRefObject, PropsWithChildren } from 'react';
-
 import type { LayoutChangeEvent, ViewStyle } from 'react-native';
 
-import React, { useContext, useRef } from 'react';
+import React, { type MutableRefObject, type PropsWithChildren } from 'react';
+
+import { useContext, useRef } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import type { InputMethods } from '@/components/Input';
 
 interface BrowserAnimationContextProps {
-  onGoBack: () => void;
+  onExitBrowser: () => void;
   goBackAnimations?: {
     inputXShift: number;
     inputYShift: number;
@@ -38,11 +38,10 @@ const ANIMATION_CONFIG = {
   easing: Easing.inOut(Easing.linear),
 };
 
-export const BrowserAnimationContextProvider: React.FC<PropsWithChildren<BrowserAnimationContextProps>> = ({ onGoBack, goBackAnimations, children }) => {
+export const BrowserAnimationContextProvider: React.FC<PropsWithChildren<BrowserAnimationContextProps>> = ({ onExitBrowser, goBackAnimations, children }) => {
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
   const inputRef = useRef<InputMethods>(null);
 
-  
   const inputWidthAlreadyAdjusted = useRef(false);
 
   const inputWidth = useSharedValue(screenWidth);
@@ -101,7 +100,6 @@ export const BrowserAnimationContextProvider: React.FC<PropsWithChildren<Browser
       return;
     }
 
-    
     if (inputRef.current) {
       inputRef.current.blur();
     }
@@ -119,7 +117,7 @@ export const BrowserAnimationContextProvider: React.FC<PropsWithChildren<Browser
     inputFlex.value = 0;
     inputTranslateX.value = withTiming(goBackAnimations.inputXShift, ANIMATION_CONFIG);
     inputTranslateY.value = withTiming(goBackAnimations.inputYShift, ANIMATION_CONFIG, () => {
-      runOnJS(onGoBack)();
+      runOnJS(onExitBrowser)();
     });
   };
 

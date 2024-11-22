@@ -1,15 +1,16 @@
-import type { PropsWithChildren } from 'react';
-
 import type { NativeSyntheticEvent } from 'react-native';
 
 import type { SharedValue } from 'react-native-reanimated';
 
-import React, { useContext, useState } from 'react';
+import React, { type PropsWithChildren } from 'react';
+
+import { useContext, useState } from 'react';
 
 import { Platform } from 'react-native';
 
 import { useSharedValue } from 'react-native-reanimated';
 
+import { UrlSecurityLevel } from '../Browser.types';
 import { getHttpsUrlOrGoogleSearchUrl } from '../utils/getHttpsUrlOrGoogleSearchUrl';
 
 import type { WebViewErrorEvent, WebViewNavigationEvent } from 'react-native-webview/lib/RNCWebViewNativeComponent';
@@ -17,8 +18,7 @@ import type { WebViewNavigation, WebViewProgressEvent } from 'react-native-webvi
 
 interface BrowserContextProps {
   initialUrl: string | undefined;
-  isConnectedToDapp: boolean;
-  onGoBack: () => void;
+  onExitBrowser: () => void;
   onNavigateBack: () => void;
   onNavigateForward: () => void;
   onRefreshPage: () => void;
@@ -31,22 +31,26 @@ interface NavigationState {
 
 interface BrowserContextValue extends Omit<BrowserContextProps, 'initialUrl'> {
   url: string | null;
+  baseUrl: string | null;
   cleanUrl: string | null;
   setUrl: React.Dispatch<React.SetStateAction<string | null>>;
   shouldDisplayWebView: boolean;
+  urlSecurityLevel: UrlSecurityLevel;
   setShouldDisplayWebView: React.Dispatch<React.SetStateAction<boolean>>;
-  
+
   navigationState: NavigationState;
   setNavigationState: React.Dispatch<React.SetStateAction<NavigationState>>;
+  setUrlSecurityLevel: React.Dispatch<React.SetStateAction<UrlSecurityLevel>>;
+
   onNavigationStateChange: (navState: WebViewNavigation) => void;
-  
+
   loadingPercentage: SharedValue<number>;
   isLoading: boolean;
   onLoadStart: () => void;
   onLoadProgress: (event: WebViewProgressEvent) => void;
   onLoadError: () => void;
   onLoadEnd: (event: NativeSyntheticEvent<WebViewErrorEvent | WebViewNavigationEvent>) => void;
-  
+
   error: boolean;
   resetError: () => void;
 }
@@ -56,10 +60,13 @@ const BrowserContext = React.createContext<BrowserContextValue | undefined>(unde
 export const BrowserContextProvider: React.FC<PropsWithChildren<BrowserContextProps>> = ({ children, initialUrl, ...value }) => {
   const [url, setUrl] = useState(initialUrl ? getHttpsUrlOrGoogleSearchUrl(initialUrl) : null);
 
-  
+  const [urlSecurityLevel, setUrlSecurityLevel] = useState(UrlSecurityLevel.UNVERIFIED);
+
   const [shouldDisplayWebView, setShouldDisplayWebView] = useState(true);
 
-  const cleanUrl = url ? new URL(url).hostname : null;
+  const parsedUrl = url ? new URL(url) : null;
+  const baseUrl = parsedUrl?.origin ?? null;
+  const cleanUrl = parsedUrl?.hostname ?? null;
 
   const [navigationState, setNavigationState] = useState({
     canNavigateBack: false,
@@ -72,11 +79,8 @@ export const BrowserContextProvider: React.FC<PropsWithChildren<BrowserContextPr
   const loadingPercentage = useSharedValue(0);
 
   const onNavigationStateChange = (navState: WebViewNavigation) => {
-    if (navState.loading) {
-      if (Platform.OS === 'android' && error) {
-        setShouldDisplayWebView(false);
-      }
-      return;
+    if (navState.loading && Platform.OS === 'android' && error) {
+      setShouldDisplayWebView(false);
     }
 
     setUrl(navState.url);
@@ -100,10 +104,9 @@ export const BrowserContextProvider: React.FC<PropsWithChildren<BrowserContextPr
     const { progress } = event.nativeEvent;
     loadingPercentage.value = progress;
 
-    
     if (progress === 1) {
       setShouldDisplayWebView(true);
-      
+
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
@@ -130,10 +133,13 @@ export const BrowserContextProvider: React.FC<PropsWithChildren<BrowserContextPr
       value={{
         ...value,
         url,
+        baseUrl,
         cleanUrl,
         navigationState,
+        urlSecurityLevel,
         shouldDisplayWebView,
         setShouldDisplayWebView,
+        setUrlSecurityLevel,
         setUrl,
         setNavigationState,
         onNavigationStateChange,

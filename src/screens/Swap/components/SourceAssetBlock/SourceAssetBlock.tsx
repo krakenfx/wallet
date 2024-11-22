@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
@@ -27,19 +27,32 @@ import loc from '/loc';
 
 type Props = {
   token: RealmToken;
+  isLoading?: boolean;
   onChange: () => void;
 };
 
-export const SourceAssetBlock: React.FC<Props> = ({ token, onChange }) => {
+export type SourceAssetBlockRef = {
+  focusInput: () => void;
+};
+
+export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ token, onChange, isLoading }, ref) => {
   const {
     sourceAmountState: [sourceAmount, setSourceAmount],
     sourceAmountInputValueState: [sourceAmountString, setSourceAmountString],
     amountInputFocusState: [isFocused, setIsFocused],
+    amountInputErrorState: [inputErrorMsg, setInputErrorMsg],
+    amountInputValidState: [_, setAmountInputValid],
   } = useSwapContext();
 
-  const [inputErrorMsg, setInputErrorMsg] = useState<string>();
-
   const inputRef = useRef<InputMethods>(null);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      focusInput: () => inputRef.current?.focus(),
+    }),
+    [inputRef],
+  );
 
   const { colors } = useTheme();
 
@@ -64,26 +77,42 @@ export const SourceAssetBlock: React.FC<Props> = ({ token, onChange }) => {
 
   const inputValue = sourceAmountString?.replace('.', currencyInfo.decimalSeparator);
 
-  const onChangeText = (value: string) => {
-    const numberString = sanitizeNumericValue(value);
-    setSourceAmountString(numberString);
-    setSourceAmount(unitConverter.tokenUnit2SmallestUnit(new BigNumber(numberString), token.metadata.decimals).toString(10));
-  };
+  const onChangeText = useCallback(
+    (value: string) => {
+      const numberString = sanitizeNumericValue(value);
+      if (!numberString) {
+        setSourceAmount(undefined);
+        setSourceAmountString(undefined);
+      } else {
+        setSourceAmountString(numberString);
+        setSourceAmount(unitConverter.tokenUnit2SmallestUnit(new BigNumber(numberString), token.metadata.decimals).toString(10));
+      }
+    },
+    [setSourceAmount, setSourceAmountString, token.metadata.decimals],
+  );
 
   useKeyboardEvent('keyboardDidHide', () => inputRef.current?.blur());
 
   useEffect(() => {
     if (!sourceAmount) {
+      setAmountInputValid(false);
       return;
     }
-    if (isFocused && inputErrorMsg) {
+    if (isFocused) {
       setInputErrorMsg(undefined);
+      setAmountInputValid(undefined);
       return;
     }
-    if (!isFocused && BigNumber(sourceAmount).isGreaterThan(BigNumber(tokenBalance))) {
+
+    if (BigNumber(sourceAmount).isLessThanOrEqualTo(0)) {
+      setAmountInputValid(false);
+    } else if (BigNumber(sourceAmount).isGreaterThan(BigNumber(tokenBalance))) {
+      setAmountInputValid(false);
       setInputErrorMsg(loc.swap.amountExceedingBalance);
+    } else {
+      setAmountInputValid(true);
     }
-  }, [isFocused, sourceAmount, tokenBalance, inputErrorMsg]);
+  }, [isFocused, sourceAmount, tokenBalance, inputErrorMsg, setInputErrorMsg, setAmountInputValid, setSourceAmountString, setSourceAmount]);
 
   useLayoutEffect(() => {
     safelyAnimateLayout();
@@ -93,6 +122,7 @@ export const SourceAssetBlock: React.FC<Props> = ({ token, onChange }) => {
     <View style={styles.container}>
       <GradientItemBackground backgroundType="modal" key={inputErrorMsg} />
       <Input
+        editable={!isLoading}
         ref={inputRef}
         value={inputValue}
         onChangeText={onChangeText}
@@ -122,7 +152,7 @@ export const SourceAssetBlock: React.FC<Props> = ({ token, onChange }) => {
       />
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

@@ -1,8 +1,6 @@
 import type { Transaction } from '@/api/types';
 import type { BTCTransaction } from '@/onChain/wallets/bitcoin';
 
-
-
 export const getAddressesFromParsedTransaction = (
   parsedTransaction: Transaction | BTCTransaction | undefined,
 ): { sender: string; recipient: string; target: string } => {

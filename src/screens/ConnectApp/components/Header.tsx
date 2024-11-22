@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { IconWithCoinIcon } from '@/components/IconWithCoinIcon';
@@ -15,7 +15,7 @@ import type { Verification } from '../types';
 import loc from '/loc';
 
 type Props = {
-  icon: string;
+  icon?: string;
   name: string;
   url: string;
   verification?: Verification;

@@ -19,8 +19,7 @@ export function adaptTokenLikeToRemoteAsset({ assetId, name, symbol, address, de
       label: name ?? '',
       symbol: symbol ?? '',
       tokenAddress: address,
-      
-      
+
       decimals: typeof decimals === 'number' ? decimals : typeof decimals === 'string' ? Number(decimals) : 2,
       reputation: {
         whitelists: whitelists ?? [],

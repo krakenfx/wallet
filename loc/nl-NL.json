@@ -44,7 +44,7 @@
       "advanced_info": "Geavanceerde informatie",
       "connected_apps": "Verbonden apps",
       "delete": "Verwijderen",
-      "edit": "Bewerken"
+      "edit": "Personaliseren"
     },
     "walletDelete": {
       "error": "De wallet is niet verwijderd, probeer het opnieuw",
@@ -136,6 +136,7 @@
     "to": "Naar",
     "typed_message_signing_request": "{type} Ondertekeningsverzoek",
     "typedMessageSigningRequest": "{type} Ondertekeningsverzoek",
+    "unknownApp": "Onbekende app",
     "withdrawal": "Opname"
   },
   "assetOptions": {
@@ -146,6 +147,12 @@
     "send": "Versturen",
     "viewDetails": "Details weergeven",
     "viewOn": "Bekijken op {explorer}"
+  },
+  "avaxLineaWelcoming": {
+    "buttonText": "Klinkt goed",
+    "part1": "Je wallet ondersteunt nu Avalanche, de zeer schaalbare blockchain met razendsnelle finaliteit, en Linea, de Ethereum L2 ontworpen voor veilige, goedkope transacties.",
+    "part2": "Met deze nieuwe integraties kun je activategoeden bekijken, transacties verzenden, NFT's verzamelen, defi-posities bewaken en verbinding maken met dapps op beide netwerken.",
+    "title": "Avalanche & Linea Support is er!"
   },
   "backupWallet": {
     "backup": "Back-up",
@@ -439,8 +446,11 @@
   },
   "explore": {
     "continueAccessibilityHint": "De disclaimer accepteren en doorgaan",
-    "disclaimerBody": "Als je in deze sectie op dapps klikt, kom je op externe URL's terecht en moet je altijd je eigen onderzoek doen.",
-    "disclaimerTitle": "Wees voorzichtig"
+    "disclaimerBody": "Houd er rekening mee dat deze functie inhoud bevat die door derden is verstrekt. Raadpleeg de relevante voorwaarden uit de Servicevoorwaarden.",
+    "disclaimerTitle": "Welkom bij Explore!",
+    "errorBody": "De app kon de inhoud op deze pagina niet laden. Probeer het later opnieuw",
+    "errorTitle": "Er is iets misgegaan",
+    "rewardPrefix": "Earn"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -616,7 +626,7 @@
     "assets": "Assets",
     "collection": "NFT's",
     "collection_see_all": "Alles weergeven",
-    "deposits": "Stortingen",
+    "deposits": "DeFi",
     "manage": "Beheren",
     "total_balance": "Saldo"
   },
@@ -701,6 +711,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Goerli-testnet",
     "ethereum_sepolia": "Ethereum - Sepolia-testnet",
+    "ink_sepolia": "Ink - Sepolia testnet",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -928,11 +939,16 @@
       "title": "Zoeken naar sub-wallets"
     },
     "importSubWallets": {
+      "hasABalance": "Heeft een tegoed",
+      "hasBalance": "Bevat geld",
+      "importingWallets": "{subWalletsCount} wallets importeren...",
+      "importingWalletsOne": "1 wallet importeren...",
       "importWallets": "{subWalletsCount} wallets importeren",
       "importWalletsOne": "1 wallet importeren",
       "subtitle": "We hebben {subWalletsCount} wallets gevonden met activiteit of tegoeden. Selecteer alle wallets die je wilt importeren.",
       "subtitleOneWallet": "We hebben 1 wallet gevonden met activiteit of tegoeden.",
       "title": "Selecteer wallets om te importeren",
+      "wallet": "Portemonnee",
       "walletsFound": "{subWalletsCount} wallets gevonden",
       "walletsFoundOne": "1 wallet gevonden"
     },
@@ -982,7 +998,7 @@
     "appConnectMediumWarning": "De app die het verzoek stuurt, kan niet worden geverifieerd.",
     "appFlagged": "App gemarkeerd!",
     "appSafetyNotVerified": "Veiligheid van app niet geverifieerd",
-    "appSafetyNotVerifiedMessage": "We konden de veiligheid van de app waarmee je verbinding probeert te maken niet verifiëren. Ga voorzichtig te werk.",
+    "appSafetyNotVerifiedMessage": "We konden de veiligheid van de app waarmee je verbinding probeert te maken niet verifiëren vanwege een tijdelijke fout of een storing in onze app-verificatieservice. Ga voorzichtig te werk.",
     "appSignMessageCriticalWarning": "We denken dat deze app onbetrouwbaar is en dat het onveilig is om het bericht te ondertekenen. Goedkeuring kan leiden tot verlies van geld.",
     "appSignMessageMediumWarning": "De app die het verzoek stuurt, kan niet worden geverifieerd.",
     "appSignTransactionCriticalWarning": "We denken dat deze app onbetrouwbaar is en dat het onveilig is om de transactie te ondertekenen. Goedkeuring kan leiden tot verlies van geld.",
@@ -1003,6 +1019,7 @@
     "knownSecurityRiskInfo": "Deze website is door meerdere beveiligingsproviders als onveilig gemarkeerd. Maak er GEEN verbinding mee om jouw assets te beschermen.",
     "knownSecurityRiskMessage": "Deze website is door meerdere beveiligingsproviders als onveilig aangemerkt. Verlaat de website onmiddellijk om te voorkomen dat jouw assets worden aangetast",
     "messageFlagged": "Bericht gemarkeerd!",
+    "punycodeDomainRiskMessage": "Het adres van deze website bevat afwijkende tekens. Dit is een veelgebruikte techniek van oplichters om zich voor te doen als legitieme website. Voor je eigen veiligheid raden we je aan geen gevoelige informatie in te voeren of verder te gaan met deze website.",
     "returnToSafety": "Ga terug",
     "signTransactionCriticalWarning": "We denken dat deze transactie onbetrouwbaar is en onveilig om te ondertekenen. Goedkeuring kan leiden tot verlies van geld.",
     "transactionFlagged": "Transactie gemarkeerd!",
@@ -1271,6 +1288,10 @@
     "amountPlaceholder": "Bedrag invoeren",
     "balance": "Saldo {0}",
     "buttonTitle": "Swap",
+    "confirmation": {
+      "cancel": "Annuleren",
+      "confirm": "Bevestigen"
+    },
     "emptyState": {
       "assetsEmptyDesc": "Jouw huidige wallet bevat geen assets, probeer je wallet te financieren",
       "assetsEmptyTitle": "Geen assets beschikbaar",
@@ -1285,6 +1306,56 @@
       "swappableAssetsEmptyTitle": "Geen verwisselbare assets beschikbaar"
     },
     "findingBestRote": "De beste route zoeken",
+    "route": {
+      "bridgeCost": {
+        "hint": "Een bridge cost zijn kosten die in rekening worden gebracht door de swapaanbieder voor het overbrengen van activa tussen verschillende blockchains tijdens de swap.",
+        "title": "Bridge cost"
+      },
+      "krakenFee": {
+        "hint": "Kraken Wallet brengt geen kosten in rekening voor swaps. We bieden deze dienst gratis aan om de adoptie van crypto- en blockchaintechnologie te ondersteunen.",
+        "title": "Kosten bij Kraken",
+        "value": "GRATIS"
+      },
+      "minumumOutput": {
+        "hint": "Als slippage optreedt, is dit het minimale bedrag van het doelactivum dat je ontvangt als de transactie slaagt.",
+        "title": "Minimale uitvoer"
+      },
+      "networkFee": {
+        "hint": "Netwerkkosten zijn een vergoeding die betaald wordt aan blockchain validators voor het verwerken en bevestigen van je transactie.",
+        "title": "Netwerkkosten"
+      },
+      "priceImpact": {
+        "hint": "De prijsimpact is het verschil tussen de marktprijs en de swapprijs. Deze hangt af van de grootte van je transactie in verhouding tot de liquiditeit in de pool.",
+        "title": "Prijsimpact"
+      },
+      "rate": "Percentage",
+      "slippage": {
+        "hint": "Slippage is het verschil tussen de verwachte prijs en de uiteindelijke prijs van een activum. Als de prijs ongunstig verandert en de ingestelde slippage-tolerantie overschrijdt, wordt de transactie geannuleerd.",
+        "title": "Slippage"
+      },
+      "swapRate": "Swappercentage",
+      "transactionFees": "Transactiekosten",
+      "typeSelection": {
+        "bestValue": {
+          "desc": "Beste totaalwaarde",
+          "name": "Beste waarde"
+        },
+        "fastest": {
+          "desc": "Hoogste transactiesnelheid",
+          "name": "Snelste swap"
+        },
+        "title": "Zoek swaproute met"
+      },
+      "unsupportedRoute": {
+        "desc": "Je kunt proberen je activum te swappen voor een groot token uit de beschikbare lijst en dan een aparte swap uitvoeren om het activum te krijgen dat je wilt. Succes van deze aanpak is niet gegarandeerd.",
+        "title": "Er zijn geen routes beschikbaar voor de transactie die je hebt ingevoerd."
+      }
+    },
+    "routePath": {
+      "bridge": "Bridge via {name}",
+      "swap": "Swap via {name}",
+      "title": "Swaproute"
+    },
     "selectAsset": "Selecteer assets",
     "sourceListHeader": "Jouw assets",
     "sourceSearchPlaceholder": "Selecteer een asset om te ruilen",

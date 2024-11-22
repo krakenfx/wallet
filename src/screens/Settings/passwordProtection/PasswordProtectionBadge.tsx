@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { TickIcon } from '@/screens/Settings/components';
 
 import { usePasswordProtectionEnabled } from './hooks';

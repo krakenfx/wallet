@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 
-import React, { createContext, useCallback, useContext, useMemo, useRef } from 'react';
+import { createContext, useCallback, useContext, useMemo, useRef } from 'react';
 
 import { Keyboard } from 'react-native';
 
@@ -101,7 +101,7 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
         if (throwOnError) {
           throw e;
         } else {
-          return false as T extends true ? string : false; 
+          return false as T extends true ? string : false;
         }
       }
     },
@@ -118,7 +118,7 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
         if (throwOnError) {
           throw e;
         } else {
-          return false as T extends true ? ArrayBuffer : false; 
+          return false as T extends true ? ArrayBuffer : false;
         }
       }
     },

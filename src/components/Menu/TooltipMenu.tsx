@@ -1,11 +1,11 @@
-import React from 'react';
+import type React from 'react';
 
 import { Label, type LabelProps } from '@/components/Label';
 
 import { Tooltip, type Props as TooltipProps } from '../Tooltip';
 
 export type TooltipMenuProps = {
-  tooltipProps: LabelProps;
+  tooltipProps?: LabelProps;
   tooltip: string;
   horizontalTipOffset?: number;
 };

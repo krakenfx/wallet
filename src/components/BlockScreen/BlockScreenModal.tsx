@@ -1,16 +1,39 @@
-import React, { forwardRef } from 'react';
+import { forwardRef, useRef } from 'react';
 
 import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { BottomSheetModal } from '@/components/BottomSheet';
 
-import { BlockScreenContent } from './BlockScreenContent';
+import { BlockScreenContent, type BlockScreenProps } from './BlockScreenContent';
 
-import type { BlockScreenProps } from './BlockScreenContent';
+interface BlockScreenModalProps extends BlockScreenProps {
+  onDismiss?: () => void;
+}
 
-export const BlockScreenModal = forwardRef<BottomSheetModalRef, BlockScreenProps>((props, ref) => {
+export const BlockScreenModal = forwardRef<BottomSheetModalRef, BlockScreenModalProps>(({ onDismiss, ...props }, ref) => {
+  const isActionTriggeredByUser = useRef(false);
+
+  const onGoBack = () => {
+    isActionTriggeredByUser.current = true;
+    props.onGoBack();
+  };
+
+  const onProceed = () => {
+    isActionTriggeredByUser.current = true;
+    props.onProceed();
+  };
+
+  const handleDismiss = () => {
+    if (isActionTriggeredByUser.current) {
+      isActionTriggeredByUser.current = false;
+      return;
+    }
+
+    onDismiss?.();
+  };
+
   return (
-    <BottomSheetModal ref={ref} snapPoints={['100%']} onDismiss={props.onGoBack} isWarning>
-      <BlockScreenContent {...props} />
+    <BottomSheetModal ref={ref} snapPoints={['100%']} onDismiss={handleDismiss} isWarning>
+      <BlockScreenContent {...props} onGoBack={onGoBack} onProceed={onProceed} />
     </BottomSheetModal>
   );
 });

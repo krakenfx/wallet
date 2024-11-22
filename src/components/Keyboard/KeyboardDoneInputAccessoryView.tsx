@@ -1,4 +1,3 @@
-import React from 'react';
 import { InputAccessoryView, Keyboard, Platform, StyleSheet, View } from 'react-native';
 
 import { useTheme } from '../../theme/themes';

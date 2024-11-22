@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { GradientScreenView } from '@/components/Gradients';
 
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';

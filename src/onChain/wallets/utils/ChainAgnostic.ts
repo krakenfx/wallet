@@ -1,4 +1,3 @@
-
 export class ChainAgnostic {
   static NETWORK_ARBITRUM = 'eip155:42161';
   static NETWORK_BASE = 'eip155:8453';
@@ -13,6 +12,7 @@ export class ChainAgnostic {
   static NETWORK_DOGECOIN = 'bip122:1a91e3dace36e2be3bf030a65679fe82';
   static NETWORK_TEZOS = 'tezos:NetXdQprcVkpaWU';
   static NETWORK_AVALANCHE = 'eip155:43114';
+  static NETWORK_INK_SEPOLIA = 'eip155:763373';
 
   static COIN_ARBITRUM = 'eip155:42161/slip44:60';
   static COIN_ETHEREUM = 'eip155:1/slip44:60';
@@ -31,26 +31,23 @@ export class ChainAgnostic {
 
 const CAIP19_REGEX = /^([-a-z0-9]{3,8}):([-_a-zA-Z0-9]{1,32})\/([-a-z0-9]{3,8}):([-.%a-zA-Z0-9]{1,128})(?:\/([-.%a-zA-Z0-9]{1,78}))?$/;
 
-
 export type CAIP19 = {
-  assetType: string; 
-  chainId: string; 
-  chainNamespace: string; 
-  chainReference: string; 
-  assetId: string; 
-  assetNamespace: string; 
-  assetReference: string; 
-  tokenId?: string; 
+  assetType: string;
+  chainId: string;
+  chainNamespace: string;
+  chainReference: string;
+  assetId: string;
+  assetNamespace: string;
+  assetReference: string;
+  tokenId?: string;
 };
-
 
 export function parseCAIP19(assetType: string): CAIP19 | null {
   const match: RegExpMatchArray | null = assetType.match(CAIP19_REGEX);
   if (!match) {
     return null;
   }
-  
-  
+
   const [_, chainNamespace, chainReference, assetNamespace, assetReference, tokenId] = match;
   const caip19: CAIP19 = {
     assetType,

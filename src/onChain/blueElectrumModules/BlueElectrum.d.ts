@@ -41,7 +41,6 @@ type Transaction = {
 
 export function getBalanceByAddress(address: string): Promise<{ confirmed: number; unconfirmed: number }>;
 
-
 export function multiGetTransactionByTxid(txIds: string[], batchsize: number = 45, verbose: true = true): Promise<Record<string, Transaction>>;
 export function multiGetTransactionByTxid(txIds: string[], batchsize: number, verbose: false): Promise<Record<string, string>>;
 

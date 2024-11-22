@@ -1,13 +1,11 @@
 import bs58 from 'bs58';
 
-
 import { showToast } from '@/components/Toast';
 import type { RealmishWallet } from '@/onChain/wallets/base';
 import type { SolanaNetwork } from '@/onChain/wallets/solana';
 import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import { handleRedirect } from '../../connectAppWithWalletConnect/handleRedirect';
-
 
 import { navigateToSignGenericMessagePage } from '../navigateToSignGenericMessagePage';
 import { responseRejected } from '../responseRejected';
@@ -16,8 +14,8 @@ import { sessionIsDeepLinked } from '../sessionIsDeepLinked';
 
 import type { SolanaSignMessage } from './types';
 import type { GenericMessage, ReactNavigationDispatch } from '../../types';
+import type { IWalletKit } from '@reown/walletkit/dist/types/types/client';
 import type { SessionTypes, Verify } from '@walletconnect/types';
-import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
@@ -42,7 +40,7 @@ export async function handleSessionRequestMessage({
   network: SolanaNetwork;
   message: SolanaSignMessage;
   topic: string;
-  web3Wallet: IWeb3Wallet;
+  web3Wallet: IWalletKit;
   getSeed: SecuredKeychainContext['getSeed'];
   verified: Verify.Context['verified'];
   realm: Realm;

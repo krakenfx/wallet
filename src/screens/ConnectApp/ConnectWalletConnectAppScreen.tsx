@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import type { NavigationProps } from '@/Routes';
 import { ConnectAppWithBlock } from '@/screens/ConnectApp/components/ConnectAppWithBlock';

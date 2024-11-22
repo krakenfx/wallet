@@ -1,4 +1,3 @@
-import React from 'react';
 import RNBootSplash from 'react-native-bootsplash';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import type { Preview } from '@storybook/react';

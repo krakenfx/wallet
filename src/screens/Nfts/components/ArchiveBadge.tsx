@@ -2,7 +2,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 
 import { BlurView } from '@react-native-community/blur';
 import differenceInDays from 'date-fns/differenceInDays';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';

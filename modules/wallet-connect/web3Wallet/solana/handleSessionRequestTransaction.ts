@@ -1,7 +1,6 @@
-
 import type { RealmishWallet } from '@/onChain/wallets/base';
 import type { SolanaHarmonyTransport, SolanaNetwork } from '@/onChain/wallets/solana';
-import type { WalletStorage} from '@/onChain/wallets/walletState';
+import type { WalletStorage } from '@/onChain/wallets/walletState';
 import { getWalletStorage } from '@/onChain/wallets/walletState';
 import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
@@ -16,8 +15,8 @@ import { adaptSolanaSignTransactionToDefinitionList, getWalletConnectRespondSess
 
 import type { SolanaSignTransaction } from './types';
 import type { ReactNavigationDispatch } from '../../types';
+import type { IWalletKit } from '@reown/walletkit/dist/types/types/client';
 import type { SessionTypes, Verify } from '@walletconnect/types';
-import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
@@ -46,7 +45,7 @@ export async function handleSessionRequestTransaction({
   topic: string;
   transaction: SolanaSignTransaction;
   transport: SolanaHarmonyTransport;
-  web3Wallet: IWeb3Wallet;
+  web3Wallet: IWalletKit;
   getSeed: SecuredKeychainContext['getSeed'];
   verified: Verify.Context['verified'];
 }) {
@@ -74,8 +73,7 @@ export async function handleSessionRequestTransaction({
     [],
     adaptSolanaSignTransactionToDefinitionList(transaction),
     preparedTransaction,
-    
-    
+
     true,
     warning,
   );
@@ -99,7 +97,6 @@ export async function handleSessionRequestTransaction({
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
   } else {
-    
     web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
     return handleError('User rejected', 'ERROR_CONTEXT_PLACEHOLDER', { icon: 'plug-disconnected', text: loc.walletConnect.response_rejected });
   }

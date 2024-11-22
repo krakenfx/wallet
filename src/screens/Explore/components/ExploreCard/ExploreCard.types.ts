@@ -11,5 +11,6 @@ export type ExploreCardProps = {
   size: ExploreCardSize;
   background: string;
   floatingIcon?: string;
+  info?: string;
   style?: StyleProp<ViewStyle>;
 };

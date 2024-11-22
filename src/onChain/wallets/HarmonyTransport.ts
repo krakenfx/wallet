@@ -31,7 +31,6 @@ const getTokenMetadataDefaultFetch = async (token: InternalBalance, harmony: Def
     }
   }
 
-  
   if (!isMetadataComplete(metadata)) {
     console.log(`skipping token because metadata incomplete: ${metadata}`);
     return undefined;
@@ -42,14 +41,12 @@ const getTokenMetadataDefaultFetch = async (token: InternalBalance, harmony: Def
   };
 };
 
-
 export class HarmonyTransport<TTransaction, TTransactionRequest, TWalletState, TNetwork extends SingleAddressNetwork = SingleAddressNetwork>
   implements Transport<TTransaction, TTransactionRequest, TWalletState, TNetwork>
 {
   harmony: DefaultApi | undefined;
 
   async getHarmony() {
-    
     if (!this.harmony) {
       this.harmony = await getHarmony();
     }
@@ -87,7 +84,6 @@ export class HarmonyTransport<TTransaction, TTransactionRequest, TWalletState, T
     return result.content.transactionId;
   }
 
-  
   async getTransactionStatus(network: TNetwork, txid: string): Promise<boolean> {
     const harmony = await this.getHarmony();
     const result = await harmony.GET('/v1/transaction', {
@@ -153,7 +149,6 @@ export class HarmonyTransport<TTransaction, TTransactionRequest, TWalletState, T
           metadata = await getMetadataFunc(token, harmony);
         }
 
-        
         if (!isMetadataComplete(metadata)) {
           console.log(`skipping token because metadata incomplete: ${metadata}`);
           throw Error(`Missing metadata for token: ${token.token}`);
@@ -189,7 +184,6 @@ export class HarmonyTransport<TTransaction, TTransactionRequest, TWalletState, T
 
     console.log(`[fetchTransactions] ${network.caipId}`);
 
-    
     /* eslint-disable-next-line no-constant-condition */
     while (true) {
       console.log(`[fetchTransactions]  ${network.caipId} fetching from server, with cursor`, cursor);
@@ -198,22 +192,18 @@ export class HarmonyTransport<TTransaction, TTransactionRequest, TWalletState, T
       });
       console.log(`[fetchTransactions] ${network.caipId} got results count`, result?.content.length);
 
-      
-      
       if (await handle(result?.content)) {
         console.log(`[fetchTransactions] ${network.caipId} stopping at known tx`);
         break;
       }
 
       if ((result?.content ?? []).length === 0) {
-        
         console.log(`[fetchTransactions] ${network.caipId} stopping at empty`);
 
         break;
       }
 
       if (!result?.cursor) {
-        
         console.log(`[fetchTransactions] ${network.caipId} stopping at no cursor`);
         break;
       }

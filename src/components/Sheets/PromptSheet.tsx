@@ -1,6 +1,8 @@
+import type React from 'react';
+
 import { useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import type { BottomSheetRef } from '@/components/BottomSheet';
 import { BottomSheet } from '@/components/BottomSheet';

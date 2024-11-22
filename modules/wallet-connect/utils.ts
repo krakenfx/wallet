@@ -1,8 +1,7 @@
-
 import type { SimulationResult } from '@/api/types';
 import type { Network } from '@/onChain/wallets/base';
 import { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
-import type { WalletType} from '@/onChain/wallets/registry';
+import type { WalletType } from '@/onChain/wallets/registry';
 import { networkIdToNetworkName } from '@/onChain/wallets/registry';
 import { SolanaHarmonyTransport, SolanaNetwork } from '@/onChain/wallets/solana';
 import type { Verification } from '@/screens/ConnectApp/types';
@@ -12,11 +11,10 @@ import type { Warning } from '@/types';
 import { WALLET_CONNECT_SUPPORTED_NETWORK_IDS } from './consts';
 import { SHIM_replaceWrongSolanaMainnetID } from './solanaShim';
 
-import type { WALLET_CONNECT_SUPPORTED_NETWORKS} from './consts';
+import type { WALLET_CONNECT_SUPPORTED_NETWORKS } from './consts';
 import type { SessionTypes, Verify } from '@walletconnect/types';
 
 import loc from '/loc';
-
 
 export function hexToAscii(message?: string): string {
   return message ? (message.startsWith('0x') ? Buffer.from(message.replace('0x', ''), 'hex').toString('ascii') : message) : '';
@@ -26,16 +24,13 @@ export function hexToDecimal(hex?: string): string {
   return hex ? (hex.startsWith('0x') ? parseInt(hex, 16).toString() : hex) : '';
 }
 
-
 export function isWalletConnectURI(uri: string) {
   return uri.startsWith('wc:');
 }
 
-
 export function isWalletConnectURIV1(uri: string) {
   return isWalletConnectURI(uri) && (uri.endsWith('@1') || uri.includes('@1?'));
 }
-
 
 export function isWalletConnectURIV2(uri: string) {
   return isWalletConnectURI(uri) && (uri.endsWith('@2') || uri.includes('@2?'));
@@ -72,8 +67,6 @@ export function getNetworkNameFromWalletString(walletString: string): WalletType
   return getNetworkName(chain + ':' + id);
 }
 
-
-
 export function splitWalletString(walletString: string): [string, string, string] {
   const [chain, id, address] = walletString.split(':');
   const chainID = SHIM_replaceWrongSolanaMainnetID(`${chain}:${id}`);
@@ -81,8 +74,6 @@ export function splitWalletString(walletString: string): [string, string, string
 
   return [chain_, id_, address];
 }
-
-
 
 export function isCAIP2(s: string): boolean {
   return s.includes(':');
@@ -98,7 +89,7 @@ export function loopOverAllSessionNamespaceAccounts(session: SessionTypes.Struct
 export function getVerificationFromWalletConnectVerify(verified: Verify.Context['verified']): Verification {
   const isDomainMatch = verified.validation === 'VALID';
 
-  if (verified.validation === 'INVALID' ) {
+  if (verified.validation === 'INVALID') {
     return {
       isDomainMatch,
       warning: {

@@ -23,16 +23,11 @@ export const getReceiveAddress = async (
   if (network.getReceiveAddress) {
     const storage = await getWalletStorage(wallet);
 
-    
-    
-    
-    
     if (transport.fetchState && isOnline) {
       try {
         await timeout(transport.fetchState?.(wallet, network, storage), 3000);
       } catch (e) {
         if (e instanceof Timeout) {
-          
         } else {
           await handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
         }

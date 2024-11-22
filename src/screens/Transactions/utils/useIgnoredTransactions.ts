@@ -1,7 +1,6 @@
 import { throttle } from 'lodash';
 import { useCallback, useRef, useState } from 'react';
 
-
 export const useIgnoredTransactions = () => {
   const hiddenTransactions = useRef<Set<string>>(new Set());
   const [ignoredIds, setIgnoredIds] = useState<string[]>([]);

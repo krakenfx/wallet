@@ -27,7 +27,6 @@ export const ContractInteractionRow = React.memo(
     const { assetAmount, appCurrencyValue, description, detailsAssetAmount, detailsAssetAmountInCurrency, title } = displayData;
 
     const transactionDetailsDisplayData = useContractInteractionDetailsDisplayData({
-      
       assetAmount: detailsAssetAmount === undefined ? assetAmount : detailsAssetAmount,
       appCurrencyValue: detailsAssetAmountInCurrency === undefined ? appCurrencyValue : detailsAssetAmountInCurrency,
       classifiedTx,

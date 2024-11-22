@@ -8,7 +8,6 @@ import { useBrowserAnimationContext } from '../../context/BrowserAnimationContex
 
 import loc from '/loc';
 
-
 export const BrowserNoSearch = () => {
   const { noSearchViewStyle } = useBrowserAnimationContext();
 

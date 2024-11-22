@@ -1,6 +1,8 @@
+import type React from 'react';
+
 import format from 'date-fns/format';
 import { chunk, keyBy, words } from 'lodash';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/Button';
@@ -38,9 +40,7 @@ export const NftTraits: React.FC<{ nft: RealmNft }> = ({ nft }) => {
           .filter(t => t.traitType === TRAIT_CREATED_DATE || t.traitType === TRAIT_EXPIRATION_DATE)
           .map(t => ({
             name: words(t.traitType).at(0)?.toLowerCase(),
-            value: !isNaN(Number(t.value))
-              ? format(new Date(Number(t.value)), 'dd LLL yyyy') 
-              : t.value,
+            value: !isNaN(Number(t.value)) ? format(new Date(Number(t.value)), 'dd LLL yyyy') : t.value,
           })),
         'name',
       );

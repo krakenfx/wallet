@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 
 import { cancelActiveRequestsAndInvalidateCache } from '@/api/base/fetchClient';
 import { hideToast } from '@/components/Toast';
+import { REALM_TYPE_DAPP_WALLET_PERMISSIONS } from '@/realm/dappIntegration';
 import { Routes } from '@/Routes';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
@@ -43,6 +44,7 @@ export const useClearAppCache = () => {
           REALM_TYPE_NFT_METADATA,
           REALM_TYPE_ASSET_MARKET_DATA,
           REALM_TYPE_TOKEN_PRICE,
+          REALM_TYPE_DAPP_WALLET_PERMISSIONS,
         ];
 
         dataToDelete.forEach(dataType => {

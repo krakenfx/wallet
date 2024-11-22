@@ -17,7 +17,6 @@ import type { RealmToken } from '../tokens/schema';
 
 import type { RealmWallet } from '../wallets/schema';
 
-
 export const migrationsSchemaVersion23 = (oldRealm: Realm, newRealm: Realm) => {
   if (oldRealm.schemaVersion < 23) {
     const type: WalletType = 'blast';
@@ -26,7 +25,7 @@ export const migrationsSchemaVersion23 = (oldRealm: Realm, newRealm: Realm) => {
 
     for (const account of accounts) {
       const accountIdx = account.accountNumber;
-      
+
       const ethWallet = newRealm.objects<RealmWallet>(REALM_TYPE_WALLET).filtered(`type == 'ethereum' && accountIdx == ${accountIdx}`)[0];
       const walletId = makeWalletId({ type, accountIdx });
       const wallet = newRealm.create<RealmWallet>(REALM_TYPE_WALLET, {
@@ -41,7 +40,7 @@ export const migrationsSchemaVersion23 = (oldRealm: Realm, newRealm: Realm) => {
         extendedPublicKey: ethWallet.extendedPublicKey,
       });
       account.wallets.push(wallet);
-      
+
       newRealm.create<RealmToken>(REALM_TYPE_TOKEN, {
         id: `${wallet.id}:${wallet.nativeTokenCaipId}`,
         assetId: network.nativeTokenCaipId,

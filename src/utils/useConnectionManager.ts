@@ -37,7 +37,7 @@ export const useIsOnline = () => {
   return isOnline;
 };
 
-const TIME_TO_REFRESH = 60000; 
+const TIME_TO_REFRESH = 60000;
 export const useConnectionManager = () => {
   const isOnline = useIsOnline();
   const { refreshAll } = useRefreshStateActions();
@@ -100,7 +100,6 @@ export const useConnectionManager = () => {
 
   useEffect(() => {
     if (isOnline === false) {
-      
       showToast({ id: OFFLINE, dismissMode: 'event', text: loc.errors.offline, type: 'info', icon: 'no-internet' });
       wasOffline.current = true;
     } else {
@@ -118,8 +117,7 @@ export const useConnectionManager = () => {
     const checkIfRefreshAll = () => {
       if (isElectrumConnected && currentAccountNumber !== undefined) {
         lastAppInBackgroundTime.current = undefined;
-        
-        
+
         InteractionManager.runAfterInteractions(() => {
           refreshAll();
         });

@@ -1,5 +1,5 @@
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
@@ -15,7 +15,6 @@ type Props = {
 };
 
 export const ConfirmationFooter = ({ content, onApprove, onReject, disableConfirmationButton, isCriticalWarning }: Props) => {
-  
   const [enableConfirmationButtonAfterTimeout, setEnableConfirmationButtonAfterTimeout] = useState(false);
   useFocusEffect(
     useCallback(() => {

@@ -112,7 +112,7 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
       }
       setAssetAmount(
         formatTokenAmount(new BigNumber(newFiatAmount).dividedBy(exchangeRate).toFixed(token.metadata.decimals), {
-          currency: Currency.USD, 
+          currency: Currency.USD,
           highPrecision: true,
           isBtc: isBtc(token),
         }),
@@ -197,7 +197,6 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
       formField.setValid();
     }
     if (inputInFiatCurrency) {
-      
       setFiatAmount(Number(fiatAmount).toFixed(2));
     }
   }, [amounts, assetAmount, feeToken.metadata.symbol, fiatAmount, formField, inputInFiatCurrency, isMaxAmount, isNativeToken]);
@@ -227,7 +226,7 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(({ token, net
     !!inputValue && !!exchangeRate && assetAmount && fiatAmount
       ? `${
           inputInFiatCurrency
-            ? formatTokenAmount(unitConverter.smallUnit2TokenUnit(assetAmount, 0 ).toString(10), {
+            ? formatTokenAmount(unitConverter.smallUnit2TokenUnit(assetAmount, 0).toString(10), {
                 currency,
                 highPrecision: true,
                 isBtc: isBtc({ assetId: token.assetId }),

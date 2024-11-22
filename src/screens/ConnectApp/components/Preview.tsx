@@ -1,5 +1,6 @@
+import type React from 'react';
+
 import LottieView from 'lottie-react-native';
-import React from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
@@ -12,13 +13,13 @@ import { Header } from './Header';
 import { Info } from './Info';
 
 import type { Verification } from '../types';
+import type { WalletKitTypes } from '@reown/walletkit';
 import type { ProposalTypes } from '@walletconnect/types';
-import type { Web3WalletTypes } from '@walletconnect/web3wallet';
 
 import { capitalizeFirstLetter } from '/helpers/capitalizeFirstLetter';
 import loc from '/loc';
 
-type SessionProposal = Omit<Web3WalletTypes.BaseEventArgs<ProposalTypes.Struct>, 'topic'>;
+type SessionProposal = Omit<WalletKitTypes.BaseEventArgs<ProposalTypes.Struct>, 'topic'>;
 
 export interface ConnectAppParams {
   proposal: SessionProposal;
@@ -28,7 +29,7 @@ type PreviewProps = {
   appMetadata?: {
     url: string;
     name: string;
-    icon: string;
+    icon?: string;
   };
   shouldDisableConfirmation: boolean;
   unsupportedRequiredNetworks: string[];
@@ -107,11 +108,6 @@ export const Preview: React.FC<PreviewProps> = ({
 
   return null;
 };
-
-
-
-
-
 
 const formatUnsupportedNetwork = (network: string) => {
   const colonIndex = network.split('').findIndex(c => c === ':');

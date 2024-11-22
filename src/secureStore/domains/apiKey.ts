@@ -4,7 +4,6 @@ import { KeychainKey, getFromKeychain, setInKeychain } from '../keychain';
 
 import { solvePowChallenge } from '/modules/pow';
 
-
 export const powKeyExpiryCushion = 1000 * 60 * 3;
 let getApiKeyPromise: Promise<string> | null = null;
 
@@ -15,7 +14,6 @@ type Credentials = {
 };
 
 let credentials: Credentials | undefined;
-
 
 async function solvePowAndGetKey(): Promise<string> {
   const temporaryHarmonyClient = await getHarmony();
@@ -48,13 +46,11 @@ export async function getApiKey(): Promise<string> {
   }
   if (!getApiKeyPromise) {
     getApiKeyPromise = solvePowAndGetKey().finally(() => {
-      
       getApiKeyPromise = null;
     });
   }
   return await getApiKeyPromise;
 }
-
 
 (async function rehydrateCredentials() {
   const credentialsFromKeychain = await getFromKeychain(KeychainKey.powKeyServiceNameKey);

@@ -7,11 +7,7 @@ import type { SessionNamespace } from '/modules/wallet-connect/types';
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from '/modules/wallet-connect/web3Wallet/ethereum/types';
 import { WALLET_CONNECT_SOLANA_SIGN_TYPES } from '/modules/wallet-connect/web3Wallet/solana/types';
 
-
 export function buildSessionNamespace(sessionProposal: SessionProposal, accountsFromMatchedWallets: { eip155: string[]; solana: string[] }): SessionNamespace {
-  
-
-  
   const namespacesEIP155 = [
     ...Object.entries(sessionProposal?.params.requiredNamespaces ?? {}),
     ...Object.entries(sessionProposal?.params.optionalNamespaces ?? {}),
@@ -31,12 +27,10 @@ export function buildSessionNamespace(sessionProposal: SessionProposal, accounts
     WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V4,
   ];
 
-  
   const hasProposedEIP155 = namespacesEIP155.length > 0;
   const hasEIP155Wallet = accountsFromMatchedWallets.eip155.length > 0;
   const shouldIncludeEIP155 = hasProposedEIP155 && hasEIP155Wallet;
 
-  
   const namespacesSolana = [
     ...Object.entries(sessionProposal?.params.requiredNamespaces ?? {}),
     ...Object.entries(sessionProposal?.params.optionalNamespaces ?? {}),
@@ -49,7 +43,6 @@ export function buildSessionNamespace(sessionProposal: SessionProposal, accounts
   const uniqueEventsSolana = [...new Set(eventsSolana)];
   const supportedMethodsSolana: string[] = [WALLET_CONNECT_SOLANA_SIGN_TYPES.SIGN_MESSAGE, WALLET_CONNECT_SOLANA_SIGN_TYPES.SIGN_TRANSACTION];
 
-  
   const hasProposedSolana = namespacesSolana.length > 0;
   const hasSolanaWallet = accountsFromMatchedWallets.solana.length > 0;
   const shouldIncludeSolana = hasProposedSolana && hasSolanaWallet;
@@ -57,11 +50,7 @@ export function buildSessionNamespace(sessionProposal: SessionProposal, accounts
     ...(shouldIncludeEIP155 && {
       [WALLET_CONNECT_SESSION_NAMESPACE_KEY_EVM]: {
         accounts: accountsFromMatchedWallets.eip155,
-        methods:
-          uniqueMethodsEIP155.length > 0
-            ? 
-              uniqueMethodsEIP155.filter(m => supportedMethodsEIP155.includes(m))
-            : supportedMethodsEIP155,
+        methods: uniqueMethodsEIP155.length > 0 ? uniqueMethodsEIP155.filter(m => supportedMethodsEIP155.includes(m)) : supportedMethodsEIP155,
         events: uniqueEventsEIP155.length > 0 ? uniqueEventsEIP155 : ['chainChanged', 'accountsChanged'],
         chains: getChainsEip155(accountsFromMatchedWallets.eip155),
       },
@@ -69,11 +58,7 @@ export function buildSessionNamespace(sessionProposal: SessionProposal, accounts
     ...(shouldIncludeSolana && {
       [WALLET_CONNECT_SESSION_NAMESPACE_KEY_SOLANA]: {
         accounts: accountsFromMatchedWallets.solana,
-        methods:
-          uniqueMethodsSolana.length > 0
-            ? 
-              uniqueMethodsSolana.filter(m => supportedMethodsSolana.includes(m))
-            : supportedMethodsSolana,
+        methods: uniqueMethodsSolana.length > 0 ? uniqueMethodsSolana.filter(m => supportedMethodsSolana.includes(m)) : supportedMethodsSolana,
         events: uniqueEventsSolana.length > 0 ? uniqueEventsSolana : [],
         chains: getChainsSolana(accountsFromMatchedWallets.solana),
       },

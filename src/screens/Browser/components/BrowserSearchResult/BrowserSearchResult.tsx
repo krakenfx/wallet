@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
@@ -29,7 +28,7 @@ export const BrowserSearchResult = () => {
 
 const styles = StyleSheet.create({
   container: {
-    zIndex: 2, 
+    zIndex: 2,
     paddingVertical: 10,
     paddingHorizontal: 15,
     position: 'absolute',

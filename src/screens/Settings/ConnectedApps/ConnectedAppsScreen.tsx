@@ -1,5 +1,5 @@
 import { useCameraPermissions } from 'expo-camera';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
 import { AppsListItem } from '@/components/AppsListItem';
@@ -42,7 +42,6 @@ const keyExtractor = (item: SessionTypes.Struct, index: number) => {
 export type ConnectedAppsParams = {
   accountNumber: number;
 };
-
 
 export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'ConnectedApps'>) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -97,7 +96,6 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
                 showToast({ type: 'error', text: loc.connectedApps.list.error_all });
               }
 
-              
               setActiveSessions(Object.values(await WalletConnectSessionsManager.getAccountSessions(accountWallets)));
             }
           },
@@ -124,43 +122,46 @@ export const ConnectedAppsScreen = ({ navigation, route }: NavigationProps<'Conn
 
       return <>{items}</>;
     },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [accountWallets, navigateToAppDetails, rightElement, setActiveSessions],
   );
 
-  const deleteAll = useCallback(async () => {
-    setIsLoading(true);
-    if (!(await showAlert())) {
+  const deleteAll = useCallback(
+    async () => {
+      setIsLoading(true);
+      if (!(await showAlert())) {
+        setIsLoading(false);
+        return;
+      }
+
+      const errors: Error[] = [];
+      await Promise.all(
+        activeSessions.map(session => {
+          return WalletConnectSessionsManager.disconnectSession(session.topic, {
+            onSuccess: () => {
+              deleteSession(session.topic);
+            },
+          }).catch(err => {
+            errors.push(err);
+          });
+        }),
+      ).catch(err => {
+        console.log(err);
+      });
+
+      if (errors.length) {
+        console.log('WalletConnect V2 errors:', errors);
+        showToast({ type: 'error', text: loc.connectedApps.list.error_all });
+      }
+
+      setActiveSessions(Object.values(await WalletConnectSessionsManager.getAccountSessions(accountWallets)));
       setIsLoading(false);
-      return;
-    }
+    },
 
-    
-    
-    const errors: Error[] = [];
-    await Promise.all(
-      activeSessions.map(session => {
-        return WalletConnectSessionsManager.disconnectSession(session.topic, {
-          onSuccess: () => {
-            deleteSession(session.topic);
-          },
-        }).catch(err => {
-          errors.push(err);
-        });
-      }),
-    ).catch(err => {
-      
-      console.log(err);
-    });
-
-    if (errors.length) {
-      console.log('WalletConnect V2 errors:', errors);
-      showToast({ type: 'error', text: loc.connectedApps.list.error_all });
-    }
-
-    
-    setActiveSessions(Object.values(await WalletConnectSessionsManager.getAccountSessions(accountWallets)));
-    setIsLoading(false);
-  }, [accountWallets, activeSessions, setActiveSessions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [accountWallets, activeSessions, setActiveSessions],
+  );
 
   const onConnectToAppPress = useCallback(async () => {
     const result = await requestPermission();
@@ -223,7 +224,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    top: -64, 
+    top: -64,
   },
   header: {
     marginBottom: 36,

@@ -1,9 +1,11 @@
+import type React from 'react';
+
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
 import * as bip39 from 'bip39';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Config from 'react-native-config';
 import {
@@ -137,8 +139,8 @@ export const DebugScreen = () => {
   const [isSwapEnabled, setIsSwapEnabled] = useFeatureFlag(FeatureFlag.swapsEnabled);
   const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag(FeatureFlag.NewNetworksEnabled);
   const [isInAppBrowserEnabled, setIsInAppBrowserEnabled] = useFeatureFlag(FeatureFlag.InAppBrowserEnabled);
+  const [isOnboardingImportDiscoveryEnabled, setIsOnboardingImportDiscoveryEnabled] = useFeatureFlag(FeatureFlag.onboardingImportDiscoveryEnabled);
 
-  
   useEffect(() => {
     (async () => {
       setToken(await PushNotifications.getInstance().getDeviceToken());
@@ -146,7 +148,6 @@ export const DebugScreen = () => {
     })();
   }, []);
 
-  
   useEffect(() => {
     setIsLogToFileEnabled(isLoggingToFileEnabled());
     setShowToastForAllErrors(isShowToastOnAllErrorsEnabled());
@@ -170,7 +171,6 @@ export const DebugScreen = () => {
     setShowToastForAllErrors(value);
   };
 
-  
   useEffect(() => {
     (async () => {
       if (!token) {
@@ -191,7 +191,7 @@ export const DebugScreen = () => {
   const onMeasurePerformance = async () => {
     setIsMeasuringPerformance(true);
 
-    await new Promise(resolve => setTimeout(resolve, 1000)); 
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     try {
       const mnemonic = 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
@@ -202,7 +202,7 @@ export const DebugScreen = () => {
       const wallet = {
         seed: {
           secret: mnemonic,
-          
+
           data: seed.buffer.slice(seed.byteOffset, seed.byteOffset + seed.byteLength),
         },
         accountIdx: 0,
@@ -213,7 +213,7 @@ export const DebugScreen = () => {
       console.log({ sec });
       showToast({ type: 'info', text: `mnemonicToSeed: ${sec} sec` });
 
-      await new Promise(resolve => setTimeout(resolve, 1000)); 
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       start = +new Date();
       for (let c = 0; c < 20; c++) {
@@ -225,7 +225,7 @@ export const DebugScreen = () => {
       sec = (end - start) / 1000;
       console.log({ sec });
       showToast({ type: 'info', text: `deriveAddress: ${sec} sec` });
-      await new Promise(resolve => setTimeout(resolve, 1000)); 
+      await new Promise(resolve => setTimeout(resolve, 1000));
     } finally {
       setIsMeasuringPerformance(false);
     }
@@ -344,6 +344,23 @@ export const DebugScreen = () => {
             </SettingsBox>
           </>
         )}
+
+        {!!Config.INTERNAL_RELEASE && (
+          <>
+            <SettingsBox isFirst isHighlighted>
+              <SettingsSwitch
+                icon="wallet"
+                text="Enable import discovery"
+                enabled={isOnboardingImportDiscoveryEnabled}
+                onToggle={setIsOnboardingImportDiscoveryEnabled}
+              />
+            </SettingsBox>
+            <SettingsBox isLast isHighlighted style={styles.spacing}>
+              <Label type="regularCaption1">When enabled, onboarding import wallet flow will discover sub-wallets</Label>
+            </SettingsBox>
+          </>
+        )}
+
         <Button
           icon="fire"
           size="large"
@@ -378,7 +395,7 @@ export const DebugScreen = () => {
         <BottomSheetScrollView style={{ paddingHorizontal: 24, marginBottom: paddingBottom }}>
           {recentErrors.length === 0 && <Label style={styles.emptyErrors}>No recent errors</Label>}
           {recentErrors.map(({ timestamp, error, context }) => (
-            <ErrorBox date={timestamp} error={error} context={context} />
+            <ErrorBox key={`error-${timestamp.toISOString()}`} date={timestamp} error={error} context={context} />
           ))}
         </BottomSheetScrollView>
       </BottomSheet>

@@ -31,7 +31,6 @@ export const useCommonTransactionDisplayData = (props: Props, classifiedTx: Tran
     tokenAmountAndNetworkFee,
   } = props;
 
-  
   const appCurrencyValue = useAppCurrencyValue(
     {
       metadata: { decimals: displayAssetMetadata?.decimals ?? 18 },
@@ -53,10 +52,8 @@ export const useCommonTransactionDisplayData = (props: Props, classifiedTx: Tran
     return formatTransactionValueAsNegativeOrPositive(tokenAmount, classifiedTx.type, { isNetworkFee, isSwapSent });
   }, [classifiedTx.type, displayAssetAmount, displayAssetMetadata?.decimals, isNetworkFee, isSwapSent]);
 
-  
   const detailsAssetAmountInCurrency = useAppCurrencyValue(
     {
-      
       metadata: { decimals: displayAssetMetadata?.decimals ?? 18 },
       assetId: detailsAssetId ?? '',
     },
@@ -76,7 +73,6 @@ export const useCommonTransactionDisplayData = (props: Props, classifiedTx: Tran
     return formatTransactionValueAsNegativeOrPositive(tokenAmount, classifiedTx.type, { isNetworkFee, isSwapSent });
   }, [detailsAssetAmount, displayAssetMetadata?.decimals, classifiedTx.type, isNetworkFee, isSwapSent]);
 
-  
   const assetAmountAndNetworkFee = useMemo(() => {
     if (tokenAmountAndNetworkFee) {
       const tokenAmount = unitConverter.smallUnit2TokenUnit(tokenAmountAndNetworkFee, displayAssetMetadata?.decimals ?? 18).toString(10);

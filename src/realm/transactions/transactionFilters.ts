@@ -24,7 +24,6 @@ export function isAssetInvolvedInTransaction(obj: Transaction, assetId: string):
   return false;
 }
 
-
 export function isNativeAssetInvolvedInTransaction(obj: Transaction, assetId: string): boolean {
   const classifiedTx = getTransactionMetadata(obj);
   if (classifiedTx.kind === 'simple' && classifiedTx.type === TRANSACTION_TYPES.RECEIVE && classifiedTx.effect.assetId !== assetId) {

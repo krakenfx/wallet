@@ -1,16 +1,12 @@
-
 import type { SecuredKeychainContext } from '@/secureStore/SecuredKeychainProvider';
 
 import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
-import type { ReactNavigationDispatch} from '/modules/wallet-connect';
+import type { ReactNavigationDispatch } from '/modules/wallet-connect';
 import { initWalletConnectWeb3Wallet } from '/modules/wallet-connect';
 import { isWalletConnectURI, isWalletConnectURIV1, isWalletConnectURIV2 } from '/modules/wallet-connect/utils';
-
-
-const validSubmittedQRCodesCache: string[] = [];
 
 export async function handleConnectToDappWalletConnectUri(
   result: string = '',
@@ -31,15 +27,10 @@ export async function handleConnectToDappWalletConnectUri(
   }
 
   if (isWalletConnectURIV2(result)) {
-    if (validSubmittedQRCodesCache.includes(result)) {
-      return handleError('Reusing QR code', 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.scan.wallet_connect_previously_submitted_qr_code });
-    }
-
     try {
       const web3wallet = await initWalletConnectWeb3Wallet(realm, dispatch, getSeed);
 
       await web3wallet.core.pairing.pair({ uri: result });
-      validSubmittedQRCodesCache.push(result);
     } catch (e) {
       return handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }

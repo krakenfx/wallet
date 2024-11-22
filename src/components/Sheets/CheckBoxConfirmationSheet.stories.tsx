@@ -1,5 +1,5 @@
 import { noop } from 'lodash';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { View } from 'react-native';
 

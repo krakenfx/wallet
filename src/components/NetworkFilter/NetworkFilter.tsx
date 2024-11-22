@@ -1,7 +1,9 @@
 import type { ReactElement } from 'react';
 
+import type React from 'react';
+
 import { compact } from 'lodash';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { ScrollView } from 'react-native-gesture-handler';
@@ -135,7 +137,12 @@ export const NetworkFilter = ({ networkFilter, setNetworkFilter, withBtcAndDoge,
   };
 
   return (
-    <ScrollView horizontal style={styles.container} contentContainerStyle={styles.contentContainer} showsHorizontalScrollIndicator={false}>
+    <ScrollView
+      keyboardShouldPersistTaps="handled"
+      horizontal
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+      showsHorizontalScrollIndicator={false}>
       {uiFilterData.map((d, i) => {
         const isSelected = d.networkFilter === 'all' ? localFilter.length === 0 : localFilter.includes(d.networkFilter);
         return (
@@ -156,7 +163,7 @@ export const NetworkFilter = ({ networkFilter, setNetworkFilter, withBtcAndDoge,
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    maxHeight: 60, 
+    maxHeight: 60,
   },
   contentContainer: {
     gap: 6,

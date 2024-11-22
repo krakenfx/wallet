@@ -1,4 +1,3 @@
-
 import { showToast } from '@/components/Toast';
 import type { RealmishWallet } from '@/onChain/wallets/base';
 import type { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
@@ -16,8 +15,8 @@ import { WALLET_CONNECT_ETH_SIGN_TYPES } from './types';
 import { adaptMessageToEVMMessageSimulationInput, adaptToGenericMessage } from './utils';
 
 import type { ReactNavigationDispatch } from '../../types';
+import type { IWalletKit } from '@reown/walletkit/dist/types/types/client';
 import type { SessionTypes, Verify } from '@walletconnect/types';
-import type { IWeb3Wallet } from '@walletconnect/web3wallet/dist/types/types/client';
 import type Realm from 'realm';
 
 import { handleError } from '/helpers/errorHandler';
@@ -26,8 +25,10 @@ import loc from '/loc';
 export const ethSignFnMap: Record<string, 'signMessage' | 'signPersonalMessage' | 'signTypedDataMessage'> = {
   [WALLET_CONNECT_ETH_SIGN_TYPES.SIGN]: 'signMessage',
   [WALLET_CONNECT_ETH_SIGN_TYPES.PERSONAL_SIGN]: 'signPersonalMessage',
-  [WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V4]: 'signTypedDataMessage',
   [WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA]: 'signTypedDataMessage',
+  [WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V1]: 'signTypedDataMessage',
+  [WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V3]: 'signTypedDataMessage',
+  [WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V4]: 'signTypedDataMessage',
 };
 
 export async function handleSessionRequestMessage({
@@ -53,14 +54,12 @@ export async function handleSessionRequestMessage({
   network: EVMNetwork;
   requestParams: any;
   topic: string;
-  web3Wallet: IWeb3Wallet;
+  web3Wallet: IWalletKit;
   getSeed: SecuredKeychainContext['getSeed'];
   transport: EVMHarmonyTransport;
   verified: Verify.Context['verified'];
   realm: Realm;
 }) {
-  
-  
   const [rawMessage, contractAddress]: [string, string] = (() => {
     if (method === WALLET_CONNECT_ETH_SIGN_TYPES.PERSONAL_SIGN) {
       return requestParams;
@@ -116,7 +115,6 @@ export async function handleSessionRequestMessage({
       return handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
     }
   } else {
-    
     web3Wallet.respondSessionRequest({ topic, response: responseRejected(id) });
     return handleError('User rejected', 'ERROR_CONTEXT_PLACEHOLDER', { icon: 'plug-disconnected', text: loc.walletConnect.response_rejected });
   }

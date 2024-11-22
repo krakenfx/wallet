@@ -1,7 +1,7 @@
 import type { NativeSyntheticEvent, TextInputKeyPressEventData } from 'react-native';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Keyboard, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
@@ -17,6 +17,7 @@ import { usePreventScreenCaptureLong } from '@/hooks/usePreventScreenCaptureLong
 import { Routes } from '@/Routes';
 import { useValidationState } from '@/screens/Onboarding/hooks/useValidationState';
 import { useTheme } from '@/theme/themes';
+import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
@@ -45,6 +46,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
   const [isFocused, setIsFocused] = useState(true);
   const [canDeleteWord, setCanDeleteWord] = useState(false);
   const validator = useValidationState({ resetWhenInvalid: false });
+  const isOnboardingImportDiscoveryEnabled = useFeatureFlagEnabled(FeatureFlag.onboardingImportDiscoveryEnabled);
   usePreventScreenCaptureLong();
 
   const scrollRef = useRef<ScrollView>(null);
@@ -90,7 +92,6 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
     }
   };
 
-  
   useDebounceEffect(() => setCanDeleteWord(!inputValue), [words, inputValue], 0);
 
   const onPastePress = useCallback(async () => {
@@ -98,28 +99,32 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
     handlePaste(await Clipboard.getString());
   }, [clearAllErrors]);
 
-  const onImport = useCallback(async () => {
-    if (validator.state !== undefined) {
-      return;
-    }
-    setImporting(true);
-    try {
-      if (await runAfterUISync(() => importWallet(words))) {
-        validator.setState('valid', () => {
-          navigation.replace(Routes.OnboardingSecureWallet);
-        });
-      } else {
-        validator.setState('invalid', () => {
-          focusInput();
-          setFailedAttempt(true);
-        });
+  const onImport = useCallback(
+    async () => {
+      if (validator.state !== undefined) {
+        return;
       }
-    } catch (e) {
-      handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.onboarding.import_error });
-    } finally {
-      setImporting(false);
-    }
-  }, [importWallet, navigation, validator, words]);
+      setImporting(true);
+      try {
+        if (await runAfterUISync(() => importWallet(words))) {
+          validator.setState('valid', () => {
+            navigation.replace(isOnboardingImportDiscoveryEnabled ? Routes.OnboardingImportSubWallets : Routes.OnboardingSecureWallet);
+          });
+        } else {
+          validator.setState('invalid', () => {
+            focusInput();
+            setFailedAttempt(true);
+          });
+        }
+      } catch (e) {
+        handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.onboarding.import_error });
+      } finally {
+        setImporting(false);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [importWallet, navigation, validator, words],
+  );
 
   const addWord = useCallback((word: string) => {
     setInputValue('');
@@ -136,7 +141,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
   const onChangeText = useCallback(
     (text: string) => {
       clearAllErrors();
-      
+
       if (text.length > inputValue.length + 1) {
         const pastedValue = text.replace(inputValue, '');
         handlePaste(pastedValue);
@@ -147,7 +152,6 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
         if (suggestion) {
           addWord(suggestion);
         } else if (text.trimEnd().length) {
-          
           addWord(text.trimEnd());
         }
         return;

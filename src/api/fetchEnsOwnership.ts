@@ -23,7 +23,6 @@ export async function fetchEnsOwnership(name: string) {
 
   const content = response.content;
 
-  
   if (content.manager === content.address && content.owner === content.address) {
     const data = {
       name,

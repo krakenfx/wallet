@@ -2,7 +2,6 @@ import argon2 from 'react-native-argon2';
 
 import crypto from 'crypto';
 
-
 const argon2config = {
   iterations: 1,
   memory: 46 * 1024,
@@ -14,7 +13,6 @@ const argon2config = {
 export async function encrypt(data: Int8Array | string, password: string, deviceID: string): Promise<string | Int8Array> {
   let int8arrayMode = false;
   if (data instanceof Int8Array) {
-    
     data = JSON.stringify([...data]);
     int8arrayMode = true;
   }
@@ -29,11 +27,9 @@ export async function encrypt(data: Int8Array | string, password: string, device
   const tag = cipher.getAuthTag();
 
   if (int8arrayMode) {
-    
     return new Int8Array(Buffer.concat([iv, tag, Buffer.from(encryptedHex, 'hex')]));
   }
 
-  
   return [iv.toString('hex'), tag.toString('hex'), encryptedHex].join(':');
 }
 
@@ -44,14 +40,13 @@ export async function decrypt(data: Int8Array | string, password: string, device
   if (data instanceof Int8Array) {
     int8arrayMode = true;
     const int8buf = Buffer.from(data);
-    
+
     ivHex = int8buf.slice(0, 16).toString('hex');
-    
+
     tagHex = int8buf.slice(16, 32).toString('hex');
-    
+
     encryptedHex = int8buf.slice(32).toString('hex');
   } else {
-    
     [ivHex, tagHex, encryptedHex] = data.split(':');
   }
 
@@ -64,13 +59,11 @@ export async function decrypt(data: Int8Array | string, password: string, device
   decrypted += decipher.final('utf8');
 
   if (decrypted && int8arrayMode) {
-    
     return new Int8Array(JSON.parse(decrypted));
   }
 
   return decrypted;
 }
-
 
 function normalize(inp: string): string {
   return inp.normalize('NFC');

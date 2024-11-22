@@ -1,6 +1,6 @@
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from '../types';
 
-import type { EIP712} from '../types';
+import type { EIP712 } from '../types';
 
 export const adaptMessageToEVMMessageSimulationInput = (method: string, message?: string | EIP712) => {
   if (!message) {

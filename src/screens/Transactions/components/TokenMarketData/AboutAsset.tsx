@@ -1,6 +1,6 @@
 import type { NativeSyntheticEvent, TextLayoutEventData } from 'react-native';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, FadeIn, FadeOut, useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -31,7 +31,7 @@ export const AboutAsset = ({ description, assetSymbol }: Props) => {
       setMeasuredNumberOfLines(event.nativeEvent.lines.length);
       setNumberOfLines(NUMBER_OF_LINES_DEFAULT);
       opacity.value = withTiming(1, {
-        duration: 500, 
+        duration: 500,
       });
     }
   };

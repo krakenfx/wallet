@@ -1,6 +1,6 @@
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useIsFocused } from '@react-navigation/native';
-import React from 'react';
+
 import { StyleSheet, View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
@@ -37,7 +37,7 @@ export const ReceiveScreen = ({ route, navigation }: NavigationProps<'Receive'>)
   const { bottomSheetProps, close } = useBottomSheetScreenProps(navigation);
   const sheetIndex = useSharedValue(0);
   const [walletId, _, tokenId] = useResolvedAssetBalance(params.assetBalanceId);
-  
+
   const wallet = useRealmWalletById(walletId!);
   const token = useTokenById(tokenId);
 
@@ -50,7 +50,7 @@ export const ReceiveScreen = ({ route, navigation }: NavigationProps<'Receive'>)
   const share = () => Share.open({ message: displayAddressText });
   const { width } = useSafeAreaFrame();
 
-  const qrCodeSize = width - 96; 
+  const qrCodeSize = width - 96;
 
   return (
     <BottomSheet dismissible={useIsFocused()} animatedIndex={sheetIndex} snapPoints={['100%']} {...bottomSheetProps}>
