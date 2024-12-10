@@ -137,6 +137,7 @@
     "typed_message_signing_request": "Richiesta di firma {type}",
     "typedMessageSigningRequest": "Richiesta di firma {type}",
     "unknownApp": "App sconosciuta",
+    "verifyingContract": "Verifica del contratto in corso",
     "withdrawal": "Prelievo"
   },
   "assetOptions": {
@@ -152,7 +153,7 @@
     "buttonText": "Perfetto",
     "part1": "Il tuo wallet ora supporta Avalanche, la blockchain altamente scalabile a completamento super veloce, e Linea, la L2 di Ethereum progettata per transazioni sicure e a basso costo.",
     "part2": "Grazie a queste nuove integrazioni puoi vedere il saldo degli asset, trasmettere le transazioni, collezionare NFT, monitorare le posizioni DeFi e collegarti a DApp da entrambi i network.",
-    "title": "È arrivata l'assistenza Avalanche e Linea!"
+    "title": "Avalanche e Linea ora disponibili!"
   },
   "backupWallet": {
     "backup": "Backup",
@@ -442,6 +443,7 @@
     "genericTryAgainLater": "Si è verificato un errore, riprova più tardi",
     "network": "Errore del network",
     "offline": "Offline",
+    "offlineRetry": "Sei offline. Riprova quando sarai online.",
     "seedMissing": "Errore critico. Seed non disponibile."
   },
   "explore": {
@@ -469,7 +471,7 @@
         "minutes": "min",
         "months": "lun",
         "seconds": "secondo",
-        "weeks": "wk",
+        "weeks": "settimana",
         "years": "anno"
       },
       "unknown": "sconosciuto"
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
-    "ethereum_sepolia": "Ethereum - Testnet Sepolia",
-    "ink_sepolia": "Ink - Sepolia testnet",
+    "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink_sepolia": "Ethereum - Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Ricerca di sub-wallet"
     },
     "importSubWallets": {
+      "addByIndex": "Aggiungi per indice",
       "hasABalance": "Ha un saldo",
       "hasBalance": "Contiene fondi",
       "importingWallets": "Importazione di {subWalletsCount} wallet in corso...",
       "importingWalletsOne": "Importazione di 1 wallet in corso...",
       "importWallets": "Importa {subWalletsCount} wallet",
       "importWalletsOne": "importa 1 wallet",
-      "subtitle": "Abbiamo trovato {subWalletsCount} wallet in attività o con saldi. Seleziona tutti i wallet che desideri importare.",
-      "subtitleOneWallet": "Abbiamo trovato 1 wallet in attività o con saldo.",
+      "skip": "Salta",
+      "subtitle": "Abbiamo trovato {subWalletsWithBalanceCount} wallet con dei fondi. Seleziona tutti i wallet che desideri importare.",
+      "subtitleOneWallet": "Abbiamo trovato 1 wallet con dei fondi.",
       "title": "Seleziona i wallet da importare",
       "wallet": "Wallet",
       "walletsFound": "{subWalletsCount} wallet trovati",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Swap",
     "confirmation": {
       "cancel": "Annulla",
-      "confirm": "Conferma"
+      "confirm": "Conferma",
+      "initiated": "Swap avviato!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Il tuo wallet non contiene al momento asset; prova a fare versamenti nel tuo wallet",

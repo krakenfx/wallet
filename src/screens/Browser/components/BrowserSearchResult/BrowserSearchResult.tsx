@@ -9,7 +9,7 @@ import { useSearchContext } from '../../context/SearchContext';
 export const BrowserSearchResult = () => {
   const { colors } = useTheme();
 
-  const { searchValue, searchWithGoogle } = useSearchContext();
+  const { searchValue, hideSearch, searchWithGoogle } = useSearchContext();
 
   return (
     <View style={styles.container}>
@@ -22,6 +22,8 @@ export const BrowserSearchResult = () => {
           Look up “{searchValue}”
         </Label>
       </Touchable>
+
+      <Touchable style={styles.clearSearchContainer} onPress={hideSearch} />
     </View>
   );
 };
@@ -52,5 +54,8 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32,
     borderRadius: 20,
+  },
+  clearSearchContainer: {
+    height: '100%',
   },
 });

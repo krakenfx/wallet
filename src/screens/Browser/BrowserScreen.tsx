@@ -46,18 +46,13 @@ export const BrowserScreen = ({ navigation, route }: NavigationProps<'Browser'>)
 
   const { url, customTransitionAnimation, goBackAnimations } = route.params;
 
-  useLayoutEffect(
-    () => {
-      if (customTransitionAnimation) {
-        navigation.setOptions({
-          animation: customTransitionAnimation,
-        });
-      }
-    },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  useLayoutEffect(() => {
+    if (customTransitionAnimation) {
+      navigation.setOptions({
+        animation: customTransitionAnimation,
+      });
+    }
+  }, [customTransitionAnimation, navigation]);
 
   return (
     <BrowserContextProvider
@@ -91,4 +86,6 @@ const styles = StyleSheet.create({
 BrowserScreen.navigationOptions = navigationStyle({
   headerShown: false,
   animation: 'slide_from_bottom',
+
+  gestureEnabled: false,
 });

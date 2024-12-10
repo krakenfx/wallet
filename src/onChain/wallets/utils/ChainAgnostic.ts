@@ -27,6 +27,7 @@ export class ChainAgnostic {
   static COIN_DOGECOIN = 'bip122:1a91e3dace36e2be3bf030a65679fe82/slip44:3';
   static COIN_TEZOS = 'tezos:NetXdQprcVkpaWU/slip44:1729';
   static COIN_AVALANCHE = 'eip155:43114/slip44:9005';
+  static COIN_INK_SEPOLIA = 'eip155:763373/slip44:1';
 }
 
 const CAIP19_REGEX = /^([-a-z0-9]{3,8}):([-_a-zA-Z0-9]{1,32})\/([-a-z0-9]{3,8}):([-.%a-zA-Z0-9]{1,128})(?:\/([-.%a-zA-Z0-9]{1,78}))?$/;

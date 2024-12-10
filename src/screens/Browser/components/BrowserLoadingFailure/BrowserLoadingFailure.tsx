@@ -2,9 +2,17 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
 
+import { useBrowserContext } from '../../context/BrowserContext';
+
 import loc from '/loc';
 
 export const BrowserLoadingFailure = () => {
+  const { error } = useBrowserContext();
+
+  if (!error) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require('@/assets/images/common/exclamation.png')} />

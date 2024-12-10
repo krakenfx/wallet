@@ -32,7 +32,7 @@ export const BrowserHeader: React.FC<BrowserHeaderProps> = ({ headerExpanded, on
 
   const { colors } = useTheme();
 
-  const { cleanUrl } = useBrowserContext();
+  const { url, cleanUrl, onRefreshPage } = useBrowserContext();
 
   const { showSearchBar } = useSearchContext();
 
@@ -43,7 +43,7 @@ export const BrowserHeader: React.FC<BrowserHeaderProps> = ({ headerExpanded, on
     <Animated.View style={[styles.container, { paddingTop: insets.top + BASE_PADDING_TOP }]}>
       {}
       <Animated.View style={[styles.viewWrapper, searchBarStyle]}>
-        {showSearchBar ? <BrowserSearchInput /> : <BrowserUrlWithActions />}
+        {showSearchBar ? <BrowserSearchInput url={url} onRefreshPage={onRefreshPage} /> : <BrowserUrlWithActions />}
 
         <BrowserGoBackButton />
       </Animated.View>

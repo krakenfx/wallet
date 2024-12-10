@@ -17,9 +17,9 @@ import loc from '/loc';
 const ICON_SIZE = 45;
 
 export const OnboardingImportSubWalletsSuccessScreen = ({ navigation, route }: OnboardingNavigationProps<'OnboardingImportSubWalletsSuccess'>) => {
-  const { subWalletIds } = route.params;
-  const subWalletsCount: number = subWalletIds.length;
-  const icons = subWalletIds.map((id, index) => <AvatarIcon accountNumber={id} accountAvatar={null} avatarSize={ICON_SIZE} key={index} />);
+  const { subWalletIndexes } = route.params;
+  const subWalletsCount: number = subWalletIndexes.length;
+  const icons = subWalletIndexes.map((id, index) => <AvatarIcon accountNumber={id} accountAvatar={null} avatarSize={ICON_SIZE} key={index} />);
   const { colors } = useTheme();
 
   const onPress = () => {
@@ -60,8 +60,10 @@ export const OnboardingImportSubWalletsSuccessScreen = ({ navigation, route }: O
 };
 
 OnboardingImportSubWalletsSuccessScreen.navigationOptions = navigationStyle({
-  title: '',
+  headerBackVisible: false,
+  headerLeft: () => null,
   headerTransparent: true,
+  title: '',
 });
 
 const styles = StyleSheet.create({

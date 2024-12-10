@@ -137,6 +137,7 @@
     "typed_message_signing_request": "Запрос на подписание {type}",
     "typedMessageSigningRequest": "Запрос на подписание {type}",
     "unknownApp": "Неизвестное приложение",
+    "verifyingContract": "Проверка контракта",
     "withdrawal": "Вывод средств"
   },
   "assetOptions": {
@@ -423,7 +424,7 @@
     "running": "Выполняется диагностика..."
   },
   "discovery": {
-    "explore": "Ознакомиться"
+    "explore": "Обзор"
   },
   "editAccount": {
     "rename": "Переименовать",
@@ -442,6 +443,7 @@
     "genericTryAgainLater": "Произошла ошибка. Повторите попытку позже",
     "network": "Ошибка сети",
     "offline": "Офлайн",
+    "offlineRetry": "Вы не в сети. Повторите попытку, когда будете в сети.",
     "seedMissing": "Серьезная ошибка! Секретная фраза для восстановления недоступна."
   },
   "explore": {
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – тестовая сеть Goerli",
-    "ethereum_sepolia": "Ethereum – тестовая сеть Sepolia",
-    "ink_sepolia": "Ink – тестовая сеть Sepolia",
+    "ethereum_sepolia": "Ethereum – Sepolia",
+    "ink_sepolia": "Ethereum – Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Поиск подкошельков"
     },
     "importSubWallets": {
+      "addByIndex": "Добавить по индексу",
       "hasABalance": "С балансом",
       "hasBalance": "Содержит средства",
       "importingWallets": "Выполняется импорт кошельков ({subWalletsCount})",
       "importingWalletsOne": "Выполняется импорт 1 кошелька",
       "importWallets": "Импорт {subWalletsCount} кошельков",
       "importWalletsOne": "Импорт 1 кошелька",
-      "subtitle": "Найдено {subWalletsCount} активных кошельков/кошельков с ненулевым балансом. Выберите все кошельки, которые хотите импортировать.",
-      "subtitleOneWallet": "Найден 1 активный кошелек/кошелек с ненулевым балансом.",
+      "skip": "Пропустить",
+      "subtitle": "Количество найденных кошельков со средствами: {subWalletsWithBalanceCount}. Выберите все кошельки, которые хотите импортировать.",
+      "subtitleOneWallet": "Найден 1 кошелек со средствами.",
       "title": "Выберите кошельки для импорта",
       "wallet": "Кошелек",
       "walletsFound": "Найдено кошельков: {subWalletsCount}",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Обмен",
     "confirmation": {
       "cancel": "Отмена",
-      "confirm": "Подтвердить"
+      "confirm": "Подтвердить",
+      "initiated": "Обмен инициирован!"
     },
     "emptyState": {
       "assetsEmptyDesc": "В данный момент в вашем кошельке нет активов. Попробуйте пополнить свой кошелек",

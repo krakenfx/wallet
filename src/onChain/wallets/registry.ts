@@ -63,7 +63,7 @@ export const parseDefiNetworkTypeToWalletType = (networkType: DefiNetwork): Wall
 
 export const evmHarmonyTransport = new EVMHarmonyTransport();
 
-const Transports = {
+export const Transports = {
   HDsegwitBech32: electrumXTransport,
 
   polygon: evmHarmonyTransport,

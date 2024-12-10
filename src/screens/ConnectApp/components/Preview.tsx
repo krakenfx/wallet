@@ -6,6 +6,7 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import { CardWarning, CardWarningFromWarning } from '@/components/CardWarning';
 import { ConnectAppPermissions } from '@/components/ConnectAppPermissions';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { UI_STATE } from '../types';
 
@@ -52,6 +53,7 @@ export const Preview: React.FC<PreviewProps> = ({
   isMalicious,
   dismissedWarning,
 }: PreviewProps) => {
+  const isOnline = useIsOnline();
   const { height } = useSafeAreaFrame();
   const maybeMalicious = isMalicious === null;
 
@@ -69,6 +71,21 @@ export const Preview: React.FC<PreviewProps> = ({
         <View style={styles.lottie}>
           <LottieView source={require('@/assets/lottie/successCheckmark.json')} style={StyleSheet.absoluteFill} autoPlay loop={false} />
         </View>
+      </View>
+    );
+  }
+
+  if (!isOnline && uiState === UI_STATE.none && !!appMetadata) {
+    return (
+      <View style={styles.container}>
+        <Header url={appMetadata.url} icon={appMetadata.icon} name={appMetadata.name} verification={verification} />
+        <CardWarningFromWarning
+          warning={{
+            severity: 'critical',
+            heading: loc.errors.offline,
+            message: loc.errors.offlineRetry,
+          }}
+        />
       </View>
     );
   }

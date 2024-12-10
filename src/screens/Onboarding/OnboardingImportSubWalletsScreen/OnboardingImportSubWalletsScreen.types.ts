@@ -1,4 +1,6 @@
 export type SubWallet = {
-  id: number;
+  hasBalance: boolean;
+  index: number;
   name: string;
+  avatar?: string;
 };

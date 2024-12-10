@@ -31,6 +31,7 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "contractAddress": "Contract address",
+    "verifyingContract": "Verifying Contract",
     "contractInteraction": "Contract Interaction",
     "deposit": "Deposit",
     "from": "From",
@@ -185,6 +186,7 @@
     "connectionError": "Connection error",
     "generalFetchError": "Error, please try again",
     "offline": "Offline",
+    "offlineRetry": "You are offline. Please try again when online.",
     "exploreSubpage": "Something went wrong opening this content. Please try again later."
   },
   "globalActivity": {
@@ -291,7 +293,7 @@
     "base": "Base",
     "optimism": "OP Mainnet",
     "ethereum": "Ethereum",
-    "ethereum_sepolia": "Ethereum - Sepolia testnet",
+    "ethereum_sepolia": "Ethereum - Sepolia",
     "solana": "Solana",
     "solana_devnet": "Solana - Devnet",
     "dogecoin": "Dogecoin",
@@ -299,7 +301,7 @@
     "blast": "Blast",
     "linea": "Linea",
     "avalanche": "Avalanche",
-    "ink_sepolia": "Ink - Sepolia testnet"
+    "ink_sepolia": "Ethereum - Ink Sepolia"
   },
   "nftList": {
     "title": "NFTs",
@@ -478,12 +480,17 @@
     },
     "importSubWallets": {
       "title": "Select wallets to import",
-      "subtitle": "We found {subWalletsCount} wallets with activity or balances. Select all wallets you want to import.",
-      "subtitleOneWallet": "We found 1 wallet with activity or balances.",
+      "subtitle": "We found {subWalletsWithBalanceCount} wallets with funds. Select all wallets you want to import.",
+      "subtitleOneWallet": "We found 1 wallet with funds.",
       "walletsFound": "{subWalletsCount} wallets found",
       "walletsFoundOne": "1 wallet found",
       "importWallets": "Import {subWalletsCount} wallets",
-      "importWalletsOne": "Import 1 wallet"
+      "importWalletsOne": "Import 1 wallet",
+      "importingWallets": "Importing {subWalletsCount} wallets...",
+      "importingWalletsOne": "Importing 1 wallet...",
+      "wallet": "Wallet",
+      "hasBalance": "Contains funds",
+      "skip": "Skip"
     },
     "importSubWalletsSuccess": {
       "title": "{subWalletsCount} wallets imported!",
@@ -572,6 +579,7 @@
     "knownSecurityRiskExclamation": "Known security risk!",
     "knownSecurityRiskInfo": "This website is flagged as unsafe by multiple security providers. To protect your assets, do NOT connect to it.",
     "knownSecurityRiskMessage": "This website is flagged as unsafe by multiple security providers. Leave immediately to protect your assets from being drained",
+    "punycodeDomainRiskMessage": "This website's address contains non-standard characters. This is a common technique used by scammers to impersonate legitimate websites. For your safety, it's recommended that you do not enter sensitive information or proceed with this website.",
     "messageFlagged": "Message Flagged!",
     "returnToSafety": "Return to safety",
     "signTransactionCriticalWarning": "We believe this transaction is malicious and unsafe to sign. Approving may lead to loss of funds.",

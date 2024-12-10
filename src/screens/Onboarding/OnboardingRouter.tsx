@@ -38,7 +38,7 @@ export type OnboardingStackParams = {
   };
   OnboardingImportSubWallets: undefined;
   OnboardingImportSubWalletsSuccess: {
-    subWalletIds: number[];
+    subWalletIndexes: number[];
   };
   OnboardingSecureWallet: undefined;
   OnboardingWalletCloudBackup: {

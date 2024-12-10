@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import { ExpandableSheet } from '@/components/Sheets';
 import { hapticFeedback } from '@/utils/hapticFeedback';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { UI_STATE } from '../types';
 
@@ -48,6 +49,7 @@ export const ConnectApp = ({
   isMalicious,
   dismissedWarning,
 }: Props) => {
+  const isOnline = useIsOnline();
   const isDataComplete =
     appMetadata !== undefined && approveSession !== undefined && networkIDs !== undefined && requiredNetworkIDs !== undefined && rejectSession !== undefined;
   const walletConnectSupportedNetworkIds = useWalletConnectSupportedNetworkIds();
@@ -57,7 +59,7 @@ export const ConnectApp = ({
   const supportedNetworks: string[] = (networkIDs || []).filter(networkID => walletConnectSupportedNetworkIds.includes(networkID));
   const hasSupportedNetworks = supportedNetworks.length > 0;
 
-  const shouldDisableConfirmation = hasUnsupportedRequiredNetworks || !hasSupportedNetworks;
+  const shouldDisableConfirmation = hasUnsupportedRequiredNetworks || !hasSupportedNetworks || !isOnline;
 
   useEffect(() => {
     if (uiState === UI_STATE.complete && isDataComplete) {
@@ -87,6 +89,7 @@ export const ConnectApp = ({
           uiState={uiState}
           verification={verification}
           shouldDisableConfirmation={shouldDisableConfirmation}
+          shouldDisableCancelation={!isOnline}
           isDataComplete={isDataComplete}
           approveSession={approveSession}
           rejectSession={rejectSession}

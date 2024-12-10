@@ -524,6 +524,42 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     ];
   }
 
+  async fetchBalanceWithoutWalletStorage(network: BitcoinNetwork, wallet: WalletData): Promise<number> {
+    await waitTillConnected();
+
+    const getAddress = async (index: number, type: 'change' | 'receiving') => {
+      const path = network.getPath({ index, type });
+
+      const hdNode = await network.getHDNodeForPath(wallet, path);
+      const address = network.generateAddress(hdNode);
+
+      return address;
+    };
+    const getAddressChange = async (index: number) => {
+      return await getAddress(index, 'change');
+    };
+    const getAddressReceiving = async (index: number) => {
+      return await getAddress(index, 'receiving');
+    };
+
+    const [lastUsedChangeIndex, lastUsedRecevingIndex] = await Promise.all([refreshSequence(0, getAddressChange), refreshSequence(0, getAddressReceiving)]);
+
+    const promises = [];
+
+    for (let i = 0; i <= lastUsedChangeIndex; i++) {
+      promises.push(getAddressChange(i));
+    }
+
+    for (let i = 0; i <= lastUsedRecevingIndex; i++) {
+      promises.push(getAddressReceiving(i));
+    }
+
+    const allAddresses = await Promise.all(promises);
+    const balances = await multiGetBalanceByAddress(allAddresses, 20);
+
+    return balances.balance;
+  }
+
   async fetchTransactions(
     network: BitcoinNetwork,
     wallet: WalletData,

@@ -34,7 +34,7 @@ import {
   type WebViewRequest,
   type WebViewResponse,
 } from '../types';
-import { getTokenByChainId, requiresUserInteraction, signRequest } from '../utils';
+import { getTokenByChainId, signRequest } from '../utils';
 
 import { handleError } from '/helpers/errorHandler';
 
@@ -335,12 +335,7 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
             return handleGetPageInfoRequest(message);
 
           case 'rpc_request': {
-            if (requiresUserInteraction(message.context.method)) {
-              requestQueueRef.current.push(message);
-              return;
-            }
-
-            return handleRpcRequest(message);
+            requestQueueRef.current.push(message);
           }
         }
       } catch (error) {
@@ -349,7 +344,7 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
         disconnect();
       }
     },
-    [secret, respond, handleGetPageInfoRequest, handleRpcRequest, decline, disconnect],
+    [secret, respond, handleGetPageInfoRequest, decline, disconnect],
   );
 
   const processRequestQueue = useCallback(

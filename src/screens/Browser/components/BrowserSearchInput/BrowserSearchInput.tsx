@@ -22,8 +22,13 @@ interface Selection {
   end: number;
 }
 
-export const BrowserSearchInput = () => {
-  const { searchValue, handleSearch, changeSearchValue, clearSearch } = useSearchContext();
+interface BrowserSearchInputProps {
+  url: string | null;
+  onRefreshPage: () => void;
+}
+
+export const BrowserSearchInput: React.FC<BrowserSearchInputProps> = ({ url, onRefreshPage }) => {
+  const { searchValue, hideSearch, handleSearch, changeSearchValue, clearSearch } = useSearchContext();
   const [selection, setSelection] = useState<Selection | undefined>();
 
   const { inputRef, animatedButtonStyle, animatedPlaceholderStyle, animatedInputStyle, onInputContainerLayout } = useBrowserAnimationContext();
@@ -46,6 +51,11 @@ export const BrowserSearchInput = () => {
     }
   };
 
+  const handleRefresh = () => {
+    hideSearch();
+    onRefreshPage();
+  };
+
   return (
     <Animated.View style={animatedInputStyle} onLayout={onInputContainerLayout}>
       <Input
@@ -63,7 +73,11 @@ export const BrowserSearchInput = () => {
         testID="BrowserSearchBarInput"
         left={
           <Animated.View style={animatedPlaceholderStyle}>
-            <SvgIcon name="search" size={18} color="light50" style={styles.icon} />
+            {url === null ? (
+              <SvgIcon name="search" size={18} color="light50" style={styles.icon} />
+            ) : (
+              <SvgIcon name="redo" size={20} color="light100" style={styles.icon} onPress={handleRefresh} />
+            )}
           </Animated.View>
         }
         right={

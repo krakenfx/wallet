@@ -137,6 +137,7 @@
     "typed_message_signing_request": "{type} Ondertekeningsverzoek",
     "typedMessageSigningRequest": "{type} Ondertekeningsverzoek",
     "unknownApp": "Onbekende app",
+    "verifyingContract": "Contract verifiëren",
     "withdrawal": "Opname"
   },
   "assetOptions": {
@@ -442,6 +443,7 @@
     "genericTryAgainLater": "Er ging iets mis, probeer het later opnieuw",
     "network": "Netwerkfout",
     "offline": "Offline",
+    "offlineRetry": "Je bent offline. Probeer het opnieuw wanneer je online bent.",
     "seedMissing": "Kritieke fout! Seed is niet beschikbaar."
   },
   "explore": {
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Goerli-testnet",
-    "ethereum_sepolia": "Ethereum - Sepolia-testnet",
-    "ink_sepolia": "Ink - Sepolia testnet",
+    "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink_sepolia": "Ethereum - Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Zoeken naar sub-wallets"
     },
     "importSubWallets": {
+      "addByIndex": "Toevoegen per index",
       "hasABalance": "Heeft een tegoed",
       "hasBalance": "Bevat geld",
       "importingWallets": "{subWalletsCount} wallets importeren...",
       "importingWalletsOne": "1 wallet importeren...",
       "importWallets": "{subWalletsCount} wallets importeren",
       "importWalletsOne": "1 wallet importeren",
-      "subtitle": "We hebben {subWalletsCount} wallets gevonden met activiteit of tegoeden. Selecteer alle wallets die je wilt importeren.",
-      "subtitleOneWallet": "We hebben 1 wallet gevonden met activiteit of tegoeden.",
+      "skip": "Overslaan",
+      "subtitle": "We hebben {subWalletsWithBalanceCount} wallets met geld gevonden. Selecteer alle wallets die je wilt importeren.",
+      "subtitleOneWallet": "We hebben 1 wallet met geld gevonden.",
       "title": "Selecteer wallets om te importeren",
       "wallet": "Portemonnee",
       "walletsFound": "{subWalletsCount} wallets gevonden",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Swap",
     "confirmation": {
       "cancel": "Annuleren",
-      "confirm": "Bevestigen"
+      "confirm": "Bevestigen",
+      "initiated": "Swap in gang gezet!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Jouw huidige wallet bevat geen assets, probeer je wallet te financieren",

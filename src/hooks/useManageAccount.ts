@@ -46,9 +46,53 @@ export const useManageAccount = () => {
     [runInTransaction],
   );
 
+  const addAccountsAndWallets = useCallback(
+    (seed: ArrayBuffer, nextAccountIndexes: number[], successCallback?: () => void) => {
+      if (nextAccountIndexes.length === 0) {
+        return;
+      }
+
+      const wallets: Partial<Record<WalletType, RealmWallet>> = {};
+
+      runInTransaction(() => {
+        nextAccountIndexes.forEach(nextAccountIndex => {
+          for (const type of ALL_MAINNET_COINS) {
+            const wallet = addNewWallet({
+              type,
+              seed,
+              accountIdx: nextAccountIndex,
+              addToGallery: DEFAULT_GALLERY_COINS.includes(type),
+            });
+            wallets[type] = wallet;
+          }
+          if (isTestnetEnabled) {
+            for (const type of TESTNET_COINS) {
+              addNewWallet({
+                type,
+                seed,
+                accountIdx: nextAccountIndex,
+              });
+            }
+          }
+
+          const account = addNewAccount({
+            accountNumber: nextAccountIndex,
+            accountCustomName: '',
+          });
+
+          if (wallets.ethereum) {
+            assignENSNameIfPresent(account, wallets.ethereum);
+          }
+        });
+      });
+
+      successCallback?.();
+    },
+    [addNewAccount, addNewWallet, assignENSNameIfPresent, isTestnetEnabled, runInTransaction],
+  );
+
   const createAccount = useCallback(async () => {
     const seed = await getSeed('createWallet');
-    const accountCustomName: string = '';
     if (!seed) {
       return;
     }
@@ -59,42 +103,43 @@ export const useManageAccount = () => {
       }
 
       const nextAccountNumber = lastCreatedAccount.accountNumber + 1;
-      const wallets: Partial<Record<WalletType, RealmWallet>> = {};
-      runInTransaction(async () => {
-        for (const type of ALL_MAINNET_COINS) {
-          const wallet = addNewWallet({
-            type,
-            seed,
-            accountIdx: nextAccountNumber,
-            addToGallery: DEFAULT_GALLERY_COINS.includes(type),
-          });
-          wallets[type] = wallet;
-        }
-        if (isTestnetEnabled) {
-          for (const type of TESTNET_COINS) {
-            addNewWallet({
-              type,
-              seed,
-              accountIdx: nextAccountNumber,
-            });
-          }
-        }
-
-        const account = addNewAccount({ accountNumber: nextAccountNumber, accountCustomName });
-        if (wallets.ethereum) {
-          assignENSNameIfPresent(account, wallets.ethereum);
-        }
-        console.log('switching global account number to', nextAccountNumber);
-      });
-      showToast({
-        type: 'success',
-        text: loc.accountSwitch.createWalletSuccess,
-        hapticFeedbackOnShow: 'notificationSuccess',
-      });
+      addAccountsAndWallets(seed, [nextAccountNumber], () =>
+        showToast({
+          type: 'success',
+          text: loc.accountSwitch.createWalletSuccess,
+          hapticFeedbackOnShow: 'notificationSuccess',
+        }),
+      );
     } catch (e) {
       handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.accountSwitch.createWalletError });
     }
-  }, [getSeed, accounts, runInTransaction, isTestnetEnabled, addNewAccount, assignENSNameIfPresent, addNewWallet]);
+  }, [getSeed, accounts, addAccountsAndWallets]);
+
+  const createAccounts = useCallback(
+    async (accountIndexes: number[]) => {
+      const seed = await getSeed('createWallet');
+      if (!seed) {
+        return;
+      }
+      try {
+        const nextAccountIndexes = accountIndexes.filter(nextAccountIndex => {
+          if (accounts.isEmpty()) {
+            return true;
+          }
+
+          return !accounts[nextAccountIndex];
+        });
+
+        addAccountsAndWallets(seed, nextAccountIndexes);
+
+        return true;
+      } catch (e) {
+        handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.accountSwitch.createWalletError });
+        return false;
+      }
+    },
+    [getSeed, accounts, addAccountsAndWallets],
+  );
 
   const switchAccount = useCallback(
     (accountNumber: number) => {
@@ -121,5 +166,5 @@ export const useManageAccount = () => {
     }
   };
 
-  return { switchAccount, createAccount, removeAccount, assignENSNameIfPresent };
+  return { switchAccount, createAccount, createAccounts, removeAccount, assignENSNameIfPresent };
 };

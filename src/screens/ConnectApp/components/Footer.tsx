@@ -18,13 +18,22 @@ import loc from '/loc';
 interface FooterProps {
   isDataComplete: boolean;
   shouldDisableConfirmation: boolean;
+  shouldDisableCancelation: boolean;
   uiState: UI_STATE.none | UI_STATE.loading | UI_STATE.complete;
   verification?: Verification;
   approveSession?: () => Promise<void>;
   rejectSession?: () => Promise<void>;
 }
 
-export const Footer: React.FC<FooterProps> = ({ uiState, isDataComplete, shouldDisableConfirmation, verification, approveSession, rejectSession }) => {
+export const Footer: React.FC<FooterProps> = ({
+  uiState,
+  isDataComplete,
+  shouldDisableConfirmation,
+  shouldDisableCancelation,
+  verification,
+  approveSession,
+  rejectSession,
+}) => {
   const isCriticalWarning = verification?.warning?.severity === 'critical';
   const { setWalletConnectExplainerTaskCompleted } = useSettingsMutations();
 
@@ -52,6 +61,7 @@ export const Footer: React.FC<FooterProps> = ({ uiState, isDataComplete, shouldD
         secondary={{
           text: loc.connectApp.cancel,
           onPress: rejectSession || noop,
+          disabled: shouldDisableCancelation,
         }}
       />
     </View>

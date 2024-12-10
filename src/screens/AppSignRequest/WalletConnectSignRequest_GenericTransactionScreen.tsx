@@ -11,6 +11,7 @@ import type { NavigationProps } from '@/Routes';
 
 import type { Warning } from '@/types';
 import { navigationStyle } from '@/utils/navigationStyle';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { ConfirmationFooterWithFeeSelector } from './components/ConfirmationFooterWithFeeSelector';
 import { ExpandedDetailsContent } from './components/ExpandedDetailsContent';
@@ -37,6 +38,7 @@ export interface WalletConnectSignRequest_GenericTransactionParams {
 }
 
 export const WalletConnectSignRequest_GenericTransactionScreen = ({ route, navigation }: NavigationProps<'WalletConnectSignRequest_GenericTransaction'>) => {
+  const isOnline = useIsOnline();
   const { walletId, metadata, onReject, onApprove, hideFeeSelector = false, preparedTransaction, warning, content, detailsContent } = route.params;
   const { goBack } = navigation;
   const { height } = useWindowDimensions();
@@ -58,7 +60,9 @@ export const WalletConnectSignRequest_GenericTransactionScreen = ({ route, navig
   };
 
   const handleReject = () => {
-    onReject();
+    if (isOnline) {
+      onReject();
+    }
     goBack();
   };
 
@@ -73,6 +77,15 @@ export const WalletConnectSignRequest_GenericTransactionScreen = ({ route, navig
     );
   }
 
+  let offlineWarning: Warning | undefined;
+  if (!isOnline) {
+    offlineWarning = {
+      severity: 'critical',
+      heading: loc.errors.offline,
+      message: loc.errors.offlineRetry,
+    };
+  }
+
   return (
     <ExpandableSheet
       dismissible
@@ -82,7 +95,7 @@ export const WalletConnectSignRequest_GenericTransactionScreen = ({ route, navig
           <Header url={metadata.url} icon={metadata.imageUrl} name={metadata.name} heading={loc.appSignRequest.contractInteraction} />
 
           <View style={[styles.contentContainer, { maxHeight: height * 0.3 }]}>
-            {warning && <CardWarningFromWarning warning={warning} />}
+            {Boolean(offlineWarning || warning) && <CardWarningFromWarning warning={(offlineWarning || warning) as Warning} />}
             {content.length > 0 && <GenericSignContent content={content} setHasScrolledToEndOfContent={setHasScrolledToEndOfContent} />}
           </View>
         </View>
@@ -91,7 +104,7 @@ export const WalletConnectSignRequest_GenericTransactionScreen = ({ route, navig
       FloatingButtonsComponent={
         <ConfirmationFooterWithFeeSelector
           walletId={walletId}
-          disableConfirmationButton={!hasScrolledToEndOfContent}
+          disableConfirmationButton={!hasScrolledToEndOfContent || !isOnline}
           hideFeeSelector={hideFeeSelector}
           isCriticalWarning={isCriticalWarning}
           preparedTransaction={preparedTransaction}

@@ -4,15 +4,15 @@ import { Label } from '@/components/Label';
 
 import loc from '/loc';
 
-type Props = { subWalletsCount: number };
+type Props = { subWalletsWithBalanceCount: number };
 
-export const ImportSubWalletsHeader = ({ subWalletsCount }: Props) => (
+export const ImportSubWalletsHeader = ({ subWalletsWithBalanceCount }: Props) => (
   <View style={styles.header}>
     <Label type="boldDisplay5">{loc.onboardingImportSubWallets.importSubWallets.title}</Label>
     <Label type="regularBody">
-      {subWalletsCount === 1
+      {subWalletsWithBalanceCount === 1
         ? loc.onboardingImportSubWallets.importSubWallets.subtitleOneWallet
-        : loc.formatString(loc.onboardingImportSubWallets.importSubWallets.subtitle, { subWalletsCount })}
+        : loc.formatString(loc.onboardingImportSubWallets.importSubWallets.subtitle, { subWalletsWithBalanceCount })}
     </Label>
   </View>
 );

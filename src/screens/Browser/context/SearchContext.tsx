@@ -15,6 +15,7 @@ interface SearchContextValue {
   changeSearchValue: (newValue: string) => void;
   clearSearch: () => void;
   handleSearch: () => void;
+  hideSearch: () => void;
   searchWithGoogle: () => void;
   handleShowSearch: () => void;
   handleHideSearch: () => void;
@@ -23,7 +24,7 @@ interface SearchContextValue {
 const SearchContext = React.createContext<SearchContextValue | undefined>(undefined);
 
 export const SearchContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const { cleanUrl, setUrl, setShouldDisplayWebView } = useBrowserContext();
+  const { url, cleanUrl, setUrl, setShouldDisplayWebView } = useBrowserContext();
 
   const [showSearchBar, setShowSearchbar] = useState(!cleanUrl);
   const [searchValue, setSearchValue] = useState('');
@@ -58,6 +59,13 @@ export const SearchContextProvider: React.FC<PropsWithChildren> = ({ children })
     handleHideSearch();
   };
 
+  const hideSearch = () => {
+    setShowSearchbar(false);
+    if (url) {
+      changeSearchValue(url);
+    }
+  };
+
   const searchWithGoogle = () => {
     const trimmedInput = searchValue.trim();
     if (trimmedInput === '') {
@@ -77,6 +85,7 @@ export const SearchContextProvider: React.FC<PropsWithChildren> = ({ children })
         searchValue,
         handleSearch,
         searchWithGoogle,
+        hideSearch,
         changeSearchValue,
         clearSearch,
         handleShowSearch,

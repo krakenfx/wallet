@@ -137,6 +137,7 @@
     "typed_message_signing_request": "Anfrage zur Unterzeichnung {type}",
     "typedMessageSigningRequest": "{type} Anfrage zur Unterzeichnung",
     "unknownApp": "Unbekannte App",
+    "verifyingContract": "Kontrakt wird verifiziert",
     "withdrawal": "Auszahlung"
   },
   "assetOptions": {
@@ -442,6 +443,7 @@
     "genericTryAgainLater": "Etwas ist schief gelaufen, bitte versuche es später erneut",
     "network": "Netzwerkfehler",
     "offline": "Offline",
+    "offlineRetry": "Du bist offline. Versuche es erneut, wenn du online bist.",
     "seedMissing": "Kritischer Fehler! Seed ist nicht verfügbar."
   },
   "explore": {
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – Goerli Testnet",
-    "ethereum_sepolia": "Ethereum – Sepolia Testnet",
-    "ink_sepolia": "Ink – Sepolia Testnet",
+    "ethereum_sepolia": "Ethereum – Sepolia",
+    "ink_sepolia": "Ethereum – Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Suche nach untergeordneten Wallets läuft"
     },
     "importSubWallets": {
+      "addByIndex": "Nach Index hinzufügen",
       "hasABalance": "Hat ein Guthaben",
       "hasBalance": "Enthält Mittel",
       "importingWallets": "{subWalletsCount} Wallets werden importiert ...",
       "importingWalletsOne": "1 Wallet wird importiert ...",
       "importWallets": "{subWalletsCount} Wallets importieren",
       "importWalletsOne": "1 Wallet importieren",
-      "subtitle": "Wir haben {subWalletsCount} Wallets mit Aktivität oder Guthaben gefunden. Wähle alle Wallets aus, die du importieren möchtest.",
-      "subtitleOneWallet": "Wir haben 1 Wallet mit Aktivität oder Guthaben gefunden.",
+      "skip": "Überspr.",
+      "subtitle": "Wir haben {subWalletsWithBalanceCount} Wallets mit Mitteln gefunden. Wähle alle Wallets aus, die du importieren möchtest.",
+      "subtitleOneWallet": "Wir haben 1 Wallet mit Mitteln gefunden.",
       "title": "Zu importierende Wallets auswählen",
       "wallet": "Wallet",
       "walletsFound": "{subWalletsCount} Wallets gefunden",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Swap",
     "confirmation": {
       "cancel": "Abbrechen",
-      "confirm": "Bestätigen"
+      "confirm": "Bestätigen",
+      "initiated": "Swap eingeleitet!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Es gibt keine Assets auf deiner aktuellen Wallet, bitte lade deine Wallet auf",

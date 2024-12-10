@@ -133,7 +133,7 @@ export const inkSepoliaNetwork = new EVMNetwork({
   chainId: 763373,
   nativeTokenSlipId: 1,
   nativeTokenSymbol: 'ETH',
-  nativeTokenLabel: 'Ethereum - Sepolia testnet',
+  nativeTokenLabel: 'Ethereum - Ink Sepolia',
   label: loc.network.ink_sepolia,
   blockExplorer: new Etherscan('explorer-sepolia.inkonchain.com'),
   defaultGasLimit: 21000,

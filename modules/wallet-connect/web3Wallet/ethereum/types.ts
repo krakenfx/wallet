@@ -14,7 +14,10 @@ export interface EIP712 {
   primaryType: string;
   domain: Record<string, unknown>;
   message: Record<string, unknown>;
-  types: { [key: string]: { type: string; name: string }[] };
+  types: {
+    EIP712Domain: TypedDataField[];
+    [key: string]: TypedDataField[];
+  };
 }
 
 export type EIP712TypeDefinitions = EIP712['types'][keyof EIP712['types']];
@@ -30,4 +33,9 @@ export type TransactionObject = {
   gasPrice?: string;
   value?: string;
   nonce?: string;
+};
+
+export type TypedDataField = {
+  name: string;
+  type: string;
 };

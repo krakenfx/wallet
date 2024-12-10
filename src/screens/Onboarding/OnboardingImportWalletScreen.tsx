@@ -20,6 +20,7 @@ import { useTheme } from '@/theme/themes';
 import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { OnboardingHeader } from './components/OnboardingHeader';
 import { OnboardingWordButton } from './components/OnboardingWordButton';
@@ -47,6 +48,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
   const [canDeleteWord, setCanDeleteWord] = useState(false);
   const validator = useValidationState({ resetWhenInvalid: false });
   const isOnboardingImportDiscoveryEnabled = useFeatureFlagEnabled(FeatureFlag.onboardingImportDiscoveryEnabled);
+  const isOnline = useIsOnline();
   usePreventScreenCaptureLong();
 
   const scrollRef = useRef<ScrollView>(null);
@@ -108,7 +110,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
       try {
         if (await runAfterUISync(() => importWallet(words))) {
           validator.setState('valid', () => {
-            navigation.replace(isOnboardingImportDiscoveryEnabled ? Routes.OnboardingImportSubWallets : Routes.OnboardingSecureWallet);
+            navigation.replace(isOnboardingImportDiscoveryEnabled && isOnline ? Routes.OnboardingImportSubWallets : Routes.OnboardingSecureWallet);
           });
         } else {
           validator.setState('invalid', () => {
