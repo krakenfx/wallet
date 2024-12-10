@@ -137,6 +137,7 @@
     "typed_message_signing_request": "Demande de signature {type}",
     "typedMessageSigningRequest": "Demande de signature {type}",
     "unknownApp": "Application inconnue",
+    "verifyingContract": "Vérification du contrat",
     "withdrawal": "Retrait"
   },
   "assetOptions": {
@@ -442,6 +443,7 @@
     "genericTryAgainLater": "Une erreur est survenue, veuillez réessayer ultérieurement",
     "network": "Erreur réseau",
     "offline": "Hors-ligne",
+    "offlineRetry": "Vous êtes hors ligne. Veuillez réessayer lorsque vous serez en ligne.",
     "seedMissing": "Erreur critique ! Le code d’accès n’est pas disponible."
   },
   "explore": {
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
-    "ethereum_sepolia": "Ethereum - Testnet Sepolia",
-    "ink_sepolia": "Ink - Sepolia testnet",
+    "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink_sepolia": "Ethereum - Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Recherche de sous-portefeuilles"
     },
     "importSubWallets": {
+      "addByIndex": "Ajouter par indice",
       "hasABalance": "Dispose d’un solde",
       "hasBalance": "Contient des fonds",
       "importingWallets": "Importation de {subWalletsCount} portefeuilles…",
       "importingWalletsOne": "Importation de 1 portefeuille…",
       "importWallets": "Importer {subWalletsCount} portefeuilles",
       "importWalletsOne": "Importer 1 portefeuille",
-      "subtitle": "Nous avons trouvé {subWalletsCount} portefeuilles présentant une activité ou un solde. Sélectionnez tous les portefeuilles que vous souhaitez importer.",
-      "subtitleOneWallet": "Nous avons trouvé 1 portefeuille présentant une activité ou un solde.",
+      "skip": "Ignorer",
+      "subtitle": "Nous avons trouvé {subWalletsWithBalanceCount} portefeuilles présentant des fonds. Sélectionnez tous les portefeuilles que vous souhaitez importer.",
+      "subtitleOneWallet": "Nous avons trouvé 1 portefeuille présentant des fonds.",
       "title": "Sélectionnez les portefeuilles à importer",
       "wallet": "Portefeuille",
       "walletsFound": "{subWalletsCount} portefeuilles trouvés",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Échanger",
     "confirmation": {
       "cancel": "Annuler",
-      "confirm": "Confirmer"
+      "confirm": "Confirmer",
+      "initiated": "Échange lancé !"
     },
     "emptyState": {
       "assetsEmptyDesc": "Actuellement, votre portefeuille ne contient aucun actif, essayez d’en déposer dans votre portefeuille",

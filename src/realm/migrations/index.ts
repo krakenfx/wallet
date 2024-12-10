@@ -10,4 +10,5 @@ export * from './migrationsSchemaVersion31';
 export * from './migrationsSchemaVersion33';
 export * from './migrationsSchemaVersion35';
 export * from './migrationsSchemaVersion36';
+export * from './migrationsSchemaVersion37';
 export * from './onMigration';

@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import loc from '/loc';
 
@@ -15,6 +16,8 @@ type Props = {
 };
 
 export const ConfirmationFooter = ({ content, onApprove, onReject, disableConfirmationButton, isCriticalWarning }: Props) => {
+  const isOnline = useIsOnline();
+
   const [enableConfirmationButtonAfterTimeout, setEnableConfirmationButtonAfterTimeout] = useState(false);
   useFocusEffect(
     useCallback(() => {
@@ -35,11 +38,12 @@ export const ConfirmationFooter = ({ content, onApprove, onReject, disableConfir
             color: isCriticalWarning ? 'red400' : undefined,
             text: loc.appSignRequest.confirm,
             onPress: onApprove,
-            disabled: disableConfirmationButton || !enableConfirmationButtonAfterTimeout,
+            disabled: !isOnline || disableConfirmationButton || !enableConfirmationButtonAfterTimeout,
           }}
           secondary={{
             text: loc.appSignRequest.cancel,
             onPress: onReject,
+            disabled: !isOnline,
           }}
         />
       </View>

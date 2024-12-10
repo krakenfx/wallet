@@ -137,6 +137,7 @@
     "typed_message_signing_request": "Solicitação de assinatura {type}",
     "typedMessageSigningRequest": "Solicitação de assinatura {type}",
     "unknownApp": "Aplicativo desconhecido",
+    "verifyingContract": "Verificação de contrato",
     "withdrawal": "Retirada"
   },
   "assetOptions": {
@@ -442,6 +443,7 @@
     "genericTryAgainLater": "Algo deu errado Tente novamente mais tarde",
     "network": "Erro de rede",
     "offline": "Offline",
+    "offlineRetry": "Você está offline. Tente novamente quando estiver online.",
     "seedMissing": "Erro crítico! Fonte indisponível."
   },
   "explore": {
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - rede de teste Goerli",
-    "ethereum_sepolia": "Rede de teste Ethereum - Sepolia",
-    "ink_sepolia": "Ink - rede de teste Sepolia",
+    "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink_sepolia": "Ethereum - Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Procurando por subcarteiras"
     },
     "importSubWallets": {
+      "addByIndex": "Adicionar por índice",
       "hasABalance": "Tem saldo",
       "hasBalance": "Contém fundos",
       "importingWallets": "Importando {subWalletsCount} carteiras...",
       "importingWalletsOne": "Importando 1 carteira...",
       "importWallets": "Importar {subWalletsCount} carteiras",
       "importWalletsOne": "Importar 1 carteira",
-      "subtitle": "Encontramos {subWalletsCount} carteiras com atividades ou saldos. Selecione todas as carteiras que deseja importar.",
-      "subtitleOneWallet": "Encontramos 1 carteira com atividades ou saldos.",
+      "skip": "Pular",
+      "subtitle": "Encontramos {subWalletsWithBalanceCount} carteiras com fundos. Selecione todas as carteiras que deseja importar.",
+      "subtitleOneWallet": "Encontramos 1 carteira com fundos.",
       "title": "Selecione carteiras para importar",
       "wallet": "Carteira",
       "walletsFound": "{subWalletsCount} carteiras encontradas",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Swap",
     "confirmation": {
       "cancel": "Cancelar",
-      "confirm": "Confirmar"
+      "confirm": "Confirmar",
+      "initiated": "Swap iniciado!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Sua carteira atual não tem nenhum ativo, tente fazer um depósito em sua carteira",

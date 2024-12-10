@@ -22,50 +22,46 @@ export const OverlappingCollection = React.memo(
   ({ items, itemsToShow = 3, itemSize = 32, borderRadius = itemSize / 2, maskedItemOffset = itemSize / 3, hasMoreCountProps }: Props) => {
     const { colors } = useTheme();
 
-    const data = useMemo(
-      () => {
-        const hasMore = itemsToShow < items.length;
-        const items_ = items
-          .slice(0, itemsToShow)
-          .map<React.ReactNode>((item, i) => {
-            const index = i + (hasMore ? 1 : 0);
-            return (
-              <View key={i} style={[styles.collectionIconContainer, { borderRadius, width: itemSize, height: itemSize }]}>
-                <MaskedView
-                  maskElement={
-                    <Svg>
-                      <Defs>
-                        <Mask id="moonShape" maskUnits="userSpaceOnUse">
-                          <Circle x={borderRadius} y={borderRadius} r={borderRadius} fill="white" />
-                          {index !== 0 && <Circle x={itemSize + 2} y={borderRadius} r={borderRadius + 2} fill="black" />}
-                        </Mask>
-                      </Defs>
-                      <G mask={'url(#moonShape)'}>
-                        <Circle x={borderRadius} y={borderRadius} r={borderRadius} />
-                      </G>
-                    </Svg>
-                  }>
-                  {item}
-                </MaskedView>
-              </View>
-            );
-          })
-          .reverse();
+    const data = useMemo(() => {
+      const hasMore = itemsToShow < items.length;
+      const items_ = items
+        .slice(0, itemsToShow)
+        .map<React.ReactNode>((item, i) => {
+          const index = i + (hasMore ? 1 : 0);
+          return (
+            <View key={i} style={[styles.collectionIconContainer, { borderRadius, width: itemSize, height: itemSize }]}>
+              <MaskedView
+                maskElement={
+                  <Svg>
+                    <Defs>
+                      <Mask id="moonShape" maskUnits="userSpaceOnUse">
+                        <Circle x={borderRadius} y={borderRadius} r={borderRadius} fill="white" />
+                        {index !== 0 && <Circle x={itemSize + 2} y={borderRadius} r={borderRadius + 2} fill="black" />}
+                      </Mask>
+                    </Defs>
+                    <G mask={'url(#moonShape)'}>
+                      <Circle x={borderRadius} y={borderRadius} r={borderRadius} />
+                    </G>
+                  </Svg>
+                }>
+                {item}
+              </MaskedView>
+            </View>
+          );
+        })
+        .reverse();
 
-        const hasMoreCountProps_: OverlappingListWithHasMoreCountProps['hasMoreCount'] = {
-          backgroundColor: colors.light15,
-          circleSize: itemSize,
-          fontColor: 'light50',
-          fontSize: 13,
-          count: items.length - itemsToShow,
-          ...hasMoreCountProps,
-        };
+      const hasMoreCountProps_: OverlappingListWithHasMoreCountProps['hasMoreCount'] = {
+        backgroundColor: colors.light15,
+        circleSize: itemSize,
+        fontColor: 'light50',
+        fontSize: 13,
+        count: items.length - itemsToShow,
+        ...hasMoreCountProps,
+      };
 
-        return <OverlappingListWithHasMoreCount items={items_} offsetSize={maskedItemOffset} hasMoreCount={hasMoreCountProps_} />;
-      },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [borderRadius, colors.light15, items, itemSize, itemsToShow, maskedItemOffset],
-    );
+      return <OverlappingListWithHasMoreCount items={items_} offsetSize={maskedItemOffset} hasMoreCount={hasMoreCountProps_} />;
+    }, [borderRadius, colors.light15, items, itemSize, itemsToShow, maskedItemOffset, hasMoreCountProps]);
 
     return data;
   },

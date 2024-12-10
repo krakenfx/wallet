@@ -1,12 +1,13 @@
-import type { PageInfo, RpcMethod } from '@/dAppIntegration/types';
+import { type PageInfo, RpcMethod } from '@/dAppIntegration/types';
 import type { RealmishWallet } from '@/onChain/wallets/base';
 
 import type { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
 
 import loc from '/loc';
-import type { ReactNavigationDispatch } from '/modules/wallet-connect';
+import type { DefinitionList, ReactNavigationDispatch } from '/modules/wallet-connect';
 import { getWarningFromSimulation } from '/modules/wallet-connect/utils';
 import { adaptMessageToEVMMessageSimulationInput, adaptToGenericMessage } from '/modules/wallet-connect/web3Wallet/ethereum';
+import { MalformedEIP712TypedData, isEIP712 } from '/modules/wallet-connect/web3Wallet/ethereum/utils/isEIP712';
 import { navigateToSignGenericMessagePage } from '/modules/wallet-connect/web3Wallet/navigateToSignGenericMessagePage';
 
 interface Props {
@@ -22,7 +23,6 @@ interface Props {
 }
 
 export const openSignMessageApproveModal = async ({ params, transport, network, method, wallet, dispatch, pageInfo, domain, baseUrl }: Props) => {
-  const [, contractAddress] = params;
   const genericMessage = adaptToGenericMessage(method, params);
   const messageSimulationInput = adaptMessageToEVMMessageSimulationInput(method, genericMessage.rawMessage);
 
@@ -48,7 +48,31 @@ export const openSignMessageApproveModal = async ({ params, transport, network, 
       url: baseUrl,
     },
     genericMessage,
-    [{ title: loc.appSignRequest.contractAddress, description: contractAddress as string }],
+    getDefinitionList(params, method),
     warning,
   );
 };
+
+function getDefinitionList(params: unknown[], method: RpcMethod): DefinitionList {
+  switch (method) {
+    case RpcMethod.eth_signTypedData_v4: {
+      try {
+        const eip712Data = JSON.parse(params[1] as string);
+
+        if (!isEIP712(eip712Data)) {
+          throw new MalformedEIP712TypedData('Data does not conform to the EIP712 standard');
+        }
+
+        return [{ title: loc.appSignRequest.verifyingContract, description: eip712Data.domain.verifyingContract as string }];
+      } catch (e) {
+        if (e instanceof MalformedEIP712TypedData) {
+          throw e;
+        }
+
+        throw new Error('Could not parse transaction parameters');
+      }
+    }
+    default:
+      return [{ title: loc.appSignRequest.contractAddress, description: params[1] as string }];
+  }
+}

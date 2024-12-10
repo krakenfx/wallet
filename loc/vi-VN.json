@@ -137,6 +137,7 @@
     "typed_message_signing_request": "Yêu cầu ký {type}",
     "typedMessageSigningRequest": "Yêu cầu ký {type}",
     "unknownApp": "Ứng dụng không xác định",
+    "verifyingContract": "Xác minh hợp đồng",
     "withdrawal": "Rút"
   },
   "assetOptions": {
@@ -442,6 +443,7 @@
     "genericTryAgainLater": "Đã xảy ra sự cố, vui lòng thử lại sau",
     "network": "Lỗi mạng",
     "offline": "Ngoại tuyến",
+    "offlineRetry": "Bạn đang ngoại tuyến. Vui lòng thử lại khi trực tuyến.",
     "seedMissing": "Lỗi nghiêm trọng! Hạt giống không khả dụng."
   },
   "explore": {
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Mạng thử nghiệm Goerli",
-    "ethereum_sepolia": "Ethereum - Mạng thử nghiệm Sepolia",
-    "ink_sepolia": "Ink - Mạng thử nghiệm Sepolia",
+    "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink_sepolia": "Ethereum - Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Đang tìm ví phụ"
     },
     "importSubWallets": {
+      "addByIndex": "Thêm theo chỉ mục",
       "hasABalance": "Có số dư",
       "hasBalance": "Có tiền",
       "importingWallets": "Đang nhập {subWalletsCount} ví...",
       "importingWalletsOne": "Đang nhập 1 ví...",
       "importWallets": "Nhập {subWalletsCount} ví",
       "importWalletsOne": "Nhập 1 ví",
-      "subtitle": "Chúng tôi tìm thấy {subWalletsCount} ví có hoạt động hoặc số dư. Chọn tất cả ví bạn muốn nhập.",
-      "subtitleOneWallet": "Chúng tôi tìm thấy 1 ví có hoạt động hoặc số dư.",
+      "skip": "Bỏ qua",
+      "subtitle": "Chúng tôi tìm thấy {subWalletsWithBalanceCount} ví có tiền. Chọn tất cả ví bạn muốn nhập.",
+      "subtitleOneWallet": "Chúng tôi tìm thấy 1 ví có tiền.",
       "title": "Chọn ví để nhập",
       "wallet": "Ví",
       "walletsFound": "Đã tìm thấy {subWalletsCount} ví",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Hoán đổi",
     "confirmation": {
       "cancel": "Hủy",
-      "confirm": "Xác nhận"
+      "confirm": "Xác nhận",
+      "initiated": "Đã bắt đầu hoán đổi!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Ví hiện tại của bạn không có bất kỳ tài sản nào, hãy thử nạp tiền vào ví của bạn",

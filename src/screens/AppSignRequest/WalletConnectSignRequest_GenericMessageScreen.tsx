@@ -9,6 +9,7 @@ import { ExpandableSheet } from '@/components/Sheets';
 import type { NavigationProps } from '@/Routes';
 import type { Warning } from '@/types';
 import { navigationStyle } from '@/utils/navigationStyle';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { AccountName } from './components/AccountName';
 import { ConfirmationFooter } from './components/ConfirmationFooter';
@@ -18,7 +19,6 @@ import { Header, getMessageHeading } from './components/Header';
 import { Info } from './components/Info';
 
 import loc from '/loc';
-
 import type { DefinitionList, GenericMessage } from '/modules/wallet-connect/types';
 
 export interface WalletConnectSignRequest_GenericMessageParams {
@@ -36,6 +36,7 @@ export interface WalletConnectSignRequest_GenericMessageParams {
 }
 
 export const WalletConnectSignRequest_GenericMessageScreen = ({ route, navigation }: NavigationProps<'WalletConnectSignRequest_GenericMessage'>) => {
+  const isOnline = useIsOnline();
   const { accountIdx, metadata, onReject, onApprove, genericMessage, detailsContent, warning } = route.params;
   const isCriticalWarning = warning?.severity === 'critical';
   const blockScreenMessage = isCriticalWarning ? warning.message : '';
@@ -50,7 +51,9 @@ export const WalletConnectSignRequest_GenericMessageScreen = ({ route, navigatio
   };
 
   const handleReject = () => {
-    onReject();
+    if (isOnline) {
+      onReject();
+    }
     goBack();
   };
 
@@ -65,12 +68,26 @@ export const WalletConnectSignRequest_GenericMessageScreen = ({ route, navigatio
     );
   }
 
+  let offlineWarning: Warning | undefined;
+  if (!isOnline) {
+    offlineWarning = {
+      severity: 'critical',
+      heading: loc.errors.offline,
+      message: loc.errors.offlineRetry,
+    };
+  }
+
   return (
     <ExpandableSheet
       dismissible
       onDismiss={handleReject}
       PreviewComponent={
-        <Preview metadata={metadata} warning={warning} genericMessage={genericMessage} setHasScrolledToEndOfContent={setHasScrolledToEndOfContent} />
+        <Preview
+          metadata={metadata}
+          warning={offlineWarning || warning}
+          genericMessage={genericMessage}
+          setHasScrolledToEndOfContent={setHasScrolledToEndOfContent}
+        />
       }
       DetailsComponent={<ExpandedDetailsContent content={detailsContent} />}
       FloatingButtonsComponent={
@@ -80,7 +97,7 @@ export const WalletConnectSignRequest_GenericMessageScreen = ({ route, navigatio
               <Info cells={[<AccountName accountIdx={accountIdx} key={`accountName_${accountIdx}}`} />]} />
             </View>
           }
-          disableConfirmationButton={!hasScrolledToEndOfContent}
+          disableConfirmationButton={!hasScrolledToEndOfContent || !isOnline}
           onApprove={handleApprove}
           onReject={handleReject}
           isCriticalWarning={isCriticalWarning}

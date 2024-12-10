@@ -12,6 +12,7 @@ RNBootSplash.hide();
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // Storybook seems to override StatusBar translucent settings resulting in mismatch in available window height compared to the app
     ...Platform.select({
       android: {
         marginTop: -(StatusBar.currentHeight ?? 0),

@@ -10,6 +10,7 @@ import { useRealmWalletById } from '@/realm/wallets';
 import type { NavigationProps } from '@/Routes';
 import type { Warning } from '@/types';
 import { navigationStyle } from '@/utils/navigationStyle';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { AssetContent } from './components/AssetContent';
 import { ConfirmationFooterWithFeeSelector } from './components/ConfirmationFooterWithFeeSelector';
@@ -40,6 +41,7 @@ export const WalletConnectSignRequest_StructuredTransactionScreen = ({
   route,
   navigation,
 }: NavigationProps<'WalletConnectSignRequest_StructuredTransaction'>) => {
+  const isOnline = useIsOnline();
   const {
     walletId,
     metadata,
@@ -67,7 +69,9 @@ export const WalletConnectSignRequest_StructuredTransactionScreen = ({
   };
 
   const handleReject = () => {
-    onReject();
+    if (isOnline) {
+      onReject();
+    }
     goBack();
   };
 
@@ -80,6 +84,15 @@ export const WalletConnectSignRequest_StructuredTransactionScreen = ({
         message={blockScreenMessage}
       />
     );
+  }
+
+  let offlineWarning: Warning | undefined;
+  if (!isOnline) {
+    offlineWarning = {
+      severity: 'critical',
+      heading: loc.errors.offline,
+      message: loc.errors.offlineRetry,
+    };
   }
 
   return (
@@ -97,7 +110,7 @@ export const WalletConnectSignRequest_StructuredTransactionScreen = ({
             subheading={(hasSubtitle && content.subtitle) || ''}
           />
           <View style={[styles.contentContainer, { maxHeight: height * 0.3, marginTop: hasSubtitle ? 12 : 16 }]}>
-            {warning && <CardWarningFromWarning warning={warning} />}
+            {Boolean(offlineWarning || warning) && <CardWarningFromWarning warning={(offlineWarning || warning) as Warning} />}
             <AssetContent content={content} />
           </View>
         </View>
@@ -111,6 +124,7 @@ export const WalletConnectSignRequest_StructuredTransactionScreen = ({
           preparedTransaction={preparedTransaction}
           handleApprove={handleApprove}
           handleReject={handleReject}
+          disableConfirmationButton={!isOnline}
         />
       }
     />

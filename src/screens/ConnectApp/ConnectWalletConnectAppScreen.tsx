@@ -3,6 +3,7 @@ import { useState } from 'react';
 import type { NavigationProps } from '@/Routes';
 import { ConnectAppWithBlock } from '@/screens/ConnectApp/components/ConnectAppWithBlock';
 import { navigationStyle } from '@/utils/navigationStyle';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { useConnectApp3rdPartyAPI } from './hooks/useConnectApp3rdPartyAPI';
 
@@ -21,15 +22,19 @@ export type ConnectWalletConnectAppParams = {
 };
 
 export const ConnectWalletConnectAppScreen = ({ route }: NavigationProps<'ConnectWalletConnectApp'>) => {
+  const isOnline = useIsOnline();
   const verification = getVerificationFromWalletConnectVerify(route.params.verified);
   const [uiState, setUIState] = useState(UI_STATE.loading);
   const _3rdPartyAPI = useConnectApp3rdPartyAPI(route.params, setUIState);
   const rejectSession = async () => {
-    await _3rdPartyAPI.rejectSession?.();
+    if (isOnline) {
+      await _3rdPartyAPI.rejectSession?.();
+    }
     route.params.onDone();
   };
   const approveSession = async () => {
     await _3rdPartyAPI.approveSession?.();
+
     route.params.onDone();
   };
 

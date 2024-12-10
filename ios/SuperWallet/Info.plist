@@ -52,7 +52,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>In order to quickly scan the recipient's address, we need your permission to use the camera to scan their QR Code.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>$(PRODUCT_NAME) requires FaceID access to allows you quick and secure access.</string>
+	<string>This app uses Face ID to securely authenticate your identity.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This alert should not show up as we do not require this data</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

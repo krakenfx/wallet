@@ -137,6 +137,7 @@
     "typed_message_signing_request": "{type} Solicitud de firma",
     "typedMessageSigningRequest": "{type} Solicitud de firma",
     "unknownApp": "Aplicación desconocida",
+    "verifyingContract": "Verificando contrato",
     "withdrawal": "Retiro"
   },
   "assetOptions": {
@@ -152,7 +153,7 @@
     "buttonText": "Me gusta",
     "part1": "Tu monedero ahora es compatible con Avalanche, la blockchain altamente escalable con una finalidad ultrarrápida, y Linea, la L2 de Ethereum diseñada para transacciones seguras y de bajo coste.",
     "part2": "Con estas nuevas integraciones, puedes ver balances de activos, emitir transacciones, cobrar NFT, supervisar posiciones DeFi y conectarte a aplicaciones descentralizadas en ambas redes.",
-    "title": "¡Ya ha llegado la Atención al cliente de Avalanche y Linea!"
+    "title": "¡Avalanche y Linea ya están aquí!"
   },
   "backupWallet": {
     "backup": "Respaldar",
@@ -436,12 +437,13 @@
   },
   "errors": {
     "connectionError": "Error de conexión",
-    "exploreSubpage": "Algo salió mal al abrir este contenido. Inténtelo de nuevo más tarde.",
+    "exploreSubpage": "Algo salió mal al abrir este contenido. Inténtalo de nuevo más tarde.",
     "generalFetchError": "Error. Vuelva a intentarlo.",
     "generic": "Algo salió mal",
     "genericTryAgainLater": "Se ha producido un error. Inténtalo de nuevo más tarde.",
     "network": "Error de red",
     "offline": "Offline",
+    "offlineRetry": "Estás offline. Vuelve a intentarlo cuando estés online.",
     "seedMissing": "Error crítico. La frase semilla no está disponible."
   },
   "explore": {
@@ -450,7 +452,7 @@
     "disclaimerTitle": "Te damos la bienvenida a Explorar",
     "errorBody": "La aplicación no ha podido cargar el contenido de esta página. Inténtelo de nuevo más tarde",
     "errorTitle": "Algo salió mal",
-    "rewardPrefix": "Ganar"
+    "rewardPrefix": "Earn"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "xPub de Bitcoin",
@@ -465,7 +467,7 @@
       "on": "Encendido",
       "timeAbbr": {
         "days": "día",
-        "hours": "hr",
+        "hours": "hora",
         "minutes": "mín.",
         "months": "mes",
         "seconds": "s",
@@ -560,7 +562,7 @@
         "placeholder": "Introduzca un importe"
       },
       "continue": "Continuar",
-      "networkFee": "Tarifa de red",
+      "networkFee": "Comisión de red",
       "sending": {
         "title": "Enviando"
       },
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
-    "ethereum_sepolia": "Ethereum - Testnet de Sepolia",
-    "ink_sepolia": "Ink - Sepolia testnet",
+    "ethereum_sepolia": "Ethereum: Sepolia",
+    "ink_sepolia": "Ethereum: Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Buscando submonederos"
     },
     "importSubWallets": {
+      "addByIndex": "Añadir por índice",
       "hasABalance": "Tiene un balance",
       "hasBalance": "Contiene fondos",
       "importingWallets": "Importando {subWalletsCount} monederos...",
       "importingWalletsOne": "Importando 1 monedero...",
       "importWallets": "Importar {subWalletsCount} monederos",
       "importWalletsOne": "Importar 1 monedero",
-      "subtitle": "Hemos encontrado {subWalletsCount} monederos con actividad o balances. Selecciona los monederos que quieras importar.",
-      "subtitleOneWallet": "Hemos encontrado 1 monederos con actividad o balances.",
+      "skip": "Omitir",
+      "subtitle": "Hemos encontrado {subWalletsWithBalanceCount} monederos con fondos. Selecciona los monederos que quieras importar.",
+      "subtitleOneWallet": "Hemos encontrado 1 monedero con fondos.",
       "title": "Selecciona los monederos que importar",
       "wallet": "Monedero",
       "walletsFound": "{subWalletsCount} monederos encontrados",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Swap",
     "confirmation": {
       "cancel": "Cancelar",
-      "confirm": "Confirmar"
+      "confirm": "Confirmar",
+      "initiated": "Swap iniciada."
     },
     "emptyState": {
       "assetsEmptyDesc": "Tu monedero actual no incluye ningún activo, trata de ingresar fondos.",
@@ -1313,7 +1318,7 @@
       },
       "krakenFee": {
         "hint": "Kraken Wallet no cobra ninguna comisión por los swaps. Ofrecemos este servicio de forma gratuita para apoyar la adopción de la tecnología de criptomonedas y blockchain.",
-        "title": "Tarifa de Kraken",
+        "title": "Comisión de Kraken",
         "value": "GRATIS"
       },
       "minumumOutput": {
@@ -1322,7 +1327,7 @@
       },
       "networkFee": {
         "hint": "Una comisión de red es un cargo que se paga a los validadores de la blockchain por procesar y confirmar tu transacción.",
-        "title": "Tarifa de red"
+        "title": "Comisión de red"
       },
       "priceImpact": {
         "hint": "El impacto del precio es la diferencia entre el precio de mercado y el precio del swap. Depende del tamaño de tu operación en relación con la liquidez del pool.",

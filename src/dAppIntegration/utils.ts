@@ -10,12 +10,12 @@ export const getHexValue = (value: number | bigint): string => {
   return '0x' + value.toString(16);
 };
 
-export const getEvmChainAgnosticsCoin = (hexNumber: string): ChainAgnostic => {
-  return `eip155:${Number(hexNumber)}/slip44:60`;
+const getEvmChainAgnosticsCoinPrefix = (hexNumber: string): ChainAgnostic => {
+  return `eip155:${Number(hexNumber)}/slip44`;
 };
 
 export const getTokenByChainId = (tokens: RealmResults<RealmToken>, currentChainId: string) => {
-  const filtered = tokens.filtered('assetId == $0', getEvmChainAgnosticsCoin(currentChainId));
+  const filtered = tokens.filtered('assetId BEGINSWITH $0', getEvmChainAgnosticsCoinPrefix(currentChainId));
   if (filtered.length > 0) {
     return filtered[0];
   }

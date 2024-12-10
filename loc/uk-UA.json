@@ -137,6 +137,7 @@
     "typed_message_signing_request": "{type} Запит на вхід",
     "typedMessageSigningRequest": "{type} Запит на вхід",
     "unknownApp": "Невідомий застосунок",
+    "verifyingContract": "Верифікація контракту",
     "withdrawal": "Виведення"
   },
   "assetOptions": {
@@ -442,6 +443,7 @@
     "genericTryAgainLater": "Щось пішло не так, повторіть спробу пізніше",
     "network": "Помилка мережі",
     "offline": "Офлайн",
+    "offlineRetry": "Підключення до Інтернету відсутнє. Спробуйте ще раз після відновлення підключення до Інтернету.",
     "seedMissing": "Критична помилка! Початкове значення недоступне."
   },
   "explore": {
@@ -710,8 +712,8 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – тестова мережа Goerli",
-    "ethereum_sepolia": "Ethereum – тестова мережа Sepolia",
-    "ink_sepolia": "Ink – тестова мережа Sepolia",
+    "ethereum_sepolia": "Ethereum – Sepolia",
+    "ink_sepolia": "Ethereum – Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
     "optimism": "Мережа OP Mainnet",
@@ -939,14 +941,16 @@
       "title": "Шукаєте субгаманці"
     },
     "importSubWallets": {
+      "addByIndex": "Додати за індексом",
       "hasABalance": "Має баланс",
       "hasBalance": "Містить кошти",
       "importingWallets": "Імпортування такої кількості гаманців: {subWalletsCount}...",
       "importingWalletsOne": "Імпортування 1 гаманця...",
       "importWallets": "Імпорт такої кількості гаманців: {subWalletsCount}",
       "importWalletsOne": "Імпорт одного гаманця",
-      "subtitle": "Ми знайшли таку кількість гаманців {subWalletsCount} із активністю або балансами. Виберіть усі гаманці, які хочете імпортувати.",
-      "subtitleOneWallet": "Ми знайшли 1 гаманець із активністю або балансами.",
+      "skip": "Пропустити",
+      "subtitle": "Ми знайшли таку кількість гаманців із грошовими коштами: {subWalletsWithBalanceCount}. Виберіть усі гаманці, які хочете імпортувати.",
+      "subtitleOneWallet": "Ми знайшли 1 гаманець із грошовими коштами.",
       "title": "Виберіть гаманці для імпорту",
       "wallet": "Гаманець",
       "walletsFound": "Знайдена така кількість гаманців: {subWalletsCount}",
@@ -1290,7 +1294,8 @@
     "buttonTitle": "Обмін",
     "confirmation": {
       "cancel": "Скасувати",
-      "confirm": "Підтвердити"
+      "confirm": "Підтвердити",
+      "initiated": "Обмін ініційовано!"
     },
     "emptyState": {
       "assetsEmptyDesc": "У вашому поточному гаманці немає активів. Спробуйте поповнити гаманець",

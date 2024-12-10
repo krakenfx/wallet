@@ -12,6 +12,7 @@ import { Routes } from '@/Routes';
 import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 import { useImportWallet } from '../Onboarding/hooks/useImportWallet';
 
@@ -31,6 +32,7 @@ export const WalletCloudImportScreen = ({ navigation, route }: NavigationProps<'
   const { importWallet } = useImportWallet();
   const [hasReadData, setHasReadData] = useState(false);
   const [passkeyError, setPasskeyError] = useState<PasskeyErrorType>();
+  const isOnline = useIsOnline();
   const isOnboardingImportDiscoveryEnabled = useFeatureFlagEnabled(FeatureFlag.onboardingImportDiscoveryEnabled);
 
   const successSheetRef = useRef<CloudBackupSuccessSheetRef>(null);
@@ -52,7 +54,7 @@ export const WalletCloudImportScreen = ({ navigation, route }: NavigationProps<'
         throw Error('Failed to import phrase');
       }
       setCloudBackupCompleted(response.credentialID);
-      navigation.replace(isOnboardingImportDiscoveryEnabled ? Routes.OnboardingImportSubWallets : Routes.OnboardingSecureWallet);
+      navigation.replace(isOnboardingImportDiscoveryEnabled && isOnline ? Routes.OnboardingImportSubWallets : Routes.OnboardingSecureWallet);
     } catch (e) {
       setHasReadData(false);
       if (e instanceof Error && e.code === CloudBackupError.user_canceled) {

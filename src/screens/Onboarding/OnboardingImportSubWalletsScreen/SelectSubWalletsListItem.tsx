@@ -6,31 +6,47 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useTheme } from '@/theme/themes';
 
-type Props = { isSelected: boolean; subWalletId: number; subWalletIndex?: number; toggleSubWallet: () => void };
+import type { SubWallet } from './OnboardingImportSubWalletsScreen.types';
 
-export const SelectSubWalletsListItem = ({ subWalletIndex, isSelected, subWalletId, toggleSubWallet }: Props) => {
+import loc from '/loc';
+
+type Props = {
+  isSelected: boolean;
+
+  showSubWalletIndex: boolean;
+  subWallet: SubWallet;
+  toggleSubWallet: () => void;
+};
+
+export const SelectSubWalletsListItem = ({ subWallet, isSelected, showSubWalletIndex, toggleSubWallet }: Props) => {
+  const isMainWallet = subWallet.index === 0;
   const { colors } = useTheme();
 
   return (
-    <Touchable style={styles.selectableSubWallet} onPress={toggleSubWallet}>
+    <Touchable style={styles.selectableSubWallet} onPress={toggleSubWallet} disabled={isMainWallet}>
       <View style={styles.left}>
-        <AvatarIcon accountNumber={subWalletId} accountAvatar={null} avatarSize={36} />
+        <AvatarIcon accountNumber={subWallet.index} accountAvatar={subWallet.avatar ?? null} avatarSize={36} />
         <View>
-          <Label type="boldCaption1">{'Wallet name here'}</Label>
+          <Label type="boldCaption1">{subWallet.name}</Label>
           <Label type="regularCaption1" color="light50">
-            {}
-            {'$Balance here'}
+            {subWallet.hasBalance && loc.onboardingImportSubWallets.importSubWallets.hasBalance}
           </Label>
         </View>
-        {subWalletIndex !== undefined && (
+        {showSubWalletIndex && (
           <View style={[styles.walletIndex, { borderColor: colors.light15 }]}>
             <Label type="regularCaption1" color="light50">
-              {'#' + subWalletIndex}
+              {'#' + subWallet.index}
             </Label>
           </View>
         )}
       </View>
-      <View>{isSelected ? <SvgIcon name="check-circle-filled" color="green500" /> : <SvgIcon name="check-circle-empty" color="light15" />}</View>
+      <View>
+        {isSelected || isMainWallet ? (
+          <SvgIcon name="check-circle-filled" color={isMainWallet ? 'green400_15' : 'green500'} />
+        ) : (
+          <SvgIcon name="check-circle-empty" color="light15" />
+        )}
+      </View>
     </Touchable>
   );
 };
