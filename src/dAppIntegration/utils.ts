@@ -46,3 +46,18 @@ export function signRequest(secret: string, request: WebViewRequest) {
 
   return crypto.createHmac('sha256', secret).update(requestString).digest('hex');
 }
+
+export function shouldDeclineWhenNotAuthenticated(method: RpcMethod | WalletMethod) {
+  switch (method) {
+    case RpcMethod.personal_sign:
+    case RpcMethod.eth_signTypedData:
+    case RpcMethod.eth_signTypedData_v1:
+    case RpcMethod.eth_signTypedData_v3:
+    case RpcMethod.eth_signTypedData_v4:
+    case RpcMethod.eth_signTransaction:
+    case RpcMethod.eth_sendTransaction:
+      return true;
+    default:
+      return false;
+  }
+}

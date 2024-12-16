@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect } from 'react';
 
+import { useAnimatedKeyboard } from 'react-native-reanimated';
+
 import { useCheckAndSetFontScale } from '@/hooks/useCheckAndSetFontScale';
 import { useDebugInfo } from '@/hooks/useDebugInfo';
 import { useMonitorPendingTransactions } from '@/hooks/useMonitorPendingTransactions';
@@ -40,12 +42,14 @@ import { UniversalSendScreen } from '@/screens/UniversalSend';
 import { WalletBackupPromptScreen } from '@/screens/WalletBackupPrompt';
 import { WalletConnectExplainerScreen } from '@/screens/WalletConnectExplainer';
 import { WhatsNewAssetMarketDataScreen, WhatsNewAvaxLineaScreen, WhatsNewBlastScreen, WhatsNewLongPressScreen } from '@/screens/WhatsNew';
+
 import { useConnectionManager } from '@/utils/useConnectionManager';
 
 import { DefaultBackButton } from './components/BackButton';
 
 import { BrowserScreen } from './screens/Browser';
 import { SwapScreen } from './screens/Swap';
+import { WhatsNewBrowserExploreScreen } from './screens/WhatsNew/WhatsNewBrowserExploreScreen';
 import { useTheme } from './theme/themes';
 
 import type { RouteProps } from './Routes';
@@ -59,6 +63,7 @@ const NavigationStack = () => {
   const theme = useTheme();
   const realm = useRealm();
   const language = useLanguage();
+  useAnimatedKeyboard({ isStatusBarTranslucentAndroid: true });
   useCheckAndSetFontScale();
   useRegisterRefreshManager();
   useConnectionManager();
@@ -137,6 +142,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="WhatsNewAvaxLinea" component={WhatsNewAvaxLineaScreen} options={WhatsNewAvaxLineaScreen.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewAssetMarketData" component={WhatsNewAssetMarketDataScreen} options={WhatsNewAssetMarketDataScreen.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewLongPress" component={WhatsNewLongPressScreen} options={WhatsNewLongPressScreen.navigationOptions} />
+      <DefaultStack.Screen name="WhatsNewBrowserExplore" component={WhatsNewBrowserExploreScreen} options={WhatsNewBrowserExploreScreen.navigationOptions} />
       <DefaultStack.Screen
         name="WalletConnectSignRequest_GenericMessage"
         component={WalletConnectSignRequest_GenericMessageScreen}

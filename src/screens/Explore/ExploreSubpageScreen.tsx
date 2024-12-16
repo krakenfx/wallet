@@ -25,7 +25,7 @@ export const ExploreSubpageScreen = ({ route }: NavigationProps<'ExploreSubpage'
 
   return (
     <ExploreAnimationContextProvider animateScreenUnmount={noop}>
-      <ExploreScrollView>
+      <ExploreScrollView insetHeaderHeight={false}>
         <ExploreFeed feedData={data} loaded={isFetched && isSuccess} />
       </ExploreScrollView>
     </ExploreAnimationContextProvider>

@@ -23,8 +23,8 @@ export const useDefi = () => {
   );
 };
 
-export const getDefisForMutations = (realm: Realm) => {
-  const wallets = getWalletsForMutations(realm);
+export const getDefisForMutations = (realm: Realm, unencryptedRealm: Realm) => {
+  const wallets = getWalletsForMutations(realm, unencryptedRealm);
   return realm.objects<RealmDefi>(REALM_TYPE_DEFI).filtered(
     'walletId IN $0',
     wallets.map(w => w.id),

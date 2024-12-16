@@ -13,7 +13,6 @@ import { memoizedJSONParseTx, usePendingTransactionById, useTransactionById } fr
 import type { RealmWallet } from '@/realm/wallets';
 import type { NavigationProps } from '@/Routes';
 
-import { isInAppBrowserEnabled } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { TransactionDetails } from './components/TransactionDetails';
@@ -70,10 +69,7 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
   }, [navigation]);
 
   const onOpenExplorer = () => {
-    if (isInAppBrowserEnabled()) {
-      navigation.goBack();
-    }
-
+    navigation.goBack();
     openExplorer(transaction.wallet.type, transaction.transactionId, openURL);
   };
 

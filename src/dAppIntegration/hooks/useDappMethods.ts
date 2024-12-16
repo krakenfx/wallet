@@ -1,11 +1,8 @@
 import type React from 'react';
 
-import type WebView from 'react-native-webview';
-
+import { type WebViewMessageEvent } from '@metamask/react-native-webview';
 import { omit } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
-import { type WebViewMessageEvent } from 'react-native-webview';
 
 import { proxyRpcRequest } from '@/api/proxyRpcRequest';
 
@@ -34,9 +31,12 @@ import {
   type WebViewRequest,
   type WebViewResponse,
 } from '../types';
-import { getTokenByChainId, signRequest } from '../utils';
+import { getTokenByChainId, shouldDeclineWhenNotAuthenticated, signRequest } from '../utils';
+
+import type WebView from '@metamask/react-native-webview';
 
 import { handleError } from '/helpers/errorHandler';
+import { performActionAndBlockWalletConnectEvents } from '/modules/wallet-connect/appRequestQueue';
 
 export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: string) => {
   const [pageInfo, setPageInfo] = useState<PageInfo | null>(null);
@@ -118,7 +118,7 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
 
         if (!hasPermissionsRef.current) {
           try {
-            await openConnectModal(pageInfo, domain, baseUrl);
+            await performActionAndBlockWalletConnectEvents(() => openConnectModal(pageInfo, domain, baseUrl));
             savePermission(domain);
             result.push(permission);
           } catch {
@@ -131,7 +131,7 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
 
       return result;
     },
-    [domain, baseUrl, openConnectModal, pageInfo, savePermission],
+    [domain, baseUrl, savePermission, openConnectModal, pageInfo],
   );
 
   const disconnect = useCallback(() => {
@@ -152,6 +152,10 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
 
       if (domain === null || baseUrl === null) {
         return decline(request.id, 'Unexpected error', 4900);
+      }
+
+      if (shouldDeclineWhenNotAuthenticated(request.context.method) && !hasPermissionsRef.current) {
+        return decline(request.id, 'Permission denied');
       }
 
       switch (request.context.method) {
@@ -223,7 +227,9 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
         case RpcMethod.eth_signTypedData_v1:
         case RpcMethod.eth_signTypedData_v3:
         case RpcMethod.eth_signTypedData_v4: {
-          const signature = await signEvmMessage(request.context.method, request.context.params as unknown[], domain, baseUrl);
+          const signature = await performActionAndBlockWalletConnectEvents(() =>
+            signEvmMessage(request.context.method as RpcMethod, request.context.params as unknown[], domain, baseUrl),
+          );
 
           if (!signature) {
             return decline(request.id);
@@ -234,7 +240,9 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
 
         case RpcMethod.eth_signTransaction: {
           try {
-            const signature = await signEvmTransaction(request.context.method, request.context.params as unknown[], domain, baseUrl);
+            const signature = await performActionAndBlockWalletConnectEvents(() =>
+              signEvmTransaction(request.context.method as RpcMethod, request.context.params as unknown[], domain, baseUrl),
+            );
 
             if (signature === undefined) {
               return decline(request.id);
@@ -249,7 +257,9 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
 
         case RpcMethod.eth_sendTransaction: {
           try {
-            const signature = await signAndSendEvmTransaction(request.context.method, request.context.params as unknown[], domain, baseUrl);
+            const signature = await performActionAndBlockWalletConnectEvents(() =>
+              signAndSendEvmTransaction(request.context.method as RpcMethod, request.context.params as unknown[], domain, baseUrl),
+            );
 
             if (signature === undefined) {
               return decline(request.id);
@@ -264,6 +274,9 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
 
         default: {
           if (request.context.method in RpcMethod) {
+            if (!hasPermissionsRef.current) {
+              return decline(request.id, 'Permission denied');
+            }
             const response = await proxyRpcRequest(network, request.context.method, request.context.params, request.context.id);
 
             return respond(request.id, omit(response, ['jsonrpc']));
@@ -274,6 +287,8 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
       }
     },
     [
+      domain,
+      baseUrl,
       decline,
       respond,
       chainId,
@@ -281,19 +296,21 @@ export const useDappMethods = (webViewRef: React.RefObject<WebView>, secret: str
       pageInfo,
       disconnect,
       revokePermissions,
+      hasPermissions,
       tokens,
       evmAccounts,
       signEvmMessage,
       signEvmTransaction,
       signAndSendEvmTransaction,
       network,
-      domain,
-      baseUrl,
-      hasPermissions,
     ],
   );
 
   const requestQueueRef = useRef<RpcRequestWebViewRequest[]>([]);
+
+  useEffect(() => {
+    requestQueueRef.current = [];
+  }, [domain]);
 
   const handleRpcRequest = useCallback(
     (request: RpcRequestWebViewRequest) => {

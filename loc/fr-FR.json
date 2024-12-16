@@ -179,6 +179,10 @@
   },
   "browser": {
     "clearSearch": "Effacer",
+    "downloadFile": {
+      "failed": "Impossible de télécharger le fichier",
+      "success": "Fichier téléchargé"
+    },
     "loadingError": {
       "description": "Vérifiez que l’URL est complète et qu’elle ne contient aucune faute de frappe",
       "title": "URL introuvable"
@@ -194,6 +198,14 @@
       "share": "Partager"
     },
     "searchOnChain": "Rechercher des données on-chain"
+  },
+  "browserExploreWelcome": {
+    "body": "Passez à l’étape suivante de votre expérience crypto dès à présent. Vous pouvez maintenant découvrir les applications décentralisées (DApps) et vous y connecter sans quitter votre Kraken Wallet.",
+    "buttonText": "Cela me semble bien",
+    "part1": "Utilisez les nouvelles options de menu au bas de votre écran pour accéder à la page Explorer",
+    "part2": "Découvrez les DApps populaires et les nouvelles opportunités on-chain ou utilisez la barre de recherche pour en savoir plus",
+    "part3": "Connectez-vous facilement aux DApps et effectuez vos transactions sans jamais quitter l’application Kraken Wallet",
+    "title": "Découvrez le monde de l’on-chain"
   },
   "bugTracking": {
     "allow": "Autoriser",
@@ -930,6 +942,14 @@
     "title": "Importer"
   },
   "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Ajouter un portefeuille",
+      "addWallets": "Ajouter des portefeuilles",
+      "button": "Ajouter par indice",
+      "description": "Saisissez le numéro d’indice du portefeuille que vous souhaitez importer.",
+      "placeholder": "Saisissez le numéro d’indice du portefeuille",
+      "title": "Saisissez l’indice du portefeuille"
+    },
     "findingWallets": {
       "caption": "L’opération peut prendre quelques secondes…",
       "foundWallets": "{count} portefeuilles trouvés...",
@@ -1295,20 +1315,27 @@
     "confirmation": {
       "cancel": "Annuler",
       "confirm": "Confirmer",
-      "initiated": "Échange lancé !"
+      "initiated": "Échange lancé !",
+      "swapFlagged": "Échange signalé !"
     },
     "emptyState": {
       "assetsEmptyDesc": "Actuellement, votre portefeuille ne contient aucun actif, essayez d’en déposer dans votre portefeuille",
       "assetsEmptyTitle": "Aucun actif disponible",
       "clearSearch": "Effacer la recherche",
       "goBack": "Revenir en arrière",
+      "okay": "OK",
       "searchAllNetworks": "Rechercher tous les réseaux",
       "searchEmptyDesc": "Essayez d’élargir votre recherche",
       "searchEmptyTitle": "Aucun résultat",
-      "swappableAssetsEmptyDesc": "Votre portefeuille actuel ne dispose d’aucun actif pris en charge par nos fournisseurs de swap",
+      "swappableAssetsEmptyDesc": "Ce portefeuille ne dispose d’aucun actif pris en charge par nos fournisseurs de swap. Seuls les réseaux compatibles avec Ethereum et EVM sont actuellement pris en charge.",
       "swappableAssetsEmptyNetworkDesc": "Votre portefeuille actuel ne dispose d’aucun actif sur les réseaux sélectionnés pris en charge par nos fournisseurs de swap",
       "swappableAssetsEmptyNetworkTitle": "Aucun actif à échanger disponible sur le réseau sélectionné",
-      "swappableAssetsEmptyTitle": "Aucun actif à échanger disponible"
+      "swappableAssetsEmptyTitle": "Aucun actif à échanger disponible",
+      "targetAssetEmptyDesc": "Aucun de nos fournisseurs ne prend en charge les swaps pour l’actif que vous avez sélectionné",
+      "targetAssetEmptyTitle": "Aucun actif disponible pour échange"
+    },
+    "error": {
+      "insufficientGas": "Solde en {symbol} insuffisant pour couvrir les transactions swap"
     },
     "findingBestRote": "Recherche du meilleur itinéraire",
     "route": {
@@ -1335,8 +1362,8 @@
       },
       "rate": "Taux",
       "slippage": {
-        "hint": "Le glissement correspond à la différence entre le prix attendu et le prix final d’un actif. Si le prix évolue défavorablement au-delà de la tolérance de glissement fixée, la transaction sera annulée.",
-        "title": "Glissement"
+        "hint": "Le glissement de swap correspond à la différence entre le prix attendu et le prix final d’un actif. Si le prix évolue au-delà de la tolérance de glissement fixée, la transaction est annulée. Le glissement de swap s’applique seulement aux swaps sur la même chaîne, à l’exception du glissement de pont.",
+        "title": "Glissement de swap"
       },
       "swapRate": "Taux de l’échange",
       "transactionFees": "Frais de transaction",
@@ -1352,8 +1379,8 @@
         "title": "Trouver un itinéraire d’échange avec"
       },
       "unsupportedRoute": {
-        "desc": "Vous pouvez essayer d’échanger votre actif contre un token majeur de la liste disponible, puis effectuer un échange séparé pour obtenir l’actif qui vous intéresse. La réussite de cette approche n’est pas garantie.",
-        "title": "Il n’y a pas d’itinéraire disponible pour la transaction que vous avez saisie."
+        "desc": "Vous pouvez également essayer de procéder comme suit : réaliser un échange contre un token majeur, puis échanger ce dernier contre l’actif souhaité.",
+        "title": "Il n’y a pas d’itinéraire disponible pour la transaction que vous avez saisie. Augmenter le réglage du glissement peut vous donner accès à plus d’itinéraires."
       }
     },
     "routePath": {
@@ -1696,6 +1723,7 @@
       "title": "Erreur lors de la création de la sauvegarde",
       "tryAgainBold": "nous n’assurons pas le support pour une sauvegarde sur d’autres appareils.",
       "tryAgainButton": "Veuillez réessayer",
+      "tryAgainFormatted": "Lorsque vous réessaierez, gardez à l’esprit que <b>nous n’assurons pas la sauvegarde sur d’autres appareils.</b>",
       "tryAgainRegular": "Lorsque vous réessayez, n’oubliez pas que "
     },
     "errorCreatingPasskey": {
@@ -1714,6 +1742,38 @@
       "title": "Clé d’accès inactive"
     },
     "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Allez sur : <b>Paramètres → Mots de passe → Options de mots de passe</b>",
+              "stepTwo": "Activer : <b>trousseau iCloud</b>",
+              "title": "<b>Conseil 1 :</b> Assurez-vous que le trousseau iCloud est activé pour être utilisé pour les mots de passe et clés d’accès :"
+            },
+            "two": {
+              "stepOne": "Allez sur : <b>Paramètres → AppleID → iCloud → Mots de passe</b>",
+              "stepTwo": "Activation : <b>Synchroniser cet iPhone</b>",
+              "title": "<b>Conseil 2 :</b> Activez Mots de passe et trousseau iCloud"
+            }
+          },
+          "title": "Assurez-vous d’utiliser le <b>trousseau iCloud</b> pour créer la clé d’accès. <b>Les autres gestionnaires de mots de passe ne sont pas encore pris en charge.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Allez sur : <b>Paramètres → Général → Saisie automatique et mots de passe</b>",
+              "stepTwo": "Activation : <b>Mots de passe</b>",
+              "title": "<b>Conseil 1 :</b> Assurez-vous que Mots de passe est activé en suivant les étapes ci-après :"
+            },
+            "two": {
+              "stepOne": "Allez sur : <b>Paramètres → iCloud → Mots de passe</b>",
+              "stepTwo": "Activation : <b>Synchroniser cet iPhone</b>",
+              "title": "<b>Conseil 2 :</b> Activez Mots de passe et trousseau iCloud"
+            }
+          },
+          "title": "Lorsque vous réessaierez, assurez-vous d’utiliser <b>Mots de passe</b> iCloud pour créer la clé d’accès. <b>Les autres gestionnaires de mots de passe ne sont pas encore pris en charge.</b>"
+        }
+      },
       "one": {
         "bold": "Paramètres → Mots de passe → Options de mots de passe",
         "regular": "1. Allez sur : "
@@ -1725,6 +1785,8 @@
     },
     "noPasskeyFound": {
       "description": "Nous n’avons pas trouvé de clés d’accès. Il est possible que vous n’en ayez pas créée ou que iCloud Keychain soit désactivé dans les paramètres. Assurez-vous que iCloud Keychain est activé en suivant les étapes suivantes :",
+      "descriptioniOS17": "Nous n’avons pas trouvé de clés d’accès. Il est possible que vous n’en ayez pas créé ou que le <b>trousseau iCloud</b> soit désactivé dans les paramètres.",
+      "descriptioniOS18": "Nous n’avons pas trouvé de clés d’accès. Il est possible que vous n’en ayez pas créé ou que <b>Mots de passe</b> soit désactivé dans les paramètres.",
       "title": "Aucune clé d’accès trouvée"
     },
     "supportHint": {

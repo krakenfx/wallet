@@ -153,7 +153,7 @@
     "buttonText": "Me gusta",
     "part1": "Tu monedero ahora es compatible con Avalanche, la blockchain altamente escalable con una finalidad ultrarrápida, y Linea, la L2 de Ethereum diseñada para transacciones seguras y de bajo coste.",
     "part2": "Con estas nuevas integraciones, puedes ver balances de activos, emitir transacciones, cobrar NFT, supervisar posiciones DeFi y conectarte a aplicaciones descentralizadas en ambas redes.",
-    "title": "¡Avalanche y Linea ya están aquí!"
+    "title": "¡Ya ha llegado la Atención al cliente de Avalanche y Linea!"
   },
   "backupWallet": {
     "backup": "Respaldar",
@@ -179,6 +179,10 @@
   },
   "browser": {
     "clearSearch": "Borrar",
+    "downloadFile": {
+      "failed": "No se ha podido descargar el archivo",
+      "success": "Archivo descargado"
+    },
     "loadingError": {
       "description": "Comprueba la URL para que no haya erratas ni falte ninguna parte",
       "title": "No se ha encontrado la URL"
@@ -194,6 +198,14 @@
       "share": "Compartir"
     },
     "searchOnChain": "Buscar onchain"
+  },
+  "browserExploreWelcome": {
+    "body": "Da hoy mismo el siguiente paso en tu andadura criptográfica. Puedes descubrir aplicaciones descentralizadas (DApp) y conectarte a ellas sin salir de Kraken Wallet.",
+    "buttonText": "Me gusta",
+    "part1": "Usa el nuevo menú de opciones situado en la parte inferior de tu pantalla para acceder a la página Explorar",
+    "part2": "Descubre las DApp populares y nuevas oportunidades on-chain o usa la barra de búsquedas para obtener más información",
+    "part3": "Conéctate de forma sencilla a varias DApp y realiza transacciones sin salir de la aplicación Kraken Wallet",
+    "title": "Descubre el mundo on-chain"
   },
   "bugTracking": {
     "allow": "Permitir",
@@ -930,6 +942,14 @@
     "title": "Importar"
   },
   "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Añadir monedero",
+      "addWallets": "Añadir monederos",
+      "button": "Añadir por índice",
+      "description": "Escribe el índice numérico del monedero que te gustaría importar.",
+      "placeholder": "Introducir el número del índice del monedero",
+      "title": "Introducir el índice del monedero"
+    },
     "findingWallets": {
       "caption": "Esto puede tardar unos segundos",
       "foundWallets": "{count} monederos encontrados...",
@@ -1295,20 +1315,27 @@
     "confirmation": {
       "cancel": "Cancelar",
       "confirm": "Confirmar",
-      "initiated": "Swap iniciada."
+      "initiated": "Swap iniciada.",
+      "swapFlagged": "¡Swap sospechoso!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Tu monedero actual no incluye ningún activo, trata de ingresar fondos.",
       "assetsEmptyTitle": "No hay activos disponibles.",
       "clearSearch": "Borrar búsqueda",
       "goBack": "Volver",
+      "okay": "De acuerdo",
       "searchAllNetworks": "Buscar todas las redes",
       "searchEmptyDesc": "Trata de ampliar tu búsqueda.",
       "searchEmptyTitle": "No hay resultados",
-      "swappableAssetsEmptyDesc": "Tu monedero actual no tiene ningún activo compatible con nuestros proveedores de swaps",
+      "swappableAssetsEmptyDesc": "Este monedero no tiene activos compatibles con nuestros proveedores de swaps. De momento, solo se admiten las redes de Ethereum y EVM compatibles.",
       "swappableAssetsEmptyNetworkDesc": "Tu monedero actual no tiene ningún activo en la red seleccionada compatible con nuestros proveedores de swaps",
       "swappableAssetsEmptyNetworkTitle": "No hay activos intercambiables disponibles en la red seleccionada",
-      "swappableAssetsEmptyTitle": "No hay activos intercambiables disponibles"
+      "swappableAssetsEmptyTitle": "No hay activos intercambiables disponibles",
+      "targetAssetEmptyDesc": "Nuestros proveedores no admiten swaps para el activo que has seleccionado",
+      "targetAssetEmptyTitle": "No hay activos disponibles para hacer swap con"
+    },
+    "error": {
+      "insufficientGas": "Balance de {symbol} insuficiente para cubrir las transacciones de swap"
     },
     "findingBestRote": "Buscando mejor ruta",
     "route": {
@@ -1335,8 +1362,8 @@
       },
       "rate": "Tarifa",
       "slippage": {
-        "hint": "El deslizamiento es la diferencia entre el precio previsto y el precio final de un activo. Si el precio cambia desfavorablemente por encima de la tolerancia de deslizamiento establecida, la operación se cancelará.",
-        "title": "Deslizamiento"
+        "hint": "El deslizamiento de swaps es la diferencia entre el precio previsto y el precio final de un activo. Si el precio cambia por encima de la tolerancia de deslizamiento establecida, la transacción se cancelará. El deslizamiento de swaps solo se aplica a los swaps de la misma cadena a excepción del deslizamiento del puente.",
+        "title": "Deslizamiento de swaps"
       },
       "swapRate": "Tarifa de swap",
       "transactionFees": "Tarifas por transacción",
@@ -1352,8 +1379,8 @@
         "title": "Encontrar la ruta de swap con"
       },
       "unsupportedRoute": {
-        "desc": "Puedes intentar intercambiar tu activo por un token mayor de la lista disponible, y, a continuación, realizar un intercambio por separado para obtener el activo que deseas. El éxito de este enfoque no está garantizado.",
-        "title": "No hay rutas disponibles para la transacción introducida."
+        "desc": "También puedes hacer swap de un token más grande primero y, después, hacer lo propio por el activo que quieras.",
+        "title": "No hay rutas disponibles para la transacción introducida. Si aumentas el ajuste de deslizamiento, puede que tengas más rutas."
       }
     },
     "routePath": {
@@ -1696,6 +1723,7 @@
       "title": "Se ha producido un error al crear la copia de seguridad",
       "tryAgainBold": "no es posible guardar la copia de seguridad en otros dispositivos.",
       "tryAgainButton": "Intentarlo de nuevo",
+      "tryAgainFormatted": "Cuando lo vuelvas a intentar, recuerda que <b>no permitimos que se guarden copias de seguridad en otros dispositivos.</b>",
       "tryAgainRegular": "Al intentarlo de nuevo, ten en cuenta que "
     },
     "errorCreatingPasskey": {
@@ -1714,6 +1742,38 @@
       "title": "Clave de paso inactiva"
     },
     "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Accede a: <b>Configuración → Contraseñas → Opciones de contraseña</b>",
+              "stepTwo": "Activar: <b>llavero de iCloud</b>",
+              "title": "<b>Consejo 1:</b> Asegúrate de que el llavero de iCloud esté activado para usarse con contraseñas y claves de paso:"
+            },
+            "two": {
+              "stepOne": "Accede a: <b>Ajustes → AppleID → iCloud → Contraseñas</b>",
+              "stepTwo": "Activa: <b>Sincronizar este iPhone</b>",
+              "title": "<b>Consejo 2:</b> Activar Contraseñas y llavero de iCloud"
+            }
+          },
+          "title": "Asegúrate de que estás usando el <b>llavero de iCloud</b> para crear la clave de paso. <b>De momento, no se admiten otros gestores de contraseñas.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Accede a: <b>Ajustes → General → Autocompletar y contraseñas</b>",
+              "stepTwo": "Activa: <b>Contraseñas</b>",
+              "title": "<b>Consejo 1:</b> Asegúrate de que Contraseñas está activado con estos pasos:"
+            },
+            "two": {
+              "stepOne": "Accede a: <b>Ajustes → iCloud → Contraseñas</b>",
+              "stepTwo": "Activa: <b>Sincronizar este iPhone</b>",
+              "title": "<b>Consejo 2:</b> Activar Contraseñas y llavero de iCloud"
+            }
+          },
+          "title": "Cuando vuelvas a intentarlo, asegúrate de que estás usando <b>Contraseñas</b> de iCloud para crear la clave de paso. <b>De momento, no se admiten otros gestores de contraseñas.</b>"
+        }
+      },
       "one": {
         "bold": "Configuración → Contraseñas → Opciones de contraseña",
         "regular": "1. Accede a: "
@@ -1725,6 +1785,8 @@
     },
     "noPasskeyFound": {
       "description": "No hemos podido encontrar ninguna clave de paso. Es posible que no hayas creado uno o que iCloud Keychain esté desactivado en los ajustes. Asegúrate de que iCloud Keychain está activado con estos pasos:",
+      "descriptioniOS17": "No hemos podido encontrar ninguna clave de paso. Es posible que no hayas creado una o que el <b>llavero de iCloud</b> esté desactivado en los ajustes.",
+      "descriptioniOS18": "No hemos podido encontrar ninguna clave de paso. Es posible que no hayas creado una o que <b>Contraseñas</b> esté desactivado en los ajustes.",
       "title": "No se ha encontrado ninguna clave de paso"
     },
     "supportHint": {

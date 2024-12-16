@@ -2,7 +2,7 @@ import { View } from 'react-native';
 
 import { CircleLabel } from '@/components/CircleLabel';
 
-import { SuperDarkTheme } from '@/theme/themes.ts';
+import { SuperDarkTheme } from '@/theme/themes';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

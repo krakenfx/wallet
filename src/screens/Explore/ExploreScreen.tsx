@@ -1,5 +1,4 @@
-import { useFocusEffect } from '@react-navigation/native';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
@@ -8,7 +7,6 @@ import { useExploreFeed } from '@/reactQuery/hooks/useExploreFeed';
 import { RealmSettingsKey, useSettingsByKey, useSettingsMutations } from '@/realm/settings';
 import type { NavigationProps } from '@/Routes';
 
-import { isInAppBrowserEnabled } from '@/utils/featureFlags';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { HomeHeaderAccountSwitch } from '../Home/components/HomeHeaderAccountSwitch';
@@ -51,9 +49,11 @@ export const ExploreScreen = ({ navigation }: NavigationProps<'Explore'>) => {
     setShowNavTabs(false);
   };
 
-  useFocusEffect(() => {
-    setShowNavTabs(hasAcceptedWarning);
-  });
+  useEffect(() => {
+    if (!hasAcceptedWarning) {
+      setShowNavTabs(false);
+    }
+  }, [hasAcceptedWarning, setShowNavTabs]);
 
   const { animatedStyle, animateScreenUnmount } = useExploreScreenUnmountAnimation();
 
@@ -64,11 +64,9 @@ export const ExploreScreen = ({ navigation }: NavigationProps<'Explore'>) => {
   return (
     <ExploreAnimationContextProvider animateScreenUnmount={animateScreenUnmount}>
       <ExploreScrollView>
-        {isInAppBrowserEnabled() ? (
-          <View style={styles.searchBarContainer}>
-            <ExploreSearchBar />
-          </View>
-        ) : null}
+        <View style={styles.searchBarContainer}>
+          <ExploreSearchBar />
+        </View>
         <Animated.View style={animatedStyle}>
           <ExploreFeed feedData={data} loaded={isFetched && isSuccess} />
         </Animated.View>

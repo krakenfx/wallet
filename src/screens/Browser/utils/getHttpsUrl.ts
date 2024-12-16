@@ -20,6 +20,7 @@ export function getHttpsUrl(url: string): string | null {
 }
 
 function isValidHostname(hostname: string): boolean {
-  const hostnameRegex = /^(?=.{1,253}$)(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,})$/;
+  const hostnameRegex = /^(?=.{1,253}$)(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+([a-zA-Z]{2,}|xn--[a-zA-Z0-9-]+))$/;
+
   return hostnameRegex.test(hostname);
 }

@@ -179,6 +179,10 @@
   },
   "browser": {
     "clearSearch": "Cancella",
+    "downloadFile": {
+      "failed": "Impossibile scaricare il file",
+      "success": "File scaricato"
+    },
     "loadingError": {
       "description": "Verifica l’URL per individuare eventuali refusi o parti mancanti",
       "title": "URL non trovato"
@@ -194,6 +198,14 @@
       "share": "Condividi"
     },
     "searchOnChain": "Cerca on-chain"
+  },
+  "browserExploreWelcome": {
+    "body": "Compi oggi stesso il passo successivo nel tuo viaggio nel mondo delle criptovalute. Ora puoi scoprire e connetterti alle applicazioni decentralizzate (DAapp) senza uscire da Kraken Wallet.",
+    "buttonText": "Perfetto",
+    "part1": "Per accedere alla pagina Esplora, utilizza le opzioni di menu disponibili nella parte inferiore della schermata",
+    "part2": "Esplora le DApp più richieste e le nuove opportunità on-chain o utilizza la barra di ricerca per ulteriori informazioni",
+    "part3": "Connettiti facilmente alle DApp ed effettua transazioni senza uscire dall’app Kraken Wallet",
+    "title": "Esplora il mondo on-chain"
   },
   "bugTracking": {
     "allow": "Consenti",
@@ -930,6 +942,14 @@
     "title": "Importa"
   },
   "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Aggiungi wallet",
+      "addWallets": "Aggiungi wallet",
+      "button": "Aggiungi per indice",
+      "description": "Digita il numero indice del wallet che desideri importare.",
+      "placeholder": "Inserisci il numero indice del wallet",
+      "title": "Inserisci l’indice del wallet"
+    },
     "findingWallets": {
       "caption": "Questa operazione potrebbe richiedere qualche secondo",
       "foundWallets": "Trovati {count} wallet...",
@@ -1295,20 +1315,27 @@
     "confirmation": {
       "cancel": "Annulla",
       "confirm": "Conferma",
-      "initiated": "Swap avviato!"
+      "initiated": "Swap avviato!",
+      "swapFlagged": "Swap segnalato!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Il tuo wallet non contiene al momento asset; prova a fare versamenti nel tuo wallet",
       "assetsEmptyTitle": "Nessun asset disponibile",
       "clearSearch": "Cancella ricerca",
       "goBack": "Torna indietro",
+      "okay": "OK",
       "searchAllNetworks": "Cerca tutti i network",
       "searchEmptyDesc": "Prova a espandere la tua ricerca",
       "searchEmptyTitle": "Nessun risultato",
-      "swappableAssetsEmptyDesc": "Il tuo wallet attuale non contiene asset supportati dai nostri fornitori di swap",
+      "swappableAssetsEmptyDesc": "Questo wallet non contiene asset supportati dai nostri fornitori di swap. Attualmente sono supportati solo i network compatibili con Ethereum ed EVM.",
       "swappableAssetsEmptyNetworkDesc": "Il tuo wallet attuale non contiene asset sul network selezionato che sono supportati dai nostri fornitori di swap",
       "swappableAssetsEmptyNetworkTitle": "Nessun asset disponibile per lo swap sul network selezionato",
-      "swappableAssetsEmptyTitle": "Nessun asset disponibile per lo swap"
+      "swappableAssetsEmptyTitle": "Nessun asset disponibile per lo swap",
+      "targetAssetEmptyDesc": "Nessuno dei nostri fornitori supporta gli swap per l’asset selezionato",
+      "targetAssetEmptyTitle": "Nessun asset disponibile per lo scambio con"
+    },
+    "error": {
+      "insufficientGas": "Saldo {symbol} insufficiente per coprire le transazioni di swap"
     },
     "findingBestRote": "Ricerca del percorso migliore",
     "route": {
@@ -1335,8 +1362,8 @@
       },
       "rate": "Tasso",
       "slippage": {
-        "hint": "Lo slittamento è la differenza tra il prezzo previsto e il prezzo finale di un asset. Se il prezzo cambia a sfavore oltre la tolleranza di slittamento stabilita, la transazione viene annullata.",
-        "title": "Slittamento"
+        "hint": "Lo slittamento dello swap è la differenza tra il prezzo previsto e il prezzo finale di un asset. Se il prezzo cambia oltre la tolleranza di slittamento impostata, la transazione viene annullata. Lo slittamento dello swap si applica solo agli swap eseguiti sulla stessa chain, escluso lo slittamento del bridge.",
+        "title": "Slittamento dello swap"
       },
       "swapRate": "Tasso swap",
       "transactionFees": "Commissioni di transazione",
@@ -1352,8 +1379,8 @@
         "title": "Trova una route di swap con"
       },
       "unsupportedRoute": {
-        "desc": "Puoi provare a effettuare uno swap del tuo asset con un token principale disponibile nell'elenco, quindi effettuare un secondo swap per ottenere l'asset che desideri. Il successo di questo metodo non è garantito.",
-        "title": "Non ci sono route disponibili per la transazione che hai inserito."
+        "desc": "Puoi provare a effettuare uno swap per un token principale e scambiarlo successivamente per l’asset desiderato.",
+        "title": "Non ci sono route disponibili per la transazione che hai inserito. Aumentando il valore dello slittamento impostato, puoi avere a disposizione più route."
       }
     },
     "routePath": {
@@ -1696,6 +1723,7 @@
       "title": "Errore durante la creazione del backup",
       "tryAgainBold": "il salvataggio del backup su altri dispositivi non è supportato.",
       "tryAgainButton": "Riprova",
+      "tryAgainFormatted": "Quando riprovi, tieni presente che <b>il salvataggio del backup su altri dispositivi non è supportato.</b>",
       "tryAgainRegular": "Quando riprovi, ricorda che "
     },
     "errorCreatingPasskey": {
@@ -1714,6 +1742,38 @@
       "title": "Passkey inattiva"
     },
     "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Accedi a: <b>Impostazioni → Password → Opzioni password</b>",
+              "stepTwo": "Attiva: <b>iCloud Keychain</b>",
+              "title": "<b>Suggerimento n. 1:</b> Verifica che l’opzione iCloud Keychain sia attivata per l’uso di password e passkey:"
+            },
+            "two": {
+              "stepOne": "Accedi a: <b>Impostazioni → AppleID → iCloud → Password</b>",
+              "stepTwo": "Attiva: <b>Sincronizza questo iPhone</b>",
+              "title": "<b>Suggerimento n. 2:</b> Attiva iCloud Password e Keychain"
+            }
+          },
+          "title": "Assicurati di utilizzare <b>iCloud Keychain</b> per creare la passkey. <b>Al momento non sono supportati altri gestori di password.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Accedi a: <b>Impostazioni → Generale → AutoFill e Password</b>",
+              "stepTwo": "Attiva: <b>Password</b>",
+              "title": "<b>Suggerimento n. 1:</b> Verifica che l’opzione Password sia attivata seguendo questa procedura:"
+            },
+            "two": {
+              "stepOne": "Accedi a: <b>Impostazioni → iCloud → Password</b>",
+              "stepTwo": "Attiva: <b>Sincronizza questo iPhone</b>",
+              "title": "<b>Suggerimento n. 2:</b> Attiva iCloud Password e Keychain"
+            }
+          },
+          "title": "Quando riprovi, assicurati di utilizzare iCloud <b>Password</b> per creare la passkey. <b>Al momento non sono supportati altri gestori di password.</b>"
+        }
+      },
       "one": {
         "bold": "Impostazioni → Password → Opzioni password",
         "regular": "1. Accedi a: "
@@ -1725,6 +1785,8 @@
     },
     "noPasskeyFound": {
       "description": "Nessuna passkey trovata. È possibile che tu non ne abbia creata una o che non sia stata attivata l’opzione iCloud Keychain nelle impostazioni. Verifica che l’opzione iCloud Keychain sia attivata seguendo questa procedura:",
+      "descriptioniOS17": "Nessuna passkey trovata. È possibile che tu non ne abbia creata una o che non sia stata attivata l’opzione <b>iCloud Keychain</b> nelle impostazioni.",
+      "descriptioniOS18": "Nessuna passkey trovata. È possibile che tu non ne abbia creata una o che non sia stata attivata l’opzione <b>Password</b> nelle impostazioni.",
       "title": "Nessuna passkey trovata"
     },
     "supportHint": {

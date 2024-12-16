@@ -16,3 +16,13 @@ export const SWAP_NETWORKS = Object.values(Networks).filter(isSwapSupportedForNe
 export const SWAP_NETWORKS_CAIP_IDS = SWAP_NETWORKS.map(n => n.caipId);
 export const SWAP_NETWORK_FILTER = SWAP_NETWORKS_CAIP_IDS.map(getNetworkFilterFromCaip);
 export const SWAP_NETWORK_UI_FILTER: UINetworkFilter[] = ['all', ...SWAP_NETWORK_FILTER];
+
+export const SUCCESS_TIMEOUT = 2000;
+
+export enum BroadcastState {
+  NONE = 'NONE',
+  WARNING = 'WARNING',
+  LOADING = 'LOADING',
+  FAILED = 'FAILED',
+  SUCCESS = 'SUCCESS',
+}

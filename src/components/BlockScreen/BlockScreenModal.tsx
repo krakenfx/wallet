@@ -32,7 +32,7 @@ export const BlockScreenModal = forwardRef<BottomSheetModalRef, BlockScreenModal
   };
 
   return (
-    <BottomSheetModal ref={ref} snapPoints={['100%']} onDismiss={handleDismiss} isWarning>
+    <BottomSheetModal stackBehavior="push" ref={ref} snapPoints={['100%']} onDismiss={handleDismiss} isWarning>
       <BlockScreenContent {...props} onGoBack={onGoBack} onProceed={onProceed} />
     </BottomSheetModal>
   );

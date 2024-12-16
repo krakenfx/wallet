@@ -6,6 +6,8 @@ import { useRealm } from '@/realm/RealmContext';
 import { useRealmWallets } from '@/realm/wallets/useWallets';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
+
 import type { IWalletKit } from '@reown/walletkit';
 import type { SessionTypes } from '@walletconnect/types';
 
@@ -15,6 +17,7 @@ export const useWalletConnectActiveSessions = (
   accountIdx: number,
 ): [activeSessions: SessionTypes.Struct[], setActiveSessions: React.Dispatch<React.SetStateAction<SessionTypes.Struct[]>>] => {
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
   const { dispatch } = useNavigation();
   const { getSeed } = useSecuredKeychain();
   const web3WalletRef = useRef<IWalletKit | null>(null);
@@ -33,7 +36,7 @@ export const useWalletConnectActiveSessions = (
   );
 
   useEffect(() => {
-    initWalletConnectWeb3Wallet(realm, dispatch, getSeed).then(web3Wallet => {
+    initWalletConnectWeb3Wallet(realm, unencryptedRealm, dispatch, getSeed).then(web3Wallet => {
       web3WalletRef.current = web3Wallet;
 
       web3WalletRef.current.on('session_delete', getAccountSessions);
@@ -46,7 +49,7 @@ export const useWalletConnectActiveSessions = (
       web3WalletRef.current?.core?.pairing?.events?.off('pairing_delete', getAccountSessions);
       web3WalletRef.current?.core?.pairing?.events?.off('pairing_expire', getAccountSessions);
     };
-  }, [getAccountSessions, dispatch, realm, getSeed]);
+  }, [getAccountSessions, dispatch, realm, unencryptedRealm, getSeed]);
 
   useFocusEffect(
     useCallback(() => {

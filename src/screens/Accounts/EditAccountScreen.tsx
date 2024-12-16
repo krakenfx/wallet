@@ -1,14 +1,14 @@
-import { type BottomSheetBackdropProps, BottomSheetScrollView, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
-import { useCallback, useMemo, useState } from 'react';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { useState } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 import { AvatarIcon } from '@/components/AvatarIcon';
-import { Backdrop, BottomSheet } from '@/components/BottomSheet';
+import { BottomSheet } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
+import { KeyboardAvoider } from '@/components/Keyboard';
+import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
-import { useKeyboardOffset } from '@/hooks/useKeyboardOffset';
 import { useAccountById, useAccountsMutations } from '@/realm/accounts';
 import { navigationStyle } from '@/utils/navigationStyle';
 
@@ -27,10 +27,6 @@ export const EditAccountScreen = ({ route, navigation }: AccountNavigationProps<
   const [tempAccountName, setTempAccountName] = useState(account?.accountCustomName);
 
   const { close, bottomSheetProps } = useBottomSheetScreenProps(navigation);
-
-  const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
-
-  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const handleTextChange = (value: string) => {
     setTempAccountName(value);
@@ -52,57 +48,39 @@ export const EditAccountScreen = ({ route, navigation }: AccountNavigationProps<
     <Button text={loc.editAccount.rename} onPress={handleRename} disabled={!tempAccountName || tempAccountName === account?.accountCustomName} />
   );
 
-  const keyboardOffset = useKeyboardOffset();
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: -keyboardOffset.value }],
-    };
-  });
-
-  const animatedBackdropStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: keyboardOffset.value }],
-    };
-  });
-
-  const renderBackdrop = useCallback(
-    (props: BottomSheetBackdropProps) => <Backdrop {...props} dismissible style={animatedBackdropStyle} />,
-    [animatedBackdropStyle],
-  );
+  const bottom = useBottomElementSpacing();
 
   return (
-    <Animated.View style={[animatedStyle, styles.animatedView]}>
-      <BottomSheet
-        contentHeight={animatedContentHeight}
-        handleHeight={animatedHandleHeight}
-        snapPoints={animatedSnapPoints}
-        bottomInset={16}
-        detached={true}
-        dismissible
-        onBackdropPress={Keyboard.dismiss}
-        handleComponent={null}
-        backdropComponent={renderBackdrop}
-        style={styles.modal}
-        {...bottomSheetProps}>
-        <BottomSheetScrollView bounces={false} contentContainerStyle={styles.container} onLayout={handleContentLayout} keyboardShouldPersistTaps="handled">
-          <View style={styles.avatarContainer}>
-            <AvatarIcon accountNumber={accountNumber} accountAvatar={account.avatar} avatarSize={76} />
-          </View>
-          <View style={styles.inputContainer}>
-            <Input
-              placeholder={loc.editAccount.walletName}
-              maxLength={30}
-              onChangeText={handleTextChange}
-              value={tempAccountName}
-              right={renameButton}
-              testID="EditAccountNameInput"
-            />
-          </View>
-          <Button size="large" color="kraken" text={loc.editAccount.save} disabled={!tempAccountName} onPress={handleSave} testID={'EditAccountSaveButton'} />
-        </BottomSheetScrollView>
-      </BottomSheet>
-    </Animated.View>
+    <KeyboardAvoider style={styles.flex} useBottomInset={false}>
+      <View style={styles.flex}>
+        <BottomSheet
+          enableDynamicSizing
+          detached={true}
+          dismissible
+          bottomInset={bottom}
+          onBackdropPress={Keyboard.dismiss}
+          handleComponent={null}
+          style={styles.modal}
+          {...bottomSheetProps}>
+          <BottomSheetScrollView bounces={false} contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+            <View style={styles.avatarContainer}>
+              <AvatarIcon accountNumber={accountNumber} accountAvatar={account.avatar} avatarSize={76} />
+            </View>
+            <View style={styles.inputContainer}>
+              <Input
+                placeholder={loc.editAccount.walletName}
+                maxLength={30}
+                onChangeText={handleTextChange}
+                value={tempAccountName}
+                right={renameButton}
+                testID="EditAccountNameInput"
+              />
+            </View>
+            <Button size="large" color="kraken" text={loc.editAccount.save} disabled={!tempAccountName} onPress={handleSave} testID={'EditAccountSaveButton'} />
+          </BottomSheetScrollView>
+        </BottomSheet>
+      </View>
+    </KeyboardAvoider>
   );
 };
 
@@ -117,9 +95,8 @@ EditAccountScreen.navigationOptions = navigationStyle({
 });
 
 const styles = StyleSheet.create({
-  animatedView: {
+  flex: {
     flex: 1,
-    justifyContent: 'flex-end',
   },
   modal: {
     borderRadius: 48,
@@ -132,7 +109,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   container: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     paddingBottom: 35,

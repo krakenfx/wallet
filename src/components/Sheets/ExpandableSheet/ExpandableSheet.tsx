@@ -187,6 +187,7 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
           animatedPosition={animatedPosition}
           animatedIndex={animatedIndex}
           footerComponent={renderFooter}
+          handleStyle={!dismissible && styles.hiddenHandle}
           onDismiss={onDismiss}>
           {!!StickyHeaderComponent && (
             <View onLayout={stickyHeaderLayout ? undefined : onStickyHeaderLayout}>
@@ -224,5 +225,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
+  },
+  hiddenHandle: {
+    opacity: 0,
   },
 });

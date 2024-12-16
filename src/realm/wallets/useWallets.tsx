@@ -1,4 +1,5 @@
-import { NEW_NETWORKS, isNewNetworksEnabled } from '@/utils/featureFlags';
+import { NEW_NETWORKS, REALM_TYPE_FEATURE_FLAGS, type RealmFeatureFlags } from '@/unencrypted-realm/featureFlags/schema';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 
 import { useCurrentAccountNumber } from '../accounts';
 import { useQuery } from '../RealmContext';
@@ -13,6 +14,7 @@ import type Realm from 'realm';
 
 export const useRealmWallets = (showAllWallets = false, accountNumber?: number) => {
   const currentAccountNumber = useCurrentAccountNumber();
+  const [isNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
 
   return useQuery<RealmWallet>(
     REALM_TYPE_WALLET,
@@ -20,7 +22,7 @@ export const useRealmWallets = (showAllWallets = false, accountNumber?: number) 
       const targetAccountNumber = accountNumber ?? currentAccountNumber;
       const targetWallets = showAllWallets ? wallets : wallets.filtered(`accountIdx = ${targetAccountNumber}`);
 
-      if (isNewNetworksEnabled()) {
+      if (isNewNetworksEnabled) {
         return targetWallets;
       }
 
@@ -30,8 +32,10 @@ export const useRealmWallets = (showAllWallets = false, accountNumber?: number) 
   );
 };
 
-export const getWalletsForMutations = (realm: Realm, showAllWallets = false) => {
-  const wallets = isNewNetworksEnabled()
+export const getWalletsForMutations = (realm: Realm, unencryptedRealm: Realm, showAllWallets = false) => {
+  const isNewNetworksEnabled = unencryptedRealm.objectForPrimaryKey<RealmFeatureFlags>(REALM_TYPE_FEATURE_FLAGS, 'NewNetworksEnabled');
+
+  const wallets = isNewNetworksEnabled
     ? realm.objects<RealmWallet>(REALM_TYPE_WALLET)
     : realm.objects<RealmWallet>(REALM_TYPE_WALLET).filtered(`NOT caipId IN $0`, NEW_NETWORKS);
   if (showAllWallets) {

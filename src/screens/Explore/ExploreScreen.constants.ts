@@ -29,10 +29,6 @@ export const Sizes = {
     card: 409,
     fullBleed: 557,
   },
-  FloatingIcon: {
-    width: 132,
-    height: 164,
-  },
   ListIcon: {
     width: 40,
     height: 40,

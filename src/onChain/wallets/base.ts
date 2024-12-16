@@ -16,6 +16,7 @@ export interface PreparedTransaction<T = unknown> {
   isError?: boolean;
   preventativeAction?: SimulationResult['preventativeAction'];
   warnings?: SimulationResult['warnings'];
+  failureReason?: SimulationResult['failureReason'];
 }
 
 export interface FeeOptions<T extends FeeOption = FeeOption> {
@@ -86,7 +87,7 @@ export interface SingleAddressNetwork extends Network {
 export class NotSupportedError extends Error {}
 
 export interface Transport<TTransaction, TTransactionRequest, TWalletState, TNetwork = Network, TFeeOption extends FeeOption = FeeOption> {
-  getTransactionStatus(network: TNetwork, txid: string): Promise<boolean>;
+  isTransactionComplete(network: TNetwork, txid: string): Promise<boolean>;
   getFeesEstimate(network: TNetwork): Promise<FeeOptions<TFeeOption>>;
 
   prepareTransaction(

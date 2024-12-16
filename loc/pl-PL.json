@@ -66,6 +66,7 @@
     "ethereumDerivationPath": "Ścieżka pochodzenia Ethereum",
     "ethereumDerivationPathContent": "Ścieżka pochodzenia Ethereum jest dzielona z sieciami warstwy 2, takim jak Polygon, Arbitrum, Optimism oraz Base, co oznacza, że taka sama ścieżka pochodzenia jest używana w nich wszystkich.",
     "extendedPublicKey": "Rozszerzony klucz publiczny",
+    "includesCompatibleNetworks": "Obejmuje sieci zgodne z Ethereum",
     "includesLayer2Networks": "Obejmuje sieci warstwy 2",
     "pathCopied": "Ścieżka została skopiowana",
     "title": "{walletName} – informacje",
@@ -135,6 +136,8 @@
     "to": "Do",
     "typed_message_signing_request": "{type} Prośba o podpisanie",
     "typedMessageSigningRequest": "{type} Prośba o podpisanie",
+    "unknownApp": "Nieznana aplikacja",
+    "verifyingContract": "Weryfikacja umowy",
     "withdrawal": "Wypłata"
   },
   "assetOptions": {
@@ -145,6 +148,12 @@
     "send": "Wyślij",
     "viewDetails": "Zobacz szczegóły",
     "viewOn": "Wyświetl w {explorer}"
+  },
+  "avaxLineaWelcoming": {
+    "buttonText": "Brzmi dobrze",
+    "part1": "Portfel obsługuje teraz Avalanche, wysoce skalowalny blockchain z niezwykle szybką finalizacją, oraz Linea, warstwę L2 Ethereum stworzoną z myślą o bezpiecznych, tanich transakcjach.",
+    "part2": "Dzięki tym nowym integracjom możesz przeglądać salda aktywów, wysyłać transakcje, gromadzić NFT, monitorować pozycje DeFi i łączyć się z aplikacjami zdecentralizowanymi w obu sieciach.",
+    "title": "Obsługa Avalanche i Linea już dostępna!"
   },
   "backupWallet": {
     "backup": "Kopia zapasowa",
@@ -167,6 +176,43 @@
   },
   "broadcast": {
     "sent": "Wysłano"
+  },
+  "browser": {
+    "clearSearch": "Wyczyść",
+    "downloadFile": {
+      "failed": "Nie udało się pobrać pliku",
+      "success": "Pobrano plik"
+    },
+    "loadingError": {
+      "description": "Sprawdź, czy adres URL jest kompletny i nie zawiera błędów",
+      "title": "Nie znaleziono adresu URL"
+    },
+    "noSearch": {
+      "description": "Wpisz lub wklej pełny adres, aby wyszukać",
+      "title": "Rozpocznij wyszukanie"
+    },
+    "quickActions": {
+      "connectedApps": "Zobacz połączone aplikacje",
+      "disconnect": "Rozłącz",
+      "refresh": "Odśwież",
+      "share": "Udostępnij"
+    },
+    "searchOnChain": "Szukaj w on-chain"
+  },
+  "browserExploreWelcome": {
+    "body": "Zrób dzisiaj kolejny krok w swojej przygodzie z krypto. Możesz teraz poznać i połączyć się ze zdecentralizowanymi aplikacjami (dapps) bez opuszczania portfela Kraken Wallet.",
+    "buttonText": "Brzmi dobrze",
+    "part1": "Użyj nowych opcji menu u dołu ekranu, aby uzyskać dostęp do strony Eksploruj",
+    "part2": "Eksploruj popularne aplikacje zdecentralizowane i nowe okazje onchain, lub użyj paska wyszukiwania, aby uzyskać więcej informacji",
+    "part3": "Z łatwością połącz się aplikacjami zdecentralizowanymi i przeprowadzaj transakcje bez opuszczania aplikacji Kraken Wallet",
+    "title": "Eksploruj świat onchain"
+  },
+  "bugTracking": {
+    "allow": "Zezwól",
+    "content": "Obserwowalność pozwala nam monitorować i ulepszać korzystanie z portfela poprzez gromadzenie istotnych danych. Dzięki temu możemy identyfikować problemy, optymalizować wydajność i zapewniać płynne działanie portfela. Twoje dane są anonimowe i bezpieczne! ",
+    "disallow": "Nie zezwalaj",
+    "skip": "Zapytaj mnie później",
+    "title": "Pomóż nam w ulepszaniu Kraken Wallet"
   },
   "coins": {
     "allNetworks": "Wszystkie sieci",
@@ -393,6 +439,7 @@
     "explore": "Odkryj"
   },
   "editAccount": {
+    "rename": "Zmień nazwę",
     "save": "Zapisz",
     "title": "Edytuj portfel",
     "walletName": "Nazwa portfela"
@@ -402,12 +449,22 @@
   },
   "errors": {
     "connectionError": "Błąd połączenia",
+    "exploreSubpage": "Coś poszło nie tak podczas otwierania tej treści. Spróbuj ponownie później.",
     "generalFetchError": "Błąd, spróbuj ponownie",
     "generic": "Coś poszło nie tak",
     "genericTryAgainLater": "Coś poszło nie tak, spróbuj ponownie później",
     "network": "Błąd sieci",
     "offline": "Offline",
+    "offlineRetry": "Jesteś offline. Spróbuj ponownie, gdy będziesz online.",
     "seedMissing": "Błąd krytyczny! Seed jest niedostępny."
+  },
+  "explore": {
+    "continueAccessibilityHint": "Zaakceptuj zastrzeżenie i kontynuuj",
+    "disclaimerBody": "Pamiętaj, że ta funkcja zawiera treści stron trzecich. Zapoznaj się z warunkami świadczenia usług.",
+    "disclaimerTitle": "Witamy w Explore!",
+    "errorBody": "Aplikacja nie mogła załadować treści na tej stronie. Spróbuj ponownie później",
+    "errorTitle": "Coś poszło nie tak",
+    "rewardPrefix": "Earn"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -660,6 +717,7 @@
   },
   "network": {
     "arbitrum": "Arbitrum",
+    "avalanche": "Avalanche",
     "base": "Base",
     "bitcoin": "Bitcoin",
     "blast": "Blast",
@@ -667,6 +725,8 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – Goerli testnet",
     "ethereum_sepolia": "Ethereum – Sepolia testnet",
+    "ink_sepolia": "Ethereum – Ink Sepolia",
+    "linea": "Linea",
     "matic": "Matic",
     "optimism": "Optimism",
     "polygon": "Polygon",
@@ -881,6 +941,56 @@
     "subtitle": "Twój portfel",
     "title": "Importuj"
   },
+  "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Dodaj portfel",
+      "addWallets": "Dodaj portfele",
+      "button": "Dodaj według indeksu",
+      "description": "Wpisz indeks numeru portfela, który chcesz zaimportować.",
+      "placeholder": "Wprowadź indeks numeru portfela",
+      "title": "Wprowadź indeks portfela"
+    },
+    "findingWallets": {
+      "caption": "Może to potrwać kilka sekund",
+      "foundWallets": "Znaleziono {count} portfele(-i)…",
+      "title": "Szukam portfeli podrzędnych"
+    },
+    "findSubWallets": {
+      "caption": "Może to potrwać kilka sekund",
+      "foundWallets": "Znaleziono {count} portfele(-i)…",
+      "title": "Szukam portfeli podrzędnych"
+    },
+    "importSubWallets": {
+      "addByIndex": "Dodaj według indeksu",
+      "hasABalance": "Ma saldo",
+      "hasBalance": "Zawiera środki",
+      "importingWallets": "Importowanie {subWalletsCount} portfeli…",
+      "importingWalletsOne": "Importowanie 1 portfela…",
+      "importWallets": "Importuj {subWalletsCount} portfele(-i)",
+      "importWalletsOne": "Importuj 1 portfel",
+      "skip": "Pomiń",
+      "subtitle": "Znaleźliśmy portfele ze środkami: {subWalletsWithBalanceCount}. Wybierz portfele, które chcesz zaimportować.",
+      "subtitleOneWallet": "Znaleźliśmy 1 portfel ze środkami.",
+      "title": "Wybierz portfele do zaimportowania",
+      "wallet": "Portfel",
+      "walletsFound": "Znaleziono {subWalletsCount} portfele(-i)",
+      "walletsFoundOne": "Znaleziono 1 portfel"
+    },
+    "importSubWalletsSuccess": {
+      "continue": "Kontynuuj",
+      "subtitle": "Pomyślnie dodano portfele. Możesz dodać więcej w dowolnym momencie.",
+      "subtitleOneWallet": "Pomyślnie dodano portfel. Możesz dodać więcej w dowolnym momencie.",
+      "title": "Zaimportowano {subWalletsCount} portfele(-i)",
+      "titleOneWallet": "Zaimportowano 1 portfel!"
+    },
+    "loadingSubWallets": {
+      "caption": "Może to potrwać kilka sekund",
+      "foundWallets": "Znaleziono {subWalletsCount} portfele(-i)…",
+      "foundWalletsOne": "Znaleziono 1 portfel…",
+      "subtitle": "Może to potrwać kilka sekund",
+      "title": "Szukam portfeli podrzędnych"
+    }
+  },
   "onboardingImportWallet": {
     "caption": "Wprowadź swoją tajną frazę odzyskiwania, aby zaimportować swój portfel.",
     "header": "Zaimportuj swój portfel",
@@ -907,9 +1017,12 @@
     "titleStart": "Aby być na bieżąco, "
   },
   "onChainSecurity": {
+    "analysingApp": "Analizuję aplikację…",
     "appConnectCriticalWarning": "Uważamy, że ta aplikacja stanowi złośliwe oprogramowanie i kontynuowanie korzystania z niej będzie niebezpieczne. Wyrażenie zgody może doprowadzić do utraty środków.",
     "appConnectMediumWarning": "Nie można zweryfikować aplikacji przesyłającej to żądanie.",
     "appFlagged": "Aplikacja została oznaczona!",
+    "appSafetyNotVerified": "Nie zweryfikowano bezpieczeństwa aplikacji",
+    "appSafetyNotVerifiedMessage": "Nie byliśmy w stanie zweryfikować bezpieczeństwa aplikacji, z którą próbujesz się połączyć, z powodu tymczasowego błędu lub awarii naszej usługi weryfikacji aplikacji. Kontynuuj ostrożnie.",
     "appSignMessageCriticalWarning": "Uważamy, że ta aplikacja stanowi złośliwe oprogramowanie, a podpisanie wiadomości jest niebezpieczne. Wyrażenie zgody może doprowadzić do utraty środków.",
     "appSignMessageMediumWarning": "Nie można zweryfikować aplikacji przesyłającej to żądanie.",
     "appSignTransactionCriticalWarning": "Uważamy, że ta aplikacja stanowi złośliwe oprogramowanie, a podpisanie transakcji jest niebezpieczne. Wyrażenie zgody może doprowadzić do utraty środków.",
@@ -930,6 +1043,7 @@
     "knownSecurityRiskInfo": "Ta witryna została oznaczona jako niebezpieczna przez wielu dostawców zabezpieczeń. Aby chronić Twoje aktywa, NIE nawiązuj z nią łączności.",
     "knownSecurityRiskMessage": "Ta witryna została oznaczona jako niebezpieczna przez wielu dostawców zabezpieczeń. Wyjdź natychmiast, aby chronić swoje aktywa przed utratą",
     "messageFlagged": "Wiadomość została oznaczona!",
+    "punycodeDomainRiskMessage": "Adres tej strony internetowej zawiera niestandardowe znaki. Jest to metoda powszechnie stosowana przez oszustów w celu podszywania się pod strony internetowe. Ze względów bezpieczeństwa zalecamy nie wpisywać na tej stronie wrażliwych informacji ani z niej korzystać.",
     "returnToSafety": "Powrót do zabezpieczeń",
     "signTransactionCriticalWarning": "Uważamy, że jest to złośliwa, niebezpieczna do podpisania transakcja. Wyrażenie zgody może doprowadzić do utraty środków.",
     "transactionFlagged": "Transakcja została oznaczona!",
@@ -1144,6 +1258,8 @@
     "electrum_reset_to_default": "Cz na pewno chcesz zresetować swoje ustawienia Electrum do domyślnych?",
     "electrum_saved": "Twoje zmiany zostały pomyślnie zapisane. Ponowne uruchomienie aplikacji może być wymagane, aby zmiany weszły w życie.",
     "electrum_unable_to_connect": "Nie można połączyć z {server}.",
+    "enableTracking": "Włącz śledzenie błędów",
+    "enableTrackingDescription": "Włączając tę funkcję, pomagasz nam w ulepszaniu aplikacji",
     "general": "Ogólne",
     "header": "Ustawienia",
     "hideBalances": "Ukryj salda",
@@ -1190,6 +1306,94 @@
     "knowledgeBaseDesc": "Wyszukaj nasze dokumenty, przeczytaj FAQ i pozostańmy w kontakcie",
     "knowledgeBaseTitle": "Baza wiedzy",
     "visitSupportCenter": "Odwiedź centrum wsparcia"
+  },
+  "swap": {
+    "amountExceedingBalance": "Wprowadzona kwota przekracza dostępne saldo",
+    "amountPlaceholder": "Wprowadź kwotę",
+    "balance": "Saldo {0}",
+    "buttonTitle": "Swap",
+    "confirmation": {
+      "cancel": "Anuluj",
+      "confirm": "Potwierdź",
+      "initiated": "Zainicjowano swap!",
+      "swapFlagged": "Oznaczono swap!"
+    },
+    "emptyState": {
+      "assetsEmptyDesc": "Twój obecny portfel nie zawiera żadnych aktywów, spróbuj zasilić swój portfel",
+      "assetsEmptyTitle": "Brak dostępnych aktywów",
+      "clearSearch": "Wyczyść wyszukiwanie",
+      "goBack": "Wróć",
+      "okay": "W porządku",
+      "searchAllNetworks": "Wyszukaj we wszystkich sieciach",
+      "searchEmptyDesc": "Spróbuj rozszerzyć swoje wyszukiwanie",
+      "searchEmptyTitle": "Brak wyników",
+      "swappableAssetsEmptyDesc": "Ten portfel nie zawiera żadnych aktywów obsługiwanych przez naszych dostawców swapu. Obecnie obsługiwane są tylko sieci kompatybilne z Ethereum i EVM.",
+      "swappableAssetsEmptyNetworkDesc": "Twój obecny portfel nie zawiera żadnych aktywów w wybranej sieci obsługiwanych przez naszych dostawców swapu",
+      "swappableAssetsEmptyNetworkTitle": "Brak dostępnych aktywów do swapu w wybranej sieci",
+      "swappableAssetsEmptyTitle": "Brak dostępnych aktywów do swapu",
+      "targetAssetEmptyDesc": "Żaden z dostawców nie obsługuje swapów dla wybranego aktywa",
+      "targetAssetEmptyTitle": "Brak dostępnych aktywów do swapu dla"
+    },
+    "error": {
+      "insufficientGas": "Niewystarczające saldo {symbol} do pokrycia transakcji swapu"
+    },
+    "findingBestRote": "Szukanie najlepszej ścieżki",
+    "route": {
+      "bridgeCost": {
+        "hint": "Koszt Bridge to opłata naliczana przez dostawcę usługi swapowania za przeniesienie aktywów między różnymi blockchainami w ramach swapa.",
+        "title": "Koszt Bridge"
+      },
+      "krakenFee": {
+        "hint": "Kraken Wallet nie nalicza żadnych opłat za swapy. Oferujemy tę usługę bezpłatnie, aby wspierać wdrażanie kryptowalut i technologii blockchain.",
+        "title": "Opłata kraken",
+        "value": "BEZ OPŁAT"
+      },
+      "minumumOutput": {
+        "hint": "Jeśli dojdzie do poślizgu, jest to minimalna kwota aktywa docelowego, którą otrzymasz po pomyślnym zrealizowaniu transakcji.",
+        "title": "Minimalny wynik"
+      },
+      "networkFee": {
+        "hint": "Opłata sieciowa to opłata uiszczana na rzecz walidatorów blockchaina za przetworzenie i potwierdzenie transakcji.",
+        "title": "Opłata sieciowa"
+      },
+      "priceImpact": {
+        "hint": "Wpływ cenowy stanowi różnicę między ceną rynkową a ceną swapa. Zależy on od rozmiaru transakcji powiązanej z płynnością w puli.",
+        "title": "Wpływ cenowy"
+      },
+      "rate": "Stawka",
+      "slippage": {
+        "hint": "Poślizg swapu to różnica między oczekiwaną a ostateczną ceną aktywów. Jeśli cena przesunie się poza ustaloną tolerancję poślizgu, transakcja zostanie anulowana. Poślizg swapu ma zastosowanie tylko do swapów tego samego łańcucha, z wyłączeniem poślizgu mostowego.",
+        "title": "Poślizg swapu"
+      },
+      "swapRate": "Stawka swapa",
+      "transactionFees": "Opłaty transakcyjne",
+      "typeSelection": {
+        "bestValue": {
+          "desc": "Najlepsza wartość ogólna",
+          "name": "Najlepsza wartość"
+        },
+        "fastest": {
+          "desc": "Najwyższa szybkość transakcji",
+          "name": "Najszybszy swap"
+        },
+        "title": "Znajdź trasę swapa za pomocą"
+      },
+      "unsupportedRoute": {
+        "desc": "Możesz również spróbować najpierw zamienić na główny token, a następnie zamienić go na pożądane aktywo.",
+        "title": "Brak dostępnych tras dla wprowadzonej transakcji. Zwiększenie ustawienia poślizgu może dać Ci więcej opcji."
+      }
+    },
+    "routePath": {
+      "bridge": "Bridge poprzez {name}",
+      "swap": "Swap poprzez {name}",
+      "title": "Trasa swapa"
+    },
+    "selectAsset": "Wybierz aktywa",
+    "sourceListHeader": "Twoje aktywa",
+    "sourceSearchPlaceholder": "Wybierz aktywo do swapu",
+    "targetSearchPlaceholder": "Wybierz aktywo do otrzymania",
+    "title": "Swap",
+    "unsupportedAssetsHidden": "Nasi dostawcy swapu nie obsługą jeszcze Twoich {count} innych aktywów"
   },
   "test": {
     "key": "Testowanie"
@@ -1505,6 +1709,13 @@
     "title": "Usuń kopię zapasową"
   },
   "walletCloudBackupError": {
+    "deleteBackupConfirmation": {
+      "cancel": "Anuluj",
+      "description": "Usuwając ją, potwierdzasz, że klucz dostępu został już usunięty. To działanie usunie z aplikacji wszystkie odniesienia do usuniętego klucza dostępu.",
+      "header": "Usuń kopię zapasową klucza dostępu",
+      "remove": "Usuń",
+      "title": "Czy na pewno chcesz usunąć tę kopię zapasową klucza dostępu?"
+    },
     "ensureICloudKeychainOn": "W ustawieniach hasła urządzenia upewnij się, że pęk kluczy iCloud jest włączony i można go używać do przechowywania haseł i kluczy dostępu:",
     "errorCreatingBackup": {
       "cancel": "Anuluj",
@@ -1512,6 +1723,7 @@
       "title": "Błąd podczas tworzenia kopii zapasowej",
       "tryAgainBold": "Nie obsługujemy zapisywania kopii zapasowej na innych urządzeniach.",
       "tryAgainButton": "Spróbuj ponownie",
+      "tryAgainFormatted": "Próbując po raz kolejny, pamiętaj, że <b>nie obsługujemy zapisywania kopi zapasowej na innych urządzeniach.</b>",
       "tryAgainRegular": "Przy kolejnej próbie pamiętaj, że "
     },
     "errorCreatingPasskey": {
@@ -1519,6 +1731,9 @@
       "title": "Błąd podczas tworzenia klucza dostępu"
     },
     "errorDeletingPasskey": {
+      "cancel": "Anuluj",
+      "deletedPasskeyPossibility": "Możliwe też, że klucz dostępu zawierający kopię zapasową został już usunięty. Jeśli masz pewność, że kod dostępu został usunięty, możemy go tak zaznaczyć i usunąć z portfela.",
+      "removeItButton": "Tak, usuń",
       "title": "Błąd podczas usuwania klucza dostępu"
     },
     "errorInactive": {
@@ -1527,6 +1742,38 @@
       "title": "Nieaktywny klucz dostępu"
     },
     "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Przejdź do: <b>Ustawienia → Hasła → Opcje hasła</b>",
+              "stepTwo": "Włącz <b>pęk kluczy iCloud</b>",
+              "title": "<b>Wskazówka 1:</b> Upewnij się, że pęk kluczy iCloud jest włączony i można go używać do przechowywania haseł i kluczy dostępu:"
+            },
+            "two": {
+              "stepOne": "Przejdź do: <b>Ustawienia → AppleID → iCloud → Hasła</b>",
+              "stepTwo": "Włącz: <b>Synchronizuj ten iPhone</b>",
+              "title": "<b>Wskazówka 2:</b> Włącz hasła iCloud i pęk kluczy"
+            }
+          },
+          "title": "Upewnij się, że korzystasz z <b>pęku kluczy iCloud</b>, aby utworzyć klucz dostępu. <b>Inne managery haseł nie są jeszcze obsługiwane.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Przejdź do: <b>Ustawienia → Ogólne → Automatyczne wypełnianie i Hasła</b>",
+              "stepTwo": "Włącz: <b>Hasła</b>",
+              "title": "<b>Wskazówka 1:</b> Upewnij się, że funkcja Hasła jest włączona, wykonując poniższe kroki:"
+            },
+            "two": {
+              "stepOne": "Przejdź do: <b>Ustawienia → iCloud → Hasła</b>",
+              "stepTwo": "Włącz: <b>Synchronizuj ten iPhone</b>",
+              "title": "<b>Wskazówka 2:</b> Włącz hasła iCloud i pęk kluczy"
+            }
+          },
+          "title": "Gdy spróbujesz ponownie, upewnij się, że używasz funkcji iCloud <b>Hasła</b>, aby utworzyć kod dostępu. <b>Inne managery haseł nie są jeszcze obsługiwane.</b>"
+        }
+      },
       "one": {
         "bold": "Ustawienia → Hasła → Opcje hasła",
         "regular": "1. Przejdź do: "
@@ -1538,12 +1785,19 @@
     },
     "noPasskeyFound": {
       "description": "Nie mogliśmy znaleźć klucza dostępu. Być może go nie utworzono lub pęk kluczy iCloud został wyłączony w ustawieniach. Upewnij się, że pęk klucz iCloud jest włączony, wykonując poniższe kroki:",
+      "descriptioniOS17": "Nie mogliśmy znaleźć klucza dostępu. Być może go nie utworzono lub <b>pęk kluczy iCloud</b> został wyłączony w ustawieniach.",
+      "descriptioniOS18": "Nie mogliśmy znaleźć klucza dostępu. Być może go nie utworzono lub <b>Hasła</b> zostały wyłączone w ustawieniach.",
       "title": "Nie znaleziono klucza dostępu"
     },
     "supportHint": {
       "link": "Dział Wsparcia Kraken Wallet ↗",
       "regular": "Jeśli to nie rozwiąże Twojego problemu, możesz uzyskać pomoc, odwiedzając ",
       "regularWithManualBackup": "Jeśli to nie rozwiąże Twojego problemu, możesz zaimportować Twoją 12-24 wyrazową tajną frazę odzyskiwania lub uzyskać pomoc, odwiedzając "
+    },
+    "userCanceledBackup": {
+      "cancel": "Anuluj",
+      "description": "Aby utworzyć kopię zapasową portfela, musisz zalogować się ponownie. W przeciwnym razie nie będziemy mogli bezpiecznie zaszyfrować Twojego portfela za pomocą kodu dostępu.",
+      "title": "Wymagany kod dostępu do logowania"
     }
   },
   "walletConnect": {
@@ -1560,6 +1814,7 @@
       "cancel": "Anuluj",
       "connect": "Podłącz"
     },
+    "back_to_dapp": "Aby kontynuować, wróć do przeglądarki",
     "failedToConnect": "Aplikacja nie nawiązała połączenia",
     "failedToDisconnect": "Aplikacja nie została rozłączona",
     "feeEstimate": "Szacunkowa opłata",

@@ -32,8 +32,9 @@ export const useSwapRouteData = (): SwapRouteUIData | undefined => {
       return undefined;
     }
 
-    const output = swapQuoteResult.to.amount ?? '0';
-    const minOutput = swapQuoteResult.minAmountOut ?? '0';
+    const quote = swapQuoteResult.quote;
+    const output = quote.to.amount ?? '0';
+    const minOutput = quote.minAmountOut ?? '0';
 
     const sourceAssetAmountInTokenUnits = unitConverter.smallUnit2TokenUnit(sourceAssetAmount, sourceAsset.metadata.decimals);
     const targetAssetAmountInTokenUnits = unitConverter.smallUnit2TokenUnit(output, targetAsset.metadata.decimals);
@@ -54,11 +55,11 @@ export const useSwapRouteData = (): SwapRouteUIData | undefined => {
       isBtc: isBtc({ assetId: targetAsset.assetId }),
     });
 
-    const fees = mergeFees(swapQuoteResult.route.txSteps);
+    const fees = mergeFees(quote.route.txSteps);
 
     const now = Date.now();
-    const durationFormatted = swapQuoteResult.route.timeEstimate
-      ? formatDistanceStrict(addSeconds(now, swapQuoteResult.route.timeEstimate), now, {
+    const durationFormatted = quote.route.timeEstimate
+      ? formatDistanceStrict(addSeconds(now, quote.route.timeEstimate), now, {
           locale: getDateLocale(),
         })
       : undefined;
@@ -73,11 +74,11 @@ export const useSwapRouteData = (): SwapRouteUIData | undefined => {
       output,
       minOutput,
       minOutputFormatted,
-      slippage: swapQuoteResult.swapSlippage ? `${swapQuoteResult.swapSlippage}%` : '-',
+      slippage: quote.swapSlippage ? `${quote.swapSlippage}%` : '-',
       transactionFeesTotalFiat: feesTotal ? formatCurrency(feesTotal, { currency }) : '-',
       fees,
-      steps: swapQuoteResult.route.txSteps,
-      duration: durationFormatted ? `~${durationFormatted}` : undefined,
+      steps: quote.route.txSteps,
+      duration: durationFormatted,
     };
   }, [currency, feeFiatValues, sourceAsset, sourceAssetAmount, swapQuoteResult, targetAsset]);
 };

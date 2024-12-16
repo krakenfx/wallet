@@ -179,6 +179,10 @@
   },
   "browser": {
     "clearSearch": "Limpar",
+    "downloadFile": {
+      "failed": "Falha ao baixar o arquivo",
+      "success": "Arquivo baixado"
+    },
     "loadingError": {
       "description": "Verifique a URL e confirme se não há nenhum erro de digitação ou partes ausentes",
       "title": "URL não encontrada"
@@ -194,6 +198,14 @@
       "share": "Compartilhar"
     },
     "searchOnChain": "Buscar em cadeia"
+  },
+  "browserExploreWelcome": {
+    "body": "Dê o próximo passo em sua jornada de cripto hoje mesmo. Agora você pode descobrir e se conectar a aplicativos descentralizados (dapps) sem sair de sua Kraken Wallet.",
+    "buttonText": "Ótimo",
+    "part1": "Use as novas opções de menu na parte inferior de sua tela para acessar a página Explorar",
+    "part2": "Explore dapps populares e novas oportunidades em cadeia ou use a barra de pesquisa para mais opções",
+    "part3": "Conecte-se facilmente a dapps e realize transações sem sair do aplicativo Kraken Wallet",
+    "title": "Explore o mundo em cadeia"
   },
   "bugTracking": {
     "allow": "Permitir",
@@ -930,6 +942,14 @@
     "title": "Importar"
   },
   "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Adicionar carteira",
+      "addWallets": "Adicionar carteiras",
+      "button": "Adicionar por índice",
+      "description": "Digite o índice numérico da carteira que deseja importar.",
+      "placeholder": "Insira o índice numérico da carteira",
+      "title": "Insira o índice da carteira"
+    },
     "findingWallets": {
       "caption": "Isso pode levar alguns segundos",
       "foundWallets": "{count} carteiras encontradas...",
@@ -1295,20 +1315,27 @@
     "confirmation": {
       "cancel": "Cancelar",
       "confirm": "Confirmar",
-      "initiated": "Swap iniciado!"
+      "initiated": "Swap iniciado!",
+      "swapFlagged": "Swap sinalizado!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Sua carteira atual não tem nenhum ativo, tente fazer um depósito em sua carteira",
       "assetsEmptyTitle": "Nenhum ativo disponível",
       "clearSearch": "Limpar pesquisa",
       "goBack": "Voltar",
+      "okay": "Ok",
       "searchAllNetworks": "Pesquisar em todas as redes",
       "searchEmptyDesc": "Tente expandir sua pesquisa",
       "searchEmptyTitle": "Nenhum resultado",
-      "swappableAssetsEmptyDesc": "Sua carteira atual não tem nenhum ativo suportado por nossos provedores de swap",
+      "swappableAssetsEmptyDesc": "Essa carteira não tem nenhum ativo suportado por nossos provedores de swap. Apenas redes compatíveis com Ethereum e EVM são suportadas no momento.",
       "swappableAssetsEmptyNetworkDesc": "Sua carteira atual não tem nenhum ativo na rede selecionada que seja suportado por nossos provedores de swap",
       "swappableAssetsEmptyNetworkTitle": "Nenhum ativo para swap disponível na rede selecionada",
-      "swappableAssetsEmptyTitle": "Nenhum ativo para swap disponível"
+      "swappableAssetsEmptyTitle": "Nenhum ativo para swap disponível",
+      "targetAssetEmptyDesc": "Nenhum de nossos provedores suporta swaps para o ativo selecionado",
+      "targetAssetEmptyTitle": "Não há ativos disponíveis para fazer swap"
+    },
+    "error": {
+      "insufficientGas": "Saldo {symbol} insuficiente para cobrir transações de swap"
     },
     "findingBestRote": "Encontrando a melhor rota",
     "route": {
@@ -1335,8 +1362,8 @@
       },
       "rate": "Taxa",
       "slippage": {
-        "hint": "Slippage é a diferença entre o preço esperado e o preço final de um ativo. Se o preço mudar desfavoravelmente além da tolerância de slippage definida, a transação será cancelada.",
-        "title": "Slippage"
+        "hint": "Slippage de swap é a diferença entre o preço esperado e o final de um ativo. Se o preço mudar além da tolerância de slippage definida, a transação é cancelada. A slippage de swap se aplica apenas a swaps da mesma cadeia, exceto slippage de bridge.",
+        "title": "Slippage de swap"
       },
       "swapRate": "Taxa de swap",
       "transactionFees": "Taxas de transação",
@@ -1352,8 +1379,8 @@
         "title": "Encontrar rota de swap com"
       },
       "unsupportedRoute": {
-        "desc": "Você pode tentar fazer swap de seu ativo por um token principal da lista disponível e depois realizar um swap separado para obter o ativo que deseja. O sucesso dessa abordagem não é garantido.",
-        "title": "Não há rotas disponíveis para a transação inserida."
+        "desc": "Você também pode tentar fazer swap por um token principal primeiro, e depois fazer swap dele pelo ativo desejado.",
+        "title": "Não há rotas disponíveis para a transação inserida. Aumentar a configuração de slippage pode lhe proporcionar mais rotas."
       }
     },
     "routePath": {
@@ -1696,6 +1723,7 @@
       "title": "Erro ao criar backup",
       "tryAgainBold": "não é possível salvar o backup em outros dispositivos.",
       "tryAgainButton": "Tentar novamente",
+      "tryAgainFormatted": "Ao tentar novamente, lembre-se de que <b>não oferecemos suporte para salvar o backup em outros dispositivos.</b>",
       "tryAgainRegular": "Ao tentar novamente, lembre-se que "
     },
     "errorCreatingPasskey": {
@@ -1714,6 +1742,38 @@
       "title": "Chave de acesso inativa"
     },
     "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Acesse: <b>Configurações → Senhas → Opções de senha</b>",
+              "stepTwo": "Ative: <b>Chaves do iCloud</b>",
+              "title": "<b>Dica 1:</b> certifique-se de que as Chaves do iCloud estejam ativadas para serem usadas para senhas e chaves de acesso:"
+            },
+            "two": {
+              "stepOne": "Acesse: <b>Configurações → AppleID → iCloud → Senhas</b>",
+              "stepTwo": "Ative: <b>Sincronizar este iPhone</b>",
+              "title": "<b>Dica 2:</b> ative as Senhas e Chaves do iCloud"
+            }
+          },
+          "title": "Certifique-se de que esteja usando as <b>Chaves do iCloud</b> para criar a chave de acesso. <b>Outros gerenciadores de senhas ainda não são suportados.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Acesse: <b>Configurações → Geral → Preenchimento automático e Senhas</b>",
+              "stepTwo": "Ative: <b>Senhas</b>",
+              "title": "<b>Dica 1:</b> Certifique-se de que as Senhas estejam ativadas seguindo estas etapas:"
+            },
+            "two": {
+              "stepOne": "Acesse: <b>Configurações → iCloud → Senhas</b>",
+              "stepTwo": "Ative: <b>Sincronizar este iPhone</b>",
+              "title": "<b>Dica 2:</b> ative as Senhas e Chaves do iCloud"
+            }
+          },
+          "title": "Quando tentar novamente, certifique-se de que esteja usando as <b>Senhas</b> do iCloud para criar a chave de acesso. <b>Outros gerenciadores de senhas ainda não são suportados.</b>"
+        }
+      },
       "one": {
         "bold": "Configurações → Senhas → Opções de senha",
         "regular": "1. Acesse: "
@@ -1725,6 +1785,8 @@
     },
     "noPasskeyFound": {
       "description": "Não foi possível localizar a chave de acesso. É possível que você ainda não tenha criado, ou o iCloud Keychain esteja desativado nas configurações. Certifique-se de manter o iCloud Keychain ativado seguindo essas etapas a seguir:",
+      "descriptioniOS17": "Não foi possível localizar a chave de acesso. É possível que você não tenha criado uma ou que as <b>Chaves do iCloud</b> estejam desativadas nas configurações.",
+      "descriptioniOS18": "Não foi possível localizar a chave de acesso. É possível que você não tenha criado uma ou que as <b>Senhas</b> estejam desativadas nas configurações.",
       "title": "Nenhuma chave de acesso encontrada"
     },
     "supportHint": {

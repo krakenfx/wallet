@@ -1,12 +1,9 @@
-import type { WebViewProps } from 'react-native-webview';
-
 import { useNavigation } from '@react-navigation/native';
-
-import { Linking } from 'react-native';
 
 import { Routes } from '@/Routes';
 import type { BrowserParams } from '@/screens/Browser';
-import { isInAppBrowserEnabled } from '@/utils/featureFlags';
+
+import type { WebViewProps } from '@metamask/react-native-webview';
 
 interface Options extends WebViewProps, Omit<BrowserParams, 'url'> {}
 
@@ -16,11 +13,6 @@ export const useBrowser = () => {
   const navigation = useNavigation();
 
   const openURL: OpenURL = (url, options = {}) => {
-    if (!isInAppBrowserEnabled()) {
-      Linking.openURL(url);
-      return;
-    }
-
     navigation.navigate(Routes.Browser, { ...options, url });
   };
 

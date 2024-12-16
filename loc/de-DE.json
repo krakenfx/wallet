@@ -179,6 +179,10 @@
   },
   "browser": {
     "clearSearch": "Löschen",
+    "downloadFile": {
+      "failed": "Herunterladen der Datei fehlgeschlagen",
+      "success": "Datei heruntergeladen"
+    },
     "loadingError": {
       "description": "Überprüfe die URL auf Tippfehler oder fehlende Teile",
       "title": "URL nicht gefunden"
@@ -194,6 +198,14 @@
       "share": "Teilen"
     },
     "searchOnChain": "On-Chain suchen"
+  },
+  "browserExploreWelcome": {
+    "body": "Gehe heute den nächsten Schritt auf deiner Krypto-Reise. Du kannst nun dezentrale Anwendungen (DApps) entdecken und dich mit ihnen verbinden, ohne deine Kraken Wallet verlassen zu müssen.",
+    "buttonText": "Hört sich gut an",
+    "part1": "Verwende die neuen Menü-Optionen unten auf deinem Bildschirm, um auf die Seite „Entdecken“ zuzugreifen",
+    "part2": "Erkunde beliebte DApps und neue On-Chain-Features, oder nutze die Suchleiste für alles Weitere",
+    "part3": "Verbinde dich ganz leicht mit DApps und nimm Transaktionen vor, ohne die Kraken Wallet verlassen zu müssen",
+    "title": "Die On-Chain-Welt erwartet dich"
   },
   "bugTracking": {
     "allow": "Zulassen",
@@ -930,6 +942,14 @@
     "title": "Importieren"
   },
   "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Wallet hinzufügen",
+      "addWallets": "Wallets hinzufügen",
+      "button": "Nach Index hinzufügen",
+      "description": "Gib den Nummernindex der Wallet ein, die du importieren möchtest.",
+      "placeholder": "Indexnummer der Wallet eingeben",
+      "title": "Index der Wallet eingeben"
+    },
     "findingWallets": {
       "caption": "Dies kann einen Moment dauern.",
       "foundWallets": "{count} Wallets gefunden ...",
@@ -1295,20 +1315,27 @@
     "confirmation": {
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
-      "initiated": "Swap eingeleitet!"
+      "initiated": "Swap eingeleitet!",
+      "swapFlagged": "Swap gemeldet!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Es gibt keine Assets auf deiner aktuellen Wallet, bitte lade deine Wallet auf",
       "assetsEmptyTitle": "Keine Assets verfügbar",
       "clearSearch": "Suche löschen",
       "goBack": "Zurück",
+      "okay": "Okay",
       "searchAllNetworks": "Alle Netzwerke durchsuchen",
       "searchEmptyDesc": "Versuche deine Suche auszuweiten",
       "searchEmptyTitle": "Keine Ergebnisse",
-      "swappableAssetsEmptyDesc": "Deine aktuelle Wallet enthält keine Assets, die von unseren Swap-Anbietern unterstützt werden",
+      "swappableAssetsEmptyDesc": "Diese Wallet enthält keine Assets, die von unseren Swap-Anbietern unterstützt werden. Nur mit Ethereum und EVM kompatible Netzwerke werden derzeit unterstützt.",
       "swappableAssetsEmptyNetworkDesc": "Deine aktuelle Wallet enthält keine Assets auf dem ausgewählten Netzwerk, die von unseren Swap-Anbietern unterstützt werden",
       "swappableAssetsEmptyNetworkTitle": "Keine Swap-fähigen Assets auf dem ausgewählten Netzwerk verfügbar",
-      "swappableAssetsEmptyTitle": "Keine Swap-fähigen Assets verfügbar"
+      "swappableAssetsEmptyTitle": "Keine Swap-fähigen Assets verfügbar",
+      "targetAssetEmptyDesc": "Keiner unserer Anbieter unterstützt Swaps für das von dir gewählte Asset",
+      "targetAssetEmptyTitle": "Keine Assets für Swap verfügbar"
+    },
+    "error": {
+      "insufficientGas": "Unzureichendes {symbol} Guthaben zur Abdeckung von Swap-Transaktionen"
     },
     "findingBestRote": "Bester Weg wird gesucht",
     "route": {
@@ -1335,8 +1362,8 @@
       },
       "rate": "Kurs",
       "slippage": {
-        "hint": "Slippage ist die Differenz zwischen dem erwarteten Preis und dem endgültigen Preis eines Assets. Wenn der Preis sich zu deinen Ungunsten über die festgelegte Slippage-Toleranz hinaus ändert, wird die Transaktion abgebrochen.",
-        "title": "Slippage"
+        "hint": "Swap-Slippage ist die Differenz zwischen dem erwarteten Preis und dem endgültigen Preis eines Assets. Wenn der Preis sich über die festgelegte Slippage-Toleranz hinaus ändert, wird die Transaktion abgebrochen. Swap-Slippage gilt nur für Swaps auf ein und derselben Chain, ausgenommen Bridge-Slippage.",
+        "title": "Swap-Slippage"
       },
       "swapRate": "Swap-Kurs",
       "transactionFees": "Transaktionsgebühren",
@@ -1352,8 +1379,8 @@
         "title": "Finde eine Swap-Route mit"
       },
       "unsupportedRoute": {
-        "desc": "Du kannst versuchen, dein Asset mit einem verfügbaren großen Token zu swappen, und dann einen separaten Swap vornehmen, um dein gewünschtes Asset zu erhalten. Diese Herangehensweise funktioniert nicht immer.",
-        "title": "Für deine eingegebene Transaktion sind keine verfügbaren Routen vorhanden."
+        "desc": "Du kannst versuchen, es zunächst mit einem großen Token zu swappen, um mit diesem anschließend einen Swap mit deinem gewünschten Asset vorzunehmen.",
+        "title": "Für deine eingegebene Transaktion sind keine verfügbaren Routen vorhanden. Mit höherer Slippage stehen dir möglicherweise mehr Routen zur Verfügung."
       }
     },
     "routePath": {
@@ -1696,6 +1723,7 @@
       "title": "Fehler beim Erstellen des Backups",
       "tryAgainBold": "dass wir davon abraten, dein Backup auf anderen Geräten aufzubewahren.",
       "tryAgainButton": "Erneut versuchen",
+      "tryAgainFormatted": "Denke beim erneuten Versuchen daran, dass <b>wir das Speichern von Backups auf anderen Geräten nicht unterstützen.</b>",
       "tryAgainRegular": "Wenn du es erneut versuchst, achte darauf, "
     },
     "errorCreatingPasskey": {
@@ -1714,6 +1742,38 @@
       "title": "Inaktiver Passkey"
     },
     "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Gehe zu: <b>Einstellungen → Passwörter → Passwortoptionen</b>",
+              "stepTwo": "Aktiviere: <b>iCloud Keychain</b>",
+              "title": "<b>Tipp 1:</b> Achte darauf, dass iCloud Keychain aktiviert ist, die für Passwörter und Passkeys verwendet wird:"
+            },
+            "two": {
+              "stepOne": "Gehe zu: <b>Einstellungen → AppleID → iCloud → Passwords</b>",
+              "stepTwo": "Aktiviere: <b>Dieses iPhone synchronisieren</b>",
+              "title": "<b>Tipp 2:</b> iCloud Passwords & Keychain aktivieren"
+            }
+          },
+          "title": "Achte darauf, <b>iCloud Keychain</b> zu nutzen, um den Passkey zu erstellen. <b>Andere Passwort-Manager werden bisher nicht unterstützt.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Gehe zu: <b>Einstellungen → Allgemein → Autofill & Passwörter</b>",
+              "stepTwo": "Aktiviere: <b>Passwörter</b>",
+              "title": "<b>Tipp 1:</b> Stelle sicher, dass Passwords aktiviert ist, indem du folgende Schritte ausführst:"
+            },
+            "two": {
+              "stepOne": "Gehe zu: <b>Einstellungen → iCloud → Passwords</b>",
+              "stepTwo": "Aktiviere: <b>Dieses iPhone synchronisieren</b>",
+              "title": "<b>Tipp 2:</b> iCloud Passwords & Keychain aktivieren"
+            }
+          },
+          "title": "Achte beim erneuten Versuchen darauf, dass du zur Erstellung des Passkeys iCloud <b>Passwords</b> verwendest. <b>Andere Passwort-Manager werden bisher nicht unterstützt.</b>"
+        }
+      },
       "one": {
         "bold": "Einstellungen → Passwörter → Passwortoptionen",
         "regular": "1. Gehe zu: "
@@ -1725,6 +1785,8 @@
     },
     "noPasskeyFound": {
       "description": "Es wurde kein Passkey gefunden. Es ist möglich, dass du entweder keinen erstellt hast oder dass die iCloud Keychain in den Einstellungen deaktiviert ist. Stelle sicher, dass die iCloud Keychain aktiviert ist, indem du folgende Schritte ausführst:",
+      "descriptioniOS17": "Es wurde kein Passkey gefunden. Es ist möglich, dass du entweder keinen erstellt hast oder dass <b>iCloud Keychain</b> in den Einstellungen deaktiviert ist.",
+      "descriptioniOS18": "Es wurde kein Passkey gefunden. Es ist möglich, dass du entweder keinen erstellt hast oder dass <b>Passwords</b> in den Einstellungen deaktiviert ist.",
       "title": "Kein Passkey gefunden"
     },
     "supportHint": {

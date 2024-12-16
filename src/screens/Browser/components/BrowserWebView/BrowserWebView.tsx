@@ -1,9 +1,9 @@
 import type { GestureResponderEvent, NativeSyntheticEvent } from 'react-native';
 
+import WebView from '@metamask/react-native-webview';
 import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import WebView from 'react-native-webview';
 
 import { Touchable } from '@/components/Touchable';
 import { useDappMethods } from '@/dAppIntegration/hooks/useDappMethods';
@@ -16,7 +16,6 @@ import { useBrowserAnimationContext } from '../../context/BrowserAnimationContex
 import { useBrowserContext } from '../../context/BrowserContext';
 
 import { useSearchContext } from '../../context/SearchContext';
-
 import { getHttpsUrl } from '../../utils/getHttpsUrl';
 
 import { hasPunycode } from '../../utils/hasPunycode';
@@ -29,8 +28,8 @@ import { BrowserPunycodeWarningSheet } from '../BrowserPunycodeWarningSheet';
 import { BrowserSearchResult } from '../BrowserSearchResult';
 
 import type { BrowserWebViewRef } from './BrowserWebView.types';
-import type { WebViewErrorEvent, WebViewNavigationEvent } from 'react-native-webview/lib/RNCWebViewNativeComponent';
-import type { ShouldStartLoadRequest } from 'react-native-webview/lib/WebViewTypes';
+import type { WebViewErrorEvent, WebViewNavigationEvent } from '@metamask/react-native-webview/lib/RNCWebViewNativeComponent';
+import type { ShouldStartLoadRequest } from '@metamask/react-native-webview/lib/WebViewTypes';
 
 interface BrowserWebViewProps {
   handleTouchMove: (event: GestureResponderEvent) => void;
@@ -74,18 +73,21 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
 
   const onShouldStartLoadWithRequest = (request: ShouldStartLoadRequest) => {
     if (request.url.startsWith('about:')) {
+      return true;
+    }
+
+    if (
+      hasPunycode(request.url) &&
+      ((Platform.OS === 'ios' && request.navigationType === 'click') || (Platform.OS === 'android' && request.url !== currentPunycodeUrl))
+    ) {
+      setShowPunycodeWarning(true);
+      setCurrentPunycodeUrl(request.url);
       return false;
     }
 
     const mainDocumentURL = request.mainDocumentURL ? getHttpsUrl(request.mainDocumentURL) : null;
     if (mainDocumentURL !== getHttpsUrl(request.url)) {
       return true;
-    }
-
-    if (hasPunycode(request.url) && request.navigationType === 'click') {
-      setShowPunycodeWarning(true);
-      setCurrentPunycodeUrl(request.url);
-      return false;
     }
 
     if (request.url.startsWith('https://')) {
@@ -171,6 +173,10 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
     return true;
   });
 
+  const handleOnFileDownload = useCallback(() => {
+    return false;
+  }, []);
+
   const isSearchResultVisible = showSearchBar && searchValue !== '' && searchValue !== url;
   const hideWebView = !shouldDisplayWebView || error || isSearchResultVisible;
 
@@ -201,7 +207,7 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
               style={[styles.webView, { opacity: hideWebView ? 0 : 1 }]}
               source={{ uri: url }}
               setSupportMultipleWindows={false}
-              originWhitelist={['https://', 'http://']}
+              originWhitelist={['https://', 'http://', 'about:']}
               decelerationRate="normal"
               onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
               onNavigationStateChange={onNavigationStateChange}
@@ -212,6 +218,7 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
               onLoadEnd={handleLoadEnd}
               onError={onLoadError}
               onMessage={onMessage}
+              onFileDownload={handleOnFileDownload}
               injectedJavaScript={getInjectedScriptString(secret, Platform.OS)}
               renderError={() => <BrowserLoadingFailure />}
             />

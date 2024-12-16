@@ -8,7 +8,7 @@ export async function fetchSwapQuote(body: SwapQuoteRequest): Promise<SwapQuoteR
 
   try {
     const response = await harmony.POST('/v1/swap/quote', { body });
-    return response.content.quote;
+    return response.content;
   } catch (e) {
     handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
     return null;

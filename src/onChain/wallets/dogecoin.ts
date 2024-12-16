@@ -126,12 +126,17 @@ export class DogecoinNetwork implements Network {
 
   isAddressValid(address: string): boolean {
     try {
-      serializePayToPubkeyHashScript(address);
-    } catch (_: unknown) {
+      const decoded = bs58check.decode(address);
+      const versionByte = decoded[0];
+
+      if (versionByte === 0x1e || versionByte === 0x16) {
+        return true;
+      }
+
+      return false;
+    } catch (error) {
       return false;
     }
-
-    return !!address;
   }
 
   private async getPrivateKey(wallet: WalletDataWithSeed, index: number, change: number) {

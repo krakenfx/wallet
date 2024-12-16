@@ -15,6 +15,7 @@ import { getReceiveAddress } from '@/screens/Receive/hooks/useReceiveAddress';
 import { useAddressAnalysis } from '@/screens/Send/hooks/useAddressAnalysis';
 import { decodeQrCodeAddress } from '@/screens/Send/utils/decodeQrCodeAddress';
 import { FormProvider } from '@/screens/Send/utils/sendForm';
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SendAsset, SendTo } from './components';
@@ -40,6 +41,7 @@ const UniversalSend = ({ navigation, route: { params } }: NavigationProps<'Unive
   const addressAnalysis = useAddressAnalysis(supportedNetworks[0], address);
 
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
 
   const onContinue = () => {
     setScreenMode('sendAsset');
@@ -90,7 +92,7 @@ const UniversalSend = ({ navigation, route: { params } }: NavigationProps<'Unive
       if (!ownAccountSelected) {
         return;
       }
-      const receiveWallet = getWalletsForMutations(realm, true).filtered(
+      const receiveWallet = getWalletsForMutations(realm, unencryptedRealm, true).filtered(
         'caipId == $0 AND accountIdx == $1',
         sendToken.wallet.caipId,
         ownAccountSelected.accountNumber,
@@ -99,7 +101,7 @@ const UniversalSend = ({ navigation, route: { params } }: NavigationProps<'Unive
       const { network: receiveNetwork, transport: receiveTransport } = getImplForWallet(receiveWallet);
       return await getReceiveAddress(receiveNetwork, receiveTransport, receiveWallet, getWalletStorage);
     },
-    [getWalletStorage, ownAccountSelected, realm],
+    [getWalletStorage, ownAccountSelected, realm, unencryptedRealm],
   );
 
   const onAssetSelected = useCallback(

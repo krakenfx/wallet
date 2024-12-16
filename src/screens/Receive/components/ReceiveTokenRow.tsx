@@ -8,7 +8,8 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { TokenIcon } from '@/components/TokenIcon';
 import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import type { RealmToken } from '@/realm/tokens';
-import { FeatureFlag, NEW_EVM_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
+import { NEW_EVM_NETWORKS } from '@/unencrypted-realm/featureFlags/schema';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 
 import { useReceiveAddress } from '../hooks';
 
@@ -22,7 +23,7 @@ type Props = {
 
 export const ReceiveTokenRow = ({ token, onQRcodePress, showEthereumExplainer }: Props) => {
   const address = useReceiveAddress(token.wallet);
-  const isNewNetworksEnabled = useFeatureFlagEnabled(FeatureFlag.NewNetworksEnabled);
+  const [isNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
 
   const handleQRIconPress = () => onQRcodePress(token.id);
 

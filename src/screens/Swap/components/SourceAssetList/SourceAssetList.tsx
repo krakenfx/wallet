@@ -1,7 +1,7 @@
 import { useHeaderHeight } from '@react-navigation/elements';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Keyboard, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
@@ -56,28 +56,31 @@ export const SourceAssetList = React.forwardRef<BottomSheetRef, Props>(
 
     const [networkFilter, setNetworkFilter] = useNetworkFilter([getNetworkFilterFromCaip(currentAsset.wallet.caipId)]);
 
-    const tokens = useTokensFilteredByReputationAndNetwork(networkFilter.length ? networkFilter : SWAP_NETWORK_FILTER, true);
+    const ownedTokensWithBalance = useTokensFilteredByReputationAndNetwork([], true).filtered("balance != '0'");
     const [inputValue, setInputValue] = useState<string>('');
     const [searchQuery, setSearchQuery] = useState<string>(inputValue);
 
     const { data: supportedAssets, isLoading } = useSwapSourceListQuery(SWAP_NETWORKS_CAIP_IDS, SWAP_LIST_CACHE_DURATION);
 
-    const ownedTokens = useMemo(() => {
-      return tokens.filtered("balance != '0'");
-    }, [tokens]);
+    const ownedSwappableTokensWithBalance = useMemo(() => {
+      const filter = networkFilter.length ? networkFilter : SWAP_NETWORK_FILTER;
+      return filter.length ? ownedTokensWithBalance.filtered('assetId BEGINSWITH[c] ANY $0', filter) : ownedTokensWithBalance;
+    }, [ownedTokensWithBalance, networkFilter]);
 
-    const compatibleTokens = useMemo(() => {
+    const providerCompatibleTokens = useMemo(() => {
       if (isLoading || !supportedAssets) {
         return [];
       }
-      return sortTokensByFiatValue(ownedTokens.filtered('assetId IN $0', supportedAssets), tokenPrices);
-    }, [tokenPrices, ownedTokens, supportedAssets, isLoading]);
+      return sortTokensByFiatValue(ownedSwappableTokensWithBalance.filtered('assetId IN $0', supportedAssets), tokenPrices);
+    }, [tokenPrices, ownedSwappableTokensWithBalance, supportedAssets, isLoading]);
 
-    const data = useTokenSearchQuery(compatibleTokens, searchQuery);
+    const data = useTokenSearchQuery(providerCompatibleTokens, searchQuery);
 
-    const hasOnlyUnsupportedTokens = !!ownedTokens.length && !compatibleTokens.length;
+    const hasOnlySwappableUnsupportedTokens = !!ownedSwappableTokensWithBalance.length && !providerCompatibleTokens.length;
 
-    const unsupportedAssetCount = ownedTokens.length - compatibleTokens.length;
+    const hasOnlyUnsupportedTokens = !!ownedTokensWithBalance.length && !ownedSwappableTokensWithBalance.length;
+
+    const unsupportedAssetCount = ownedSwappableTokensWithBalance.length - providerCompatibleTokens.length;
 
     useEffect(() => {
       runAfterUISync(safelyAnimateLayout);
@@ -95,7 +98,10 @@ export const SourceAssetList = React.forwardRef<BottomSheetRef, Props>(
       250,
     );
 
-    const clearSearch = () => setInputValue('');
+    const clearSearch = () => {
+      Keyboard.dismiss();
+      setInputValue('');
+    };
 
     const headerHeight = useHeaderHeight();
 
@@ -105,9 +111,7 @@ export const SourceAssetList = React.forwardRef<BottomSheetRef, Props>(
 
     const placeholderCount = useMemo(() => (snapPoints[0] - 240) / 60, [snapPoints]);
 
-    const showSearchInput = isLoading || !!data.length || !!searchQuery || (ownedTokens.length && !!networkFilter.length);
-
-    const showNetworkFilter = isLoading || !!data.length || (!!networkFilter.length && ownedTokens.length);
+    const showHeader = isLoading || !!data.length || !!ownedSwappableTokensWithBalance.length;
 
     const onSelected = useCallback(
       (asset: RealmToken) => {
@@ -149,14 +153,15 @@ export const SourceAssetList = React.forwardRef<BottomSheetRef, Props>(
           isLoading={isLoading}
           isSearchResult={!!searchQuery}
           placeholderCount={placeholderCount}
-          hasUnsupportedAssets={hasOnlyUnsupportedTokens}
+          hasOtherSwappableAssets={hasOnlySwappableUnsupportedTokens}
+          hasIncompatibleAssets={hasOnlyUnsupportedTokens}
           hasNetworkFilter={networkFilter.length > 0}
           clearSearch={clearSearch}
           goBack={goBack}
           clearNetworkFilter={() => setNetworkFilter([])}
         />
       ),
-      [goBack, hasOnlyUnsupportedTokens, isLoading, networkFilter.length, placeholderCount, searchQuery, setNetworkFilter],
+      [goBack, hasOnlySwappableUnsupportedTokens, hasOnlyUnsupportedTokens, isLoading, networkFilter.length, placeholderCount, searchQuery, setNetworkFilter],
     );
 
     const estimatedListSize = useMemo(() => (!data.length ? undefined : { width, height: snapPoints[1] }), [width, snapPoints, data.length]);
@@ -173,12 +178,12 @@ export const SourceAssetList = React.forwardRef<BottomSheetRef, Props>(
             isTouched.current = false;
           }
         }}>
-        {!!showSearchInput && (
+        {!!showHeader && (
           <Animated.View style={styles.header}>
             <SearchInput onFocus={onSearchInputFocused} value={inputValue} placeholder={loc.swap.sourceSearchPlaceholder} onChangeText={onChangeText} />
           </Animated.View>
         )}
-        {!!showNetworkFilter && (
+        {!!showHeader && (
           <View style={styles.networkFilter}>
             <NetworkFilter networkFilter={networkFilter} setNetworkFilter={setNetworkFilter} dataToFilter={SWAP_NETWORK_UI_FILTER} />
           </View>

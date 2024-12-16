@@ -60,6 +60,10 @@ export const SearchContextProvider: React.FC<PropsWithChildren> = ({ children })
   };
 
   const hideSearch = () => {
+    if (!searchValue && !url) {
+      return;
+    }
+
     setShowSearchbar(false);
     if (url) {
       changeSearchValue(url);

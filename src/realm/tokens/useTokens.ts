@@ -20,8 +20,8 @@ export const useTokens = (getTokensFromAllWallets?: boolean) => {
   );
 };
 
-export const getTokensForMutations = (realm: Realm, getTokensFromAllWallets?: boolean) => {
-  const wallets = getWalletsForMutations(realm, getTokensFromAllWallets);
+export const getTokensForMutations = (realm: Realm, unencryptedRealm: Realm, getTokensFromAllWallets?: boolean) => {
+  const wallets = getWalletsForMutations(realm, unencryptedRealm, getTokensFromAllWallets);
   const tokensCollection = realm.objects<RealmToken>(REALM_TYPE_TOKEN);
 
   return tokensCollection.filtered(

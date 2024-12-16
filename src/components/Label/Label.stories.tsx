@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { SuperDarkTheme } from '@/theme/themes';
 
@@ -22,6 +22,10 @@ const LabelMeta: Meta<typeof Label> = {
       options: TYPOGRAPHY_OPTIONS,
       control: { type: 'select' },
     },
+    boldType: {
+      options: TYPOGRAPHY_OPTIONS,
+      control: { type: 'select' },
+    },
   },
   decorators: [
     Story => (
@@ -34,12 +38,18 @@ const LabelMeta: Meta<typeof Label> = {
 
 export default LabelMeta;
 
-type Story = StoryObj<typeof Label>;
-
-export const Basic: Story = {
+export const Basic: StoryObj<typeof Label> = {
   args: {
     color: 'light100',
     type: 'boldBody',
-    children: <Text>Lorem ipsum dolor sit amet, consectetur adipisicing it.</Text>,
+    children: 'Lorem ipsum dolor sit amet, consectetur adipisicing it',
+  },
+};
+
+export const Formatted: StoryObj<typeof Label> = {
+  args: {
+    color: 'light100',
+    type: 'regularBody',
+    children: '<b>bold prefix</b> Lorem ipsum dolor sit amet, <b>bold intermission</b> consectetur adipisicing it <b>bold suffix</b>',
   },
 };

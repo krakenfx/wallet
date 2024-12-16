@@ -28,7 +28,7 @@ export const ExploreText: React.FC<ExploreTextProps> = ({
           </Label>
         )}
         {body && (
-          <Label type={bodyType || 'mediumBody'} color={bodyColor || 'light75'} style={bodyStyle} numberOfLines={bodyLines}>
+          <Label type={bodyType || 'regularBody'} color={bodyColor || 'light75'} style={bodyStyle} numberOfLines={bodyLines}>
             {body}
           </Label>
         )}

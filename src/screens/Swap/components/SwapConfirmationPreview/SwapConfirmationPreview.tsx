@@ -5,13 +5,16 @@ import { type StyleProp, StyleSheet, type TextStyle, View, type ViewStyle } from
 
 import Animated, { type AnimatedStyle, type SharedValue, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 
+import { CardWarning } from '@/components/CardWarning';
 import { DoubleRow } from '@/components/DoubleRow';
 import { Label } from '@/components/Label';
 import { type ExpandableSheetComponentProps } from '@/components/Sheets';
 import { TransactionAmountWithAppCurrency } from '@/components/Transaction';
+import { REPUTATION, useReputation } from '@/hooks/useReputation';
 import { useAppCurrency } from '@/realm/settings';
 
 import { useWalletByAssetId } from '@/realm/wallets/useWalletByAssetId';
+import type { Warning } from '@/types';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { isBtc } from '@/utils/isBtc';
 import { unitConverter } from '@/utils/unitConverter';
@@ -32,6 +35,7 @@ type Props = ExpandableSheetComponentProps & {
   timeoutProgress: SharedValue<number>;
   refreshFlashStyle?: StyleProp<AnimatedStyle<StyleProp<ViewStyle | TextStyle>>>;
   isLoading?: boolean;
+  warning?: Warning;
 };
 
 export const SwapConfirmationPreview: React.FC<Props> = ({
@@ -41,6 +45,7 @@ export const SwapConfirmationPreview: React.FC<Props> = ({
   route: { sourceAsset, sourceAssetAmount, output, steps, targetAsset, rate, transactionFeesTotalFiat, duration },
   refreshFlashStyle,
   isLoading,
+  warning,
 }) => {
   const collapsedFooterStyle = useAnimatedStyle(() => {
     return {
@@ -74,12 +79,14 @@ export const SwapConfirmationPreview: React.FC<Props> = ({
     isBtc: isBtc({ assetId: sourceAsset.assetId }),
   });
   const targetAssetWallet = useWalletByAssetId(targetAsset.assetId);
+  const targetAssetReputation = useReputation(targetAsset.assetId);
 
   return (
     <View>
       <Label type="boldTitle1" style={styles.title}>
         {loc.swap.confirmation.confirm}
       </Label>
+      {warning?.severity === 'critical' && <CardWarning title={loc.swap.confirmation.swapFlagged} type="negative" description={warning.message} />}
       <DoubleRow
         iconName="double-chevron-down"
         renderTop={({ containerStyle }) => (
@@ -103,6 +110,7 @@ export const SwapConfirmationPreview: React.FC<Props> = ({
             assetAmount={targetTokenAmountFormatted}
             assetNetwork={targetAssetWallet.type}
             assetSymbol={targetAsset.metadata.symbol}
+            assetReputation={targetAssetReputation !== REPUTATION.WHITELISTED ? targetAssetReputation : undefined}
             containerStyle={containerStyle}
             assetAmountLabelProps={{ style: refreshFlashStyle, type: 'boldDisplay3' }}
             fiatAmountLabelProps={{ style: refreshFlashStyle, type: 'mediumCaption1' }}

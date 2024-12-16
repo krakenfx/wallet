@@ -2,6 +2,7 @@ import { useCallback, useRef } from 'react';
 
 import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
 import { getImplForWallet } from '@/onChain/wallets/registry';
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
 import { isPromiseRejected } from '@/utils/promise';
 
 import { useRealm } from '../RealmContext';
@@ -18,6 +19,7 @@ export function useTransactionsFetch() {
   const { saveTransactionsToRealm } = useTransactionMutations();
   const getWalletStorage = useGetWalletStorage();
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
 
   const isFetchingAll = useRef<boolean>(false);
 
@@ -38,12 +40,12 @@ export function useTransactionsFetch() {
       return;
     }
     isFetchingAll.current = true;
-    const accountWallets = getWalletsForMutations(realm);
+    const accountWallets = getWalletsForMutations(realm, unencryptedRealm);
 
     const results = await Promise.allSettled(accountWallets.map(wallet => fetchTransactions(wallet, true)));
     results.filter(isPromiseRejected).forEach(({ reason }) => handleError(reason, 'ERROR_CONTEXT_PLACEHOLDER'));
     isFetchingAll.current = false;
-  }, [fetchTransactions, realm]);
+  }, [fetchTransactions, realm, unencryptedRealm]);
 
   return { fetchTransactions, fetchAllTransactionsForAllNetworks };
 }

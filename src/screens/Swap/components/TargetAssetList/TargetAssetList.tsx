@@ -19,8 +19,7 @@ import { useTokenSearchQuery } from '@/hooks/useTokenSearchQuery';
 import type { WalletType } from '@/onChain/wallets/registry';
 import { networkIdToNetworkName } from '@/onChain/wallets/registry';
 import { useSwapTargetListQuery } from '@/reactQuery/hooks/useSwapTargetListQuery';
-import { getNetworkNameFromAssetId, sortTokensAlphabetically, useTokens } from '@/realm/tokens';
-import type { RealmWallet } from '@/realm/wallets';
+import { type RealmToken, getNetworkNameFromAssetId, sortTokensAlphabetically, useTokens } from '@/realm/tokens';
 import { useRealmWallets } from '@/realm/wallets';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { safelyAnimateLayout } from '@/utils/safeLayoutAnimation';
@@ -40,7 +39,7 @@ import loc from '/loc';
 
 type Props = {
   currentAsset?: SwapTargetAsset;
-  sourceAssetWallet: RealmWallet;
+  sourceAsset: RealmToken;
   onAssetSelected: (token: SwapTargetAsset) => void;
   onSearchInputFocused: () => void;
   goBack: () => void;
@@ -50,10 +49,10 @@ type Props = {
 const renderItemSeparator = () => <View style={styles.divider} />;
 
 export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
-  ({ goBack, onAssetSelected, currentAsset, sourceAssetWallet, onSearchInputFocused, onClose }, ref) => {
+  ({ goBack, onAssetSelected, currentAsset, sourceAsset, onSearchInputFocused, onClose }, ref) => {
     const walletMap = keyBy(Array.from(useRealmWallets()), 'type');
     const userTokenMap = keyBy(Array.from(useTokens()), 'assetId');
-
+    const sourceAssetWallet = sourceAsset.wallet;
     const currentAssetNetwork = currentAsset ? getNetworkNameFromAssetId(currentAsset.assetId) : undefined;
     const currentAssetWallet = currentAssetNetwork ? walletMap[currentAssetNetwork] : undefined;
 
@@ -87,17 +86,19 @@ export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
         }
 
         if (networkFilter.length === 0 || networkFilter.includes(getNetworkFilterFromCaip(networkCaip))) {
-          const networkAssets = Object.entries(dict).map(([assetId, tokenData]) => {
-            if (userTokenMap[assetId]) {
-              return userTokenMap[assetId];
-            }
-            return adaptTokenTypeToRemoteAsset(assetId, tokenData as TokenType, 'bungee');
-          });
+          const networkAssets = Object.entries(dict)
+            .filter(([assetId]) => assetId !== sourceAsset.assetId)
+            .map(([assetId, tokenData]) => {
+              if (userTokenMap[assetId]) {
+                return userTokenMap[assetId];
+              }
+              return adaptTokenTypeToRemoteAsset(assetId, tokenData as TokenType, 'bungee');
+            });
           filteredData.push(...networkAssets);
         }
       });
       return sortBy(filteredData, sortTokensAlphabetically.lodash);
-    }, [networkFilter, swapListData, userTokenMap]);
+    }, [networkFilter, sourceAsset.assetId, swapListData, userTokenMap]);
 
     const data = useTokenSearchQuery(assets, searchQuery);
 

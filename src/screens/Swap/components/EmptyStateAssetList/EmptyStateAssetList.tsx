@@ -8,51 +8,70 @@ import loc from '/loc';
 
 type Props = {
   variant: 'sourceAssetList' | 'targetAssetList';
-  hasUnsupportedAssets?: boolean;
+  hasOtherSwappableAssets?: boolean;
+  hasIncompatibleAssets?: boolean;
   hasNetworkFilter?: boolean;
   goBack: () => void;
   clearNetworkFilter?: () => void;
 };
 
-export const EmptyStateAssetList = ({ variant, hasUnsupportedAssets, hasNetworkFilter, goBack, clearNetworkFilter }: Props) => {
+export const EmptyStateAssetList = ({ variant, hasOtherSwappableAssets, hasIncompatibleAssets, hasNetworkFilter, goBack, clearNetworkFilter }: Props) => {
   const data = useMemo(() => {
-    if (!hasUnsupportedAssets) {
-      return {
-        title: loc.swap.emptyState.assetsEmptyTitle,
-        desc: loc.swap.emptyState.assetsEmptyDesc,
-        image: require('@/assets/images/assetGroup/asset-group.png'),
-        imageSize: 280,
-      };
-    }
-
-    return hasNetworkFilter
-      ? {
+    switch (true) {
+      case variant === 'targetAssetList': {
+        return {
+          title: loc.swap.emptyState.targetAssetEmptyTitle,
+          desc: loc.swap.emptyState.targetAssetEmptyDesc,
+          image: require('@/assets/images/evmAssets/EVMAssets.png'),
+          buttonProps: {
+            text: loc.swap.emptyState.okay,
+          },
+        };
+      }
+      case hasIncompatibleAssets: {
+        return {
+          title: loc.swap.emptyState.swappableAssetsEmptyTitle,
+          desc: loc.swap.emptyState.swappableAssetsEmptyDesc,
+          image: require('@/assets/images/evmAssets/EVMAssets.png'),
+          buttonProps: {
+            text: loc.swap.emptyState.okay,
+          },
+        };
+      }
+      case hasOtherSwappableAssets && hasNetworkFilter: {
+        return {
           title: loc.swap.emptyState.swappableAssetsEmptyNetworkTitle,
           desc: loc.swap.emptyState.swappableAssetsEmptyNetworkDesc,
-          image: require('@/assets/images/assetGroup/asset-group.png'),
-          imageSize: 190,
+          image: require('@/assets/images/evmAssets/EVMAssets.png'),
           buttonProps: {
             text: loc.swap.emptyState.searchAllNetworks,
             onPress: clearNetworkFilter,
           },
-        }
-      : {
+        };
+      }
+      case hasOtherSwappableAssets && !hasNetworkFilter: {
+        return {
           title: loc.swap.emptyState.swappableAssetsEmptyTitle,
           desc: loc.swap.emptyState.swappableAssetsEmptyDesc,
-          image: require('@/assets/images/assetGroup/asset-group.png'),
-          imageSize: 220,
+          image: require('@/assets/images/evmAssets/EVMAssets.png'),
+          buttonProps: {
+            text: loc.swap.emptyState.okay,
+          },
         };
-  }, [clearNetworkFilter, hasNetworkFilter, hasUnsupportedAssets]);
+      }
+      default: {
+        return {
+          title: loc.swap.emptyState.assetsEmptyTitle,
+          desc: loc.swap.emptyState.assetsEmptyDesc,
+          image: require('@/assets/images/evmAssets/EVMAssets.png'),
+        };
+      }
+    }
+  }, [clearNetworkFilter, hasIncompatibleAssets, hasNetworkFilter, hasOtherSwappableAssets, variant]);
 
   return (
     <View style={styles.container}>
-      <Image
-        source={data.image}
-        style={{
-          width: data.imageSize,
-          height: data.imageSize,
-        }}
-      />
+      <Image source={data.image} />
       <Label style={styles.title} type="boldTitle0">
         {data.title}
       </Label>
@@ -61,7 +80,7 @@ export const EmptyStateAssetList = ({ variant, hasUnsupportedAssets, hasNetworkF
           {data.desc}
         </Label>
       )}
-      {variant === 'sourceAssetList' && <Button size="small" text={loc.swap.emptyState.goBack} onPress={goBack} style={styles.button} {...data.buttonProps} />}
+      <Button size="small" text={loc.swap.emptyState.goBack} onPress={goBack} style={styles.button} {...data.buttonProps} />
     </View>
   );
 };

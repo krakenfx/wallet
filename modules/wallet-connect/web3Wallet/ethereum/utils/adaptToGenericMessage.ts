@@ -37,6 +37,7 @@ export function adaptToGenericMessage(signMethod: string, requestParams: any): G
     }
 
     case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA:
+    case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V3:
     case WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TYPED_DATA_V4: {
       const message_ = requestParams[1];
 

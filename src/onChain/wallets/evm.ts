@@ -290,6 +290,7 @@ export class EVMHarmonyTransport extends HarmonyTransport<EthersTransactionReque
     return {
       data: txPayload,
       isError: content.status === 'failure',
+      failureReason: content.failureReason,
       effects: content.effects,
       preventativeAction: content.preventativeAction,
       warnings: content.warnings,
@@ -364,7 +365,7 @@ export class EVMRPCTransport implements Transport<unknown, SignTransactionReques
     this.provider = new JsonRpcProvider(this.rpcUri);
   }
 
-  async getTransactionStatus(network: EVMNetwork, txid: string): Promise<boolean> {
+  async isTransactionComplete(network: EVMNetwork, txid: string): Promise<boolean> {
     const tx = await this.provider.getTransactionReceipt(txid);
     return (tx?.status ?? 0) > 0;
   }

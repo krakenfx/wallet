@@ -1,20 +1,26 @@
 import { CommonActions } from '@react-navigation/native';
 
-import { analyseUrl } from '@/api/analyseUrl.ts';
+import { analyseUrl } from '@/api/analyseUrl';
 import { showToast } from '@/components/Toast';
 import { getWalletsForMutations } from '@/realm/wallets';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
-import { getAccountsFromMatchedWallets } from '../connectAppWithWalletConnect/getAccountsFromMatchedWallets.ts';
-import { getMatchedWallets } from '../connectAppWithWalletConnect/getMatchedWallets.ts';
-import { getRequestedNetworkIDs } from '../connectAppWithWalletConnect/getRequestedNetworkIDs.ts';
+import { getAccountsFromMatchedWallets } from '../connectAppWithWalletConnect/getAccountsFromMatchedWallets';
+import { getMatchedWallets } from '../connectAppWithWalletConnect/getMatchedWallets';
+import { getRequestedNetworkIDs } from '../connectAppWithWalletConnect/getRequestedNetworkIDs';
 
 import type { ReactNavigationDispatch } from '../types';
 import type { WalletKitTypes } from '@reown/walletkit';
+import type Realm from 'realm';
 
 import loc from '/loc';
 
-export async function handleSessionProposal(proposal: WalletKitTypes.SessionProposal, dispatch: ReactNavigationDispatch, realm: Realm): Promise<void> {
+export async function handleSessionProposal(
+  proposal: WalletKitTypes.SessionProposal,
+  dispatch: ReactNavigationDispatch,
+  realm: Realm,
+  unencryptedRealm: Realm,
+): Promise<void> {
   hapticFeedback.impactHeavy();
   void showToast({
     duration: 300,
@@ -23,7 +29,7 @@ export async function handleSessionProposal(proposal: WalletKitTypes.SessionProp
   });
 
   const url = proposal?.verifyContext?.verified?.origin ?? proposal.params.proposer.metadata.url;
-  const wallets = getWalletsForMutations(realm);
+  const wallets = getWalletsForMutations(realm, unencryptedRealm);
   const { requestedNetworkIDs, requiresWrongSolanaID } = getRequestedNetworkIDs(proposal);
   const matchedWallets = getMatchedWallets(wallets, requestedNetworkIDs);
   const accounts = await getAccountsFromMatchedWallets(matchedWallets, requiresWrongSolanaID);

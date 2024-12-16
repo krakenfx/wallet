@@ -11,7 +11,11 @@ export const useWhatsNewQueue = () => {
   const longPressTask = useWhatsNewTask(RealmSettingsKey.whatsNewIsLongPressCompleted, Routes.WhatsNewLongPress);
   const isInitialised = useRef(false);
   const avaxLineaTask = useWhatsNewTask(RealmSettingsKey.isAvaxLineaTaskModalCompleted, Routes.WhatsNewAvaxLinea);
-  const queue = useMemo(() => [avaxLineaTask, blastTask, assetMarketDataTask, longPressTask], [avaxLineaTask, assetMarketDataTask, blastTask, longPressTask]);
+  const browserExploreTask = useWhatsNewTask(RealmSettingsKey.isBrowserExploreTaskModalCompleted, Routes.WhatsNewBrowserExplore);
+  const queue = useMemo(
+    () => [browserExploreTask, avaxLineaTask, blastTask, assetMarketDataTask, longPressTask],
+    [browserExploreTask, avaxLineaTask, assetMarketDataTask, blastTask, longPressTask],
+  );
 
   useEffect(() => {
     if (isInitialised.current) {

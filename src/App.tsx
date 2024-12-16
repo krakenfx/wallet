@@ -18,7 +18,10 @@ import { useSecureAppLock } from '@/hooks/useSecureAppLock';
 import { RealmQueueProvider } from '@/realm/hooks/useRealmQueue';
 import { SecuredRealmProvider } from '@/realm/SecuredRealmProvider';
 import { AppInBackground } from '@/screens/AppInBackground';
-import '@/utils/featureFlags';
+
+import { UnencryptedRealmProvider } from '@/unencrypted-realm/RealmContext';
+
+import { runMigrations } from '@/utils/migrations';
 
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ExploreNavigator } from './components/ExploreNavigator';
@@ -28,7 +31,6 @@ import { ToastManager } from './components/Toast';
 import NavigationStack from './Navigation';
 import { SecuredKeychainProvider } from './secureStore/SecuredKeychainProvider';
 import { SuperDarkTheme } from './theme/themes';
-import { runMigrations } from './utils/migrations';
 
 import { appendLog, applogFilePath, handleError } from '/helpers/errorHandler';
 
@@ -47,6 +49,9 @@ LogBox.ignoreLogs([
   '[Reanimated] Reduced motion setting is enabled on this device.',
   '[Reanimated] Tried to modify key `reduceMotion` of an object which has been already passed to a worklet',
   '[Reanimated] Property "opacity" of AnimatedComponent(TouchableOpacity) may be overwritten by a layout animation',
+
+  '[Reanimated] Reading from `value` during component render.',
+  '[Reanimated] Writing to `value` during component render.',
 ]);
 
 console.log('applogFilePath:', applogFilePath);
@@ -95,30 +100,32 @@ const App = () => {
       <GestureHandlerRootView style={styles.container}>
         <SafeAreaProvider>
           <NavigationContainer theme={SuperDarkTheme}>
-            <SecuredRealmProvider>
-              <GlobalStateProvider>
-                <RealmQueueProvider>
-                  <QueryClientProvider client={queryClient}>
-                    <ErrorBoundary onError={onJSError}>
-                      <LongPressProvider>
-                        <MenuProvider>
-                          <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
-                          <BottomSheetModalProvider>
-                            <SecuredKeychainProvider>
-                              <NavigationStack />
-                              <ExploreNavigator />
-                            </SecuredKeychainProvider>
-                          </BottomSheetModalProvider>
-                        </MenuProvider>
-                        <LongPressOverlay />
-                      </LongPressProvider>
-                    </ErrorBoundary>
-                    <ToastManager />
-                    <AppInBackground />
-                  </QueryClientProvider>
-                </RealmQueueProvider>
-              </GlobalStateProvider>
-            </SecuredRealmProvider>
+            <UnencryptedRealmProvider>
+              <SecuredRealmProvider>
+                <GlobalStateProvider>
+                  <RealmQueueProvider>
+                    <QueryClientProvider client={queryClient}>
+                      <ErrorBoundary onError={onJSError}>
+                        <LongPressProvider>
+                          <MenuProvider>
+                            <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+                            <BottomSheetModalProvider>
+                              <SecuredKeychainProvider>
+                                <NavigationStack />
+                                <ExploreNavigator />
+                              </SecuredKeychainProvider>
+                            </BottomSheetModalProvider>
+                          </MenuProvider>
+                          <LongPressOverlay />
+                        </LongPressProvider>
+                      </ErrorBoundary>
+                      <ToastManager />
+                      <AppInBackground />
+                    </QueryClientProvider>
+                  </RealmQueueProvider>
+                </GlobalStateProvider>
+              </SecuredRealmProvider>
+            </UnencryptedRealmProvider>
           </NavigationContainer>
         </SafeAreaProvider>
       </GestureHandlerRootView>

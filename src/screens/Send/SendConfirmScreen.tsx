@@ -221,7 +221,9 @@ export const SendConfirmScreen = ({ route, navigation }: SendNavigationProps<'Se
           onCancel={onCancel}
           hidden={isSuccess}
           feeSelector={renderFeeSelector()}
-          primaryButtonColor={route.params.addressAnalysis?.result?.warning?.severity === 'CRITICAL' ? route.params.addressAnalysis?.accentColor : undefined}
+          primaryButtonProps={{
+            color: route.params.addressAnalysis?.result?.warning?.severity === 'CRITICAL' ? route.params.addressAnalysis?.accentColor : undefined,
+          }}
           additionalInfo={network instanceof EVMNetwork && wallet.type !== 'ethereum' ? <NetworkWarning networkName={getBlockchainLabel(wallet.type)} /> : null}
         />
       }

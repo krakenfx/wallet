@@ -7,6 +7,8 @@ import { useRealm } from '@/realm/RealmContext';
 import type { RealmWallet } from '@/realm/wallets';
 import { getWalletsForMutations } from '@/realm/wallets';
 
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
+
 import { useUsdFiatRatesMutations } from '../usdFiatRates';
 
 import { useDefiMutations } from './useDefiMutations';
@@ -15,6 +17,7 @@ import { handleError } from '/helpers/errorHandler';
 
 export const useDefiFetch = () => {
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
   const { saveDefis } = useDefiMutations();
   const { saveFiatRates } = useUsdFiatRatesMutations();
   const getWalletStorage = useGetWalletStorage();
@@ -25,7 +28,7 @@ export const useDefiFetch = () => {
       return;
     }
     isFetchingAll.current = true;
-    const wallets = getWalletsForMutations(realm);
+    const wallets = getWalletsForMutations(realm, unencryptedRealm);
     const addressList: { wallet: RealmWallet; address: string }[] = [];
 
     for (const wallet of wallets) {
@@ -56,7 +59,7 @@ export const useDefiFetch = () => {
       }
     }
     isFetchingAll.current = false;
-  }, [getWalletStorage, realm, saveDefis, saveFiatRates]);
+  }, [getWalletStorage, realm, unencryptedRealm, saveDefis, saveFiatRates]);
 
   return {
     fetchAndUpdateDefi,

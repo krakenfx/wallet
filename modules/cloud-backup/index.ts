@@ -1,6 +1,8 @@
 import { parseISO } from 'date-fns';
 import { NativeModules, Platform } from 'react-native';
 
+import { getOSMajorVersionNumber } from '@/utils/getOSMajorVersionNumber';
+
 interface CredentialResult {
   credentialID: string;
 }
@@ -56,8 +58,8 @@ export const isPasskeySupported = (() => {
   if (Platform.OS !== 'ios') {
     return false;
   }
-  const [major] = Platform.Version.split('.').map(Number);
-  return major >= 17;
+
+  return getOSMajorVersionNumber() >= 17;
 })();
 
 export const CloudBackupError = (isPasskeySupported ? CloudBackup.errorCode : {}) as CloudBackupErrorCode;

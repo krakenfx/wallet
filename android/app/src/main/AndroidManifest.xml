@@ -15,6 +15,7 @@
       android:allowBackup="false"
       android:fullBackupContent="false"
       android:dataExtractionRules="@xml/backup_rules"
+      android:supportsRtl="true"
       android:theme="@style/BootTheme">
 
         <meta-data

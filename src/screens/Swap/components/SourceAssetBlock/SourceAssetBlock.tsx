@@ -29,13 +29,14 @@ type Props = {
   token: RealmToken;
   isLoading?: boolean;
   onChange: () => void;
+  errorMsg?: string;
 };
 
 export type SourceAssetBlockRef = {
   focusInput: () => void;
 };
 
-export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ token, onChange, isLoading }, ref) => {
+export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ token, onChange, isLoading, errorMsg }, ref) => {
   const {
     sourceAmountState: [sourceAmount, setSourceAmount],
     sourceAmountInputValueState: [sourceAmountString, setSourceAmountString],
@@ -118,9 +119,11 @@ export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ 
     safelyAnimateLayout();
   }, [inputErrorMsg]);
 
+  const inputErrorValue = inputErrorMsg || errorMsg;
+
   return (
     <View style={styles.container}>
-      <GradientItemBackground backgroundType="modal" key={inputErrorMsg} />
+      <GradientItemBackground backgroundType="modal" key={inputErrorValue} />
       <Input
         editable={!isLoading}
         ref={inputRef}
@@ -146,7 +149,7 @@ export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ 
         keyboardType="numeric"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        errorText={inputErrorMsg}
+        errorText={inputErrorValue}
         errorInside
         hideDoneAccessoryView
       />

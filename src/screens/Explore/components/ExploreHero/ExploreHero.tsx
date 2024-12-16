@@ -21,11 +21,11 @@ export const ExploreHero = ({ title, body, background, cta, variant, style }: Ex
   return (
     <View style={style}>
       <View style={[styles.container, themedShadow, variantStyle, style]}>
-        <View style={[styles.imageContainer, imageSizes]}>
+        <View style={[styles.imageContainer, imageSizes, !isCard && styles.imageContainerFullbleed]}>
           <Image source={{ uri: background }} style={[styles.image, imageSizes]} />
           <ExploreCardContrastOverlay width={imageSizes.width} height={imageSizes.height} />
         </View>
-        <View style={[styles.content]}>
+        <View style={[styles.content, !isCard && styles.contentFullbleed]}>
           {(title || body) && (
             <ExploreText
               titleType="boldDisplay3"
@@ -63,7 +63,11 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginBottom: 0,
   },
+  contentFullbleed: {
+    marginBottom: Sizes.Space.s1,
+  },
   imageContainer: { borderRadius: Space.s2 + Space.third, position: 'absolute', overflow: 'hidden' },
+  imageContainerFullbleed: { top: -Space.s1 },
   image: { position: 'absolute', width: Card.width, height: Card.large },
   imageCard: {
     width: Card.width,

@@ -3,16 +3,10 @@ import type React from 'react';
 import { BottomSheetView } from '@gorhom/bottom-sheet';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
-import { StyleSheet, View } from 'react-native';
-
 import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { BottomSheetModal } from '@/components/BottomSheet';
 import type { FloatingBottomButtonsProps } from '@/components/FloatingBottomButtons';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
-
-import { Label } from '@/components/Label';
-
-import { useTheme } from '@/theme/themes';
 
 import { PasskeyErrorContent } from './PasskeyErrorContent';
 
@@ -46,87 +40,75 @@ export const CloudBackupErrorSheet: React.FC<Props> = ({ type, onClose, onRetry 
     sheetRef.current?.present();
   }, []);
 
-  const { colors } = useTheme();
-
-  const content = useMemo(
-    () => {
-      switch (type) {
-        case 'passkeyErrorReading': {
-          return (
-            <PasskeyErrorContent
-              suggestKeychainSettings
-              title={loc.walletCloudBackupError.noPasskeyFound.title}
-              description={loc.walletCloudBackupError.noPasskeyFound.description}
-              suggestManualImport
-            />
-          );
-        }
-        case 'passkeyErrorWriting': {
-          return (
-            <PasskeyErrorContent
-              suggestKeychainSettings
-              title={loc.walletCloudBackupError.errorCreatingPasskey.title}
-              description={loc.walletCloudBackupError.ensureICloudKeychainOn}
-            />
-          );
-        }
-        case 'passkeyErrorDeleting': {
-          return (
-            <PasskeyErrorContent
-              suggestKeychainSettings
-              title={loc.walletCloudBackupError.errorDeletingPasskey.title}
-              description={loc.walletCloudBackupError.ensureICloudKeychainOn}
-              suggestSupport={false}>
-              <View style={[styles.divider, { backgroundColor: colors.light15 }]} />
-              <Label type="regularBody" color="light75">
-                {loc.walletCloudBackupError.errorDeletingPasskey.deletedPasskeyPossibility}
-              </Label>
-            </PasskeyErrorContent>
-          );
-        }
-        case 'passkeyErrorInactive': {
-          return (
-            <PasskeyErrorContent
-              title={loc.walletCloudBackupError.errorInactive.title}
-              subtitle={loc.walletCloudBackupError.errorInactive.subtitle}
-              description={loc.walletCloudBackupError.errorInactive.description}
-              suggestSupport={false}
-            />
-          );
-        }
-        case 'passkeyErrorUserCanceledRegistration': {
-          return (
-            <PasskeyErrorContent
-              title={loc.walletCloudBackupError.userCanceledBackup.title}
-              description={loc.walletCloudBackupError.userCanceledBackup.description}
-              suggestSupport={false}
-            />
-          );
-        }
-        case 'passkeyErrorWritingWrongDevice':
-          return (
-            <PasskeyErrorContent
-              title={loc.walletCloudBackupError.errorCreatingBackup.title}
-              description={loc.walletCloudBackupError.errorCreatingBackup.description}>
-              <Label type="regularBody" color="light75">
-                {loc.walletCloudBackupError.errorCreatingBackup.tryAgainRegular}
-                <Label type="boldBody" color="light75">
-                  {loc.walletCloudBackupError.errorCreatingBackup.tryAgainBold}
-                </Label>
-              </Label>
-            </PasskeyErrorContent>
-          );
-        default:
-          return null;
+  const content = useMemo(() => {
+    switch (type) {
+      case 'passkeyErrorReading': {
+        return (
+          <PasskeyErrorContent
+            title={loc.walletCloudBackupError.noPasskeyFound.title}
+            showDescripton
+            noPasskeyFound
+            suggestKeychainSettings
+            suggestManualImport
+            suggestSupport
+          />
+        );
       }
-    },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [type],
-  );
+      case 'passkeyErrorWriting': {
+        return (
+          <PasskeyErrorContent
+            showDescripton
+            showKeychainImage
+            suggestKeychainSettings
+            suggestSupport
+            title={loc.walletCloudBackupError.errorCreatingPasskey.title}
+          />
+        );
+      }
+      case 'passkeyErrorDeleting': {
+        return (
+          <PasskeyErrorContent
+            suggestKeychainSettings
+            title={loc.walletCloudBackupError.errorDeletingPasskey.title}
+            footerLines={[loc.walletCloudBackupError.errorDeletingPasskey.deletedPasskeyPossibility]}
+          />
+        );
+      }
+      case 'passkeyErrorInactive': {
+        return (
+          <PasskeyErrorContent
+            title={loc.walletCloudBackupError.errorInactive.title}
+            footerLines={[loc.walletCloudBackupError.errorInactive.subtitle, loc.walletCloudBackupError.errorInactive.description]}
+          />
+        );
+      }
+      case 'passkeyErrorUserCanceledRegistration': {
+        return (
+          <PasskeyErrorContent
+            title={loc.walletCloudBackupError.userCanceledBackup.title}
+            footerLines={[loc.walletCloudBackupError.userCanceledBackup.description]}
+          />
+        );
+      }
+      case 'passkeyErrorWritingWrongDevice':
+        return (
+          <PasskeyErrorContent
+            suggestSupport
+            showDescripton
+            suggestKeychainSettings
+            title={loc.walletCloudBackupError.errorCreatingBackup.title}
+            footerLines={[loc.walletCloudBackupError.errorCreatingBackup.tryAgainFormatted]}
+          />
+        );
+      default:
+        return null;
+    }
+  }, [type]);
 
   const buttonProps: FloatingBottomButtonsProps = useMemo(() => {
     switch (type) {
+      case 'passkeyErrorReading':
+      case 'passkeyErrorWriting':
       case 'passkeyErrorWritingWrongDevice': {
         return {
           primary: {
@@ -183,9 +165,3 @@ export const CloudBackupErrorSheet: React.FC<Props> = ({ type, onClose, onRetry 
     </BottomSheetModal>
   );
 };
-
-const styles = StyleSheet.create({
-  divider: {
-    height: 1,
-  },
-});

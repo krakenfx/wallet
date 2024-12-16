@@ -14,7 +14,8 @@ import { Pill } from '@/components/Pill';
 
 import { Touchable } from '@/components/Touchable';
 import { useLocalStateUpdate } from '@/hooks/useLocalStateUpdate';
-import { FeatureFlag, NEW_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
+import { NEW_NETWORKS } from '@/unencrypted-realm/featureFlags/schema';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 
 import { getNetworkFilters } from './getNetworkFilters';
 
@@ -116,7 +117,7 @@ type Props = {
 export const isNewNetworkFilter = (filter: UINetworkFilter) => NEW_NETWORKS.some(network => filter.includes(network));
 
 export const NetworkFilter = ({ networkFilter, setNetworkFilter, withBtcAndDoge, dataToFilter }: Props) => {
-  const isNewNetworksEnabled = useFeatureFlagEnabled(FeatureFlag.NewNetworksEnabled);
+  const [isNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
 
   const uiFilterData = useMemo<UIFilterData[]>(() => {
     let filters = dataToFilter ?? DEFAULT_ORDERED_NETWORK_FILTERS;

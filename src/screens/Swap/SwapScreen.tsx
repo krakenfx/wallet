@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import BigNumber from 'bignumber.js';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Keyboard, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -15,7 +16,7 @@ import { IconButton } from '@/components/IconButton';
 import { useMenu } from '@/components/Menu';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { getImplForWallet } from '@/onChain/wallets/registry';
-import type { RealmToken } from '@/realm/tokens';
+import { type RealmToken, useTokenByAssetId } from '@/realm/tokens';
 import type { NavigationProps } from '@/Routes';
 import { Routes } from '@/Routes';
 import type { RemoteAsset } from '@/types';
@@ -40,7 +41,7 @@ import { TargetAssetList } from './components/TargetAssetList';
 
 import { UnsupportedRoute } from './components/UnsupportedRoute';
 import { useSwapRouteData } from './hooks/useSwapRouteData';
-import { ROUTE_VALIDITY_PERIOD_MS } from './SwapScreen.constants';
+import { BroadcastState, ROUTE_VALIDITY_PERIOD_MS, SUCCESS_TIMEOUT } from './SwapScreen.constants';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -56,6 +57,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   const swapRouteExplainerSheet = useRef<BottomSheetModalRef>(null);
   const sourceAssetBlock = useRef<SourceAssetBlockRef>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [insuffucientFundsError, setInsufficientFundsError] = useState<boolean>(false);
 
   const {
     sourceTokenState: [sourceToken, setSourceToken],
@@ -67,13 +69,14 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     swapAvailableState: [_, setIsSwapAvailable],
     swapQuoteState: [swapQuote, setSwapQuote],
     swapQuoteError: [swapQuoteError, setSwapQuoteError],
+    swapFeesFiatValueState: [__, setFeesFiatValues],
     amountInputValidState: [isAmountInputValid],
     refreshCountdownProgress,
   } = useSwapContext();
 
   const { hide: hideMenu } = useMenu();
 
-  const [selectedRouteType, setSelectedRouteType] = useState<SwapQuoteRouteType>('speed');
+  const [selectedRouteType, setSelectedRouteType] = useState<SwapQuoteRouteType>('value');
 
   useEffect(() => {
     runAfterUISync(() => {
@@ -152,7 +155,9 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
       throw new Error('Requesting swap quote with incomplete data');
     }
     setIsLoading(true);
+    setFeesFiatValues(undefined);
     setSwapQuoteError(false);
+    setInsufficientFundsError(false);
     hideMenu();
     try {
       const { network } = getImplForWallet(sourceToken.wallet);
@@ -173,6 +178,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
       if (!data) {
         throw new Error('Failed to fetch swap quote');
       }
+
       setSwapQuote(data);
       setIsSwapAvailable(true);
       resetCountDown();
@@ -195,6 +201,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     isAmountInputValid,
     sourceAmount,
     setIsLoading,
+    setFeesFiatValues,
     setSwapQuoteError,
     hideMenu,
     selectedRouteType,
@@ -203,6 +210,12 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     resetCountDown,
     refreshCountdownProgress,
   ]);
+
+  useEffect(() => {
+    if (amountInputFocused) {
+      setInsufficientFundsError(false);
+    }
+  }, [amountInputFocused]);
 
   useEffect(() => {
     if (!amountInputFocused && sourceAmount && sourceToken && targetAsset && isAmountInputValid) {
@@ -223,7 +236,64 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     resetCountDown,
   ]);
 
+  useEffect(() => {
+    return resetCountDown;
+  }, [resetCountDown]);
+
   const swapRouteData = useSwapRouteData();
+
+  const gasToken = useTokenByAssetId(sourceToken.wallet.nativeTokenCaipId, sourceToken.wallet.id);
+
+  const hasInsufficientFundsForGas = useMemo(() => {
+    if (insuffucientFundsError) {
+      return true;
+    }
+
+    if (isLoading || !swapRouteData) {
+      return false;
+    }
+    const gasFee = swapRouteData.fees.find(fee => fee.type === 'gas');
+    if (!gasFee?.feeAsset.amount) {
+      return false;
+    }
+
+    if (gasToken.assetId === sourceToken.assetId) {
+      return new BigNumber(gasToken.balance).minus(swapRouteData.sourceAssetAmount).isLessThan(gasFee.feeAsset.amount);
+    }
+    return new BigNumber(gasToken.balance).isLessThan(gasFee.feeAsset.amount);
+  }, [isLoading, swapRouteData, gasToken.assetId, gasToken.balance, sourceToken.assetId, insuffucientFundsError]);
+
+  const finishFlow = useCallback(() => {
+    setTimeout(() => {
+      navigation.goBack();
+    }, SUCCESS_TIMEOUT);
+  }, [navigation]);
+
+  const onSwapFailed = useCallback((insufficientFunds?: boolean) => {
+    if (insufficientFunds) {
+      setInsufficientFundsError(true);
+    }
+  }, []);
+
+  const onBroadcastStateChange = useCallback(
+    (state: BroadcastState) => {
+      switch (state) {
+        case BroadcastState.NONE: {
+          requestSwapRoute();
+          break;
+        }
+        case BroadcastState.LOADING: {
+          resetCountDown();
+          break;
+        }
+        case BroadcastState.SUCCESS: {
+          finishFlow();
+          break;
+        }
+      }
+    },
+    [finishFlow, requestSwapRoute, resetCountDown],
+  );
 
   const showUnlistedExplainer = () => navigation.navigate(Routes.Explainer, { contentType: EXPLAINER_CONTENT_TYPES.UNVERIFIED_LISTS });
   const showRouteExplainerSheet = () => {
@@ -233,7 +303,13 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   return (
     <GradientScreenView testID="SwapScreen">
       <ScrollView style={styles.container} bounces={false}>
-        <SourceAssetBlock isLoading={isLoading} ref={sourceAssetBlock} token={sourceToken} onChange={showSourceAssetSelection} />
+        <SourceAssetBlock
+          isLoading={isLoading}
+          ref={sourceAssetBlock}
+          token={sourceToken}
+          onChange={showSourceAssetSelection}
+          errorMsg={hasInsufficientFundsForGas ? loc.formatString(loc.swap.error.insufficientGas, { symbol: gasToken.metadata.symbol }).toString() : undefined}
+        />
         <View>
           <DividerOverlay />
           {targetAsset ? (
@@ -258,7 +334,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
         primary={{
           text: loc.swap.buttonTitle,
           onPress: () => confirmationSheet.current?.expand(),
-          disabled: isLoading || !swapRouteData,
+          disabled: isLoading || !swapRouteData || hasInsufficientFundsForGas,
         }}
       />
       {isMounted && (
@@ -276,19 +352,22 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
         <TargetAssetList
           onSearchInputFocused={expandTargetAssetSelection}
           currentAsset={targetAsset}
-          sourceAssetWallet={sourceToken.wallet}
+          sourceAsset={sourceToken}
           ref={targetAssetSheet}
           onAssetSelected={onTargetAssetSelected}
           goBack={closeTargetAssetSelection}
           onClose={onTargetListClose}
         />
       )}
-      {!!sourceToken && targetAsset && swapRouteData && sourceAmount && (
+      {!!sourceToken && targetAsset && swapRouteData && sourceAmount && swapQuote && (
         <SwapConfirmationSheet
           showExplainer={showRouteExplainerSheet}
           goBack={() => confirmationSheet.current?.close()}
+          onBroadcastStateChange={onBroadcastStateChange}
           route={swapRouteData}
           ref={confirmationSheet}
+          swapQuote={swapQuote}
+          onSwapFailed={onSwapFailed}
         />
       )}
       {!!swapRouteData?.steps && (

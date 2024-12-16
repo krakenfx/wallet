@@ -48,7 +48,7 @@ import { SettingsSwitch } from '@/screens/Settings/components';
 import { SettingsBox } from '@/screens/Settings/components/SettingsBox';
 import { isSecureDevice } from '@/secureStore/keychain';
 import { useTheme } from '@/theme/themes';
-import { FeatureFlag, useFeatureFlag } from '@/utils/featureFlags';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { showToast } from '../components/Toast';
@@ -135,11 +135,9 @@ export const DebugScreen = () => {
   const deviceInfoRef = useRef<BottomSheetMethods>(null);
   const backendConfigRef = useRef<BottomSheetMethods>(null);
 
-  const [isExploreScreenEnabled, setIsExploreScreenEnabled] = useFeatureFlag(FeatureFlag.ExploreScreenEnabled);
-  const [isSwapEnabled, setIsSwapEnabled] = useFeatureFlag(FeatureFlag.swapsEnabled);
-  const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag(FeatureFlag.NewNetworksEnabled);
-  const [isInAppBrowserEnabled, setIsInAppBrowserEnabled] = useFeatureFlag(FeatureFlag.InAppBrowserEnabled);
-  const [isOnboardingImportDiscoveryEnabled, setIsOnboardingImportDiscoveryEnabled] = useFeatureFlag(FeatureFlag.onboardingImportDiscoveryEnabled);
+  const [isSwapEnabled, setIsSwapEnabled] = useFeatureFlag('swapsEnabled');
+  const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
+  const [isOnboardingImportDiscoveryEnabled, setIsOnboardingImportDiscoveryEnabled] = useFeatureFlag('onboardingImportDiscoveryEnabled');
 
   useEffect(() => {
     (async () => {
@@ -286,22 +284,6 @@ export const DebugScreen = () => {
         {!!Config.INTERNAL_RELEASE && (
           <>
             <SettingsBox isFirst isHighlighted>
-              <SettingsSwitch
-                testID="EnableExploreFeed"
-                icon="compass"
-                text="Enable Explore Feed"
-                enabled={isExploreScreenEnabled}
-                onToggle={setIsExploreScreenEnabled}
-              />
-            </SettingsBox>
-            <SettingsBox isLast isHighlighted style={styles.spacing}>
-              <Label type="regularCaption1">When enabled, app will display a button that leads to Explore Feed </Label>
-            </SettingsBox>
-          </>
-        )}
-        {!!Config.INTERNAL_RELEASE && (
-          <>
-            <SettingsBox isFirst isHighlighted>
               <SettingsSwitch icon="swap" text="Enable Swaps" enabled={isSwapEnabled} onToggle={setIsSwapEnabled} />
             </SettingsBox>
             <SettingsBox isLast isHighlighted style={styles.spacing}>
@@ -325,26 +307,6 @@ export const DebugScreen = () => {
             </SettingsBox>
           </>
         )}
-
-        {!!Config.INTERNAL_RELEASE && (
-          <>
-            <SettingsBox isFirst isHighlighted>
-              <SettingsSwitch
-                testID="EnableInAppBrowser"
-                icon="web3-globe"
-                text="Enable in-app browser"
-                enabled={isInAppBrowserEnabled}
-                onToggle={setIsInAppBrowserEnabled}
-              />
-            </SettingsBox>
-            <SettingsBox isLast isHighlighted style={styles.spacing}>
-              <Label type="regularCaption1">
-                When enabled, search bar will be active in explore (if enabled) and all links will open in the in-app browser{' '}
-              </Label>
-            </SettingsBox>
-          </>
-        )}
-
         {!!Config.INTERNAL_RELEASE && (
           <>
             <SettingsBox isFirst isHighlighted>
