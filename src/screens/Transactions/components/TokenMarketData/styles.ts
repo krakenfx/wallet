@@ -12,6 +12,7 @@ export const commonStyles = StyleSheet.create({
   small: {
     height: 55,
     paddingRight: 16,
+    paddingVertical: 4,
   },
   medium: {
     height: 90,

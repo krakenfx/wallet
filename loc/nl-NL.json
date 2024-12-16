@@ -179,6 +179,10 @@
   },
   "browser": {
     "clearSearch": "Wissen",
+    "downloadFile": {
+      "failed": "Downloaden bestand mislukt",
+      "success": "Bestand gedownload"
+    },
     "loadingError": {
       "description": "Verifieer of de URL typfouten heeft en of dat er delen ontbreken",
       "title": "URL niet gevonden"
@@ -194,6 +198,14 @@
       "share": "Delen"
     },
     "searchOnChain": "Onchain zoeken"
+  },
+  "browserExploreWelcome": {
+    "body": "Neem vandaag nog de volgende stap in je cryptoreis. Je kunt nu gedecentraliseerde apps (dapps) ontdekken en er verbinding mee maken zonder je Kraken Wallet te verlaten.",
+    "buttonText": "Klinkt goed",
+    "part1": "Gebruik de nieuwe menu-opties onderaan je scherm om naar de pagina Explore (Ontdekken) te gaan",
+    "part2": "Ontdek populaire dapps en nieuwe onchain-mogelijkheden, of gebruik de zoekbalk voor meer",
+    "part3": "Gemakkelijk verbinding maken met dapps en transacties uitvoeren zonder ooit de Kraken Wallet-app te verlaten",
+    "title": "Ontdek de onchain-wereld"
   },
   "bugTracking": {
     "allow": "Toestaan",
@@ -930,6 +942,14 @@
     "title": "Importeren"
   },
   "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Wallet toevoegen",
+      "addWallets": "Wallets toevoegen",
+      "button": "Toevoegen per index",
+      "description": "Typ het indexnummer van de wallet die je wilt importeren.",
+      "placeholder": "Voer het indexnummer van de wallet in",
+      "title": "Voer walletindex in"
+    },
     "findingWallets": {
       "caption": "Dit kan enkele seconden duren",
       "foundWallets": "{count} wallets gevonden...",
@@ -1295,20 +1315,27 @@
     "confirmation": {
       "cancel": "Annuleren",
       "confirm": "Bevestigen",
-      "initiated": "Swap in gang gezet!"
+      "initiated": "Swap in gang gezet!",
+      "swapFlagged": "Swap gemarkeerd!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Jouw huidige wallet bevat geen assets, probeer je wallet te financieren",
       "assetsEmptyTitle": "Geen assets beschikbaar",
       "clearSearch": "Zoekopdracht verwijderen",
       "goBack": "Ga terug",
+      "okay": "Oké",
       "searchAllNetworks": "Alle netwerken zoeken",
       "searchEmptyDesc": "Probeer je zoekopdracht uit te breiden",
       "searchEmptyTitle": "Geen resultaten",
-      "swappableAssetsEmptyDesc": "Je huidige wallet heeft geen assets die worden ondersteund door onze swapaanbieders",
+      "swappableAssetsEmptyDesc": "Deze wallet heeft geen assets die worden ondersteund door onze swapaanbieders. Op dit moment worden alleen Ethereum- en EVM-compatibele netwerken ondersteund.",
       "swappableAssetsEmptyNetworkDesc": "Je huidige wallet heeft geen assets op het geselecteerde netwerk die worden ondersteund door onze swapaanbieders",
       "swappableAssetsEmptyNetworkTitle": "Geen verwisselbare assets beschikbaar op geselecteerd netwerk",
-      "swappableAssetsEmptyTitle": "Geen verwisselbare assets beschikbaar"
+      "swappableAssetsEmptyTitle": "Geen verwisselbare assets beschikbaar",
+      "targetAssetEmptyDesc": "Geen van onze providers ondersteunt swaps voor de assets die je hebt geselecteerd",
+      "targetAssetEmptyTitle": "Geen assets beschikbaar om te swappen"
+    },
+    "error": {
+      "insufficientGas": "Onvoldoende {symbol} tegoed om swaptransacties te dekken"
     },
     "findingBestRote": "De beste route zoeken",
     "route": {
@@ -1335,8 +1362,8 @@
       },
       "rate": "Percentage",
       "slippage": {
-        "hint": "Slippage is het verschil tussen de verwachte prijs en de uiteindelijke prijs van een activum. Als de prijs ongunstig verandert en de ingestelde slippage-tolerantie overschrijdt, wordt de transactie geannuleerd.",
-        "title": "Slippage"
+        "hint": "Swap slippage is het verschil tussen de verwachte prijs en de uiteindelijke prijs van een asset. Als de prijs voorbij de ingestelde slippage-tolerantie verandert, wordt de transactie geannuleerd. Swap slippage is alleen van toepassing op swaps met dezelfde keten, met uitzondering van bridge slippage.",
+        "title": "Swap slippage"
       },
       "swapRate": "Swappercentage",
       "transactionFees": "Transactiekosten",
@@ -1352,8 +1379,8 @@
         "title": "Zoek swaproute met"
       },
       "unsupportedRoute": {
-        "desc": "Je kunt proberen je activum te swappen voor een groot token uit de beschikbare lijst en dan een aparte swap uitvoeren om het activum te krijgen dat je wilt. Succes van deze aanpak is niet gegarandeerd.",
-        "title": "Er zijn geen routes beschikbaar voor de transactie die je hebt ingevoerd."
+        "desc": "Je kunt ook eerst proberen te swappen voor een grote token en die dan swappen voor de gewenste asset.",
+        "title": "Er zijn geen routes beschikbaar voor de transactie die je hebt ingevoerd. Het verhogen van de slippage-instelling kan je meer routes geven."
       }
     },
     "routePath": {
@@ -1696,6 +1723,7 @@
       "title": "Fout bij het maken van back-up",
       "tryAgainBold": "we ondersteunen het opslaan van back-ups op andere apparaten niet.",
       "tryAgainButton": "Probeer opnieuw",
+      "tryAgainFormatted": "Houd er bij het opnieuw proberen rekening mee dat <b>we het opslaan van back-ups op andere apparaten niet ondersteunen.</b>",
       "tryAgainRegular": "Houd er bij het opnieuw proberen rekening mee dat "
     },
     "errorCreatingPasskey": {
@@ -1714,6 +1742,38 @@
       "title": "Inactieve passkey"
     },
     "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Ga naar: <b>Instellingen → Wachtwoorden → Wachtwoordopties</b>",
+              "stepTwo": "Schakel in: <b>iCloud-sleutelhanger</b>",
+              "title": "<b>Tip 1:</b> Controleer of iCloud-sleutelhanger is ingeschakeld om te worden gebruikt voor wachtwoorden en passkeys:"
+            },
+            "two": {
+              "stepOne": "Ga naar: <b>Instellingen → AppleID → iCloud → Wachtwoorden</b>",
+              "stepTwo": "Schakel in: <b>Deze iPhone synchroniseren</b>",
+              "title": "<b>Tip 2:</b> iCloud-wachtwoorden en sleutelhanger inschakelen"
+            }
+          },
+          "title": "Zorg ervoor dat je <b>iCloud-sleutelhanger</b> gebruikt om de passkey aan te maken. <b>Andere wachtwoordmanagers worden nog niet ondersteund.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Ga naar: <b>Instellingen → Algemeen → AutoFill & Wachtwoorden</b>",
+              "stepTwo": "Schakel in: <b>Wachtwoorden</b>",
+              "title": "<b>Tip 1:</b> Zorg ervoor dat Wachtwoorden is ingeschakeld door deze stappen te volgen:"
+            },
+            "two": {
+              "stepOne": "Ga naar: <b>Instellingen → iCloud → Wachtwoorden</b>",
+              "stepTwo": "Schakel in: <b>Deze iPhone synchroniseren</b>",
+              "title": "<b>Tip 2:</b> iCloud-wachtwoorden en sleutelhanger inschakelen"
+            }
+          },
+          "title": "Als je het opnieuw probeert, zorg er dan voor dat je iCloud-<b>wachtwoorden</b> gebruikt om het wachtwoord aan te maken. <b>Andere wachtwoordmanagers worden nog niet ondersteund.</b>"
+        }
+      },
       "one": {
         "bold": "Instellingen → Wachtwoorden → Wachtwoordopties",
         "regular": "1. Ga naar: "
@@ -1725,6 +1785,8 @@
     },
     "noPasskeyFound": {
       "description": "We konden geen passkey vinden. Het is mogelijk dat je er geen hebt aangemaakt of dat iCloud-sleutelhanger is uitgeschakeld in de instellingen. Zorg ervoor dat iCloud-sleutelhanger is ingeschakeld door deze stappen te volgen:",
+      "descriptioniOS17": "We konden geen passkey vinden. Het is mogelijk dat je er geen hebt aangemaakt of dat <b>iCloud-sleutelhanger</b> is uitgeschakeld in de instellingen.",
+      "descriptioniOS18": "We konden geen passkey vinden. Het is mogelijk dat je er geen hebt aangemaakt of dat <b>Wachtwoorden</b> is uitgeschakeld in de instellingen.",
       "title": "Geen passkey gevonden"
     },
     "supportHint": {

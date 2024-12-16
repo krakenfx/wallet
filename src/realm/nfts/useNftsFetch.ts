@@ -9,6 +9,7 @@ import { REALM_TYPE_NFT_METADATA } from '@/realm/nftMetadata';
 import { useNftsMutations } from '@/realm/nfts/useNftsMutations';
 import { useRealm } from '@/realm/RealmContext';
 import { getWalletsForMutations } from '@/realm/wallets';
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
 import { isPromiseFulfilled, isPromiseRejected } from '@/utils/promise';
 
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
@@ -22,6 +23,7 @@ type FetchState = {
 
 export const useNftsFetch = () => {
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
   const { saveNftsToRealm } = useNftsMutations();
   const { runInTransaction } = useRealmTransaction();
   const fetchState = useRef<FetchState>();
@@ -52,7 +54,7 @@ export const useNftsFetch = () => {
         refreshMetadata,
         isLoading: true,
       };
-      const accountWallets = getWalletsForMutations(realm);
+      const accountWallets = getWalletsForMutations(realm, unencryptedRealm);
 
       const results = await Promise.allSettled(accountWallets.map(wallet => fetchNfts(wallet, getRawNftMetadata).then(nfts => ({ nfts, wallet }))));
       const nftsFetched = results.filter(isPromiseFulfilled).map(({ value }) => value);
@@ -66,7 +68,7 @@ export const useNftsFetch = () => {
       results.filter(isPromiseRejected).forEach(({ reason }) => handleError(reason, 'ERROR_CONTEXT_PLACEHOLDER'));
       fetchState.current.isLoading = false;
     },
-    [realm, runInTransaction, getRawNftMetadata, saveNftsToRealm],
+    [realm, unencryptedRealm, runInTransaction, getRawNftMetadata, saveNftsToRealm],
   );
 
   return {

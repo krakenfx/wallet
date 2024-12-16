@@ -3,6 +3,8 @@ import Realm from 'realm';
 
 import type { DeFiProtocol } from '@/api/types';
 
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
+
 import { useRealm } from '../RealmContext';
 
 import { REALM_TYPE_DEFI } from './schema';
@@ -15,10 +17,11 @@ import { handleError } from '/helpers/errorHandler';
 
 export const useDefiMutations = () => {
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
   const saveDefis = useCallback(
     (records: DeFiProtocol[], wallet: RealmWallet) => {
       realm.write(() => {
-        const toDelete = getDefisForMutations(realm).filtered(
+        const toDelete = getDefisForMutations(realm, unencryptedRealm).filtered(
           `walletId = "${wallet.id}" AND NOT id IN $0`,
           records.map(r => r.id),
         );
@@ -33,7 +36,7 @@ export const useDefiMutations = () => {
         }
       });
     },
-    [realm],
+    [realm, unencryptedRealm],
   );
 
   return {

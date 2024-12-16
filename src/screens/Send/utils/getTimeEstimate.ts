@@ -4,7 +4,7 @@ import type { WalletType } from '@/onChain/wallets/registry';
 
 import { getDateLocale } from '/loc/date';
 
-const timePerBlockInSecondsMap: Partial<Record<WalletType, number>> = {
+export const timePerBlockInSecondsMap: Partial<Record<WalletType, number>> = {
   ethereum: 12,
   polygon: 12,
   arbitrum: 0.25,

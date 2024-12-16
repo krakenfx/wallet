@@ -6,8 +6,9 @@ import { SequencedTransition } from 'react-native-reanimated';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
-import type { ColorName } from '@/theme/themes';
 import { runAfterUISync } from '@/utils/runAfterUISync';
+
+import type { ButtonProps } from '../Button';
 
 import loc from '/loc';
 
@@ -18,7 +19,7 @@ type Props = {
   hidden: boolean;
   feeSelector?: React.ReactElement;
   additionalInfo?: React.ReactNode;
-  primaryButtonColor?: ColorName;
+  primaryButtonProps?: Partial<ButtonProps>;
 };
 
 export const TransactionConfirmationFooter: React.FC<Props> = ({
@@ -28,7 +29,7 @@ export const TransactionConfirmationFooter: React.FC<Props> = ({
   feeSelector,
   additionalInfo,
   isLoading: propLoading,
-  primaryButtonColor,
+  primaryButtonProps,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,7 +42,7 @@ export const TransactionConfirmationFooter: React.FC<Props> = ({
   return (
     <View style={[hidden && styles.hidden]}>
       <View style={styles.footer}>
-        <Label type="boldCaption1">{loc.transactionDetails.confirmation.fee}</Label>
+        {!!feeSelector && <Label type="boldCaption1">{loc.transactionDetails.confirmation.fee}</Label>}
         {feeSelector}
       </View>
       {additionalInfo}
@@ -51,13 +52,12 @@ export const TransactionConfirmationFooter: React.FC<Props> = ({
         style={[isLoading && styles.containerLoadingStyle]}
         primary={{
           testID: 'ButtonConfirm',
-          icon: 'face-ID',
           text: loc.transactionDetails.confirmation.confirm,
           onPress: onConfirm,
           loading: isLoading,
           style: [isLoading && styles.buttonLoadingStyle],
           layout: SequencedTransition.duration(1000),
-          color: primaryButtonColor,
+          ...(isLoading ? {} : primaryButtonProps),
         }}
         secondary={
           !isLoading

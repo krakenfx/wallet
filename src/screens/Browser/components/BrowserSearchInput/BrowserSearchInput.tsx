@@ -41,6 +41,8 @@ export const BrowserSearchInput: React.FC<BrowserSearchInputProps> = ({ url, onR
     changeSearchValue(text);
   };
 
+  const onTouchEnd = () => setSelection(undefined);
+
   const selectTextOnFocus = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
     if (Platform.OS === 'android') {
       setSelection({ start: 0, end: searchValue?.length });
@@ -62,12 +64,14 @@ export const BrowserSearchInput: React.FC<BrowserSearchInputProps> = ({ url, onR
         ref={inputRef}
         autoFocus
         autoCapitalize="none"
+        keyboardType="url"
         selection={selection}
         placeholder={loc.browser.searchOnChain}
         placeholderStyle={animatedPlaceholderStyle}
         value={searchValue}
         onFocus={selectTextOnFocus}
         onChangeText={onChangeText}
+        onTouchEnd={onTouchEnd}
         onEndEditing={handleSearch}
         onSubmitEditing={handleSearch}
         testID="BrowserSearchBarInput"

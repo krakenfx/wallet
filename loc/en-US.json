@@ -556,6 +556,14 @@
     "part2": "With these new integrations, you can view asset balances, broadcast transactions, collect NFTs, monitor defi positions and connect to dapps on both of the networks.",
     "buttonText": "Sounds good"
   },
+  "browserExploreWelcome": {
+    "title": "Explore the onchain world",
+    "body": "Take the next step in your crypto journey today. You can now discover and connect to decentralized apps (dapps) without leaving your Kraken Wallet.",
+    "part1": "Use the new menu options at the bottom of your screen to access the Explore page",
+    "part2": "Explore popular dapps and new onchain opportunties, or use the Search bar for more",
+    "part3": "Easily connect to dapps and perform transactions without ever leaving the Kraken Wallet app",
+    "buttonText": "Sounds good"
+  },
   "onboardingOutro": {
     "title": "Your wallet is ready",
     "caption": "This wallet supports Bitcoin, Ethereum, Polygon, Solana, and more.",
@@ -637,7 +645,7 @@
     "unlock": "Unlock",
     "rationaleSignTransaction": "Your password is required to sign transactions",
     "rationaleCreateWallet": "Your password is required to create a new wallet",
-    "rationaleSeeRecoveryPhrase": "to view your Secrete Recovery Phrase",
+    "rationaleSeeRecoveryPhrase": "to view your Secret Recovery Phrase",
     "rationaleGetXPub": "Your password is required to see your extended public key",
     "authFailed": "Authentication Failed",
     "authFailedDescription": "You can try again, or you may completely wipe and reset the app",
@@ -706,16 +714,22 @@
     "sourceSearchPlaceholder": "Select asset to swap from",
     "targetSearchPlaceholder": "Select asset to receive",
     "findingBestRote": "Finding best route",
+    "error": {
+      "insufficientGas": "Insufficient {symbol} balance to cover swap transactions"
+    },
     "emptyState": {
       "searchEmptyTitle": "No results",
       "searchEmptyDesc": "Try expading your search",
       "assetsEmptyTitle": "No assets available",
+      "targetAssetEmptyTitle": "No assets available to swap for",
+      "targetAssetEmptyDesc": "None of our providers support swaps for the asset you selected",
       "swappableAssetsEmptyNetworkTitle": "No swappable assets available on selected network",
       "swappableAssetsEmptyTitle": "No swappable assets available",
       "assetsEmptyDesc": "Your current wallet does not have any assets, try funding your wallet",
-      "swappableAssetsEmptyDesc": "Your current wallet does not have any assets supported by our swap providers",
+      "swappableAssetsEmptyDesc": "This wallet does not have any assets supported by our swap providers. Only Ethereum and EVM compatible networks are currently supported.",
       "swappableAssetsEmptyNetworkDesc": "Your current wallet does not have any assets on selected network that are supported by our swap providers",
       "goBack": "Go back",
+      "okay": "Okay",
       "clearSearch": "Clear search",
       "searchAllNetworks": "Search all networks"
     },
@@ -771,8 +785,9 @@
       "bridge": "Bridge via {name}"
     },
     "confirmation": {
-      "cancel": "Cancel",
-      "confirm": "Confirm"
+      "confirm": "Confirm",
+      "initiated": "Swap initiated!",
+      "swapFlagged": "Swap flagged!"
     }
   },
   "scan": {
@@ -1140,10 +1155,10 @@
     "check2": "I confirm that I have saved my 12 word secret recovery phrase in a secure place."
   },
   "walletCloudBackupError": {
-    "ensureICloudKeychainOn": "In your device Password Options, make sure iCloud Keychain is turned-on to be used for passwords and passkeys:",
     "noPasskeyFound": {
       "title": "No passkey found",
-      "description": "We couldn't find a passkey. It's possible you didn't create one or iCloud Keychain is disabled in settings. Make sure iCloud Keychain is turned-on by following these steps:"
+      "descriptioniOS17": "We couldn't find a passkey. It's possible you didn't create one or <b>iCloud Keychain</b> is disabled in settings.",
+      "descriptioniOS18": "We couldn't find a passkey. It's possible you didn't create one or <b>Passwords</b> is disabled in settings."
     },
     "errorInactive": {
       "title": "Inactive passkey",
@@ -1151,7 +1166,7 @@
       "description": "If you have created multiple passkeys, you can try importing another backup. Otherwise, you can import your wallet using the 12-24 word Secret Recovery Phrase"
     },
     "errorCreatingPasskey": {
-      "title": "Error creating passkey"
+      "title": "Error creating backup"
     },
     "errorDeletingPasskey": {
       "title": "Error deleting passkey backup",
@@ -1168,9 +1183,7 @@
     },
     "errorCreatingBackup": {
       "title": "Error creating backup",
-      "description": "Something went wrong when trying to create a backup.",
-      "tryAgainRegular": "When trying again, keep in mind that ",
-      "tryAgainBold": "we don't support saving backup on other devices.",
+      "tryAgainFormatted": "When trying again, keep in mind that <b>we don't support saving backup on other devices.</b>",
       "tryAgainButton": "Try again",
       "cancel": "Cancel"
     },
@@ -1180,13 +1193,37 @@
       "cancel": "Cancel"
     },
     "keychainSteps": {
-      "one": {
-        "regular": "1. Go to: ",
-        "bold": "Settings → Passwords → Password Options"
-      },
-      "two": {
-        "regular": "2. Turn on: ",
-        "bold": "iCloud Keychain"
+      "formatted": {
+        "ios17": {
+          "title": "Make sure you are using <b>iCloud Keychain</b> to create the passkey. <b>Other password managers are not yet supported.</b>",
+          "tips": {
+            "one": {
+              "title": "<b>Tip 1:</b> Make sure iCloud Keychain is turned-on to be used for passwords and passkeys:",
+              "stepOne": "Go to: <b>Settings → Passwords → Password Options</b>",
+              "stepTwo": "Turn on: <b>iCloud Keychain</b>"
+            },
+            "two": {
+              "title": "<b>Tip 2:</b> Turn on iCloud Passwords & Keychain",
+              "stepOne": "Go to: <b>Settings → AppleID → iCloud → Passwords</b>",
+              "stepTwo": "Turn on: <b>Sync this iPhone</b>"
+            }
+          }
+        },
+        "ios18": {
+          "title": "When you try again, make sure you are using iCloud <b>Passwords</b> to create the passkey. <b>Other password managers are not yet supported.</b>",
+          "tips": {
+            "one": {
+              "title": "<b>Tip 1:</b> Make sure Passwords is turned-on by following these steps:",
+              "stepOne": "Go to: <b>Settings → General → AutoFill & Passwords</b>",
+              "stepTwo": "Turn on: <b>Passwords</b>"
+            },
+            "two": {
+              "title": "<b>Tip 2:</b> Turn on iCloud Passwords & Keychain",
+              "stepOne": "Go to: <b>Settings → iCloud → Passwords</b>",
+              "stepTwo": "Turn on: <b>Sync this iPhone</b>"
+            }
+          }
+        }
       }
     },
     "supportHint": {

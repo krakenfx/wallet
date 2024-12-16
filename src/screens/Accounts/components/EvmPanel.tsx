@@ -13,7 +13,8 @@ import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
 
-import { FeatureFlag, NEW_EVM_NETWORKS, useFeatureFlagEnabled } from '@/utils/featureFlags';
+import { NEW_EVM_NETWORKS } from '@/unencrypted-realm/featureFlags/schema';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 
 import { DerivationPath } from './DerivationPath';
 
@@ -24,7 +25,7 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
   const showExplainer = useCallback(() => {
     navigation.navigate(Routes.Explainer, { contentType: EXPLAINER_CONTENT_TYPES.ETHEREUM_DERIVATION_PATH });
   }, [navigation]);
-  const isNewNetworksEnabled = useFeatureFlagEnabled(FeatureFlag.NewNetworksEnabled);
+  const [isNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
 
   const networkIDs = [
     ChainAgnostic.NETWORK_ETHEREUM,

@@ -27,7 +27,7 @@ export const RoutePreviewButton: React.FC<Props> = ({ duration, steps, onPress }
   return (
     <Touchable onPress={onPress} style={[styles.routePreview, { backgroundColor: colors.purple_20 }]}>
       <OverlappingCollection itemSize={16} maskedItemOffset={5} items={icons} />
-      <Label type="boldCaption1">{duration}</Label>
+      {!!duration && <Label type="boldCaption1">~{duration}</Label>}
       <SvgIcon size={16} name="info-circle" color="light50" />
     </Touchable>
   );

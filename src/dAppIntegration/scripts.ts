@@ -27,6 +27,7 @@ type SendCallback = (error: ProviderRpcError | null, result: RpcResponse | null)
 
 interface EvmProvider extends Provider {
   isMetaMask: true;
+  isKrakenWallet: boolean;
   _isConnected: boolean;
   _metamask: {
     isUnlocked: () => Promise<true>;
@@ -211,6 +212,7 @@ function injectProviders(secret: string, platform: typeof Platform.OS) {
     ...provider,
 
     isMetaMask: true,
+    isKrakenWallet: true,
     _isConnected: false,
     _metamask: {
       isUnlocked: () => Promise.resolve(true),

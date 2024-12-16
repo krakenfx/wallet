@@ -9,7 +9,7 @@ import { Label } from '@/components/Label';
 
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 
-import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 
 import loc from '/loc';
 
@@ -34,7 +34,7 @@ export const ActionButtons = ({ onReceivePress, onSendPress, canSwap, onSwapPres
     );
   };
 
-  const isSwapEnabled = useFeatureFlagEnabled(FeatureFlag.swapsEnabled);
+  const [isSwapEnabled] = useFeatureFlag('swapsEnabled');
 
   return (
     <Animated.View style={[styles.container, style, size === 'small' && styles.smallDeviceContainer]} entering={FadeIn}>

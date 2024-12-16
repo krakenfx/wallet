@@ -54,6 +54,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     AppLock: undefined;
     WhatsNewBlast: undefined;
     WhatsNewAvaxLinea: undefined;
+    WhatsNewBrowserExplore: undefined;
     WhatsNewAssetMarketData: undefined;
     WhatsNewLongPress: undefined;
     WalletBackupPrompt: undefined;
@@ -117,6 +118,7 @@ export enum Routes {
   AdvancedSettings = 'AdvancedSettings',
   AppDetails = 'AppDetails',
   Browser = 'Browser',
+  WhatsNewBrowserExplore = 'WhatsNewBrowserExplore',
   WhatsNewAvaxLinea = 'WhatsNewAvaxLinea',
   WhatsNewBlast = 'WhatsNewBlast',
   WhatsNewLongPress = 'WhatsNewLongPress',

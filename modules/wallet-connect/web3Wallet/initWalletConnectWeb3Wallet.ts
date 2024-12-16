@@ -37,6 +37,9 @@ const getDispatch_ = (): ReactNavigationDispatch => dispatch_;
 let realm_: Realm;
 const getRealm_ = (): Realm => realm_;
 
+let unencryptedRealm_: Realm;
+const getUnencryptedRealm_ = (): Realm => unencryptedRealm_;
+
 export const WalletConnectSessionsManager = new WalletConnectSessionsManager_();
 
 const sessionProposals: string[] = [];
@@ -61,10 +64,12 @@ export const deleteStaleSessionsFromRealm = async (realm: Realm, web3Wallet: IWa
 
 export async function initWalletConnectWeb3Wallet(
   realm: Realm,
+  unencryptedRealm: Realm,
   dispatch: ReactNavigationDispatch,
   getSeed: SecuredKeychainContext['getSeed'],
 ): Promise<IWalletKit> {
   realm_ = realm;
+  unencryptedRealm_ = unencryptedRealm;
   dispatch_ = dispatch;
 
   if (web3Wallet) {
@@ -95,7 +100,7 @@ export async function initWalletConnectWeb3Wallet(
     if (!hasBeenProposed) {
       sessionProposals.push(String(proposal.id));
       enqueueAppRequest(() => {
-        return handleSessionProposal(proposal, getDispatch_(), getRealm_());
+        return handleSessionProposal(proposal, getDispatch_(), getRealm_(), getUnencryptedRealm_());
       });
     }
   });

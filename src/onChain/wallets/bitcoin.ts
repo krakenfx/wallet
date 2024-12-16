@@ -495,7 +495,7 @@ export class BitcoinElectrumTransport implements Transport<SendTransaction, Send
     };
   }
 
-  async getTransactionStatus(network: BitcoinNetwork, txid: string): Promise<boolean> {
+  async isTransactionComplete(network: BitcoinNetwork, txid: string): Promise<boolean> {
     await waitTillConnected();
     const txdatas = await BlueElectrum.multiGetTransactionByTxid([txid], 1, true);
     return !!Object.values(txdatas)[0]?.confirmations;

@@ -17,7 +17,7 @@ import { usePreventScreenCaptureLong } from '@/hooks/usePreventScreenCaptureLong
 import { Routes } from '@/Routes';
 import { useValidationState } from '@/screens/Onboarding/hooks/useValidationState';
 import { useTheme } from '@/theme/themes';
-import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { useIsOnline } from '@/utils/useConnectionManager';
@@ -47,7 +47,7 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
   const [isFocused, setIsFocused] = useState(true);
   const [canDeleteWord, setCanDeleteWord] = useState(false);
   const validator = useValidationState({ resetWhenInvalid: false });
-  const isOnboardingImportDiscoveryEnabled = useFeatureFlagEnabled(FeatureFlag.onboardingImportDiscoveryEnabled);
+  const [isOnboardingImportDiscoveryEnabled] = useFeatureFlag('onboardingImportDiscoveryEnabled');
   const isOnline = useIsOnline();
   usePreventScreenCaptureLong();
 

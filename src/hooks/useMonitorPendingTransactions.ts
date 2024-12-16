@@ -41,8 +41,8 @@ export const useMonitorPendingTransactions = () => {
             return;
           }
         }
-        const isConfirmed = await transport.getTransactionStatus(network, tx.transactionId);
-        if (isConfirmed && tx.isValid()) {
+        const isComplete = await transport.isTransactionComplete(network, tx.transactionId);
+        if (isComplete && tx.isValid()) {
           confirmPendingTransaction(id);
           await fetchBalance(tx.wallet, false);
           const token = getTokenById(realm, tx.tokenId);

@@ -1,5 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import isEmpty from 'lodash/isEmpty';
+import uniqBy from 'lodash/uniqBy';
 import { useCallback, useRef, useState } from 'react';
 
 import { useIsTestnetEnabled } from '@/realm/settings';
@@ -63,10 +64,10 @@ export const useFetchSubWallets = (): { isLoadingSubWallets: boolean; subWallets
               const nextSubWalletsHaveBalance = subWallets_.some(subWallet => subWallet.hasBalance);
 
               if (nextSubWalletsHaveBalance || prevSubWallets.length === 0) {
-                return [...prevSubWallets, ...subWallets_];
+                return uniqBy([...prevSubWallets, ...subWallets_], 'index');
               }
 
-              return [...prevSubWallets];
+              return uniqBy([...prevSubWallets], 'index');
             });
 
             const compareSubWalletIndexes = (a: SubWallet, b: SubWallet) => a.index - b.index;

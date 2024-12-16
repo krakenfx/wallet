@@ -2,7 +2,7 @@ import { chunk, compact } from 'lodash';
 
 import type { DefaultApi } from '@/api/base/apiFactory';
 import { getHarmony } from '@/api/base/apiFactory';
-import type { InternalBalance, TokenMetadata, Transaction } from '@/api/types';
+import type { InternalBalance, TokenMetadata, Transaction, TransactionStatus } from '@/api/types';
 import type { AssetMetadata } from '@/realm/assetMetadata';
 import { adaptTokenReputationToRealmAssetReputation } from '@/utils/adaptTokenReputationToRealmAssetReputation';
 import { isPromiseFulfilled } from '@/utils/promise';
@@ -84,14 +84,19 @@ export class HarmonyTransport<TTransaction, TTransactionRequest, TWalletState, T
     return result.content.transactionId;
   }
 
-  async getTransactionStatus(network: TNetwork, txid: string): Promise<boolean> {
+  async getTransactionStatus(network: TNetwork, txid: string): Promise<TransactionStatus['status']> {
     const harmony = await this.getHarmony();
     const result = await harmony.GET('/v1/transaction', {
       params: {
         query: { network: network.caipId, transactionId: txid },
       },
     });
-    return !['unknown'].includes(result.content.status);
+    return result.content.status;
+  }
+
+  async isTransactionComplete(network: TNetwork, txid: string): Promise<boolean> {
+    const status = await this.getTransactionStatus(network, txid);
+    return !['unknown', 'pending'].includes(status);
   }
 
   async getFeesEstimate(network: TNetwork): Promise<FeeOptions> {

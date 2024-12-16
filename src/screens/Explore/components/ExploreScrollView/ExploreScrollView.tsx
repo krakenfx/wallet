@@ -8,10 +8,10 @@ import { Sizes } from '../../ExploreScreen.constants';
 
 import type { ExploreScrollViewProps } from './ExploreScrollView.types';
 
-export const ExploreScrollView = ({ children, style }: ExploreScrollViewProps) => {
+export const ExploreScrollView = ({ children, style, insetHeaderHeight = true }: ExploreScrollViewProps) => {
   const paddingBottom = useBottomElementSpacing();
   return (
-    <GradientScreenView testID="ExploreScrollView">
+    <GradientScreenView insetHeaderHeight={insetHeaderHeight} testID="ExploreScrollView">
       <ScrollView style={styles.scroll} contentContainerStyle={[{ paddingBottom: paddingBottom + Sizes.Space.s8 }, style]}>
         {children}
       </ScrollView>

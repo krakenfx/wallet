@@ -2,7 +2,7 @@ import type React from 'react';
 
 import { Platform, StyleSheet, type ViewProps } from 'react-native';
 
-import Animated, { type AnimateProps, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { type AnimatedProps, useAnimatedStyle } from 'react-native-reanimated';
 
 import { useKeyboardOffset } from '@/hooks/useKeyboardOffset';
 
@@ -12,7 +12,7 @@ type Props = {
   useBottomInset?: boolean;
   offsetBottomInsetWhenOpen?: boolean;
 };
-export const KeyboardAvoider: React.FC<AnimateProps<ViewProps> & Props> = ({
+export const KeyboardAvoider: React.FC<AnimatedProps<ViewProps> & Props> = ({
   children,
   style,
   extraOffset = 0,

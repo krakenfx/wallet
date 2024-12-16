@@ -8,7 +8,7 @@ import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { Routes } from '@/Routes';
 import { EXPLAINER_CONTENT_TYPES } from '@/screens/Explainer';
-import { sanitizeUrl } from '@/utils/stringUtils.ts';
+import { sanitizeUrl } from '@/utils/stringUtils';
 
 import type { Verification } from '../types';
 

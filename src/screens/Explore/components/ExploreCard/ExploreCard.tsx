@@ -10,17 +10,18 @@ import { Sizes } from '../../ExploreScreen.constants';
 
 import { useExploreLink } from '../../hooks/useExploreLink';
 import { ExploreCardContrastOverlay } from '../ExploreCardContrastOverlay/ExploreCardContrastOverlay';
-import { ExploreText } from '../ExploreText';
 
 import type { ExploreCardProps } from './ExploreCard.types';
 
-const { Space, Card, FloatingIcon } = Sizes;
+const { Space, Card } = Sizes;
 
 export const ExploreCard = ({ title, body, floatingIcon, link, background, size, info, style }: ExploreCardProps) => {
   const { colors } = useTheme();
   const themedShadow = { shadowColor: colors.dark25 };
   const handleExploreLink = useExploreLink(link);
   const cardStyle = styles[size];
+  const titleLines = 2;
+  const bodyLines = size === 'Small' ? 1 : 1;
 
   return (
     <Touchable onPress={handleExploreLink}>
@@ -31,8 +32,25 @@ export const ExploreCard = ({ title, body, floatingIcon, link, background, size,
             <ExploreCardContrastOverlay width={cardStyle.width} height={cardStyle.height} />
           </View>
           {floatingIcon && <Image source={{ uri: floatingIcon }} style={styles.bleedImage} />}
-          <View style={[styles.content, !!floatingIcon && styles.contentWithFloatingIcon]}>
-            {(title || body) && <ExploreText title={title} titleLines={2} body={body} style={styles.text} bodyType="regularBody" bodyLines={3} />}
+          <View style={styles.content}>
+            {title && (
+              <Label
+                type="boldTitle1"
+                color="light100"
+                style={[styles.shadow, !!floatingIcon && size !== 'Large' && styles.contentWithFloatingIcon]}
+                numberOfLines={titleLines}>
+                {title}
+              </Label>
+            )}
+            {body && (
+              <Label
+                type="regularBody"
+                color="light75"
+                style={[styles.shadow, !!floatingIcon && size === 'Small' && styles.contentWithFloatingIcon]}
+                numberOfLines={bodyLines}>
+                {body}
+              </Label>
+            )}
             <View style={styles.footer}>
               {link && <Button text={link?.text} onPress={handleExploreLink} />}
               {info && (
@@ -82,14 +100,15 @@ const styles = StyleSheet.create({
     marginBottom: Space.s1,
   },
   contentWithFloatingIcon: {
-    flex: 0.75,
+    maxWidth: '70%',
   },
   bleedImage: {
     position: 'absolute',
     top: -Space.s2,
-    right: 0,
-    width: FloatingIcon.width,
-    height: FloatingIcon.height,
+    right: -Space.s1,
+    width: (Card.width - Space.s3) / 2,
+    aspectRatio: 1,
+    overflow: 'visible',
   },
   image: { borderRadius: Space.s2 + Space.third, position: 'absolute', overflow: 'hidden' },
   Small: {
@@ -103,5 +122,14 @@ const styles = StyleSheet.create({
   Large: {
     width: Card.width,
     height: Card.large,
+  },
+  shadow: {
+    shadowOffset: {
+      width: 1,
+      height: 2,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 15,
+    elevation: 1,
   },
 });

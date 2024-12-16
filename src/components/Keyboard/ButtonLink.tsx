@@ -1,7 +1,5 @@
 import type { TouchableOpacityProps } from 'react-native';
 
-import { forwardRef } from 'react';
-
 import { Label } from '@/components/Label';
 import { Touchable } from '@/components/Touchable';
 
@@ -9,7 +7,7 @@ interface ButtonLinkProps extends TouchableOpacityProps {
   title: string;
 }
 
-export const ButtonLink = forwardRef(({ title, ...props }: ButtonLinkProps) => {
+export const ButtonLink = ({ title, ...props }: ButtonLinkProps) => {
   return (
     <Touchable
       accessibilityRole="button"
@@ -22,4 +20,4 @@ export const ButtonLink = forwardRef(({ title, ...props }: ButtonLinkProps) => {
       <Label type="boldTitle2">{title}</Label>
     </Touchable>
   );
-});
+};

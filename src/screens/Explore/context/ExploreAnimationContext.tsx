@@ -13,8 +13,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBrowser } from '@/hooks/useBrowser';
 import type { BrowserParams } from '@/screens/Browser';
 
-import { isInAppBrowserEnabled } from '@/utils/featureFlags';
-
 import { Sizes, TRANSITION_DURATION } from '../ExploreScreen.constants';
 
 interface ExploreAnimationContextProps {
@@ -89,7 +87,7 @@ export const ExploreAnimationContextProvider: React.FC<PropsWithChildren<Explore
   const openLinkWithTransition = async (url?: string) => {
     const measurements = await measureView();
 
-    if (!isInAppBrowserEnabled() || !measurements) {
+    if (!measurements) {
       if (url) {
         openURL(url);
       } else {

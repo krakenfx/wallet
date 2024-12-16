@@ -59,7 +59,7 @@ export const Backdrop = (props: BottomSheetBackdropProps & { dismissible: boolea
 export const ANIMATION_CONFIGS: WithSpringConfig = {
   damping: 500,
   stiffness: 1000,
-  mass: 3,
+  mass: 1.25,
   overshootClamping: true,
   restDisplacementThreshold: 10,
   restSpeedThreshold: 10,

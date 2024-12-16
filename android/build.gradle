@@ -9,7 +9,7 @@ buildscript {
         compileSdkVersion = 34
         targetSdkVersion = 34
         ndkVersion = "26.1.10909125"
-        kotlinVersion = "1.9.22"
+        kotlinVersion = "1.9.24"
         glideVersion= "4.12.0"
         firebaseIidVersion = "21.1.0"
     }

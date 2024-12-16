@@ -281,6 +281,7 @@ export const TransactionDetails: React.FC<TransactionDetailsProps> = ({ assetId 
               compact: true,
               currency,
             })}
+            attached
             assetFiatAmount={transactionDetailsMetadata.appCurrencyValue}
             assetNetwork={transaction.wallet.type}
             assetSymbol={transactionDetailsMetadata.symbol}

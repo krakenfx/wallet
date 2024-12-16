@@ -5,10 +5,6 @@ export interface paths {
     
     post: operations['AnalyseAddress'];
   };
-  '/v1/analyse/domains': {
-    
-    post: operations['AnalyseDomains'];
-  };
   '/v1/analyse/url': {
     
     post: operations['AnalyseUrl'];
@@ -157,23 +153,6 @@ export interface components {
       message: string;
       params?: string;
     };
-    DomainAnalysisWarning: {
-      
-      severity: 'CRITICAL' | 'WARNING';
-      message: string;
-    };
-    DomainAnalysis: {
-      domain: string;
-      
-      status: 'PROCESSED' | 'PROCESSING' | 'UNPROCESSABLE';
-      warnings: components['schemas']['DomainAnalysisWarning'][];
-    };
-    AnalyseDomainsResult: {
-      analyses: components['schemas']['DomainAnalysis'][];
-    };
-    Result_AnalyseDomainsResult_: {
-      content: components['schemas']['AnalyseDomainsResult'];
-    };
     AnalyseUrlResult: {
       url: string;
       isMalicious: boolean | null;
@@ -221,13 +200,9 @@ export interface components {
       content: components['schemas']['InternalBalance'][];
     };
     
-    'Record_string.InternalBalance-Array_': {
-      [key: string]: components['schemas']['InternalBalance'][];
-    };
+    'Record_string.InternalBalance-Array_': Record<string, never>;
     
-    'Record_string.boolean_': {
-      [key: string]: boolean;
-    };
+    'Record_string.boolean_': Record<string, never>;
     'Result_Record_string.InternalBalance-Array_-or-Record_string.boolean__': {
       content: components['schemas']['Record_string.InternalBalance-Array_'] | components['schemas']['Record_string.boolean_'];
     };
@@ -313,6 +288,7 @@ export interface components {
       isDynamicContent: false;
       title?: string;
       items: components['schemas']['ExploreListItemContent'][];
+      shuffleItems?: boolean;
     };
     ExploreListContentRow: {
       id: string;
@@ -667,6 +643,7 @@ export interface components {
       effects?: components['schemas']['TransactionEffect'][];
       preventativeAction?: components['schemas']['PreventativeAction'];
       warnings?: components['schemas']['SimulationWarning'][];
+      failureReason?: string;
       
       gasUsed: number;
       
@@ -678,6 +655,7 @@ export interface components {
       effects?: components['schemas']['TransactionEffect'][];
       preventativeAction?: components['schemas']['PreventativeAction'];
       warnings?: components['schemas']['SimulationWarning'][];
+      failureReason?: string;
       fee: string;
       compiledTransaction: string;
     };
@@ -687,6 +665,7 @@ export interface components {
       effects?: components['schemas']['TransactionEffect'][];
       preventativeAction?: components['schemas']['PreventativeAction'];
       warnings?: components['schemas']['SimulationWarning'][];
+      failureReason?: string;
     };
     SimulationResult:
       | components['schemas']['EVMSimulationResult']
@@ -830,6 +809,8 @@ export interface components {
     };
     SwapTxData: {
       data: string;
+      value: string;
+      txTarget: string;
       
       txType: 'eth_sendTransaction' | 'eth_signMessage';
     };
@@ -1070,31 +1051,6 @@ export interface operations {
       200: {
         content: {
           'application/json': components['schemas']['Result_AnalyseAddressResult-Array_'];
-        };
-      };
-      
-      default: {
-        content: {
-          'application/json': components['schemas']['ErrorResult'];
-        };
-      };
-    };
-  };
-  
-  AnalyseDomains: {
-    
-    requestBody: {
-      content: {
-        'application/json': {
-          domains: string[];
-        };
-      };
-    };
-    responses: {
-      
-      200: {
-        content: {
-          'application/json': components['schemas']['Result_AnalyseDomainsResult_'];
         };
       };
       

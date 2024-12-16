@@ -69,6 +69,7 @@ export const WalletCloudBackupScreen = ({ navigation, route }: NavigationProps<'
         switch (e.code) {
           case CloudBackupError.no_credentials_found: {
             setPasskeyError('passkeyErrorWritingWrongDevice');
+            setPendingBackup(undefined);
             return;
           }
           case CloudBackupError.user_canceled: {
@@ -119,6 +120,7 @@ export const WalletCloudBackupScreen = ({ navigation, route }: NavigationProps<'
       } else {
         handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', 'generic');
         setPasskeyError('passkeyErrorWriting');
+        setPendingBackup(undefined);
       }
     }
   };

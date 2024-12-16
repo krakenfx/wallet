@@ -18,6 +18,7 @@ import { useRealm } from '@/realm/RealmContext';
 import { useWalletConnectTopicsMutations } from '@/realm/walletConnectTopics/useWalletConnectTopicsMutations';
 import { type NavigationProps, type NoParamsRoute, Routes } from '@/Routes';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { ConnectedApps } from './components/ConnectedApps';
@@ -35,6 +36,7 @@ export type ScanQRCodeParams = {
 
 export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'ConnectAppQRScan'>) => {
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
   const { getSeed } = useSecuredKeychain();
   const { height } = useSafeAreaFrame();
   const bottomSheetModalRef = useRef<BottomSheetModalRef>(null);
@@ -49,7 +51,7 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
         const topic = '';
 
         saveTopicToRealm(pairingTopic, topic, isDeepLinked);
-        handleConnectToDappWalletConnectUri(data, realm, navigation.dispatch, getSeed);
+        handleConnectToDappWalletConnectUri(data, realm, unencryptedRealm, navigation.dispatch, getSeed);
         bottomSheetModalRef?.current?.close();
         if (route.params?.successRoute) {
           navigation.replace(route.params.successRoute);
@@ -62,7 +64,7 @@ export const ConnectAppQRScanScreen = ({ navigation, route }: NavigationProps<'C
         }
       }
     },
-    [navigation, realm, route.params, getSeed, saveTopicToRealm],
+    [navigation, realm, unencryptedRealm, route.params, getSeed, saveTopicToRealm],
   );
 
   const handleBarCodeScanned = ({ data }: BarcodeScanningResult) => {

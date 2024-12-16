@@ -4,6 +4,7 @@ import { useCallback, useRef } from 'react';
 import { fetchTokenMetadata } from '@/api/fetchTokenMetadata';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { getWalletStorage } from '@/onChain/wallets/walletState';
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
 import { isPromiseFulfilled, isPromiseRejected } from '@/utils/promise';
 
 import { REALM_TYPE_ASSET_METADATA } from '../assetMetadata';
@@ -20,6 +21,7 @@ import { handleError } from '/helpers/errorHandler';
 
 export const useTokensFetch = () => {
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
   const { saveTokensToRealm } = useTokensMutations();
   const { runInTransaction } = useRealmTransaction();
   const isFetchingAll = useRef<boolean>(false);
@@ -40,7 +42,7 @@ export const useTokensFetch = () => {
       return true;
     }
     isFetchingAll.current = true;
-    const accountWallets = getWalletsForMutations(realm);
+    const accountWallets = getWalletsForMutations(realm, unencryptedRealm);
     const results = await Promise.allSettled(
       accountWallets.map(async wallet => {
         if (wallet.isValid()) {
@@ -66,7 +68,7 @@ export const useTokensFetch = () => {
     results.filter(isPromiseRejected).forEach(({ reason }) => handleError(reason, 'ERROR_CONTEXT_PLACEHOLDER'));
     isFetchingAll.current = false;
     return results.length === suceessResults.length;
-  }, [getTokenMetadata, realm, runInTransaction, saveTokensToRealm]);
+  }, [getTokenMetadata, realm, unencryptedRealm, runInTransaction, saveTokensToRealm]);
 
   const fetchBalance = useCallback(
     async (wallet: RealmWallet, refreshState: boolean) => {

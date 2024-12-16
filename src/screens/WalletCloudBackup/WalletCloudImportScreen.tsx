@@ -9,7 +9,7 @@ import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import type { NavigationProps } from '@/Routes';
 import { Routes } from '@/Routes';
 
-import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { useIsOnline } from '@/utils/useConnectionManager';
@@ -32,8 +32,8 @@ export const WalletCloudImportScreen = ({ navigation, route }: NavigationProps<'
   const { importWallet } = useImportWallet();
   const [hasReadData, setHasReadData] = useState(false);
   const [passkeyError, setPasskeyError] = useState<PasskeyErrorType>();
+  const [isOnboardingImportDiscoveryEnabled] = useFeatureFlag('onboardingImportDiscoveryEnabled');
   const isOnline = useIsOnline();
-  const isOnboardingImportDiscoveryEnabled = useFeatureFlagEnabled(FeatureFlag.onboardingImportDiscoveryEnabled);
 
   const successSheetRef = useRef<CloudBackupSuccessSheetRef>(null);
 
@@ -90,7 +90,7 @@ export const WalletCloudImportScreen = ({ navigation, route }: NavigationProps<'
         />
       </View>
       <CloudBackupSuccessSheet ref={successSheetRef} />
-      {!!passkeyError && <CloudBackupErrorSheet type={passkeyError} onClose={clearError} />}
+      {!!passkeyError && <CloudBackupErrorSheet type={passkeyError} onClose={clearError} onRetry={readPasskey} />}
     </GradientScreenView>
   );
 };

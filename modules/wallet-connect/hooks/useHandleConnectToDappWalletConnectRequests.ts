@@ -9,11 +9,14 @@ import type { RealmWallet } from '@/realm/wallets';
 import { REALM_TYPE_WALLET } from '@/realm/wallets';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
+
 import { handleConnectToDappWalletConnectUri } from '../handleConnectToDappWalletConnectUri';
 import { matchPairingTopic } from '../utils';
 
 export const useHandleConnectToDappWalletConnectRequests = () => {
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
   const { getSeed } = useSecuredKeychain();
   const navigation = useNavigation();
   const { saveTopicToRealm } = useWalletConnectTopicsMutations();
@@ -36,12 +39,12 @@ export const useHandleConnectToDappWalletConnectRequests = () => {
             const isDeepLinked = true;
 
             saveTopicToRealm(pairingTopic, topic, isDeepLinked);
-            handleConnectToDappWalletConnectUri(uri, realm, navigation.dispatch, getSeed);
+            handleConnectToDappWalletConnectUri(uri, realm, unencryptedRealm, navigation.dispatch, getSeed);
           }
         }
       }
     },
-    [realm, navigation.dispatch, getSeed, saveTopicToRealm],
+    [realm, unencryptedRealm, navigation.dispatch, getSeed, saveTopicToRealm],
   );
 
   const { initialUrl, processingInitialUrl } = useInitialUrl();

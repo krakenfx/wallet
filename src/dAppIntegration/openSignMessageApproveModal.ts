@@ -55,6 +55,7 @@ export const openSignMessageApproveModal = async ({ params, transport, network, 
 
 function getDefinitionList(params: unknown[], method: RpcMethod): DefinitionList {
   switch (method) {
+    case RpcMethod.eth_signTypedData_v3:
     case RpcMethod.eth_signTypedData_v4: {
       try {
         const eip712Data = JSON.parse(params[1] as string);

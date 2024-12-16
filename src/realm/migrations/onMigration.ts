@@ -12,6 +12,7 @@ import {
   migrationsSchemaVersion35,
   migrationsSchemaVersion36,
   migrationsSchemaVersion37,
+  migrationsSchemaVersion38,
 } from './';
 
 import type Realm from 'realm';
@@ -30,4 +31,5 @@ export const onMigration = (oldRealm: Realm, newRealm: Realm) => {
   migrationsSchemaVersion35(oldRealm, newRealm);
   migrationsSchemaVersion36(oldRealm, newRealm);
   migrationsSchemaVersion37(oldRealm, newRealm);
+  migrationsSchemaVersion38(oldRealm, newRealm);
 };

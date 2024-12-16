@@ -1,6 +1,7 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 
+import { useGlobalState } from '@/components/GlobalState';
 import { GradientScreenView } from '@/components/Gradients';
 
 import type { NavigationProps } from '@/Routes';
@@ -31,6 +32,7 @@ export type BrowserParams = {
 
 export const BrowserScreen = ({ navigation, route }: NavigationProps<'Browser'>) => {
   const webViewRef = useRef<BrowserWebViewRef>(null);
+  const [, setIsInAppBrowserOpen] = useGlobalState('isInAppBrowserOpen');
 
   const onRefreshPage = () => webViewRef.current?.reloadPage();
 
@@ -53,6 +55,11 @@ export const BrowserScreen = ({ navigation, route }: NavigationProps<'Browser'>)
       });
     }
   }, [customTransitionAnimation, navigation]);
+
+  useEffect(() => {
+    setIsInAppBrowserOpen(true);
+    return () => setIsInAppBrowserOpen(false);
+  }, [setIsInAppBrowserOpen]);
 
   return (
     <BrowserContextProvider

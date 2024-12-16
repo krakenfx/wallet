@@ -23,14 +23,16 @@ type Props = {
   dispatch: ReactNavigationDispatch;
   goBack: () => void;
   realm: Realm;
+  unencryptedRealm: Realm;
   wallets: RealmResults<RealmWallet>;
   getSeed: SecuredKeychainContext['getSeed'];
+  isInAppBrowserOpen?: boolean;
 };
 
 export const connectAppWithWalletConnect = async (
   sessionProposal: SessionProposal,
   setUIState: React.Dispatch<React.SetStateAction<UI_STATE>>,
-  { dispatch, goBack, realm, wallets, getSeed }: Props,
+  { dispatch, goBack, realm, unencryptedRealm, wallets, getSeed, isInAppBrowserOpen }: Props,
 ): Promise<_3rdPartyData> => {
   const deleteProposedSession = (pairingTopic: string) => {
     realm.write(() => {
@@ -44,7 +46,7 @@ export const connectAppWithWalletConnect = async (
   const result: _3rdPartyData = {};
   setUIState(UI_STATE.loading);
 
-  const web3Wallet = await initWalletConnectWeb3Wallet(realm, dispatch, getSeed);
+  const web3Wallet = await initWalletConnectWeb3Wallet(realm, unencryptedRealm, dispatch, getSeed);
 
   setUIState(UI_STATE.none);
 
@@ -109,7 +111,9 @@ export const connectAppWithWalletConnect = async (
             goBack();
             resolveApproveSession();
 
-            await handleRedirect(response, 'connected_to', session.isDeepLinked);
+            const isDeepLinked = !isInAppBrowserOpen && session.isDeepLinked;
+
+            await handleRedirect(response, 'connected_to', isDeepLinked);
           },
         });
       } catch (error) {

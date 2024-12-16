@@ -8,10 +8,12 @@ import type { TokenIconProps } from '@/components/TokenIcon';
 import { TokenIcon } from '@/components/TokenIcon';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 
+import type { REPUTATION } from '@/hooks/useReputation';
 import type { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { formatCurrency } from '@/utils/formatCurrency';
 
+import { ReputationTag } from '../Reputation';
 import { Skeleton } from '../Skeleton';
 
 export type TransactionAmountProps = {
@@ -29,6 +31,7 @@ export type TransactionAmountProps = {
   assetAmountLabelProps?: LabelProps;
   fiatAmountLabelProps?: LabelProps;
   isLoading?: boolean;
+  assetReputation?: REPUTATION;
 };
 
 export const TransactionAmount = ({
@@ -41,6 +44,7 @@ export const TransactionAmount = ({
   label,
   assetAmountLabelProps,
   fiatAmountLabelProps,
+  assetReputation,
   isLoading,
   ...props
 }: TransactionAmountProps) => {
@@ -56,9 +60,12 @@ export const TransactionAmount = ({
         ) : (
           <TokenIcon size={40} networkName={assetNetwork} tokenSymbol={assetSymbol} testID={`TokenIcon-${props.testID}`} />
         )}
-        <Label type="boldBody" numberOfLines={1} style={styles.assetSymbol} testID={`AssetSymbol-${props.testID}`}>
-          {assetSymbol}
-        </Label>
+        <View style={styles.assetSymbolRow}>
+          <Label type="boldBody" numberOfLines={1} style={styles.assetSymbol} testID={`AssetSymbol-${props.testID}`}>
+            {assetSymbol}
+          </Label>
+          {!!assetReputation && <ReputationTag reputation={assetReputation} />}
+        </View>
       </View>
       {label ? (
         <View style={styles.label}>
@@ -68,10 +75,10 @@ export const TransactionAmount = ({
         </View>
       ) : (
         <View style={styles.assetAmounts}>
-          <Label type="boldDisplay2" adjustsFontSizeToFit numberOfLines={1} testID={`AssetAmount-${props.testID}`} {...assetAmountLabelProps}>
+          <Label type="boldDisplay2" style={styles.assetAmount} numberOfLines={1} testID={`AssetAmount-${props.testID}`} {...assetAmountLabelProps}>
             {isLoading ? ' ' : assetAmount}
           </Label>
-          <Label type="regularMonospace" color="light50" style={styles.fiatAmount} testID={`FiatAmount-${props.testID}`} {...fiatAmountLabelProps}>
+          <Label type="regularMonospace" color="light50" testID={`FiatAmount-${props.testID}`} {...fiatAmountLabelProps}>
             {}
             {isLoading ? ' ' : assetFiatAmount || ' '}
           </Label>
@@ -90,10 +97,12 @@ export const TransactionAmount = ({
 const styles = StyleSheet.create({
   assetAmounts: {
     alignItems: 'flex-end',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     marginLeft: 12,
     flex: 1,
     minWidth: 50,
+    height: 80,
+    paddingVertical: 8,
   },
   label: {
     alignItems: 'flex-end',
@@ -102,8 +111,13 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 50,
   },
-  fiatAmount: {
-    marginTop: 2,
+  assetAmount: {
+    lineHeight: 41,
+  },
+  assetSymbolRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
   container: {
     borderRadius: 16,
@@ -111,7 +125,6 @@ const styles = StyleSheet.create({
     gap: 8,
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    paddingVertical: 12,
     marginVertical: 6,
     height: 80,
     overflow: 'hidden',

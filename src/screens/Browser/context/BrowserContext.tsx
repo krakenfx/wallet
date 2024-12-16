@@ -13,8 +13,8 @@ import { useSharedValue } from 'react-native-reanimated';
 import { UrlSecurityLevel } from '../Browser.types';
 import { getHttpsUrlOrGoogleSearchUrl } from '../utils/getHttpsUrlOrGoogleSearchUrl';
 
-import type { WebViewErrorEvent, WebViewNavigationEvent } from 'react-native-webview/lib/RNCWebViewNativeComponent';
-import type { WebViewNavigation, WebViewProgressEvent } from 'react-native-webview/lib/WebViewTypes';
+import type { WebViewErrorEvent, WebViewNavigationEvent } from '@metamask/react-native-webview/lib/RNCWebViewNativeComponent';
+import type { WebViewNavigation, WebViewProgressEvent } from '@metamask/react-native-webview/lib/WebViewTypes';
 
 interface BrowserContextProps {
   initialUrl: string | undefined;

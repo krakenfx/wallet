@@ -10,13 +10,9 @@ import { useRealm } from '../RealmContext';
 
 import { REALM_TYPE_NFT } from './schema';
 
-import type { Nft, RealmNft } from './schema';
-import type { NftMetadata, RealmNftMetadata } from '../nftMetadata';
+import type { RealmNft } from './schema';
+import type { RealmNftMetadata } from '../nftMetadata';
 import type { RealmWallet } from '../wallets';
-
-export interface NftToSave extends Omit<Nft, 'walletId'> {
-  metadata: NftMetadata;
-}
 
 export const useNftsMutations = () => {
   const realm = useRealm();

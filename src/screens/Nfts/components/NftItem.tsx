@@ -9,7 +9,7 @@ import { LongPressable } from '@/components/LongPress';
 import type { LongPressOptionItemProps } from '@/components/LongPress/LongPressOptionItem';
 import type { TouchableProps } from '@/components/Touchable';
 import { Touchable } from '@/components/Touchable';
-import { useBrowser } from '@/hooks/useBrowser.tsx';
+import { useBrowser } from '@/hooks/useBrowser';
 import type { RealmNft } from '@/realm/nfts';
 import { useNftGalleryToggle, useNftsMutations } from '@/realm/nfts';
 import type { NavigationProps } from '@/Routes';

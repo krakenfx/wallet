@@ -33,7 +33,7 @@ export const PriceAndChangeSmallInfo = ({ tokenId, price }: Props) => {
           {label}
         </Label>
       </View>
-      <Label type="boldBody" color={priceNotAvailable ? 'light50' : 'light100'} style={styles.label}>
+      <Label type="boldBody" color={priceNotAvailable ? 'light50' : 'light100'}>
         {priceLabel}
       </Label>
     </View>
@@ -47,8 +47,5 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 4,
-  },
-  label: {
-    marginTop: 4,
   },
 });

@@ -23,7 +23,6 @@ import { sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '
 import type { NavigationProps } from '@/Routes';
 import { Routes } from '@/Routes';
 import { DefiRow } from '@/screens/DefiDetails/components/DefiRow';
-import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
 import { isRealmObject } from '@/utils/isRealmObject';
 
 import { useHomeAssetPanelEmitterListener } from './homeAssetPanelEventEmitter';
@@ -229,8 +228,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   }, [bottom, defaultSnapPoints]);
 
   const snapPoints = useMemo(() => [minBottomSnapPoint, ...defaultSnapPoints], [defaultSnapPoints, minBottomSnapPoint]);
-  const isExploreEnabled = useFeatureFlagEnabled(FeatureFlag.ExploreScreenEnabled);
-  const paddingBottom = useBottomElementSpacing(isExploreEnabled ? 80 : 24);
+  const paddingBottom = useBottomElementSpacing(80);
 
   const showRecentActivity = useCallback(() => {
     bottomSheetRef.current?.snapToIndex(0);

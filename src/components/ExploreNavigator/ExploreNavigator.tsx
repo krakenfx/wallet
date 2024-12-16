@@ -10,8 +10,6 @@ import { useGlobalState } from '@/components/GlobalState';
 import { useOnScanPress } from '@/hooks/useOnScanPress';
 import { Routes } from '@/Routes';
 
-import { FeatureFlag, useFeatureFlagEnabled } from '@/utils/featureFlags';
-
 import type { NavigationState } from '@react-navigation/native';
 
 const getRouteFromState = (state: NavigationState): string => {
@@ -19,10 +17,9 @@ const getRouteFromState = (state: NavigationState): string => {
   return routes[routes.length - 1]?.name ?? '';
 };
 
-const ALLOWED_ROUTES = [Routes.Home, Routes.Explore];
+const ALLOWED_ROUTES = [Routes.Home, Routes.Explore, Routes.ExploreSubpage];
 
 export const ExploreNavigator: FC = () => {
-  const isExploreEnabled = useFeatureFlagEnabled(FeatureFlag.ExploreScreenEnabled);
   const navigation = useNavigation();
   const onScanPress = useOnScanPress();
   const [currentRoute, setCurrentRoute] = useState<string>(getRouteFromState(navigation.getState()));
@@ -41,25 +38,18 @@ export const ExploreNavigator: FC = () => {
   }, [navigation, setShowNavTabs]);
 
   useEffect(() => {
-    let unsubscribe;
-    if (isExploreEnabled) {
-      unsubscribe = navigation.addListener('state', event => {
-        setCurrentRoute(getRouteFromState(event?.data?.state));
-      });
-    }
+    const unsubscribe = navigation.addListener('state', event => {
+      setCurrentRoute(getRouteFromState(event?.data?.state));
+    });
     return unsubscribe;
-  }, [navigation, isExploreEnabled]);
+  }, [navigation]);
 
   useEffect(() => {
     const isAllowed = ALLOWED_ROUTES.map((s: string) => s).includes(currentRoute);
     setCanShowNav(isAllowed);
     setShowNavTabs(isAllowed);
-    setTabIndex(currentRoute === Routes.Explore ? 1 : 0);
+    setTabIndex(currentRoute === Routes.Home ? 0 : 1);
   }, [currentRoute, setShowNavTabs]);
-
-  if (!isExploreEnabled) {
-    return null;
-  }
 
   return (
     <ExploreTabBar

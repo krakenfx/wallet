@@ -179,6 +179,10 @@
   },
   "browser": {
     "clearSearch": "Xóa",
+    "downloadFile": {
+      "failed": "Không thể tải tập tin xuống",
+      "success": "Tập tin đã tải xuống"
+    },
     "loadingError": {
       "description": "Kiểm tra URL xem có lỗi đánh máy hoặc thiếu phần nào không",
       "title": "Không tìm thấy URL"
@@ -194,6 +198,14 @@
       "share": "Chia sẻ"
     },
     "searchOnChain": "Tìm kiếm onchain"
+  },
+  "browserExploreWelcome": {
+    "body": "Hãy thực hiện bước tiếp theo trong hành trình tiền điện tử của bạn ngay hôm nay. Bây giờ, bạn có thể khám phá và kết nối với các ứng dụng phi tập trung (dapp) mà không cần rời khỏi Kraken Wallet của mình.",
+    "buttonText": "Nghe hay đấy",
+    "part1": "Sử dụng các tùy chọn menu mới ở cuối màn hình của bạn để truy cập trang Khám phá",
+    "part2": "Khám phá các ứng dụng phi tập trung phổ biến và các cơ hội onchain mới hoặc sử dụng thanh Tìm kiếm để biết thêm",
+    "part3": "Dễ dàng kết nối với các ứng dụng phi tập trung và thực hiện giao dịch mà không cần phải thoát khỏi ứng dụng Kraken Wallet",
+    "title": "Khám phá thế giới onchain"
   },
   "bugTracking": {
     "allow": "Cho phép",
@@ -930,6 +942,14 @@
     "title": "Nhập"
   },
   "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Thêm ví",
+      "addWallets": "Thêm ví",
+      "button": "Thêm theo chỉ mục",
+      "description": "Nhập số chỉ mục của ví mà bạn muốn nhập.",
+      "placeholder": "Nhập số chỉ mục của ví",
+      "title": "Nhập chỉ mục ví"
+    },
     "findingWallets": {
       "caption": "Quy trình này có thể mất vài giây",
       "foundWallets": "Đã tìm thấy {count} ví...",
@@ -1295,20 +1315,27 @@
     "confirmation": {
       "cancel": "Hủy",
       "confirm": "Xác nhận",
-      "initiated": "Đã bắt đầu hoán đổi!"
+      "initiated": "Đã bắt đầu hoán đổi!",
+      "swapFlagged": "Đã đánh dấu hoán đổi!"
     },
     "emptyState": {
       "assetsEmptyDesc": "Ví hiện tại của bạn không có bất kỳ tài sản nào, hãy thử nạp tiền vào ví của bạn",
       "assetsEmptyTitle": "Hiện không có tài sản nào",
       "clearSearch": "Xóa dữ liệu tìm kiếm",
       "goBack": "Quay lại",
+      "okay": "OK",
       "searchAllNetworks": "Tìm kiếm tất cả các mạng",
       "searchEmptyDesc": "Hãy thử mở rộng tìm kiếm của bạn",
       "searchEmptyTitle": "Không có kết quả",
-      "swappableAssetsEmptyDesc": "Ví hiện tại của bạn không có bất kỳ tài sản nào được nhà cung cấp dịch vụ hoán đổi của chúng tôi hỗ trợ",
+      "swappableAssetsEmptyDesc": "Ví này không có bất kỳ tài sản nào được nhà cung cấp dịch vụ hoán đổi của chúng tôi hỗ trợ. Hiện tại chỉ hỗ trợ các mạng tương thích với Ethereum và EVM.",
       "swappableAssetsEmptyNetworkDesc": "Ví hiện tại của bạn không có bất kỳ tài sản nào trên mạng được chọn được nhà cung cấp hoán đổi của chúng tôi hỗ trợ",
       "swappableAssetsEmptyNetworkTitle": "Không có tài sản có thể hoán đổi nào khả dụng trên mạng đã chọn",
-      "swappableAssetsEmptyTitle": "Không có tài sản có thể hoán đổi nào"
+      "swappableAssetsEmptyTitle": "Không có tài sản có thể hoán đổi nào",
+      "targetAssetEmptyDesc": "Không có nhà cung cấp nào của chúng tôi hỗ trợ hoán đổi cho tài sản bạn đã chọn",
+      "targetAssetEmptyTitle": "Không có tài sản nào có thể hoán đổi"
+    },
+    "error": {
+      "insufficientGas": "Số dư {symbol} không đủ để trang trải các giao dịch hoán đổi"
     },
     "findingBestRote": "Tìm lộ trình tốt nhất",
     "route": {
@@ -1335,8 +1362,8 @@
       },
       "rate": "Tỷ giá",
       "slippage": {
-        "hint": "Trượt giá là sự chênh lệch giữa giá dự kiến ​​và giá cuối cùng của một tài sản. Nếu giá thay đổi bất lợi vượt quá mức trượt giá đã thiết lập, giao dịch sẽ bị hủy.",
-        "title": "Trượt giá"
+        "hint": "Trượt giá hoán đổi là sự chênh lệch giữa giá tài sản dự kiến ​​và giá tài sản cuối cùng. Nếu giá thay đổi vượt quá mức trượt giá đã thiết lập, giao dịch sẽ bị hủy. Trượt giá hoán đổi chỉ áp dụng cho các giao dịch hoán đổi cùng chuỗi, không bao gồm trượt giá cầu nối.",
+        "title": "Trượt giá hoán đổi"
       },
       "swapRate": "Tỷ giá hoán đổi",
       "transactionFees": "Phí giao dịch",
@@ -1352,8 +1379,8 @@
         "title": "Tìm lộ trình hoán đổi với"
       },
       "unsupportedRoute": {
-        "desc": "Bạn có thể thử hoán đổi tài sản của mình để lấy một token lớn từ danh sách có sẵn, sau đó thực hiện một lần hoán đổi riêng để có được tài sản bạn muốn. Sự thành công của cách tiếp cận này không được đảm bảo.",
-        "title": "Không có lộ trình nào khả dụng cho giao dịch bạn đã nhập."
+        "desc": "Bạn cũng có thể thử hoán đổi một token lớn trước, sau đó hoán đổi token đó lấy tài sản mong muốn.",
+        "title": "Không có lộ trình nào khả dụng cho giao dịch bạn đã nhập. Tăng cài đặt trượt giá có thể cung cấp cho bạn nhiều lộ trình hơn."
       }
     },
     "routePath": {
@@ -1696,6 +1723,7 @@
       "title": "Lỗi khi tạo bản sao lưu",
       "tryAgainBold": "chúng tôi không hỗ trợ lưu bản sao lưu trên các thiết bị khác.",
       "tryAgainButton": "Thử lại",
+      "tryAgainFormatted": "Khi thử lại, hãy lưu ý rằng <b>chúng tôi không hỗ trợ lưu bản sao lưu trên các thiết bị khác.</b>",
       "tryAgainRegular": "Khi thử lại, hãy nhớ rằng "
     },
     "errorCreatingPasskey": {
@@ -1714,6 +1742,38 @@
       "title": "Mã khóa không còn hoạt động"
     },
     "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Đi đến: <b>Cài đặt → Mật khẩu → Tùy chọn mật khẩu</b>",
+              "stepTwo": "Bật: <b>iCloud Keychain</b>",
+              "title": "<b>Gợi ý 1:</b> Đảm bảo iCloud Keychain đã bật để sử dụng cho mật khẩu và mã khóa:"
+            },
+            "two": {
+              "stepOne": "Đi đến: <b>Cài đặt → AppleID → iCloud → Mật khẩu</b>",
+              "stepTwo": "Bật: <b>Đồng bộ iPhone này</b>",
+              "title": "<b>Gợi ý 2:</b> Bật Mật khẩu iCloud và Keychain"
+            }
+          },
+          "title": "Hãy đảm bảo rằng bạn đang sử dụng <b>iCloud Keychain</b> để tạo mã khóa. <b>Các trình quản lý mật khẩu khác hiện chưa được hỗ trợ.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Đi đến: <b>Cài đặt → Chung → Tự động điền và Mật khẩu</b>",
+              "stepTwo": "Bật: <b>Mật khẩu</b>",
+              "title": "<b>Gợi ý 1:</b> Đảm bảo Mật khẩu đã được bật bằng cách làm theo các bước sau:"
+            },
+            "two": {
+              "stepOne": "Đi đến: <b>Cài đặt → iCloud → Mật khẩu</b>",
+              "stepTwo": "Bật: <b>Đồng bộ iPhone này</b>",
+              "title": "<b>Gợi ý 2:</b> Bật Mật khẩu iCloud và Keychain"
+            }
+          },
+          "title": "Khi bạn thử lại, hãy đảm bảo bạn đang sử dụng <b>Mật khẩu</b> iCloud để tạo mã khóa. <b>Các trình quản lý mật khẩu khác hiện chưa được hỗ trợ.</b>"
+        }
+      },
       "one": {
         "bold": "Cài đặt → Mật khẩu → Tùy chọn mật khẩu",
         "regular": "1. Đi đến: "
@@ -1725,6 +1785,8 @@
     },
     "noPasskeyFound": {
       "description": "Chúng tôi không thể tìm thấy mã khóa. Có thể bạn chưa tạo hoặc iCloud Keychain đã bị tắt trong phần cài đặt. Đảm bảo iCloud Keychain đã bật bằng cách làm theo các bước sau:",
+      "descriptioniOS17": "Chúng tôi không thể tìm thấy mã khóa. Có thể bạn chưa tạo hoặc <b>iCloud Keychain</b> đã bị tắt trong phần cài đặt.",
+      "descriptioniOS18": "Chúng tôi không thể tìm thấy mã khóa. Có thể bạn chưa tạo mật khẩu hoặc <b>Mật khẩu</b> đã bị tắt trong phần cài đặt.",
       "title": "Không tìm thấy mã khóa"
     },
     "supportHint": {

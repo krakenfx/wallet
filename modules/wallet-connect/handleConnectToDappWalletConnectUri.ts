@@ -11,6 +11,7 @@ import { isWalletConnectURI, isWalletConnectURIV1, isWalletConnectURIV2 } from '
 export async function handleConnectToDappWalletConnectUri(
   result: string = '',
   realm: Realm,
+  unencryptedRealm: Realm,
   dispatch: ReactNavigationDispatch,
   getSeed: SecuredKeychainContext['getSeed'],
 ) {
@@ -28,7 +29,7 @@ export async function handleConnectToDappWalletConnectUri(
 
   if (isWalletConnectURIV2(result)) {
     try {
-      const web3wallet = await initWalletConnectWeb3Wallet(realm, dispatch, getSeed);
+      const web3wallet = await initWalletConnectWeb3Wallet(realm, unencryptedRealm, dispatch, getSeed);
 
       await web3wallet.core.pairing.pair({ uri: result });
     } catch (e) {

@@ -34,7 +34,6 @@ export const ConfirmationFooter = ({ content, onApprove, onReject, disableConfir
           useBottomInset={false}
           noAbsolutePosition
           primary={{
-            icon: 'face-ID',
             color: isCriticalWarning ? 'red400' : undefined,
             text: loc.appSignRequest.confirm,
             onPress: onApprove,

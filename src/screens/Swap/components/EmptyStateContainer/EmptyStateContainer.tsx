@@ -7,7 +7,8 @@ type Props = {
   isLoading?: boolean;
   placeholderCount: number;
   isSearchResult?: boolean;
-  hasUnsupportedAssets?: boolean;
+  hasOtherSwappableAssets?: boolean;
+  hasIncompatibleAssets?: boolean;
   hasNetworkFilter?: boolean;
   clearSearch: () => void;
   goBack: () => void;
@@ -18,7 +19,8 @@ export const EmptyState = ({
   variant,
   isLoading,
   placeholderCount,
-  hasUnsupportedAssets,
+  hasOtherSwappableAssets,
+  hasIncompatibleAssets,
   hasNetworkFilter,
   isSearchResult,
   clearSearch,
@@ -33,7 +35,8 @@ export const EmptyState = ({
     default:
       return (
         <EmptyStateAssetList
-          hasUnsupportedAssets={hasUnsupportedAssets}
+          hasOtherSwappableAssets={hasOtherSwappableAssets}
+          hasIncompatibleAssets={hasIncompatibleAssets}
           goBack={goBack}
           variant={variant}
           hasNetworkFilter={hasNetworkFilter}

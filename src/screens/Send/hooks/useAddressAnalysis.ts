@@ -8,6 +8,8 @@ import { useRealm } from '@/realm/RealmContext';
 import { getWalletsForMutations } from '@/realm/wallets';
 import type { ColorName } from '@/theme/themes';
 
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
+
 import { parseAddressAnalysis } from '../utils/parseAddressAnalysis';
 
 import type { NetworkFilter } from '../utils/parseAddressAnalysis';
@@ -25,6 +27,7 @@ export type AddressAnalysis = {
 export function useAddressAnalysis(network: Network, toAddress: string, cache?: AnalyseAddressResult[], networkFilter?: NetworkFilter): AddressAnalysis {
   const [isLoading, setIsLoading] = useState(false);
   const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
 
   const [data, setData] = useState<AnalyseAddressResult[]>([]);
 
@@ -32,7 +35,7 @@ export function useAddressAnalysis(network: Network, toAddress: string, cache?: 
 
   useEffect(() => {
     async function analyseAddress(evmNetwork: EVMNetwork) {
-      const evmWallet = getWalletsForMutations(realm).filtered("type == 'ethereum'")[0];
+      const evmWallet = getWalletsForMutations(realm, unencryptedRealm).filtered("type == 'ethereum'")[0];
       setIsLoading(true);
       try {
         const result = await evmHarmonyTransport.analyseAddress(evmNetwork, evmWallet, toAddress);
@@ -48,7 +51,7 @@ export function useAddressAnalysis(network: Network, toAddress: string, cache?: 
     } else {
       setData([]);
     }
-  }, [network, realm, shouldUseCache, toAddress]);
+  }, [network, realm, unencryptedRealm, shouldUseCache, toAddress]);
 
   const result = useMemo(() => parseAddressAnalysis(cache && shouldUseCache ? cache : data, networkFilter), [cache, data, networkFilter, shouldUseCache]);
 

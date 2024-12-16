@@ -1,0 +1,51 @@
+diff --git a/node_modules/react-native-svg/lib/typescript/xml.d.ts b/node_modules/react-native-svg/lib/typescript/xml.d.ts
+index 2044ee4..a7fd0ba 100644
+--- a/node_modules/react-native-svg/lib/typescript/xml.d.ts
++++ b/node_modules/react-native-svg/lib/typescript/xml.d.ts
+@@ -26,7 +26,7 @@ export interface JsxAST extends AST {
+ export type AdditionalProps = {
+     onError?: (error: Error) => void;
+     override?: object;
+-    onLoad?: () => void;
++    onLoad?: (xml: string) => void;
+     fallback?: JSX.Element;
+ };
+ export type UriProps = SvgProps & {
+diff --git a/node_modules/react-native-svg/src/utils/fetchData.ts b/node_modules/react-native-svg/src/utils/fetchData.ts
+index d141be3..f81b767 100644
+--- a/node_modules/react-native-svg/src/utils/fetchData.ts
++++ b/node_modules/react-native-svg/src/utils/fetchData.ts
+@@ -34,8 +34,9 @@ function dataUriToXml(uri: string): string | null {
+ 
+ async function fetchUriData(uri: string) {
+   const response = await fetch(uri);
+-  if (response.ok || (response.status === 0 && uri.startsWith('file://'))) {
+-    return await response.text();
++  if ((response.ok && response.headers.get('content-type') === 'image/svg+xml') || (response.status === 0 && uri.startsWith('file://'))) {
++    const result = await response.text();
++    return result?.replace(/&#.+?;/g, '') ?? null; 
+   }
+   throw new Error(`Fetching ${uri} failed with status ${response.status}`);
+ }
+diff --git a/node_modules/react-native-svg/src/xml.tsx b/node_modules/react-native-svg/src/xml.tsx
+index 091d233..916e207 100644
+--- a/node_modules/react-native-svg/src/xml.tsx
++++ b/node_modules/react-native-svg/src/xml.tsx
+@@ -35,7 +35,7 @@ export interface JsxAST extends AST {
+ export type AdditionalProps = {
+   onError?: (error: Error) => void;
+   override?: object;
+-  onLoad?: () => void;
++  onLoad?: (xml: string | null) => void;
+   fallback?: JSX.Element;
+ };
+ 
+@@ -89,7 +89,7 @@ export function SvgUri(props: UriProps) {
+           .then((data) => {
+             setXml(data);
+             isError && setIsError(false);
+-            onLoad?.();
++            onLoad?.(data);
+           })
+           .catch((e) => {
+             onError(e);

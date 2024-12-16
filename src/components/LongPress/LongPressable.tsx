@@ -3,7 +3,7 @@ import type { ViewStyle } from 'react-native';
 
 import { useCallback, useRef } from 'react';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated from 'react-native-reanimated';
+import Animated, { runOnJS } from 'react-native-reanimated';
 
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
@@ -36,7 +36,9 @@ export const LongPressable = ({ children, style, withXPosition, options, onLongP
     }
   }, [children, onLongPress, onLongPressEnd, onLongPressStart, options, setOptions, setStyles, style, withXPosition]);
 
-  const longPress = Gesture.LongPress().minDuration(200).onStart(handleLongPress);
+  const longPress = Gesture.LongPress()
+    .minDuration(200)
+    .onStart(() => runOnJS(handleLongPress)());
 
   return (
     <GestureDetector gesture={longPress}>
