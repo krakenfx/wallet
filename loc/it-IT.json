@@ -462,6 +462,8 @@
     "continueAccessibilityHint": "Accetta il disclaimer e continua",
     "disclaimerBody": "Attenzione: questa funzione include contenuti forniti da terze parti. Fai riferimento ai Termini di Servizio pertinenti.",
     "disclaimerTitle": "Ti diamo il benvenuto su Explore!",
+    "earnBody": "Partecipa alla finanza decentralizzata",
+    "earnTitle": "Ottieni rendimenti con la DeFi",
     "errorBody": "L'app non è riuscita a caricare il contenuto di questa pagina. Riprova più tardi",
     "errorTitle": "Qualcosa è andato storto",
     "rewardPrefix": "Guadagna"
@@ -640,9 +642,49 @@
     "assets": "Asset",
     "collection": "NFT",
     "collection_see_all": "Vedi tutto",
+    "defiEmpty": "Inizia a guadagnare con la DeFi",
+    "defiEmptyCaption": "Le tue posizioni verranno visualizzate qui quando disponibili. Partecipa alla DeFi e inizia a ottenere rendimenti.",
     "deposits": "DeFi",
     "manage": "Gestisci",
     "total_balance": "Saldo"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "su Kraken",
+    "exchangeBalance": "Saldo dell’exchange",
+    "fundCta": {
+      "body": "Collega il tuo account di Kraken per <b>trasferire criptovalute nel tuo wallet</b>",
+      "heading": "Versa fondi nel tuo wallet"
+    },
+    "stepsToConnect": {
+      "hasAccount": "Ho creato un account",
+      "heading": "Per collegarti a Kraken, segui questi step:",
+      "step1": {
+        "description": "Imposta il tuo account di Kraken",
+        "label": "Step 1"
+      },
+      "step2": {
+        "description": "Torna al wallet",
+        "label": "Step 2"
+      },
+      "step3": {
+        "description": "Collega il tuo account di Kraken",
+        "label": "Step 3"
+      }
+    },
+    "transfer": {
+      "title": "Trasferimento"
+    },
+    "transferCta": {
+      "body": "Collega il tuo account di Kraken per trasferire rapidamente criptovalute",
+      "heading": "Trasferisci da Kraken"
+    },
+    "unconnected": {
+      "alert": "Solo il wallet attuale \"<b>{walletName}</b>\" verrà collegato a Kraken.",
+      "body": "Collega il tuo account di Kraken Exchange per trasferire facilmente fondi nel tuo wallet",
+      "cta": "Collega Kraken Exchange",
+      "noAccount": "Non ho un account",
+      "title": "Ricevi criptovalute nel tuo wallet con Kraken"
+    }
   },
   "manageWallets": {
     "title": "Gestisci wallet"
@@ -1093,7 +1135,7 @@
     "protectYourData": "Proteggi i tuoi dati con un livello di crittografia supplementare",
     "rationaleCreateWallet": "La tua password è necessaria per creare un nuovo wallet",
     "rationaleGetXPub": "La password è obbligatoria per visualizzare la chiave pubblica estesa",
-    "rationaleSeeRecoveryPhrase": "per visualizzare la tua Frase di recupero segreta",
+    "rationaleSeeRecoveryPhrase": "per visualizzare la tua frase di recupero segreta",
     "rationaleSignTransaction": "La tua password è necessaria per firmare le transazioni",
     "requiredToAccess": "Richiesta per l'accesso al tuo wallet",
     "requireOnOpen": "Ti viene richiesta ogni volta che apri l’app?",
@@ -1338,6 +1380,7 @@
       "insufficientGas": "Saldo {symbol} insufficiente per coprire le transazioni di swap"
     },
     "findingBestRote": "Ricerca del percorso migliore",
+    "otherAssets": "Token",
     "route": {
       "bridgeCost": {
         "hint": "Un bridge cost è una commissione addebitata dal fornitore di swap per il trasferimento di asset tra diverse blockchain durante lo swap.",
@@ -1389,11 +1432,22 @@
       "title": "Route di swap"
     },
     "selectAsset": "Seleziona asset",
+    "slippageSettings": {
+      "custom": "Personalizzato",
+      "desc": "Se il prezzo subisce una variazione negativa superiore alla percentuale di slittamento, la transazione swap verrà annullata.",
+      "footer": "Uno slittamento più elevato può contribuire al tasso di successo delle transazioni, ma può esporti ad attacchi di frontrunning/sandwich.",
+      "save": "Salva",
+      "title": "Impostazioni di slittamento",
+      "warningHigh": "Uno slittamento superiore al {amount}% è considerato elevato",
+      "warningSmall": "Uno slittamento inferiore al {amount}% può determinare la mancata esecuzione dello swap",
+      "warningUnsupported": "Uno slittamento maggiore del {amount}% non è supportato"
+    },
     "sourceListHeader": "I tuoi asset",
     "sourceSearchPlaceholder": "Seleziona asset da scambiare",
     "targetSearchPlaceholder": "Seleziona asset da ricevere",
     "title": "Swap",
-    "unsupportedAssetsHidden": "I nostri fornitori di swap non supportano ancora {count} dei tuoi altri asset"
+    "unsupportedAssetsHidden": "I nostri fornitori di swap non supportano ancora {count} dei tuoi altri asset",
+    "yourAssets": "I tuoi asset"
   },
   "test": {
     "key": "In fase di test"
@@ -1728,7 +1782,7 @@
     },
     "errorCreatingPasskey": {
       "description": "Nelle opzioni per la password del tuo dispositivo, verifica che l’opzione iCloud Keychain sia attivata per l’uso di password e passkey:",
-      "title": "Errore durante la creazione della passkey"
+      "title": "Errore durante la creazione del backup"
     },
     "errorDeletingPasskey": {
       "cancel": "Annulla",

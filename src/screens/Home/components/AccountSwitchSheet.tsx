@@ -43,7 +43,7 @@ export const AccountSwitchSheet = forwardRef<BottomSheetModalRef>((_, ref) => {
   const listRef = useRef<BottomSheetFlatListMethods>(null);
   const navigation = useNavigation();
   const { createAccount, switchAccount } = useManageAccount();
-  const accounts = useAccounts();
+  const accounts = useAccounts().sorted('accountNumber');
   const accountNumber = useCurrentAccountNumber();
   const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
   const bottomSpacing = useBottomElementSpacing();

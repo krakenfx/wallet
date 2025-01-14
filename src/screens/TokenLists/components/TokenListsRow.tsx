@@ -24,7 +24,7 @@ import loc from '/loc';
 
 type RowProps = {
   tokenListName: TokenListNames | string;
-  tokenListCount: string;
+  tokenListCount: number;
   reputation: REPUTATION;
   showOnlyWhiteListed?: boolean;
   style?: ViewStyle;

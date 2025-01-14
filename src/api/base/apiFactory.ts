@@ -182,5 +182,4 @@ export async function getHarmony() {
   return harmony;
 }
 
-/* @ts-expect-error Generated types don't fit. (Inferrence still works.) */
-export type DefaultApi = ReturnType<typeof createThrowingClient<harmonyPaths>>;
+export type DefaultApi = Awaited<ReturnType<typeof getHarmony>>;

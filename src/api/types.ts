@@ -2,6 +2,7 @@ import type { components as gcComponents } from '/generated/groundcontrol';
 import type { components } from '/generated/harmony';
 
 export type ErrorResult = components['schemas']['ErrorResult'];
+export type RPCErrorReason = components['schemas']['RPCErrorReason'];
 export type SimulationResult = components['schemas']['SimulationResult'];
 export type EVMSimulationResult = components['schemas']['EVMSimulationResult'];
 export type EVMSimulationInput = components['schemas']['EVMSimulationInput'];

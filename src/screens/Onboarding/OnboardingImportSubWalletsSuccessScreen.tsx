@@ -64,6 +64,7 @@ OnboardingImportSubWalletsSuccessScreen.navigationOptions = navigationStyle({
   headerLeft: () => null,
   headerTransparent: true,
   title: '',
+  gestureEnabled: false,
 });
 
 const styles = StyleSheet.create({

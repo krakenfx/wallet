@@ -32,6 +32,7 @@ export type SwapContext = {
   amountInputFocusState: ReturnType<typeof useState<boolean>>;
   amountInputErrorState: ReturnType<typeof useState<string>>;
   amountInputValidState: ReturnType<typeof useState<boolean>>;
+  amountInputTypingState: ReturnType<typeof useState<boolean>>;
   loadingState: ReturnType<typeof useState<boolean>>;
   swapAvailableState: ReturnType<typeof useState<boolean>>;
   swapQuoteState: ReturnType<typeof useState<SwapQuoteResult>>;
@@ -58,6 +59,7 @@ export const SwapContextProvider: React.FC<PropsWithChildren<ContextProps>> = ({
   const amountInputErrorState = useState<string>();
   const amountInputFocusState = useState<boolean>();
   const amountInputValidState = useState<boolean>();
+  const amountInputTypingState = useState<boolean>();
   const loadingState = useState<boolean>();
   const swapAvailableState = useState<boolean>();
   const swapQuoteState = useState<SwapQuoteResult>();
@@ -93,6 +95,7 @@ export const SwapContextProvider: React.FC<PropsWithChildren<ContextProps>> = ({
         amountInputFocusState,
         amountInputErrorState,
         amountInputValidState,
+        amountInputTypingState,
         sourceAmountInputValueState,
         loadingState,
         swapAvailableState,

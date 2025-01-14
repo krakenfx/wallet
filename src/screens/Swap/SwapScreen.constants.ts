@@ -18,6 +18,7 @@ export const SWAP_NETWORK_FILTER = SWAP_NETWORKS_CAIP_IDS.map(getNetworkFilterFr
 export const SWAP_NETWORK_UI_FILTER: UINetworkFilter[] = ['all', ...SWAP_NETWORK_FILTER];
 
 export const SUCCESS_TIMEOUT = 2000;
+export const AMOUNT_TYPING_DEBOUNCE_DELAY = 800;
 
 export enum BroadcastState {
   NONE = 'NONE',
@@ -26,3 +27,9 @@ export enum BroadcastState {
   FAILED = 'FAILED',
   SUCCESS = 'SUCCESS',
 }
+
+export const DEFAULT_SLIPPAGE = 0.5;
+export const FIXED_SLIPPAGE_PRESET_OPTIONS = [0.5, 1, 3] as const;
+export const SLIPPAGE_LOW = 0.5;
+export const SLIPPAGE_HIGH = 5;
+export const SLIPPAGE_UNSUPPORTED = 50;

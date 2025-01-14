@@ -9,28 +9,37 @@ export enum REPUTATION {
   UNVERIFIED = 'unverified',
 }
 
-export const getReputation = (assetMetadata?: AssetMetadata | null): REPUTATION => {
-  if (!assetMetadata) {
+export const emptyReputation: AssetReputation = {
+  whitelists: [],
+  blacklists: [],
+};
+
+export const getReputation = (reputation?: AssetReputation | null): REPUTATION => {
+  if (!reputation) {
     return REPUTATION.UNVERIFIED;
   }
-  const isBlacklisted = (assetMetadata?.reputation?.blacklists ?? []).length > 0;
-  const isWhitelisted = (assetMetadata?.reputation?.whitelists ?? []).length > 0;
+  const isBlacklisted = (reputation?.blacklists ?? []).length > 0;
+  const isWhitelisted = (reputation?.whitelists ?? []).length > 0;
 
   return isBlacklisted ? REPUTATION.BLACKLISTED : isWhitelisted ? REPUTATION.WHITELISTED : REPUTATION.UNVERIFIED;
 };
 
+export const getReputationFromMetadata = (assetMetadata?: AssetMetadata | null): REPUTATION => {
+  return getReputation(assetMetadata?.reputation);
+};
+
 export function useReputation(assetId: string): REPUTATION {
   const assetMetadata = useAssetMetadata({ assetId });
-  return getReputation(assetMetadata);
+  return getReputationFromMetadata(assetMetadata);
 }
 
 export function useReputationLists(assetId: string): AssetReputation {
   const assetMetadata = useAssetMetadata({ assetId });
 
-  return assetMetadata?.reputation ? assetMetadata.reputation : { whitelists: [], blacklists: [] };
+  return assetMetadata?.reputation ? assetMetadata.reputation : emptyReputation;
 }
 
 export function getAssetReputation(realm: Realm, assetId: string): REPUTATION {
   const assetMetadata = getAssetMetadata(realm, assetId);
-  return getReputation(assetMetadata);
+  return getReputationFromMetadata(assetMetadata);
 }

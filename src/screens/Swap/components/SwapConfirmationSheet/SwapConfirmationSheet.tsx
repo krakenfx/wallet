@@ -1,4 +1,4 @@
-import React, { type RefObject, useEffect, useRef, useState } from 'react';
+import React, { type RefObject, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { APIResponseError } from '@/api/base/apiFactory';
@@ -43,12 +43,12 @@ type Props = {
 
 const isInsufficientFundsError = (e: unknown) => {
   let message = '';
-  if (e instanceof APIResponseError && e.errorContent?.message) {
-    message = e.errorContent?.message;
+  if (e instanceof APIResponseError && e.errorContent?.params?.['errorReason']) {
+    message = e.errorContent?.params?.['errorReason'];
   } else if (e instanceof Error) {
     message = e.message;
   }
-  return message.includes('insufficient funds');
+  return message.includes('INSUFFICIENT_FUNDS');
 };
 
 export const SwapConfirmationSheet = React.forwardRef<ExpandableSheetMethods, Props>(
@@ -64,13 +64,14 @@ export const SwapConfirmationSheet = React.forwardRef<ExpandableSheetMethods, Pr
 
     const [warning, setWarning] = useState<Warning>();
 
-    const [broadcastState, setBroadcastState] = useState<BroadcastState>(BroadcastState.NONE);
+    const [broadcastState, setLocalBroadcastState] = useState<BroadcastState>(BroadcastState.NONE);
 
     const getWalletStorage = useGetWalletStorage();
 
-    useEffect(() => {
-      onBroadcastStateChange(broadcastState);
-    }, [broadcastState, onBroadcastStateChange]);
+    const setBroadcastState = (nextState: BroadcastState) => {
+      setLocalBroadcastState(nextState);
+      onBroadcastStateChange(nextState);
+    };
 
     const onConfirm = async (ignoreWarning = false) => {
       if (warning && !ignoreWarning) {
@@ -103,7 +104,7 @@ export const SwapConfirmationSheet = React.forwardRef<ExpandableSheetMethods, Pr
           const preparedApproval = await transport.prepareTransaction(network, wallet, walletStorage, approvalTxPayload, selectedFee, true);
           const approvalWarning = getWarningFromSimulation(preparedApproval.preventativeAction, preparedApproval.warnings);
           if (preparedApproval.isError) {
-            throw new Error(`Simulation failed with reason: ${preparedApproval.failureReason}`);
+            throw new Error(`Simulation failed with reason: ${preparedApproval.errorReason}`);
           }
           if (approvalWarning?.severity === 'critical' && !ignoreWarning) {
             setBroadcastState(BroadcastState.WARNING);
@@ -122,7 +123,7 @@ export const SwapConfirmationSheet = React.forwardRef<ExpandableSheetMethods, Pr
         };
         const prepared = await transport.prepareTransaction(network, wallet, walletStorage, txPayload, selectedFee, true);
         if (prepared.isError) {
-          throw new Error(`Simulation failed with reason: ${prepared.failureReason}`);
+          throw new Error(`Simulation failed with reason: ${prepared.errorReason}`);
         }
         const warning = getWarningFromSimulation(prepared.preventativeAction, prepared.warnings);
         if (warning?.severity === 'critical' && !ignoreWarning) {

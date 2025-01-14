@@ -1,10 +1,9 @@
-import { useFocusEffect } from '@react-navigation/native';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { fetchTokenLists } from '@/api/fetchTokenLists';
 import type { NETWORK_FILTER } from '@/components/NetworkFilter/types';
 import { useDepsChanged } from '@/hooks/useDepsChanged';
 import { TESTNET_COINS, networkIdToNetworkName } from '@/onChain/wallets/registry';
+import { useTokenListsQuery } from '@/reactQuery/hooks/useTokenListsQuery';
 import { RealmSettingsKey } from '@/realm/settings';
 import { useSettingsByKey } from '@/realm/settings/useSettingsByKey';
 import { useTokensFilteredByReputationAndNetwork } from '@/realm/tokens/useTokensFilteredByReputationAndNetwork';
@@ -15,8 +14,6 @@ import { adaptTokenFromTokenListsToRemoteAsset } from '../utils/adaptTokenFromTo
 
 import type { TokenFromTokenLists } from '../types';
 
-import { handleError } from '/helpers/errorHandler';
-
 const OMITTED_TOKEN = 'eip155:137/erc20:0x0000000000000000000000000000000000001010';
 
 export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[], searchQuery: string): Record<string, RemoteAsset[]> => {
@@ -26,21 +23,14 @@ export const useFilteredTokensFromTokenLists = (networkFilter: NETWORK_FILTER[],
   const [whitelistedTokens, setWhitelistedTokens] = useState<TokenFromTokenLists[]>([]);
   const [filteredWhitelistedTokens, setFilteredWhitelistedTokens] = useState<Record<string, RemoteAsset[]>>({});
 
-  useFocusEffect(
-    useCallback(() => {
-      (async () => {
-        try {
-          const response = await fetchTokenLists();
-          if ((response?.content?.whitelist || []).length > 0) {
-            const whitelist = response?.content?.whitelist ?? [];
-            setWhitelistedTokens(whitelist);
-          }
-        } catch (e) {
-          handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
-        }
-      })();
-    }, []),
-  );
+  const { data } = useTokenListsQuery();
+
+  useEffect(() => {
+    if ((data?.whitelist || []).length > 0) {
+      const whitelist = data?.whitelist ?? [];
+      setWhitelistedTokens(whitelist);
+    }
+  }, [data]);
 
   useEffect(
     function filterWhitelistedTokens() {

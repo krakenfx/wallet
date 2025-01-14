@@ -6,6 +6,8 @@ import { Label } from '@/components/Label';
 import { Menu } from '@/components/Menu';
 import { SvgIcon } from '@/components/SvgIcon';
 
+import { Touchable } from '@/components/Touchable';
+
 import { RouteFeeDetails } from '../RouteFeeDetails';
 
 import type { FeeDetails } from '../../types';
@@ -18,6 +20,7 @@ type RouteDetailsWithFee = {
 
 type RouteDetailsWithNoFee = {
   iconRight?: React.ReactNode;
+  alignIcon?: 'left' | 'right';
   labelRight?: string;
   feeDetails?: never;
 };
@@ -25,9 +28,10 @@ type RouteDetailsWithNoFee = {
 export type RouteDetailsRowProps = {
   labelLeft?: string;
   tooltipText?: string;
+  onLabelRightPress?: () => void;
 } & MergeExclusive<RouteDetailsWithFee, RouteDetailsWithNoFee>;
 
-export const RouteDetailsRow: React.FC<RouteDetailsRowProps> = ({ labelLeft, tooltipText, ...props }) => {
+export const RouteDetailsRow: React.FC<RouteDetailsRowProps> = ({ labelLeft, tooltipText, onLabelRightPress, alignIcon = 'left', ...props }) => {
   return (
     <View style={styles.container}>
       <Menu
@@ -45,15 +49,16 @@ export const RouteDetailsRow: React.FC<RouteDetailsRowProps> = ({ labelLeft, too
           {!!tooltipText && <SvgIcon name="info-circle" size={16} color="light35" />}
         </View>
       </Menu>
-      <View style={styles.right}>
+      <Touchable disabled={!onLabelRightPress} onPress={onLabelRightPress} style={styles.right}>
         {props.feeDetails && <RouteFeeDetails feeDetails={props.feeDetails} />}
-        {props.iconRight}
+        {alignIcon === 'left' && props.iconRight}
         {props.labelRight && (
           <Label color="light75" type="boldCaption1">
             {props.labelRight}
           </Label>
         )}
-      </View>
+        {alignIcon === 'right' && props.iconRight}
+      </Touchable>
     </View>
   );
 };

@@ -1,3 +1,5 @@
+import { ethereumNetwork } from '@/onChain/wallets/evmNetworks';
+
 import { hexToAscii } from '../../../utils';
 
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from '../types';
@@ -66,6 +68,10 @@ export function adaptToGenericMessage(signMethod: string, requestParams: any): G
       [address] = requestParams;
       break;
     }
+  }
+
+  if (!ethereumNetwork.isAddressValid(address)) {
+    throw new Error('Invalid address provided');
   }
 
   return {

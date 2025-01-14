@@ -492,6 +492,13 @@
       "hasBalance": "Contains funds",
       "skip": "Skip"
     },
+    "addByIndex": {
+      "button": "Add by index",
+      "title": "Enter wallet index",
+      "description": "Type the number index of the wallet you would like to import.",
+      "placeholder": "Enter wallet's index number",
+      "addWallet": "Add wallet"
+    },
     "importSubWalletsSuccess": {
       "title": "{subWalletsCount} wallets imported!",
       "titleOneWallet": "1 wallet imported!",
@@ -710,7 +717,8 @@
     "amountPlaceholder": "Enter amount",
     "amountExceedingBalance": "Amount entered exceeds available balance",
     "selectAsset": "Select Asset",
-    "sourceListHeader": "Your assets",
+    "yourAssets": "Your assets",
+    "otherAssets": "Tokens",
     "sourceSearchPlaceholder": "Select asset to swap from",
     "targetSearchPlaceholder": "Select asset to receive",
     "findingBestRote": "Finding best route",
@@ -747,8 +755,8 @@
         }
       },
       "unsupportedRoute": {
-        "title": "There are no available routes for the transaction you entered.",
-        "desc": "You can try swapping your asset for a major token from the available list, then perform a separate swap to get the asset you want. Success of this approach isn't guaranteed."
+        "title": "There are no available routes for the transaction you entered. Increasing the slippage setting can give you more routes.",
+        "desc": "You can also try swapping for a major token first, then swap that for the desired asset."
       },
       "rate": "Rate",
       "swapRate": "Swap rate",
@@ -762,8 +770,8 @@
         "hint": "If slippage occurs, this is the minimum amount of the target asset you will receive when the transaction succeeds."
       },
       "slippage": {
-        "title": "Slippage",
-        "hint": "Slippage is the difference between the expected price and the final price of an asset. If the price changes unfavorably beyond the set slippage tolerance, the transaction will be canceled."
+        "title": "Swap slippage",
+        "hint": "Swap slippage is the difference between the expected and final asset price. If the price changes beyond the set slippage tolerance, the transaction is canceled. Swap slippage applies only to same-chain swaps, excluding bridge slippage."
       },
       "krakenFee": {
         "title": "Kraken fee",
@@ -788,6 +796,16 @@
       "confirm": "Confirm",
       "initiated": "Swap initiated!",
       "swapFlagged": "Swap flagged!"
+    },
+    "slippageSettings": {
+      "title": "Slippage settings",
+      "desc": "If the price changes unfavorably by more than the slippage percentage, your swap transaction will be canceled.",
+      "footer": "Higher slippage may help with transaction success rate, but may expose you to frontrunning / sandwich attacks.",
+      "custom": "Custom",
+      "warningSmall": "Slippage below {amount}% can cause swap to fail",
+      "warningHigh": "Slippage above {amount}% is considered high",
+      "warningUnsupported": "Slippage greater than {amount}% is not supported",
+      "save": "Save"
     }
   },
   "scan": {
@@ -1089,7 +1107,6 @@
   },
   "tokenLists": {
     "tokens": "{tokenListCount} tokens",
-    "tokenLists": "Token lists",
     "description": "Token Lists are reputation based lists aimed at identifying tokens that are trusted by various exchanges and other Web3 participants.",
     "help": "What are Token Lists?",
     "likelySpam": "Likely spam",
@@ -1275,5 +1292,8 @@
       "part2": "Enjoy a smoother, more intuitive wallet experience today.",
       "buttonText": "Sounds good"
     }
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "on Kraken"
   }
 }

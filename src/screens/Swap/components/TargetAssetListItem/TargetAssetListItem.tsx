@@ -5,7 +5,8 @@ import { StyleSheet } from 'react-native';
 import type { AssetRowProps } from '@/components/AssetRow';
 import { AssetRow } from '@/components/AssetRow';
 import { ReputationTag } from '@/components/Reputation';
-import { REPUTATION, useReputation } from '@/hooks/useReputation';
+import { REPUTATION, getReputation } from '@/hooks/useReputation';
+import { useTokenListReputation } from '@/hooks/useTokenListReputation';
 import { getNetworkNameFromAssetId } from '@/realm/tokens';
 import type { RealmWallet } from '@/realm/wallets';
 
@@ -23,7 +24,7 @@ export const TargetAssetListItem = ({ token, wallets, selected, onSelected }: Pr
   const networkName = getNetworkNameFromAssetId(token.assetId);
   const wallet = wallets[networkName];
 
-  const reputation = useReputation(token.assetId);
+  const assetReputation = useTokenListReputation(token.assetId);
   const onPress = useCallback(() => onSelected(token), [onSelected, token]);
 
   const options = useMemo(
@@ -31,7 +32,11 @@ export const TargetAssetListItem = ({ token, wallets, selected, onSelected }: Pr
       ({
         onPress,
         tag: (
-          <ReputationTag assetId={token.assetId} reputation={reputation} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />
+          <ReputationTag
+            assetId={token.assetId}
+            reputation={getReputation(assetReputation)}
+            filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }}
+          />
         ),
         testID: `SwapTargetAssetRow-${token.assetId}`,
         hideZeroAmount: true,
@@ -43,7 +48,7 @@ export const TargetAssetListItem = ({ token, wallets, selected, onSelected }: Pr
         disableLongPress: true,
         selected,
       }) satisfies AssetRowProps['options'],
-    [onPress, reputation, selected, token.assetId, wallet.id],
+    [onPress, assetReputation, selected, token.assetId, wallet.id],
   );
 
   return <AssetRow token={token} options={options} />;

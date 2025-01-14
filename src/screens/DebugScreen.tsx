@@ -136,8 +136,8 @@ export const DebugScreen = () => {
   const backendConfigRef = useRef<BottomSheetMethods>(null);
 
   const [isSwapEnabled, setIsSwapEnabled] = useFeatureFlag('swapsEnabled');
+  const [krakenConnectEnabled, setKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
   const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
-  const [isOnboardingImportDiscoveryEnabled, setIsOnboardingImportDiscoveryEnabled] = useFeatureFlag('onboardingImportDiscoveryEnabled');
 
   useEffect(() => {
     (async () => {
@@ -296,7 +296,7 @@ export const DebugScreen = () => {
             <SettingsBox isFirst isHighlighted>
               <SettingsSwitch
                 testID="EnableNewNetworks"
-                icon="plug-disconnected"
+                icon="asset-list"
                 text="Enable new networks"
                 enabled={isNewNetworksEnabled}
                 onToggle={setIsNewNetworksEnabled}
@@ -308,19 +308,9 @@ export const DebugScreen = () => {
           </>
         )}
         {!!Config.INTERNAL_RELEASE && (
-          <>
-            <SettingsBox isFirst isHighlighted>
-              <SettingsSwitch
-                icon="wallet"
-                text="Enable import discovery"
-                enabled={isOnboardingImportDiscoveryEnabled}
-                onToggle={setIsOnboardingImportDiscoveryEnabled}
-              />
-            </SettingsBox>
-            <SettingsBox isLast isHighlighted style={styles.spacing}>
-              <Label type="regularCaption1">When enabled, onboarding import wallet flow will discover sub-wallets</Label>
-            </SettingsBox>
-          </>
+          <SettingsBox isFirst isLast isHighlighted style={styles.spacing}>
+            <SettingsSwitch icon="plug-connected" text="Kraken Connect" enabled={krakenConnectEnabled} onToggle={setKrakenConnectEnabled} />
+          </SettingsBox>
         )}
 
         <Button

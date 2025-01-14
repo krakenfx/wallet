@@ -30,6 +30,7 @@ export enum RealmSettingsKey {
   whatsNewIsLongPressCompleted = 'whatsNewIsLongPressCompleted',
   isAvaxLineaTaskModalCompleted = 'isAvaxLineaTaskModalCompleted',
   isBrowserExploreTaskModalCompleted = 'isBrowserExploreTaskModalCompleted',
+  isConnectedWithExchange = 'isConnectedWithExchange',
 }
 
 export type SettingsType = {
@@ -57,6 +58,7 @@ export type SettingsType = {
   [RealmSettingsKey.whatsNewIsLongPressCompleted]: boolean;
   [RealmSettingsKey.isAvaxLineaTaskModalCompleted]: boolean;
   [RealmSettingsKey.isBrowserExploreTaskModalCompleted]: boolean;
+  [RealmSettingsKey.isConnectedWithExchange]: boolean;
 };
 
 export type Settings = {

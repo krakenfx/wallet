@@ -7,6 +7,8 @@ import { Platform, StyleSheet, View } from 'react-native';
 
 import Animated, { FadeInDown, FadeOutDown, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useTheme } from '@/theme/themes';
@@ -17,7 +19,7 @@ const TabBarSizes = {
   width: 212,
   height: 64,
   radius: 70,
-  bottomOffset: 50,
+  bottomOffset: 12,
 };
 
 const tabCount = 3;
@@ -40,6 +42,7 @@ export const ExploreTabBar: FC<ExploreTabBarProps> = ({
 }) => {
   const { colors } = useTheme();
   const glowX = useSharedValue(getGlowXPosition(activeTab));
+  const insets = useSafeAreaInsets();
   const tabs: TabData[] = [
     { name: leftIconName, onPress: onTabLeftPress },
     { name: centerIconName, onPress: onTabCenterPress },
@@ -58,7 +61,7 @@ export const ExploreTabBar: FC<ExploreTabBarProps> = ({
   }
 
   return (
-    <View style={styles.container} testID="ExploreTabBar">
+    <View style={[styles.container, { bottom: Math.max(insets.bottom, TabBarSizes.bottomOffset) }]} testID="ExploreTabBar">
       <Animated.View style={styles.animatedContainer} entering={FadeInDown.duration(150)} exiting={FadeOutDown.duration(150)}>
         {Platform.OS === 'ios' ? (
           <BlurView blurType="ultraThinMaterialDark" reducedTransparencyFallbackColor={colors.background} style={[StyleSheet.absoluteFill]} />

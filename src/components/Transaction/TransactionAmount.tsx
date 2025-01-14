@@ -8,7 +8,7 @@ import type { TokenIconProps } from '@/components/TokenIcon';
 import { TokenIcon } from '@/components/TokenIcon';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 
-import type { REPUTATION } from '@/hooks/useReputation';
+import { REPUTATION } from '@/hooks/useReputation';
 import type { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -23,6 +23,7 @@ export type TransactionAmountProps = {
   assetAmount: StringNumber;
   assetFiatAmount?: StringNumber;
 
+  assetId?: string;
   assetNetwork: WalletType;
   assetSymbol?: string;
   containerStyle?: StyleProp<ViewStyle>;
@@ -35,6 +36,7 @@ export type TransactionAmountProps = {
 };
 
 export const TransactionAmount = ({
+  assetId,
   assetAmount,
   assetFiatAmount,
   assetNetwork,
@@ -64,7 +66,9 @@ export const TransactionAmount = ({
           <Label type="boldBody" numberOfLines={1} style={styles.assetSymbol} testID={`AssetSymbol-${props.testID}`}>
             {assetSymbol}
           </Label>
-          {!!assetReputation && <ReputationTag reputation={assetReputation} />}
+          {!!assetReputation && (
+            <ReputationTag assetId={assetId} reputation={assetReputation} filterOut={{ reputation: [REPUTATION.WHITELISTED], coinDesignation: ['network'] }} />
+          )}
         </View>
       </View>
       {label ? (
@@ -172,5 +176,5 @@ export const TransactionAmountWithAppCurrency = ({ assetId, decimals, balance, .
   const { currency } = useAppCurrency();
   const formatted = assetFiatAmount ? formatCurrency(assetFiatAmount, { currency }) : '';
 
-  return <TransactionAmount assetFiatAmount={formatted} {...props} />;
+  return <TransactionAmount assetFiatAmount={formatted} assetId={assetId} {...props} />;
 };

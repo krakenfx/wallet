@@ -5,10 +5,10 @@ export const NEW_EVM_NETWORKS = [] as const;
 export const NEW_NETWORKS = [...NEW_EVM_NETWORKS, ...NEW_NON_EVM_NETWORKS] as const;
 
 export const RealmFeatureFlag = {
-  AssetMarketDataEnabled: 'AssetMarketDataEnabled',
+  earnEnabled: 'earnEnabled',
+  krakenConnectEnabled: 'krakenConnectEnabled',
   NewNetworksEnabled: 'NewNetworksEnabled',
   swapsEnabled: 'swapsEnabled',
-  onboardingImportDiscoveryEnabled: 'onboardingImportDiscoveryEnabled',
 } as const;
 
 export type FeatureFlags = Record<keyof typeof RealmFeatureFlag, boolean>;

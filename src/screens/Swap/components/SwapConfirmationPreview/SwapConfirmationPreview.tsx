@@ -10,7 +10,7 @@ import { DoubleRow } from '@/components/DoubleRow';
 import { Label } from '@/components/Label';
 import { type ExpandableSheetComponentProps } from '@/components/Sheets';
 import { TransactionAmountWithAppCurrency } from '@/components/Transaction';
-import { REPUTATION, useReputation } from '@/hooks/useReputation';
+import { useReputation } from '@/hooks/useReputation';
 import { useAppCurrency } from '@/realm/settings';
 
 import { useWalletByAssetId } from '@/realm/wallets/useWalletByAssetId';
@@ -110,7 +110,7 @@ export const SwapConfirmationPreview: React.FC<Props> = ({
             assetAmount={targetTokenAmountFormatted}
             assetNetwork={targetAssetWallet.type}
             assetSymbol={targetAsset.metadata.symbol}
-            assetReputation={targetAssetReputation !== REPUTATION.WHITELISTED ? targetAssetReputation : undefined}
+            assetReputation={targetAssetReputation}
             containerStyle={containerStyle}
             assetAmountLabelProps={{ style: refreshFlashStyle, type: 'boldDisplay3' }}
             fiatAmountLabelProps={{ style: refreshFlashStyle, type: 'mediumCaption1' }}

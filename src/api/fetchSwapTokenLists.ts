@@ -3,7 +3,7 @@ import type { SwapFromTokenListResult, SwapToTokenListResult } from '@/api/types
 
 import { handleError } from '/helpers/errorHandler';
 
-export async function fetchSwapFromTokenList(fromNetworks: string[]): Promise<SwapFromTokenListResult | null> {
+export async function fetchSwapFromTokenList(fromNetworks: string[]): Promise<SwapFromTokenListResult> {
   const harmony = await getHarmony();
 
   try {
@@ -18,11 +18,11 @@ export async function fetchSwapFromTokenList(fromNetworks: string[]): Promise<Sw
     return response.content;
   } catch (e) {
     handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
-    return null;
+    throw e;
   }
 }
 
-export async function fetchSwapToTokenList(fromNetwork: string, isShortList = true): Promise<SwapToTokenListResult | null> {
+export async function fetchSwapToTokenList(fromNetwork: string, isShortList = true): Promise<SwapToTokenListResult> {
   const harmony = await getHarmony();
 
   try {
@@ -37,6 +37,6 @@ export async function fetchSwapToTokenList(fromNetwork: string, isShortList = tr
     return response.content;
   } catch (e) {
     handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
-    return null;
+    throw e;
   }
 }

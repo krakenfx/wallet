@@ -44,7 +44,7 @@
       "advanced_info": "Informacje zaawansowane",
       "connected_apps": "Podłączone aplikacje",
       "delete": "Usuń",
-      "edit": "Edytuj"
+      "edit": "Dostosuj"
     },
     "walletDelete": {
       "error": "Portfel nie został usunięty, spróbuj ponownie",
@@ -64,7 +64,7 @@
   "advancedAccountInfo": {
     "derivationPath": "Ścieżka pochodzenia",
     "ethereumDerivationPath": "Ścieżka pochodzenia Ethereum",
-    "ethereumDerivationPathContent": "Ścieżka pochodzenia Ethereum jest dzielona z sieciami warstwy 2, takim jak Polygon, Arbitrum, Optimism oraz Base, co oznacza, że taka sama ścieżka pochodzenia jest używana w nich wszystkich.",
+    "ethereumDerivationPathContent": "Ścieżka pochodzenia Ethereum jest dzielona z sieciami zgodnymi z Ethereum (Polygon, Arbitrum, OP Mainnet, Base, Linea, Avalanche itd.), co oznacza, że każda z nich korzysta z tej samej ścieżki.",
     "extendedPublicKey": "Rozszerzony klucz publiczny",
     "includesCompatibleNetworks": "Obejmuje sieci zgodne z Ethereum",
     "includesLayer2Networks": "Obejmuje sieci warstwy 2",
@@ -368,8 +368,8 @@
     "request_approval": "Proś o zatwierdzenie transakcji",
     "see_balance": "Zobacz swoje salda i aktywność",
     "unsupportedNetwork": "Nieobsługiwana sieć",
-    "unsupportedNetworkDescription": "Ta aplikacja korzysta z sieci {unsupportedNetwork}, która obecnie nie jest obsługiwana. Portfel Kraken Wallet obecnie obsługuje aplikacje w sieciach Ethereum, Polygon, Optimism, Arbitrum oraz Solana.",
-    "unsupportedNetworksDescription": "Ta aplikacja korzysta z sieci {unsupportedNetworks}, które obecnie nie są obsługiwane. Portfel Kraken Wallet obecnie obsługuje aplikacje w sieciach Ethereum, Polygon, Optimism, Arbitrum oraz Solana."
+    "unsupportedNetworkDescription": "Ta aplikacja korzysta z sieci {unsupportedNetwork}, która obecnie nie jest obsługiwana. Portfel Kraken Wallet obecnie obsługuje aplikacje w sieciach Ethereum, Polygon, OP Mainnet, Arbitrum oraz Solana.",
+    "unsupportedNetworksDescription": "Ta aplikacja korzysta z sieci {unsupportedNetworks}, które obecnie nie są obsługiwane. Portfel Kraken Wallet obecnie obsługuje aplikacje w sieciach Ethereum, Polygon, OP Mainnet, Arbitrum oraz Solana."
   },
   "connectedApps": {
     "app_details": {
@@ -462,6 +462,8 @@
     "continueAccessibilityHint": "Zaakceptuj zastrzeżenie i kontynuuj",
     "disclaimerBody": "Pamiętaj, że ta funkcja zawiera treści stron trzecich. Zapoznaj się z warunkami świadczenia usług.",
     "disclaimerTitle": "Witamy w Explore!",
+    "earnBody": "Miej swój udział w zdecentralizowanych finansach (DeFi)",
+    "earnTitle": "Zarabiaj dzięki DeFi",
     "errorBody": "Aplikacja nie mogła załadować treści na tej stronie. Spróbuj ponownie później",
     "errorTitle": "Coś poszło nie tak",
     "rewardPrefix": "Earn"
@@ -640,9 +642,49 @@
     "assets": "Aktywa",
     "collection": "NFT",
     "collection_see_all": "Wyświetl wszystkie",
-    "deposits": "Depozyty",
+    "defiEmpty": "Zacznij zarabiać dzięki DeFi",
+    "defiEmptyCaption": "Twoje pozycje pojawią się tutaj, gdy będą dostępne. Miej swój udział w DeFi i zacznij zarabiać.",
+    "deposits": "DeFi",
     "manage": "Zarządzaj",
     "total_balance": "Saldo"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "na platformie Kraken",
+    "exchangeBalance": "Saldo na giełdzie",
+    "fundCta": {
+      "body": "Połącz konto Kraken, aby <b>przesłać kryptowaluty do portfela</b>",
+      "heading": "Zasil swój portfel"
+    },
+    "stepsToConnect": {
+      "hasAccount": "Mam konto",
+      "heading": "Aby połączyć się z platformą Kraken, wykonaj poniższe kroki:",
+      "step1": {
+        "description": "Skonfiguruj konto Kraken",
+        "label": "Krok 1"
+      },
+      "step2": {
+        "description": "Wróć do portfela",
+        "label": "Krok 2"
+      },
+      "step3": {
+        "description": "Podłącz konto Kraken",
+        "label": "Krok 3"
+      }
+    },
+    "transfer": {
+      "title": "Przelew"
+    },
+    "transferCta": {
+      "body": "Połącz konto Kraken, aby szybciej przesyłać kryptowaluty",
+      "heading": "Przelew z platformy Kraken"
+    },
+    "unconnected": {
+      "alert": "Tylko bieżący portfel: „<b>{walletName}</b>”, zostanie połączony z platformą Kraken.",
+      "body": "Podłącz konto giełdy Kraken, aby płynnie przelewać środki do portfela",
+      "cta": "Podłącz konto giełdy Kraken",
+      "noAccount": "Nie mam konta",
+      "title": "Prześlij kryptowaluty do portfela za pomocą platformy Kraken"
+    }
   },
   "manageWallets": {
     "title": "Zarządzaj portfelami"
@@ -651,11 +693,11 @@
     "about": "O {assetSymbol}",
     "allTimeHigh": {
       "details": "Najwyższa cena, po jakiej przeprowadzano transakcje z użyciem kryptowaluty od czasu jej powstania.",
-      "title": "Najwyższy poziom w historii:"
+      "title": "Najwyż. poziom w historii:"
     },
     "allTimeLow": {
       "details": "Najwyższa cena, po jakiej przeprowadzano transakcje z użyciem kryptowaluty od czasu jej powstania.",
-      "title": "Najniższy poziom w historii:"
+      "title": "Najniż. poziom w historii:"
     },
     "circulatingSupply": {
       "details": "Liczba coinów lub tokenów, które są aktywnie dostępne na rynku i używane przez społeczeństwo.",
@@ -667,7 +709,7 @@
     "fullyDilutedValuation": {
       "details": "Zakładając że, w obiegu znajduje się maksymalna podaż, kapitalizacja rynkowa obliczana jest poprzez pomnożenie bieżącej ceny przez maksymalną podaż.",
       "short": "FDV",
-      "title": "W pełni rozwodniona wycena:"
+      "title": "W pełni rozwo. wycena:"
     },
     "high": "High:",
     "links": "Linki",
@@ -675,11 +717,11 @@
     "marketCap": {
       "details": "Całkowita wartość rynkowa kryptowaluty, obliczona poprzez pomnożenie bieżącej ceny przez podaż w obiegu.",
       "short": "Kapitalizacja rynkowa",
-      "title": "Kapitalizacja rynkowa:"
+      "title": "Kapitalizacja rynkowa"
     },
     "maxSupply": {
       "details": "Maksymalna liczba coinów lub tokenów, które kiedykolwiek będą istnieć dla danej kryptowaluty, zgodnie z definicją zawartą w protokole projektu.",
-      "title": "Maksymalna podróż:"
+      "title": "Maksymalna podaż"
     },
     "networkFee": {
       "current": "Bieżąca opłata",
@@ -706,12 +748,12 @@
     },
     "totalSupply": {
       "details": "Liczba coinów lub tokenów, które obecnie istnieją, łącznie z tymi, które mogą być zablokowane, zarezerwowane lub nie zostały jeszcze wydane.",
-      "title": "Całkowita podaż:"
+      "title": "Całkowita podaż"
     },
     "volume24h": {
       "details": "Łączna wartość kryptowaluty, z użyciem której przeprowadzano transakcje na wszystkich giełdach w ciągu ostatnich 24 godzin.",
       "short": "Wolumen z 24 godzin",
-      "title": "Wolumen z 24 godzin:"
+      "title": "Wolumen z 24 godzin"
     },
     "website": "Witryna internetowa"
   },
@@ -724,11 +766,11 @@
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – Goerli testnet",
-    "ethereum_sepolia": "Ethereum – Sepolia testnet",
+    "ethereum_sepolia": "Ethereum – Sepolia",
     "ink_sepolia": "Ethereum – Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
-    "optimism": "Optimism",
+    "optimism": "OP Mainnet",
     "polygon": "Polygon",
     "solana": "Solana",
     "solana_devnet": "Solana – Devnet",
@@ -1338,6 +1380,7 @@
       "insufficientGas": "Niewystarczające saldo {symbol} do pokrycia transakcji swapu"
     },
     "findingBestRote": "Szukanie najlepszej ścieżki",
+    "otherAssets": "Tokeny",
     "route": {
       "bridgeCost": {
         "hint": "Koszt Bridge to opłata naliczana przez dostawcę usługi swapowania za przeniesienie aktywów między różnymi blockchainami w ramach swapa.",
@@ -1389,11 +1432,22 @@
       "title": "Trasa swapa"
     },
     "selectAsset": "Wybierz aktywa",
+    "slippageSettings": {
+      "custom": "Niestandardowe",
+      "desc": "Jeśli cena zmieni się niekorzystnie o więcej niż procent poślizgu, transakcja swap zostanie anulowana.",
+      "footer": "Wyższy poślizg może pomóc w pomyślnej realizacji transakcji, lecz może również narazić Cię na ataki typu frontrunning / sandwich.",
+      "save": "Zapisz",
+      "title": "Ustawienia poślizgu",
+      "warningHigh": "Poślizg powyżej {amount}% jest uznawany za wysoki",
+      "warningSmall": "Poślizg poniżej {amount}% może spowodować niepowodzenie swapa",
+      "warningUnsupported": "Poślizg wyższy niż {amount}% nie jest obsługiwany"
+    },
     "sourceListHeader": "Twoje aktywa",
     "sourceSearchPlaceholder": "Wybierz aktywo do swapu",
     "targetSearchPlaceholder": "Wybierz aktywo do otrzymania",
     "title": "Swap",
-    "unsupportedAssetsHidden": "Nasi dostawcy swapu nie obsługą jeszcze Twoich {count} innych aktywów"
+    "unsupportedAssetsHidden": "Nasi dostawcy swapu nie obsługą jeszcze Twoich {count} innych aktywów",
+    "yourAssets": "Twoje aktywa"
   },
   "test": {
     "key": "Testowanie"
@@ -1591,8 +1645,8 @@
     "copied": "Adres został skopiowany",
     "crypto": "Kryptowaluty",
     "cryptoAndNft": "NFT i kryptowaluty",
-    "ethereumAddressLabel": "Obejmuje sieci warstwy 2",
-    "ethereumExplainerBody": "Adres systemu Ethereum wykracza poza sieci warstwy 2, takie jak Polygon, Arbitrum, Optimism i Base, sprawiając że Twój jeden adres działa wszędzie",
+    "ethereumAddressLabel": "Obejmuje sieci zgodne z Ethereum",
+    "ethereumExplainerBody": "System adresowy Ethereum obejmuje także sieci zgodne z Ethereum (Polygon, Arbitrum, OP Mainnet, Base, Linea, Avalanche itp.), dzięki czemu Twój pojedynczy adres będzie działać wszędzie",
     "ethereumExplainerHeading": "Twój adres Ethereum",
     "tokenAddress": "Adres {token}"
   },
@@ -1612,7 +1666,7 @@
     "continue": "Kontynuuj",
     "goBack": "Wróć",
     "myWallets": "Moje portfele",
-    "searchEmptyDesc": "Spróbuj rozszerzyć swoje wyszukiwanie",
+    "searchEmptyDesc": "Spróbuj rozszerzyć wyszukiwanie",
     "searchEmptyTitle": "Brak wyników",
     "searchPlaceholder": "Wybierz, co chcesz wysłać",
     "sendAsset": "Wyślij aktywa",
@@ -1650,7 +1704,7 @@
       "manual": "Aby zwiększyć poziom odzyskiwania, utwórz ręcznie kopię zapasową Twojej tajnej fazy odzyskiwania, aby przechowywać ją w bezpiecznym miejscu",
       "title": "Utwórz dodatkową kopię zapasową"
     },
-    "secretRecoveryPhrase": "Tajna fraza odzyskiwania",
+    "secretRecoveryPhrase": "Twoja tajna fraza odzyskiwania",
     "tapHereToView": "Dotknij tutaj, aby wyświetlić"
   },
   "walletBackupPrompt": {
@@ -1728,13 +1782,13 @@
     },
     "errorCreatingPasskey": {
       "description": "W ustawieniach hasła urządzenia upewnij się, że pęk kluczy iCloud jest włączony i można go używać do przechowywania haseł i kluczy dostępu:",
-      "title": "Błąd podczas tworzenia klucza dostępu"
+      "title": "Błąd podczas tworzenia kopii zapasowej"
     },
     "errorDeletingPasskey": {
       "cancel": "Anuluj",
       "deletedPasskeyPossibility": "Możliwe też, że klucz dostępu zawierający kopię zapasową został już usunięty. Jeśli masz pewność, że kod dostępu został usunięty, możemy go tak zaznaczyć i usunąć z portfela.",
       "removeItButton": "Tak, usuń",
-      "title": "Błąd podczas usuwania klucza dostępu"
+      "title": "Błąd podczas usuwania kopii zapasowej klucza dostępu"
     },
     "errorInactive": {
       "description": "Jeśli utworzono wiele kluczy dostępu, możesz spróbować importować inną kopię zapasową. W przeciwnym razie możesz zaimportować portfel za pomocą 12-24 wyrazowej tajnej frazy odzyskiwania",

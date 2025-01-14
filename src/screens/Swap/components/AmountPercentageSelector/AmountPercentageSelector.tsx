@@ -3,7 +3,7 @@ import type React from 'react';
 import { useCallback } from 'react';
 
 import { Keyboard, StyleSheet } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import Animated, { KeyboardState, useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
 
 import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 
@@ -41,7 +41,8 @@ export const AmountPercentageSelector: React.FC<{ token: RealmToken }> = ({ toke
       const balanceCut = new SuperBigNumber(token.balance).multipliedBy(o).toFixed(0);
       const balanceCutInTokenUnit = unitConverter.smallUnit2TokenUnit(balanceCut, token.metadata.decimals);
       const amountFormatted = formatTokenAmount(balanceCutInTokenUnit.toString(10), {
-        compact: true,
+        compact: false,
+        grouping: false,
         currency,
         highPrecision: true,
         isBtc: isBtc({ assetId: token.assetId }),
@@ -52,17 +53,30 @@ export const AmountPercentageSelector: React.FC<{ token: RealmToken }> = ({ toke
     [currency, setSourceAmount, setSourceAmountString, token.assetId, token.balance, token.metadata.decimals],
   );
 
+  const keyboard = useAnimatedKeyboard({ isStatusBarTranslucentAndroid: true });
+
+  const style = useAnimatedStyle(() => {
+    if (!isAmountInputFocused) {
+      return { opacity: 0 };
+    }
+    switch (keyboard.state.value) {
+      case KeyboardState.OPEN:
+      case KeyboardState.OPENING:
+        return { opacity: 1 };
+      default:
+        return { opacity: 0 };
+    }
+  }, [keyboard, isAmountInputFocused]);
+
   return (
     <FloatingBottomContainer avoidKeyboard bottomSpace={8}>
-      {isAmountInputFocused && (
-        <Animated.View entering={FadeIn.delay(100)} style={styles.container}>
-          {PERCENTAGE_OPTS_VALUES.map(({ label, value }) => (
-            <Touchable key={label} onPress={() => onSelect(value)} style={[styles.option, { backgroundColor: colors.purple_40 }]}>
-              <Label color="light75">{label}</Label>
-            </Touchable>
-          ))}
-        </Animated.View>
-      )}
+      <Animated.View style={[styles.container, style]} pointerEvents={isAmountInputFocused ? 'auto' : 'none'}>
+        {PERCENTAGE_OPTS_VALUES.map(({ label, value }) => (
+          <Touchable key={label} onPress={() => onSelect(value)} style={[styles.option, { backgroundColor: colors.purple_40 }]}>
+            <Label color="light75">{label}</Label>
+          </Touchable>
+        ))}
+      </Animated.View>
     </FloatingBottomContainer>
   );
 };

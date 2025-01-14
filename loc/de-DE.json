@@ -462,6 +462,8 @@
     "continueAccessibilityHint": "Haftungsausschluss akzeptieren und fortfahren",
     "disclaimerBody": "Bitte beachte, dass dieses Feature Inhalte enthält, die von Dritten bereitgestellt werden. Weitere Informationen findest du in den entsprechenden Bestimmungen der Nutzungsbedingungen.",
     "disclaimerTitle": "Willkommen bei Explore!",
+    "earnBody": "Nimm am dezentralen Finanzwesen teil",
+    "earnTitle": "Erhalte Yield mit DeFi",
     "errorBody": "Der Inhalt dieser Seite konnte in der App nicht geladen werden. Versuche es später erneut",
     "errorTitle": "Etwas ist schiefgelaufen",
     "rewardPrefix": "Earn"
@@ -480,7 +482,7 @@
       "timeAbbr": {
         "days": "Tag",
         "hours": "Std.",
-        "minutes": "Minute",
+        "minutes": "Min.",
         "months": "Mo.",
         "seconds": "Sekunde",
         "weeks": "Woche",
@@ -640,9 +642,49 @@
     "assets": "Assets",
     "collection": "NFTs",
     "collection_see_all": "Alle ansehen",
+    "defiEmpty": "Generiere Einnahmen mit DeFi",
+    "defiEmptyCaption": "Deine Positionen werden hier angezeigt, sobald sie verfügbar sind. Nimm an DeFi teil und erhalte Yield.",
     "deposits": "DeFi",
     "manage": "Verwalten",
     "total_balance": "Guthaben"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "auf Kraken",
+    "exchangeBalance": "Börsenguthaben",
+    "fundCta": {
+      "body": "Verbinde dein Kraken Konto, um <b>Krypto auf deine Wallet zu überweisen</b>",
+      "heading": "Zahle in deine Wallet ein"
+    },
+    "stepsToConnect": {
+      "hasAccount": "Ich habe ein Konto erstellt",
+      "heading": "Führe die folgenden Schritte durch, um dich mit Kraken zu verbinden:",
+      "step1": {
+        "description": "Richte dein Kraken Konto ein",
+        "label": "Schritt 1"
+      },
+      "step2": {
+        "description": "Kehre zur Wallet zurück",
+        "label": "Schritt 2"
+      },
+      "step3": {
+        "description": "Verbinde dein Kraken Konto",
+        "label": "Schritt 3"
+      }
+    },
+    "transfer": {
+      "title": "Überweisen"
+    },
+    "transferCta": {
+      "body": "Verbinde dein Kraken Konto, um schnell Krypto zu überweisen",
+      "heading": "Überweisung von Kraken"
+    },
+    "unconnected": {
+      "alert": "Nur die aktuelle Wallet „<b>{walletName}</b>“ wird mit Kraken verbunden.",
+      "body": "Überweise nahtlos Mittel von deinem Kraken Börsenkonto auf deine Wallet.",
+      "cta": "Kraken Exchange verbinden",
+      "noAccount": "Ich habe kein Konto",
+      "title": "Zahle mit Kraken Krypto in deine Wallet ein"
+    }
   },
   "manageWallets": {
     "title": "Wallets verwalten"
@@ -1338,6 +1380,7 @@
       "insufficientGas": "Unzureichendes {symbol} Guthaben zur Abdeckung von Swap-Transaktionen"
     },
     "findingBestRote": "Bester Weg wird gesucht",
+    "otherAssets": "Token",
     "route": {
       "bridgeCost": {
         "hint": "Bridge-Kosten sind Gebühren, die vom Swap-Anbieter erhoben werden, damit während des Swaps Assets zwischen verschiedenen Blockchains übertragen werden.",
@@ -1389,11 +1432,22 @@
       "title": "Swap-Route"
     },
     "selectAsset": "Asset auswählen",
+    "slippageSettings": {
+      "custom": "Benutzerdefiniert",
+      "desc": "Wenn der Preis sich zu deinen Ungunsten über den festgelegten Slippage-Prozentsatz hinaus ändert, wird deine Swap-Transaktion abgebrochen.",
+      "footer": "Eine höhere Slippage kann die Erfolgsquote bei Transaktionen erhöhen, setzt dich aber möglicherweise Frontrunning/Sandwich-Angriffen aus.",
+      "save": "Speichern",
+      "title": "Slippage-Einstellungen",
+      "warningHigh": "Slippage über {amount} % gilt als hoch",
+      "warningSmall": "Slippage unter {amount} % kann zum Fehlschlag des Swaps führen",
+      "warningUnsupported": "Slippage höher als {amount} % wird nicht unterstützt"
+    },
     "sourceListHeader": "Deine Assets",
     "sourceSearchPlaceholder": "Asset für den Swap auswählen",
     "targetSearchPlaceholder": "Zu erhaltendes Asset auswählen",
     "title": "Swap",
-    "unsupportedAssetsHidden": "Unsere Swap-Anbieter unterstützen {count} deiner anderen Assets noch nicht"
+    "unsupportedAssetsHidden": "Unsere Swap-Anbieter unterstützen {count} deiner anderen Assets noch nicht",
+    "yourAssets": "Deine Assets"
   },
   "test": {
     "key": "Tests"
@@ -1728,7 +1782,7 @@
     },
     "errorCreatingPasskey": {
       "description": "Achte darauf, dass in den Passwortoptionen deines Geräts die iCloud Keychain aktiviert ist, die für Passwörter und Passkeys verwendet wird:",
-      "title": "Fehler beim Erstellen des Passkeys"
+      "title": "Fehler beim Erstellen des Backups"
     },
     "errorDeletingPasskey": {
       "cancel": "Abbrechen",

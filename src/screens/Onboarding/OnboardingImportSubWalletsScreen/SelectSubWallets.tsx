@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
 import { ImportSubWalletsButton } from './ImportSubWalletsButton';
@@ -7,9 +7,9 @@ import { SelectSubWalletsListItem } from './SelectSubWalletsListItem';
 
 import type { SubWallet } from './OnboardingImportSubWalletsScreen.types';
 
-type Props = { subWallets: SubWallet[] };
+type Props = { subWallets: SubWallet[]; subWalletsFromAddByIndex: SubWallet[] };
 
-export const SelectSubWallets = ({ subWallets }: Props) => {
+export const SelectSubWallets = ({ subWallets, subWalletsFromAddByIndex }: Props) => {
   const [selectedSubWallets, setSelectedSubWallets] = useState<SubWallet[]>(() => subWallets.filter(({ hasBalance, index }) => hasBalance || index === 0));
   const isImportSubWalletsButtonDisabled = selectedSubWallets.length < 1;
 
@@ -28,9 +28,31 @@ export const SelectSubWallets = ({ subWallets }: Props) => {
       const isSelected = selectedSubWallets.findIndex(selectedSubWallet => selectedSubWallet.index === item.index) >= 0;
       const toggleSubWallet_ = () => toggleSubWallet(item);
 
-      return <SelectSubWalletsListItem subWallet={item} showSubWalletIndex={false} toggleSubWallet={toggleSubWallet_} isSelected={isSelected} />;
+      return (
+        <SelectSubWalletsListItem
+          subWallet={item}
+          showSubWalletIndex={subWalletsFromAddByIndex.length > 0}
+          toggleSubWallet={toggleSubWallet_}
+          isSelected={isSelected}
+        />
+      );
     },
-    [selectedSubWallets],
+    [selectedSubWallets, subWalletsFromAddByIndex.length],
+  );
+
+  useEffect(
+    function preselectSubWalletsFromAddByIndex() {
+      const lastSubWalletFromAddByIndex = subWalletsFromAddByIndex[subWalletsFromAddByIndex.length - 1];
+
+      if (lastSubWalletFromAddByIndex) {
+        setSelectedSubWallets(previousSelectedSubWallets => {
+          return previousSelectedSubWallets.findIndex(previousSelectedSubWallet => previousSelectedSubWallet.index === lastSubWalletFromAddByIndex.index) >= 0
+            ? previousSelectedSubWallets
+            : [...previousSelectedSubWallets, lastSubWalletFromAddByIndex];
+        });
+      }
+    },
+    [subWalletsFromAddByIndex],
   );
 
   return (

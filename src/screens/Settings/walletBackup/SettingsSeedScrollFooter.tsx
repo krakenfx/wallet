@@ -42,6 +42,7 @@ export const SettingsSeedScrollFooter: React.FC<ScrollFoterProps> = ({
 
       {isCloudBackupNeeded && (
         <BackupMethodSelector
+          testID="SettingsBackupCloudMethodSelector"
           icon={<Image source={require('@/assets/images/common/iCloud.png')} />}
           onPress={onCloudBackupSelected}
           title={loc.walletBackupSelection.backupWithICloud}
@@ -52,6 +53,7 @@ export const SettingsSeedScrollFooter: React.FC<ScrollFoterProps> = ({
 
       {isManualBackupNeeded && (
         <BackupMethodSelector
+          testID="SettingsBackupManualMethodSelector"
           icon={<IconButton size={24} name="pencil" style={[styles.iconSize, styles.iconRadius]} containerStyle={styles.iconRadius} />}
           onPress={onManualBackupSelected}
           title={loc.walletBackupSelection.backupManually}
