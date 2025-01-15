@@ -462,6 +462,8 @@
     "continueAccessibilityHint": "Chấp nhận tuyên bố từ chối trách nhiệm và tiếp tục",
     "disclaimerBody": "Xin lưu ý tính năng này có chứa nội dung do bên thứ ba cung cấp. Tham khảo các điều khoản có liên quan trong Điều khoản dịch vụ.",
     "disclaimerTitle": "Chào mừng đến với Explore!",
+    "earnBody": "Tham gia vào thị trường Tài chính phi tập trung",
+    "earnTitle": "Kiếm được lợi nhuận với DeFi",
     "errorBody": "Ứng dụng không thể tải nội dung trong trang này. Hãy thử lại sau",
     "errorTitle": "Đã xảy ra lỗi",
     "rewardPrefix": "Kiếm được"
@@ -640,9 +642,49 @@
     "assets": "Tài sản",
     "collection": "NFT",
     "collection_see_all": "Xem tất cả",
+    "defiEmpty": "Bắt đầu kiếm tiền với DeFi",
+    "defiEmptyCaption": "Các vị thế của bạn sẽ hiển thị ở đây khi khả dụng. Tham gia DeFi và bắt đầu kiếm được lợi nhuận.",
     "deposits": "DeFi",
     "manage": "Quản lý",
     "total_balance": "Số dư"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "trên Kraken",
+    "exchangeBalance": "Số dư trên sàn giao dịch",
+    "fundCta": {
+      "body": "Kết nối tài khoản Kraken của bạn để <b>chuyển tiền điện tử vào ví của bạn</b>",
+      "heading": "Nạp tiền vào ví của bạn"
+    },
+    "stepsToConnect": {
+      "hasAccount": "Tôi đã tạo một tài khoản",
+      "heading": "Để kết nối với Kraken, hãy làm theo các bước sau:",
+      "step1": {
+        "description": "Thiết lập tài khoản Kraken của bạn",
+        "label": "Bước 1"
+      },
+      "step2": {
+        "description": "Quay lại ví",
+        "label": "Bước 2"
+      },
+      "step3": {
+        "description": "Kết nối tài khoản Kraken của bạn",
+        "label": "Bước 3"
+      }
+    },
+    "transfer": {
+      "title": "Chuyển khoản"
+    },
+    "transferCta": {
+      "body": "Kết nối tài khoản Kraken của bạn để chuyển tiền điện tử nhanh chóng",
+      "heading": "Chuyển từ Kraken"
+    },
+    "unconnected": {
+      "alert": "Chỉ ví hiện tại: \"<b>{walletName}</b>\", sẽ được kết nối với Kraken.",
+      "body": "Kết nối tài khoản sàn giao dịch Kraken của bạn để chuyển tiền vào ví của bạn một cách liền mạch",
+      "cta": "Kết nối sàn giao dịch Kraken",
+      "noAccount": "Tôi không có tài khoản",
+      "title": "Nhận tiền điện tử vào ví của bạn với Kraken"
+    }
   },
   "manageWallets": {
     "title": "Quản lý ví"
@@ -1338,6 +1380,7 @@
       "insufficientGas": "Số dư {symbol} không đủ để trang trải các giao dịch hoán đổi"
     },
     "findingBestRote": "Tìm lộ trình tốt nhất",
+    "otherAssets": "Token",
     "route": {
       "bridgeCost": {
         "hint": "Chi phí cầu nối là khoản phí do nhà cung cấp dịch vụ hoán đổi tính khi chuyển tài sản giữa các blockchain khác nhau trong quá trình hoán đổi.",
@@ -1389,11 +1432,22 @@
       "title": "Lộ trình hoán đổi"
     },
     "selectAsset": "Chọn tài sản",
+    "slippageSettings": {
+      "custom": "Tùy chỉnh",
+      "desc": "Nếu giá thay đổi bất lợi hơn tỷ lệ trượt giá, giao dịch hoán đổi của bạn sẽ bị hủy.",
+      "footer": "Trượt giá cao hơn có thể giúp tăng tỷ lệ thành công của giao dịch, nhưng có thể khiến bạn phải đối mặt với các cuộc tấn công kiểu đi trước/sắp xếp theo kiểu xen kẽ.",
+      "save": "Lưu",
+      "title": "Cài đặt trượt giá",
+      "warningHigh": "Trượt giá trên {amount}% được coi là cao",
+      "warningSmall": "Trượt giá dưới {amount}% có thể khiến quá trình hoán đổi thất bại",
+      "warningUnsupported": "Không hỗ trợ trượt giá lớn hơn {amount}%"
+    },
     "sourceListHeader": "Tài sản của bạn",
     "sourceSearchPlaceholder": "Chọn tài sản để hoán đổi",
     "targetSearchPlaceholder": "Chọn tài sản để nhận",
     "title": "Hoán đổi",
-    "unsupportedAssetsHidden": "Các nhà cung cấp hoán đổi của chúng tôi hiện chưa hỗ trợ {count} tài sản khác của bạn"
+    "unsupportedAssetsHidden": "Các nhà cung cấp hoán đổi của chúng tôi hiện chưa hỗ trợ {count} tài sản khác của bạn",
+    "yourAssets": "Tài sản của bạn"
   },
   "test": {
     "key": "Đang kiểm tra"
@@ -1728,7 +1782,7 @@
     },
     "errorCreatingPasskey": {
       "description": "Trong Tùy chọn mật khẩu trên thiết bị của bạn, hãy đảm bảo iCloud Keychain đã bật để sử dụng cho mật khẩu và mã khóa:",
-      "title": "Lỗi khi tạo mã khóa"
+      "title": "Lỗi khi tạo bản sao lưu"
     },
     "errorDeletingPasskey": {
       "cancel": "Hủy",

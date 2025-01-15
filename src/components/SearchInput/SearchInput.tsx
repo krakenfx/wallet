@@ -12,13 +12,14 @@ interface SearchInputProps extends InputProps {
   inputWrapperStyle?: StyleProp<TextStyle>;
   inputContainerStyle?: StyleProp<TextStyle>;
   onChangeText?: TextInputProps['onChangeText'];
+  omitIcon?: boolean;
   testID?: string;
 }
 
-export const SearchInput = ({ style, inputWrapperStyle, inputContainerStyle, ...props }: SearchInputProps) => {
+export const SearchInput = ({ style, inputWrapperStyle, inputContainerStyle, omitIcon, ...props }: SearchInputProps) => {
   return (
     <Input
-      left={<SvgIcon name="search" size={18} color="light75" style={styles.icon} />}
+      left={omitIcon ? undefined : <SvgIcon name="search" size={18} color="light75" style={styles.icon} />}
       style={[styles.input, style]}
       inputStyle={styles.inputComponent}
       inputWrapperStyle={[styles.inputWrapper, inputWrapperStyle]}

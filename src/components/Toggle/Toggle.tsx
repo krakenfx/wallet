@@ -5,10 +5,10 @@ import type { SharedValue } from 'react-native-reanimated';
 import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 
-import Animated, { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { Label } from '@/components/Label';
-import { useTheme } from '@/theme/themes';
+import { type ColorName, useTheme } from '@/theme/themes';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 
 interface BaseToggleProps {
@@ -19,8 +19,11 @@ interface BaseToggleProps {
   testID?: string;
   containerStyle?: StyleProp<ViewStyle>;
   toggleStyle?: StyleProp<ViewStyle>;
+  backgroundColor?: ColorName;
+  sliderColor?: ColorName;
   handleTap?: () => void;
   disabled?: boolean;
+  initiallySelected?: boolean;
 }
 interface ControlledToggleProps extends BaseToggleProps {
   animation: SharedValue<number>;
@@ -31,8 +34,8 @@ interface ToggleProps extends BaseToggleProps {
   onChange: (rightValue: boolean) => void;
 }
 
-export const Toggle: React.FC<ToggleProps> = ({ onChange, ...props }) => {
-  const selected = useSharedValue(0);
+export const Toggle: React.FC<ToggleProps> = ({ onChange, initiallySelected, ...props }) => {
+  const selected = useSharedValue(initiallySelected ? 1 : 0);
 
   const onTap = () => {
     onChange(!selected.value);
@@ -44,15 +47,32 @@ export const Toggle: React.FC<ToggleProps> = ({ onChange, ...props }) => {
 };
 
 export const ControlledToggle = React.memo(
-  ({ animation, leftText, testID, leftTestID, rightTestID, rightText, toggleStyle, onTap, containerStyle, disabled, handleTap }: ControlledToggleProps) => {
+  ({
+    animation,
+    leftText,
+    testID,
+    leftTestID,
+    rightTestID,
+    rightText,
+    toggleStyle,
+    onTap,
+    sliderColor = 'kraken',
+    backgroundColor = 'light15',
+    containerStyle,
+    disabled,
+    handleTap,
+  }: ControlledToggleProps) => {
     const { colors } = useTheme();
     const leftWidth = useSharedValue(0);
     const rightWidth = useSharedValue(0);
 
     const style = useAnimatedStyle(() => {
       return {
-        width: interpolate(animation.value, [0, 1], [leftWidth.value, rightWidth.value], { extrapolateRight: Extrapolate.CLAMP }),
-        left: interpolate(animation.value, [0, 1], [0, leftWidth.value], { extrapolateRight: Extrapolate.CLAMP, extrapolateLeft: Extrapolate.CLAMP }),
+        width: interpolate(animation.value, [0, 1], [leftWidth.value, rightWidth.value], { extrapolateRight: Extrapolation.CLAMP }),
+        left: interpolate(animation.value, [0, 1], [0, leftWidth.value], {
+          extrapolateRight: Extrapolation.CLAMP,
+          extrapolateLeft: Extrapolation.CLAMP,
+        }),
       };
     });
 
@@ -60,8 +80,8 @@ export const ControlledToggle = React.memo(
       <View style={[styles.toggleWrapper, containerStyle]}>
         <TouchableWithoutFeedback onPress={handleTap ?? onTap} disabled={disabled && !handleTap} testID={testID}>
           <Animated.View style={[styles.container, toggleStyle]}>
-            <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: colors.light15 }, disabled && styles.disabled, toggleStyle]} />
-            <Animated.View style={[style, styles.slider, { backgroundColor: colors.kraken }]} />
+            <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: colors[backgroundColor] }, disabled && styles.disabled, toggleStyle]} />
+            <Animated.View style={[style, styles.slider, { backgroundColor: colors[sliderColor] }]} />
             <View style={styles.itemWrapper} onLayout={e => (leftWidth.value = e.nativeEvent.layout.width)}>
               <Label testID={leftTestID}>{leftText}</Label>
             </View>

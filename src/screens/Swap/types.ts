@@ -41,12 +41,12 @@ export type SwapRouteUIData = {
   sourceAsset: RealmToken;
   targetAsset: SwapTargetAsset;
   sourceAssetAmount: string;
-  rate: string;
+  rate?: string;
 
   output: string;
   minOutput: string;
   minOutputFormatted: string;
-  slippage: string;
+  slippage?: string;
   transactionFeesTotalFiat: string;
   fees: SwapFeeUIData[];
   steps: SwapRouteTXStep[];

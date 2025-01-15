@@ -1,4 +1,4 @@
-import { entries, fromPairs } from 'lodash';
+import { entries, fromPairs, values } from 'lodash';
 
 import type { DefiNetwork } from '@/realm/defi';
 
@@ -117,9 +117,10 @@ export const isTestNet = (network: Network & { isTestnet?: boolean }) => {
   return !!network.isTestnet;
 };
 
+export const nativeTokenCaipIds = new Set(values(Networks).map(network => network.nativeTokenCaipId));
+
 export const isNetworkCoin = (assetId: string) => {
-  const nativeTokenCaipIds = Object.values(Networks).map(network => network.nativeTokenCaipId);
-  return nativeTokenCaipIds.includes(assetId);
+  return nativeTokenCaipIds.has(assetId);
 };
 
 export const DEPRECATED_NETWORKS: WalletType[] = [];

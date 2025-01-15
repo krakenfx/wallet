@@ -6,6 +6,7 @@ import { GradientItemBackground } from '@/components/GradientItemBackground';
 import type { InputMethods } from '@/components/Input';
 import { Input } from '@/components/Input';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
+import { useDebounceEffect } from '@/hooks/useDebounceEffect';
 import { useKeyboardEvent } from '@/hooks/useKeyboardEvent';
 import { useAppCurrency } from '@/realm/settings';
 import { useTokenPrice } from '@/realm/tokenPrice';
@@ -19,6 +20,7 @@ import { safelyAnimateLayout } from '@/utils/safeLayoutAnimation';
 import { sanitizeNumericValue } from '@/utils/sanitizeNumericValue';
 import { unitConverter } from '@/utils/unitConverter';
 
+import { AMOUNT_TYPING_DEBOUNCE_DELAY } from '../../SwapScreen.constants';
 import { adaptTokenToRemoteAsset } from '../../utils/adaptTokenToRemoteAsset';
 import { SwapAssetSelector } from '../SwapAssetSelector';
 import { useSwapContext } from '../SwapContext';
@@ -27,7 +29,6 @@ import loc from '/loc';
 
 type Props = {
   token: RealmToken;
-  isLoading?: boolean;
   onChange: () => void;
   errorMsg?: string;
 };
@@ -36,13 +37,14 @@ export type SourceAssetBlockRef = {
   focusInput: () => void;
 };
 
-export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ token, onChange, isLoading, errorMsg }, ref) => {
+export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ token, onChange, errorMsg }, ref) => {
   const {
     sourceAmountState: [sourceAmount, setSourceAmount],
     sourceAmountInputValueState: [sourceAmountString, setSourceAmountString],
-    amountInputFocusState: [isFocused, setIsFocused],
+    amountInputFocusState: [_, setIsFocused],
     amountInputErrorState: [inputErrorMsg, setInputErrorMsg],
-    amountInputValidState: [_, setAmountInputValid],
+    amountInputValidState: [__, setAmountInputValid],
+    amountInputTypingState: [isTyping, setIsTyping],
   } = useSwapContext();
 
   const inputRef = useRef<InputMethods>(null);
@@ -80,6 +82,7 @@ export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ 
 
   const onChangeText = useCallback(
     (value: string) => {
+      setIsTyping(true);
       const numberString = sanitizeNumericValue(value);
       if (!numberString) {
         setSourceAmount(undefined);
@@ -89,22 +92,19 @@ export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ 
         setSourceAmount(unitConverter.tokenUnit2SmallestUnit(new BigNumber(numberString), token.metadata.decimals).toString(10));
       }
     },
-    [setSourceAmount, setSourceAmountString, token.metadata.decimals],
+    [setIsTyping, setSourceAmount, setSourceAmountString, token.metadata.decimals],
   );
 
   useKeyboardEvent('keyboardDidHide', () => inputRef.current?.blur());
 
+  useDebounceEffect(() => setIsTyping(false), [sourceAmountString], AMOUNT_TYPING_DEBOUNCE_DELAY);
+
   useEffect(() => {
     if (!sourceAmount) {
       setAmountInputValid(false);
-      return;
-    }
-    if (isFocused) {
       setInputErrorMsg(undefined);
-      setAmountInputValid(undefined);
       return;
     }
-
     if (BigNumber(sourceAmount).isLessThanOrEqualTo(0)) {
       setAmountInputValid(false);
     } else if (BigNumber(sourceAmount).isGreaterThan(BigNumber(tokenBalance))) {
@@ -112,8 +112,9 @@ export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ 
       setInputErrorMsg(loc.swap.amountExceedingBalance);
     } else {
       setAmountInputValid(true);
+      setInputErrorMsg(undefined);
     }
-  }, [isFocused, sourceAmount, tokenBalance, inputErrorMsg, setInputErrorMsg, setAmountInputValid, setSourceAmountString, setSourceAmount]);
+  }, [isTyping, setAmountInputValid, setInputErrorMsg, sourceAmount, tokenBalance]);
 
   useLayoutEffect(() => {
     safelyAnimateLayout();
@@ -125,7 +126,6 @@ export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ 
     <View style={styles.container}>
       <GradientItemBackground backgroundType="modal" key={inputErrorValue} />
       <Input
-        editable={!isLoading}
         ref={inputRef}
         value={inputValue}
         onChangeText={onChangeText}
@@ -133,7 +133,7 @@ export const SourceAssetBlock = React.forwardRef<SourceAssetBlockRef, Props>(({ 
         type="boldDisplay5"
         placeholder={loc.swap.amountPlaceholder}
         backgroundColor="transparent"
-        borderColorOnFocus="kraken"
+        borderColorOnFocus={inputErrorValue ? 'red400' : 'kraken'}
         right={<SwapAssetSelector wallet={token.wallet} asset={adaptTokenToRemoteAsset(token)} onPress={onChange} />}
         footerLeft={footerLeft}
         footerRight={footerRight}

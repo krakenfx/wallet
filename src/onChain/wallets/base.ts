@@ -2,7 +2,7 @@ import type { ColorValue } from 'react-native';
 
 import createHash from 'create-hash';
 
-import type { FeeOption, InternalBalance, SimulationResult, TokenMetadata, Transaction, TransactionEffect } from '@/api/types';
+import type { EVMSimulationResult, FeeOption, InternalBalance, SimulationResult, TokenMetadata, Transaction, TransactionEffect } from '@/api/types';
 import type { AssetMetadata } from '@/realm/assetMetadata';
 import type { Nft } from '@/realm/nfts';
 import type { RealmToken } from '@/realm/tokens';
@@ -16,7 +16,7 @@ export interface PreparedTransaction<T = unknown> {
   isError?: boolean;
   preventativeAction?: SimulationResult['preventativeAction'];
   warnings?: SimulationResult['warnings'];
-  failureReason?: SimulationResult['failureReason'];
+  errorReason?: EVMSimulationResult['errorReason'];
 }
 
 export interface FeeOptions<T extends FeeOption = FeeOption> {

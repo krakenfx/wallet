@@ -1,12 +1,11 @@
 import BigNumber from 'bignumber.js';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import { Keyboard, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { Easing, cancelAnimation, runOnJS, withTiming } from 'react-native-reanimated';
 
-import { fetchSwapQuote } from '@/api/fetchSwapQuote';
 import type { SwapQuoteRouteType } from '@/api/types';
 import type { BottomSheetModalRef, BottomSheetRef } from '@/components/BottomSheet';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
@@ -24,12 +23,15 @@ import { navigationStyle } from '@/utils/navigationStyle';
 
 import { runAfterUISync } from '@/utils/runAfterUISync';
 
+import { useAppState } from '@/utils/useAppState';
+
 import { EXPLAINER_CONTENT_TYPES } from '../Explainer';
 
 import { AmountPercentageSelector } from './components/AmountPercentageSelector';
 import { DividerOverlay } from './components/DividerOverlay';
 import { LoadingBlock } from './components/LoadingBlock';
 import { RouteDetails } from './components/RouteDetails';
+import { SlippageConfigSheet, type SlippageConfigSheetMethods } from './components/SlippageConfigSheet';
 import { SourceAssetBlock, type SourceAssetBlockRef } from './components/SourceAssetBlock';
 import { SourceAssetList } from './components/SourceAssetList';
 import { SwapConfirmationSheet } from './components/SwapConfirmationSheet';
@@ -41,7 +43,9 @@ import { TargetAssetList } from './components/TargetAssetList';
 
 import { UnsupportedRoute } from './components/UnsupportedRoute';
 import { useSwapRouteData } from './hooks/useSwapRouteData';
-import { BroadcastState, ROUTE_VALIDITY_PERIOD_MS, SUCCESS_TIMEOUT } from './SwapScreen.constants';
+import { BroadcastState, DEFAULT_SLIPPAGE, ROUTE_VALIDITY_PERIOD_MS, SUCCESS_TIMEOUT } from './SwapScreen.constants';
+
+import { fetchQuote } from './utils/fetchQuote';
 
 import { handleError } from '/helpers/errorHandler';
 import loc from '/loc';
@@ -55,6 +59,8 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   const targetAssetSheet = useRef<BottomSheetRef>(null);
   const confirmationSheet = useRef<BottomSheetModalRef>(null);
   const swapRouteExplainerSheet = useRef<BottomSheetModalRef>(null);
+  const slippageConfigRef = useRef<SlippageConfigSheetMethods>(null);
+  const [maxSlippage, setMaxSlippage] = useState<number>(DEFAULT_SLIPPAGE);
   const sourceAssetBlock = useRef<SourceAssetBlockRef>(null);
   const [isMounted, setIsMounted] = useState(false);
   const [insuffucientFundsError, setInsufficientFundsError] = useState<boolean>(false);
@@ -71,12 +77,22 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     swapQuoteError: [swapQuoteError, setSwapQuoteError],
     swapFeesFiatValueState: [__, setFeesFiatValues],
     amountInputValidState: [isAmountInputValid],
+    amountInputErrorState: [amountInputError],
+    amountInputTypingState: [isTyping],
     refreshCountdownProgress,
   } = useSwapContext();
 
   const { hide: hideMenu } = useMenu();
 
   const [selectedRouteType, setSelectedRouteType] = useState<SwapQuoteRouteType>('value');
+
+  const showSlippageOptions = useCallback(() => {
+    slippageConfigRef.current?.open();
+  }, [slippageConfigRef]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({ headerRight: () => <IconButton name="slippage" onPress={showSlippageOptions} /> });
+  }, [navigation, showSlippageOptions]);
 
   useEffect(() => {
     runAfterUISync(() => {
@@ -85,8 +101,13 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   }, []);
 
   useEffect(() => {
-    if (!isAmountInputValid && (swapQuote || swapQuoteError)) {
+    if (swapQuoteError || amountInputError || !sourceAmount) {
       setSwapQuote(undefined);
+    }
+  }, [amountInputError, setSwapQuote, sourceAmount, swapQuoteError]);
+
+  useEffect(() => {
+    if (!isAmountInputValid && swapQuoteError) {
       setSwapQuoteError(undefined);
     }
   }, [isAmountInputValid, setSwapQuote, setSwapQuoteError, swapQuote, swapQuoteError]);
@@ -150,6 +171,12 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     refreshCountdownProgress.value = 0;
   }, [refreshCountdownProgress]);
 
+  const gasToken = useTokenByAssetId(sourceToken.wallet.nativeTokenCaipId, sourceToken.wallet.id);
+
+  const isSourceNativeToken = gasToken.assetId === sourceToken.assetId;
+
+  const isMaxNativeTokenAmount = isSourceNativeToken && !!sourceAmount && new BigNumber(gasToken.balance).isLessThanOrEqualTo(sourceAmount);
+
   const requestSwapRoute = useCallback(async () => {
     if (!targetAsset || !sourceToken || !isAmountInputValid || !sourceAmount) {
       throw new Error('Requesting swap quote with incomplete data');
@@ -164,17 +191,21 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
 
       const fromAddress = await network.deriveAddress(sourceToken.wallet);
 
-      const data = await fetchSwapQuote({
-        from: {
-          assetId: sourceToken.assetId,
-          amount: sourceAmount,
+      const data = await fetchQuote(
+        {
+          from: {
+            assetId: sourceToken.assetId,
+            amount: sourceAmount,
+          },
+          to: {
+            assetId: targetAsset.assetId,
+          },
+          fromAddress,
+          routeType: selectedRouteType,
+          maxSlippage,
         },
-        to: {
-          assetId: targetAsset.assetId,
-        },
-        fromAddress,
-        routeType: selectedRouteType,
-      });
+        isMaxNativeTokenAmount,
+      );
       if (!data) {
         throw new Error('Failed to fetch swap quote');
       }
@@ -205,11 +236,27 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     setSwapQuoteError,
     hideMenu,
     selectedRouteType,
+    maxSlippage,
+    isMaxNativeTokenAmount,
     setSwapQuote,
     setIsSwapAvailable,
     resetCountDown,
     refreshCountdownProgress,
   ]);
+
+  const appState = useAppState();
+
+  useEffect(() => {
+    switch (appState) {
+      case 'active': {
+        requestSwapRoute();
+        break;
+      }
+      default: {
+        resetCountDown();
+      }
+    }
+  }, [appState, requestSwapRoute, resetCountDown]);
 
   useEffect(() => {
     if (amountInputFocused) {
@@ -218,31 +265,18 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   }, [amountInputFocused]);
 
   useEffect(() => {
-    if (!amountInputFocused && sourceAmount && sourceToken && targetAsset && isAmountInputValid) {
+    if (sourceAmount && sourceToken && targetAsset && isAmountInputValid && !isTyping) {
       requestSwapRoute();
     } else {
       resetCountDown();
     }
-  }, [
-    amountInputFocused,
-    sourceToken,
-    sourceAmount,
-    targetAsset,
-    setIsLoading,
-    setSwapQuote,
-    refreshCountdownProgress,
-    requestSwapRoute,
-    isAmountInputValid,
-    resetCountDown,
-  ]);
+  }, [isAmountInputValid, isTyping, requestSwapRoute, resetCountDown, sourceAmount, sourceToken, targetAsset]);
 
   useEffect(() => {
     return resetCountDown;
   }, [resetCountDown]);
 
   const swapRouteData = useSwapRouteData();
-
-  const gasToken = useTokenByAssetId(sourceToken.wallet.nativeTokenCaipId, sourceToken.wallet.id);
 
   const hasInsufficientFundsForGas = useMemo(() => {
     if (insuffucientFundsError) {
@@ -257,11 +291,14 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
       return false;
     }
 
-    if (gasToken.assetId === sourceToken.assetId) {
+    if (isSourceNativeToken) {
+      if (isMaxNativeTokenAmount) {
+        return false;
+      }
       return new BigNumber(gasToken.balance).minus(swapRouteData.sourceAssetAmount).isLessThan(gasFee.feeAsset.amount);
     }
     return new BigNumber(gasToken.balance).isLessThan(gasFee.feeAsset.amount);
-  }, [isLoading, swapRouteData, gasToken.assetId, gasToken.balance, sourceToken.assetId, insuffucientFundsError]);
+  }, [insuffucientFundsError, isLoading, swapRouteData, isSourceNativeToken, gasToken.balance, isMaxNativeTokenAmount]);
 
   const finishFlow = useCallback(() => {
     setTimeout(() => {
@@ -304,7 +341,6 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     <GradientScreenView testID="SwapScreen">
       <ScrollView style={styles.container} bounces={false}>
         <SourceAssetBlock
-          isLoading={isLoading}
           ref={sourceAssetBlock}
           token={sourceToken}
           onChange={showSourceAssetSelection}
@@ -319,12 +355,13 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
           )}
         </View>
         {isLoading && <LoadingBlock />}
-        {!isLoading && swapRouteData && (
+        {!isLoading && swapRouteData && !amountInputFocused && (
           <RouteDetails
             showExplainer={showRouteExplainerSheet}
             route={swapRouteData}
             selectedRouteType={selectedRouteType}
             onRouteTypeChange={r => setSelectedRouteType(r.id)}
+            editSlippageOptions={showSlippageOptions}
           />
         )}
         {!isLoading && swapQuoteError && <UnsupportedRoute />}
@@ -334,7 +371,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
         primary={{
           text: loc.swap.buttonTitle,
           onPress: () => confirmationSheet.current?.expand(),
-          disabled: isLoading || !swapRouteData || hasInsufficientFundsForGas,
+          disabled: !isAmountInputValid || isTyping || isLoading || !swapRouteData || hasInsufficientFundsForGas,
         }}
       />
       {isMounted && (
@@ -373,6 +410,14 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
       {!!swapRouteData?.steps && (
         <SwapRouteExplainerSheet onClose={() => swapRouteExplainerSheet.current?.close()} steps={swapRouteData.steps} ref={swapRouteExplainerSheet} />
       )}
+      <SlippageConfigSheet
+        currentSlippage={maxSlippage}
+        ref={slippageConfigRef}
+        onSave={newSlippage => {
+          slippageConfigRef.current?.close();
+          setMaxSlippage(newSlippage);
+        }}
+      />
     </GradientScreenView>
   );
 };
@@ -397,5 +442,4 @@ export { SwapScreenWrapper as SwapScreen };
 
 SwapScreenWrapper.navigationOptions = navigationStyle({
   headerTransparent: true,
-  headerRight: () => <IconButton name="slippage" />,
 });

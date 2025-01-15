@@ -1,26 +1,35 @@
 import { useHeaderHeight } from '@react-navigation/elements';
 
-import { keyBy, sortBy } from 'lodash';
+import { groupBy, keyBy, sortBy } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
-import type { TokenType } from '@/api/types';
 import type { BottomSheetRef } from '@/components/BottomSheet';
 import { BottomSheet, BottomSheetFlashList } from '@/components/BottomSheet';
 import { FadingElement } from '@/components/FadingElement';
 import { KeyboardAvoider } from '@/components/Keyboard';
+import { Label } from '@/components/Label';
 import { NetworkFilter, useNetworkFilter } from '@/components/NetworkFilter';
 import { getNetworkFilterFromCaip } from '@/components/NetworkFilter/getNetworkFilterFromCaip';
 import { SearchInput } from '@/components/SearchInput';
 import { useDebounceEffect } from '@/hooks/useDebounceEffect';
+import { REPUTATION, getReputation } from '@/hooks/useReputation';
 import { useTokenSearchQuery } from '@/hooks/useTokenSearchQuery';
-import type { WalletType } from '@/onChain/wallets/registry';
-import { networkIdToNetworkName } from '@/onChain/wallets/registry';
+import { isNetworkCoin } from '@/onChain/wallets/registry';
 import { useSwapTargetListQuery } from '@/reactQuery/hooks/useSwapTargetListQuery';
-import { type RealmToken, getNetworkNameFromAssetId, sortTokensAlphabetically, useTokens } from '@/realm/tokens';
+import { useTokenListReputationLookupQuery } from '@/reactQuery/hooks/useTokenListsQuery';
+import { useTokenPrices } from '@/realm/tokenPrice';
+import {
+  type RealmToken,
+  getNetworkNameFromAssetId,
+  sortTokensAlphabetically,
+  sortTokensByFiatValue,
+  useTokensFilteredByReputationAndNetwork,
+} from '@/realm/tokens';
 import { useRealmWallets } from '@/realm/wallets';
+import { SEARCH_SCORE_TO_SORTING_INDEX } from '@/screens/CoinsList/utils/getSearchScore';
 import { runAfterUISync } from '@/utils/runAfterUISync';
 import { safelyAnimateLayout } from '@/utils/safeLayoutAnimation';
 
@@ -29,6 +38,7 @@ import { tokenItemKeyExtractor } from '@/utils/tokenItemKeyExtractor';
 import { SWAP_LIST_CACHE_DURATION, SWAP_NETWORK_UI_FILTER, TARGET_ASSET_SHEET_OFFSET } from '../../SwapScreen.constants';
 
 import { adaptTokenTypeToRemoteAsset } from '../../utils/adaptTokenTypeToRemoteAsset';
+import { getTokenTypeDict } from '../../utils/getTokenTypeDict';
 import { EmptyState } from '../EmptyStateContainer';
 import { TargetAssetListItem } from '../TargetAssetListItem';
 
@@ -36,6 +46,8 @@ import type { SwapTargetAsset } from '../../types';
 import type { ListRenderItem } from '@shopify/flash-list';
 
 import loc from '/loc';
+
+type ListItem = SwapTargetAsset | string;
 
 type Props = {
   currentAsset?: SwapTargetAsset;
@@ -48,10 +60,14 @@ type Props = {
 
 const renderItemSeparator = () => <View style={styles.divider} />;
 
+const getItemType = (item: ListItem) => (typeof item === 'string' ? 'label' : 'asset');
+
+const MAX_SEARCH_SCORE = Object.values(SEARCH_SCORE_TO_SORTING_INDEX)[0];
+
 export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
   ({ goBack, onAssetSelected, currentAsset, sourceAsset, onSearchInputFocused, onClose }, ref) => {
     const walletMap = keyBy(Array.from(useRealmWallets()), 'type');
-    const userTokenMap = keyBy(Array.from(useTokens()), 'assetId');
+    const tokenPrices = useTokenPrices();
     const sourceAssetWallet = sourceAsset.wallet;
     const currentAssetNetwork = currentAsset ? getNetworkNameFromAssetId(currentAsset.assetId) : undefined;
     const currentAssetWallet = currentAssetNetwork ? walletMap[currentAssetNetwork] : undefined;
@@ -66,46 +82,76 @@ export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
     const [inputValue, setInputValue] = useState<string>('');
     const [searchQuery, setSearchQuery] = useState<string>(inputValue);
 
+    const allOwnedTokensWithBalance = useTokensFilteredByReputationAndNetwork([], true).filtered(`balance != '0' AND assetId != $0`, sourceAsset.assetId);
+
+    const hasSearchQuery = !!searchQuery;
+
+    const ownedTokensWithBalance = useMemo(() => {
+      if (hasSearchQuery) {
+        return allOwnedTokensWithBalance;
+      }
+      return allOwnedTokensWithBalance.filtered('assetId == $0 OR inGallery == "autoAdded" OR inGallery == "manuallyAdded"', currentAsset?.assetId);
+    }, [allOwnedTokensWithBalance, currentAsset?.assetId, hasSearchQuery]);
+
+    const { data: tokenReputationLookup } = useTokenListReputationLookupQuery();
+
+    const { data: swapListData, isLoading } = useSwapTargetListQuery(sourceAssetWallet.caipId, !searchQuery, SWAP_LIST_CACHE_DURATION);
+
+    const tokenTypeDict = useMemo(() => {
+      if (isLoading || !swapListData) {
+        return;
+      }
+      return getTokenTypeDict(swapListData, networkFilter);
+    }, [isLoading, networkFilter, swapListData]);
+
+    const providerCompatibleTokens = useMemo(() => {
+      if (isLoading || !tokenTypeDict) {
+        return [];
+      }
+      const remoteTokenIds = Object.keys(tokenTypeDict);
+      return sortTokensByFiatValue(ownedTokensWithBalance.filtered('assetId IN $0', remoteTokenIds), tokenPrices);
+    }, [isLoading, tokenTypeDict, ownedTokensWithBalance, tokenPrices]);
+
     useEffect(() => {
       setNetworkFilter(latestFilter);
     }, [latestFilter, setNetworkFilter]);
 
-    const { data: swapListData, isLoading } = useSwapTargetListQuery(sourceAssetWallet.caipId, !searchQuery, SWAP_LIST_CACHE_DURATION);
+    const transformSearchScore = useCallback((token: SwapTargetAsset, score: number) => {
+      if (!isNetworkCoin(token.assetId) && getReputation(token.metadata.reputation) !== REPUTATION.WHITELISTED) {
+        return score / MAX_SEARCH_SCORE;
+      }
+      return score;
+    }, []);
 
-    const assets = useMemo(() => {
-      if (!swapListData) {
+    const assets: ListItem[] = useMemo(() => {
+      if (isLoading || !tokenTypeDict || !tokenReputationLookup) {
         return [];
       }
-      const filteredData: SwapTargetAsset[] = [];
+      const ownedTokensSet = new Set(ownedTokensWithBalance.map(t => t.assetId).concat(sourceAsset.assetId));
 
-      Object.entries(swapListData.toTokens).forEach(([networkCaip, dict]) => {
-        const walletType: WalletType | undefined = networkIdToNetworkName[networkCaip];
+      const remoteTokens = Object.entries(tokenTypeDict)
+        .filter(([assetId]) => !ownedTokensSet.has(assetId))
+        .map(([assetId, tokenData]) => adaptTokenTypeToRemoteAsset(assetId, tokenData, tokenReputationLookup[assetId]));
 
-        if (!walletType) {
-          return;
-        }
+      const groups = groupBy(sortBy(remoteTokens, sortTokensAlphabetically.lodash), token => getReputation(token.metadata.reputation));
 
-        if (networkFilter.length === 0 || networkFilter.includes(getNetworkFilterFromCaip(networkCaip))) {
-          const networkAssets = Object.entries(dict)
-            .filter(([assetId]) => assetId !== sourceAsset.assetId)
-            .map(([assetId, tokenData]) => {
-              if (userTokenMap[assetId]) {
-                return userTokenMap[assetId];
-              }
-              return adaptTokenTypeToRemoteAsset(assetId, tokenData as TokenType, 'bungee');
-            });
-          filteredData.push(...networkAssets);
-        }
-      });
-      return sortBy(filteredData, sortTokensAlphabetically.lodash);
-    }, [networkFilter, sourceAsset.assetId, swapListData, userTokenMap]);
+      const whitelisted = groups[REPUTATION.WHITELISTED] ?? [];
+      const unverified = groups[REPUTATION.UNVERIFIED] ?? [];
 
-    const data = useTokenSearchQuery(assets, searchQuery);
+      return [loc.swap.yourAssets, ...providerCompatibleTokens, loc.swap.otherAssets, ...whitelisted, ...unverified];
+    }, [isLoading, ownedTokensWithBalance, providerCompatibleTokens, sourceAsset.assetId, tokenReputationLookup, tokenTypeDict]);
 
-    const renderItem: ListRenderItem<SwapTargetAsset> = useCallback(
-      ({ item }) => (
-        <TargetAssetListItem wallets={walletMap} token={item} onSelected={onAssetSelected} selected={currentAsset && item.assetId === currentAsset.assetId} />
-      ),
+    const data = useTokenSearchQuery(assets, searchQuery, transformSearchScore);
+
+    const renderItem: ListRenderItem<ListItem> = useCallback(
+      ({ item }) =>
+        typeof item === 'string' ? (
+          <Label color="light50" style={styles.listHeader}>
+            {item}
+          </Label>
+        ) : (
+          <TargetAssetListItem wallets={walletMap} token={item} onSelected={onAssetSelected} selected={currentAsset && item.assetId === currentAsset.assetId} />
+        ),
       [currentAsset, onAssetSelected, walletMap],
     );
 
@@ -177,6 +223,7 @@ export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
               estimatedListSize={estimatedListSize}
               estimatedItemSize={60}
               renderItem={renderItem}
+              getItemType={getItemType}
               keyExtractor={tokenItemKeyExtractor}
               ItemSeparatorComponent={renderItemSeparator}
               contentContainerStyle={styles.list}
@@ -200,6 +247,10 @@ const styles = StyleSheet.create({
   list: {
     paddingVertical: 8,
     paddingHorizontal: 16,
+  },
+  listHeader: {
+    marginBottom: 8,
+    marginHorizontal: 8,
   },
   keyboardAvoider: {
     flex: 1,

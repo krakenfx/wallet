@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   text: {
-    gap: 24,
+    gap: 12,
     flex: 1,
   },
 });

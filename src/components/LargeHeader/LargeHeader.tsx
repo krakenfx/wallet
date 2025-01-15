@@ -14,6 +14,9 @@ export interface LargeHeaderProps {
   style?: StyleProp<ViewStyle>;
 }
 
+export const DEFAULT_MARGIN_TOP = 52;
+export const SMALL_DEVICE_MARGIN_TOP = 24;
+
 export const LargeHeader: React.FC<PropsWithChildren & LargeHeaderProps> = ({ title, testID, style, children }) => {
   const { size } = useDeviceSize();
   return (
@@ -34,11 +37,11 @@ export const LargeHeader: React.FC<PropsWithChildren & LargeHeaderProps> = ({ ti
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 52,
+    marginTop: DEFAULT_MARGIN_TOP,
     paddingHorizontal: 24,
   },
   smallDeviceContainer: {
-    marginTop: 24,
+    marginTop: SMALL_DEVICE_MARGIN_TOP,
   },
   mainLabel: {
     lineHeight: 64,

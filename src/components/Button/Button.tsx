@@ -19,7 +19,7 @@ import { useTheme } from '@/theme/themes';
 export type ButtonSize = 'small' | 'medium' | 'large' | 'extraLarge';
 
 export const EXTRA_LARGE_BUTTON_SIZE = 64;
-export const LARGE_BUTTON_SIZE = 64;
+export const LARGE_BUTTON_SIZE = 58;
 export const MEDIUM_BUTTON_SIZE = 36;
 export const SMALL_BUTTON_SIZE = 28;
 

@@ -71,24 +71,25 @@ const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 export const Input = React.forwardRef<InputMethods, InputProps>(
   (
     {
+      containerStyle,
+      errorInside,
       footerLeft,
       footerRight,
-      type,
-      style,
-      inputStyle,
-      containerStyle,
-      inputWrapperStyle,
-      left,
-      right,
-      testID,
-      inputTestID,
-      shrinkInput,
       hideDoneAccessoryView,
-      placeholderType,
+      inputStyle,
+      inputTestID,
+      inputWrapperStyle,
+      keyboardType,
+      left,
       placeholder,
       placeholderStyle,
+      placeholderType,
+      right,
+      shrinkInput,
+      style,
+      testID,
       textAlign,
-      errorInside,
+      type,
       ...props
     },
     ref,
@@ -135,6 +136,7 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
         textAlign={textAlign}
         testID={inputTestID}
         inputAccessoryViewID={!hideDoneAccessoryView ? KeyboardDoneInputAccessoryView.InputAccessoryViewID : undefined}
+        keyboardType={keyboardType || 'default'}
         {...props}
         {...inputProps}
       />

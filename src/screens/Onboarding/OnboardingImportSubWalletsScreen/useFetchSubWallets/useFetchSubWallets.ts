@@ -3,12 +3,14 @@ import isEmpty from 'lodash/isEmpty';
 import uniqBy from 'lodash/uniqBy';
 import { useCallback, useRef, useState } from 'react';
 
+import { useRealm } from '@/realm/RealmContext';
 import { useIsTestnetEnabled } from '@/realm/settings';
+import { useWalletByType } from '@/realm/wallets/useWalletByType';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
 import { buildSubWallets } from './buildSubWallets';
 import { ACCOUNT_BATCH_SIZE, MAX_REQUESTS } from './consts';
-import { fetchBtcBalances } from './fetchBtcBalances';
+import { fetchHasBalanceBtcForAccountZero } from './fetchHasBalanceBtcForAccountZero';
 import { fetchHasBalanceForCaip10Accounts } from './fetchHasBalanceForCaip10Accounts';
 import { getCaip10Accounts } from './getCaip10Accounts';
 import { getWalletName } from './getWalletName';
@@ -23,6 +25,8 @@ export const useFetchSubWallets = (): { isLoadingSubWallets: boolean; subWallets
   const [isLoadingSubWallets, setIsLoadingSubWallets] = useState(true);
   const [subWallets, setSubWallets] = useState<SubWallet[]>([]);
   const requestCount = useRef(0);
+  const realm = useRealm();
+  const hdSegwitBech32Wallet0 = useWalletByType('HDsegwitBech32', 0);
 
   const shortCircuit = useCallback(() => {
     if (subWallets.length === 0) {
@@ -42,17 +46,20 @@ export const useFetchSubWallets = (): { isLoadingSubWallets: boolean; subWallets
               return;
             }
 
-            const caip10Accounts = await getCaip10Accounts(getSeed, accountIndexStart, isTestnetEnabled);
+            const caip10Accounts = await getCaip10Accounts({ getSeed, accountIndexStart, isTestnetEnabled });
 
-            const [balances, btcBalances] = await Promise.all([fetchHasBalanceForCaip10Accounts(caip10Accounts), fetchBtcBalances(getSeed, accountIndexStart)]);
-            const isBalancesEmpty = isEmpty(balances) || isEmpty(btcBalances);
+            const [balances, btcBalance] = await Promise.all([
+              fetchHasBalanceForCaip10Accounts(caip10Accounts),
+              accountIndexStart === 0 ? fetchHasBalanceBtcForAccountZero(getSeed, realm, hdSegwitBech32Wallet0) : {},
+            ]);
+            const isBalancesEmpty = isEmpty(balances);
 
             if (isBalancesEmpty) {
               shortCircuit();
               return;
             }
 
-            const subWallets_ = await buildSubWallets(caip10Accounts, balances, btcBalances);
+            const subWallets_ = await buildSubWallets(caip10Accounts, balances, btcBalance);
             const isSubWalletsEmtpy = subWallets_.length === 0;
 
             if (isSubWalletsEmtpy) {
@@ -88,7 +95,7 @@ export const useFetchSubWallets = (): { isLoadingSubWallets: boolean; subWallets
           }
         })();
       },
-      [getSeed, isLoadingSubWallets, isTestnetEnabled, shortCircuit],
+      [getSeed, isLoadingSubWallets, isTestnetEnabled, shortCircuit, realm, hdSegwitBech32Wallet0],
     ),
   );
 

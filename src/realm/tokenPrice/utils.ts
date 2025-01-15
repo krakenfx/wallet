@@ -1,4 +1,4 @@
-import { REPUTATION, getReputation } from '@/hooks/useReputation';
+import { REPUTATION, getReputationFromMetadata } from '@/hooks/useReputation';
 import { ChainAgnostic } from '@/onChain/wallets/utils/ChainAgnostic';
 import { Currency } from '@/screens/Settings/currency';
 import { calculateBalance } from '@/utils/calculateBalance';
@@ -14,7 +14,7 @@ export const checkTokenGalleryChange = (token: RealmToken, price: RealmTokenPric
   if (token.inGallery === 'manuallyAdded' || token.inGallery === 'manuallyRemoved') {
     return undefined;
   }
-  const tokenReputation = getReputation(token.metadata);
+  const tokenReputation = getReputationFromMetadata(token.metadata);
   const isNativeToken = Object.values(ChainAgnostic).includes(token.assetId);
   if (tokenReputation === REPUTATION.WHITELISTED || isNativeToken) {
     if (parseFloat(token.balance) > 0) {

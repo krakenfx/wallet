@@ -1,15 +1,14 @@
-import { useRealm } from '@realm/react';
-
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { fetchPriceForToken } from '@/api/fetchPriceForToken';
 import { useGlobalState } from '@/components/GlobalState';
+import type { Currency } from '@/screens/Settings/currency';
 import { calculateBalance } from '@/utils/calculateBalance';
 
 import { useDefi } from '../defi';
 import { useLocalCacheState } from '../hooks/useLocalCacheState';
 import { useRealmQueue } from '../hooks/useRealmQueue';
-import { useObject, useQuery } from '../RealmContext';
+import { useObject, useQuery, useRealm } from '../RealmContext';
 import { useAppCurrency } from '../settings';
 import { useTokens } from '../tokens';
 import { getAvailableTokenBalance } from '../tokens/getAvailableTokenBalance';
@@ -93,9 +92,8 @@ export const useTokenPriceChangePercentage = ({ assetId, realmQueueName, refresh
   return fiatValue?.changePercentage24HR !== undefined ? parseFloat(fiatValue.changePercentage24HR) : undefined;
 };
 
-export const useTokenPriceGetter = () => {
+export const useTokenPriceGetter = (currency: Currency) => {
   const realm = useRealm();
-  const { currency } = useAppCurrency();
 
   const getTokenPrice = useCallback(
     (assetId: string): number | undefined => {

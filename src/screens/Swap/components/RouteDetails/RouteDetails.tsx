@@ -1,5 +1,6 @@
 import type React from 'react';
 
+import { compact } from 'lodash';
 import { StyleSheet, View } from 'react-native';
 
 import Animated, { FadeInUp, FadeOut } from 'react-native-reanimated';
@@ -8,6 +9,8 @@ import type { SwapQuoteRouteType } from '@/api/types';
 import { Button } from '@/components/Button';
 import { Menu } from '@/components/Menu';
 import type { DropdownOptionItem } from '@/components/Menu/DropdownMenu';
+
+import { SvgIcon } from '@/components/SvgIcon';
 
 import { useSwapFeeLabels } from '../../hooks/useSwapFeeLabels';
 import { KrakenFeeIcon } from '../KrakenFeeIcon';
@@ -28,9 +31,10 @@ type Props = {
   onRouteTypeChange: (type: DropdownOptionItem<SwapQuoteRouteType>) => void;
   selectedRouteType: SwapQuoteRouteType;
   showExplainer: () => void;
+  editSlippageOptions?: () => void;
 };
 
-export const RouteDetails: React.FC<Props> = ({ route, showExplainer, selectedRouteType, onRouteTypeChange }) => {
+export const RouteDetails: React.FC<Props> = ({ route, showExplainer, editSlippageOptions, selectedRouteType, onRouteTypeChange }) => {
   const menuOptions: DropdownOptionItem<SwapQuoteRouteType>[] = [
     {
       id: 'value',
@@ -70,8 +74,8 @@ export const RouteDetails: React.FC<Props> = ({ route, showExplainer, selectedRo
         <RouteDetailsContent
           collapsible
           roundedTop
-          rows={[
-            {
+          rows={compact([
+            !!route.rate && {
               labelLeft: loc.swap.route.rate,
               labelRight: route.rate,
             },
@@ -81,12 +85,15 @@ export const RouteDetails: React.FC<Props> = ({ route, showExplainer, selectedRo
               tooltipText: loc.swap.route.minumumOutput.hint,
               labelRight: route.minOutputFormatted,
             },
-            {
+            !!route.slippage && {
               labelLeft: loc.swap.route.slippage.title,
               tooltipText: loc.swap.route.slippage.hint,
               labelRight: route.slippage,
+              iconRight: editSlippageOptions ? <SvgIcon size={14} name="pencil" color="light75" /> : undefined,
+              alignIcon: 'right',
+              onLabelRightPress: editSlippageOptions,
             },
-          ]}
+          ])}
         />
         <RouteDetailsContent
           collapsible

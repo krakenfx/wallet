@@ -22,23 +22,23 @@ const REPUTATION_LISTS = {
   whitelists: ['Token Name Service', '1inch', 'Uniswap Labs Default', 'CoinGecko', 'Zerion', 'Defiprime', 'Kraken'],
 };
 const WHITELIST_SET = ['Kraken', '1inch', 'CoinGecko', 'Defiprime', 'Token Name Service', 'Uniswap Labs Default', 'Zerion'];
-const TOKEN_LIST_COUNT: Record<string, string> = {
-  '1inch': '987',
-  'Aave Token List': '81',
-  Blacklisted: '1003',
-  'BlasterDEX Token List - Blast L2': '18',
-  'CMC DeFi': '144',
-  CoinGecko: '5264',
-  Compound: '95',
-  Defiprime: '121',
-  'Jupiter Solana Token List': '1499',
-  Kraken: '193',
-  'Popular Tokens': '86',
-  'Superchain Token List': '688',
-  Synthetix: '16',
-  'Token Name Service': '213',
-  'Uniswap Labs Default': '696',
-  Zerion: '1375',
+const TOKEN_LIST_COUNT: Record<string, number> = {
+  '1inch': 987,
+  'Aave Token List': 81,
+  Blacklisted: 1003,
+  'BlasterDEX Token List - Blast L2': 18,
+  'CMC DeFi': 144,
+  CoinGecko: 5264,
+  Compound: 95,
+  Defiprime: 121,
+  'Jupiter Solana Token List': 1499,
+  Kraken: 193,
+  'Popular Tokens': 86,
+  'Superchain Token List': 688,
+  Synthetix: 16,
+  'Token Name Service': 213,
+  'Uniswap Labs Default': 696,
+  Zerion: 1375,
 };
 
 const styles = StyleSheet.create({

@@ -462,6 +462,8 @@
     "continueAccessibilityHint": "Aceitar a isenção de responsabilidade e continuar",
     "disclaimerBody": "Observe que esse recurso contém conteúdo fornecido por terceiros. Consulte os termos relevantes dos Termos de Serviço.",
     "disclaimerTitle": "Boas-vindas ao Explore!",
+    "earnBody": "Participe de Finanças Descentralizadas",
+    "earnTitle": "Ganhe rendimentos com DeFi",
     "errorBody": "O aplicativo não conseguiu carregar o conteúdo dessa página. Tente novamente mais tarde",
     "errorTitle": "Algo saiu errado",
     "rewardPrefix": "Ganhe"
@@ -480,7 +482,7 @@
       "timeAbbr": {
         "days": "dia",
         "hours": "h",
-        "minutes": "min.",
+        "minutes": "mín.",
         "months": "mês",
         "seconds": "seg.",
         "weeks": "wk",
@@ -640,9 +642,49 @@
     "assets": "Ativos",
     "collection": "NFTs",
     "collection_see_all": "Visualizar todos",
+    "defiEmpty": "Comece a ganhar com DeFi",
+    "defiEmptyCaption": "Suas posições aparecerão aqui quando estiverem disponíveis. Participe de DeFi e comece a ganhar rendimentos.",
     "deposits": "DeFi",
     "manage": "Gerenciar",
     "total_balance": "Saldo"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "na Kraken",
+    "exchangeBalance": "Saldo na exchange",
+    "fundCta": {
+      "body": "Conecte sua conta Kraken para <b>transferir cripto para sua carteira</b>",
+      "heading": "Deposite em sua carteira"
+    },
+    "stepsToConnect": {
+      "hasAccount": "Eu já criei uma conta",
+      "heading": "Siga estas etapas para se conectar à Kraken:",
+      "step1": {
+        "description": "Configure sua conta Kraken",
+        "label": "Etapa 1"
+      },
+      "step2": {
+        "description": "Volte para a carteira",
+        "label": "Etapa 2"
+      },
+      "step3": {
+        "description": "Conecte sua conta Kraken",
+        "label": "Etapa 3"
+      }
+    },
+    "transfer": {
+      "title": "Transferência"
+    },
+    "transferCta": {
+      "body": "Conecte sua conta Kraken para transferir cripto rapidamente",
+      "heading": "Transfira da Kraken"
+    },
+    "unconnected": {
+      "alert": "Apenas a carteira atual: \"<b>{walletName}</b>\" será conectada à Kraken.",
+      "body": "Conecte sua conta Kraken exchange para transferir fundos para sua carteira sem problemas",
+      "cta": "Conectar Kraken exchange",
+      "noAccount": "Eu não tenho uma conta",
+      "title": "Receba cripto em sua carteira com a Kraken"
+    }
   },
   "manageWallets": {
     "title": "Gerenciar carteiras"
@@ -1093,7 +1135,7 @@
     "protectYourData": "Proteja seus dados com criptografia extra",
     "rationaleCreateWallet": "Sua senha é necessária para criar uma nova carteira",
     "rationaleGetXPub": "A senha é necessária para que seja possível exibir sua chave pública estendida",
-    "rationaleSeeRecoveryPhrase": "para ver sua frase secreta de recuperação",
+    "rationaleSeeRecoveryPhrase": "para visualizar sua frase secreta de recuperação",
     "rationaleSignTransaction": "Sua senha é necessária para assinar transações",
     "requiredToAccess": "Necessário para acessar sua carteira",
     "requireOnOpen": "Pedir sempre que você abrir o aplicativo?",
@@ -1338,6 +1380,7 @@
       "insufficientGas": "Saldo {symbol} insuficiente para cobrir transações de swap"
     },
     "findingBestRote": "Encontrando a melhor rota",
+    "otherAssets": "Tokens",
     "route": {
       "bridgeCost": {
         "hint": "Um custo de bridge é uma taxa cobrada pelo provedor de swap para a transferência de ativos entre blockchains diferentes durante o swap.",
@@ -1389,11 +1432,22 @@
       "title": "Rota de swap"
     },
     "selectAsset": "Selecionar ativo",
+    "slippageSettings": {
+      "custom": "Personalizado",
+      "desc": "Se o preço mudar desfavoravelmente para além da porcentagem de slippage, sua transação de swap será cancelada.",
+      "footer": "Uma slippage mais alta pode ajudar na taxa de sucesso das transações, mas pode expor você a ataques de frontrunning/sanduíche.",
+      "save": "Salvar",
+      "title": "Configurações de slippage",
+      "warningHigh": "Slippage acima de {amount}% é considerada alta",
+      "warningSmall": "Slippage abaixo de {amount}% pode fazer com que o swap falhe",
+      "warningUnsupported": "Slippage maior que {amount}% não é suportada"
+    },
     "sourceListHeader": "Seus ativos",
     "sourceSearchPlaceholder": "Selecione o ativo para swap",
     "targetSearchPlaceholder": "Selecione o ativo para receber",
     "title": "Swap",
-    "unsupportedAssetsHidden": "Nossos provedores de swap ainda não suportam {count} de seus outros ativos"
+    "unsupportedAssetsHidden": "Nossos provedores de swap ainda não suportam {count} de seus outros ativos",
+    "yourAssets": "Seus ativos"
   },
   "test": {
     "key": "Teste"
@@ -1728,7 +1782,7 @@
     },
     "errorCreatingPasskey": {
       "description": "Nas opções de senha do seu dispositivo, certifique-se de manter o iCloud Keychain ativado para ser usado para senhas e chaves de acesso:",
-      "title": "Erro ao criar chave de acesso"
+      "title": "Erro ao criar backup"
     },
     "errorDeletingPasskey": {
       "cancel": "Cancelar",

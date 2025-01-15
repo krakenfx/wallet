@@ -19857,8 +19857,8 @@ __metadata:
 
 "kraken-wallet-cryptoicons@file:assets/kraken-wallet-cryptoicons::locator=superwallet%40workspace%3A.":
   version: 1.0.0
-  resolution: "kraken-wallet-cryptoicons@file:assets/kraken-wallet-cryptoicons#assets/kraken-wallet-cryptoicons::hash=d39a0c&locator=superwallet%40workspace%3A."
-  checksum: 18ec104963923a75ee3252948deb2282146553fb2d876bd1cc32bdef9a81d95ba784439400f0258270bc92e275151e92086693e861d743708352605d9c83cebe
+  resolution: "kraken-wallet-cryptoicons@file:assets/kraken-wallet-cryptoicons#assets/kraken-wallet-cryptoicons::hash=d64237&locator=superwallet%40workspace%3A."
+  checksum: ac4e91259aa8cc6d25038778c0f6043ce5648461d7dab806b6a932b2d3ddc44ab7fa002bd2f635c640861faa4f8894e676e5c1c9dcf92810674dd44df8ff2ad7
   languageName: node
   linkType: hard
 

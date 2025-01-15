@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 
 import { useAppCurrency } from '@/realm/settings';
 
+import { useTokenPriceGetter } from '@/realm/tokenPrice';
+import { Currency } from '@/screens/Settings/currency';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { isBtc } from '@/utils/isBtc';
@@ -27,6 +29,8 @@ export const useSwapRouteData = (): SwapRouteUIData | undefined => {
 
   const { currency } = useAppCurrency();
 
+  const { getTokenPrice } = useTokenPriceGetter(Currency.USD);
+
   return useMemo(() => {
     if (!swapQuoteResult || !sourceAsset || !targetAsset || !sourceAssetAmount) {
       return undefined;
@@ -36,17 +40,21 @@ export const useSwapRouteData = (): SwapRouteUIData | undefined => {
     const output = quote.to.amount ?? '0';
     const minOutput = quote.minAmountOut ?? '0';
 
-    const sourceAssetAmountInTokenUnits = unitConverter.smallUnit2TokenUnit(sourceAssetAmount, sourceAsset.metadata.decimals);
-    const targetAssetAmountInTokenUnits = unitConverter.smallUnit2TokenUnit(output, targetAsset.metadata.decimals);
-    const ratio = targetAssetAmountInTokenUnits.dividedBy(sourceAssetAmountInTokenUnits).toString(10);
+    const sourceAssetPrice = getTokenPrice(sourceAsset.assetId);
+    const targetAssetPrice = getTokenPrice(targetAsset.assetId);
 
-    const ratioToFormatted = formatTokenAmount(ratio, {
-      compact: true,
-      currency,
-      highPrecision: true,
-      isBtc: isBtc({ assetId: targetAsset.assetId }),
-    });
-    const rate = `1 ${sourceAsset.metadata.symbol} ≈ ${ratioToFormatted} ${targetAsset.metadata.symbol}`;
+    let rate: string | undefined;
+
+    if (sourceAssetPrice && targetAssetPrice) {
+      const ratio = sourceAssetPrice / targetAssetPrice;
+      const ratioToFormatted = formatTokenAmount(String(ratio), {
+        compact: true,
+        currency,
+        highPrecision: true,
+        isBtc: isBtc({ assetId: targetAsset.assetId }),
+      });
+      rate = `1 ${sourceAsset.metadata.symbol} ≈ ${ratioToFormatted} ${targetAsset.metadata.symbol}`;
+    }
 
     const minOutputFormatted = formatTokenAmount(unitConverter.smallUnit2TokenUnit(minOutput, targetAsset.metadata.decimals).toString(10), {
       compact: true,
@@ -74,11 +82,11 @@ export const useSwapRouteData = (): SwapRouteUIData | undefined => {
       output,
       minOutput,
       minOutputFormatted,
-      slippage: quote.swapSlippage ? `${quote.swapSlippage}%` : '-',
+      slippage: quote.swapSlippage ? `${quote.swapSlippage.toFixed(2)}%` : undefined,
       transactionFeesTotalFiat: feesTotal ? formatCurrency(feesTotal, { currency }) : '-',
       fees,
       steps: quote.route.txSteps,
       duration: durationFormatted,
     };
-  }, [currency, feeFiatValues, sourceAsset, sourceAssetAmount, swapQuoteResult, targetAsset]);
+  }, [currency, feeFiatValues, getTokenPrice, sourceAsset, sourceAssetAmount, swapQuoteResult, targetAsset]);
 };

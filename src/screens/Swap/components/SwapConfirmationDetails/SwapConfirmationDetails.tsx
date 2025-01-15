@@ -1,6 +1,7 @@
 import type React from 'react';
 import type { AnimatedStyle } from 'react-native-reanimated';
 
+import { compact } from 'lodash';
 import { type StyleProp, StyleSheet, type TextStyle, type ViewStyle } from 'react-native';
 
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
@@ -33,12 +34,16 @@ export const SwapConfirmationDetails: React.FC<Props> = ({ route, refreshFlashSt
       <Animated.View style={refreshFlashStyle}>
         <DividerLine style={styles.topDivider} />
         <RouteDetailsContent
-          rows={[
-            { labelLeft: loc.swap.route.rate, labelRight: route.rate },
+          rows={compact([
+            !!route.rate && { labelLeft: loc.swap.route.rate, labelRight: route.rate },
 
             { labelLeft: loc.swap.route.minumumOutput.title, tooltipText: loc.swap.route.minumumOutput.hint, labelRight: route.minOutputFormatted },
-            { labelLeft: loc.swap.route.slippage.title, tooltipText: loc.swap.route.slippage.hint, labelRight: route.slippage },
-          ]}
+            !!route.slippage && {
+              labelLeft: loc.swap.route.slippage.title,
+              tooltipText: loc.swap.route.slippage.hint,
+              labelRight: route.slippage,
+            },
+          ])}
         />
         <DividerLine style={styles.bottomDivider} />
         <RouteDetailsContent

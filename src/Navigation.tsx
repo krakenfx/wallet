@@ -35,7 +35,6 @@ import { OnboardingRouter } from '@/screens/Onboarding';
 import { ReceiveScreen, UniversalReceiveScreen } from '@/screens/Receive';
 import { SendQRScanScreen, SendRouter } from '@/screens/Send';
 import { AppDetailsScreen, ConnectedAppsScreen, DiagnosticsScreen, LanguageScreen, NotificationsScreen, SettingsRouter } from '@/screens/Settings';
-import { TokenListsScreen } from '@/screens/TokenLists';
 import { TransactionDetailsScreen, TransactionsScreen } from '@/screens/Transactions';
 import { TriggeredPushPromptScreen } from '@/screens/TriggerredPushPromptScreen';
 import { UniversalSendScreen } from '@/screens/UniversalSend';
@@ -130,7 +129,6 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="SendStack" component={SendRouter} options={SendRouter.navigationOptions} />
       <DefaultStack.Screen name="UniversalSend" component={UniversalSendScreen} options={UniversalSendScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Settings" component={SettingsRouter} options={SettingsRouter.navigationOptions} />
-      <DefaultStack.Screen name="TokenLists" component={TokenListsScreen} options={TokenListsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="MarketDataInfo" component={MarketDataInfoScreen} options={MarketDataInfoScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="TransactionDetails" component={TransactionDetailsScreen} options={TransactionDetailsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Transactions" component={TransactionsScreen} options={TransactionsScreen.navigationOptions(theme)} />

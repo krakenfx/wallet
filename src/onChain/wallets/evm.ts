@@ -290,7 +290,7 @@ export class EVMHarmonyTransport extends HarmonyTransport<EthersTransactionReque
     return {
       data: txPayload,
       isError: content.status === 'failure',
-      failureReason: content.failureReason,
+      errorReason: content.errorReason,
       effects: content.effects,
       preventativeAction: content.preventativeAction,
       warnings: content.warnings,

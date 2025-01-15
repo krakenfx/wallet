@@ -24,7 +24,6 @@ import type { SendStackParams } from '@/screens/Send/SendRouter';
 import type { AppDetailsParams } from '@/screens/Settings/AppDetailsScreen';
 import type { ConnectedAppsParams } from '@/screens/Settings/ConnectedApps';
 import type { SettingsStackParams } from '@/screens/Settings/SettingsRouter';
-import type { TokenListsParams } from '@/screens/TokenLists';
 import type { TransactionDetailsParams, TransactionsRouteProps } from '@/screens/Transactions';
 import type { TriggeredPushPromptParams } from '@/screens/TriggerredPushPromptScreen';
 import type { UniversalSendRouteParams } from '@/screens/UniversalSend';
@@ -99,7 +98,6 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     SettingsBackupVerify: undefined;
     SettingsWalletBackup: undefined;
     SettingsDisplaySeed: undefined;
-    TokenLists: TokenListsParams;
     TransactionDetails: TransactionDetailsParams;
     Transactions: TransactionsRouteProps;
     ViewNft: ViewNftRouteParams;
@@ -175,7 +173,6 @@ export enum Routes {
   Support = 'Support',
   SettingsRoot = 'SettingsRoot',
   Swap = 'Swap',
-  TokenLists = 'TokenLists',
   TransactionDetails = 'TransactionDetails',
   Transactions = 'Transactions',
   ViewNft = 'ViewNft',

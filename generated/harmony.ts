@@ -149,9 +149,14 @@ export interface components {
     'Result_AnalyseAddressResult-Array_': {
       content: components['schemas']['AnalyseAddressResult'][];
     };
+    
+    ErrorParams: {
+      message?: string;
+      [key: string]: string | undefined;
+    };
     ErrorResult: {
       message: string;
-      params?: string;
+      params?: components['schemas']['ErrorParams'];
     };
     AnalyseUrlResult: {
       url: string;
@@ -557,6 +562,8 @@ export interface components {
       content: components['schemas']['RpcRequestResult'];
     };
     
+    RPCErrorReason: 'INSUFFICIENT_FUNDS';
+    
     ReceiveAsset: {
       amount: string;
       assetId: string;
@@ -643,11 +650,11 @@ export interface components {
       effects?: components['schemas']['TransactionEffect'][];
       preventativeAction?: components['schemas']['PreventativeAction'];
       warnings?: components['schemas']['SimulationWarning'][];
-      failureReason?: string;
       
       gasUsed: number;
       
       nonce: number;
+      errorReason?: components['schemas']['RPCErrorReason'];
     };
     SolanaSimulationResult: {
       
@@ -655,7 +662,6 @@ export interface components {
       effects?: components['schemas']['TransactionEffect'][];
       preventativeAction?: components['schemas']['PreventativeAction'];
       warnings?: components['schemas']['SimulationWarning'][];
-      failureReason?: string;
       fee: string;
       compiledTransaction: string;
     };
@@ -665,7 +671,6 @@ export interface components {
       effects?: components['schemas']['TransactionEffect'][];
       preventativeAction?: components['schemas']['PreventativeAction'];
       warnings?: components['schemas']['SimulationWarning'][];
-      failureReason?: string;
     };
     SimulationResult:
       | components['schemas']['EVMSimulationResult']
@@ -834,6 +839,7 @@ export interface components {
       };
       fromAddress: string;
       routeType: components['schemas']['SwapQuoteRouteType'];
+      maxSlippage?: number;
     };
     SwapToTokenListResult: {
       fromNetwork: string;

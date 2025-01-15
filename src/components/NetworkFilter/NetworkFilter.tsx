@@ -133,7 +133,7 @@ export const NetworkFilter = ({ networkFilter, setNetworkFilter, withBtcAndDoge,
   const [localFilter, updateFilter] = useLocalStateUpdate(networkFilter, setNetworkFilter);
 
   const onPress = (d: UIFilterData) => {
-    const filter = getNetworkFilters(d.networkFilter, localFilter);
+    const filter = getNetworkFilters(d.networkFilter);
     updateFilter(filter);
   };
 

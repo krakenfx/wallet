@@ -5,6 +5,7 @@ export type FormatTokenAmountOptions = {
   compact?: boolean;
 
   currency: Currency;
+  grouping?: Intl.NumberFormatOptions['useGrouping'];
 } & (
   | {
       highPrecision: true;
@@ -16,7 +17,10 @@ export type FormatTokenAmountOptions = {
     }
 );
 
-export const formatTokenAmount = (tokenAmount: string, { compact = false, currency, highPrecision = false, isBtc = false }: FormatTokenAmountOptions) => {
+export const formatTokenAmount = (
+  tokenAmount: string,
+  { compact = false, currency, grouping, highPrecision = false, isBtc = false }: FormatTokenAmountOptions,
+) => {
   const tokenAmountNumber = Number(tokenAmount);
 
   if (tokenAmountNumber === 0 || Number.isNaN(tokenAmountNumber)) {
@@ -88,6 +92,7 @@ export const formatTokenAmount = (tokenAmount: string, { compact = false, curren
   const formatted = Intl.NumberFormat('en-US', {
     style: 'decimal',
     currency,
+    useGrouping: grouping,
     minimumFractionDigits,
     maximumFractionDigits,
   }).format(numberToFormat);

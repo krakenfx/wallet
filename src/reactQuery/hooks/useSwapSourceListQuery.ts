@@ -13,7 +13,7 @@ export const useSwapSourceListQuery = (caipIds: string[], staleTime?: number) =>
     staleTime,
     gcTime: Infinity,
     select: data => {
-      if (data?.fromTokens) {
+      if (data.fromTokens) {
         const supportedAssets: string[] = [];
         Object.entries(data.fromTokens).forEach(([_, dict]) => {
           Object.keys(dict).map(assetId => {

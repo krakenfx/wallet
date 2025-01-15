@@ -40,7 +40,7 @@ export const ExploreDisclaimerSheet = forwardRef<BottomSheetRef, ExploreDisclaim
               {loc.explore.disclaimerBody}
             </Label>
           </View>
-          <FloatingBottomButtons noAbsolutePosition primary={{ text: loc._.continue, onPress: onContinue }} />
+          <FloatingBottomButtons noAbsolutePosition primary={{ text: loc._.continue, onPress: onContinue, testID: 'ExploreDisclaimerConfirmBtn' }} />
         </View>
       </BottomSheetView>
     </BottomSheet>

@@ -1,6 +1,12 @@
+import { isNetworkCoin } from '@/onChain/wallets/registry';
+
 import type { Item } from '../types';
 
 const SEARCH_SCORE_CONFIG = {
+  address: {
+    match: 200,
+    noMatch: 0,
+  },
   symbol: {
     exact: 100,
     startsWith: 20,
@@ -13,8 +19,13 @@ const SEARCH_SCORE_CONFIG = {
     wordStartsWith: 2,
     noMatch: 0,
   },
+  nativeCoin: {
+    match: 10,
+    noMatch: 0,
+  },
   tokenList: {
     kraken: 10,
+    match: 5,
     noMatch: 0,
   },
 };
@@ -70,9 +81,12 @@ export const buildSearchScoreToSortingIndex = () => {
 
 export const SEARCH_SCORE_TO_SORTING_INDEX: Record<string, number> = buildSearchScoreToSortingIndex();
 
-export const getSearchScore = (searchQuery: string, { metadata: { label, symbol, reputation } }: Item) => {
+export const getSearchScore = (searchQuery: string, { metadata: { label, symbol, tokenAddress, reputation }, assetId }: Item) => {
   const symbol_ = symbol.toLowerCase();
   const label_ = label.toLowerCase();
+  const address_ = tokenAddress?.toLowerCase();
+
+  const addressScore = address_ && address_ === searchQuery ? SEARCH_SCORE_CONFIG.address.match : SEARCH_SCORE_CONFIG.address.noMatch;
 
   const symbolScore = symbol_.startsWith(searchQuery)
     ? symbol_ === searchQuery
@@ -80,7 +94,7 @@ export const getSearchScore = (searchQuery: string, { metadata: { label, symbol,
       : SEARCH_SCORE_CONFIG.symbol.startsWith
     : symbol_.endsWith(searchQuery)
       ? SEARCH_SCORE_CONFIG.symbol.endsWith
-      : 0;
+      : SEARCH_SCORE_CONFIG.symbol.noMatch;
 
   const labelScore = label_.startsWith(searchQuery)
     ? label_ === searchQuery
@@ -88,10 +102,21 @@ export const getSearchScore = (searchQuery: string, { metadata: { label, symbol,
       : SEARCH_SCORE_CONFIG.label.startsWith
     : label_.includes(` ${searchQuery}`)
       ? SEARCH_SCORE_CONFIG.label.wordStartsWith
-      : 0;
+      : SEARCH_SCORE_CONFIG.label.noMatch;
 
-  const tokenListScore =
-    symbolScore + labelScore > 0 && reputation?.whitelists && reputation?.whitelists.includes('Kraken') ? SEARCH_SCORE_CONFIG.tokenList.kraken : 0;
+  let tokenListScore = SEARCH_SCORE_CONFIG.tokenList.noMatch;
 
-  return symbolScore + labelScore + tokenListScore;
+  if (symbolScore + labelScore + addressScore > 0) {
+    tokenListScore =
+      reputation?.whitelists && reputation?.whitelists.includes('Kraken')
+        ? SEARCH_SCORE_CONFIG.tokenList.kraken
+        : reputation?.whitelists.length
+          ? SEARCH_SCORE_CONFIG.tokenList.match
+          : SEARCH_SCORE_CONFIG.tokenList.noMatch;
+  }
+
+  const nativeCoinScore =
+    symbolScore + labelScore + addressScore > 0 && isNetworkCoin(assetId) ? SEARCH_SCORE_CONFIG.nativeCoin.match : SEARCH_SCORE_CONFIG.nativeCoin.noMatch;
+
+  return addressScore + symbolScore + labelScore + nativeCoinScore + tokenListScore;
 };
