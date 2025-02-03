@@ -6,16 +6,13 @@ import { Routes } from '@/Routes';
 import { useWhatsNewTask } from './useWhatsNewTask';
 
 export const useWhatsNewQueue = () => {
-  const blastTask = useWhatsNewTask(RealmSettingsKey.isBlastModalCompleted, Routes.WhatsNewBlast);
-  const assetMarketDataTask = useWhatsNewTask(RealmSettingsKey.whatsNewIsAssetMarketDataCompleted, Routes.WhatsNewAssetMarketData);
-  const longPressTask = useWhatsNewTask(RealmSettingsKey.whatsNewIsLongPressCompleted, Routes.WhatsNewLongPress);
   const isInitialised = useRef(false);
+
   const avaxLineaTask = useWhatsNewTask(RealmSettingsKey.isAvaxLineaTaskModalCompleted, Routes.WhatsNewAvaxLinea);
   const browserExploreTask = useWhatsNewTask(RealmSettingsKey.isBrowserExploreTaskModalCompleted, Routes.WhatsNewBrowserExplore);
-  const queue = useMemo(
-    () => [browserExploreTask, avaxLineaTask, blastTask, assetMarketDataTask, longPressTask],
-    [browserExploreTask, avaxLineaTask, assetMarketDataTask, blastTask, longPressTask],
-  );
+  const swapsTask = useWhatsNewTask(RealmSettingsKey.isSwapsTaskModalCompleted, Routes.WhatsNewSwaps);
+
+  const queue = useMemo(() => [browserExploreTask, avaxLineaTask, swapsTask], [browserExploreTask, avaxLineaTask, swapsTask]);
 
   useEffect(() => {
     if (isInitialised.current) {

@@ -9,8 +9,6 @@ import { Label } from '@/components/Label';
 
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
-
 import loc from '/loc';
 
 interface Props {
@@ -34,13 +32,11 @@ export const ActionButtons = ({ onReceivePress, onSendPress, canSwap, onSwapPres
     );
   };
 
-  const [isSwapEnabled] = useFeatureFlag('swapsEnabled');
-
   return (
     <Animated.View style={[styles.container, style, size === 'small' && styles.smallDeviceContainer]} entering={FadeIn}>
       {renderButton(loc.universalSend.buttonTitle, { icon: 'send', onPress: onSendPress, testID: 'UniversalSendBtn' })}
       {renderButton(loc.universalReceive.buttonTitle, { icon: 'receive', onPress: onReceivePress, testID: 'UniversalReceiveBtn' })}
-      {canSwap && isSwapEnabled && renderButton(loc.swap.buttonTitle, { icon: 'swap', onPress: onSwapPress, testID: 'UniversalSwapBtn' })}
+      {canSwap && renderButton(loc.swap.buttonTitle, { icon: 'swap', onPress: onSwapPress, testID: 'UniversalSwapBtn' })}
     </Animated.View>
   );
 };

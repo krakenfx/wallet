@@ -12,6 +12,7 @@ export class ChainAgnostic {
   static NETWORK_DOGECOIN = 'bip122:1a91e3dace36e2be3bf030a65679fe82';
   static NETWORK_TEZOS = 'tezos:NetXdQprcVkpaWU';
   static NETWORK_AVALANCHE = 'eip155:43114';
+  static NETWORK_INK = 'eip155:57073';
   static NETWORK_INK_SEPOLIA = 'eip155:763373';
 
   static COIN_ARBITRUM = 'eip155:42161/slip44:60';
@@ -27,6 +28,7 @@ export class ChainAgnostic {
   static COIN_DOGECOIN = 'bip122:1a91e3dace36e2be3bf030a65679fe82/slip44:3';
   static COIN_TEZOS = 'tezos:NetXdQprcVkpaWU/slip44:1729';
   static COIN_AVALANCHE = 'eip155:43114/slip44:9005';
+  static COIN_INK = 'eip155:57073/slip44:60';
   static COIN_INK_SEPOLIA = 'eip155:763373/slip44:1';
 }
 

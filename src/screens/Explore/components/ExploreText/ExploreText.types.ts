@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 import type { AnimatedStyle } from 'react-native-reanimated';
@@ -14,8 +15,10 @@ export type ExploreTextProps = {
   titleStyle?: StyleProp<AnimatedStyle<StyleProp<TextStyle>>>;
   titleColor?: TextColor;
   titleLines?: number;
+  titleIcon?: ReactElement;
   bodyType?: TypographyKey;
   bodyStyle?: StyleProp<AnimatedStyle<StyleProp<TextStyle>>>;
   bodyColor?: TextColor;
   bodyLines?: number;
+  onPress?: () => void;
 };

@@ -24,13 +24,14 @@ export enum RealmSettingsKey {
   storeReviewTaskCompleted = 'storeReviewTaskCompleted',
   storeReviewSubmitted = 'storeReviewSubmitted',
   hideBalances = 'hideBalances',
+  isConnectedWithExchange = 'isConnectedWithExchange',
 
-  isBlastModalCompleted = 'isBlastModalCompleted',
-  whatsNewIsAssetMarketDataCompleted = 'whatsNewIsAssetMarketDataCompleted',
-  whatsNewIsLongPressCompleted = 'whatsNewIsLongPressCompleted',
   isAvaxLineaTaskModalCompleted = 'isAvaxLineaTaskModalCompleted',
   isBrowserExploreTaskModalCompleted = 'isBrowserExploreTaskModalCompleted',
-  isConnectedWithExchange = 'isConnectedWithExchange',
+  isSwapsTaskModalCompleted = 'isSwapsTaskModalCompleted',
+
+  krakenConnectApiKey = 'krakenConnectApiKey',
+  krakenConnectApiSecretKey = 'krakenConnectApiSecretKey',
 }
 
 export type SettingsType = {
@@ -53,12 +54,13 @@ export type SettingsType = {
   [RealmSettingsKey.storeReviewTaskCompleted]: boolean;
   [RealmSettingsKey.storeReviewSubmitted]: boolean;
   [RealmSettingsKey.hideBalances]: boolean;
-  [RealmSettingsKey.isBlastModalCompleted]: boolean;
-  [RealmSettingsKey.whatsNewIsAssetMarketDataCompleted]: boolean;
-  [RealmSettingsKey.whatsNewIsLongPressCompleted]: boolean;
   [RealmSettingsKey.isAvaxLineaTaskModalCompleted]: boolean;
   [RealmSettingsKey.isBrowserExploreTaskModalCompleted]: boolean;
+  [RealmSettingsKey.isSwapsTaskModalCompleted]: boolean;
   [RealmSettingsKey.isConnectedWithExchange]: boolean;
+
+  [RealmSettingsKey.krakenConnectApiKey]: string;
+  [RealmSettingsKey.krakenConnectApiSecretKey]: string;
 };
 
 export type Settings = {

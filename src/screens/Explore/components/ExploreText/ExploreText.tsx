@@ -1,8 +1,9 @@
 import type React from 'react';
 
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
+import { Touchable } from '@/components/Touchable';
 
 import type { ExploreTextProps } from './ExploreText.types';
 
@@ -14,25 +15,49 @@ export const ExploreText: React.FC<ExploreTextProps> = ({
   titleColor,
   titleStyle,
   titleLines,
+  titleIcon,
   bodyType,
   bodyColor,
   bodyStyle,
   bodyLines,
+  onPress,
 }: ExploreTextProps) => {
-  return (
-    (title || body) && (
-      <View style={style}>
-        {title && (
+  if (!title && !body) {
+    return null;
+  }
+
+  const content = (
+    <>
+      {title && (
+        <View style={styles.title}>
           <Label type={titleType || 'boldTitle1'} color={titleColor || 'light100'} style={titleStyle} numberOfLines={titleLines}>
             {title}
           </Label>
-        )}
-        {body && (
-          <Label type={bodyType || 'regularBody'} color={bodyColor || 'light75'} style={bodyStyle} numberOfLines={bodyLines}>
-            {body}
-          </Label>
-        )}
-      </View>
-    )
+          {titleIcon}
+        </View>
+      )}
+      {body && (
+        <Label type={bodyType || 'regularBody'} color={bodyColor || 'light75'} style={bodyStyle} numberOfLines={bodyLines}>
+          {body}
+        </Label>
+      )}
+    </>
   );
+
+  if (onPress) {
+    return (
+      <Touchable onPress={onPress} style={style}>
+        {content}
+      </Touchable>
+    );
+  }
+
+  return <View style={style}>{content}</View>;
 };
+
+const styles = StyleSheet.create({
+  title: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});

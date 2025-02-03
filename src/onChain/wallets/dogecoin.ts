@@ -182,9 +182,18 @@ export function deriveRoot(wallet: WalletData) {
   throw new Error('[dogecoin] missing chainCode in wallet data');
 }
 
-function serializePayToPubkeyHashScript(address: string): Buffer {
-  const decodedAddress = bs58check.decode(address).slice(1);
-  return Buffer.from('76a914' + decodedAddress.toString('hex') + '88ac', 'hex');
+export function serializePayToPubkeyHashScript(address: string): Buffer {
+  const decoded = bs58check.decode(address);
+  const versionByte = decoded[0];
+  const pubkeyHash = decoded.slice(1);
+
+  if (versionByte === 0x1e) {
+    return Buffer.from('76a914' + pubkeyHash.toString('hex') + '88ac', 'hex');
+  }
+  if (versionByte === 0x16) {
+    return Buffer.from('a914' + pubkeyHash.toString('hex') + '87', 'hex');
+  }
+  throw new Error(`Unsupported address type: ${versionByte.toString(16)}`);
 }
 
 function pubkeyToAddress(pubkey: Buffer, networkByte: any) {

@@ -134,6 +134,7 @@
     "sign": "Signer",
     "swap": "Échanger",
     "to": "Vers",
+    "transactionBase64": "{index}. Transaction (Base64)",
     "typed_message_signing_request": "Demande de signature {type}",
     "typedMessageSigningRequest": "Demande de signature {type}",
     "unknownApp": "Application inconnue",
@@ -402,13 +403,18 @@
     "usDollar": "Dollar US"
   },
   "defi": {
+    "allAssets": "Tous les actifs",
+    "apr": "TAEG",
     "claimable": "Pouvant faire l’objet d’une réclamation",
     "debt": "Dette",
     "dept": "Service",
+    "earnCTA": "Gains",
+    "earnUpToApr": "Jusqu’à {apr}% de TAEG",
     "network": "réseau",
     "onePosition": "1 position",
     "positions": "{numberOfPositions} positions",
     "rewards": "Récompenses",
+    "tvl": "TVL",
     "vaults": "Coffres"
   },
   "deleteAccountConfirm": {
@@ -438,6 +444,16 @@
   "discovery": {
     "explore": "Explorer"
   },
+  "earn": {
+    "allAssets": "Tous les actifs",
+    "earnCTA": "Gains",
+    "earnUpToApr": "Jusqu’à {apr}% de TAEG",
+    "heroAvailableBalance": "{balance} {symbol} disponibles",
+    "heroTitle": "Gagnez des {symbol} sur {protocol}",
+    "protocolType": {
+      "lending": "Prêt"
+    }
+  },
   "editAccount": {
     "rename": "Renommer",
     "save": "Enregistrer",
@@ -462,6 +478,8 @@
     "continueAccessibilityHint": "Accepter l’avis de non-responsabilité et continuer",
     "disclaimerBody": "Veuillez noter que cette fonctionnalité contient du contenu fourni par des tierces parties. Référez-vous aux conditions pertinentes des Conditions de service.",
     "disclaimerTitle": "Bienvenue sur Explore !",
+    "earnBody": "Participer à la finance décentralisée",
+    "earnTitle": "Générer des rendements avec la DeFi",
     "errorBody": "L’application n’a pas pu charger le contenu de cette page. Réessayez plus tard",
     "errorTitle": "Une erreur est survenue.",
     "rewardPrefix": "Gains"
@@ -640,9 +658,58 @@
     "assets": "Actifs",
     "collection": "NFT",
     "collection_see_all": "Afficher tout",
+    "defiEmpty": "Commencer à générer des rendements avec la DeFi",
+    "defiEmptyCaption": "Vos positions apparaîtront une fois disponibles. Participez à la DeFi et commencez à générer des rendements.",
     "deposits": "DeFi",
     "manage": "Gérer",
     "total_balance": "Solde"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "sur Kraken",
+    "exchangeBalance": "Solde sur la plateforme d’échange",
+    "fundCta": {
+      "body": "Connectez votre compte Kraken pour <b>transférer de la crypto sur votre portefeuille</b>",
+      "bodyBold": "transférer de la crypto sur votre portefeuille",
+      "heading": "Approvisionnez votre portefeuille"
+    },
+    "sendScreen": {
+      "title": "Transfert d’actifs {assetSymbol}"
+    },
+    "stepsToConnect": {
+      "hasAccount": "J’ai créé un compte",
+      "heading": "Pour vous connecter à Kraken, suivez les étapes suivantes :",
+      "step1": {
+        "description": "Configurez votre compte Kraken",
+        "label": "Étape 1"
+      },
+      "step2": {
+        "description": "Revenez au portefeuille",
+        "label": "Étape 2"
+      },
+      "step3": {
+        "description": "Connectez votre compte Kraken",
+        "label": "Étape 3"
+      }
+    },
+    "transfer": {
+      "available": "{value} disponibles",
+      "selectAsset": "Sélectionner un actif à transférer",
+      "selectAssetDescription": "Transférez depuis la plateforme d’échange Kraken vers votre portefeuille",
+      "title": "Transfert",
+      "unsupportedAssets": "Actifs non pris en charge",
+      "unsupportedAssetsDescription": "{count} autres actifs sur votre compte de plateforme d’échange ne sont pas pris en charge par le portefeuille"
+    },
+    "transferCta": {
+      "body": "Connectez votre compte Kraken pour transférer de la crypto rapidement",
+      "heading": "Transfert depuis Kraken"
+    },
+    "unconnected": {
+      "alert": "Seul le portefeuille actuel \"<b>{walletName}</b>\" sera connecté à Kraken.",
+      "body": "Connectez votre compte de plateforme d’échange Kraken pour transférer facilement des fonds sur votre portefeuille",
+      "cta": "Connecter la plateforme d’échange Kraken",
+      "noAccount": "Je n’ai pas de compte",
+      "title": "Recevez de la crypto dans votre portefeuille avec Kraken"
+    }
   },
   "manageWallets": {
     "title": "Gérer les portefeuilles"
@@ -725,6 +792,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
     "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink": "Ink",
     "ink_sepolia": "Ethereum - Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
@@ -755,8 +823,8 @@
         "subheading": "Votre portefeuille contient 0 collection sur tous les réseaux pris en charge"
       },
       "selectedNetworks": {
-        "heading": "Aucune collection sur les réseaux sélectionnés",
-        "subheading": "Votre portefeuille contient 0 collection de NFT sur les réseaux sélectionnés"
+        "heading": "Aucune collection sur le(s) réseau(x) sélectionné(s)",
+        "subheading": "Votre portefeuille contient 0 collection de NFT sur le(s) réseau(x) sélectionné(s)"
       }
     },
     "everything": "Tout",
@@ -768,8 +836,8 @@
       "selectedNetworks": {
         "blastHeading": "NFT Blast bientôt disponibles",
         "blastSubheading": "Ce portefeuille ne permet pas encore de visualiser vos NFT sur le réseau Blast",
-        "heading": "Aucun NFT sur les réseaux sélectionnés",
-        "subheading": "Votre portefeuille contient 0 NFT sur les réseaux sélectionnés"
+        "heading": "Aucun NFT sur le(s) réseau(x) sélectionné(s)",
+        "subheading": "Votre portefeuille contient 0 NFT sur le(s) réseau(x) sélectionné(s)"
       }
     },
     "title": "NFT"
@@ -1171,11 +1239,12 @@
     "addressHeader": "Envoi à",
     "addressOrENS": "Saisissez l’adresse ou le domaine ENS...",
     "amountHeader": "Montant",
+    "available": "{0} disponibles",
     "balance": "Solde {0}",
     "confirm": "Confirmer",
     "confirmSend": "Confirmer l’envoi",
     "create": "Création",
-    "enterAmount": "Saisir le montant",
+    "enterAmount": "Saisir le montant en {symbol}",
     "evm_fee_fast": "Rapide",
     "evm_fee_normal": "Normal",
     "evm_fee_urgent": "Urgent",
@@ -1309,7 +1378,7 @@
   },
   "swap": {
     "amountExceedingBalance": "Le montant saisi dépasse le solde disponible",
-    "amountPlaceholder": "Saisir le montant",
+    "amountPlaceholder": "Saisir le montant en {symbol}",
     "balance": "Solde {0}",
     "buttonTitle": "Échanger",
     "confirmation": {
@@ -1338,6 +1407,7 @@
       "insufficientGas": "Solde en {symbol} insuffisant pour couvrir les transactions swap"
     },
     "findingBestRote": "Recherche du meilleur itinéraire",
+    "otherAssets": "Tokens",
     "route": {
       "bridgeCost": {
         "hint": "Les frais de pont sont des frais facturés par le fournisseur d’échange pour le transfert d’actifs entre différentes blockchains au cours de l’échange.",
@@ -1389,11 +1459,22 @@
       "title": "Itinéraire d’échange"
     },
     "selectAsset": "Sélectionner un actif",
+    "slippageSettings": {
+      "custom": "Personnaliser",
+      "desc": "Si le prix évolue défavorablement d’une valeur supérieure au pourcentage de glissement, votre transaction d’échange sera annulée.",
+      "footer": "Un glissement plus important peut contribuer au taux de réussite des transactions, mais peut vous exposer à des attaques de type \"frontrunning\" ou \"sandwich\".",
+      "save": "Enregistrer",
+      "title": "Paramètres de glissement",
+      "warningHigh": "Un glissement supérieur à {amount}% est considéré comme élevé",
+      "warningSmall": "Un glissement inférieur à {amount}% peut entraîner l’échec de l’échange",
+      "warningUnsupported": "Un glissement supérieur à {amount}% n’est pas pris en charge"
+    },
     "sourceListHeader": "Vos actifs",
     "sourceSearchPlaceholder": "Sélectionner un actif à échanger",
     "targetSearchPlaceholder": "Sélectionner un actif à recevoir",
     "title": "Échanger",
-    "unsupportedAssetsHidden": "Nos fournisseurs de swap ne prennent pas encore en charge {count} de vos autres actifs"
+    "unsupportedAssetsHidden": "Nos fournisseurs de swap ne prennent pas encore en charge {count} de vos autres actifs",
+    "yourAssets": "Vos actifs"
   },
   "test": {
     "key": "Test"
@@ -1592,7 +1673,7 @@
     "crypto": "Crypto",
     "cryptoAndNft": "NFT et crypto",
     "ethereumAddressLabel": "Comprend les réseaux Ethereum compatibles",
-    "ethereumExplainerBody": "Le système d’adresses d’Ethereum s’étend aux réseaux Ethereum compatibles tels que Polygon, Arbitrum, OP Mainnet, Base, Linea et Avalanche garantissant que votre adresse unique fonctionne partout",
+    "ethereumExplainerBody": "Le système d’adresses d’Ethereum s’étend aux réseaux Ethereum compatibles tels que Polygon, Arbitrum, OP Mainnet, Base, Blast, Linea et Avalanche, garantissant que votre adresse unique fonctionne partout",
     "ethereumExplainerHeading": "Votre adresse Ethereum",
     "tokenAddress": "Adresse de {token}"
   },
@@ -1728,7 +1809,7 @@
     },
     "errorCreatingPasskey": {
       "description": "Dans les Options de mot de passe de votre appareil, assurez-vous que iCloud Keychain est activé pour être utilisé pour les mots de passe et clés d’accès :",
-      "title": "Erreur lors de la création de la clé d’accès"
+      "title": "Erreur lors de la création de la sauvegarde"
     },
     "errorDeletingPasskey": {
       "cancel": "Annuler",
@@ -1933,6 +2014,12 @@
       "part1": "Nous avons le plaisir de vous annoncer que les actions via une pression prolongée sont maintenant disponibles pour vos actifs et NFT ! Effectuez facilement des tâches comme envoyer, recevoir ou masquer des actifs, sans devoir jongler entre plusieurs écrans.",
       "part2": "Profitez dès aujourd’hui d’une expérience plus fluide et plus intuitive pour la gestion de votre portefeuille.",
       "title": "Mise en place d’actions rapides pour plus de commodité"
+    },
+    "swaps": {
+      "buttonText": "Échanger maintenant",
+      "part1": "Échangez presque n’importe quel actif contre d’autres tokens et cryptos populaires à l’aide de protocoles d’échange on-chain parmi les plus robustes disponibles. Que vous échangiez au sein d’un seul et même réseau ou utilisiez des bridges pour aisément transférer vos actifs sur huit chaînes compatibles, la plupart des transactions sont réglées en seulement quelques secondes !",
+      "part2": "Échangez vos tokens de manière rapide, sécurisée et flexible, directement depuis votre portefeuille.",
+      "title": "Des échanges rapides et flexibles à portée de main"
     }
   }
 }

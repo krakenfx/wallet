@@ -134,6 +134,7 @@
     "sign": "Ondertekenen",
     "swap": "Swap",
     "to": "Naar",
+    "transactionBase64": "{index}. Transactie (Base64)",
     "typed_message_signing_request": "{type} Ondertekeningsverzoek",
     "typedMessageSigningRequest": "{type} Ondertekeningsverzoek",
     "unknownApp": "Onbekende app",
@@ -402,13 +403,18 @@
     "usDollar": "Amerikaanse dollar"
   },
   "defi": {
+    "allAssets": "Alle assets",
+    "apr": "APR",
     "claimable": "Te vorderen",
     "debt": "Schuld",
     "dept": "Dept",
+    "earnCTA": "Earn",
+    "earnUpToApr": "Tot {apr}% APR",
     "network": "netwerk",
     "onePosition": "1 positie",
     "positions": "{numberOfPositions} posities",
     "rewards": "Rewards",
+    "tvl": "TVL",
     "vaults": "Kluizen"
   },
   "deleteAccountConfirm": {
@@ -438,6 +444,16 @@
   "discovery": {
     "explore": "Ontdekken"
   },
+  "earn": {
+    "allAssets": "Alle assets",
+    "earnCTA": "Earn",
+    "earnUpToApr": "Tot {apr}% APR",
+    "heroAvailableBalance": "{balance} {symbol} beschikbaar",
+    "heroTitle": "Verdien {symbol} op {protocol}",
+    "protocolType": {
+      "lending": "Lenen"
+    }
+  },
   "editAccount": {
     "rename": "Hernoemen",
     "save": "Opslaan",
@@ -462,6 +478,8 @@
     "continueAccessibilityHint": "De disclaimer accepteren en doorgaan",
     "disclaimerBody": "Houd er rekening mee dat deze functie inhoud bevat die door derden is verstrekt. Raadpleeg de relevante voorwaarden uit de Servicevoorwaarden.",
     "disclaimerTitle": "Welkom bij Explore!",
+    "earnBody": "Neem deel aan gedecentraliseerde financiën",
+    "earnTitle": "Verdien rendement met DeFi",
     "errorBody": "De app kon de inhoud op deze pagina niet laden. Probeer het later opnieuw",
     "errorTitle": "Er is iets misgegaan",
     "rewardPrefix": "Earn"
@@ -480,7 +498,7 @@
       "timeAbbr": {
         "days": "dag",
         "hours": "uur",
-        "minutes": "min.",
+        "minutes": "min",
         "months": "mnd",
         "seconds": "sec.",
         "weeks": "wk",
@@ -640,9 +658,58 @@
     "assets": "Assets",
     "collection": "NFT's",
     "collection_see_all": "Alles weergeven",
+    "defiEmpty": "Begin met verdienen met DeFi",
+    "defiEmptyCaption": "Je posities verschijnen hier zodra ze beschikbaar zijn. Neem deel aan DeFi en begin met rendement verdienen.",
     "deposits": "DeFi",
     "manage": "Beheren",
     "total_balance": "Saldo"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "op Kraken",
+    "exchangeBalance": "Exchange-tegoed",
+    "fundCta": {
+      "body": "Verbind je Kraken-account om <b>crypto over te zetten naar je wallet</b>",
+      "bodyBold": "crypto overboeken naar je wallet",
+      "heading": "Je wallet financieren"
+    },
+    "sendScreen": {
+      "title": "{assetSymbol} overboeken"
+    },
+    "stepsToConnect": {
+      "hasAccount": "Ik heb een account aangemaakt",
+      "heading": "Volg deze stappen om verbinding te maken met Kraken:",
+      "step1": {
+        "description": "Stel je Kraken-account in",
+        "label": "Stap 1"
+      },
+      "step2": {
+        "description": "Ga terug naar de wallet",
+        "label": "Stap 2"
+      },
+      "step3": {
+        "description": "Verbind je Kraken-account",
+        "label": "Stap 3"
+      }
+    },
+    "transfer": {
+      "available": "{value} beschikbaar",
+      "selectAsset": "Selecteer een asset om over te boeken",
+      "selectAssetDescription": "Overboeken van Kraken naar je wallet",
+      "title": "Overdracht",
+      "unsupportedAssets": "Niet-ondersteunde assets",
+      "unsupportedAssetsDescription": "{count} andere assets in je exchange-account worden niet ondersteund door de wallet"
+    },
+    "transferCta": {
+      "body": "Verbind je Kraken-account om snel crypto over te zetten",
+      "heading": "Overmaken vanaf Kraken"
+    },
+    "unconnected": {
+      "alert": "Alleen de huidige wallet: \"<b>{walletName}</b>\" wordt verbonden met Kraken.",
+      "body": "Verbind je Kraken-exchangeaccount om naadloos geld over te maken naar je wallet",
+      "cta": "Verbind Kraken-exchange",
+      "noAccount": "Ik heb geen account",
+      "title": "Krijg crypto in je wallet met Kraken"
+    }
   },
   "manageWallets": {
     "title": "Wallets beheren"
@@ -725,6 +792,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Goerli-testnet",
     "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink": "Ink",
     "ink_sepolia": "Ethereum - Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
@@ -755,8 +823,8 @@
         "subheading": "Je wallet bevat 0 collecties op alle ondersteunde netwerken"
       },
       "selectedNetworks": {
-        "heading": "Geen collecties op geselecteerde netwerken",
-        "subheading": "Je wallet bevat 0 NFT-collecties op de geselecteerde netwerken"
+        "heading": "Geen collecties op geselecteerde netwerk(en)",
+        "subheading": "Je wallet bevat 0 NFT-collecties op het/de geselecteerde netwerk(en)"
       }
     },
     "everything": "Alles",
@@ -768,8 +836,8 @@
       "selectedNetworks": {
         "blastHeading": "Binnenkort Blast NFT's",
         "blastSubheading": "Deze wallet ondersteunt nog niet het bekijken van je NFT's op het Blast-netwerk",
-        "heading": "Geen NFT's op geselecteerde netwerken",
-        "subheading": "Je wallet bevat 0 NFT's op de geselecteerde netwerken"
+        "heading": "Geen NFT's op geselecteerde netwerk(en)",
+        "subheading": "Je wallet bevat 0 NFT's op het/de geselecteerde netwerk(en)"
       }
     },
     "title": "NFT's"
@@ -1171,11 +1239,12 @@
     "addressHeader": "Versturen naar",
     "addressOrENS": "Adres of ENS-domein invoeren...",
     "amountHeader": "Hoeveelheid",
+    "available": "{0} beschikbaar",
     "balance": "Saldo {0}",
     "confirm": "Bevestigen",
     "confirmSend": "Versturen bevestigen",
     "create": "Aanmaken",
-    "enterAmount": "Bedrag invoeren",
+    "enterAmount": "Bedrag invoeren {symbol}",
     "evm_fee_fast": "Snel",
     "evm_fee_normal": "Normaal",
     "evm_fee_urgent": "Urgent",
@@ -1309,7 +1378,7 @@
   },
   "swap": {
     "amountExceedingBalance": "Ingevoerd bedrag overschrijdt beschikbaar saldo",
-    "amountPlaceholder": "Bedrag invoeren",
+    "amountPlaceholder": "Bedrag invoeren {symbol}",
     "balance": "Saldo {0}",
     "buttonTitle": "Swap",
     "confirmation": {
@@ -1338,6 +1407,7 @@
       "insufficientGas": "Onvoldoende {symbol} tegoed om swaptransacties te dekken"
     },
     "findingBestRote": "De beste route zoeken",
+    "otherAssets": "Tokens",
     "route": {
       "bridgeCost": {
         "hint": "Een bridge cost zijn kosten die in rekening worden gebracht door de swapaanbieder voor het overbrengen van activa tussen verschillende blockchains tijdens de swap.",
@@ -1389,11 +1459,22 @@
       "title": "Swaproute"
     },
     "selectAsset": "Selecteer assets",
+    "slippageSettings": {
+      "custom": "Aangepast",
+      "desc": "Als de prijs meer dan het slippage percentage nadelig verandert, wordt je swaptransactie geannuleerd.",
+      "footer": "Een hogere slippage kan helpen bij het succespercentage van transacties, maar kan je blootstellen aan front running/sandwichaanvallen.",
+      "save": "Opslaan",
+      "title": "Slippage-instellingen",
+      "warningHigh": "Slippage van meer dan {amount}% wordt als hoog beschouwd",
+      "warningSmall": "Slippage van minder dan {amount}% kan ertoe leiden dat de swap mislukt",
+      "warningUnsupported": "Slippage van meer dan {amount}% wordt niet ondersteund"
+    },
     "sourceListHeader": "Jouw assets",
     "sourceSearchPlaceholder": "Selecteer een asset om te ruilen",
     "targetSearchPlaceholder": "Selecteer een asset om te ontvangen",
     "title": "Swap",
-    "unsupportedAssetsHidden": "Onze swapproviders ondersteunen {count} van je andere asset(s) nog niet"
+    "unsupportedAssetsHidden": "Onze swapproviders ondersteunen {count} van je andere asset(s) nog niet",
+    "yourAssets": "Jouw assets"
   },
   "test": {
     "key": "Testen"
@@ -1592,7 +1673,7 @@
     "crypto": "Crypto",
     "cryptoAndNft": "NFT's en crypto",
     "ethereumAddressLabel": "Bevat netwerken die compatibel zijn met Ethereum",
-    "ethereumExplainerBody": "Het adressysteem van Ethereum breidt zich uit naar netwerken die compatibel zijn met Ethereum, zoals Polygon, Arbitrum, OP Mainnet, Base, Linea en Avalanche. Dit zorgt ervoor dat jouw ene adres overal werkt",
+    "ethereumExplainerBody": "Het adressysteem van Ethereum breidt zich uit naar netwerken die compatibel zijn met Ethereum, zoals Polygon, Arbitrum, OP Mainnet, Base, Blast, Linea en Avalanche. Dit zorgt ervoor dat jouw ene adres overal werkt",
     "ethereumExplainerHeading": "Jouw Ethereum-adres",
     "tokenAddress": "{token} adres"
   },
@@ -1728,7 +1809,7 @@
     },
     "errorCreatingPasskey": {
       "description": "Controleer in de Wachtwoordopties van je apparaat of iCloud-sleutelhanger is ingeschakeld om te worden gebruikt voor wachtwoorden en passkeys:",
-      "title": "Fout bij het aanmaken van passkey"
+      "title": "Fout bij het maken van back-up"
     },
     "errorDeletingPasskey": {
       "cancel": "Annuleren",
@@ -1933,6 +2014,12 @@
       "part1": "We zijn verheugd om Long Press-acties te introduceren voor jouw assets en NFT's! Voer eenvoudig taken uit zoals verzenden, ontvangen en verbergen, zonder door meerdere schermen te hoeven navigeren.",
       "part2": "Geniet vandaag nog van een soepelere, intuïtievere wallet-ervaring.",
       "title": "Snelle acties voor jouw gemak"
+    },
+    "swaps": {
+      "buttonText": "Swap nu",
+      "part1": "Swap bijna al je assets voor andere populaire tokens en crypto, met behulp van enkele van de meest robuuste onchain-swapprotocollen. Of het nu gaat om swappen binnen één netwerk of naadloos overbruggen tussen acht ondersteunde chains - de meeste trades zijn in slechts enkele seconden geregeld!",
+      "part2": "Ervaar snelle, veilige en flexibele tokenexchanges - direct in je wallet.",
+      "title": "Snelle, veelzijdige swaps binnen handbereik"
     }
   }
 }

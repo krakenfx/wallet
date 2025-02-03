@@ -134,6 +134,7 @@
     "sign": "Podpisz",
     "swap": "Swap",
     "to": "Do",
+    "transactionBase64": "{index}. Transakcja (Base64)",
     "typed_message_signing_request": "{type} Prośba o podpisanie",
     "typedMessageSigningRequest": "{type} Prośba o podpisanie",
     "unknownApp": "Nieznana aplikacja",
@@ -402,13 +403,18 @@
     "usDollar": "Dolar amerykański"
   },
   "defi": {
+    "allAssets": "Wszystkie aktywa",
+    "apr": "RSO",
     "claimable": "Do odbioru",
     "debt": "Dług",
     "dept": "Dług",
+    "earnCTA": "Earn",
+    "earnUpToApr": "Do {apr} % rocznie",
     "network": "sieć",
     "onePosition": "1 pozycja",
     "positions": "{numberOfPositions} pozycje(-i)",
     "rewards": "Nagrody",
+    "tvl": "TVL",
     "vaults": "Skarbce"
   },
   "deleteAccountConfirm": {
@@ -437,6 +443,16 @@
   },
   "discovery": {
     "explore": "Odkryj"
+  },
+  "earn": {
+    "allAssets": "Wszystkie aktywa",
+    "earnCTA": "Earn",
+    "earnUpToApr": "Do {apr} % rocznie",
+    "heroAvailableBalance": "Dostępne: {balance} {symbol}",
+    "heroTitle": "Zarabiaj {symbol} na {protocol}",
+    "protocolType": {
+      "lending": "Pożyczki"
+    }
   },
   "editAccount": {
     "rename": "Zmień nazwę",
@@ -653,7 +669,11 @@
     "exchangeBalance": "Saldo na giełdzie",
     "fundCta": {
       "body": "Połącz konto Kraken, aby <b>przesłać kryptowaluty do portfela</b>",
+      "bodyBold": "przesyłaj kryptowaluty do portfela",
       "heading": "Zasil swój portfel"
+    },
+    "sendScreen": {
+      "title": "Przenieś {assetSymbol}"
     },
     "stepsToConnect": {
       "hasAccount": "Mam konto",
@@ -672,7 +692,12 @@
       }
     },
     "transfer": {
-      "title": "Przelew"
+      "available": "Dostępne: {value}",
+      "selectAsset": "Wybierz aktywa do przeniesienia",
+      "selectAssetDescription": "Wykonaj transfer z Krakena do portfela",
+      "title": "Przelew",
+      "unsupportedAssets": "Nieobsługiwane aktywa",
+      "unsupportedAssetsDescription": "Pozostałe aktywa ({count}) na Twoim koncie giełdowym nie są obsługiwane przez portfel"
     },
     "transferCta": {
       "body": "Połącz konto Kraken, aby szybciej przesyłać kryptowaluty",
@@ -767,6 +792,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum – Goerli testnet",
     "ethereum_sepolia": "Ethereum – Sepolia",
+    "ink": "Ink",
     "ink_sepolia": "Ethereum – Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
@@ -1213,11 +1239,12 @@
     "addressHeader": "Wysyłanie do",
     "addressOrENS": "Wprowadź adres lub domenę ENS…",
     "amountHeader": "Kwota",
+    "available": "Dostępne: {0}",
     "balance": "Saldo {0}",
     "confirm": "Potwierdź",
     "confirmSend": "Potwierdź wysłanie",
     "create": "Utwórz",
-    "enterAmount": "Wprowadź kwotę",
+    "enterAmount": "Wprowadź kwotę {symbol}",
     "evm_fee_fast": "Szybko",
     "evm_fee_normal": "Normalnie",
     "evm_fee_urgent": "Pilnie",
@@ -1351,7 +1378,7 @@
   },
   "swap": {
     "amountExceedingBalance": "Wprowadzona kwota przekracza dostępne saldo",
-    "amountPlaceholder": "Wprowadź kwotę",
+    "amountPlaceholder": "Wprowadź kwotę {symbol}",
     "balance": "Saldo {0}",
     "buttonTitle": "Swap",
     "confirmation": {
@@ -1646,7 +1673,7 @@
     "crypto": "Kryptowaluty",
     "cryptoAndNft": "NFT i kryptowaluty",
     "ethereumAddressLabel": "Obejmuje sieci zgodne z Ethereum",
-    "ethereumExplainerBody": "System adresowy Ethereum obejmuje także sieci zgodne z Ethereum (Polygon, Arbitrum, OP Mainnet, Base, Linea, Avalanche itp.), dzięki czemu Twój pojedynczy adres będzie działać wszędzie",
+    "ethereumExplainerBody": "System adresowy Ethereum obejmuje sieci zgodne z Ethereum (Polygon, Arbitrum, OP Mainnet, Base, Blast, Linea, Avalanche itp.), dzięki czemu Twój pojedynczy adres będzie działać wszędzie",
     "ethereumExplainerHeading": "Twój adres Ethereum",
     "tokenAddress": "Adres {token}"
   },
@@ -1987,6 +2014,12 @@
       "part1": "Z przyjemnością przedstawiamy funkcję długiego naciśnięcia dla Twoich zasobów i NFT! Wykonuj wygodnie zadania takie jak wysyłanie, odbieranie i ukrywanie, bez konieczności przełączania się między ekranami.",
       "part2": "Skorzystaj już dziś z większej wygody i intuicyjności podczas korzystania z portfela.",
       "title": "Szybkie działania dla Twojej wygody"
+    },
+    "swaps": {
+      "buttonText": "Wykonaj swap",
+      "part1": "Swapuj niemal dowolne aktywa za inne popularne tokeny i kryptowaluty, korzystając z jednego z najsolidniejszych protokołów wymiany onchain. Nieważne, czy wykonujesz swap w ramach jednej sieci, czy płynnie korzystasz z ośmiu obsługiwanych sieci – większość transakcji rozlicza się w ciągu kilku sekund!",
+      "part2": "Wymieniaj tokeny szybko, bezpiecznie i elastycznie – bezpośrednio w swoim portfelu.",
+      "title": "Szybki i uniwersalny swap na wyciągnięcie ręki"
     }
   }
 }

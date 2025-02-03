@@ -14,6 +14,7 @@ const ALT_GROUNDCONTROL_BASE_URIS_2 = Config.ALT_GROUNDCONTROL_BASE_URIS_2;
 
 export const ALT_GROUNDCONTROL_BASE_URIS = [ALT_GROUNDCONTROL_BASE_URIS_1, ALT_GROUNDCONTROL_BASE_URIS_2];
 export const WALLETCONNECT_PROJECT_ID = Config.WALLETCONNECT_PROJECT_ID;
+export const VAULTS_API_KEY = Config.VAULTS_API_KEY;
 
 export const URLs = {
   privacyPolicy: 'https://www.kraken.com/wallet/privacy',
@@ -25,3 +26,5 @@ export const URLs = {
 
 export const DISABLE_PREVENT_SCREEN_CAPTURE = Config.DISABLE_PREVENT_SCREEN_CAPTURE;
 export const STORYBOOK_ENABLED = Config.STORYBOOK_ENABLED;
+
+export const KRAKEN_API_URI = Config.KRAKEN_API_URI;

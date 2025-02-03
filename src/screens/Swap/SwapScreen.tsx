@@ -133,30 +133,31 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   };
 
   const onSourceAssetSelected = (newToken: RealmToken) => {
-    setSourceToken(newToken);
     sourceAssetSheet.current?.close();
-    if (sourceToken.id !== newToken.id) {
-      setSourceTokenAmount(undefined);
-      setSourceInputAmountValue(undefined);
-      setSwapQuote(undefined);
-      setTargetAsset(undefined);
-    }
+    runAfterUISync(() => {
+      setSourceToken(newToken);
+      if (sourceToken.id !== newToken.id) {
+        setSourceTokenAmount(undefined);
+        setSourceInputAmountValue(undefined);
+        setSwapQuote(undefined);
+        setTargetAsset(undefined);
+      }
+    });
   };
 
   const onTargetAssetSelected = (target: RemoteAsset | RealmToken) => {
     targetAssetSheet.current?.close();
-    setTargetAsset(target);
+    runAfterUISync(() => {
+      setTargetAsset(target);
+    });
   };
 
-  const onSourceListClose = useCallback(
-    (hasSelectedAsset?: boolean) => {
-      if (!targetAsset && hasSelectedAsset) {
-        showTargetAssetSelection();
-      }
-      Keyboard.dismiss();
-    },
-    [targetAsset],
-  );
+  const onSourceListClose = useCallback((hasSelectedAsset?: boolean) => {
+    if (hasSelectedAsset) {
+      showTargetAssetSelection();
+    }
+    Keyboard.dismiss();
+  }, []);
 
   const onTargetListClose = useCallback(() => {
     if (!!targetAsset && !sourceAmount) {
@@ -179,7 +180,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
 
   const requestSwapRoute = useCallback(async () => {
     if (!targetAsset || !sourceToken || !isAmountInputValid || !sourceAmount) {
-      throw new Error('Requesting swap quote with incomplete data');
+      return;
     }
     setIsLoading(true);
     setFeesFiatValues(undefined);
@@ -190,7 +191,6 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
       const { network } = getImplForWallet(sourceToken.wallet);
 
       const fromAddress = await network.deriveAddress(sourceToken.wallet);
-
       const data = await fetchQuote(
         {
           from: {
@@ -209,7 +209,6 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
       if (!data) {
         throw new Error('Failed to fetch swap quote');
       }
-
       setSwapQuote(data);
       setIsSwapAvailable(true);
       resetCountDown();
@@ -247,30 +246,18 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   const appState = useAppState();
 
   useEffect(() => {
-    switch (appState) {
-      case 'active': {
-        requestSwapRoute();
-        break;
-      }
-      default: {
-        resetCountDown();
-      }
-    }
-  }, [appState, requestSwapRoute, resetCountDown]);
-
-  useEffect(() => {
     if (amountInputFocused) {
       setInsufficientFundsError(false);
     }
   }, [amountInputFocused]);
 
   useEffect(() => {
-    if (sourceAmount && sourceToken && targetAsset && isAmountInputValid && !isTyping) {
+    if (sourceAmount && sourceToken && targetAsset && isAmountInputValid && !isTyping && appState === 'active') {
       requestSwapRoute();
     } else {
       resetCountDown();
     }
-  }, [isAmountInputValid, isTyping, requestSwapRoute, resetCountDown, sourceAmount, sourceToken, targetAsset]);
+  }, [appState, isAmountInputValid, isTyping, requestSwapRoute, resetCountDown, sourceAmount, sourceToken, targetAsset]);
 
   useEffect(() => {
     return resetCountDown;

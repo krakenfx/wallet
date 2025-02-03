@@ -10,24 +10,30 @@ type PasswordProtection = {
 
 export const usePasswordProtectionEnabled = () => {
   const [passwordProtection, setPasswordProtection] = useState<PasswordProtection>({ seedEncrypted: false, storageEncrypted: false });
+  const [loading, setLoading] = useState(true);
+
   useFocusEffect(
     useCallback(() => {
       const checkIfEncrypted = async () => {
+        setLoading(true);
+
         const seedEncrypted = !!(await getFromKeychain(KeychainKey.isSeedEncryptedKey));
         const storageEncrypted = !!(await getFromKeychain(KeychainKey.isStorageEncryptedKey));
+
+        setLoading(false);
         setPasswordProtection({ seedEncrypted, storageEncrypted });
       };
+
       checkIfEncrypted();
     }, []),
   );
 
-  const data = useMemo(
+  return useMemo(
     () => ({
       ...passwordProtection,
       encryptionEnabled: !!passwordProtection?.seedEncrypted || !!passwordProtection?.storageEncrypted,
+      loading,
     }),
-    [passwordProtection],
+    [passwordProtection, loading],
   );
-
-  return data;
 };

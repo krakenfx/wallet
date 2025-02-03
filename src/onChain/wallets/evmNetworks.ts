@@ -129,6 +129,16 @@ export const avalancheCChainNetwork = new EVMNetwork({
   gasUnit: 'nAVAX',
 });
 
+export const inkNetwork = new EVMNetwork({
+  chainId: 57073,
+  nativeTokenSlipId: 60,
+  nativeTokenSymbol: 'ETH',
+  nativeTokenLabel: 'Ethereum',
+  label: loc.network.ink,
+  blockExplorer: new Etherscan('explorer.inkonchain.com'),
+  defaultGasLimit: 21000,
+});
+
 export const inkSepoliaNetwork = new EVMNetwork({
   chainId: 763373,
   nativeTokenSlipId: 1,
@@ -136,5 +146,6 @@ export const inkSepoliaNetwork = new EVMNetwork({
   nativeTokenLabel: 'Ethereum - Ink Sepolia',
   label: loc.network.ink_sepolia,
   blockExplorer: new Etherscan('explorer-sepolia.inkonchain.com'),
+  isTestnet: true,
   defaultGasLimit: 21000,
 });

@@ -35,6 +35,7 @@ export const SuperDarkTheme = {
     light35: 'rgba(255,255, 2555, 0.35)',
     light15: 'rgba(255, 255, 255, 0.15)',
     light8: 'rgba(255, 255, 255, 0.08)',
+    light2: 'rgba(255, 255, 255, 0.02)',
 
     dark100: 'rgba(0, 0, 0, 1)',
     dark50: 'rgba(0, 0, 0, 0.5)',

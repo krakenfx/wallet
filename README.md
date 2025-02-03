@@ -6,7 +6,7 @@
 
 Kraken Wallet is a Crypto and Bitcoin self-custody wallet where your keys never leave your device. Engineered and crafted by the mighty and OG Kraken.com. It is built with React Native, Realm, an Electrum Server, and other FOSS projects. The backend runs over a proxy to ensure your personal data is never shared with 3rd party services or companies. It is built under strong principles of privacy, self-custody, and security to ensure maximum sovereignty for its users. It is open sourced under the MIT license.
 
-This repo functions as a mirror of the main private development repo. Its main purpose is to provide auditability, trust minimization, and code review. Please provide feedback, vulnerabilities or bug reporting using the responsible disclosure process. 
+This repo functions as a mirror of the main private development repo. Its main purpose is to provide audibility, trust minimization, and code review. Please provide feedback, vulnerabilities or bug reporting using the responsible disclosure process. 
 
 ## Main features
 
@@ -52,19 +52,19 @@ All bug and vulnerability disclosures must go through the properly defined chann
 
 We welcome contributions from the community. Here are a few guidelines to help you get started:
 
-### Security-Related Bugs and Disclosures
+Security-Related Bugs and Disclosures
 
 For any security-related issues, please refer to our [Responsible Disclosure policy](https://www.kraken.com/features/security/bug-bounty). It's crucial that these matters are handled sensitively to protect all users.
 
-### Feature Requests
+Feature Requests
 
 If you're interested in suggesting a new feature, please submit a detailed issue on Github. Include the purpose of the feature, its potential impact, and any ideas you have for how it might be implemented. This will help us understand and evaluate your proposal more effectively.
 
-### Pull Requests
+Pull Requests
 
 Please note that our repository is a point-in-time mirror of our internal repository, which means we cannot directly merge pull requests. However, every pull request is valuable and will be reviewed by our team. Contributions considered suitable will be manually integrated into our internal repo and reflected in future releases.
 
-### Upcoming Improvements
+Upcoming Improvements
 
 We are currently working on providing developer documentation that is necessary for quality PRs. We expect to roll out these resources soon and will keep the community updated on our progress.
 

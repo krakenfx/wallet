@@ -8,40 +8,41 @@ import { Label } from '@/components/Label';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import { RealmSettingsKey, useSettingsMutations } from '@/realm/settings';
+import { Routes } from '@/Routes';
 import type { NavigationProps } from '@/Routes';
 
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 import loc from '/loc';
 
-export const WhatsNewLongPressScreen = ({ navigation }: NavigationProps<'WhatsNewLongPress'>) => {
-  const { bottomSheetProps, close } = useBottomSheetScreenProps(navigation);
+export const WhatsNewSwaps = ({ navigation }: NavigationProps<'WhatsNewSwaps'>) => {
+  const { bottomSheetProps } = useBottomSheetScreenProps(navigation);
   const { setSettings } = useSettingsMutations();
 
   useEffect(() => {
-    setSettings(RealmSettingsKey.whatsNewIsLongPressCompleted, true);
+    setSettings(RealmSettingsKey.isSwapsTaskModalCompleted, true);
   }, [setSettings]);
 
   const handleButtonPress = useCallback(() => {
-    close();
-  }, [close]);
+    navigation.replace(Routes.Swap);
+  }, [navigation]);
 
   return (
     <BottomSheet enablePanDownToClose snapPoints={useCommonSnapPoints('toHeaderTransparent')} {...bottomSheetProps}>
       <SimpleSlide
-        title={loc.whatsNew.longPress.title}
-        typeTitle="boldTitleMarketDataPercentageLarge"
+        title={loc.whatsNew.swaps.title}
+        typeTitle="boldDisplay3"
         onButtonPress={handleButtonPress}
-        buttonText={loc.whatsNew.longPress.buttonText}
-        animation={require('@/assets/lottie/longPressAnimation.json')}
-        animationHeight={230}
-        contentOffset={8}>
+        buttonText={loc.whatsNew.swaps.buttonText}
+        animation={require('@/assets/lottie/swapsAnnouncement.json')}
+        animationHeight={240}
+        contentOffset={-5}>
         <Animated.View style={styles.body}>
-          <Label style={styles.part1Text} type="mediumBody" color="light75" entering={FadeIn.duration(500).delay(500)}>
-            {loc.whatsNew.longPress.part1}
+          <Label style={styles.text} type="regularTitle2" color="light75" entering={FadeIn.duration(500).delay(500)}>
+            {loc.whatsNew.swaps.part1}
           </Label>
-          <Label type="mediumBody" color="light75" entering={FadeIn.duration(500).delay(500)}>
-            {loc.whatsNew.longPress.part2}
+          <Label style={styles.text} type="regularTitle2" color="light75" entering={FadeIn.duration(500).delay(500)}>
+            {loc.whatsNew.swaps.part2}
           </Label>
         </Animated.View>
       </SimpleSlide>
@@ -57,8 +58,9 @@ const styles = StyleSheet.create({
     marginTop: 85,
     marginBottom: 16,
   },
-  part1Text: {
+  text: {
     marginBottom: 16,
+    lineHeight: 23,
   },
 });
 
@@ -72,4 +74,4 @@ const navigationOptions: NativeStackNavigationOptions = {
   },
 };
 
-WhatsNewLongPressScreen.navigationOptions = navigationOptions;
+WhatsNewSwaps.navigationOptions = navigationOptions;

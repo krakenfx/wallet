@@ -20,6 +20,8 @@ const COIN_TYPE: WalletType[] = [
   'dogecoin',
   'ethereumTestnetSepolia',
   'solanaDevnet',
+  'ink',
+  'inkSepolia',
 ];
 
 const IconWithCoinIconMeta: Meta<typeof IconWithCoinIcon> = {

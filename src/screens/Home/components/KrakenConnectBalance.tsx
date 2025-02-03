@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
 import { Label } from '@/components/Label';
@@ -8,6 +9,7 @@ import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useKrakenConnectBalance } from '@/reactQuery/hooks/krakenConnect/useKrakenConnectBalance';
 import { useAppCurrency } from '@/realm/settings';
 import { useIsConnectedWithExchange } from '@/realm/settings/useIsConnectedWithExchange';
+import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -26,9 +28,10 @@ export const KrakenConnectBalance = () => {
   const isConnectedWithExchange = useIsConnectedWithExchange();
   const { data } = useKrakenConnectBalance();
   const { currency } = useAppCurrency();
-  const balanceFormatted = useBalanceDisplay(formatCurrency(data.balance, { currency }), 7);
+  const balanceFormatted = useBalanceDisplay(formatCurrency(data || 0, { currency }));
   const { colors } = useTheme();
   const { size } = useDeviceSize();
+  const navigation = useNavigation();
 
   if (!(isKrakenConnectEnabled && isConnectedWithExchange)) {
     return null;
@@ -45,8 +48,13 @@ export const KrakenConnectBalance = () => {
           height: KRAKEN_CONNECT_BALANCE_FULL_HEIGHT - MARGIN_TOP,
           marginTop: MARGIN_TOP,
         };
+
+  const handleOnPress = () => {
+    navigation.navigate(Routes.KrakenConnectTransfer);
+  };
+
   return (
-    <Touchable style={[styles.container, style, { backgroundColor: colors.purple_20 }]} onPress={() => {}}>
+    <Touchable style={[styles.container, style, { backgroundColor: colors.purple_20 }]} onPress={handleOnPress}>
       <KrakenIcon />
       <Label type="boldCaption1" style={styles.label} color="light75">
         {balance}

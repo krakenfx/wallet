@@ -1,11 +1,7 @@
-import type { Network } from '@/onChain/wallets/base';
-import { EVMNetwork } from '@/onChain/wallets/evm';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import type { RealmToken } from '@/realm/tokens';
 
-export const isSwapSupportedForNetwork = (network: Network) => {
-  return network instanceof EVMNetwork;
-};
+import { SWAP_NETWORKS_CAIP_IDS } from '../SwapScreen.constants';
 
 export const isSwapSupportedForToken = (token?: RealmToken) => {
   if (!token) {
@@ -13,5 +9,5 @@ export const isSwapSupportedForToken = (token?: RealmToken) => {
   }
   const { network } = getImplForWallet(token.wallet);
 
-  return isSwapSupportedForNetwork(network);
+  return SWAP_NETWORKS_CAIP_IDS.includes(network.caipId);
 };

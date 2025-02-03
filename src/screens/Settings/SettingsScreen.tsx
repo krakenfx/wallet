@@ -7,11 +7,13 @@ import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { useLanguage } from '@/realm/settings';
 import { Routes } from '@/Routes';
 import { CurrencyBadge } from '@/screens/Settings/currency';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AppLockBadge } from './appLock';
 import { BuildInfo } from './BuildInfo';
 import { SettingsItem, SettingsSectionHeader } from './components';
+import { KrakenConnectTransferCTA } from './components/KrakenConnectTransferCTA';
 import { ManageWalletsBadge } from './manageWallets';
 import { PasswordProtectionBadge } from './passwordProtection';
 
@@ -30,6 +32,7 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
   const insets = useSafeAreaInsets();
 
   const { isCloudBackupSupported } = useWalletBackupSettings();
+  const [krakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
 
   return (
     <GradientScreenView>
@@ -37,6 +40,7 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
         <LargeHeader title={loc.settings.header} style={styles.header} testID="Settings" />
 
         <SettingsSectionHeader title={loc.settings.wallets} />
+        {krakenConnectEnabled ? <KrakenConnectTransferCTA /> : null}
         <WalletBackupWarning />
         <SettingsItem
           title={isCloudBackupSupported ? loc.settings.walletsAndBackups : loc.settings.manageWallets}

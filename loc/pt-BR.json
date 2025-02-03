@@ -134,6 +134,7 @@
     "sign": "Assinar",
     "swap": "Swap",
     "to": "Para",
+    "transactionBase64": "{index}. Transação (Base64)",
     "typed_message_signing_request": "Solicitação de assinatura {type}",
     "typedMessageSigningRequest": "Solicitação de assinatura {type}",
     "unknownApp": "Aplicativo desconhecido",
@@ -402,13 +403,18 @@
     "usDollar": "Dólar americano"
   },
   "defi": {
+    "allAssets": "Todos os ativos",
+    "apr": "APR",
     "claimable": "Reivindicável",
     "debt": "Dívida",
     "dept": "Dept",
+    "earnCTA": "Ganhe",
+    "earnUpToApr": "Até {apr}% de APR",
     "network": "rede",
     "onePosition": "Uma posição",
     "positions": "{numberOfPositions} posições",
     "rewards": "Recompensas",
+    "tvl": "TVL",
     "vaults": "Cofres"
   },
   "deleteAccountConfirm": {
@@ -437,6 +443,16 @@
   },
   "discovery": {
     "explore": "Explorar"
+  },
+  "earn": {
+    "allAssets": "Todos os ativos",
+    "earnCTA": "Ganhe",
+    "earnUpToApr": "Até {apr}% de APR",
+    "heroAvailableBalance": "{balance} {symbol} disponível",
+    "heroTitle": "Ganhe {symbol} em {protocol}",
+    "protocolType": {
+      "lending": "Empréstimos"
+    }
   },
   "editAccount": {
     "rename": "Renomear",
@@ -653,7 +669,11 @@
     "exchangeBalance": "Saldo na exchange",
     "fundCta": {
       "body": "Conecte sua conta Kraken para <b>transferir cripto para sua carteira</b>",
+      "bodyBold": "transfira cripto para sua carteira",
       "heading": "Deposite em sua carteira"
+    },
+    "sendScreen": {
+      "title": "Transferir {assetSymbol}"
     },
     "stepsToConnect": {
       "hasAccount": "Eu já criei uma conta",
@@ -672,7 +692,12 @@
       }
     },
     "transfer": {
-      "title": "Transferência"
+      "available": "{value} disponível",
+      "selectAsset": "Selecione um ativo para transferir",
+      "selectAssetDescription": "Transfira do Kraken Exchange para sua carteira",
+      "title": "Transferência",
+      "unsupportedAssets": "Ativos não suportados",
+      "unsupportedAssetsDescription": "{count} outros ativos em sua conta de Exchange não são suportados pela carteira"
     },
     "transferCta": {
       "body": "Conecte sua conta Kraken para transferir cripto rapidamente",
@@ -767,6 +792,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - rede de teste Goerli",
     "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink": "Ink",
     "ink_sepolia": "Ethereum - Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
@@ -797,8 +823,8 @@
         "subheading": "Sua carteira contém 0 coleções em todas as redes compatíveis"
       },
       "selectedNetworks": {
-        "heading": "Sem coleções nas redes selecionadas",
-        "subheading": "Sua carteira contém 0 NFTs em todas as redes compatíveis"
+        "heading": "Sem coleções na(s) rede(s) selecionada(s)",
+        "subheading": "Sua carteira contém 0 coleções de NFT na(s) rede(s) selecionada(s)"
       }
     },
     "everything": "Todos",
@@ -810,8 +836,8 @@
       "selectedNetworks": {
         "blastHeading": "Blast NFTs em breve",
         "blastSubheading": "Esta carteira ainda não suporta a visualização dos seus NFTs na rede Blast",
-        "heading": "Sem NFTs nas redes selecionadas",
-        "subheading": "Sua carteira contém 0 NFTs em todas as redes selecionadas"
+        "heading": "Sem NFTs na(s) rede(s) selecionada(s)",
+        "subheading": "Sua carteira contém 0 NFTs na(s) rede(s) selecionada(s)"
       }
     },
     "title": "NFTs"
@@ -1213,11 +1239,12 @@
     "addressHeader": "Enviando para",
     "addressOrENS": "Insira o endereço ou domínio ENS...",
     "amountHeader": "Valor",
+    "available": "Disponível {0}",
     "balance": "Saldo {0}",
     "confirm": "Confirmar",
     "confirmSend": "Confirmar envio",
     "create": "Criar",
-    "enterAmount": "Insira um valor",
+    "enterAmount": "Insira um valor {symbol}",
     "evm_fee_fast": "Rápido",
     "evm_fee_normal": "Normal",
     "evm_fee_urgent": "Urgente",
@@ -1351,7 +1378,7 @@
   },
   "swap": {
     "amountExceedingBalance": "O valor inserido excede o saldo disponível",
-    "amountPlaceholder": "Insira um valor",
+    "amountPlaceholder": "Insira um valor {symbol}",
     "balance": "Saldo {0}",
     "buttonTitle": "Swap",
     "confirmation": {
@@ -1646,7 +1673,7 @@
     "crypto": "Criptomoeda",
     "cryptoAndNft": "NFTs e criptomoeda",
     "ethereumAddressLabel": "Inclui redes compatíveis com Ethereum",
-    "ethereumExplainerBody": "O sistema de endereço do Ethereum se estende até as redes compatíveis como Ethereum, Polygon, Arbitrum, OP Mainnet, Base, Linea e Avalanche, garantindo que seu endereço funcione em qualquer lugar",
+    "ethereumExplainerBody": "O sistema de endereço do Ethereum se estende até as redes compatíveis como Polygon, Arbitrum, OP Mainnet, Base, Blast, Linea e Avalanche, garantindo que seu endereço funcione em qualquer lugar",
     "ethereumExplainerHeading": "Seu endereço do Ethereum",
     "tokenAddress": "Endereço do {token}"
   },
@@ -1987,6 +2014,12 @@
       "part1": "Apresentamos as ações Pressionamento longo para seus ativos e NFTs! Execute tarefas como enviar, receber e ocultar com tranquilidade sem precisar navegar por muitas páginas.",
       "part2": "Aproveite uma experiência de carteira mais tranquila e intuitiva hoje mesmo.",
       "title": "Ações rápidas para sua conveniência"
+    },
+    "swaps": {
+      "buttonText": "Fazer swap agora",
+      "part1": "Faça swap de quase todos os seus ativos por outros tokens e criptomoedas populares, usando alguns dos protocolos de swap mais robustos em cadeia. Seja fazendo swap em uma única rede ou fazendo a ponte através de oito cadeias suportadas — a maioria das negociações é liquidada em apenas alguns segundos!",
+      "part2": "Experimente Exchanges de token rápidas, seguras e flexíveis — diretamente em sua carteira.",
+      "title": "Swaps rápidos e versáteis ao seu alcance"
     }
   }
 }

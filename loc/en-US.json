@@ -211,13 +211,17 @@
     "collection_see_all": "View all",
     "manage": "Manage",
     "total_balance": "Balance",
-    "deposits": "DeFi"
+    "deposits": "DeFi",
+    "defiEmpty": "Start earning with DeFi",
+    "defiEmptyCaption": "Your positions will appear here once available. Participate in DeFi and start earning yield."
   },
   "explore": {
     "disclaimerTitle": "Welcome to Explore!",
     "disclaimerBody": "Please note this feature contains content provided by third parties. Refer to the relevant terms from the Terms of Service.",
     "errorTitle": "Something went wrong",
-    "errorBody": "The app couldn't load the content in this page. Try again later"
+    "errorBody": "The app couldn't load the content in this page. Try again later",
+    "earnTitle": "Earn yield with DeFi",
+    "earnBody": "Participate in Decentralized Finance"
   },
   "marketData": {
     "about": "About {assetSymbol}",
@@ -301,6 +305,7 @@
     "blast": "Blast",
     "linea": "Linea",
     "avalanche": "Avalanche",
+    "ink": "Ink",
     "ink_sepolia": "Ethereum - Ink Sepolia"
   },
   "nftList": {
@@ -312,10 +317,8 @@
         "subheading": "Your wallet contains 0 NFTs on all of the supported networks"
       },
       "selectedNetworks": {
-        "heading": "No NFTs on selected networks",
-        "subheading": "Your wallet contains 0 NFTs on the selected networks",
-        "blastHeading": "Blast NFTs coming soon",
-        "blastSubheading": "This wallet does not yet support viewing your NFTs on the Blast network"
+        "heading": "No NFTs on selected network(s)",
+        "subheading": "Your wallet contains 0 NFTs on the selected network(s)"
       }
     },
     "collections": "Collections",
@@ -325,8 +328,8 @@
         "subheading": "Your wallet contains 0 collections on all of the supported networks"
       },
       "selectedNetworks": {
-        "heading": "No collections on selected networks",
-        "subheading": "Your wallet contains 0 NFT collections on the selected networks"
+        "heading": "No collections on selected network(s)",
+        "subheading": "Your wallet contains 0 NFT collections on the selected network(s)"
       }
     }
   },
@@ -550,13 +553,6 @@
       "buttonText": "Close"
     }
   },
-  "blastWelcoming": {
-    "title": "Kraken Wallet Welcomes Blast!",
-    "boldBlastNetwork": "Blast Network",
-    "part1": "Your wallet now supports the {boldBlastNetwork}. The Ethereum L2 with native yield for ETH and stablecoins.",
-    "part2": "The Blast integration enables you to view asset balances, broadcast transactions, and connect to dapps on the Blast Network. NFT support is coming soon.",
-    "buttonText": "Sounds good"
-  },
   "avaxLineaWelcoming": {
     "title": "Avalanche & Linea support is Here!",
     "part1": "Your wallet now supports Avalanche, the highly scalable blockchain with blazing-fast finality, and Linea, the Ethereum L2 designed for secure, low-cost transactions.",
@@ -708,7 +704,7 @@
     "copied": "Address copied",
     "ethereumAddressLabel": "Includes Ethereum compatible networks",
     "ethereumExplainerHeading": "Your Ethereum address",
-    "ethereumExplainerBody": "Ethereum's address system extends to Ethereum compatible networks like Polygon, Arbitrum, OP Mainnet, Base, Linea and Avalanche ensuring your one address works everywhere"
+    "ethereumExplainerBody": "Ethereum's address system extends to Ethereum compatible networks like Polygon, Arbitrum, OP Mainnet, Base, Blast, Linea and Avalanche ensuring your one address works everywhere"
   },
   "swap": {
     "title": "Swap",
@@ -1280,20 +1276,54 @@
     "skipButton": "Maybe later"
   },
   "whatsNew": {
-    "assetMarketData": {
-      "title": "Comprehensive asset data at your fingertips",
-      "part1": "You can now track your holdings' an asset's performance and price changes directly in the wallet!",
-      "part2": "Dive into detailed asset insights, get informed of potential threats, and seamlessly access essential information like token contracts and current network fees.",
-      "buttonText": "Check it out"
-    },
-    "longPress": {
-      "title": "Quick actions for your convenience",
-      "part1": "We're excited to introduce Long Press actions for your assets and NFTs! Perform tasks like sending, receiving, and hiding with ease, without navigating multiple screens.",
-      "part2": "Enjoy a smoother, more intuitive wallet experience today.",
-      "buttonText": "Sounds good"
+    "swaps": {
+      "title": "Fast, Versatile Swaps at Your Fingertips",
+      "part1": "Swap almost any of your assets for other popular tokens and crypto, using some of the most robust swap protocols onchain.  Whether swapping within a single network or seamlessly bridging across eight supported chains — most trades settle in just seconds!",
+      "part2": "Experience fast, secure, and flexible token exchanges — right within your wallet.",
+      "buttonText": "Swap now"
     }
   },
   "krakenConnect": {
-    "balanceOnKraken": "on Kraken"
+    "balanceOnKraken": "on Kraken",
+    "unconnected": {
+      "title": "Get crypto in your wallet with Kraken",
+      "body": "Connect your Kraken exchange account to seamlessly transfer funds into your wallet",
+      "cta": "Connect Kraken exchange",
+      "noAccount": "I don't have an account",
+      "alert": "Only the current wallet: \"<b>{walletName}</b>\", will be connected to Kraken."
+    },
+    "stepsToConnect": {
+      "heading": "To connect to Kraken follow these steps:",
+      "step1": {
+        "label": "Step 1",
+        "description": "Setup your Kraken account"
+      },
+      "step2": {
+        "label": "Step 2",
+        "description": "Come back to the wallet"
+      },
+      "step3": {
+        "label": "Step 3",
+        "description": "Connect your Kraken account"
+      },
+      "hasAccount": "I've created an account"
+    },
+    "transferCta": {
+      "heading": "Transfer from Kraken",
+      "body": "Connect your Kraken account to transfer crypto quickly"
+    },
+    "fundCta": {
+      "heading": "Fund your wallet",
+      "body": "Connect your Kraken account to <b>transfer crypto to your wallet</b>"
+    },
+    "exchangeBalance": "Exchange balance",
+    "transfer": {
+      "available": "{value} available",
+      "title": "Transfer",
+      "selectAsset": "Select an asset to transfer",
+      "selectAssetDescription": "Transfer from Kraken exchange to your wallet",
+      "unsupportedAssets": "Unsupported assets",
+      "unsupportedAssetsDescription": "{count} other assets in your exchange account are not supported by the wallet"
+    }
   }
 }

@@ -10,6 +10,7 @@ export enum NETWORK_FILTER {
   doge = 'bip122:1a91e3dace36e2be3bf030a65679fe82',
   linea = 'eip155:59144/',
   avalanche = 'eip155:43114/',
+  ink = 'eip155:57073/',
 }
 
 export type UINetworkFilter = NETWORK_FILTER | 'all';

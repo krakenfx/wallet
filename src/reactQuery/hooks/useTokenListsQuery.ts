@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { fetchTokenLists } from '@/api/fetchTokenLists';
 import type { AssetReputation } from '@/realm/assetMetadata';
+import { adaptTokenFromTokenListsToRemoteAsset } from '@/screens/CoinsList/utils/adaptTokenFromTokenListsToRemoteAsset';
+import type { RemoteAsset } from '@/types';
 
 const STALE_TIME = 30 * 3600 * 1000;
 const MAX_RETRY_TIME = 60 * 1000;
@@ -46,6 +48,22 @@ export const useTokenListReputationLookupQuery = () => {
       });
 
       return lookupTable;
+    },
+  });
+};
+
+export const useKrakenTokenListQuery = () => {
+  const { data, isLoading, isError } = useTokenListsQuery();
+  return useQuery<RemoteAsset[]>({
+    queryKey: ['krakenTokenLists'],
+    gcTime: Infinity,
+    enabled: !isLoading && !isError && !!data,
+    queryFn: () => {
+      if (!data) {
+        return [];
+      }
+      const krakenTokens = data.whitelist.filter(token => token.lists.some(provider => provider.toLowerCase() === 'kraken'));
+      return krakenTokens.map(token => adaptTokenFromTokenListsToRemoteAsset(token));
     },
   });
 };

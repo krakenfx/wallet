@@ -44,8 +44,10 @@ export const ReceiveTokenRow = ({ token, onQRcodePress, showEthereumExplainer }:
     ChainAgnostic.NETWORK_ARBITRUM,
     ChainAgnostic.NETWORK_OPTIMISM,
     ChainAgnostic.NETWORK_BASE,
+    ChainAgnostic.NETWORK_BLAST,
     ChainAgnostic.NETWORK_LINEA,
     ChainAgnostic.NETWORK_AVALANCHE,
+    ChainAgnostic.NETWORK_INK,
     ...(isNewNetworksEnabled ? NEW_EVM_NETWORKS : []),
   ];
 

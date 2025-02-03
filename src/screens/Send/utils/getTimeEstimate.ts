@@ -14,6 +14,7 @@ export const timePerBlockInSecondsMap: Partial<Record<WalletType, number>> = {
   HDsegwitBech32: 10 * 60,
   linea: 2,
   avalanche: 2,
+  ink: 1,
   inkSepolia: 2,
 };
 
