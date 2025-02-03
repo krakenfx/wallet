@@ -6,7 +6,7 @@ import { ScrollViewWithRefreshControl } from '@/components/ScrollerWithRefreshCo
 import { useAppInitTasks } from '@/hooks/useAppInitTasks';
 import { usePushNotificationsRegisterRemoteNotification } from '@/hooks/usePushNotificationsRegisterRemoteNotifications';
 import { useRefreshStateActions } from '@/realm/refreshManagerHooks';
-import type { NavigationProps } from '@/Routes';
+import { type NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 

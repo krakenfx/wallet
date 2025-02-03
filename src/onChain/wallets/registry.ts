@@ -13,6 +13,7 @@ import {
   blastNetwork,
   ethereumNetwork,
   ethereumSepoliaNetwork,
+  inkNetwork,
   inkSepoliaNetwork,
   lineaNetwork,
   optimismNetwork,
@@ -39,6 +40,7 @@ export const Networks = {
   blast: blastNetwork,
   linea: lineaNetwork,
   avalanche: avalancheCChainNetwork,
+  ink: inkNetwork,
   inkSepolia: inkSepoliaNetwork,
 };
 
@@ -51,6 +53,7 @@ export const DefiNetworks = [
   Networks.optimism,
   Networks.linea,
   Networks.avalanche,
+  Networks.ink,
 ];
 export const parseDefiNetworkTypeToWalletType = (networkType: DefiNetwork): WalletType => {
   switch (networkType) {
@@ -78,6 +81,7 @@ export const Transports = {
   blast: evmHarmonyTransport,
   linea: evmHarmonyTransport,
   avalanche: evmHarmonyTransport,
+  ink: evmHarmonyTransport,
   inkSepolia: evmHarmonyTransport,
 } satisfies { [x in keyof typeof Networks]: Transport<any, any, any, any, any> };
 
@@ -116,6 +120,9 @@ export function getNetworkName<TType, TRequest, TFeeOption>(network: Network<TTy
 export const isTestNet = (network: Network & { isTestnet?: boolean }) => {
   return !!network.isTestnet;
 };
+
+export const getNativeTokenBySymbol = (assetSymbol: string) =>
+  values(Networks).find(network => network.nativeTokenSymbol.toLocaleLowerCase() === assetSymbol.toLowerCase());
 
 export const nativeTokenCaipIds = new Set(values(Networks).map(network => network.nativeTokenCaipId));
 

@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { InteractionManager } from 'react-native';
 
 import { useIsTaskCompleted } from '@/hooks/whatsNewHooks/useIsTaskCompleted';
-import type { SettingsType } from '@/realm/settings';
+import { type SettingsType } from '@/realm/settings';
 
 import type { NavigationProps, Routes } from '@/Routes';
 

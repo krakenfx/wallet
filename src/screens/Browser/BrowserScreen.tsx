@@ -95,4 +95,5 @@ BrowserScreen.navigationOptions = navigationStyle({
   animation: 'slide_from_bottom',
 
   gestureEnabled: false,
+  autoHideHomeIndicator: true,
 });

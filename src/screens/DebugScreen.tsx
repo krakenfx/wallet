@@ -42,6 +42,7 @@ import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
 import { BitcoinNetwork } from '@/onChain/wallets/bitcoin';
 import { polygonNetwork } from '@/onChain/wallets/evmNetworks';
 import { getImplForWallet } from '@/onChain/wallets/registry';
+import { RealmSettingsKey, useSettingsMutations } from '@/realm/settings';
 import { useRealmWallets } from '@/realm/wallets';
 import { Routes } from '@/Routes';
 import { SettingsSwitch } from '@/screens/Settings/components';
@@ -135,8 +136,13 @@ export const DebugScreen = () => {
   const deviceInfoRef = useRef<BottomSheetMethods>(null);
   const backendConfigRef = useRef<BottomSheetMethods>(null);
 
-  const [isSwapEnabled, setIsSwapEnabled] = useFeatureFlag('swapsEnabled');
   const [krakenConnectEnabled, setKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
+  const [apiKey, setApiKey] = useState<string>();
+  const [apiSecret, setApiSecret] = useState<string>();
+  const { setSettings, removeSettings } = useSettingsMutations();
+
+  const [isEarnEnabled, setIsEarnEnabled] = useFeatureFlag('earnEnabled');
+
   const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
 
   useEffect(() => {
@@ -167,6 +173,24 @@ export const DebugScreen = () => {
       disableShowToastOnAllErrors();
     }
     setShowToastForAllErrors(value);
+  };
+
+  const toggleKrakenConnect = async () => {
+    if (krakenConnectEnabled) {
+      removeSettings(RealmSettingsKey.krakenConnectApiKey);
+      removeSettings(RealmSettingsKey.krakenConnectApiSecretKey);
+      setKrakenConnectEnabled(false);
+      showToast({ text: 'Kraken Connect credential removed!', type: 'success' });
+    } else {
+      const keysMissing = !apiKey || !apiSecret;
+      const msg = keysMissing ? 'Feature flag enabled, but no keys were stored!' : 'Kraken Connect credential saved! Reload the app.';
+      setSettings(RealmSettingsKey.krakenConnectApiKey, apiKey || '');
+      setSettings(RealmSettingsKey.krakenConnectApiSecretKey, apiSecret || '');
+      setKrakenConnectEnabled(true);
+      await showToast({ text: msg, type: keysMissing ? 'info' : 'success' });
+      setApiSecret('');
+      setApiKey('');
+    }
   };
 
   useEffect(() => {
@@ -284,16 +308,6 @@ export const DebugScreen = () => {
         {!!Config.INTERNAL_RELEASE && (
           <>
             <SettingsBox isFirst isHighlighted>
-              <SettingsSwitch icon="swap" text="Enable Swaps" enabled={isSwapEnabled} onToggle={setIsSwapEnabled} />
-            </SettingsBox>
-            <SettingsBox isLast isHighlighted style={styles.spacing}>
-              <Label type="regularCaption1">When enabled, app will display a swap interface</Label>
-            </SettingsBox>
-          </>
-        )}
-        {!!Config.INTERNAL_RELEASE && (
-          <>
-            <SettingsBox isFirst isHighlighted>
               <SettingsSwitch
                 testID="EnableNewNetworks"
                 icon="asset-list"
@@ -308,8 +322,23 @@ export const DebugScreen = () => {
           </>
         )}
         {!!Config.INTERNAL_RELEASE && (
+          <>
+            <SettingsBox isFirst isLast isHighlighted style={[styles.spacing, styles.inputs]}>
+              <SettingsSwitch icon="plug-connected" text="Kraken Connect" enabled={krakenConnectEnabled} onToggle={toggleKrakenConnect} />
+              <Label type="regularCaption1">
+                Enter your Kraken API_KEY and API_SECRET(SIGN) and then toggle switch - your credentials will be stored in encrypted Realm. With deselecting
+                this toggle your credentials will be removed.
+              </Label>
+              <View style={styles.inputs}>
+                <Input secureTextEntry type="regularCaption1" placeholder="API KEY" onChangeText={setApiKey} value={apiKey} />
+                <Input secureTextEntry type="regularCaption1" placeholder="API SECRET" onChangeText={setApiSecret} value={apiSecret} />
+              </View>
+            </SettingsBox>
+          </>
+        )}
+        {!!Config.INTERNAL_RELEASE && (
           <SettingsBox isFirst isLast isHighlighted style={styles.spacing}>
-            <SettingsSwitch icon="plug-connected" text="Kraken Connect" enabled={krakenConnectEnabled} onToggle={setKrakenConnectEnabled} />
+            <SettingsSwitch icon="plus" text="DeFi Earn" enabled={isEarnEnabled} onToggle={setIsEarnEnabled} />
           </SettingsBox>
         )}
 
@@ -617,6 +646,11 @@ const styles = StyleSheet.create({
   },
   spacing: {
     marginBottom: 12,
+  },
+  inputs: {
+    flexDirection: 'column',
+    width: '100%',
+    gap: 8,
   },
   errorContainer: {
     padding: 12,

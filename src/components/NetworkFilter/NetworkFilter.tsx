@@ -82,6 +82,11 @@ const UI_FILTER_DATA_MAP: Record<UINetworkFilter, UIFilterData> = {
     icon: <NetworkIcon networkName="avalanche" size={16} />,
     networkFilter: NETWORK_FILTER.avalanche,
   },
+  [NETWORK_FILTER.ink]: {
+    uiLabel: () => loc.network.ink,
+    icon: <NetworkIcon networkName="ink" size={16} />,
+    networkFilter: NETWORK_FILTER.ink,
+  },
   [NETWORK_FILTER.HDsegwitBech32]: {
     uiLabel: () => loc.network.bitcoin,
     icon: <NetworkIcon networkName="HDsegwitBech32" size={16} />,
@@ -97,6 +102,7 @@ const UI_FILTER_DATA_MAP: Record<UINetworkFilter, UIFilterData> = {
 export const DEFAULT_ORDERED_NETWORK_FILTERS: UINetworkFilter[] = [
   'all',
   NETWORK_FILTER.ethereum,
+  NETWORK_FILTER.ink,
   NETWORK_FILTER.polygon,
   NETWORK_FILTER.arbitrum,
   NETWORK_FILTER.optimism,

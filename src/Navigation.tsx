@@ -27,6 +27,7 @@ import { ExplainerScreen } from '@/screens/Explainer';
 import { ExploreScreen, ExploreSubpageScreen } from '@/screens/Explore';
 import { GlobalActivityScreen } from '@/screens/GlobalActivity';
 import { HomeScreen } from '@/screens/Home';
+import { KrakenConnectTransferScreen } from '@/screens/KrakenConnectTransfer/KrakenConnectTransferScreen';
 import { ManageAssetsGlobalFilterScreen } from '@/screens/ManageAssetsGlobalFilter';
 
 import { MarketDataInfoScreen } from '@/screens/MarketDataInfoScreen';
@@ -40,13 +41,14 @@ import { TriggeredPushPromptScreen } from '@/screens/TriggerredPushPromptScreen'
 import { UniversalSendScreen } from '@/screens/UniversalSend';
 import { WalletBackupPromptScreen } from '@/screens/WalletBackupPrompt';
 import { WalletConnectExplainerScreen } from '@/screens/WalletConnectExplainer';
-import { WhatsNewAssetMarketDataScreen, WhatsNewAvaxLineaScreen, WhatsNewBlastScreen, WhatsNewLongPressScreen } from '@/screens/WhatsNew';
+import { WhatsNewAvaxLineaScreen, WhatsNewSwaps } from '@/screens/WhatsNew';
 
 import { useConnectionManager } from '@/utils/useConnectionManager';
 
 import { DefaultBackButton } from './components/BackButton';
 
 import { BrowserScreen } from './screens/Browser';
+import { KrakenConnectScreen } from './screens/KrakenConnect/KrakenConnectScreen';
 import { SwapScreen } from './screens/Swap';
 import { WhatsNewBrowserExploreScreen } from './screens/WhatsNew/WhatsNewBrowserExploreScreen';
 import { useTheme } from './theme/themes';
@@ -136,10 +138,8 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="TriggeredPushPrompt" component={TriggeredPushPromptScreen} options={TriggeredPushPromptScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="SendQRScan" component={SendQRScanScreen} options={SendQRScanScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="WalletConnectExplainer" component={WalletConnectExplainerScreen} options={WalletConnectExplainerScreen.navigationOptions} />
-      <DefaultStack.Screen name="WhatsNewBlast" component={WhatsNewBlastScreen} options={WhatsNewBlastScreen.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewAvaxLinea" component={WhatsNewAvaxLineaScreen} options={WhatsNewAvaxLineaScreen.navigationOptions} />
-      <DefaultStack.Screen name="WhatsNewAssetMarketData" component={WhatsNewAssetMarketDataScreen} options={WhatsNewAssetMarketDataScreen.navigationOptions} />
-      <DefaultStack.Screen name="WhatsNewLongPress" component={WhatsNewLongPressScreen} options={WhatsNewLongPressScreen.navigationOptions} />
+      <DefaultStack.Screen name="WhatsNewSwaps" component={WhatsNewSwaps} options={WhatsNewSwaps.navigationOptions} />
       <DefaultStack.Screen name="WhatsNewBrowserExplore" component={WhatsNewBrowserExploreScreen} options={WhatsNewBrowserExploreScreen.navigationOptions} />
       <DefaultStack.Screen
         name="WalletConnectSignRequest_GenericMessage"
@@ -159,6 +159,12 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="Explore" component={ExploreScreen} options={ExploreScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ExploreSubpage" component={ExploreSubpageScreen} options={ExploreSubpageScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Swap" component={SwapScreen} options={SwapScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="KrakenConnect" component={KrakenConnectScreen} options={KrakenConnectScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen
+        name="KrakenConnectTransfer"
+        component={KrakenConnectTransferScreen}
+        options={KrakenConnectTransferScreen.navigationOptions(theme)}
+      />
     </DefaultStack.Navigator>
   );
 };

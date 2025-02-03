@@ -29,6 +29,10 @@ declare module 'react-native-config' {
     DISABLE_PREVENT_SCREEN_CAPTURE?: boolean;
     INTERNAL_RELEASE?: string;
     STORYBOOK_ENABLED?: string;
+    KRAKEN_API_URI: string;
+    PERSONAL_API_KEY?: string;
+    PERSONAL_PRIVATE_KEY?: string;
+    VAULTS_API_KEY: string;
   }
 
   export const Config: NativeConfig;

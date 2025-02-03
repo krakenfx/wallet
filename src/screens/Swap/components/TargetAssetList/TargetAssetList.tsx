@@ -1,6 +1,6 @@
 import { useHeaderHeight } from '@react-navigation/elements';
 
-import { groupBy, keyBy, sortBy } from 'lodash';
+import { compact, groupBy, keyBy, sortBy } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -138,7 +138,13 @@ export const TargetAssetList = React.forwardRef<BottomSheetRef, Props>(
       const whitelisted = groups[REPUTATION.WHITELISTED] ?? [];
       const unverified = groups[REPUTATION.UNVERIFIED] ?? [];
 
-      return [loc.swap.yourAssets, ...providerCompatibleTokens, loc.swap.otherAssets, ...whitelisted, ...unverified];
+      return compact([
+        providerCompatibleTokens.length ? loc.swap.yourAssets : undefined,
+        ...providerCompatibleTokens,
+        whitelisted.length || unverified.length ? loc.swap.otherAssets : undefined,
+        ...whitelisted,
+        ...unverified,
+      ]);
     }, [isLoading, ownedTokensWithBalance, providerCompatibleTokens, sourceAsset.assetId, tokenReputationLookup, tokenTypeDict]);
 
     const data = useTokenSearchQuery(assets, searchQuery, transformSearchScore);

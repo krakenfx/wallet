@@ -1,129 +1,130 @@
 
 
+
 export interface paths {
-  '/v1/analyse/address': {
+  "/v1/analyse/address": {
     
-    post: operations['AnalyseAddress'];
+    post: operations["AnalyseAddress"];
   };
-  '/v1/analyse/url': {
+  "/v1/analyse/url": {
     
-    post: operations['AnalyseUrl'];
+    post: operations["AnalyseUrl"];
   };
-  '/v1/balances': {
+  "/v1/balances": {
     
-    get: operations['GetBalances'];
+    get: operations["GetBalances"];
   };
-  '/v2/balances': {
+  "/v2/balances": {
     
-    post: operations['GetBalancesV2'];
+    post: operations["GetBalancesV2"];
   };
-  '/v1/broadcast': {
+  "/v1/broadcast": {
     
-    post: operations['Broadcast'];
+    post: operations["Broadcast"];
   };
-  '/v1/explore': {
+  "/v1/explore": {
     
-    get: operations['GetMainPageContent'];
+    get: operations["GetMainPageContent"];
   };
-  '/v1/explore/page/{pageSlug}': {
+  "/v1/explore/page/{pageSlug}": {
     
-    get: operations['GetPageContentBySlug'];
+    get: operations["GetPageContentBySlug"];
   };
-  '/v1/explore/content/{contentId}': {
+  "/v1/explore/content/{contentId}": {
     
-    get: operations['GetContentById'];
+    get: operations["GetContentById"];
   };
-  '/v1/fee': {
+  "/v1/fee": {
     
-    get: operations['GetFees'];
+    get: operations["GetFees"];
   };
-  '/v1/nfts': {
+  "/v1/nfts": {
     
-    get: operations['GetNfts'];
+    get: operations["GetNfts"];
   };
-  '/v1/positions': {
+  "/v1/positions": {
     
-    get: operations['GetPositions'];
+    get: operations["GetPositions"];
   };
-  '/v2/positions': {
+  "/v2/positions": {
     
-    get: operations['GetPositionsV2'];
+    get: operations["GetPositionsV2"];
   };
-  '/pow/request': {
+  "/pow/request": {
     
-    post: operations['GetChallenge'];
+    post: operations["GetChallenge"];
   };
-  '/pow/submit': {
+  "/pow/submit": {
     
-    post: operations['SubmitSolution'];
+    post: operations["SubmitSolution"];
   };
-  '/v1/price': {
+  "/v1/price": {
     
-    get: operations['GetPriceData'];
+    get: operations["GetPriceData"];
   };
-  '/v2/price': {
+  "/v2/price": {
     
-    get: operations['GetPriceDataV2'];
+    get: operations["GetPriceDataV2"];
   };
-  '/v1/priceHistory': {
+  "/v1/priceHistory": {
     
-    get: operations['GetPriceHistoryData'];
+    get: operations["GetPriceHistoryData"];
   };
-  '/v1/resolveAddressLabels': {
+  "/v1/resolveAddressLabels": {
     
-    get: operations['ResolveEnsAddresses'];
+    get: operations["ResolveEnsAddresses"];
   };
-  '/v1/resolveName': {
+  "/v1/resolveName": {
     
-    get: operations['ResolveEnsName'];
+    get: operations["ResolveEnsName"];
   };
-  '/v1/rpc': {
+  "/v1/rpc": {
     
-    post: operations['Rpc'];
+    post: operations["Rpc"];
   };
-  '/v1/simulate': {
+  "/v1/simulate": {
     
-    post: operations['Simulate'];
+    post: operations["Simulate"];
   };
-  '/v1/swap/tokenList/from': {
+  "/v1/swap/tokenList/from": {
     
-    get: operations['SwapFromTokenList'];
+    get: operations["SwapFromTokenList"];
   };
-  '/v1/swap/quote': {
+  "/v1/swap/quote": {
     
-    post: operations['SwapQuote'];
+    post: operations["SwapQuote"];
   };
-  '/v1/swap/tokenList/to': {
+  "/v1/swap/tokenList/to": {
     
-    get: operations['SwapToTokenList'];
+    get: operations["SwapToTokenList"];
   };
-  '/v1/tokenlist': {
+  "/v1/tokenlist": {
     
-    get: operations['GetTokenList'];
+    get: operations["GetTokenList"];
   };
-  '/v1/tokenMarketData': {
+  "/v1/tokenMarketData": {
     
-    get: operations['GetTokenMarketData'];
+    get: operations["GetTokenMarketData"];
   };
-  '/v1/tokenMetadata': {
+  "/v1/tokenMetadata": {
     
-    get: operations['GetTokenMetadata'];
+    get: operations["GetTokenMetadata"];
   };
-  '/v1/transactions': {
+  "/v1/transactions": {
     
-    get: operations['GetTransactions'];
+    get: operations["GetTransactions"];
   };
-  '/v1/transaction': {
+  "/v1/transaction": {
     
-    get: operations['GetTransactionStatus'];
+    get: operations["GetTransactionStatus"];
   };
-  '/v1/utxo': {
+  "/v1/utxo": {
     
-    get: operations['GetUtxo'];
+    get: operations["GetUtxo"];
   };
-  '/version': {
+  "/version": {
     
-    get: operations['GetVersion'];
+    get: operations["GetVersion"];
   };
 }
 
@@ -133,7 +134,7 @@ export interface components {
   schemas: {
     AddressAnalysisWarning: {
       
-      severity: 'CRITICAL' | 'WARNING' | 'INFO';
+      severity: "CRITICAL" | "WARNING" | "INFO";
       message: string;
     };
     AddressAnalysisInfo: {
@@ -143,11 +144,11 @@ export interface components {
     AnalyseAddressResult: {
       address: string;
       network: string;
-      warnings: components['schemas']['AddressAnalysisWarning'][];
-      info: components['schemas']['AddressAnalysisInfo'];
+      warnings: components["schemas"]["AddressAnalysisWarning"][];
+      info: components["schemas"]["AddressAnalysisInfo"];
     };
-    'Result_AnalyseAddressResult-Array_': {
-      content: components['schemas']['AnalyseAddressResult'][];
+    "Result_AnalyseAddressResult-Array_": {
+      content: components["schemas"]["AnalyseAddressResult"][];
     };
     
     ErrorParams: {
@@ -156,14 +157,14 @@ export interface components {
     };
     ErrorResult: {
       message: string;
-      params?: components['schemas']['ErrorParams'];
+      params?: components["schemas"]["ErrorParams"];
     };
     AnalyseUrlResult: {
       url: string;
       isMalicious: boolean | null;
     };
     Result_AnalyseUrlResult_: {
-      content: components['schemas']['AnalyseUrlResult'];
+      content: components["schemas"]["AnalyseUrlResult"];
     };
     BlockChainExplorer: {
       url: string;
@@ -173,19 +174,17 @@ export interface components {
       url: string;
       name: string;
     };
-    TokenReputation:
-      | {
-          tokenLists: string[];
-        }
-      | {
-          blacklists: string[];
-        };
+    TokenReputation: {
+      tokenLists: string[];
+    } | {
+      blacklists: string[];
+    };
     TokenMetadata: {
       isSpam?: boolean;
-      reputation?: components['schemas']['TokenReputation'];
+      reputation?: components["schemas"]["TokenReputation"];
       tokenAddress?: string;
-      links?: components['schemas']['SocialLink'][];
-      explorers?: components['schemas']['BlockChainExplorer'][];
+      links?: components["schemas"]["SocialLink"][];
+      explorers?: components["schemas"]["BlockChainExplorer"][];
       description?: string;
       priceUSD?: string;
       logoUrl?: string;
@@ -199,26 +198,26 @@ export interface components {
     InternalBalance: {
       token: string;
       value: string;
-      metadata?: components['schemas']['TokenMetadata'];
+      metadata?: components["schemas"]["TokenMetadata"];
     };
-    'Result_InternalBalance-Array_': {
-      content: components['schemas']['InternalBalance'][];
+    "Result_InternalBalance-Array_": {
+      content: components["schemas"]["InternalBalance"][];
     };
     
-    'Record_string.InternalBalance-Array_': Record<string, never>;
+    "Record_string.InternalBalance-Array_": Record<string, never>;
     
-    'Record_string.boolean_': Record<string, never>;
-    'Result_Record_string.InternalBalance-Array_-or-Record_string.boolean__': {
-      content: components['schemas']['Record_string.InternalBalance-Array_'] | components['schemas']['Record_string.boolean_'];
+    "Record_string.boolean_": Record<string, never>;
+    "Result_Record_string.InternalBalance-Array_-or-Record_string.boolean__": {
+      content: components["schemas"]["Record_string.InternalBalance-Array_"] | components["schemas"]["Record_string.boolean_"];
     };
     BroadcastReceipt: {
       transactionId: string;
     };
     Result_BroadcastReceipt_: {
-      content: components['schemas']['BroadcastReceipt'];
+      content: components["schemas"]["BroadcastReceipt"];
     };
     
-    'ExploreContentVariant.Text': 'Text';
+    "ExploreContentVariant.Text": "Text";
     
     ExploreTextContent: {
       id: string;
@@ -229,14 +228,14 @@ export interface components {
     };
     ExploreTextContentRow: {
       id: string;
-      content: components['schemas']['ExploreTextContent'][];
+      content: components["schemas"]["ExploreTextContent"][];
       hasDynamicContent: boolean;
-      variant: components['schemas']['ExploreContentVariant.Text'];
+      variant: components["schemas"]["ExploreContentVariant.Text"];
     };
     
-    'ExploreContentVariant.Card': 'Card';
+    "ExploreContentVariant.Card": "Card";
     
-    ExploreCardSize: 'Large' | 'Medium' | 'Small';
+    ExploreCardSize: "Large" | "Medium" | "Small";
     ExploreLinkExternal: {
       text: string;
       
@@ -249,32 +248,32 @@ export interface components {
       isInternal: true;
       slug: string;
     };
-    ExploreLink: components['schemas']['ExploreLinkExternal'] | components['schemas']['ExploreLinkInternal'];
+    ExploreLink: components["schemas"]["ExploreLinkExternal"] | components["schemas"]["ExploreLinkInternal"];
     ExploreCardContent: {
       id: string;
       
       isDynamicContent: false;
       title?: string;
       body?: string;
-      size: components['schemas']['ExploreCardSize'];
+      size: components["schemas"]["ExploreCardSize"];
       background: string;
       floatingIcon?: string;
       buttonText?: string;
       buttonLink?: string;
-      link?: components['schemas']['ExploreLink'];
+      link?: components["schemas"]["ExploreLink"];
       info?: string;
     };
     ExploreCardContentRow: {
       id: string;
-      content: components['schemas']['ExploreCardContent'][];
+      content: components["schemas"]["ExploreCardContent"][];
       hasDynamicContent: boolean;
-      variant: components['schemas']['ExploreContentVariant.Card'];
-      cardSize: components['schemas']['ExploreCardSize'];
+      variant: components["schemas"]["ExploreContentVariant.Card"];
+      cardSize: components["schemas"]["ExploreCardSize"];
     };
     
-    'ExploreContentVariant.List': 'List';
+    "ExploreContentVariant.List": "List";
     
-    ExploreListIconVariant: 'Square' | 'RoudedCorners' | 'Circle';
+    ExploreListIconVariant: "Square" | "RoudedCorners" | "Circle";
     ExploreListItemContent: {
       id: string;
       
@@ -282,73 +281,69 @@ export interface components {
       title?: string;
       body?: string;
       icon?: string;
-      iconVariant?: components['schemas']['ExploreListIconVariant'];
+      iconVariant?: components["schemas"]["ExploreListIconVariant"];
       buttonText?: string;
       buttonLink?: string;
-      link?: components['schemas']['ExploreLink'];
+      link?: components["schemas"]["ExploreLink"];
     };
     ExploreListContent: {
       id: string;
       
       isDynamicContent: false;
       title?: string;
-      items: components['schemas']['ExploreListItemContent'][];
+      items: components["schemas"]["ExploreListItemContent"][];
       shuffleItems?: boolean;
     };
     ExploreListContentRow: {
       id: string;
-      content: components['schemas']['ExploreListContent'][];
+      content: components["schemas"]["ExploreListContent"][];
       hasDynamicContent: boolean;
-      variant: components['schemas']['ExploreContentVariant.List'];
+      variant: components["schemas"]["ExploreContentVariant.List"];
     };
     
-    'ExploreContentVariant.Hero': 'Hero';
+    "ExploreContentVariant.Hero": "Hero";
     
-    ExploreHeroVariant: 'Card' | 'FullBleed';
+    ExploreHeroVariant: "Card" | "FullBleed";
     ExploreHeroContent: {
       id: string;
       
       isDynamicContent: false;
-      variant: components['schemas']['ExploreHeroVariant'];
+      variant: components["schemas"]["ExploreHeroVariant"];
       title: string;
       body?: string;
       background: string;
-      cta?: components['schemas']['ExploreListItemContent'];
+      cta?: components["schemas"]["ExploreListItemContent"];
     };
     ExploreHeroContentRow: {
       id: string;
-      content: components['schemas']['ExploreHeroContent'][];
+      content: components["schemas"]["ExploreHeroContent"][];
       hasDynamicContent: boolean;
-      variant: components['schemas']['ExploreContentVariant.Hero'];
-      heroVariant: components['schemas']['ExploreHeroVariant'];
+      variant: components["schemas"]["ExploreContentVariant.Hero"];
+      heroVariant: components["schemas"]["ExploreHeroVariant"];
     };
     
-    ExploreContentRow:
-      | components['schemas']['ExploreTextContentRow']
-      | components['schemas']['ExploreCardContentRow']
-      | components['schemas']['ExploreListContentRow']
-      | components['schemas']['ExploreHeroContentRow'];
-    'Result_ExploreContentRow-Array_': {
-      content: components['schemas']['ExploreContentRow'][];
+    ExploreContentRow: components["schemas"]["ExploreTextContentRow"] | components["schemas"]["ExploreCardContentRow"] | components["schemas"]["ExploreListContentRow"] | components["schemas"]["ExploreHeroContentRow"];
+    "Result_ExploreContentRow-Array_": {
+      content: components["schemas"]["ExploreContentRow"][];
     };
     Result_ExploreContentRow_: {
-      content: components['schemas']['ExploreContentRow'];
+      content: components["schemas"]["ExploreContentRow"];
     };
     
-    FeeOptionKind: 'slow' | 'medium' | 'fast' | 'default';
+    FeeOptionKind: "slow" | "medium" | "fast" | "default";
     DefaultFeeOption: {
       
       estimatedTimeBlocks?: number;
       token: string;
       amount: string;
-      kind: components['schemas']['FeeOptionKind'];
+      kind: components["schemas"]["FeeOptionKind"];
     };
     EVMFeeOption1559: {
       
       estimatedTimeBlocks?: number;
       
       is1559: true;
-      kind: components['schemas']['FeeOptionKind'];
+      kind: components["schemas"]["FeeOptionKind"];
       maxPriorityFeePerGas: string;
       maxFeePerGas: string;
     };
@@ -357,22 +352,22 @@ export interface components {
       estimatedTimeBlocks?: number;
       
       is1559: false;
-      kind: components['schemas']['FeeOptionKind'];
+      kind: components["schemas"]["FeeOptionKind"];
       fee: string;
     };
-    EVMFeeOption: components['schemas']['EVMFeeOption1559'] | components['schemas']['EVMFeeOptionPre1559'];
+    EVMFeeOption: components["schemas"]["EVMFeeOption1559"] | components["schemas"]["EVMFeeOptionPre1559"];
     SolanaFeeOption: {
       
       estimatedTimeBlocks?: number;
-      kind: components['schemas']['FeeOptionKind'];
+      kind: components["schemas"]["FeeOptionKind"];
       
       computeUnitPriceMicroLamports: number;
       
       computeUnitLimit: number;
     };
-    FeeOption: components['schemas']['DefaultFeeOption'] | components['schemas']['EVMFeeOption'] | components['schemas']['SolanaFeeOption'];
-    'Result_FeeOption-Array_': {
-      content: components['schemas']['FeeOption'][];
+    FeeOption: components["schemas"]["DefaultFeeOption"] | components["schemas"]["EVMFeeOption"] | components["schemas"]["SolanaFeeOption"];
+    "Result_FeeOption-Array_": {
+      content: components["schemas"]["FeeOption"][];
     };
     
     NFT: {
@@ -380,8 +375,8 @@ export interface components {
       amount?: number;
       token: string;
     };
-    'Result_NFT-Array_': {
-      content: components['schemas']['NFT'][];
+    "Result_NFT-Array_": {
+      content: components["schemas"]["NFT"][];
     };
     ProtocolPositionToken: {
       address: string;
@@ -391,7 +386,7 @@ export interface components {
       decimals: number;
       
       price: number;
-      tokens?: components['schemas']['ProtocolPositionToken'][];
+      tokens?: components["schemas"]["ProtocolPositionToken"][];
       
       balanceUsdValue?: number;
       
@@ -400,35 +395,35 @@ export interface components {
     ProtocolTypedLabel: {
       label: string | number;
       
-      type?: 'dollar' | 'pct';
+      type?: "dollar" | "pct";
     };
     ProtocolAncillaryStat: {
       label: string;
       value: string | number;
       
-      type?: 'string' | 'number' | 'dollar' | 'pct' | 'translation';
+      type?: "string" | "number" | "dollar" | "pct" | "translation";
     };
     ProtocolPositionMetadata: {
       label?: string;
-      subLabels?: components['schemas']['ProtocolTypedLabel'][];
+      subLabels?: components["schemas"]["ProtocolTypedLabel"][];
       imageUrls?: string[];
       pricePerShare?: number[];
-      ancillaryStats?: components['schemas']['ProtocolAncillaryStat'][];
+      ancillaryStats?: components["schemas"]["ProtocolAncillaryStat"][];
     };
     ProtocolPosition: {
       
-      type: 'app-token' | 'contract-position';
+      type: "app-token" | "contract-position";
       network: string;
       address: string;
       category: string;
       usdValue: string | number;
-      tokens: components['schemas']['ProtocolPositionToken'][];
-      metadata: components['schemas']['ProtocolPositionMetadata'];
+      tokens: components["schemas"]["ProtocolPositionToken"][];
+      metadata: components["schemas"]["ProtocolPositionMetadata"];
     };
     ProtocolProduct: {
       label: string;
-      positions: components['schemas']['ProtocolPosition'][];
-      metadata: components['schemas']['ProtocolAncillaryStat'][];
+      positions: components["schemas"]["ProtocolPosition"][];
+      metadata: components["schemas"]["ProtocolAncillaryStat"][];
     };
     
     DeFiProtocol: {
@@ -437,21 +432,21 @@ export interface components {
       network: string;
       protocolId: string;
       protocolName: string;
-      products: components['schemas']['ProtocolProduct'][];
+      products: components["schemas"]["ProtocolProduct"][];
       
       protocolUsdBalance: number;
       protocolImageUrl?: string;
     };
-    'Result_DeFiProtocol-Array_': {
-      content: components['schemas']['DeFiProtocol'][];
+    "Result_DeFiProtocol-Array_": {
+      content: components["schemas"]["DeFiProtocol"][];
     };
     FiatRates: {
       [key: string]: string;
     };
-    'Result__positions-DeFiProtocol-Array--fiatRates-FiatRates__': {
+    "Result__positions-DeFiProtocol-Array--fiatRates-FiatRates__": {
       content: {
-        fiatRates: components['schemas']['FiatRates'];
-        positions: components['schemas']['DeFiProtocol'][];
+        fiatRates: components["schemas"]["FiatRates"];
+        positions: components["schemas"]["DeFiProtocol"][];
       };
     };
     Challenge: {
@@ -469,8 +464,8 @@ export interface components {
       value: string;
       token: string;
     };
-    'Result_TokenPrice-or-null_': {
-      content: components['schemas']['TokenPrice'] | null;
+    "Result_TokenPrice-or-null_": {
+      content: components["schemas"]["TokenPrice"] | null;
     };
     TokenPriceFiatValue: {
       source: string;
@@ -479,12 +474,12 @@ export interface components {
     };
     TokenPriceV2: {
       fiatValue: {
-        [key: string]: components['schemas']['TokenPriceFiatValue'];
+        [key: string]: components["schemas"]["TokenPriceFiatValue"];
       };
       assetId: string;
     };
-    'Result_TokenPriceV2-or-null_': {
-      content: components['schemas']['TokenPriceV2'] | null;
+    "Result_TokenPriceV2-or-null_": {
+      content: components["schemas"]["TokenPriceV2"] | null;
     };
     PriceHistoryItem: {
       
@@ -499,29 +494,29 @@ export interface components {
       low: number;
     };
     PriceHighLowHistory: {
-      day?: components['schemas']['PriceHighLowHistoryItem'];
-      week?: components['schemas']['PriceHighLowHistoryItem'];
-      month?: components['schemas']['PriceHighLowHistoryItem'];
-      year?: components['schemas']['PriceHighLowHistoryItem'];
-      all?: components['schemas']['PriceHighLowHistoryItem'];
+      day?: components["schemas"]["PriceHighLowHistoryItem"];
+      week?: components["schemas"]["PriceHighLowHistoryItem"];
+      month?: components["schemas"]["PriceHighLowHistoryItem"];
+      year?: components["schemas"]["PriceHighLowHistoryItem"];
+      all?: components["schemas"]["PriceHighLowHistoryItem"];
     };
     PriceHistory: {
-      prices: components['schemas']['PriceHistoryItem'][];
-      highLow: components['schemas']['PriceHighLowHistory'];
+      prices: components["schemas"]["PriceHistoryItem"][];
+      highLow: components["schemas"]["PriceHighLowHistory"];
     };
-    'Result_PriceHistory-or-null_': {
-      content: components['schemas']['PriceHistory'] | null;
+    "Result_PriceHistory-or-null_": {
+      content: components["schemas"]["PriceHistory"] | null;
     };
     
-    PriceHistoryGranularity: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'ALL';
+    PriceHistoryGranularity: "DAY" | "WEEK" | "MONTH" | "YEAR" | "ALL";
     
-    SupportedCurrency: 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'CHF' | 'JPY';
+    SupportedCurrency: "USD" | "EUR" | "GBP" | "CAD" | "AUD" | "CHF" | "JPY";
     ResolvedAddressLabels: {
       name: string;
       type: string;
     } | null;
-    'Result_ResolvedAddressLabels-Array_': {
-      content: components['schemas']['ResolvedAddressLabels'][];
+    "Result_ResolvedAddressLabels-Array_": {
+      content: components["schemas"]["ResolvedAddressLabels"][];
     };
     ENSResolvedName: {
       
@@ -539,37 +534,34 @@ export interface components {
       avatar?: string;
       url?: string;
     };
-    ResolvedName: components['schemas']['ENSResolvedName'];
-    'Result_ResolvedName-or-null_': {
-      content: components['schemas']['ResolvedName'] | null;
+    ResolvedName: components["schemas"]["ENSResolvedName"];
+    "Result_ResolvedName-or-null_": {
+      content: components["schemas"]["ResolvedName"] | null;
     };
     RpcRequestResult: {
       
-      jsonrpc: '2.0';
-    } & (
-      | {
-          result: unknown;
-        }
-      | {
-          error: {
-            message?: string;
-            
-            code: number;
-          };
-        }
-    );
+      jsonrpc: "2.0";
+    } & ({
+      result: unknown;
+    } | {
+      error: {
+        message?: string;
+        
+        code: number;
+      };
+    });
     Result_RpcRequestResult_: {
-      content: components['schemas']['RpcRequestResult'];
+      content: components["schemas"]["RpcRequestResult"];
     };
     
-    RPCErrorReason: 'INSUFFICIENT_FUNDS';
+    RPCErrorReason: "INSUFFICIENT_FUNDS";
     
     ReceiveAsset: {
       amount: string;
       assetId: string;
       sender: string;
       
-      type: 'receive';
+      type: "receive";
     };
     
     SendAsset: {
@@ -577,48 +569,48 @@ export interface components {
       assetId: string;
       recipient: string;
       
-      type: 'send';
+      type: "send";
     };
     
     MintAsset: {
-      spentToken?: components['schemas']['SendAsset'];
+      spentToken?: components["schemas"]["SendAsset"];
       amount?: string;
       assetId: string;
       
-      type: 'mint';
+      type: "mint";
     };
     
     PurchaseAsset: {
-      spentToken: components['schemas']['SendAsset'];
+      spentToken: components["schemas"]["SendAsset"];
       amount?: string;
       assetId: string;
       
-      type: 'purchase';
+      type: "purchase";
     };
     
     SoldAsset: {
-      receivedToken?: components['schemas']['ReceiveAsset'];
+      receivedToken?: components["schemas"]["ReceiveAsset"];
       amount?: string;
       assetId: string;
       
-      type: 'sale';
+      type: "sale";
     };
     
     SwapAssets: {
-      spent: components['schemas']['SendAsset'];
-      receive: components['schemas']['ReceiveAsset'];
+      spent: components["schemas"]["SendAsset"];
+      receive: components["schemas"]["ReceiveAsset"];
       
-      type: 'swap';
+      type: "swap";
     };
     
     Deposit: {
-      receivedToken?: components['schemas']['ReceiveAsset'];
+      receivedToken?: components["schemas"]["ReceiveAsset"];
       depositedAmounts: {
-        amount: string;
-        assetId: string;
-      }[];
+          amount: string;
+          assetId: string;
+        }[];
       
-      type: 'deposit';
+      type: "deposit";
     };
     
     TokenApproval: {
@@ -626,58 +618,47 @@ export interface components {
       assetId: string;
       grantee: string;
       
-      type: 'token-approval';
+      type: "token-approval";
     };
-    TransactionEffect:
-      | components['schemas']['ReceiveAsset']
-      | components['schemas']['SendAsset']
-      | components['schemas']['MintAsset']
-      | components['schemas']['PurchaseAsset']
-      | components['schemas']['SoldAsset']
-      | components['schemas']['SwapAssets']
-      | components['schemas']['Deposit']
-      | components['schemas']['TokenApproval'];
+    TransactionEffect: components["schemas"]["ReceiveAsset"] | components["schemas"]["SendAsset"] | components["schemas"]["MintAsset"] | components["schemas"]["PurchaseAsset"] | components["schemas"]["SoldAsset"] | components["schemas"]["SwapAssets"] | components["schemas"]["Deposit"] | components["schemas"]["TokenApproval"];
     
-    PreventativeAction: 'BLOCK' | 'WARN' | 'NONE';
+    PreventativeAction: "BLOCK" | "WARN" | "NONE";
     SimulationWarning: {
       
-      severity: 'CRITICAL' | 'WARNING';
+      severity: "CRITICAL" | "WARNING";
       message: string;
     };
     EVMSimulationResult: {
       
-      status: 'success' | 'failure';
-      effects?: components['schemas']['TransactionEffect'][];
-      preventativeAction?: components['schemas']['PreventativeAction'];
-      warnings?: components['schemas']['SimulationWarning'][];
+      status: "success" | "failure";
+      effects?: components["schemas"]["TransactionEffect"][];
+      preventativeAction?: components["schemas"]["PreventativeAction"];
+      warnings?: components["schemas"]["SimulationWarning"][];
       
       gasUsed: number;
       
       nonce: number;
-      errorReason?: components['schemas']['RPCErrorReason'];
+      errorReason?: components["schemas"]["RPCErrorReason"];
     };
     SolanaSimulationResult: {
       
-      status: 'success' | 'failure';
-      effects?: components['schemas']['TransactionEffect'][];
-      preventativeAction?: components['schemas']['PreventativeAction'];
-      warnings?: components['schemas']['SimulationWarning'][];
+      status: "success" | "failure";
+      effects?: components["schemas"]["TransactionEffect"][];
+      preventativeAction?: components["schemas"]["PreventativeAction"];
+      warnings?: components["schemas"]["SimulationWarning"][];
       fee: string;
       compiledTransaction: string;
     };
     ISimulationResult: {
       
-      status: 'success' | 'failure';
-      effects?: components['schemas']['TransactionEffect'][];
-      preventativeAction?: components['schemas']['PreventativeAction'];
-      warnings?: components['schemas']['SimulationWarning'][];
+      status: "success" | "failure";
+      effects?: components["schemas"]["TransactionEffect"][];
+      preventativeAction?: components["schemas"]["PreventativeAction"];
+      warnings?: components["schemas"]["SimulationWarning"][];
     };
-    SimulationResult:
-      | components['schemas']['EVMSimulationResult']
-      | components['schemas']['SolanaSimulationResult']
-      | components['schemas']['ISimulationResult'];
+    SimulationResult: components["schemas"]["EVMSimulationResult"] | components["schemas"]["SolanaSimulationResult"] | components["schemas"]["ISimulationResult"];
     Result_SimulationResult_: {
-      content: components['schemas']['SimulationResult'];
+      content: components["schemas"]["SimulationResult"];
     };
     SolanaSimulationInputCompiled: {
       dAppOrigin?: string;
@@ -688,22 +669,22 @@ export interface components {
       data: string;
       programId: string;
       keys: {
-        isWritable: boolean;
-        isSigner: boolean;
-        pubkey: string;
-      }[];
+          isWritable: boolean;
+          isSigner: boolean;
+          pubkey: string;
+        }[];
     };
     SolanaSimulationInputPlain: {
       dAppOrigin?: string;
       signatory?: string;
       atas?: {
-        instruction: components['schemas']['SerializedSolanaInstruction'];
-        address: string;
-      }[];
+          instruction: components["schemas"]["SerializedSolanaInstruction"];
+          address: string;
+        }[];
       feePayer: string;
-      instructions: components['schemas']['SerializedSolanaInstruction'][];
+      instructions: components["schemas"]["SerializedSolanaInstruction"][];
     };
-    SolanaSimulationInput: components['schemas']['SolanaSimulationInputCompiled'] | components['schemas']['SolanaSimulationInputPlain'];
+    SolanaSimulationInput: components["schemas"]["SolanaSimulationInputCompiled"] | components["schemas"]["SolanaSimulationInputPlain"];
     
     EVMTransactionSimulationInput: {
       dAppOrigin?: string;
@@ -732,20 +713,20 @@ export interface components {
       primaryType: string;
       types: {
         [key: string]: {
-          type: string;
-          name: string;
-        }[];
+            type: string;
+            name: string;
+          }[];
       };
     };
     EVMMessageSimulationInput: {
-      unsignedTypedData?: components['schemas']['UnsignedTypedStructuredData'];
+      unsignedTypedData?: components["schemas"]["UnsignedTypedStructuredData"];
       unsignedPersonalSignMessage?: string;
       unsignedMessage?: string;
       dAppOrigin?: string;
       signatory: string;
     };
-    EVMSimulationInput: components['schemas']['EVMTransactionSimulationInput'] | components['schemas']['EVMMessageSimulationInput'];
-    SimulationInput: components['schemas']['SolanaSimulationInput'] | components['schemas']['EVMSimulationInput'];
+    EVMSimulationInput: components["schemas"]["EVMTransactionSimulationInput"] | components["schemas"]["EVMMessageSimulationInput"];
+    SimulationInput: components["schemas"]["SolanaSimulationInput"] | components["schemas"]["EVMSimulationInput"];
     TokenType: {
       logoURI?: string;
       
@@ -756,15 +737,15 @@ export interface components {
       chainId: string;
     };
     TokenDict: {
-      [key: string]: components['schemas']['TokenType'];
+      [key: string]: components["schemas"]["TokenType"];
     };
     SwapFromTokenListResult: {
       fromTokens: {
-        [key: string]: components['schemas']['TokenDict'];
+        [key: string]: components["schemas"]["TokenDict"];
       };
     };
     Result_SwapFromTokenListResult_: {
-      content: components['schemas']['SwapFromTokenListResult'];
+      content: components["schemas"]["SwapFromTokenListResult"];
     };
     SwapQuoteAsset: {
       assetId: string;
@@ -775,35 +756,35 @@ export interface components {
       id: string;
       icon: string;
       
-      type: 'swap' | 'bridge';
+      type: "swap" | "bridge";
     };
     SwapRouteFee: {
-      feeAsset: components['schemas']['SwapQuoteAsset'];
+      feeAsset: components["schemas"]["SwapQuoteAsset"];
       
-      type: 'gas' | 'bridge';
+      type: "gas" | "bridge";
     };
     SwapRouteTXStep: {
-      fromAsset: components['schemas']['SwapQuoteAsset'];
-      toAsset: components['schemas']['SwapQuoteAsset'];
+      fromAsset: components["schemas"]["SwapQuoteAsset"];
+      toAsset: components["schemas"]["SwapQuoteAsset"];
       
       timeEstimate?: number;
-      provider: components['schemas']['SwapRouteProvider'];
-      fees: components['schemas']['SwapRouteFee'][];
+      provider: components["schemas"]["SwapRouteProvider"];
+      fees: components["schemas"]["SwapRouteFee"][];
     };
     SwapRoute: {
-      txSteps: components['schemas']['SwapRouteTXStep'][];
+      txSteps: components["schemas"]["SwapRouteTXStep"][];
       
       timeEstimate: number;
       
       maximumTime: number;
     };
     SwapQuote: {
-      from: components['schemas']['SwapQuoteAsset'];
-      to: components['schemas']['SwapQuoteAsset'];
-      route: components['schemas']['SwapRoute'];
+      from: components["schemas"]["SwapQuoteAsset"];
+      to: components["schemas"]["SwapQuoteAsset"];
+      route: components["schemas"]["SwapRoute"];
       minAmountOut: string;
       
-      swapSlippage: number;
+      swapSlippage?: number;
       
       bridgeSlippage?: number;
     };
@@ -817,18 +798,18 @@ export interface components {
       value: string;
       txTarget: string;
       
-      txType: 'eth_sendTransaction' | 'eth_signMessage';
+      txType: "eth_sendTransaction" | "eth_signMessage";
     };
     SwapQuoteResult: {
-      quote: components['schemas']['SwapQuote'];
-      approvalTxData?: components['schemas']['SwapApprovalTxData'];
-      swapTxData: components['schemas']['SwapTxData'];
+      quote: components["schemas"]["SwapQuote"];
+      approvalTxData?: components["schemas"]["SwapApprovalTxData"];
+      swapTxData: components["schemas"]["SwapTxData"];
     };
     Result_SwapQuoteResult_: {
-      content: components['schemas']['SwapQuoteResult'];
+      content: components["schemas"]["SwapQuoteResult"];
     };
     
-    SwapQuoteRouteType: 'value' | 'speed';
+    SwapQuoteRouteType: "value" | "speed";
     SwapQuoteRequest: {
       from: {
         amount: string;
@@ -838,17 +819,18 @@ export interface components {
         assetId: string;
       };
       fromAddress: string;
-      routeType: components['schemas']['SwapQuoteRouteType'];
+      routeType: components["schemas"]["SwapQuoteRouteType"];
+      
       maxSlippage?: number;
     };
     SwapToTokenListResult: {
       fromNetwork: string;
       toTokens: {
-        [key: string]: components['schemas']['TokenDict'];
+        [key: string]: components["schemas"]["TokenDict"];
       };
     };
     Result_SwapToTokenListResult_: {
-      content: components['schemas']['SwapToTokenListResult'];
+      content: components["schemas"]["SwapToTokenListResult"];
     };
     TokenCountType: {
       blacklists: {
@@ -870,11 +852,11 @@ export interface components {
       chainId: number;
       caipId: string;
     };
-    'Result__tokenCount-TokenCountType--whitelist-AggregatedTokenListType-Array--blacklist-AggregatedTokenListType-Array--__': {
+    "Result__tokenCount-TokenCountType--whitelist-AggregatedTokenListType-Array--blacklist-AggregatedTokenListType-Array--__": {
       content: {
-        blacklist: components['schemas']['AggregatedTokenListType'][];
-        whitelist: components['schemas']['AggregatedTokenListType'][];
-        tokenCount: components['schemas']['TokenCountType'];
+        blacklist: components["schemas"]["AggregatedTokenListType"][];
+        whitelist: components["schemas"]["AggregatedTokenListType"][];
+        tokenCount: components["schemas"]["TokenCountType"];
       };
     };
     PriceChangePercentage: {
@@ -914,10 +896,10 @@ export interface components {
       priceLow24HR: number;
       
       volume24HR: number;
-      priceChangePercentage: components['schemas']['PriceChangePercentage'];
+      priceChangePercentage: components["schemas"]["PriceChangePercentage"];
     };
-    'Result_TokenMarketData-or-null_': {
-      content: components['schemas']['TokenMarketData'] | null;
+    "Result_TokenMarketData-or-null_": {
+      content: components["schemas"]["TokenMarketData"] | null;
     };
     NFTTrait: {
       value?: string | number | boolean;
@@ -925,9 +907,9 @@ export interface components {
     };
     NFTMetadata: {
       isSpam?: boolean;
-      reputation?: components['schemas']['TokenReputation'];
+      reputation?: components["schemas"]["TokenReputation"];
       backgroundColor?: string;
-      traits?: components['schemas']['NFTTrait'][];
+      traits?: components["schemas"]["NFTTrait"][];
       collection?: {
         imageUrl?: string;
         symbol?: string;
@@ -943,36 +925,20 @@ export interface components {
       
       isNFT: true;
     };
-    TokenMetadataResponse: (components['schemas']['TokenMetadata'] | components['schemas']['NFTMetadata']) | null;
+    TokenMetadataResponse: (components["schemas"]["TokenMetadata"] | components["schemas"]["NFTMetadata"]) | null;
     Result_TokenMetadataResponse_: {
-      content: components['schemas']['TokenMetadataResponse'];
+      content: components["schemas"]["TokenMetadataResponse"];
     };
     
-    TransactionCategory:
-      | 'send'
-      | 'receive'
-      | 'token_receive'
-      | 'token_send'
-      | 'token_swap'
-      | 'nft_sale'
-      | 'nft_purchase'
-      | 'nft_send'
-      | 'nft_receive'
-      | 'airdrop'
-      | 'mint'
-      | 'deposit'
-      | 'withdraw'
-      | 'approve'
-      | 'revoke'
-      | 'contract_interaction';
+    TransactionCategory: "send" | "receive" | "token_receive" | "token_send" | "token_swap" | "nft_sale" | "nft_purchase" | "nft_send" | "nft_receive" | "airdrop" | "mint" | "deposit" | "withdraw" | "approve" | "revoke" | "contract_interaction";
     
     Transaction: {
       protocolInfo?: {
         possibleSpam?: boolean;
-        category?: components['schemas']['TransactionCategory'];
+        category?: components["schemas"]["TransactionCategory"];
         projectId: string;
       };
-      effects: components['schemas']['TransactionEffect'][];
+      effects: components["schemas"]["TransactionEffect"][];
       metadata?: {
         actionName?: string;
         target?: string;
@@ -982,39 +948,39 @@ export interface components {
         token: string;
       };
       
-      kind: 'sent' | 'affected';
+      kind: "sent" | "affected";
       
-      status: 'succeeded' | 'failed';
+      status: "succeeded" | "failed";
       
       timestamp: number;
       id: string;
     };
     Page_Transaction_: {
-      content: components['schemas']['Transaction'][];
+      content: components["schemas"]["Transaction"][];
       cursor?: string;
     };
     TransactionStatusComplete: {
       
       blockNumber: number;
       
-      status: 'confirmed' | 'failed';
+      status: "confirmed" | "failed";
     };
     TransactionStatusIncomplete: {
       
-      status: 'unknown' | 'pending';
+      status: "unknown" | "pending";
     };
-    TransactionStatus: components['schemas']['TransactionStatusComplete'] | components['schemas']['TransactionStatusIncomplete'];
+    TransactionStatus: components["schemas"]["TransactionStatusComplete"] | components["schemas"]["TransactionStatusIncomplete"];
     NetworkState: {
       
       latestConfirmedBlock: number;
     };
-    TransactionStatusPublic: components['schemas']['TransactionStatus'] & {
+    TransactionStatusPublic: components["schemas"]["TransactionStatus"] & {
       meta: {
-        networkState: components['schemas']['NetworkState'];
+        networkState: components["schemas"]["NetworkState"];
       };
     };
     Result_TransactionStatusPublic_: {
-      content: components['schemas']['TransactionStatusPublic'];
+      content: components["schemas"]["TransactionStatusPublic"];
     };
     UTXO: {
       
@@ -1025,14 +991,18 @@ export interface components {
       index: number;
       transactionId: string;
     };
-    'Result_UTXO-Array_': {
-      content: components['schemas']['UTXO'][];
+    "Result_UTXO-Array_": {
+      content: components["schemas"]["UTXO"][];
     };
   };
-  responses: {};
-  parameters: {};
-  requestBodies: {};
-  headers: {};
+  responses: {
+  };
+  parameters: {
+  };
+  requestBodies: {
+  };
+  headers: {
+  };
   pathItems: never;
 }
 
@@ -1041,12 +1011,13 @@ export type $defs = Record<string, never>;
 export type external = Record<string, never>;
 
 export interface operations {
+
   
   AnalyseAddress: {
     
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           toAddress: string;
           fromAddress: string;
         };
@@ -1056,13 +1027,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_AnalyseAddressResult-Array_'];
+          "application/json": components["schemas"]["Result_AnalyseAddressResult-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1072,7 +1043,7 @@ export interface operations {
     
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           caip10Accounts?: string[];
           url: string;
         };
@@ -1082,13 +1053,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_AnalyseUrlResult_'];
+          "application/json": components["schemas"]["Result_AnalyseUrlResult_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1109,13 +1080,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_InternalBalance-Array_'];
+          "application/json": components["schemas"]["Result_InternalBalance-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1124,7 +1095,7 @@ export interface operations {
   GetBalancesV2: {
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           backend?: string;
           hasBalance?: boolean;
           caip10Accounts: string[];
@@ -1135,13 +1106,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_Record_string.InternalBalance-Array_-or-Record_string.boolean__'];
+          "application/json": components["schemas"]["Result_Record_string.InternalBalance-Array_-or-Record_string.boolean__"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1160,13 +1131,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_BroadcastReceipt_'];
+          "application/json": components["schemas"]["Result_BroadcastReceipt_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1177,13 +1148,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_ExploreContentRow-Array_'];
+          "application/json": components["schemas"]["Result_ExploreContentRow-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1199,13 +1170,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_ExploreContentRow-Array_'];
+          "application/json": components["schemas"]["Result_ExploreContentRow-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1225,13 +1196,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_ExploreContentRow_'];
+          "application/json": components["schemas"]["Result_ExploreContentRow_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1249,13 +1220,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_FeeOption-Array_'];
+          "application/json": components["schemas"]["Result_FeeOption-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1276,13 +1247,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_NFT-Array_'];
+          "application/json": components["schemas"]["Result_NFT-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1301,13 +1272,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_DeFiProtocol-Array_'];
+          "application/json": components["schemas"]["Result_DeFiProtocol-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1326,13 +1297,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result__positions-DeFiProtocol-Array--fiatRates-FiatRates__'];
+          "application/json": components["schemas"]["Result__positions-DeFiProtocol-Array--fiatRates-FiatRates__"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1343,12 +1314,12 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             
             difficulty: number;
             target: string;
             signature: string;
-            challenge: components['schemas']['Challenge'];
+            challenge: components["schemas"]["Challenge"];
           };
         };
       };
@@ -1358,9 +1329,9 @@ export interface operations {
   SubmitSolution: {
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           signature: string;
-          challenge: components['schemas']['Challenge'];
+          challenge: components["schemas"]["Challenge"];
           solution: string;
         };
       };
@@ -1369,7 +1340,7 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             key: string;
           };
         };
@@ -1390,13 +1361,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_TokenPrice-or-null_'];
+          "application/json": components["schemas"]["Result_TokenPrice-or-null_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1415,13 +1386,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_TokenPriceV2-or-null_'];
+          "application/json": components["schemas"]["Result_TokenPriceV2-or-null_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1433,9 +1404,9 @@ export interface operations {
         
         token: string;
         
-        granularity: components['schemas']['PriceHistoryGranularity'];
+        granularity: components["schemas"]["PriceHistoryGranularity"];
         
-        currency?: components['schemas']['SupportedCurrency'];
+        currency?: components["schemas"]["SupportedCurrency"];
         
         backend?: string;
       };
@@ -1444,13 +1415,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_PriceHistory-or-null_'];
+          "application/json": components["schemas"]["Result_PriceHistory-or-null_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1467,13 +1438,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_ResolvedAddressLabels-Array_'];
+          "application/json": components["schemas"]["Result_ResolvedAddressLabels-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1490,13 +1461,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_ResolvedName-or-null_'];
+          "application/json": components["schemas"]["Result_ResolvedName-or-null_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1506,7 +1477,7 @@ export interface operations {
     
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           network: string;
           request: unknown;
         };
@@ -1516,13 +1487,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_RpcRequestResult_'];
+          "application/json": components["schemas"]["Result_RpcRequestResult_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1538,20 +1509,20 @@ export interface operations {
     
     requestBody: {
       content: {
-        'application/json': components['schemas']['SimulationInput'];
+        "application/json": components["schemas"]["SimulationInput"];
       };
     };
     responses: {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_SimulationResult_'];
+          "application/json": components["schemas"]["Result_SimulationResult_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1568,13 +1539,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_SwapFromTokenListResult_'];
+          "application/json": components["schemas"]["Result_SwapFromTokenListResult_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1583,20 +1554,20 @@ export interface operations {
   SwapQuote: {
     requestBody: {
       content: {
-        'application/json': components['schemas']['SwapQuoteRequest'];
+        "application/json": components["schemas"]["SwapQuoteRequest"];
       };
     };
     responses: {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_SwapQuoteResult_'];
+          "application/json": components["schemas"]["Result_SwapQuoteResult_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1613,13 +1584,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_SwapToTokenListResult_'];
+          "application/json": components["schemas"]["Result_SwapToTokenListResult_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1630,13 +1601,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result__tokenCount-TokenCountType--whitelist-AggregatedTokenListType-Array--blacklist-AggregatedTokenListType-Array--__'];
+          "application/json": components["schemas"]["Result__tokenCount-TokenCountType--whitelist-AggregatedTokenListType-Array--blacklist-AggregatedTokenListType-Array--__"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1648,7 +1619,7 @@ export interface operations {
         
         token: string;
         
-        currency?: components['schemas']['SupportedCurrency'];
+        currency?: components["schemas"]["SupportedCurrency"];
         
         backend?: string;
       };
@@ -1657,13 +1628,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_TokenMarketData-or-null_'];
+          "application/json": components["schemas"]["Result_TokenMarketData-or-null_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1682,13 +1653,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_TokenMetadataResponse_'];
+          "application/json": components["schemas"]["Result_TokenMetadataResponse_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1711,13 +1682,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Page_Transaction_'];
+          "application/json": components["schemas"]["Page_Transaction_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1738,13 +1709,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_TransactionStatusPublic_'];
+          "application/json": components["schemas"]["Result_TransactionStatusPublic_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1764,13 +1735,13 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': components['schemas']['Result_UTXO-Array_'];
+          "application/json": components["schemas"]["Result_UTXO-Array_"];
         };
       };
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };
@@ -1781,7 +1752,7 @@ export interface operations {
       
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             version: string;
           };
         };
@@ -1789,7 +1760,7 @@ export interface operations {
       
       default: {
         content: {
-          'application/json': components['schemas']['ErrorResult'];
+          "application/json": components["schemas"]["ErrorResult"];
         };
       };
     };

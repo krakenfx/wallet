@@ -30,6 +30,7 @@ import type { UniversalSendRouteParams } from '@/screens/UniversalSend';
 
 import type { ExploreSubpageNavigationParams } from './screens/Explore/ExploreSubpageScreen';
 
+import type { KrakenConnectNavigationParams } from './screens/KrakenConnect/KrakenConnectScreen';
 import type { SwapScreenParams } from './screens/Swap';
 import type { NavigatorScreenParams } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -51,11 +52,9 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     AppDetails: AppDetailsParams;
     Browser: BrowserParams;
     AppLock: undefined;
-    WhatsNewBlast: undefined;
+    WhatsNewSwaps: undefined;
     WhatsNewAvaxLinea: undefined;
     WhatsNewBrowserExplore: undefined;
-    WhatsNewAssetMarketData: undefined;
-    WhatsNewLongPress: undefined;
     WalletBackupPrompt: undefined;
     WalletCloudBackupScreen: { origin: Routes } | undefined;
     CoinsList: undefined;
@@ -69,6 +68,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     Diagnostics: undefined;
     Explore: undefined;
     ExploreSubpage: ExploreSubpageNavigationParams;
+    KrakenConnect: KrakenConnectNavigationParams | undefined;
     Swap: SwapScreenParams | undefined;
     EditNote: EditNoteParams;
     Explainer: ExplainerProps;
@@ -77,6 +77,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     WalletConnectExplainer: undefined;
     GlobalActivity: undefined;
     Home: undefined;
+    KrakenConnectTransfer: undefined;
     Language: undefined;
     ManageAssetsGlobalFilter: ManageAssetsGlobalFilterParams;
     ManageNft: ManageNftParams;
@@ -118,9 +119,7 @@ export enum Routes {
   Browser = 'Browser',
   WhatsNewBrowserExplore = 'WhatsNewBrowserExplore',
   WhatsNewAvaxLinea = 'WhatsNewAvaxLinea',
-  WhatsNewBlast = 'WhatsNewBlast',
-  WhatsNewLongPress = 'WhatsNewLongPress',
-  WhatsNewAssetMarketData = 'WhatsNewAssetMarketData',
+  WhatsNewSwaps = 'WhatsNewSwaps',
   WalletBackupPrompt = 'WalletBackupPrompt',
   CoinsList = 'CoinsList',
   ConnectWalletConnectApp = 'ConnectWalletConnectApp',
@@ -138,6 +137,8 @@ export enum Routes {
   ExtendedPublicKey = 'ExtendedPublicKey',
   GlobalActivity = 'GlobalActivity',
   Home = 'Home',
+  KrakenConnect = 'KrakenConnect',
+  KrakenConnectTransfer = 'KrakenConnectTransfer',
   Language = 'Language',
   ManageAssetsGlobalFilter = 'ManageAssetsGlobalFilter',
   ManageNft = 'ManageNft',
