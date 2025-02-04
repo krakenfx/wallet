@@ -6,9 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 import { useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { AssetAvailableBalance } from '@/components/AssetRow/AssetAvailableBalance';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useBrowser } from '@/hooks/useBrowser';
 import type { WalletType } from '@/onChain/wallets/registry';
+import type { KrakenAssetSupported } from '@/reactQuery/hooks/krakenConnect/types';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import type { RealmToken } from '@/realm/tokens';
 import { useTokensGalleryMutations } from '@/realm/tokensGallery';
@@ -19,6 +21,7 @@ import type { RemoteAsset } from '@/types';
 import { formatTokenAmountFromToken } from '@/utils/formatTokenAmountFromToken';
 import { getExplorerIcon } from '@/utils/getExplorerIcon';
 import { getWalletName } from '@/utils/getWalletName';
+import { isKrakenExchangeAsset } from '@/utils/isKrakenExchangeAsset';
 import { isRealmToken } from '@/utils/isRealmToken';
 
 import { GradientItemBackground } from '../GradientItemBackground';
@@ -37,7 +40,7 @@ import type { LongPressOptionItemProps } from '../LongPress/LongPressOptionItem'
 import loc from '/loc';
 
 export type AssetRowProps = {
-  token: RealmToken | RemoteAsset;
+  token: RealmToken | RemoteAsset | KrakenAssetSupported;
   options?: Partial<{
     hideZeroAmount: boolean;
     hideZeroAmountFiat: boolean;
@@ -53,10 +56,11 @@ export type AssetRowProps = {
     walletId: string;
     readonly?: boolean;
     disableLongPress?: boolean;
+    forceOmitNetworkIcon?: boolean;
   }>;
 };
 
-const getAssetLabel = (wallet: RealmWallet | undefined, token: RealmToken | RemoteAsset, isNative: boolean) => {
+const getAssetLabel = (wallet: RealmWallet | undefined, token: RealmToken | RemoteAsset | KrakenAssetSupported, isNative: boolean) => {
   if (wallet && wallet.nativeTokenLabel && isNative) {
     try {
       return getWalletName(wallet.nativeTokenLabel.toLowerCase() as WalletType);
@@ -68,8 +72,21 @@ const getAssetLabel = (wallet: RealmWallet | undefined, token: RealmToken | Remo
 };
 
 export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
-  const { hideZeroAmount, networkName, showAmountInFiat, onPress, style, priceChange, symbolUnderLabel, tag, testID, walletId, selected, disableLongPress } =
-    options;
+  const {
+    hideZeroAmount,
+    networkName,
+    showAmountInFiat,
+    onPress,
+    style,
+    priceChange,
+    symbolUnderLabel,
+    tag,
+    testID,
+    walletId,
+    selected,
+    disableLongPress,
+    forceOmitNetworkIcon,
+  } = options;
   const wallet = useRealmWalletById(walletId);
   const isNative = token.assetId.includes('slip44:');
   const label = getAssetLabel(wallet, token, isNative);
@@ -88,7 +105,13 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
       <>
         <View style={styles.leftContentContainer} testID="AssetRowContentContainer">
           {(wallet || networkName !== undefined) && (
-            <TokenIcon wallet={wallet} tokenId={token.assetId} tokenSymbol={token.metadata.symbol} networkName={networkName} />
+            <TokenIcon
+              wallet={wallet}
+              tokenId={token.assetId}
+              tokenSymbol={token.metadata.symbol}
+              networkName={networkName}
+              forceOmitNetworkIcon={forceOmitNetworkIcon}
+            />
           )}
           <View style={styles.labelAndLabelContainer}>
             <View style={styles.labelContainer}>
@@ -98,6 +121,7 @@ export const AssetRow = ({ token, options = {} }: AssetRowProps) => {
               {tag !== null && <View>{tag}</View>}
             </View>
             {showPriceChangeUnderLabel && isRealmToken(token) && <AssetPriceChangeLabel assetId={token.assetId} testID={testID} />}
+            {isKrakenExchangeAsset(token) && !showPriceChangeUnderLabel && <AssetAvailableBalance asset={token} />}
             {showSymbolUnderLabel && (
               <Label type="regularMonospace" color="light75">
                 {token.metadata.symbol}

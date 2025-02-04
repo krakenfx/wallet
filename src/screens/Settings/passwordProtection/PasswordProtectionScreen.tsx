@@ -25,26 +25,44 @@ export const PasswordProtectionScreen = ({ navigation }: SettingsNavigationProps
   const { navigate } = navigation;
   const insets = useSafeAreaInsets();
   const passwordChangeInfoSheet = useRef<BottomSheetModalRef>(null);
+  const togglingRef = useRef(false);
 
   useHeaderTitle(loc.passwordProtection.title);
 
-  const { storageEncrypted, seedEncrypted, encryptionEnabled } = usePasswordProtectionEnabled();
+  const { storageEncrypted, seedEncrypted, encryptionEnabled, loading } = usePasswordProtectionEnabled();
 
   const showInfoSheet = () => {
     passwordChangeInfoSheet.current?.present();
   };
 
-  const onToggle = async (enable: boolean) => {
-    if (await biometricUnlock()) {
-      if (enable) {
-        navigate(Routes.PasswordProtectionForm);
-      } else {
-        const delay = (await isBiometricEnabled()) ? BIOMETRIC_DELAY : 0;
+  const onToggle = async () => {
+    if (loading || togglingRef.current) {
+      return;
+    }
 
-        setTimeout(() => navigate(Routes.DisablePasswordProtection), delay);
+    togglingRef.current = true;
+
+    try {
+      if (await biometricUnlock()) {
+        if (!encryptionEnabled) {
+          navigate(Routes.PasswordProtectionForm);
+        } else {
+          const delay = (await isBiometricEnabled()) ? BIOMETRIC_DELAY : 0;
+
+          await new Promise<void>(resolve => {
+            setTimeout(() => {
+              navigate(Routes.DisablePasswordProtection);
+              resolve();
+            }, delay);
+          });
+        }
+      } else {
+        throw new Error('Failed to unlock');
       }
-    } else {
-      throw new Error('Failed to unlock');
+    } finally {
+      setTimeout(() => {
+        togglingRef.current = false;
+      }, 350);
     }
   };
 
@@ -62,6 +80,7 @@ export const PasswordProtectionScreen = ({ navigation }: SettingsNavigationProps
           icon="lock"
           enabled={encryptionEnabled}
           onToggle={onToggle}
+          disabled={loading}
         />
         <SettingsInfoBox
           text={seedEncrypted ? loc.passwordProtection.protectYourData : loc.passwordProtection.whatIsDescription}

@@ -61,6 +61,9 @@ const openOpenseaBase = (collectionId: string, tokenId: string, openURL: OpenURL
 const openOpenseaAvalanche = (collectionId: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://opensea.io/assets/avalanche/${collectionId}/${tokenId}`);
 };
+const openOpenseaBlast = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://opensea.io/assets/blast/${collectionId}/${tokenId}`);
+};
 
 const openMagicEden = (_: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://magiceden.io/item-details/${tokenId}`);
@@ -72,6 +75,10 @@ const openTensorSolana = (_: string, tokenId: string, openURL: OpenURL) => {
 
 const openAvascan = (collectionId: string, tokenId: string, openURL: OpenURL) => {
   return () => openURL(`https://avascan.info/blockchain/c/erc721/${collectionId}/nft/${tokenId}`);
+};
+
+const openInkExplorer = (collectionId: string, tokenId: string, openURL: OpenURL) => {
+  return () => openURL(`https://explorer.inkonchain.com/token/${collectionId}/instance/${tokenId}`);
 };
 
 const openInkSepoliaExplorer = (collectionId: string, tokenId: string, openURL: OpenURL) => {
@@ -131,7 +138,7 @@ export const configNftLinks = {
       onPress: openBlastExplorer,
       icon: 'blastscan',
     },
-    marketplaces: [{ label: 'Opensea', onPress: openOpenseaOptimism, icon: 'opensea' }],
+    marketplaces: [{ label: 'Opensea', onPress: openOpenseaBlast, icon: 'opensea' }],
   },
   linea: {
     blockchainExplorer: {
@@ -180,6 +187,15 @@ export const configNftLinks = {
       icon: 'avascan',
     },
     marketplaces: [{ label: 'Opensea', onPress: openOpenseaAvalanche, icon: 'opensea' }],
+  },
+  ink: {
+    blockchainExplorer: {
+      label: 'Ink Explorer',
+      onPress: openInkExplorer,
+      icon: 'ink-explorer',
+    },
+
+    marketplaces: [],
   },
   inkSepolia: {
     blockchainExplorer: {

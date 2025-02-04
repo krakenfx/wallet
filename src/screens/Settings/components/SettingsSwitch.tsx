@@ -13,15 +13,23 @@ interface Props {
   enabled: boolean;
   onToggle: (newValue: boolean) => void | Promise<void>;
   testID?: string;
+  disabled?: boolean;
 }
-export const SettingsSwitch = ({ icon, text, textColor, enabled, onToggle, testID }: Props) => {
+export const SettingsSwitch = ({ icon, text, textColor, enabled, onToggle, testID, disabled }: Props) => {
   return (
     <View style={styles.switchContainer}>
       {!!icon && <SettingsIcon name={icon} />}
       <Label style={styles.label} color={textColor}>
         {text}
       </Label>
-      <Switch testID={`SettingsSwitch${testID}-${enabled ? 'On' : 'Off'}`} accessible accessibilityRole="switch" value={enabled} onValueChange={onToggle} />
+      <Switch
+        testID={`SettingsSwitch${testID}-${enabled ? 'On' : 'Off'}`}
+        accessible
+        accessibilityRole="switch"
+        value={enabled}
+        onValueChange={onToggle}
+        disabled={disabled}
+      />
     </View>
   );
 };

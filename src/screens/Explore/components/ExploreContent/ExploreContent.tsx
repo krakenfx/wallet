@@ -18,7 +18,7 @@ import { ExploreText } from '../ExploreText';
 
 const { Space } = Sizes;
 
-const ContentWrapper = ({ marker, index, children }: PropsWithChildren<{ marker: string; index: number }>) => {
+export const ContentWrapper = ({ marker, index, children }: PropsWithChildren<{ marker: string; index?: number }>) => {
   return (
     <ExploreRow index={index}>
       <Animated.View key={marker} entering={FadeIn} exiting={FadeOut}>

@@ -70,7 +70,7 @@ export const HomeBalance = () => {
           )}
         </Touchable>
       </LargeHeader>
-      <KrakenConnectBalance />
+      {isKrakenConnectEnabled && <KrakenConnectBalance />}
     </>
   );
 };

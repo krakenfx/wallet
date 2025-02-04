@@ -134,6 +134,7 @@
     "sign": "Firmar",
     "swap": "Swap",
     "to": "A",
+    "transactionBase64": "{index}. Transacción (Base64)",
     "typed_message_signing_request": "{type} Solicitud de firma",
     "typedMessageSigningRequest": "{type} Solicitud de firma",
     "unknownApp": "Aplicación desconocida",
@@ -402,13 +403,18 @@
     "usDollar": "Dólar estadounidense"
   },
   "defi": {
+    "allAssets": "Todos los activos",
+    "apr": "TAE",
     "claimable": "Se puede reclamar",
     "debt": "Deuda",
     "dept": "Dept",
+    "earnCTA": "Earn",
+    "earnUpToApr": "Hasta un {apr}% TAE",
     "network": "red",
     "onePosition": "1 posición",
     "positions": "{numberOfPositions} posiciones",
     "rewards": "Recompensas",
+    "tvl": "TVL",
     "vaults": "Bóvedas"
   },
   "deleteAccountConfirm": {
@@ -438,6 +444,16 @@
   "discovery": {
     "explore": "Explorar"
   },
+  "earn": {
+    "allAssets": "Todos los activos",
+    "earnCTA": "Earn",
+    "earnUpToApr": "Hasta un {apr}% TAE",
+    "heroAvailableBalance": "Disponible: {balance} {symbol}",
+    "heroTitle": "Gana {symbol} en {protocol}",
+    "protocolType": {
+      "lending": "Préstamos"
+    }
+  },
   "editAccount": {
     "rename": "Renombrar",
     "save": "Guardar",
@@ -462,6 +478,8 @@
     "continueAccessibilityHint": "Aceptar el aviso legal y continuar",
     "disclaimerBody": "Ten en cuenta que esta función incluye contenidos proporcionados por terceros. Consulta las condiciones pertinentes de los Términos de servicio.",
     "disclaimerTitle": "Te damos la bienvenida a Explorar",
+    "earnBody": "Participar en finanzas descentralizadas",
+    "earnTitle": "Gana rendimiento con DeFi",
     "errorBody": "La aplicación no ha podido cargar el contenido de esta página. Inténtelo de nuevo más tarde",
     "errorTitle": "Algo salió mal",
     "rewardPrefix": "Earn"
@@ -480,7 +498,7 @@
       "timeAbbr": {
         "days": "día",
         "hours": "hora",
-        "minutes": "mín.",
+        "minutes": "min.",
         "months": "mes",
         "seconds": "s",
         "weeks": "semana",
@@ -640,9 +658,58 @@
     "assets": "Activos",
     "collection": "NFT",
     "collection_see_all": "Ver todo",
+    "defiEmpty": "Empieza a ganar con DeFi",
+    "defiEmptyCaption": "Tus posiciones aparecerán aquí cuando estén disponibles. Participa en DeFi y empieza a ganar rendimiento.",
     "deposits": "DeFi",
     "manage": "Gestionar",
     "total_balance": "Balance"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "en Kraken",
+    "exchangeBalance": "Balance del exchange",
+    "fundCta": {
+      "body": "Conecta tu cuenta de Kraken para <b>transferir criptomonedas a tu monedero</b>",
+      "bodyBold": "transfiere criptos a tu monedero",
+      "heading": "Deposita fondos en tu monedero"
+    },
+    "sendScreen": {
+      "title": "Transferir {assetSymbol}"
+    },
+    "stepsToConnect": {
+      "hasAccount": "He creado una cuenta",
+      "heading": "Si quieres conectarte a Kraken, sigue estos pasos:",
+      "step1": {
+        "description": "Configurar tu cuenta de Kraken",
+        "label": "Paso 1"
+      },
+      "step2": {
+        "description": "Vuelve al monedero",
+        "label": "Paso 2"
+      },
+      "step3": {
+        "description": "Conecta tu cuenta de Kraken",
+        "label": "Paso 3"
+      }
+    },
+    "transfer": {
+      "available": "Disponible: {value}",
+      "selectAsset": "Selecciona un activo para transferirlo",
+      "selectAssetDescription": "Transferir desde el exchange de Kraken a tu monedero",
+      "title": "Transferencia",
+      "unsupportedAssets": "Activos no compatibles",
+      "unsupportedAssetsDescription": "{count} de los activos que tienes en la cuenta de tu exchange no son compatibles con el monedero"
+    },
+    "transferCta": {
+      "body": "Conecta tu cuenta de Kraken para transferir criptomonedas rápidamente",
+      "heading": "Transferir desde Kraken"
+    },
+    "unconnected": {
+      "alert": "Solo el monedero actual, “<b>{walletName}</b>”, se conectará a Kraken.",
+      "body": "Conecta tu cuenta de exchange de Kraken para transferir fondos a tu monedero de forma sencilla",
+      "cta": "Conectar al exchange de Kraken",
+      "noAccount": "No tengo una cuenta",
+      "title": "Recibe criptomonedas en tu monedero con Kraken"
+    }
   },
   "manageWallets": {
     "title": "Gestionar monederos"
@@ -711,7 +778,7 @@
     "volume24h": {
       "details": "El valor total de una criptomoneda con la que se ha operado en las últimas 24 horas en todas los exchanges.",
       "short": "Volumen 24h",
-      "title": "Volumen 24h"
+      "title": "Vol. 24 h"
     },
     "website": "Sitio web"
   },
@@ -725,6 +792,7 @@
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Testnet Goerli",
     "ethereum_sepolia": "Ethereum: Sepolia",
+    "ink": "Ink",
     "ink_sepolia": "Ethereum: Ink Sepolia",
     "linea": "Linea",
     "matic": "Matic",
@@ -1171,11 +1239,12 @@
     "addressHeader": "Enviando a",
     "addressOrENS": "Introduzca la dirección o el dominio ENS...",
     "amountHeader": "Cantidad",
+    "available": "Disponible: {0}",
     "balance": "Balance {0}",
     "confirm": "Confirmar",
     "confirmSend": "Confirmar enviar",
     "create": "Crear",
-    "enterAmount": "Introduzca un importe",
+    "enterAmount": "Introduce un importe de {symbol}",
     "evm_fee_fast": "Rápido",
     "evm_fee_normal": "Normal",
     "evm_fee_urgent": "Urgente",
@@ -1309,7 +1378,7 @@
   },
   "swap": {
     "amountExceedingBalance": "El importe introducido es superior al balance disponible",
-    "amountPlaceholder": "Introduzca un importe",
+    "amountPlaceholder": "Introduce un importe de {symbol}",
     "balance": "Balance {0}",
     "buttonTitle": "Swap",
     "confirmation": {
@@ -1338,6 +1407,7 @@
       "insufficientGas": "Balance de {symbol} insuficiente para cubrir las transacciones de swap"
     },
     "findingBestRote": "Buscando mejor ruta",
+    "otherAssets": "Tokens",
     "route": {
       "bridgeCost": {
         "hint": "Un coste de puente es una comisión que aplica el proveedor del swap por transferir activos entre diferentes blockchains durante el swap.",
@@ -1366,7 +1436,7 @@
         "title": "Deslizamiento de swaps"
       },
       "swapRate": "Tarifa de swap",
-      "transactionFees": "Tarifas por transacción",
+      "transactionFees": "Comisiones por transacción",
       "typeSelection": {
         "bestValue": {
           "desc": "Mejor valor global",
@@ -1389,11 +1459,22 @@
       "title": "Ruta de swap"
     },
     "selectAsset": "Seleccionar activo",
+    "slippageSettings": {
+      "custom": "Personalizado",
+      "desc": "Si el precio cambia de forma desfavorable superando el porcentaje de deslizamiento, tu transacción de swap se cancelará.",
+      "footer": "Si el deslizamiento es mayor, puede que favorezca que la tasa de transacciones exitosas sea más elevada, pero quizás te exponga a inversiones ventajistas o a ataques sándwich.",
+      "save": "Guardar",
+      "title": "Ajustes de deslizamiento",
+      "warningHigh": "Si el deslizamiento es superior al {amount}%, se considera alto",
+      "warningSmall": "Si el deslizamiento es inferior al {amount}%, puede que el swap falle",
+      "warningUnsupported": "No se admite un deslizamiento superior al {amount}%"
+    },
     "sourceListHeader": "Tus activos",
     "sourceSearchPlaceholder": "Seleccionar activo que se desea intercambiar",
     "targetSearchPlaceholder": "Seleccionar activo que se desea recibir",
     "title": "Swap",
-    "unsupportedAssetsHidden": "Nuestros proveedores de swap aún no son compatibles con {count} de tu(s) otro(s) activo(s)"
+    "unsupportedAssetsHidden": "Nuestros proveedores de swap aún no son compatibles con {count} de tu(s) otro(s) activo(s)",
+    "yourAssets": "Tus activos"
   },
   "test": {
     "key": "Prueba"
@@ -1592,7 +1673,7 @@
     "crypto": "Criptomoneda",
     "cryptoAndNft": "NFT y cripto",
     "ethereumAddressLabel": "Incluye redes compatibles de Ethereum",
-    "ethereumExplainerBody": "El sistema de direcciones de Ethereum se extiende a redes compatibles de Ethereum, como Polygon, Arbitrum, OP Mainnet, Base, Linea y Avalanche, lo que garantiza que tu única dirección funcione en todas partes",
+    "ethereumExplainerBody": "El sistema de direcciones de Ethereum se extiende a redes compatibles de Ethereum, como Polygon, Arbitrum, OP Mainnet, Base, Blast, Linea y Avalanche, lo que garantiza que tu única dirección funcione en todas partes",
     "ethereumExplainerHeading": "Tu dirección de Ethereum",
     "tokenAddress": "Dirección de {token}"
   },
@@ -1728,7 +1809,7 @@
     },
     "errorCreatingPasskey": {
       "description": "En las Opciones de contraseña de tu dispositivo, asegúrate de que iCloud Keychain esté activado para utilizarse con contraseñas y claves de paso:",
-      "title": "Se ha producido un error al crear la clave de paso"
+      "title": "Se ha producido un error al crear la copia de seguridad"
     },
     "errorDeletingPasskey": {
       "cancel": "Cancelar",
@@ -1933,6 +2014,12 @@
       "part1": "¡Nos hace mucha ilusión presentar las nuevas acciones para tus activos y NFT! Ahora, con tan solo mantener pulsada la pantalla puedes realizar tareas como enviar, recibir y ocultar elementos fácilmente. Ya no tendrás que moverte por distintas pantallas.",
       "part2": "Disfruta hoy mismo de una experiencia más cómoda e intuitiva en tu monedero.",
       "title": "Acciones rápidas para facilitar la experiencia"
+    },
+    "swaps": {
+      "buttonText": "Haz swap ahora",
+      "part1": "Haz swap con casi cualquiera de tus activos por otros tokens y criptomonedas populares usando algunos de los protocolos de swap on-chain más robustos. Independientemente de si quieres hacer swaps con una sola red o usar de forma sencilla alguna de las cadenas compatibles, podrás asentar la mayoría de las operaciones en cuestión de segundos.",
+      "part2": "Intercambia tokens de forma rápida, segura y flexible desde tu monedero.",
+      "title": "Swaps rápidos y versátiles al alcance de tu mano"
     }
   }
 }

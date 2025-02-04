@@ -44,7 +44,7 @@
       "advanced_info": "Gelişmiş bilgiler",
       "connected_apps": "Bağlı uygulamalar",
       "delete": "Kaldır",
-      "edit": "Düzenle"
+      "edit": "Özelleştir"
     },
     "walletDelete": {
       "error": "Cüzdan kaldırılmadı, lütfen tekrar deneyin",
@@ -64,8 +64,9 @@
   "advancedAccountInfo": {
     "derivationPath": "Türetme yolu",
     "ethereumDerivationPath": "Ethereum türetme yolu",
-    "ethereumDerivationPathContent": "Ethereum türetme yolu; Polygon, Arbitrum, Optimism ve Base gibi Katman 2 ağlarla paylaşıldığından aynı türetme yolları tamamında kullanılabilir.",
+    "ethereumDerivationPathContent": "Ethereum türetme yolu; Polygon, Arbitrum, OP Mainnet, Base, Linea ve Avalanche gibi Ethereum uyumlu ağlarla paylaşıldığından aynı türetme yolları tamamında kullanılabilir.",
     "extendedPublicKey": "Genişletilmiş genel anahtar",
+    "includesCompatibleNetworks": "Ethereum uyumlu ağlar dahildir",
     "includesLayer2Networks": "Katman 2 ağlarını içerir",
     "pathCopied": "Yol kopyalandı",
     "title": "{walletName} - bilgi",
@@ -133,8 +134,11 @@
     "sign": "Oturum Aç",
     "swap": "Swap",
     "to": "Nereye",
+    "transactionBase64": "{index}. İşlem (Base64)",
     "typed_message_signing_request": "{type} İmzalama Talebi",
     "typedMessageSigningRequest": "{type} İmzalama Talebi",
+    "unknownApp": "Bilinmeyen uygulama",
+    "verifyingContract": "Sözleşme Doğrulanıyor",
     "withdrawal": "Para çekme"
   },
   "assetOptions": {
@@ -145,6 +149,12 @@
     "send": "Gönder",
     "viewDetails": "Ayrıntıları görüntüle",
     "viewOn": "{explorer} üzerinde görüntüle"
+  },
+  "avaxLineaWelcoming": {
+    "buttonText": "Kulağa hoş geliyor",
+    "part1": "Cüzdanınız artık ışık hızında kesinlikli yüksek oranda ölçeklenebilir blok zinciri Avalanche'ı ve güvenli, düşük maliyetli işlemler için tasarlanmış Ethereum L2 Linea'yı destekler.",
+    "part2": "Bu yeni entegrasyonlarla varlık bakiyelerini görüntüleyebilir, işlemleri yayınlayabilir, NFT toplayabilir, defi pozisyonlarını izleyebilir ve her iki ağdaki dapp'lara bağlanabilirsiniz.",
+    "title": "Avalanche ve Linea desteği Burada!"
   },
   "backupWallet": {
     "backup": "Yedekle",
@@ -167,6 +177,43 @@
   },
   "broadcast": {
     "sent": "Verilen"
+  },
+  "browser": {
+    "clearSearch": "Temizle",
+    "downloadFile": {
+      "failed": "Dosya indirilemedi",
+      "success": "Dosya indirildi"
+    },
+    "loadingError": {
+      "description": "URL'de herhangi bir yazım hatası veya eksik kısım olup olmadığını doğrulayın",
+      "title": "Url bulunamadı"
+    },
+    "noSearch": {
+      "description": "Aramak için tam URL'yi yazın veya yapıştırın",
+      "title": "Aramanızı başlatın"
+    },
+    "quickActions": {
+      "connectedApps": "Bağlı uygulamaları gör",
+      "disconnect": "Bağlantıyı kes",
+      "refresh": "Yenile",
+      "share": "Paylaş"
+    },
+    "searchOnChain": "Zincir içinde ara"
+  },
+  "browserExploreWelcome": {
+    "body": "Kripto yolculuğunuzda sonraki adımı bugün atın. Artık Kraken Wallet uygulamanızdan ayrılmadan merkezi olmayan uygulamaları (dapp'lar) keşfedebilir ve bunlara bağlanabilirsiniz.",
+    "buttonText": "Kulağa hoş geliyor",
+    "part1": "Keşfet sayfasına erişmek için ekranınızın alt kısmındaki yeni menü seçeneklerini kullanın",
+    "part2": "Popüler dapp'ları ve yeni zincir içi fırsatları keşfedin veya daha fazlası için Arama çubuğunu kullanın",
+    "part3": "Kraken Wallet uygulamasından ayrılmadan dapp'lara kolayca bağlanın ve işlemlerinizi gerçekleştirin",
+    "title": "Zincir içi dünyasını keşfedin"
+  },
+  "bugTracking": {
+    "allow": "İzin Ver",
+    "content": "Gözlemlenebilirlik, temel verileri toplayarak cüzdan deneyiminizi izlememize ve iyileştirmemize olanak tanır. Bu durum, sorunları belirlememize, performansı optimize etmemize ve cüzdanınızın sorunsuz çalışmasını sağlamamıza yardımcı olur. Verileriniz anonim ve güvende! ",
+    "disallow": "İzin verme",
+    "skip": "Daha sonra sor",
+    "title": "Kraken Wallet'ı geliştirmemize yardımcı olun"
   },
   "coins": {
     "allNetworks": "Tüm ağlar",
@@ -322,8 +369,8 @@
     "request_approval": "İşlemler için onay iste",
     "see_balance": "Bakiyelerinizi ve faaliyetlerinizi görüntüleyin",
     "unsupportedNetwork": "Desteklenmeyen ağ",
-    "unsupportedNetworkDescription": "Bu uygulama, şu anda desteklenmeyen {unsupportedNetwork} ağını kullanıyor. Kraken Wallet şu anda Ethereum, Polygon, Optimism, Arbitrum ve Solana ağlarındaki uygulamaları desteklemektedir.",
-    "unsupportedNetworksDescription": "Bu uygulama şu anda desteklenmeyen {unsupportedNetworks} ağlarını kullanıyor. Kraken Wallet şu anda Ethereum, Polygon, Optimism, Arbitrum ve Solana ağlarındaki uygulamaları desteklemektedir."
+    "unsupportedNetworkDescription": "Bu uygulama, şu anda desteklenmeyen {unsupportedNetwork} ağını kullanıyor. Kraken Wallet şu anda Ethereum, Polygon, OP Mainnet, Arbitrum ve Solana ağlarındaki uygulamaları desteklemektedir.",
+    "unsupportedNetworksDescription": "Bu uygulama şu anda desteklenmeyen {unsupportedNetworks} ağlarını kullanıyor. Kraken Wallet şu anda Ethereum, Polygon, OP Mainnet, Arbitrum ve Solana ağlarındaki uygulamaları desteklemektedir."
   },
   "connectedApps": {
     "app_details": {
@@ -356,13 +403,18 @@
     "usDollar": "Amerikan doları"
   },
   "defi": {
+    "allAssets": "Tüm varlıklar",
+    "apr": "APR",
     "claimable": "Talep edilebilir",
     "debt": "Borç",
     "dept": "Bölüm",
+    "earnCTA": "Kazan",
+    "earnUpToApr": "%{apr} oranına varan APR",
     "network": "ağı",
     "onePosition": "1 pozisyon",
     "positions": "{numberOfPositions} pozisyon",
     "rewards": "Ödüller",
+    "tvl": "TVL",
     "vaults": "Kasalar"
   },
   "deleteAccountConfirm": {
@@ -380,10 +432,30 @@
     "header": "Cüzdanınızda bakiye mevcut",
     "inputLabel": "Cüzdan bakiyesini girin"
   },
+  "deleteAllData": {
+    "iCloudInfo": {
+      "desc": "Yedeklemenizi manuel olarak silmediğiniz sürece cüzdanınız kurtarılabilir.",
+      "title": "Bu, iCloud yedeklemenizi silmeyecektir."
+    }
+  },
   "diagnostics": {
     "running": "Tanılama yürütülüyor..."
   },
+  "discovery": {
+    "explore": "Keşfet"
+  },
+  "earn": {
+    "allAssets": "Tüm varlıklar",
+    "earnCTA": "Kazan",
+    "earnUpToApr": "%{apr} oranına varan APR",
+    "heroAvailableBalance": "{balance} {symbol} kullanılabilir",
+    "heroTitle": "{protocol} ile {symbol} kazanın",
+    "protocolType": {
+      "lending": "Ödünç Verme"
+    }
+  },
   "editAccount": {
+    "rename": "Yeniden adlandır",
     "save": "Kaydet",
     "title": "Cüzdanı düzenle",
     "walletName": "Cüzdan adı"
@@ -393,12 +465,24 @@
   },
   "errors": {
     "connectionError": "Bağlantı hatası",
+    "exploreSubpage": "Bu içerik açılırken bir hata oluştu. Lütfen daha sonra yeniden deneyin.",
     "generalFetchError": "Hata, lütfen tekrar deneyin",
     "generic": "Bir hata oluştu",
     "genericTryAgainLater": "Bir hata oluştu; lütfen daha sonra tekrar deneyin",
     "network": "Ağ Hatası",
     "offline": "Çevrimdışı",
+    "offlineRetry": "Çevrimdışısınız. Lütfen çevrimiçi olduğunuzda tekrar deneyin.",
     "seedMissing": "Kritik hata! Tohum kullanılamıyor."
+  },
+  "explore": {
+    "continueAccessibilityHint": "Sorumluluk reddini kabul edin ve devam edin",
+    "disclaimerBody": "Lütfen bu özelliğin üçüncü taraflarca sağlanan içerikler içerdiğini unutmayın. Hizmet Kullanım Şartları'nda ilgili şartlara bakın.",
+    "disclaimerTitle": "Keşfet'e hoş geldiniz!",
+    "earnBody": "Merkeziyetsiz Finans'a katılın",
+    "earnTitle": "DeFi ile getiri elde edin",
+    "errorBody": "Uygulama, bu sayfadaki içeriği yükleyemedi. Daha sonra tekrar deneyin",
+    "errorTitle": "Bir hata oluştu",
+    "rewardPrefix": "Kazan"
   },
   "extendedPublicKey": {
     "bitcoinXpub": "Bitcoin xPub",
@@ -408,9 +492,54 @@
     "type": "Tür: {type}"
   },
   "extension": {
+    "_": {
+      "off": "Kapalı",
+      "on": "Açık",
+      "timeAbbr": {
+        "days": "gün",
+        "hours": "saat",
+        "minutes": "en düşük",
+        "months": "ay",
+        "seconds": "saniye",
+        "weeks": "hafta",
+        "years": "yıl"
+      },
+      "unknown": "bilinmiyor"
+    },
+    "alt": {
+      "proceduralWalletImage": "biçimsel cüzdan görüntüsü"
+    },
+    "ariaLabel": {
+      "icon": "Simge",
+      "iconButton": "Simgeli düğme",
+      "toggleSwitch": "Açma Kapama Düğmesi"
+    },
     "assets": {
       "logoAlt": "varlık logosu",
       "manageAssets": "Varlıkları yönet"
+    },
+    "customNetwork": {
+      "addCustomNetwork": "Özel ağ ekle",
+      "addNetwork": "Ağ ekle",
+      "blockExplorerUrl": "Blok gezgini URL'si",
+      "chainId": "Zincir Kimliği",
+      "customNetwork": "Özel ağ",
+      "customNetworks": "Özel ağlar",
+      "decimals": "Ondalıklar",
+      "editCustomNetwork": "Özel ağı düzenle",
+      "enterNetworkName": "Ağ adını gir",
+      "networkName": "Ağ adı",
+      "remove": "Kaldır",
+      "rpcUrl": "RPC URL",
+      "symbol": "Sembol",
+      "updateNetwork": "Ağı güncelle"
+    },
+    "enterPasswordDialog": {
+      "continue": "Devam",
+      "currentPasswordAriaLabel": "Geçerli şifre",
+      "enterCurrentPassword": "Geçerli şifreyi gir",
+      "enterToDecrypt": "Kurtarma ifadenizi görmek için geçerli şifrenizi girin",
+      "lockGraphicsAlternativeText": "Grafikleri kilitle"
     },
     "home": {
       "addWallet": "Cüzdan ekle",
@@ -419,8 +548,16 @@
     },
     "lockWallet": "Cüzdanı kilitle",
     "manageAssets": {
+      "filter": "Varlıkları filtrele",
+      "hiddenAssets": "Gizli varlıklar",
       "manageAssets": "Varlıkları Yönet",
-      "search": "5.000’den fazla varlık ara"
+      "search": "5.000’den fazla varlık ara",
+      "searchResults": "Arama sonuçları",
+      "unhideAll": "Tümünü göster",
+      "visibleAssets": "Görünür varlıklar"
+    },
+    "manageWallets": {
+      "viewRecoveryPhrase": "Kurtarma ifadesini görüntüle"
     },
     "navigation": {
       "activity": "Etkinlik",
@@ -432,14 +569,69 @@
       "addNfts": "Cüzdanınıza NFT ekleyin",
       "send": "Gönder"
     },
+    "onboarding_backup": {
+      "backUpWallet": "Cüzdanı yedekle"
+    },
     "onboarding": {
+      "skip": "Atla",
       "typeYourSecretRecoveryPhrase": "Gizli kurtarma ifadenizi yazın",
       "walletSupports": "Bu cüzdan; Ethereum, Polygon, Optimism, Arbitrum ve çok daha fazlasını destekler"
     },
     "receive": {
       "receiveCryptoOrNft": "Kripto veya NFT alın"
     },
+    "send": {
+      "amountInput": {
+        "balance": "Bakiye",
+        "errors": {
+          "exceedsBalance": "Girilen miktar bakiyenizi aşıyor",
+          "greaterThanZero": "Girilen miktar 0'dan büyük olmalıdır",
+          "invalid": "Girilen miktar geçersiz"
+        },
+        "label": "Miktar",
+        "placeholder": "Miktarı girin"
+      },
+      "continue": "Devam",
+      "networkFee": "Ağ ücreti",
+      "sending": {
+        "title": "Gönderiliyor"
+      },
+      "sendingTo": {
+        "search": "Ne göndermek istediğinizi seçin",
+        "title": "Gönderiliyor:"
+      },
+      "sendInput": {
+        "label": "Gönderiliyor:",
+        "paste": "Yapıştır",
+        "placeholder": "Adres veya ENS alan adı girin..."
+      },
+      "sendOn": {
+        "network": "ağı",
+        "title": "Gönder"
+      }
+    },
+    "settings": {
+      "build": "{0} oluştur",
+      "changePassword": {
+        "caption": "Cüzdanınızın güvenliğini sağlamak ve kilitlemek için şifreyi girin",
+        "confirmPassword": "Şifreyi onayla",
+        "label": "Şifre",
+        "menuItemTitle": "Şifreyi değiştir",
+        "setPassword": "Şifreyi ayarla",
+        "title": "Yeni şifre gir",
+        "typePassword": "Şifreyi girin"
+      },
+      "lockWallet": "Cüzdanı kilitle",
+      "privacy": "Gizlilik",
+      "version": "Kraken Wallet Uzantısı {0}",
+      "walletSettings": "Cüzdan ayarları"
+    },
     "skip": "Atla",
+    "walletBackup": {
+      "couldNotRetrieveState": "Kurtarma ifadesi doğrulama durumu alınamadı",
+      "unverified": "Kurtarma ifadesi doğrulanamadı",
+      "verified": "Kurtarma ifadesi doğrulandı"
+    },
     "walletSettings": "Cüzdan ayarları"
   },
   "floatingTransactionActivityButtons": {
@@ -466,9 +658,58 @@
     "assets": "Varlıklar",
     "collection": "NFT'ler",
     "collection_see_all": "Tümünü görüntüle",
-    "deposits": "Para yatırma",
+    "defiEmpty": "DeFi ile kazanmaya başlayın",
+    "defiEmptyCaption": "Pozisyonlarınız kullanılabilir olduğunda burada görünecektir. DeFi'ye katılın ve getiri elde etmeye başlayın.",
+    "deposits": "DeFi",
     "manage": "Yönet",
     "total_balance": "Bakiye"
+  },
+  "krakenConnect": {
+    "balanceOnKraken": "Kraken",
+    "exchangeBalance": "Borsası bakiyesi",
+    "fundCta": {
+      "body": "</b>Cüzdanınıza kripto transfer etmek için <b> Kraken hesabınızı bağlayın",
+      "bodyBold": "cüzdanınıza kripto transfer edin",
+      "heading": "Cüzdanınıza fon yükleyin"
+    },
+    "sendScreen": {
+      "title": "{assetSymbol} transfer et"
+    },
+    "stepsToConnect": {
+      "hasAccount": "Hesap oluşturdum",
+      "heading": "Kraken'e bağlanmak için şu adımları izleyin:",
+      "step1": {
+        "description": "Kraken hesabınızı kurun",
+        "label": "1. Adım"
+      },
+      "step2": {
+        "description": "Cüzdana geri dönün",
+        "label": "2. Adım"
+      },
+      "step3": {
+        "description": "Kraken hesabınızı bağlayın",
+        "label": "3. Adım"
+      }
+    },
+    "transfer": {
+      "available": "{value} kullanılabilir",
+      "selectAsset": "Transfer edilecek varlık seçin",
+      "selectAssetDescription": "Kraken borsasından cüzdanınıza transfer edin",
+      "title": "Transfer",
+      "unsupportedAssets": "Desteklenmeyen varlıklar",
+      "unsupportedAssetsDescription": "Borsa hesabınızdaki diğer {count} varlık, cüzdan tarafından desteklenmiyor"
+    },
+    "transferCta": {
+      "body": "Hızlı bir şekilde kripto transfer etmek için Kraken hesabınızı bağlayın",
+      "heading": "Kraken'den transfer edin"
+    },
+    "unconnected": {
+      "alert": "Yalnızca geçerli cüzdan: \"<b>{walletName}</b>\", Kraken'e bağlanacaktır.",
+      "body": "Cüzdanınıza sorunsuz bir şekilde para transferi yapmak için Kraken borsası hesabınızı bağlayın",
+      "cta": "Kraken borsasına bağlan",
+      "noAccount": "Hesabım yok",
+      "title": "Kraken ile cüzdanınıza kripto alın"
+    }
   },
   "manageWallets": {
     "title": "Cüzdanları yönet"
@@ -543,15 +784,19 @@
   },
   "network": {
     "arbitrum": "Arbitrum",
+    "avalanche": "Avalanche",
     "base": "Taban",
     "bitcoin": "Bitcoin",
     "blast": "Blast",
     "dogecoin": "Dogecoin",
     "ethereum": "Ethereum",
     "ethereum_goerli": "Ethereum - Goerli test ağı",
-    "ethereum_sepolia": "Ethereum - Sepolia test ağı",
+    "ethereum_sepolia": "Ethereum - Sepolia",
+    "ink": "Ink",
+    "ink_sepolia": "Ethereum - Ink Sepolia",
+    "linea": "Linea",
     "matic": "Matic",
-    "optimism": "Optimism",
+    "optimism": "OP Mainnet",
     "polygon": "Polygon",
     "solana": "Solana",
     "solana_devnet": "Solana - Devnet",
@@ -650,6 +895,13 @@
     "continue": "İfadeyi göster",
     "recovery_phrase": "gizli kurtarma ifadesi",
     "skip": "Atla",
+    "skipWarning": {
+      "back": "Geri",
+      "checkOne": "Telefonumu kaybedersem veya uygulamayı yedeklemeden silersem cüzdanımı kurtarmanın hiçbir yolu olmayacağını anlıyorum.",
+      "checkTwo": "Kurtarma yedeğinin olmaması nedeniyle oluşabilecek herhangi bir varlık kaybından yalnızca benim sorumlu olduğumu anlıyorum.",
+      "confirm": "Onayla",
+      "title": "Cüzdanınızı yedeklemeden mi devam edeceksiniz?"
+    },
     "subtitle": "cüzdanınız",
     "title": "Yedekle"
   },
@@ -735,6 +987,78 @@
     "verified": "Doğrulandı",
     "verify": "Doğrula"
   },
+  "onboardingImportCloudBackup": {
+    "desc": "Cüzdanınızı yedekten içe aktarmak için şifrenizi çözmek amacıyla şifrenizi kullanın.",
+    "selection": {
+      "desc": "Birden fazla yedek oluşturdunuz, içe aktarmak istediğiniz cüzdanı seçin",
+      "recent": "En son",
+      "title": "İçe aktarmak istediğiniz cüzdan yedeğini seçin"
+    },
+    "title": "Yedekten içe aktar",
+    "usePasskey": "Şifremi kullan"
+  },
+  "onboardingImportMethod": {
+    "methodICloud": {
+      "desc": "Kraken Wallet için oluşturduğunuz iCloud yedeğinden içe aktar",
+      "title": "iCloud'dan içe aktar"
+    },
+    "methodManual": {
+      "desc": "12-24 kelimelik Gizli Kurtarma İfadenizi kullanarak içe aktarın",
+      "title": "Tohum ifadesini girin"
+    },
+    "subtitle": "cüzdanınız",
+    "title": "İçe Aktar"
+  },
+  "onboardingImportSubWallets": {
+    "addByIndex": {
+      "addWallet": "Cüzdan ekle",
+      "addWallets": "Cüzdanlar ekle",
+      "button": "Endekse göre ekle",
+      "description": "İçe aktarmak istediğiniz cüzdanın numara endeksini yazın.",
+      "placeholder": "Cüzdanın endeks numarasını girin",
+      "title": "Cüzdan endeksini girin"
+    },
+    "findingWallets": {
+      "caption": "Bu işlem birkaç saniye sürebilir",
+      "foundWallets": "{count} cüzdan bulundu...",
+      "title": "Alt cüzdanlar aranıyor"
+    },
+    "findSubWallets": {
+      "caption": "Bu işlem birkaç saniye sürebilir",
+      "foundWallets": "{count} cüzdan bulundu...",
+      "title": "Alt cüzdanlar aranıyor"
+    },
+    "importSubWallets": {
+      "addByIndex": "Endekse göre ekle",
+      "hasABalance": "Bakiyesi var",
+      "hasBalance": "Fonlar içerir",
+      "importingWallets": "{subWalletsCount} cüzdan içe aktarılıyor...",
+      "importingWalletsOne": "1 cüzdan içe aktarılıyor...",
+      "importWallets": "{subWalletsCount} cüzdan içe aktarılıyor",
+      "importWalletsOne": "1 cüzdan içe aktarılıyor",
+      "skip": "Atla",
+      "subtitle": "Fonları olan {subWalletsWithBalanceCount} cüzdan bulduk. İçe aktarmak istediğiniz tüm cüzdanları seçin.",
+      "subtitleOneWallet": "Fonları olan 1 cüzdan bulduk.",
+      "title": "İçe aktarılacak cüzdanları seçin",
+      "wallet": "Cüzdan",
+      "walletsFound": "{subWalletsCount} cüzdan bulundu",
+      "walletsFoundOne": "1 cüzdan bulundu"
+    },
+    "importSubWalletsSuccess": {
+      "continue": "Devam",
+      "subtitle": "Cüzdanlar başarıyla eklendi. İstediğiniz zaman daha fazla ekleyebilirsiniz.",
+      "subtitleOneWallet": "Cüzdan başarıyla eklendi. İstediğiniz zaman daha fazla ekleyebilirsiniz.",
+      "title": "{subWalletsCount} cüzdan içe aktarıldı!",
+      "titleOneWallet": "1 cüzdan içe aktarıldı!"
+    },
+    "loadingSubWallets": {
+      "caption": "Bu işlem birkaç saniye sürebilir",
+      "foundWallets": "{subWalletsCount} cüzdan bulundu...",
+      "foundWalletsOne": "1 cüzdan bulundu...",
+      "subtitle": "Bu işlem birkaç saniye sürebilir",
+      "title": "Alt cüzdanlar aranıyor"
+    }
+  },
   "onboardingImportWallet": {
     "caption": "Cüzdanınızı içe aktarmak için gizli kurtarma ifadenizi girin.",
     "header": "Cüzdanınızı içe aktarın",
@@ -761,9 +1085,12 @@
     "titleStart": "Haberdar olmak için "
   },
   "onChainSecurity": {
+    "analysingApp": "Uygulama analiz ediliyor...",
     "appConnectCriticalWarning": "Bu uygulamanın kötü amaçlı olduğunu ve bağlanmanın güvenli olmayacağını düşünüyoruz. Onaylamak fon kaybına neden olabilir.",
     "appConnectMediumWarning": "İsteği gönderen uygulama doğrulanamıyor.",
     "appFlagged": "Uygulama İşaretlendi!",
+    "appSafetyNotVerified": "Uygulama güvenliği doğrulanamadı",
+    "appSafetyNotVerifiedMessage": "Bağlanmaya çalıştığınız uygulamanın güvenliğini geçici bir hata veya uygulama doğrulama hizmetimizin kesintisi nedeniyle doğrulayamadık. Dikkatli ilerleyin.",
     "appSignMessageCriticalWarning": "Bu uygulamanın kötü amaçlı olduğunu ve mesajı imzalamanın güvenli olmadığını düşünüyoruz. Onaylamak fon kaybına neden olabilir.",
     "appSignMessageMediumWarning": "İsteği gönderen uygulama doğrulanamıyor.",
     "appSignTransactionCriticalWarning": "Bu uygulamanın kötü amaçlı olduğunu ve işlemi imzalamanın güvenli olmadığını düşünüyoruz. Onaylamak fon kaybına neden olabilir.",
@@ -784,6 +1111,7 @@
     "knownSecurityRiskInfo": "Bu web sitesi birden fazla güvenlik sağlayıcısı tarafından güvensiz olarak işaretlendi. Varlıklarınızı korumak için BAĞLANMAYIN.",
     "knownSecurityRiskMessage": "Bu web sitesi birden fazla güvenlik sağlayıcısı tarafından güvensiz olarak işaretlendi. Varlıklarınızın boşaltılmasını önlemek için hemen ayrılın",
     "messageFlagged": "Mesaj İşaretlendi!",
+    "punycodeDomainRiskMessage": "Bu web sitesinin adresi standart dışı karakterler içerir. Bu, dolandırıcıların meşru web sitelerini taklit etmek için kullandıkları yaygın bir tekniktir. Güvenliğiniz için hassas bilgilerinizi girmemeniz ve bu web sitesinde işlem yapmamanız önerilir.",
     "returnToSafety": "Güvenliğe geri dön",
     "signTransactionCriticalWarning": "Bu işlemin kötü amaçlı olduğunu ve imzalamanın güvenli olmadığını düşünüyoruz. Onaylamak fon kaybına neden olabilir.",
     "transactionFlagged": "İşlem İşaretlendi!",
@@ -833,7 +1161,7 @@
     "protectYourData": "Verilerinizi ekstra şifrelemeyle koruyun",
     "rationaleCreateWallet": "Yeni bir cüzdan oluşturmak için şifreniz gerekir",
     "rationaleGetXPub": "Genişletilmiş genel anahtarınızı görebilmek için şifreniz gerekir",
-    "rationaleSeeRecoveryPhrase": "(Gizli Kurtarma İfadenizi görüntülemek için)",
+    "rationaleSeeRecoveryPhrase": "Gizli Kurtarma İfadenizi görüntülemek için",
     "rationaleSignTransaction": "İşlemleri imzalamak için şifreniz gerekir",
     "requiredToAccess": "Cüzdanınıza erişmek için gereklidir",
     "requireOnOpen": "Uygulamayı her açtığınızda gerekli olsun mu?",
@@ -911,11 +1239,12 @@
     "addressHeader": "Gönderiliyor:",
     "addressOrENS": "Adres veya ENS alan adı girin...",
     "amountHeader": "Miktar",
+    "available": "{0} kullanılabilir",
     "balance": "Bakiye {0}",
     "confirm": "Onayla",
     "confirmSend": "Göndermeyi Onayla",
     "create": "Oluştur",
-    "enterAmount": "Miktarı girin",
+    "enterAmount": "{symbol} miktarı girin",
     "evm_fee_fast": "Hızlı",
     "evm_fee_normal": "Normal",
     "evm_fee_urgent": "Acil",
@@ -998,6 +1327,8 @@
     "electrum_reset_to_default": "Electrum ayarlarınızı varsayılana sıfırlamak istediğinizden emin misiniz?",
     "electrum_saved": "Değişiklikleriniz başarıyla kaydedildi. Değişikliklerin geçerli olması için uygulamanın yeniden başlatılması gerekebilir.",
     "electrum_unable_to_connect": "{server} ile bağlantı kurulamıyor.",
+    "enableTracking": "Hata İzlemeyi Etkinleştir",
+    "enableTrackingDescription": "Açıldığında uygulamamızı daha iyi hale getirmemize yardımcı olursunuz",
     "general": "Genel",
     "header": "Ayarlar",
     "hideBalances": "Bakiyeleri gizle",
@@ -1026,7 +1357,8 @@
     "testnet": "Test ağı",
     "testnetDescription": "Etkinleştirildiğinde, varlıkları yönet ekranından test ağı ağınızı ve varlıklarınızı seçebilirsiniz.",
     "view_list_of_connected_dapps": "Bağlı Dapp'lar Listesini görüntüle",
-    "wallets": "Cüzdanlar"
+    "wallets": "Cüzdanlar",
+    "walletsAndBackups": "Cüzdanlar ve yedeklemeler"
   },
   "storeReview": {
     "alertMessage": "İyi bir deneyim yaşıyorsanız bunu duymaktan memnuniyet duyarız.",
@@ -1043,6 +1375,106 @@
     "knowledgeBaseDesc": "Dosyalarımızda arama yapın, SSS'lerimizi okuyun ve iletişime geçin",
     "knowledgeBaseTitle": "Bilgi bankası",
     "visitSupportCenter": "Destek merkezini ziyaret et"
+  },
+  "swap": {
+    "amountExceedingBalance": "Girilen tutar mevcut bakiyenin üzerinde",
+    "amountPlaceholder": "{symbol} miktarı girin",
+    "balance": "Bakiye {0}",
+    "buttonTitle": "Swap",
+    "confirmation": {
+      "cancel": "İptal",
+      "confirm": "Onayla",
+      "initiated": "Swap başlatıldı!",
+      "swapFlagged": "Swap işaretlendi!"
+    },
+    "emptyState": {
+      "assetsEmptyDesc": "Mevcut cüzdanınızda herhangi bir varlık yok, cüzdanınızı fonlamayı deneyin",
+      "assetsEmptyTitle": "Kullanılabilir varlık yok",
+      "clearSearch": "Aramayı temizle",
+      "goBack": "Geri dön",
+      "okay": "Tamam",
+      "searchAllNetworks": "Tüm ağları ara",
+      "searchEmptyDesc": "Aramanızı genişletmeyi deneyin",
+      "searchEmptyTitle": "Sonuç bulunamadı",
+      "swappableAssetsEmptyDesc": "Bu cüzdanda swap sağlayıcılarımız tarafından desteklenen herhangi bir varlık yok. Şu anda yalnızca Ethereum ve EVM uyumlu ağlar desteklenir.",
+      "swappableAssetsEmptyNetworkDesc": "Mevcut cüzdanınızın swap sağlayıcılarımız tarafından desteklenen seçili ağda herhangi bir varlığı yok",
+      "swappableAssetsEmptyNetworkTitle": "Seçili ağda swap yapılabilir varlık yok",
+      "swappableAssetsEmptyTitle": "Swap yapılabilir varlık yok",
+      "targetAssetEmptyDesc": "Sağlayıcılarımızdan hiçbiri seçtiğiniz varlık için swap'ları desteklemiyor",
+      "targetAssetEmptyTitle": "Swap yapılacak kullanılabilir varlık yok"
+    },
+    "error": {
+      "insufficientGas": "Swap işlemlerini karşılamak için yetersiz {symbol} bakiyesi"
+    },
+    "findingBestRote": "En iyi rota bulunuyor",
+    "otherAssets": "Token'lar",
+    "route": {
+      "bridgeCost": {
+        "hint": "Köprü maliyeti, swap sırasında farklı blok zincirleri arasında varlıkları transfer etmek için swap sağlayıcısı tarafından tahsil edilen bir ücrettir.",
+        "title": "Köprü maliyeti"
+      },
+      "krakenFee": {
+        "hint": "Kraken Wallet, swap için herhangi bir ücret tahsil etmez. Kripto ve block zinciri teknolojisinin benimsenmesini desteklemek için bu hizmeti ücretsiz olarak sunuyoruz.",
+        "title": "Kraken ücreti",
+        "value": "ÜCRETSİZ"
+      },
+      "minumumOutput": {
+        "hint": "Kayma oluşursa bu, işlem başarılı olduğunda alacağınız hedef varlığın minimum miktarıdır.",
+        "title": "Minimum çıktı"
+      },
+      "networkFee": {
+        "hint": "Ağ ücreti, işleminize devam etmek ve onaylamak için blok zinciri doğrulayıcılarına ödenen bir ücrettir.",
+        "title": "Ağ ücreti"
+      },
+      "priceImpact": {
+        "hint": "Fiyat etkisi, piyasa fiyatı ile swap fiyatı arasındaki farktır. Havuzdaki likiditeye göre yaptığınız işlemin büyüklüğüne bağlıdır.",
+        "title": "Fiyat etkisi"
+      },
+      "rate": "Oran",
+      "slippage": {
+        "hint": "Swap kayması, beklenen ve son varlık fiyatı arasındaki farktır. Fiyat, belirlenen kayma toleransının ötesine geçerse işlem iptal edilir. Swap kayması, köprü kayması hariç yalnızca aynı zincir swap'larına uygulanır.",
+        "title": "Swap kayması"
+      },
+      "swapRate": "Swap oranı",
+      "transactionFees": "İşlem ücretleri",
+      "typeSelection": {
+        "bestValue": {
+          "desc": "En iyi genel değer",
+          "name": "En iyi değer"
+        },
+        "fastest": {
+          "desc": "En hızlı işlem hızı",
+          "name": "En hızlı swap"
+        },
+        "title": "Swap rotasını bulun"
+      },
+      "unsupportedRoute": {
+        "desc": "Ayrıca önce büyük bir token ile swap yapmayı deneyebilir ardından bunu istediğiniz varlıkla swap yapabilirsiniz.",
+        "title": "Girdiğiniz işlem için kullanılabilir rota yok. Kayma ayarını artırmak size daha fazla rota kazandırabilir."
+      }
+    },
+    "routePath": {
+      "bridge": "{name} aracılığıyla köprü",
+      "swap": "{name} aracılığıyla swap",
+      "title": "Swap rotası"
+    },
+    "selectAsset": "Varlık Seçin",
+    "slippageSettings": {
+      "custom": "Özel",
+      "desc": "Fiyat, kayma yüzdesinden daha fazla değişirse (ters yönde) swap işleminiz iptal edilecektir.",
+      "footer": "Daha yüksek kayma, işlem başarı oranını artırabilir ancak sizi frontrunning / sandwich saldırılarına maruz bırakabilir.",
+      "save": "Kaydet",
+      "title": "Kayma ayarları",
+      "warningHigh": "%{amount} üzerindeki kayma yüksek kabul edilir",
+      "warningSmall": "%{amount} altındaki kayma, swap işleminin başarısız olmasına neden olabilir",
+      "warningUnsupported": "%{amount} oranından büyük kayma desteklenmez"
+    },
+    "sourceListHeader": "Varlıklarınız",
+    "sourceSearchPlaceholder": "Swap yapılacak varlığı seçin",
+    "targetSearchPlaceholder": "Alınacak varlığı seçin",
+    "title": "Swap",
+    "unsupportedAssetsHidden": "Swap sağlayıcılarımız henüz diğer {count}varlığınızı desteklemiyor",
+    "yourAssets": "Varlıklarınız"
   },
   "test": {
     "key": "Test etme"
@@ -1240,8 +1672,8 @@
     "copied": "Adres kopyalandı",
     "crypto": "Kripto",
     "cryptoAndNft": "NFT'ler ve kripto para birimleri",
-    "ethereumAddressLabel": "Katman 2 ağlarını içerir",
-    "ethereumExplainerBody": "Ethereum'un adres sistemi Polygon, Arbitrum, Optimism ve Base gibi Katman 2 ağlarına kadar uzanır ve tek bir adresinizin her yerde çalışmasını sağlar",
+    "ethereumAddressLabel": "Ethereum uyumlu ağlar dahildir",
+    "ethereumExplainerBody": "Ethereum'un adres sistemi Polygon, Arbitrum, OP Mainnet, Base, Blast, Linea ve Avalanche gibi Ethereum uyumlu ağlara kadar uzanır ve tek bir adresinizin her yerde çalışmasını sağlar",
     "ethereumExplainerHeading": "Ethereum adresiniz",
     "tokenAddress": "{token} adres"
   },
@@ -1284,13 +1716,170 @@
     "backup": "Yedekle",
     "backupYourWallet": "Cüzdanınızı yedekleyin",
     "backupYourWalletDescription": "Cihazınızı kaybederseniz veya başka bir cüzdana geçerseniz kripto para birimlerinizi kurtarabileceğinizden emin olun.",
-    "secretRecoveryPhrase": "Gizli kurtarma ifadesi",
+    "cloudWarning": {
+      "button": "iCloud ile yedekleyin",
+      "desc": "Gizli kurtarma ifadenizi kaybetseniz bile cüzdanınızı kurtarabileceğinizden emin olun",
+      "title": "Bulut yedekleme önerilir"
+    },
+    "manualWarning": {
+      "button": "Manuel olarak yedekle",
+      "desc": "iCloud hesap erişiminizi kaybetseniz bile cüzdanınızı kurtarabileceğinizden emin olun.",
+      "title": "Manuel yedekleme önerilir"
+    },
+    "secondaryBackup": {
+      "iCloud": "Gelişmiş kurtarılabilirlik için iCloud'da parola ile şifrelenmiş bir yedekleme oluşturun. Şifreleme, Apple'ın bile bunu göremeyeceği anlamına gelir",
+      "manual": "Gelişmiş kurtarılabilirlik için gizli kurtarma ifadenizin manuel bir yedeğini oluşturarak güvenli bir yerde saklayın",
+      "title": "İkincil bir yedekleme oluşturun"
+    },
+    "secretRecoveryPhrase": "Gizli kurtarma ifadeniz",
     "tapHereToView": "Görüntülemek için buraya dokunun"
   },
   "walletBackupPrompt": {
     "backUpNow": "Şimdi yedekle",
     "body": "Gizli Kurtarma İfadenizi yedeklemediniz. Fonlarınıza erişimi kaybetmemek için yedekleme yapmanızı öneririz.",
     "header": "Bu cüzdana fon almadan önce yedekleme yapın"
+  },
+  "walletBackupSelection": {
+    "backupManually": "Manuel olarak yedekle",
+    "backupManuallyCompleted": "Manuel olarak yedeklenmiş",
+    "backupWithICloud": "iCloud ile yedekleyin",
+    "backupWithICloudCompleted": "iCloud ile yedeklenmiş",
+    "caption": "Cüzdanınızı yedeklemezseniz kriptolarınızı kaybetme riskine girersiniz. Kurtarma ifadenize erişimimiz yoktur ve yedekleme olmadan ifadenizi kurtarmanıza yardımcı olamayız.",
+    "explainer": {
+      "desc": "Gizli kurtarma ifadesini kaybetmek, kriptoları kaybetmenin en yaygın yoludur. Kraken Wallet, birden fazla güvenli yedekleme yöntemi sunarak bu riski en aza indirir.",
+      "title": "Kayıp olasılığını azaltmak için kurtarılabilirliği artırın"
+    },
+    "iCloudDescCompletedShort": "Şifrelenmiş gizli kurtarma ifadesi",
+    "iCloudDescLong": "Bir parola ile şifreleyin ve iCloud'da saklayın",
+    "iCloudDescShort": "Şifreleyin ve iCloud'da saklayın",
+    "manualBackupDescLong": "Seçtiğiniz güvenli bir yerde elle saklayın",
+    "manualBackupDescShort": "Seçtiğiniz güvenli bir yerde saklayın",
+    "manualBackupDescShortCompleted": "Güvenli bir yerde sakladım",
+    "prompt": "Cihazınızı kaybetseniz bile cüzdanınıza her zaman erişebileceğinizden emin olun.",
+    "recoverability": {
+      "desc": "Daha güçlü olabilir",
+      "title": "Kurtarılabilirlik"
+    },
+    "skipButton": "Belki daha sonra",
+    "subtitle": "cüzdanınız",
+    "title": "Yedekle",
+    "titleWithSubtitle": "Cüzdanınızı yedekleyin",
+    "tooltip": {
+      "iCloud": "iCloud yedekleme, gizli kurtarma ifadenizi kaybederseniz cüzdanınızı yine de kurtarabilmenizi sağlar.",
+      "manual": "Manuel yedekleme, iCloud erişimini veya cihazınızı kaybederseniz cüzdanınızı yine de kurtarabilmenizi sağlar."
+    }
+  },
+  "walletCloudBackup": {
+    "createPasskey": "Bir şifre oluşturun",
+    "hints": {
+      "part1": "Standart parolalardan daha güvenli",
+      "part2": "Biyometrik veya güvenlik cihazı kullanılarak şifrelenmiş",
+      "part3": "Bu cihazı kaybetseniz bile sizin tarafınızdan kurtarılabilir"
+    },
+    "passkeyDescription": "Yedeklemenizi oluşturmak için bir parolayla şifreleyin. Bu işlem, yedeklemeyi sizden başka kimsenin geri yükleyememesini sağlar. (Şifreleme, Apple'ın bile görmesini engeller)",
+    "secureYourBackup": "Yedeklemenizin güvenliğini sağlayın",
+    "success": "Cüzdan, iCloud'da başarıyla yedeklendi"
+  },
+  "walletCloudBackupDelete": {
+    "cancel": "İptal",
+    "caption": "Cihazınızı kaybetmeniz durumunda cüzdanınızı kurtarabilmeniz için Gizli Kurtarma İfadenizi güvenli bir yerde sakladığınızdan emin olun.",
+    "check1": "Telefonumu kaybedersem veya uygulamayı silersem cüzdanımı geri yüklemek için gizli kurtarma ifadesine ihtiyacım olacağını anlıyorum.",
+    "check2": "12 kelimelik gizli kurtarma ifademi güvenli bir yere kaydettiğimi onaylıyorum.",
+    "delete": "Sil",
+    "header": "Bu yedeklemeyi silmek istediğinizden emin misiniz?",
+    "title": "Yedeklemeyi sil"
+  },
+  "walletCloudBackupError": {
+    "deleteBackupConfirmation": {
+      "cancel": "İptal",
+      "description": "Bunu kaldırarak şifrenin zaten silindiğini onaylamış olursunuz. Bu işlem, silinen şifreye ilişkin tüm referansları uygulamadan kaldıracaktır.",
+      "header": "Şifre yedeklemesini kaldır",
+      "remove": "Kaldır",
+      "title": "Bu şifre yedeklemesini kaldırmak istediğinizden emin misiniz?"
+    },
+    "ensureICloudKeychainOn": "Cihazınızın Parola Seçenekleri'nde parolalar ve şifreler için kullanılacak iCloud Anahtar Zinciri'nin açık olduğundan emin olun:",
+    "errorCreatingBackup": {
+      "cancel": "İptal",
+      "description": "Yedekleme oluşturmaya çalışırken bir hata oluştu.",
+      "title": "Yedekleme oluştururken hata",
+      "tryAgainBold": "yedeklemenin diğer cihazlara kaydedilmesini desteklemiyoruz.",
+      "tryAgainButton": "Tekrar dene",
+      "tryAgainFormatted": "Tekrar denerken lütfen <b>yedeklemenin diğer cihazlara kaydedilmesini desteklemediğimizi</b> unutmayın.",
+      "tryAgainRegular": "Tekrar denerken lütfen unutmayın "
+    },
+    "errorCreatingPasskey": {
+      "description": "Cihazınızın Parola Seçenekleri'nde parolalar ve şifreler için kullanılacak iCloud Anahtar Zinciri'nin açık olduğundan emin olun:",
+      "title": "Yedekleme oluştururken hata"
+    },
+    "errorDeletingPasskey": {
+      "cancel": "İptal",
+      "deletedPasskeyPossibility": "Bir diğer olasılık ise yedeklemenizi içeren şifrenin zaten silinmiş olmasıdır. Şifrenizin silindiğinden eminseniz şifrenizi silinmiş olarak işaretleyip cüzdandan kaldırabiliriz.",
+      "removeItButton": "Evet, kaldır",
+      "title": "Şifre yedeklemesi silinirken hata oluştu"
+    },
+    "errorInactive": {
+      "description": "Birden fazla şifre oluşturduysanız başka bir yedeklemeyi içe aktarmayı deneyebilirsiniz. Aksi takdirde 12-24 kelimelik Gizli Kurtarma İfadesini kullanarak cüzdanınızı içe aktarabilirsiniz",
+      "subtitle": "Bu şifre etkin değil; manuel olarak sildiğiniz bir yedeklemeden geliyor.",
+      "title": "Etkin olmayan şifre"
+    },
+    "keychainSteps": {
+      "formatted": {
+        "ios17": {
+          "tips": {
+            "one": {
+              "stepOne": "Şu konuma git: <b>Ayarlar → Parolalar → Parola Seçenekler</b>",
+              "stepTwo": "Şunu açın: <b>iCloud Anahtar Zinciri</b>",
+              "title": "<b>İpucu 1:</b> Parolalar ve şifreler için kullanılacak iCloud Anahtar Zinciri'nin açık olduğundan emin olun:"
+            },
+            "two": {
+              "stepOne": "Şu konuma git: <b>Ayarlar → Apple Kimliği → iCloud → Parolalar</b>",
+              "stepTwo": "Şunu açın: <b>Bu iPhone'u yedekle</b>",
+              "title": "<b>İpucu 2:</b> iCloud Parolalar ve Anahtar Zinciri'ni açın"
+            }
+          },
+          "title": "Şifreyi oluşturmak için <b>iCloud Anahtar Zinciri'ni</b> kullandığınızdan emin olun. <b>Diğer parola yöneticileri henüz desteklenmiyor.</b>"
+        },
+        "ios18": {
+          "tips": {
+            "one": {
+              "stepOne": "Şu konuma git: <b>Ayarlar → Genel → Otomatik Doldurma ve Parolalar</b>",
+              "stepTwo": "Şunu açın: <b>Şifreler</b>",
+              "title": "<b>İpucu 1:</b> Aşağıdaki adımları izleyerek Parolaların açık olduğundan emin olun:"
+            },
+            "two": {
+              "stepOne": "Şu konuma git: <b>Ayarlar → iCloud → Parolalar</b>",
+              "stepTwo": "Şunu açın: <b>Bu iPhone'u yedekle</b>",
+              "title": "<b>İpucu 2:</b> iCloud Parolalar ve Anahtar Zinciri'ni açın"
+            }
+          },
+          "title": "Tekrar denediğinizde şifreyi oluşturmak için iCloud <b>Parolalarını</b> kullandığınızdan emin olun. <b>Diğer parola yöneticileri henüz desteklenmiyor.</b>"
+        }
+      },
+      "one": {
+        "bold": "Ayarlar → Parolalar → Parola Seçenekler",
+        "regular": "1. Şu konuma git: "
+      },
+      "two": {
+        "bold": "iCloud Anahtar Zinciri",
+        "regular": "2. Şunu açın: "
+      }
+    },
+    "noPasskeyFound": {
+      "description": "Şifre bulamadık. Şifre oluşturmamış olabilirsiniz veya iCloud Anahtar Zinciri ayarlarda devre dışı bırakıldı. Aşağıdaki adımları izleyerek iCloud Anahtar Zinciri'nin açık olduğundan emin olun:",
+      "descriptioniOS17": "Şifre bulamadık. Şifre oluşturmamış olabilirsiniz veya <b>iCloud Anahtar Zinciri</b> ayarlarda devre dışı bırakıldı.",
+      "descriptioniOS18": "Şifre bulamadık. Şifre oluşturmamış olabilirsiniz veya <b>Parolalar</b> ayarlarda devre dışı bırakıldı.",
+      "title": "Şifre bulunamadı"
+    },
+    "supportHint": {
+      "link": "Kraken Wallet Destek Ekibi ↗",
+      "regular": "Sorunuz çözülmediyse şu adresi ziyaret ederek yardım alabilirsiniz: ",
+      "regularWithManualBackup": "Sorununuz çözülmediyse 12-24 kelimelik Gizli Kurtarma İfadenizi içe aktarabilir veya şu adresi ziyaret ederek yardım alabilirsiniz: "
+    },
+    "userCanceledBackup": {
+      "cancel": "İptal",
+      "description": "Cüzdanınızı yedeklemek için ikinci kez Oturum Açmanız gerekir, aksi takdirde parolayı kullanarak cüzdanınızı güvenli bir şekilde şifreleyemeyiz.",
+      "title": "Şifreyle oturum açmanız gerekiyor"
+    }
   },
   "walletConnect": {
     "account_not_found": "WalletConnect: Hesap bulunamadı",
@@ -1306,6 +1895,7 @@
       "cancel": "İptal",
       "connect": "Bağlan"
     },
+    "back_to_dapp": "Devam etmek için tarayıcıya dönün",
     "failedToConnect": "Uygulama bağlanmadı",
     "failedToDisconnect": "Uygulamanın bağlantısı kesilmedi",
     "feeEstimate": "Ücret Tahmini",
@@ -1418,6 +2008,18 @@
       "part1": "Artık varlıklarınızın performansını ve fiyat değişikliklerini doğrudan cüzdanınızdan takip edebilirsiniz!",
       "part2": "Detaylı varlık bilgilerini inceleyin, potansiyel tehditlerden haberdar olun ve token sözleşmeleri ve mevcut ağ ücretleri gibi temel bilgilere sorunsuzca erişin.",
       "title": "Kapsamlı varlık verileri parmaklarınızın ucunda"
+    },
+    "longPress": {
+      "buttonText": "Kulağa hoş geliyor",
+      "part1": "Varlıklarınız ve NFT'leriniz için Long Press işlemlerini tanıtmaktan heyecan duyuyoruz! Birden fazla ekran arasında gezinmeden gönderme, alma ve gizleme gibi görevleri kolaylıkla gerçekleştirin.",
+      "part2": "Bugün daha sorunsuz, sezgisel bir cüzdan deneyiminin tadını çıkarın.",
+      "title": "Size kolaylık sağlaması için hızlı işlemler"
+    },
+    "swaps": {
+      "buttonText": "Şimdi swap yapın",
+      "part1": "Zincir içindeki en sağlam swap protokollerini kullanarak istediğiniz varlıkları diğer popüler token'lar veya kriptolarla swap yapın. İster tek bir ağ üzerinde swap yapıyor ister desteklenen sekiz farklı zincir arasında sorunsuzca köprüleme yapıyor olun, çoğu işlemi saniyeler içinde gerçekleştirin!",
+      "part2": "Hızlı, güvenli ve esnek token takasını doğrudan cüzdanınızda deneyimleyin.",
+      "title": "Hızlı ve Çok Yönlü Swap İşlemleri Parmaklarınızın Ucunda"
     }
   }
 }

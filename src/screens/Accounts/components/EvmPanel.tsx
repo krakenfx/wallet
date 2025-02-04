@@ -35,6 +35,7 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
     ChainAgnostic.NETWORK_BASE,
     ChainAgnostic.NETWORK_LINEA,
     ChainAgnostic.NETWORK_AVALANCHE,
+    ChainAgnostic.NETWORK_INK,
     ...(isNewNetworksEnabled ? NEW_EVM_NETWORKS : []),
   ];
 

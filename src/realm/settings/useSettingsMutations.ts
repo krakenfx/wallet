@@ -146,5 +146,6 @@ export const useSettingsMutations = () => {
     setManualBackupDismissed,
     setManualBackupCompleted,
     removeCloudBackup,
+    removeSettings,
   };
 };

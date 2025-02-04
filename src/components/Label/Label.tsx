@@ -83,6 +83,7 @@ export const Typography = {
   headerMarketDataPrice: { fontSize: 24, fontFamily: Fonts.IBMPlexSans.bold, lineHeight: 31 },
   boldTitleMarketDataPercentage: { fontSize: 18, fontFamily: Fonts.IBMPlexSans.bold, letterSpacing: -0.5, lineHeight: 25 },
   boldTitleMarketDataPercentageLarge: { fontSize: 28, fontFamily: Fonts.IBMPlexSans.bold, letterSpacing: -0.2 },
+  boldTitleEarnPercentage: { fontSize: 20, fontFamily: Fonts.IBMPlexSans.bold, letterSpacing: -0.5, lineHeight: 25 },
 } as const;
 
 const boldMapping: Partial<Record<TypographyKey, TypographyKey>> = {
