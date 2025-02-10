@@ -6,7 +6,7 @@ import type { SharedValue } from 'react-native-reanimated';
 import { BottomSheetFooter } from '@gorhom/bottom-sheet';
 import { StyleSheet, View } from 'react-native';
 
-import Animated, { Extrapolate, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Touchable } from '@/components/Touchable';
@@ -14,7 +14,7 @@ import { Touchable } from '@/components/Touchable';
 import { Label } from '../../Label';
 import { SvgIcon } from '../../SvgIcon';
 
-import type { BottomSheetFooterProps, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
+import type { BottomSheetFooterProps } from '@gorhom/bottom-sheet';
 
 import loc from '/loc';
 
@@ -22,7 +22,7 @@ type CustomFooterProps<P> = {
   toggle: () => void;
   onLayout: (layout: LayoutRectangle) => void;
   animatedIndex: SharedValue<number>;
-  snapPoints: ReturnType<typeof useBottomSheetDynamicSnapPoints>['animatedSnapPoints'];
+  snapPoints: SharedValue<(number | string)[]>;
   FooterElement: React.ReactNode;
   canShowMore: boolean;
   floatingButtonsProps?: P;
@@ -42,7 +42,9 @@ export const ExpandableSheetFooter: React.FC<Props<Record<string, never>>> = ({
   const insets = useSafeAreaInsets();
 
   const arrowStyle = useAnimatedStyle(() => ({
-    transform: [{ scaleY: interpolate(animatedIndex.value, [0.3, 0.7], [-1, 1], { extrapolateLeft: Extrapolate.CLAMP, extrapolateRight: Extrapolate.CLAMP }) }],
+    transform: [
+      { scaleY: interpolate(animatedIndex.value, [0.3, 0.7], [-1, 1], { extrapolateLeft: Extrapolation.CLAMP, extrapolateRight: Extrapolation.CLAMP }) },
+    ],
   }));
 
   const showMoreStyle = useAnimatedStyle(() => ({
@@ -62,7 +64,7 @@ export const ExpandableSheetFooter: React.FC<Props<Record<string, never>>> = ({
       return {};
     }
     return {
-      transform: [{ translateY: interpolate(animatedIndex.value, [-1, 0], [firstSnap, 0], { extrapolateRight: Extrapolate.CLAMP }) }],
+      transform: [{ translateY: interpolate(animatedIndex.value, [-1, 0], [firstSnap, 0], { extrapolateRight: Extrapolation.CLAMP }) }],
       opacity: interpolate(animatedIndex.value, [-0.25, 0], [0, 1]),
     };
   });

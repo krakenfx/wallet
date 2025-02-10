@@ -14,6 +14,7 @@ module.exports = function (api) {
       },
     ],
     'error-context',
+    'babel-plugin-inline-import',
   ];
 
   if (process?.env?.JEST_WORKER_ID) {
@@ -40,8 +41,8 @@ module.exports = function (api) {
         alias: {
           '@': './src',
           '/': '.',
-          'crypto': './modules/crypto',
-          'stream': 'stream-browserify',
+          crypto: './modules/crypto',
+          stream: 'stream-browserify',
         },
       },
     ]);
@@ -56,10 +57,8 @@ module.exports = function (api) {
       // @see https://github.com/ethers-io/ethers.js/issues/4307
       {
         test: './node_modules/ethers',
-        plugins: [
-          ["@babel/plugin-transform-private-methods", { "loose": true }]
-        ]
-      }
-    ]
+        plugins: [['@babel/plugin-transform-private-methods', { loose: true }]],
+      },
+    ],
   };
 };

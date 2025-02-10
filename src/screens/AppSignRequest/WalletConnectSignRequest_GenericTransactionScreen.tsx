@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import type { FeeOption } from '@/api/types';
@@ -24,7 +24,7 @@ import type { DefinitionList } from '/modules/wallet-connect/types';
 export interface WalletConnectSignRequest_GenericTransactionParams {
   walletId: string;
   metadata: {
-    imageUrl: string;
+    imageUrl?: string;
     name: string;
     url: string;
   };
@@ -46,13 +46,7 @@ export const WalletConnectSignRequest_GenericTransactionScreen = ({ route, navig
   const isCriticalWarning = warning?.severity === 'critical';
   const blockScreenMessage = isCriticalWarning ? warning.message : '';
   const [showBlockScreen, setShowBlockScreen] = useState(isCriticalWarning);
-  const [hasScrolledToEndOfContent, setHasScrolledToEndOfContent] = useState(false);
-
-  useEffect(() => {
-    if (content.length === 0) {
-      setHasScrolledToEndOfContent(true);
-    }
-  }, [content]);
+  const [hasScrolledToEndOfContent, setHasScrolledToEndOfContent] = useState(content.length === 0);
 
   const handleApprove = (feeOption: FeeOption | null) => {
     onApprove(feeOption);

@@ -23,6 +23,9 @@ export class TezosNetwork implements Network {
   nativeTokenCaipId: string = ChainAgnostic.COIN_TEZOS;
   nativeTokenDecimals: number = 6;
   nativeTokenSymbol: NativeTokenSymbol = 'TEZ';
+  krakenConnectNetworkId: null = null;
+  krakenConnectMethodId: null = null;
+  krakenConnectMethodName: null = null;
   paymentUriPrefix = 'tezos';
   blockExplorer: BlockExplorer = {
     transactionUri(txId: string) {

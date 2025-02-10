@@ -24,7 +24,6 @@ export const Basic: StoryObj<ExpandableSheetPropsAndCustomArgs> = {
   args: {
     showSecondaryButton: false,
     dismissible: false,
-    extraPaddingBottom: 0,
     onDismiss: noop,
   },
   render: function Render({ showSecondaryButton, ...args }) {
@@ -68,7 +67,6 @@ export const Modal: StoryObj<ExpandableSheetPropsAndCustomArgs> = {
     showSecondaryButton: false,
     isModal: true,
     dismissible: false,
-    extraPaddingBottom: 0,
     onDismiss: noop,
   },
   render: function Render({ showSecondaryButton, ...args }) {

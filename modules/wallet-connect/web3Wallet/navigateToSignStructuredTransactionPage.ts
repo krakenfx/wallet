@@ -1,8 +1,7 @@
 import { CommonActions } from '@react-navigation/native';
 
 import type { FeeOption } from '@/api/types';
-import type { PreparedTransaction } from '@/onChain/wallets/base';
-import type { EVMNetwork } from '@/onChain/wallets/evm';
+import type { Network, PreparedTransaction } from '@/onChain/wallets/base';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
 import type { RealmWallet } from '@/realm/wallets';
 import type { WalletConnectSignRequest_StructuredTransactionParams } from '@/screens/AppSignRequest/WalletConnectSignRequest_StructuredTransactionScreen';
@@ -12,15 +11,13 @@ import { hapticFeedback } from '@/utils/hapticFeedback';
 
 import type { DefinitionList, TransactionContent } from '../types';
 
-import type { TransactionRequest } from 'ethers';
-
 import loc from '/loc';
 import { buildAssetContent, classifyTransaction, getTransactionPageTitle } from '/modules/wallet-connect/web3Wallet/ethereum';
 
 type GetSignStructuredParamsFromTransactionProps = {
   method: string;
-  preparedTransaction: PreparedTransaction<TransactionRequest>;
-  network: EVMNetwork;
+  preparedTransaction: PreparedTransaction;
+  network: Network;
   currency: Currency;
   dappName?: string;
 };

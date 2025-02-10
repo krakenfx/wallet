@@ -20,6 +20,7 @@ export const CoinHeader = ({ wallet, token, text }: CoinHeaderProps) => {
   if (!wallet) {
     return null;
   }
+
   const { network } = getImplForWallet(wallet);
   const networkName = getWalletName(wallet.type);
   const titleName = getLabelName(token, wallet);
@@ -64,5 +65,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
+  },
+  tokenNetwork: {
+    textTransform: 'capitalize',
   },
 });

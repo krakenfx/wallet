@@ -1,4 +1,4 @@
-import { BottomSheetScrollView, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -46,8 +46,6 @@ export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explaine
   const theme = useTheme();
   const { contentType } = route.params;
   const insets = useSafeAreaInsets();
-  const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
-  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const content = useMemo(() => {
     switch (contentType) {
@@ -78,9 +76,7 @@ export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explaine
 
   return (
     <BottomSheet
-      contentHeight={animatedContentHeight}
-      handleHeight={animatedHandleHeight}
-      snapPoints={animatedSnapPoints}
+      enableDynamicSizing
       animateOnMount={false}
       detached={true}
       bottomInset={insets.bottom + 30}
@@ -89,7 +85,7 @@ export const ExplainerScreen = ({ navigation, route }: NavigationProps<'Explaine
       onDismiss={navigation.goBack}
       handleStyle={styles.handle}
       style={styles.modal}>
-      <BottomSheetScrollView bounces={false} contentContainerStyle={styles.container} onLayout={handleContentLayout} testID={`Explainer-${contentType}`}>
+      <BottomSheetScrollView bounces={false} contentContainerStyle={styles.container} testID={`Explainer-${contentType}`}>
         {content}
         <SvgIcon
           testID="CloseExplainer"
@@ -121,7 +117,6 @@ const styles = StyleSheet.create({
     display: 'none',
   },
   container: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',

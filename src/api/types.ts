@@ -60,3 +60,7 @@ export type SwapRouteTXStep = components['schemas']['SwapRouteTXStep'];
 export type SwapRoute = components['schemas']['SwapRoute'];
 export type TokenType = components['schemas']['TokenType'];
 export type TokenDict = components['schemas']['TokenDict'];
+export type DepositOptionsResult = components['schemas']['DepositOptionsResult'];
+export type Vault = components['schemas']['Vault'];
+export type BestVaultResult = components['schemas']['BestVaultResult'];
+export type Asset = components['schemas']['Asset'];

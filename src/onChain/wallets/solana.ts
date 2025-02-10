@@ -116,7 +116,7 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
       })
     ).content as unknown as SolanaSimulationResult;
 
-    const { fee: baseFee, compiledTransaction, preventativeAction, status, warnings } = result;
+    const { fee: baseFee, compiledTransaction, preventativeAction, status, warnings, effects } = result;
 
     return {
       data: {
@@ -126,6 +126,7 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
       isError: status === 'failure',
       preventativeAction,
       warnings,
+      effects,
     };
   }
 
@@ -169,6 +170,9 @@ export class SolanaNetwork implements Network<SolanaPreparedTransaction, SolanaT
   nativeTokenCaipId: string;
   nativeTokenDecimals: number;
   nativeTokenSymbol: NativeTokenSymbol;
+  krakenConnectNetworkId: string = 'ae4e3bdf-b9dd-4bd9-9489-0be0d118a3fd';
+  krakenConnectMethodId: string = '8f33e1a7-eb86-4534-8f61-8e9a2759dcc5';
+  krakenConnectMethodName: string = 'Solana';
   paymentUriPrefix = 'solana';
   isTestnet: boolean;
   icon: NetworkIcon = ({ opacity }) => ({

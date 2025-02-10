@@ -11,11 +11,11 @@ export function navigateToSignGenericMessagePage(
   accountIdx: number,
   metadata: {
     imageUrl?: string;
-    name?: string;
-    url?: string;
+    name: string;
+    url: string;
   },
   genericMessage: GenericMessage,
-  detailsContent: DefinitionList,
+  detailsContent?: DefinitionList,
   warning?: Warning,
 ) {
   return new Promise<boolean>(resolve => {

@@ -57,6 +57,11 @@ export interface Network<TransactionType = unknown, TransactionRequest = unknown
   nativeTokenDecimals: number;
   nativeTokenCaipId: string;
   caipId: string;
+
+  krakenConnectNetworkId: string | null;
+  krakenConnectMethodId: string | null;
+  krakenConnectMethodName: string | null;
+
   isTestnet?: boolean;
   nativeTokenSymbol: NativeTokenSymbol;
   nativeTokenLabel?: string;

@@ -70,6 +70,9 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
   nativeTokenSymbol: NativeTokenSymbol;
   caipId: string;
   nativeTokenCaipId: string;
+  krakenConnectNetworkId: string | null;
+  krakenConnectMethodId: string | null;
+  krakenConnectMethodName: string | null;
   icon: NetworkIcon;
   paymentUriPrefix = 'ethereum';
   disable1559: boolean;
@@ -86,6 +89,9 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
     chainId: number;
     nativeTokenSymbol: NativeTokenSymbol;
     nativeTokenSlipId: number;
+    krakenConnectNetworkId: string | null;
+    krakenConnectMethodId: string | null;
+    krakenConnectMethodName: string | null;
     nativeTokenLabel?: string;
     disable1559?: boolean;
     isTestnet?: boolean;
@@ -98,6 +104,9 @@ export class EVMNetwork implements Network<EthersTransactionRequest, SignTransac
     this.nativeTokenDecimals = 18;
     this.chainId = config.chainId;
     this.nativeTokenSymbol = config.nativeTokenSymbol;
+    this.krakenConnectNetworkId = config.krakenConnectNetworkId;
+    this.krakenConnectMethodId = config.krakenConnectMethodId;
+    this.krakenConnectMethodName = config.krakenConnectMethodName;
     this.caipId = `eip155:${config.chainId}`;
     this.nativeTokenCaipId = `${this.caipId}/slip44:${config.nativeTokenSlipId}`;
     this.disable1559 = config?.disable1559 ?? false;

@@ -1,5 +1,5 @@
-import { useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
-import { forwardRef, useMemo } from 'react';
+import { BottomSheetView } from '@gorhom/bottom-sheet';
+import { forwardRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import type { BottomSheetModalRef } from '@/components/BottomSheet';
@@ -15,13 +15,9 @@ type Props = {
 };
 
 export const PasswordChangeInfoSheet = forwardRef<BottomSheetModalRef, Props>(({ onConfirm }, ref) => {
-  const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
-
-  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
-
   return (
-    <BottomSheetModal contentHeight={animatedContentHeight} handleHeight={animatedHandleHeight} snapPoints={animatedSnapPoints} ref={ref}>
-      <View onLayout={handleContentLayout} testID="PasswordChangeInfoModal">
+    <BottomSheetModal index={0} enableDynamicSizing ref={ref}>
+      <BottomSheetView testID="PasswordChangeInfoModal">
         <View style={styles.container}>
           <Label type="boldDisplay3">{loc.passwordProtection.resetHintModalTitle}</Label>
           <Label type="regularTitle2" color="light75" style={styles.desc}>
@@ -36,7 +32,7 @@ export const PasswordChangeInfoSheet = forwardRef<BottomSheetModalRef, Props>(({
             testID: 'PasswordChangeInfoModalConfirm',
           }}
         />
-      </View>
+      </BottomSheetView>
     </BottomSheetModal>
   );
 });

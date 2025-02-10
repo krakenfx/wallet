@@ -14,8 +14,7 @@ import { Touchable } from '@/components/Touchable';
 import type { RealmNft } from '@/realm/nfts';
 import { Routes } from '@/Routes';
 import { getLabelsFromNft } from '@/screens/Nfts/utils';
-
-import { getTokenIconFallbackProps } from '/generated/assetIcons';
+import { getTokenIconFallbackProps } from '@/utils/getTokenIcon';
 
 interface NftCollectionBlockProps {
   nft: RealmNft | undefined;

@@ -12,7 +12,7 @@ export function navigateToSignGenericTransactionPage(
   dispatch: (action: ReturnType<typeof CommonActions.navigate>) => void,
   wallet: RealmishWallet,
   metadata: {
-    imageUrl: string;
+    imageUrl?: string;
     name: string;
     url: string;
   },

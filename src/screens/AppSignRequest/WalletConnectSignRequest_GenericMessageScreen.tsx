@@ -25,11 +25,11 @@ export interface WalletConnectSignRequest_GenericMessageParams {
   accountIdx: number;
   metadata: {
     imageUrl?: string;
-    name?: string;
-    url?: string;
+    name: string;
+    url: string;
   };
   genericMessage: GenericMessage;
-  detailsContent: DefinitionList;
+  detailsContent?: DefinitionList;
   onApprove: () => void;
   onReject: () => void;
   warning?: Warning;
@@ -89,7 +89,7 @@ export const WalletConnectSignRequest_GenericMessageScreen = ({ route, navigatio
           setHasScrolledToEndOfContent={setHasScrolledToEndOfContent}
         />
       }
-      DetailsComponent={<ExpandedDetailsContent content={detailsContent} />}
+      DetailsComponent={detailsContent !== undefined && detailsContent.length > 0 ? <ExpandedDetailsContent content={detailsContent} /> : undefined}
       FloatingButtonsComponent={
         <ConfirmationFooter
           content={
@@ -110,8 +110,8 @@ export const WalletConnectSignRequest_GenericMessageScreen = ({ route, navigatio
 interface PreviewProps {
   metadata: {
     imageUrl?: string;
-    name?: string;
-    url?: string;
+    name: string;
+    url: string;
   };
   warning?: Warning;
   genericMessage: GenericMessage;

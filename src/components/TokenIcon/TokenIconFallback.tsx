@@ -3,7 +3,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { getTokenIconFallbackProps } from '/generated/assetIcons';
+import { getTokenIconFallbackProps } from '@/utils/getTokenIcon';
 
 type TokenIconFallbackProps = {
   size: number;

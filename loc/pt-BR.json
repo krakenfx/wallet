@@ -126,7 +126,7 @@
     "from": "De",
     "message": "Mensagem",
     "message_signing_request": "Solicitação de assinatura de mensagem",
-    "messageSigningRequest": "Assinar",
+    "messageSigningRequest": "Assinar mensagem",
     "mint": "Cunhar",
     "nonce": "Nonce",
     "scrollToBottomToConfirm": "Role até o final para confirmar",
@@ -446,13 +446,62 @@
   },
   "earn": {
     "allAssets": "Todos os ativos",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "Deposite {symbol} em {protocol}",
+      "high": "Alto:",
+      "info": {
+        "about": "Sobre {symbol}",
+        "addressCopied": "Endereço copiado",
+        "assetsLocked": "Ativos bloqueados",
+        "contractAddress": "Endereço do contrato",
+        "marketCap": "Capitalização de mercado",
+        "network": "Rede",
+        "numberHolders": "Número de detentores",
+        "protocol": "Protocolo",
+        "tokenEarned": "Token ganho",
+        "tokenPrice": "Preço do token",
+        "type": "Tipo"
+      },
+      "low": "Baixo:",
+      "openDapp": "Abrir Dapp",
+      "period": {
+        "all": "Tudo",
+        "day": "D",
+        "month": "M",
+        "week": "W",
+        "year": "A"
+      }
+    },
     "earnCTA": "Ganhe",
-    "earnUpToApr": "Até {apr}% de APR",
+    "earnOnYourAssets": "Ganhe em cima de seus ativos",
+    "earnSheet": {
+      "amountAvailable": "{balance} {symbol} disponível",
+      "apy": "APY",
+      "earn": "Ganhar {symbol}",
+      "noBalanaceFound": "Sem saldo. Deposite na sua carteira com {symbol} para ser elegível para Ganhos.",
+      "swapCta": "Swap",
+      "tvl": "{tvl} TVL"
+    },
+    "earnUpToApr": "Até {apy}% de APY",
+    "earnUpToApy": "Até {apy}% de APY",
+    "earnWhileYouSleep": "Ganhe enquanto dorme",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Para acessar oportunidades de rendimento, envie ativos compatíveis para sua carteira, tais como Ethereum ou USDC.",
+        "heading": "Deposite ETH para começar a ganhar",
+        "supportArticle": "Saiba mais sobre ativos suportados"
+      },
+      "explaination": "Verifique sua conexão ou tente abrir essa página novamente em outro momento",
+      "titlePlural": "Erro ao carregar oportunidades de ganho",
+      "titleSingular": "Erro ao carregar uma oportunidade de ganho"
+    },
     "heroAvailableBalance": "{balance} {symbol} disponível",
     "heroTitle": "Ganhe {symbol} em {protocol}",
     "protocolType": {
       "lending": "Empréstimos"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Renomear",
@@ -668,12 +717,34 @@
     "balanceOnKraken": "na Kraken",
     "exchangeBalance": "Saldo na exchange",
     "fundCta": {
-      "body": "Conecte sua conta Kraken para <b>transferir cripto para sua carteira</b>",
+      "body": "Conecte sua conta Kraken a",
       "bodyBold": "transfira cripto para sua carteira",
       "heading": "Deposite em sua carteira"
     },
+    "selectNetwork": {
+      "description": "Escolha em qual rede você deseja receber {assetLabel} em sua carteira.",
+      "fee": "Taxa de {assetValue}",
+      "minimum": "Mínimo de {assetValue}",
+      "network": "Rede {selectedNetworkName}",
+      "title": "Selecionar rede"
+    },
     "sendScreen": {
       "title": "Transferir {assetSymbol}"
+    },
+    "settings": {
+      "benefits0": "Transferir criptomoedas da Kraken",
+      "benefits1": "Exibir saldo da exchange Kraken",
+      "benefitsHeadline": "A conexão com a conta Kraken permite:",
+      "cancel": "Cancelar",
+      "connect": "Conectar",
+      "disconnect": "Desconectar",
+      "disconnectScreen": {
+        "alert": "Após desconectar sua carteira, a chave API permanecerá válida nas suas configurações da exchange Kraken por 6 meses.",
+        "description": "Tem certeza de que deseja desconectar essa carteira da Kraken?",
+        "title": "Desconectar da Kraken",
+        "warningMessage": "Você não reterá nenhuma funcionalidade para transferências tranquilas entre sua carteira <b>“{walletName}”<b> e sua conta da exchange Kraken."
+      },
+      "walletsListTitle": "Suas carteiras"
     },
     "stepsToConnect": {
       "hasAccount": "Eu já criei uma conta",
@@ -696,6 +767,7 @@
       "selectAsset": "Selecione um ativo para transferir",
       "selectAssetDescription": "Transfira do Kraken Exchange para sua carteira",
       "title": "Transferência",
+      "transferFee": "Taxa de transferência",
       "unsupportedAssets": "Ativos não suportados",
       "unsupportedAssetsDescription": "{count} outros ativos em sua conta de Exchange não são suportados pela carteira"
     },
@@ -1320,6 +1392,7 @@
     "appLock": "App Lock",
     "backup": "Backup",
     "backup_mnemonic_seed": "Fonte mnemônica de backup",
+    "connections": "Conexões",
     "currency": "Moeda",
     "deleteAll": "Apagar todos os dados",
     "electrum_error_connect": "Não é possível se conectar ao servidor Electrum fornecido",
@@ -1332,6 +1405,8 @@
     "general": "Geral",
     "header": "Configurações",
     "hideBalances": "Ocultar saldos",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Kraken Exchange",
     "language": "Idioma",
     "manageWallets": "Gerenciar carteiras",
     "notifications": "Notificações push",

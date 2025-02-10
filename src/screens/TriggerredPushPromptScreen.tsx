@@ -46,20 +46,16 @@ export const TriggeredPushPromptScreen = ({ route: { params } }: NavigationProps
   };
 
   return (
-    <PromptSheet
-      Prompt={({ onLayout }) => (
-        <PushNotificationPrompt
-          containerProps={{ onLayout }}
-          onDisallow={close}
-          onAllow={close}
-          onError={onError}
-          onSubscribed={onSubscribed}
-          allowButtonText={loc.pushNotificationsPrompt.allow}
-          disallowButtonText={loc.pushNotificationsPrompt.disallow}
-        />
-      )}
-      sheetRef={sheetRef}
-    />
+    <PromptSheet ref={sheetRef}>
+      <PushNotificationPrompt
+        onDisallow={close}
+        onAllow={close}
+        onError={onError}
+        onSubscribed={onSubscribed}
+        allowButtonText={loc.pushNotificationsPrompt.allow}
+        disallowButtonText={loc.pushNotificationsPrompt.disallow}
+      />
+    </PromptSheet>
   );
 };
 

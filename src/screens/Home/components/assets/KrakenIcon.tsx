@@ -1,26 +1,10 @@
-import { StyleSheet, View } from 'react-native';
-
-import { SvgIcon } from '@/components/SvgIcon';
-import { useTheme } from '@/theme/themes';
+import { CircleIcon } from '@/components/CircleIcon/CircleIcon';
 
 interface Props {
   size?: number;
+  iconSize?: number;
 }
 
 export const KrakenIcon = ({ size = 16 }: Props) => {
-  const { colors } = useTheme();
-  const style = { width: size, height: size };
-  return (
-    <View style={[styles.container, { backgroundColor: colors.kraken }, style]}>
-      <SvgIcon name="kraken" size={10} />
-    </View>
-  );
+  return <CircleIcon name="kraken" backgroundColor="kraken" size={size} iconSize={10} />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    borderRadius: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

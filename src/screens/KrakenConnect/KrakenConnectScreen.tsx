@@ -11,6 +11,7 @@ import { SvgIcon } from '@/components/SvgIcon/SvgIcon';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useAccountById } from '@/realm/accounts/useAccountById';
 import { useCurrentAccountNumber } from '@/realm/accounts/useCurrentAccountNumber';
+import { useSettingsMutations } from '@/realm/settings/useSettingsMutations';
 import type { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
@@ -26,18 +27,21 @@ export const KrakenConnectScreen = ({ navigation, route }: NavigationProps<'Krak
   const { params = {} } = route;
   const { selectedAccountNumber } = params;
   const currentAccountNumber = useCurrentAccountNumber();
-  const accountNumber = selectedAccountNumber || currentAccountNumber;
+  const accountNumber = selectedAccountNumber ?? currentAccountNumber;
   const account = useAccountById(accountNumber);
   const accountName = account.accountCustomName;
   const alertString = loc.formatString(loc.krakenConnect.unconnected.alert, { walletName: accountName }).toString();
   const { bottomSheetProps } = useBottomSheetScreenProps(navigation);
   const bottomSheetModalRef = useRef<BottomSheetModalRef>(null);
+  const { setExchangeConnectForAccount } = useSettingsMutations();
 
   const openPanel = () => {
     bottomSheetModalRef.current?.expand();
   };
 
-  const connectToKraken = () => {};
+  const connectToKraken = () => {
+    setExchangeConnectForAccount(accountNumber);
+  };
 
   return (
     <>

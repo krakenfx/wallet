@@ -33,10 +33,14 @@ export const OnboardingImportSubWalletsScreen = ({ navigation }: OnboardingNavig
     navigation.navigate(Routes.OnboardingSecureWallet);
   }, [navigation]);
   const headerRight = useCallback(
-    () =>
-      isLoadingSubWallets ? (
-        <Button text={loc.onboardingImportSubWallets.importSubWallets.skip} testID="SkipImportSubWalletsButton" onPress={skipImportSubWallets} />
-      ) : null,
+    () => (
+      <Button
+        style={[!isLoadingSubWallets && styles.hidden]}
+        text={loc.onboardingImportSubWallets.importSubWallets.skip}
+        testID="SkipImportSubWalletsButton"
+        onPress={skipImportSubWallets}
+      />
+    ),
     [isLoadingSubWallets, skipImportSubWallets],
   );
 
@@ -77,5 +81,8 @@ OnboardingImportSubWalletsScreen.navigationOptions = navigationStyle({
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+  hidden: {
+    opacity: 0.001,
   },
 });

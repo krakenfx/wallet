@@ -18,9 +18,18 @@ export function smallestUnit2Fiat(amount: BigNumber.Value, decimals: number, pri
   return smallUnit2TokenUnit(amount, decimals).multipliedBy(price);
 }
 
+export function fiatToTokenUnit(amount: BigNumber.Value, price: BigNumber.Value) {
+  return new SuperBigNumber(amount).dividedBy(price);
+}
+export function fiatToSmallestUnit(amount: BigNumber.Value, decimals: number, price: BigNumber.Value) {
+  return tokenUnit2SmallestUnit(fiatToTokenUnit(amount, price), decimals);
+}
+
 export const unitConverter = {
   smallUnit2TokenUnit,
   tokenUnit2SmallestUnit,
   tokenUnit2Fiat,
   smallestUnit2Fiat,
+  fiatToTokenUnit,
+  fiatToSmallestUnit,
 };

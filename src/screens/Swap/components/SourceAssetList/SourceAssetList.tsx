@@ -1,3 +1,4 @@
+import { BottomSheetFlashList } from '@gorhom/bottom-sheet';
 import { useHeaderHeight } from '@react-navigation/elements';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -6,7 +7,7 @@ import Animated from 'react-native-reanimated';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import type { BottomSheetRef } from '@/components/BottomSheet';
-import { BottomSheet, BottomSheetFlashList } from '@/components/BottomSheet';
+import { BottomSheet } from '@/components/BottomSheet';
 import { FadingElement } from '@/components/FadingElement';
 import { KeyboardAvoider } from '@/components/Keyboard';
 import { Label } from '@/components/Label';

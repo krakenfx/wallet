@@ -1,8 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useCurrentAccountNumber } from '@/realm/accounts';
+
 import { RealmSettingsKey } from './schema';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useSettingsByKey } from './useSettingsByKey';
 
-export const useIsConnectedWithExchange = () => {
-  return true;
+export const useIsConnectedWithExchange = (): boolean => {
+  const accountNumber = useCurrentAccountNumber();
+  const connectionsArray = Array.from(useSettingsByKey(RealmSettingsKey.krakenConnectAccountsConnected) ?? []);
+  return connectionsArray.includes(accountNumber);
 };

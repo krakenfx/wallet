@@ -11,9 +11,10 @@ import { useAppCurrency } from '@/realm/settings';
 import type { RealmWallet } from '@/realm/wallets';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
+import { EvmRpcMethod } from '../constants';
 import { openSignMessageApproveModal } from '../openSignMessageApproveModal';
 import { openSignTransactionModal } from '../openSignTransactionApprovalModal';
-import { type PageInfo, RpcMethod } from '../types';
+import { type PageInfo } from '../types';
 
 import { isEVMHarmonyTransport, isEVMNetwork } from '/modules/wallet-connect/utils';
 import { type TransactionObject, ethSignFnMap } from '/modules/wallet-connect/web3Wallet/ethereum';
@@ -26,7 +27,7 @@ export const useDappSignRequests = (wallet: RealmWallet, pageInfo: PageInfo | nu
   const { network, transport } = useMemo(() => getImplForWallet(wallet), [wallet]);
 
   const signEvmMessage = useCallback(
-    async (method: RpcMethod, params: unknown[], domain: string, baseUrl: string) => {
+    async (method: EvmRpcMethod, params: unknown[], domain: string, baseUrl: string) => {
       if (!isEVMNetwork(network) || !isEVMHarmonyTransport(transport)) {
         throw new Error(`Can't sign an EVM message with a non-EVM wallet`);
       }
@@ -47,7 +48,7 @@ export const useDappSignRequests = (wallet: RealmWallet, pageInfo: PageInfo | nu
               data: seed,
             },
           },
-          (method === RpcMethod.personal_sign ? params[0] : params[1]) as string,
+          (method === EvmRpcMethod.personal_sign ? params[0] : params[1]) as string,
         );
       }
     },
@@ -55,7 +56,7 @@ export const useDappSignRequests = (wallet: RealmWallet, pageInfo: PageInfo | nu
   );
 
   const signEvmTransaction = useCallback(
-    async (method: RpcMethod, params: unknown[], domain: string, baseUrl: string) => {
+    async (method: EvmRpcMethod, params: unknown[], domain: string, baseUrl: string) => {
       if (!isEVMHarmonyTransport(transport) || !isEVMNetwork(network)) {
         throw new Error(`Can't sign an EVM transaction with a non-EVM wallet`);
       }
@@ -111,7 +112,7 @@ export const useDappSignRequests = (wallet: RealmWallet, pageInfo: PageInfo | nu
   );
 
   const signAndSendEvmTransaction = useCallback(
-    async (method: RpcMethod, params: unknown[], domain: string, baseUrl: string) => {
+    async (method: EvmRpcMethod, params: unknown[], domain: string, baseUrl: string) => {
       if (!isEVMNetwork(network)) {
         throw new Error(`Can't sign an EVM transaction with a non-EVM wallet`);
       }

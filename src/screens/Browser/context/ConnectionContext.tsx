@@ -6,7 +6,6 @@ import { showToast } from '@/components/Toast';
 import { useCurrentAccountNumber } from '@/realm/accounts';
 
 import { useDappPermissions } from '@/realm/dappIntegration';
-import { useDappPermissionMutations } from '@/realm/dappIntegration/useDappPermissionMutations';
 import { useWalletConnectTopicsMutations } from '@/realm/walletConnectTopics/useWalletConnectTopicsMutations';
 
 import { useRealmWallets } from '@/realm/wallets';
@@ -36,7 +35,6 @@ export const ConnectionContextProvider: React.FC<PropsWithChildren<ConnectionCon
   const { deleteSession } = useWalletConnectTopicsMutations();
 
   const hasPermissionsToAccount = useDappPermissions(cleanUrl);
-  const { revokePermissions } = useDappPermissionMutations();
 
   const currentWCConnection = useMemo(() => {
     if (!url) {
@@ -53,7 +51,6 @@ export const ConnectionContextProvider: React.FC<PropsWithChildren<ConnectionCon
 
     if (!currentWCConnection) {
       triggerNativeDisconnect();
-      revokePermissions(cleanUrl);
       return;
     }
 
@@ -68,7 +65,7 @@ export const ConnectionContextProvider: React.FC<PropsWithChildren<ConnectionCon
     } catch (e) {
       showToast({ type: 'error', text: loc.connectedApps.app_details.error });
     }
-  }, [cleanUrl, currentWCConnection, accountWallets, revokePermissions, triggerNativeDisconnect, deleteSession, setActiveSessions]);
+  }, [cleanUrl, currentWCConnection, accountWallets, triggerNativeDisconnect, deleteSession, setActiveSessions]);
 
   return (
     <ConnectionContext.Provider

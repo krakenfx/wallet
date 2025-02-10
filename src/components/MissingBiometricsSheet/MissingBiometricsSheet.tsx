@@ -1,4 +1,4 @@
-import { BottomSheetView, useBottomSheetDynamicSnapPoints, useBottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetView, useBottomSheetModal } from '@gorhom/bottom-sheet';
 import { AuthenticationType } from 'expo-local-authentication';
 import React, { useMemo } from 'react';
 import { Image, Platform, StyleSheet, View } from 'react-native';
@@ -13,11 +13,7 @@ import { Label } from '@/components/Label';
 import loc from '/loc';
 
 export const MissingBiometricsSheet = React.forwardRef<BottomSheetModalRef, { authenticationTypes: AuthenticationType[] }>(({ authenticationTypes }, ref) => {
-  const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
-
   const modal = useBottomSheetModal();
-
-  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const insets = useSafeAreaInsets();
 
@@ -59,8 +55,8 @@ export const MissingBiometricsSheet = React.forwardRef<BottomSheetModalRef, { au
   }, [authenticationTypes]);
 
   return (
-    <BottomSheetModal ref={ref} index={0} handleHeight={animatedHandleHeight} contentHeight={animatedContentHeight} snapPoints={animatedSnapPoints}>
-      <BottomSheetView onLayout={handleContentLayout} style={[{ marginBottom: insets.bottom }]}>
+    <BottomSheetModal ref={ref} index={0} enableDynamicSizing>
+      <BottomSheetView style={[{ marginBottom: insets.bottom }]}>
         <View style={styles.container}>
           <Label type="boldDisplay4" style={styles.title}>
             {loc.formatString(loc.appLock.missingAuth.title, { authType: data.authType })}

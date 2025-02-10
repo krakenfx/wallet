@@ -1,12 +1,11 @@
 import type React from 'react';
-import type { ScrollViewProps, StyleProp, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { WithSpringConfig } from 'react-native-reanimated';
 
-import BottomSheetBase, { BottomSheetBackdrop, BottomSheetModal as BottomSheetBaseModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import BottomSheetBase, { BottomSheetBackdrop, BottomSheetModal as BottomSheetBaseModal } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import { HeaderHeightContext } from '@react-navigation/elements';
-import { FlashList } from '@shopify/flash-list';
 import { forwardRef, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
@@ -18,8 +17,7 @@ import { useAndroidBackButton } from '@/utils/useAndroidBackButton';
 
 import { useGlobalState } from '../GlobalState';
 
-import type { BottomSheetBackdropProps, BottomSheetBackgroundProps, BottomSheetModalProps, BottomSheetProps } from '@gorhom/bottom-sheet';
-import type { FlashListProps } from '@shopify/flash-list';
+import type { BottomSheetBackdropProps, BottomSheetBackgroundProps, BottomSheetModalProps, BottomSheetProps, SNAP_POINT_TYPE } from '@gorhom/bottom-sheet';
 
 import { SheetGradientView } from '/modules/gradient-view';
 
@@ -65,7 +63,7 @@ export const ANIMATION_CONFIGS: WithSpringConfig = {
   restSpeedThreshold: 10,
 };
 
-function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
+function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef, Props extends BaseProps | ModalProps>(
   {
     index,
     dismissible = true,
@@ -76,9 +74,10 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
     handleAndroidBackButton,
     isWarning,
     onBackdropPress,
+    enableDynamicSizing = false,
     onChange,
     ...rest
-  }: BaseProps | ModalProps,
+  }: Props,
   ref: React.ForwardedRef<T>,
 ) {
   const insets = useSafeAreaInsets();
@@ -87,14 +86,12 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
   const [currentIndex, setCurrentIndex] = useState<number>();
   const [, setShowNavTabs] = useGlobalState('showNavTabs');
   const handleChange = useCallback(
-    (newIndex: number) => {
+    (newIndex: number, position: number, type: SNAP_POINT_TYPE) => {
       setShowNavTabs(newIndex === -1);
       setCurrentIndex(newIndex);
-      onChange?.(newIndex);
+      onChange?.(newIndex, position, type);
     },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [onChange],
+    [onChange, setShowNavTabs],
   );
 
   const renderBackdrop = useCallback(
@@ -145,6 +142,7 @@ function useBottomSheetProps<T extends BottomSheetRef | BottomSheetModalRef>(
     containerStyle: styles.shadow,
     ref: sheetRef,
     accessible: false,
+    enableDynamicSizing,
     ...rest,
   };
 }
@@ -187,10 +185,6 @@ const BottomSheetBlur = (props: BottomSheetBlurProps) => {
     </View>
   );
 };
-
-export function BottomSheetFlashList<TItem>(props: FlashListProps<TItem>) {
-  return <FlashList renderScrollComponent={BottomSheetScrollView as React.ComponentType<ScrollViewProps>} {...props} />;
-}
 
 export const styles = StyleSheet.create({
   background: {

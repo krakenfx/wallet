@@ -1,5 +1,5 @@
 import type React from 'react';
-import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
 import LottieView from 'lottie-react-native';
 import { useCallback } from 'react';
@@ -23,7 +23,6 @@ export interface Props {
   onError: (error: unknown, permissionDenied?: boolean) => void;
   onDisallow: () => void;
   containerStyle?: StyleProp<ViewStyle>;
-  containerProps?: ViewProps;
 }
 
 export const PushNotificationPrompt: React.FC<Props> = ({
@@ -34,7 +33,6 @@ export const PushNotificationPrompt: React.FC<Props> = ({
   onAllow,
   onDisallow,
   containerStyle,
-  containerProps,
 }) => {
   const { subscribeToNotifications } = useGetSubscribeNotifications();
 
@@ -62,8 +60,8 @@ export const PushNotificationPrompt: React.FC<Props> = ({
   const lottieHeight = (width * lottieSource.h) / lottieSource.w;
 
   return (
-    <View style={[styles.container, containerStyle]} testID="PushNotificationsPromptScreen" {...containerProps}>
-      <LottieView source={lottieSource} autoPlay loop={false} style={[styles.lottie, { height: lottieHeight }]} resizeMode="cover" />
+    <View style={containerStyle} testID="PushNotificationsPromptScreen">
+      <LottieView source={lottieSource} autoPlay loop={false} style={{ height: lottieHeight }} resizeMode="cover" />
       <View style={styles.body}>
         <Label type="boldDisplay3">{loc.pushNotificationsPrompt.title}</Label>
         <Label type="regularTitle1" color="light75">
@@ -92,16 +90,10 @@ export const PushNotificationPrompt: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   body: {
-    flex: 1,
+    flexGrow: 1,
     gap: 8,
     paddingHorizontal: 24,
     marginTop: -12,
-  },
-  lottie: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
   },
   buttonContainer: {
     marginTop: 70,

@@ -115,7 +115,7 @@ export const WalletConnectSignRequest_StructuredTransactionScreen = ({
           </View>
         </View>
       }
-      DetailsComponent={<ExpandedDetailsContent content={detailsContent} />}
+      DetailsComponent={detailsContent.length > 0 && <ExpandedDetailsContent content={detailsContent} />}
       FloatingButtonsComponent={
         <ConfirmationFooterWithFeeSelector
           walletId={walletId}

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { DefiDiscoveryPreview } from '@/components/DefiDiscoveryPreview';
+import { DepositOptionsCarousel } from '@/components/DepositOptionsCarousel';
 import { SvgIcon } from '@/components/SvgIcon';
 import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 
@@ -29,7 +29,7 @@ export const ExploreStaticContent = ({ index, variant }: Props) => {
           title={loc.explore.earnTitle}
           titleIcon={<SvgIcon size={24} name="chevron-right" color="light100" />}
         />
-        <DefiDiscoveryPreview />
+        <DepositOptionsCarousel />
       </ContentWrapper>
     );
   }

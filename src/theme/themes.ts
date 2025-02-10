@@ -70,6 +70,10 @@ export const SuperDarkTheme = {
       stop2: 'rgb(140,121,255)',
       stop3: 'rgb(140,121,255)',
     },
+    promoBackground: {
+      stop1: 'rgba(64, 45, 124, 0.75)',
+      stop2: 'rgba(80, 56, 181, 0.75)',
+    },
   },
 };
 
@@ -77,4 +81,5 @@ export type Theme = typeof SuperDarkTheme;
 
 export type ColorName = keyof Theme['colors'];
 
+export type GradientName = keyof Theme['gradients'];
 export const useTheme = (): Theme => useThemeBase() as Theme;

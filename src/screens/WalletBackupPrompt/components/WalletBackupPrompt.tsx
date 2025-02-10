@@ -1,6 +1,6 @@
 import type React from 'react';
-import type { StyleProp, ViewProps, ViewStyle } from 'react-native';
 
+import { BottomSheetView } from '@gorhom/bottom-sheet';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { Image, StyleSheet, View } from 'react-native';
 import { SequencedTransition } from 'react-native-reanimated';
@@ -13,12 +13,7 @@ import walletBackupPromptImage from '../images/walletBackupPrompt.png';
 
 import loc from '/loc';
 
-export interface Props {
-  containerStyle?: StyleProp<ViewStyle>;
-  containerProps?: ViewProps;
-}
-
-export const WalletBackupPrompt: React.FC<Props> = ({ containerStyle, containerProps }) => {
+export const WalletBackupPrompt: React.FC = () => {
   const navigation = useNavigation();
 
   const navigateToSettingsWalletBackup = () => {
@@ -27,7 +22,7 @@ export const WalletBackupPrompt: React.FC<Props> = ({ containerStyle, containerP
   };
 
   return (
-    <View style={[styles.container, containerStyle]} testID="WalletBackupPromptScreen" {...containerProps}>
+    <BottomSheetView testID="WalletBackupPromptScreen">
       <Image source={walletBackupPromptImage} style={styles.image} />
       <View style={styles.body}>
         <Label type="boldDisplay3" style={styles.header}>
@@ -47,13 +42,12 @@ export const WalletBackupPrompt: React.FC<Props> = ({ containerStyle, containerP
           layout: SequencedTransition.duration(1000),
         }}
       />
-    </View>
+    </BottomSheetView>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
-    flex: 1,
     gap: 8,
     paddingHorizontal: 24,
     paddingVertical: 12,
@@ -65,9 +59,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 70,
     justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
   },
   header: {
     lineHeight: 40,

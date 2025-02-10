@@ -126,7 +126,7 @@
     "from": "З",
     "message": "Повідомлення",
     "message_signing_request": "Повідомлення із запитом на вхід",
-    "messageSigningRequest": "Увійти",
+    "messageSigningRequest": "Підписати повідомлення",
     "mint": "Створити",
     "nonce": "Nonce",
     "scrollToBottomToConfirm": "Прокрутіть донизу, щоб підтвердити",
@@ -446,13 +446,62 @@
   },
   "earn": {
     "allAssets": "Усі активи",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "Внесіть {symbol} у протоколі {protocol}",
+      "high": "Максимум:",
+      "info": {
+        "about": "Інформація про {symbol}",
+        "addressCopied": "Адресу скопійовано",
+        "assetsLocked": "Активи заблоковано",
+        "contractAddress": "Адреса контракту",
+        "marketCap": "Ринкова капіталізація",
+        "network": "Мережа",
+        "numberHolders": "Кількість власників",
+        "protocol": "Протокол",
+        "tokenEarned": "Зароблений токен",
+        "tokenPrice": "Ціна токена",
+        "type": "Тип"
+      },
+      "low": "Мінімум:",
+      "openDapp": "Відкрити DApp",
+      "period": {
+        "all": "Усі",
+        "day": "Д",
+        "month": "М",
+        "week": "Тижд.",
+        "year": "Р"
+      }
+    },
     "earnCTA": "Заробити",
-    "earnUpToApr": "До {apr} % APR",
+    "earnOnYourAssets": "Заробляйте на своїх активах",
+    "earnSheet": {
+      "amountAvailable": "Доступно {balance} {symbol}",
+      "apy": "APY",
+      "earn": "Заробити {symbol}",
+      "noBalanaceFound": "Баланс нульовий. Поповніть свій гаманець із {symbol}, щоб отримати можливість заробітку.",
+      "swapCta": "Обмін",
+      "tvl": "TVL {tvl}"
+    },
+    "earnUpToApr": "До {apy} % APY",
+    "earnUpToApy": "До {apy} % APY",
+    "earnWhileYouSleep": "Заробляйте, поки спите",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Щоб отримати можливості для заробітку, надішліть на свій гаманець сумісні активи, як-от Ethereum або USDC.",
+        "heading": "Внесіть ETH, щоб почати заробляти",
+        "supportArticle": "Докладніше про підтримувані активи"
+      },
+      "explaination": "Перевірте своє з’єднання або спробуйте відкрити цю сторінку пізніше",
+      "titlePlural": "Помилка під час завантаження можливостей для заробітку",
+      "titleSingular": "Помилка під час завантаження можливості для заробітку"
+    },
     "heroAvailableBalance": "Доступно {balance} {symbol}",
     "heroTitle": "Заробіть {symbol} на {protocol}",
     "protocolType": {
       "lending": "Кредитування"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Перейменувати",
@@ -668,12 +717,34 @@
     "balanceOnKraken": "на Kraken",
     "exchangeBalance": "Біржовий баланс",
     "fundCta": {
-      "body": "Підключіть свій акаунт Kraken для <b>переказу криптовалюти на ваш гаманець</b>",
+      "body": "Підключіть свій акаунт Kraken до",
       "bodyBold": "переказуйте криптовалюту на свій гаманець",
       "heading": "Поповніть свій гаманець"
     },
+    "selectNetwork": {
+      "description": "Виберіть, в якій мережі ви хочете отримати {assetLabel} на свій гаманець.",
+      "fee": "Комісія {assetValue}",
+      "minimum": "Мінімум {assetValue}",
+      "network": "Мережа {selectedNetworkName}",
+      "title": "Обрати мережу"
+    },
     "sendScreen": {
       "title": "Переказати {assetSymbol}"
+    },
+    "settings": {
+      "benefits0": "Переказати криптовалюту з Kraken",
+      "benefits1": "Переглянути баланси на біржі Kraken",
+      "benefitsHeadline": "Підключення до акаунту Kraken відкриває такі можливості:",
+      "cancel": "Скасувати",
+      "connect": "Підключити",
+      "disconnect": "Від’єднати",
+      "disconnectScreen": {
+        "alert": "Після відключення гаманця API-ключ залишається дійсним у налаштуваннях API біржі Kraken протягом 6 місяців.",
+        "description": "Дійсно від’єднати цей гаманець від Kraken?",
+        "title": "Від’єднати від Kraken",
+        "warningMessage": "Ви більше не матимете можливості безперешкодно здійснювати перекази між гаманцем <b>{walletName}<b> і своїм акаунтом на біржі Kraken."
+      },
+      "walletsListTitle": "Ваші гаманці"
     },
     "stepsToConnect": {
       "hasAccount": "Я створив(-ла) акаунт",
@@ -696,6 +767,7 @@
       "selectAsset": "Оберіть актив для переказу",
       "selectAssetDescription": "Переказуйте з біржі Kraken до свого гаманця",
       "title": "Переміщення",
+      "transferFee": "Комісія за переміщення",
       "unsupportedAssets": "Непідтримувані активи",
       "unsupportedAssetsDescription": "Стільки інших активів на вашому рахунку на біржі не підтримуються гаманцем: {count}"
     },
@@ -1320,6 +1392,7 @@
     "appLock": "App Lock",
     "backup": "Резервне копіювання",
     "backup_mnemonic_seed": "Резервне мнемонічне початкове значення",
+    "connections": "Підключення",
     "currency": "Валюта",
     "deleteAll": "Видалити всі дані",
     "electrum_error_connect": "Не вдається підключитися до наданого сервера Electrum",
@@ -1332,6 +1405,8 @@
     "general": "Загальні",
     "header": "Налаштування",
     "hideBalances": "Приховати баланси",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Біржа Kraken",
     "language": "Мова",
     "manageWallets": "Керувати гаманцями",
     "notifications": "Push-повідомлення",

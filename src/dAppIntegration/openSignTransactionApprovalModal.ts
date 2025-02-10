@@ -1,10 +1,11 @@
-import type { PageInfo, RpcMethod } from '@/dAppIntegration/types';
 import type { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
-
 import { type WalletStorage, getWalletStorage } from '@/onChain/wallets/walletState';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
 import type { RealmWallet } from '@/realm/wallets';
 import type { Currency } from '@/screens/Settings/currency';
+
+import type { EvmRpcMethod } from './constants';
+import type { PageInfo } from './types';
 
 import type Realm from 'realm';
 
@@ -17,7 +18,7 @@ import {
 } from '/modules/wallet-connect/web3Wallet/navigateToSignStructuredTransactionPage';
 
 interface Options {
-  method: RpcMethod;
+  method: EvmRpcMethod;
   network: EVMNetwork;
   transaction: TransactionObject;
   transport: EVMHarmonyTransport;

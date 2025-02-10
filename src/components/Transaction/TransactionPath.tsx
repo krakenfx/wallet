@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import { StyleSheet, View } from 'react-native';
@@ -11,17 +12,19 @@ import loc from '/loc';
 
 type Props = {
   from?: string;
+  fromIcon?: ReactNode;
   to?: string;
+  toIcon?: ReactNode;
   containerStyle?: StyleProp<ViewStyle>;
   testID?: string;
 };
 
-export const TransactionPath = ({ from, to, containerStyle, testID }: Props) => {
+export const TransactionPath = ({ from, to, containerStyle, testID, fromIcon, toIcon }: Props) => {
   const { colors } = useTheme();
 
-  const renderAddress = (label: string, address: string) => (
+  const renderAddress = (label: string, address: string, customIcon?: ReactNode) => (
     <View style={styles.row}>
-      <SvgIcon size={20} name="wallet" style={[styles.icon, { backgroundColor: colors.light15 }]} />
+      {!customIcon ? <SvgIcon size={20} name="wallet" style={[styles.icon, { backgroundColor: colors.light15 }]} /> : customIcon}
       <View style={styles.flex}>
         <Label type="regularCaption1" color="light50" style={styles.label}>
           {label}
@@ -40,9 +43,9 @@ export const TransactionPath = ({ from, to, containerStyle, testID }: Props) => 
   return (
     <View style={[styles.container, containerStyle]}>
       <GradientItemBackground backgroundType="modal" />
-      {renderAddress(loc.transactionDetails.from, from)}
+      {renderAddress(loc.transactionDetails.from, from, fromIcon)}
       <SvgIcon name="chevron-right" color="light75" />
-      {renderAddress(loc.transactionDetails.to, to)}
+      {renderAddress(loc.transactionDetails.to, to, toIcon)}
     </View>
   );
 };

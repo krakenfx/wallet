@@ -6,7 +6,7 @@ import { useDeviceSize } from '@/hooks/useDeviceSize';
 
 import { useDeafultHeaderHeight } from './useDefaultHeaderHeight';
 
-type Variant = 'full' | 'toHeader' | 'toHeaderTransparent' | 'toHeaderAndMainContent';
+type Variant = 'full' | 'toHeader' | 'toHeaderTransparent' | 'toHeaderAndMainContent' | 'toHeaderAndMainContentSmall';
 
 export const useCommonSnapPoints = (variant: Variant) => {
   const defaultHeaderHeight = useDeafultHeaderHeight(true);
@@ -23,6 +23,8 @@ export const useCommonSnapPoints = (variant: Variant) => {
         return [height - defaultHeaderHeight];
       case 'toHeaderAndMainContent':
         return [height - actualHeaderHeight - (size === 'small' ? 248 : 309), height - actualHeaderHeight];
+      case 'toHeaderAndMainContentSmall':
+        return [height - actualHeaderHeight - (size === 'small' ? 169 : 230), height - actualHeaderHeight];
       default:
         return [height];
     }

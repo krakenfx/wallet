@@ -1,8 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 
+import type { KrakenAssetSupported } from '@/api/krakenConnect/types';
 import { AssetRow } from '@/components/AssetRow';
 import { Label } from '@/components/Label';
-import type { KrakenAssetSupported } from '@/reactQuery/hooks/krakenConnect/types';
+import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
 
 import loc from '/loc';
@@ -13,6 +15,12 @@ interface Props {
 
 export const AssetsToTransfer = ({ supportedAssets }: Props) => {
   const { colors } = useTheme();
+  const { navigate } = useNavigation();
+
+  const onPress = (asset: KrakenAssetSupported) => {
+    navigate(Routes.KrakenConnectSend, { krakenAsset: asset });
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: colors.light2 }]}>
       <View style={styles.header}>
@@ -31,6 +39,7 @@ export const AssetsToTransfer = ({ supportedAssets }: Props) => {
               walletId: item.walletId,
               showAmountInFiat: true,
               forceOmitNetworkIcon: true,
+              onPress: () => onPress(item),
             }}
           />
         ))}

@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native';
 
 import { FadeIn } from 'react-native-reanimated';
 
+import type { KrakenAssetSupported } from '@/api/krakenConnect/types';
 import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
-import type { KrakenAssetSupported } from '@/reactQuery/hooks/krakenConnect/types';
 
 import { useAppCurrency } from '@/realm/settings';
 import { formatCurrency } from '@/utils/formatCurrency';

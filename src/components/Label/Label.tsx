@@ -80,10 +80,14 @@ export const Typography = {
   headerBalance: { fontSize: 56, fontFamily: Fonts.IBMPlexSans.bold },
   headerWalletConnectTutorial: { fontSize: 36, fontFamily: Fonts.IBMPlexSans.bold, lineHeight: 42 },
   headerBalanceTicker: { fontSize: 24, fontFamily: Fonts.Celias.medium },
+  headerKrakenConnectDisconnect: { fontSize: 20.5, fontFamily: Fonts.Celias.bold, lineHeight: 29 },
+
   headerMarketDataPrice: { fontSize: 24, fontFamily: Fonts.IBMPlexSans.bold, lineHeight: 31 },
   boldTitleMarketDataPercentage: { fontSize: 18, fontFamily: Fonts.IBMPlexSans.bold, letterSpacing: -0.5, lineHeight: 25 },
   boldTitleMarketDataPercentageLarge: { fontSize: 28, fontFamily: Fonts.IBMPlexSans.bold, letterSpacing: -0.2 },
   boldTitleEarnPercentage: { fontSize: 20, fontFamily: Fonts.IBMPlexSans.bold, letterSpacing: -0.5, lineHeight: 25 },
+  promoBodyRegular: { fontSize: 14, fontFamily: Fonts.IBMPlexSans.regular, lineHeight: 21 },
+  promoBodyBold: { fontSize: 14, fontFamily: Fonts.IBMPlexSans.bold, lineHeight: 21 },
 } as const;
 
 const boldMapping: Partial<Record<TypographyKey, TypographyKey>> = {

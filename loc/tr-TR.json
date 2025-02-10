@@ -126,7 +126,7 @@
     "from": "Nereden/Kimden",
     "message": "Mesaj",
     "message_signing_request": "Mesaj İmzalama Talebi",
-    "messageSigningRequest": "Oturum Aç",
+    "messageSigningRequest": "Oturum açma mesajı",
     "mint": "Bas",
     "nonce": "Tek Seferlik Değer",
     "scrollToBottomToConfirm": "Onaylamak için aşağıya kaydırın",
@@ -446,13 +446,62 @@
   },
   "earn": {
     "allAssets": "Tüm varlıklar",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "{symbol} protokolünde {protocol} yatırın",
+      "high": "Yüksek:",
+      "info": {
+        "about": "{symbol} hakkında",
+        "addressCopied": "Adres kopyalandı",
+        "assetsLocked": "Varlıklar kilitlendi",
+        "contractAddress": "İletişim adresi",
+        "marketCap": "Piyasa değeri",
+        "network": "Ağ",
+        "numberHolders": "Sahip sayısı",
+        "protocol": "Protokol",
+        "tokenEarned": "Token kazanıldı",
+        "tokenPrice": "Token fiyatı",
+        "type": "Tür"
+      },
+      "low": "Düşük:",
+      "openDapp": "Açık dapp",
+      "period": {
+        "all": "Tümü",
+        "day": "G",
+        "month": "M",
+        "week": "H",
+        "year": "Y"
+      }
+    },
     "earnCTA": "Kazan",
-    "earnUpToApr": "%{apr} oranına varan APR",
+    "earnOnYourAssets": "Varlıklarınızdan kazanç elde edin",
+    "earnSheet": {
+      "amountAvailable": "{balance} {symbol} kullanılabilir",
+      "apy": "APY",
+      "earn": "{symbol} kazanın",
+      "noBalanaceFound": "Bakiye yok. Kazan için uygun olmak üzere cüzdanınıza {symbol} ile fon yükleyin",
+      "swapCta": "Swap",
+      "tvl": "{tvl} TVL"
+    },
+    "earnUpToApr": "%{apy} oranına varan APY",
+    "earnUpToApy": "%{apy} oranına varan APY",
+    "earnWhileYouSleep": "Uyurken kazanın",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Getiri fırsatlarına erişmek için cüzdanınıza Ethereum veya USDC gibi uyumlu varlıklar gönderin.",
+        "heading": "Kazanmaya başlamak için ETH yatırın",
+        "supportArticle": "Desteklenen varlıklar hakkında daha fazla bilgi edinin"
+      },
+      "explaination": "Bağlantınızı kontrol edin veya bu sayfayı daha sonra tekrar açmayı deneyin",
+      "titlePlural": "Kazanç fırsatları yüklenirken hata oluştu",
+      "titleSingular": "Kazanç fırsatı yüklenirken hata oluştu"
+    },
     "heroAvailableBalance": "{balance} {symbol} kullanılabilir",
     "heroTitle": "{protocol} ile {symbol} kazanın",
     "protocolType": {
       "lending": "Ödünç Verme"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Yeniden adlandır",
@@ -668,12 +717,34 @@
     "balanceOnKraken": "Kraken",
     "exchangeBalance": "Borsası bakiyesi",
     "fundCta": {
-      "body": "</b>Cüzdanınıza kripto transfer etmek için <b> Kraken hesabınızı bağlayın",
+      "body": "Kraken hesabınızı bağlayın:",
       "bodyBold": "cüzdanınıza kripto transfer edin",
       "heading": "Cüzdanınıza fon yükleyin"
     },
+    "selectNetwork": {
+      "description": "{assetLabel} varlıklarınızı cüzdanınıza almak istediğiniz ağı seçin.",
+      "fee": "{assetValue} ücreti",
+      "minimum": "minimum {assetValue}",
+      "network": "{selectedNetworkName} ağı",
+      "title": "Ağ seçin"
+    },
     "sendScreen": {
       "title": "{assetSymbol} transfer et"
+    },
+    "settings": {
+      "benefits0": "Kraken'den kripto transfer edin",
+      "benefits1": "Kraken borsa bakiyelerinizi görüntüleyin",
+      "benefitsHeadline": "Kraken hesabına bağlantı şunları etkinleştirir:",
+      "cancel": "İptal",
+      "connect": "Bağlan",
+      "disconnect": "Bağlantıyı kes",
+      "disconnectScreen": {
+        "alert": "Cüzdanınızın bağlantısı kesildikten sonra API anahtarı, Kraken borsa API ayarlarınızda 6 ay boyunca geçerliliğini korur.",
+        "description": "Bu cüzdanın Kraken bağlantısını kesmek istediğinizden emin misiniz?",
+        "title": "Kraken bağlantısını kes",
+        "warningMessage": "Artık <b>“{walletName}”<b> isimli cüzdanınız ile Kraken borsa hesabınız arasında sorunsuz transfer işlevselliğine sahip olmayacaksınız."
+      },
+      "walletsListTitle": "Cüzdanlarınız"
     },
     "stepsToConnect": {
       "hasAccount": "Hesap oluşturdum",
@@ -696,6 +767,7 @@
       "selectAsset": "Transfer edilecek varlık seçin",
       "selectAssetDescription": "Kraken borsasından cüzdanınıza transfer edin",
       "title": "Transfer",
+      "transferFee": "Transfer ücreti",
       "unsupportedAssets": "Desteklenmeyen varlıklar",
       "unsupportedAssetsDescription": "Borsa hesabınızdaki diğer {count} varlık, cüzdan tarafından desteklenmiyor"
     },
@@ -1320,6 +1392,7 @@
     "appLock": "Uygulama Kilidi",
     "backup": "Yedek",
     "backup_mnemonic_seed": "Yedek anımsatıcı tohumu",
+    "connections": "Bağlantılar",
     "currency": "Para Birimi",
     "deleteAll": "Tüm verileri sil",
     "electrum_error_connect": "Sağlanan Electrum sunucusuna bağlanılamıyor",
@@ -1332,6 +1405,8 @@
     "general": "Genel",
     "header": "Ayarlar",
     "hideBalances": "Bakiyeleri gizle",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Kraken Exchange",
     "language": "Dil",
     "manageWallets": "Cüzdanları yönet",
     "notifications": "Anlık bildirimler",

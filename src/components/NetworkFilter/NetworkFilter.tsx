@@ -117,7 +117,7 @@ type Props = {
   networkFilter: NETWORK_FILTER[];
   setNetworkFilter: React.Dispatch<React.SetStateAction<NETWORK_FILTER[]>>;
   withBtcAndDoge?: boolean;
-  dataToFilter?: UINetworkFilter[];
+  dataToFilter?: Array<'all' | UINetworkFilter>;
 };
 
 export const isNewNetworkFilter = (filter: UINetworkFilter) => NEW_NETWORKS.some(network => filter.includes(network));
@@ -148,6 +148,7 @@ export const NetworkFilter = ({ networkFilter, setNetworkFilter, withBtcAndDoge,
       keyboardShouldPersistTaps="handled"
       horizontal
       style={styles.container}
+      nestedScrollEnabled
       contentContainerStyle={styles.contentContainer}
       showsHorizontalScrollIndicator={false}>
       {uiFilterData.map((d, i) => {

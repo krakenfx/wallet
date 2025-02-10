@@ -32,6 +32,9 @@ export enum RealmSettingsKey {
 
   krakenConnectApiKey = 'krakenConnectApiKey',
   krakenConnectApiSecretKey = 'krakenConnectApiSecretKey',
+  krakenConnectAccountsConnected = 'krakenConnectAccountsConnected',
+  krakenConnectDismissedCta = 'krakenConnectDismissedCta',
+  krakenConnectCFToken = 'krakenConnectCFToken',
 }
 
 export type SettingsType = {
@@ -58,9 +61,12 @@ export type SettingsType = {
   [RealmSettingsKey.isBrowserExploreTaskModalCompleted]: boolean;
   [RealmSettingsKey.isSwapsTaskModalCompleted]: boolean;
   [RealmSettingsKey.isConnectedWithExchange]: boolean;
+  [RealmSettingsKey.krakenConnectAccountsConnected]: number[];
+  [RealmSettingsKey.krakenConnectDismissedCta]: number[];
 
   [RealmSettingsKey.krakenConnectApiKey]: string;
   [RealmSettingsKey.krakenConnectApiSecretKey]: string;
+  [RealmSettingsKey.krakenConnectCFToken]: string;
 };
 
 export type Settings = {

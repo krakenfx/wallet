@@ -6,11 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 import { useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import type { KrakenAssetSupported } from '@/api/krakenConnect/types';
 import { AssetAvailableBalance } from '@/components/AssetRow/AssetAvailableBalance';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useBrowser } from '@/hooks/useBrowser';
 import type { WalletType } from '@/onChain/wallets/registry';
-import type { KrakenAssetSupported } from '@/reactQuery/hooks/krakenConnect/types';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import type { RealmToken } from '@/realm/tokens';
 import { useTokensGalleryMutations } from '@/realm/tokensGallery';
