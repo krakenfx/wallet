@@ -10,9 +10,10 @@ import type { BrowserParams } from '@/screens/Browser';
 import type { ConnectAppParams } from '@/screens/ConnectApp/ConnectAppScreen';
 import type { ConnectWalletConnectAppParams } from '@/screens/ConnectApp/ConnectWalletConnectAppScreen';
 import type { ScanQRCodeParams } from '@/screens/ConnectAppQRScan';
-import type { DefiDetailsRouteParams } from '@/screens/DefiDetails';
+import type { DefiDetailsRouteParams, DefiDetailsRouteParamsV2 } from '@/screens/DefiDetails';
 import type { EditNoteParams } from '@/screens/EditNoteScreen';
 import type { ExplainerProps } from '@/screens/Explainer';
+import type { KrakenConnectSendScreenNavigationParams } from '@/screens/KrakenConnectSend/KrakenConnectSendScreen';
 import type { ManageAssetsGlobalFilterParams } from '@/screens/ManageAssetsGlobalFilter';
 import type { ManageNftParams } from '@/screens/Nfts/ManageNftScreen';
 import type { NftCollectionParams } from '@/screens/Nfts/NftCollectionScreen';
@@ -65,11 +66,14 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     ConnectedApps: ConnectedAppsParams;
     Debug: undefined;
     DefiDetails: DefiDetailsRouteParams;
+    DefiDetailsV2: DefiDetailsRouteParamsV2;
     Diagnostics: undefined;
     Explore: undefined;
     ExploreSubpage: ExploreSubpageNavigationParams;
     KrakenConnect: KrakenConnectNavigationParams | undefined;
+    KrakenConnectDisconnect: KrakenConnectNavigationParams;
     Swap: SwapScreenParams | undefined;
+    Earn: undefined;
     EditNote: EditNoteParams;
     Explainer: ExplainerProps;
     ExtendedPublicKey: ExtendedPublicKeyParams;
@@ -78,10 +82,12 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     GlobalActivity: undefined;
     Home: undefined;
     KrakenConnectTransfer: undefined;
+    KrakenConnectSend: KrakenConnectSendScreenNavigationParams;
     Language: undefined;
     ManageAssetsGlobalFilter: ManageAssetsGlobalFilterParams;
     ManageNft: ManageNftParams;
     ManageWallets: undefined;
+    ManageConnections: undefined;
     MarketDataInfo: undefined;
     NftCollection: NftCollectionParams;
     NftImageGallery: NftImageGalleryRouteParams;
@@ -128,8 +134,10 @@ export enum Routes {
   ConnectAppQRScan = 'ConnectAppQRScan',
   Currency = 'Currency',
   DefiDetails = 'DefiDetails',
+  DefiDetailsV2 = 'DefiDetailsV2',
   Debug = 'Debug',
   Diagnostics = 'Diagnostics',
+  Earn = 'Earn',
   Explore = 'Explore',
   ExploreSubpage = 'ExploreSubpage',
   EditNote = 'EditNote',
@@ -138,11 +146,14 @@ export enum Routes {
   GlobalActivity = 'GlobalActivity',
   Home = 'Home',
   KrakenConnect = 'KrakenConnect',
+  KrakenConnectDisconnect = 'KrakenConnectDisconnect',
   KrakenConnectTransfer = 'KrakenConnectTransfer',
+  KrakenConnectSend = 'KrakenConnectSend',
   Language = 'Language',
   ManageAssetsGlobalFilter = 'ManageAssetsGlobalFilter',
   ManageNft = 'ManageNft',
   ManageWallets = 'ManageWallets',
+  ManageConnections = 'ManageConnections',
   MarketDataInfo = 'MarketDataInfo',
   NftCollection = 'NftCollection',
   NftImageGallery = 'NftImageGallery',

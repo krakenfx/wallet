@@ -47,7 +47,11 @@ export const Preview: React.FC<PreviewProps> = ({ isSuccess, transactionParams, 
             iconName="chevron-down"
             renderTop={({ containerStyle }) => (
               <TransactionAmount
-                tokenIconProps={{ wallet, tokenId: transactionParams.token.assetId, tokenSymbol: transactionParams.token.metadata.symbol }}
+                tokenIconProps={{
+                  wallet,
+                  tokenId: transactionParams.token.assetId,
+                  tokenSymbol: transactionParams.token.metadata.symbol,
+                }}
                 assetAmount={`-${formatTokenAmount(transactionParams.amount, { compact: true, currency })}`}
                 assetFiatAmount={amounts?.amountFiat ? `-${amounts.amountFiat}` : undefined}
                 assetNetwork={wallet.type}
@@ -60,7 +64,11 @@ export const Preview: React.FC<PreviewProps> = ({ isSuccess, transactionParams, 
         ) : (
           <>
             <TransactionAmount
-              tokenIconProps={{ wallet, tokenId: transactionParams.token.assetId, tokenSymbol: transactionParams.token.metadata.symbol }}
+              tokenIconProps={{
+                wallet,
+                tokenId: transactionParams.token.assetId,
+                tokenSymbol: transactionParams.token.metadata.symbol,
+              }}
               assetAmount={`-${formatTokenAmount(transactionParams.amount, { compact: true, currency })}`}
               assetFiatAmount={amounts?.amountFiat ? `-${amounts.amountFiat}` : undefined}
               assetNetwork={wallet.type}

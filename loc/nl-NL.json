@@ -126,7 +126,7 @@
     "from": "Van",
     "message": "Bericht",
     "message_signing_request": "Ondertekeningsverzoek bericht",
-    "messageSigningRequest": "Ondertekenen",
+    "messageSigningRequest": "Bericht ondertekenen",
     "mint": "Mint",
     "nonce": "Nonce",
     "scrollToBottomToConfirm": "Scroll naar beneden om te bevestigen",
@@ -446,13 +446,62 @@
   },
   "earn": {
     "allAssets": "Alle assets",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "Stort wat {symbol} op {protocol}",
+      "high": "Hoog:",
+      "info": {
+        "about": "Over {symbol}",
+        "addressCopied": "Adres gekopieerd",
+        "assetsLocked": "Assets vergrendeld",
+        "contractAddress": "Contractadres",
+        "marketCap": "Marktkapitalisatie",
+        "network": "Netwerk",
+        "numberHolders": "Aantal houders",
+        "protocol": "Protocol",
+        "tokenEarned": "Verdiende token",
+        "tokenPrice": "Prijs token",
+        "type": "Type"
+      },
+      "low": "Laag:",
+      "openDapp": "Open dapp",
+      "period": {
+        "all": "Alles",
+        "day": "D",
+        "month": "M",
+        "week": "W",
+        "year": "J"
+      }
+    },
     "earnCTA": "Earn",
-    "earnUpToApr": "Tot {apr}% APR",
+    "earnOnYourAssets": "Verdienen op je assets",
+    "earnSheet": {
+      "amountAvailable": "{balance} {symbol} beschikbaar",
+      "apy": "APY",
+      "earn": "Earn {symbol}",
+      "noBalanaceFound": "Geen tegoed. Financier je wallet met {symbol} om in aanmerking te komen voor Earn.",
+      "swapCta": "Swap",
+      "tvl": "{tvl} TVL"
+    },
+    "earnUpToApr": "Tot {apy}% APY",
+    "earnUpToApy": "Tot {apy}% APY",
+    "earnWhileYouSleep": "Verdien terwijl je slaapt",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Om toegang te krijgen tot opbrengstmogelijkheden, stuur je compatibele assets zoals Ethereum of USDC naar je wallet.",
+        "heading": "Stort ETH om te beginnen met verdienen",
+        "supportArticle": "Meer informatie over ondersteunde assets"
+      },
+      "explaination": "Controleer je verbinding of probeer deze pagina op een later tijdstip opnieuw te openen",
+      "titlePlural": "Fout bij het laden van verdienmogelijkheden",
+      "titleSingular": "Fout bij het laden van verdienmogelijkheid"
+    },
     "heroAvailableBalance": "{balance} {symbol} beschikbaar",
     "heroTitle": "Verdien {symbol} op {protocol}",
     "protocolType": {
       "lending": "Lenen"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Hernoemen",
@@ -668,12 +717,34 @@
     "balanceOnKraken": "op Kraken",
     "exchangeBalance": "Exchange-tegoed",
     "fundCta": {
-      "body": "Verbind je Kraken-account om <b>crypto over te zetten naar je wallet</b>",
+      "body": "Verbind je Kraken-account met",
       "bodyBold": "crypto overboeken naar je wallet",
       "heading": "Je wallet financieren"
     },
+    "selectNetwork": {
+      "description": "Kies op welk netwerk je je {assetLabel} in je wallet wilt ontvangen.",
+      "fee": "{assetValue} kosten",
+      "minimum": "{assetValue} minimum",
+      "network": "{selectedNetworkName}-netwerk",
+      "title": "Netwerk selecteren"
+    },
     "sendScreen": {
       "title": "{assetSymbol} overboeken"
+    },
+    "settings": {
+      "benefits0": "Crypto overboeken van Kraken",
+      "benefits1": "Bekijk exchangetegoeden van Kraken",
+      "benefitsHeadline": "Verbinding met Kraken-account maakt het volgende mogelijk:",
+      "cancel": "Annuleren",
+      "connect": "Verbinden",
+      "disconnect": "Verbindingen verbreken",
+      "disconnectScreen": {
+        "alert": "Nadat je wallet is losgekoppeld, blijft de API-sleutel nog 6 maanden geldig in je API-instellingen van de Kraken-exchange.",
+        "description": "Weet je zeker dat je deze wallet wilt loskoppelen van Kraken?",
+        "title": "Verbinding met Kraken verbreken",
+        "warningMessage": "Je behoudt niet langer de functionaliteit voor naadloze overboekingen tussen je wallet: <b>\"{walletName}\"<b> en je exchange-account van Kraken."
+      },
+      "walletsListTitle": "Jouw Wallets"
     },
     "stepsToConnect": {
       "hasAccount": "Ik heb een account aangemaakt",
@@ -696,6 +767,7 @@
       "selectAsset": "Selecteer een asset om over te boeken",
       "selectAssetDescription": "Overboeken van Kraken naar je wallet",
       "title": "Overdracht",
+      "transferFee": "Overboekingskosten",
       "unsupportedAssets": "Niet-ondersteunde assets",
       "unsupportedAssetsDescription": "{count} andere assets in je exchange-account worden niet ondersteund door de wallet"
     },
@@ -1320,6 +1392,7 @@
     "appLock": "App-vergrendeling",
     "backup": "Back-up",
     "backup_mnemonic_seed": "Back-up maken van mnemonic seed",
+    "connections": "Verbindingen",
     "currency": "Valuta",
     "deleteAll": "Alle gegevens verwijderen",
     "electrum_error_connect": "Kan geen verbinding maken met de opgegeven Electrum-server",
@@ -1332,6 +1405,8 @@
     "general": "Algemeen",
     "header": "Instellingen",
     "hideBalances": "Tegoeden verbergen",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Kraken Exchange",
     "language": "Taal",
     "manageWallets": "Wallets beheren",
     "notifications": "Pushmeldingen",

@@ -36,7 +36,7 @@
     "deposit": "Deposit",
     "from": "From",
     "message": "Message",
-    "messageSigningRequest": "Sign",
+    "messageSigningRequest": "Sign message",
     "mint": "Mint",
     "nonce": "Nonce",
     "scrollToBottomToConfirm": "Scroll to bottom to confirm",
@@ -45,7 +45,9 @@
     "to": "To",
     "typedMessageSigningRequest": "{type} Signing Request",
     "withdrawal": "Withdrawal",
-    "unknownApp": "Unknown app"
+    "unknownApp": "Unknown app",
+    "transactionBase64": "{index}. Transaction (Base64)",
+    "declinedRequest": "User declined the request"
   },
   "accountSwitch": {
     "wallets": "Wallets",
@@ -172,7 +174,64 @@
     "positions": "{numberOfPositions} positions",
     "network": "network",
     "debt": "Debt",
-    "claimable": "Claimable"
+    "claimable": "Claimable",
+    "apr": "APR",
+    "tvl": "TVL"
+  },
+  "earn": {
+    "allAssets": "All assets",
+    "apy": "APY",
+    "earnUpToApy": "Up to {apy}% APY",
+    "earnCTA": "Earn",
+    "earnWhileYouSleep": "Earn while you sleep",
+    "earnOnYourAssets": "Earn on your assets",
+    "heroTitle": "Earn {symbol} on {protocol}",
+    "heroAvailableBalance": "{balance} {symbol} available",
+    "tvl": "TVL",
+    "detailsSheet": {
+      "deposit": "Deposit some {symbol} on {protocol}",
+      "period": {
+        "day": "D",
+        "week": "W",
+        "month": "M",
+        "year": "Y",
+        "all": "All"
+      },
+      "high": "High:",
+      "low": "Low:",
+      "openDapp": "Open dapp",
+      "info": {
+        "protocol": "Protocol",
+        "type": "Type",
+        "tokenEarned": "Token earned",
+        "network": "Network",
+        "assetsLocked": "Assets locked",
+        "numberHolders": "Number of holders",
+        "tokenPrice": "Token price",
+        "marketCap": "Market cap",
+        "contractAddress": "Contract address",
+        "about": "About {symbol}",
+        "addressCopied": "Address copied"
+      }
+    },
+    "earnSheet": {
+      "earn": "Earn {symbol}",
+      "amountAvailable": "{balance} {symbol} available",
+      "swapCta": "Swap",
+      "tvl": "{tvl} TVL",
+      "noBalanaceFound": "No balance. Fund your wallet with {symbol} to become eligible for Earn.",
+      "apy": "APY"
+    },
+    "errors": {
+      "titleSingular": "Error loading earn opportunity",
+      "titlePlural": "Error loading earn opportunities",
+      "explaination": "Check your connection or try opening this page again at a later time",
+      "emptyCarousel": {
+        "heading": "Deposit ETH to start earning",
+        "detail": "To access yield opportunities, send compatible assets such as Ethereum or USDC to your wallet.",
+        "supportArticle": "Learn more about supported assets"
+      }
+    }
   },
   "diagnostics": {
     "running": "Running diagnostics..."
@@ -187,7 +246,11 @@
     "generalFetchError": "Error, please try again",
     "offline": "Offline",
     "offlineRetry": "You are offline. Please try again when online.",
-    "exploreSubpage": "Something went wrong opening this content. Please try again later."
+    "exploreSubpage": "Something went wrong opening this content. Please try again later.",
+    "permissionDenied": "Permission denied",
+    "invalidRequest": "Invalid {method} request",
+    "unsupportedChain": "Unsupported chain",
+    "unauthorizedRequest": "Unauthorized request"
   },
   "globalActivity": {
     "title": "Activity",
@@ -710,7 +773,7 @@
     "title": "Swap",
     "buttonTitle": "Swap",
     "balance": "Balance {0}",
-    "amountPlaceholder": "Enter amount",
+    "amountPlaceholder": "Enter amount {symbol}",
     "amountExceedingBalance": "Amount entered exceeds available balance",
     "selectAsset": "Select Asset",
     "yourAssets": "Your assets",
@@ -816,9 +879,10 @@
     "wallet_connect_version_deprecated": "This application is incompatible"
   },
   "send": {
+    "available": "Available {0}",
     "addressHeader": "Sending to",
     "amountHeader": "Amount",
-    "enterAmount": "Enter amount",
+    "enterAmount": "Enter amount {symbol}",
     "exceedsBalance": "Amount entered exceeds available balance",
     "exceedsFee": "Not enough {token} for network fee",
     "invalidAddress": "Invalid address, please check and try again",
@@ -888,7 +952,10 @@
     "secretRecoveryPhrase": "Secret recovery phrase",
     "security": "Security",
     "support": "Support",
-    "wallets": "Wallets"
+    "wallets": "Wallets",
+    "connections": "Connections",
+    "krakenExchange": "Kraken Exchange",
+    "krakenConnect": "Kraken Connect"
   },
   "storeReview": {
     "alertTitle": "Are you enjoying the Kraken Wallet App?",
@@ -1314,7 +1381,8 @@
     },
     "fundCta": {
       "heading": "Fund your wallet",
-      "body": "Connect your Kraken account to <b>transfer crypto to your wallet</b>"
+      "body": "Connect your Kraken account to",
+      "bodyBold": "transfer crypto to your wallet"
     },
     "exchangeBalance": "Exchange balance",
     "transfer": {
@@ -1323,7 +1391,33 @@
       "selectAsset": "Select an asset to transfer",
       "selectAssetDescription": "Transfer from Kraken exchange to your wallet",
       "unsupportedAssets": "Unsupported assets",
-      "unsupportedAssetsDescription": "{count} other assets in your exchange account are not supported by the wallet"
+      "unsupportedAssetsDescription": "{count} other assets in your exchange account are not supported by the wallet",
+      "transferFee": "Transfer fee"
+    },
+    "settings": {
+      "connect": "Connect",
+      "disconnect": "Disconnect",
+      "cancel": "Cancel",
+      "walletsListTitle": "Your Wallets",
+      "benefitsHeadline": "Connection to Kraken account enables:",
+      "benefits0": "Transfer crypto from Kraken",
+      "benefits1": "View Kraken exchange balances",
+      "disconnectScreen": {
+        "title": "Disconnect from Kraken",
+        "description": "Are you sure you want to disconnect this wallet from Kraken?",
+        "warningMessage": "You will no longer retain functionality for seamless transfers between your wallet: <b>“{walletName}”<b>, and your Kraken exchange account.",
+        "alert": "After you wallet is disconnected, the API key will remain valid in your Kraken exchange API settings for 6 months."
+      }
+    },
+    "sendScreen": {
+      "title": "Transfer {assetSymbol}"
+    },
+    "selectNetwork": {
+      "title": "Select network",
+      "description": "Choose on which network you want to receive your {assetLabel} in your wallet.",
+      "fee": "{assetValue} fee",
+      "minimum": "{assetValue} minimum",
+      "network": "{selectedNetworkName} network"
     }
   }
 }

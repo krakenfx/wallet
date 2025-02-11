@@ -12,6 +12,8 @@ import { AdvancedSettingsScreen } from './AdvancedSettingsScreen';
 import { AppLockScreen } from './appLock';
 import { CurrencyScreen } from './CurrencyScreen';
 import { DeleteAllDataWarningScreen } from './DeleteAllDataWarningScreen';
+import { KrakenConnectDisconnectScreen } from './krakenConnect/KrakenConnectDisconnectScreen';
+import { ManageConnectionsScreen } from './krakenConnect/ManageConnectionsScreen';
 import { ManageWalletsScreen } from './manageWallets';
 import { DisablePasswordProtectionScreen, PasswordProtectionFormScreen, PasswordProtectionScreen } from './passwordProtection';
 import { PrivacyScreen } from './PrivacyScreen';
@@ -20,6 +22,7 @@ import { SupportScreen } from './support';
 import { SettingsBackupVerifyScreen, SettingsWalletBackupMethodScreen, SettingsWalletBackupScreen } from './walletBackup';
 import { SettingsDisplaySeedScreen } from './walletBackup/SettingsDisplaySeedScreen';
 
+import type { KrakenConnectNavigationParams } from '../KrakenConnect/KrakenConnectScreen';
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -30,6 +33,8 @@ export type SettingsStackParams = {
   SettingsRoot: undefined;
   AppLock: undefined;
   ManageWallets: undefined;
+  ManageConnections: undefined;
+  KrakenConnectDisconnect: KrakenConnectNavigationParams;
   PasswordProtection: undefined;
   PasswordProtectionForm: undefined;
   Privacy: undefined;
@@ -57,6 +62,13 @@ export const SettingsRouter = () => {
       <SettingsStack.Screen name={Routes.AdvancedSettings} component={AdvancedSettingsScreen} options={AdvancedSettingsScreen.navigationOptions(theme)} />
       <SettingsStack.Screen name={Routes.AppLock} component={AppLockScreen} options={AppLockScreen.navigationOptions(theme)} />
       <SettingsStack.Screen name={Routes.ManageWallets} component={ManageWalletsScreen} options={ManageWalletsScreen.navigationOptions(theme)} />
+      <SettingsStack.Screen name={Routes.ManageConnections} component={ManageConnectionsScreen} options={ManageConnectionsScreen.navigationOptions(theme)} />
+
+      <SettingsStack.Screen
+        name={Routes.KrakenConnectDisconnect}
+        component={KrakenConnectDisconnectScreen}
+        options={KrakenConnectDisconnectScreen.navigationOptions(theme)}
+      />
       <SettingsStack.Screen name={Routes.PasswordProtection} component={PasswordProtectionScreen} options={PasswordProtectionScreen.navigationOptions(theme)} />
       <SettingsStack.Screen name={Routes.Privacy} component={PrivacyScreen} options={PrivacyScreen.navigationOptions(theme)} />
       <SettingsStack.Screen

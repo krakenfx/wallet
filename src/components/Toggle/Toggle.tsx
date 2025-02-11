@@ -19,6 +19,7 @@ interface BaseToggleProps {
   testID?: string;
   containerStyle?: StyleProp<ViewStyle>;
   toggleStyle?: StyleProp<ViewStyle>;
+  labelWrapperStyle?: StyleProp<ViewStyle>;
   backgroundColor?: ColorName;
   sliderColor?: ColorName;
   handleTap?: () => void;
@@ -55,6 +56,7 @@ export const ControlledToggle = React.memo(
     rightTestID,
     rightText,
     toggleStyle,
+    labelWrapperStyle,
     onTap,
     sliderColor = 'kraken',
     backgroundColor = 'light15',
@@ -82,10 +84,10 @@ export const ControlledToggle = React.memo(
           <Animated.View style={[styles.container, toggleStyle]}>
             <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: colors[backgroundColor] }, disabled && styles.disabled, toggleStyle]} />
             <Animated.View style={[style, styles.slider, { backgroundColor: colors[sliderColor] }]} />
-            <View style={styles.itemWrapper} onLayout={e => (leftWidth.value = e.nativeEvent.layout.width)}>
+            <View style={[styles.itemWrapper, labelWrapperStyle]} onLayout={e => (leftWidth.value = e.nativeEvent.layout.width)}>
               <Label testID={leftTestID}>{leftText}</Label>
             </View>
-            <View style={[styles.itemWrapper, disabled && styles.disabled]} onLayout={e => (rightWidth.value = e.nativeEvent.layout.width)}>
+            <View style={[styles.itemWrapper, disabled && styles.disabled, labelWrapperStyle]} onLayout={e => (rightWidth.value = e.nativeEvent.layout.width)}>
               <Label testID={rightTestID}>{rightText}</Label>
             </View>
           </Animated.View>

@@ -1,7 +1,9 @@
-import { type PageInfo, RpcMethod } from '@/dAppIntegration/types';
 import type { RealmishWallet } from '@/onChain/wallets/base';
-
 import type { EVMHarmonyTransport, EVMNetwork } from '@/onChain/wallets/evm';
+
+import { EvmRpcMethod } from './constants';
+
+import type { PageInfo } from './types';
 
 import loc from '/loc';
 import type { DefinitionList, ReactNavigationDispatch } from '/modules/wallet-connect';
@@ -11,7 +13,7 @@ import { MalformedEIP712TypedData, isEIP712 } from '/modules/wallet-connect/web3
 import { navigateToSignGenericMessagePage } from '/modules/wallet-connect/web3Wallet/navigateToSignGenericMessagePage';
 
 interface Props {
-  method: RpcMethod;
+  method: EvmRpcMethod;
   params: unknown[];
   wallet: RealmishWallet;
   dispatch: ReactNavigationDispatch;
@@ -53,10 +55,10 @@ export const openSignMessageApproveModal = async ({ params, transport, network, 
   );
 };
 
-function getDefinitionList(params: unknown[], method: RpcMethod): DefinitionList {
+function getDefinitionList(params: unknown[], method: EvmRpcMethod): DefinitionList {
   switch (method) {
-    case RpcMethod.eth_signTypedData_v3:
-    case RpcMethod.eth_signTypedData_v4: {
+    case EvmRpcMethod.eth_signTypedData_v3:
+    case EvmRpcMethod.eth_signTypedData_v4: {
       try {
         const eip712Data = JSON.parse(params[1] as string);
 

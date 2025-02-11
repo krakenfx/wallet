@@ -9,6 +9,9 @@ export const ethereumNetwork = new EVMNetwork({
   nativeTokenSymbol: 'ETH',
   blockExplorer: new Etherscan('etherscan.io'),
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: 'd9d375da-44b7-4be1-8a00-8b281acfe366',
+  krakenConnectMethodId: 'f1546110-35ff-4225-a67e-cb09b8ec7b52',
+  krakenConnectMethodName: 'Ether',
 });
 
 export const ethereumSepoliaNetwork = new EVMNetwork({
@@ -19,6 +22,9 @@ export const ethereumSepoliaNetwork = new EVMNetwork({
   blockExplorer: new Etherscan('sepolia.etherscan.io'),
   isTestnet: true,
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: null,
+  krakenConnectMethodId: null,
+  krakenConnectMethodName: null,
 });
 
 export const polygonNetwork = new EVMNetwork({
@@ -35,6 +41,9 @@ export const polygonNetwork = new EVMNetwork({
 
   disable1559: true,
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: 'c44d2870-12b3-470d-91d3-be3da709fe16',
+  krakenConnectMethodId: '739460ff-9ef5-4152-bf51-7a7d35f3c2b7',
+  krakenConnectMethodName: 'Ethereum (Polygon)',
 });
 
 export const arbitrumNetwork = new EVMNetwork({
@@ -50,6 +59,9 @@ export const arbitrumNetwork = new EVMNetwork({
     fgColor: ['#6c4dc2', '#99e3ed', -45],
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
+  krakenConnectNetworkId: 'bc7562cf-1e51-4308-b52b-d062aaa6aa3b',
+  krakenConnectMethodId: '95f38698-44ef-41fc-9c2e-049f8a1bcb44',
+  krakenConnectMethodName: 'Arbitrum One',
 });
 
 export const baseNetwork = new EVMNetwork({
@@ -65,6 +77,9 @@ export const baseNetwork = new EVMNetwork({
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: null,
+  krakenConnectMethodId: null,
+  krakenConnectMethodName: null,
 });
 
 export const optimismNetwork = new EVMNetwork({
@@ -80,6 +95,9 @@ export const optimismNetwork = new EVMNetwork({
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: 'ed5138ed-ef50-4553-ae20-bb3a00b7c12e',
+  krakenConnectMethodId: 'a54acf67-5f8e-456a-bfa4-e2b846956ae2',
+  krakenConnectMethodName: 'Optimism',
 });
 
 export const blastNetwork = new EVMNetwork({
@@ -95,6 +113,9 @@ export const blastNetwork = new EVMNetwork({
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: null,
+  krakenConnectMethodId: null,
+  krakenConnectMethodName: null,
 });
 
 export const lineaNetwork = new EVMNetwork({
@@ -110,6 +131,9 @@ export const lineaNetwork = new EVMNetwork({
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: '53e19d26-31f1-4103-ad77-5ec8a39f7422',
+  krakenConnectMethodId: 'ce87d87a-c6a2-4b4a-8363-45be6960e2e6',
+  krakenConnectMethodName: 'Linea',
 });
 
 export const avalancheCChainNetwork = new EVMNetwork({
@@ -127,6 +151,9 @@ export const avalancheCChainNetwork = new EVMNetwork({
   }),
   defaultGasLimit: 21000,
   gasUnit: 'nAVAX',
+  krakenConnectNetworkId: null,
+  krakenConnectMethodId: null,
+  krakenConnectMethodName: null,
 });
 
 export const inkNetwork = new EVMNetwork({
@@ -137,6 +164,9 @@ export const inkNetwork = new EVMNetwork({
   label: loc.network.ink,
   blockExplorer: new Etherscan('explorer.inkonchain.com'),
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: '48f5beb0-8708-4d27-9136-9b7318da8fa7',
+  krakenConnectMethodId: 'cd9a0143-3843-4f07-95c4-3ff3b8ca2d42',
+  krakenConnectMethodName: 'Ink',
 });
 
 export const inkSepoliaNetwork = new EVMNetwork({
@@ -148,4 +178,7 @@ export const inkSepoliaNetwork = new EVMNetwork({
   blockExplorer: new Etherscan('explorer-sepolia.inkonchain.com'),
   isTestnet: true,
   defaultGasLimit: 21000,
+  krakenConnectNetworkId: null,
+  krakenConnectMethodId: null,
+  krakenConnectMethodName: null,
 });

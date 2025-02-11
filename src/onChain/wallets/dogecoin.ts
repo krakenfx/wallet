@@ -89,6 +89,9 @@ export class DogecoinNetwork implements Network {
   nativeTokenCaipId: string = ChainAgnostic.COIN_DOGECOIN;
   nativeTokenDecimals: number = 8;
   nativeTokenSymbol: NativeTokenSymbol = 'DOGE';
+  krakenConnectNetworkId: string = '63a4cede-b4e3-4a34-971e-dd99e89b55c8';
+  krakenConnectMethodId: string = '44e17345-7e62-4a02-998e-1ecaeca59998';
+  krakenConnectMethodName: string = 'Dogecoin';
   paymentUriPrefix = 'dogecoin';
   blockExplorer: BlockExplorer = {
     transactionUri(txId: string) {

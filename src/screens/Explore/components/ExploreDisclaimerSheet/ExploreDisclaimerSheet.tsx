@@ -19,15 +19,7 @@ export const ExploreDisclaimerSheet = forwardRef<BottomSheetRef, ExploreDisclaim
   }, [onMount]);
 
   return (
-    <BottomSheet
-      snapPoints={['60%']}
-      index={1}
-      dismissible={false}
-      onBackdropPress={onDismiss}
-      onDismiss={onDismiss}
-      onClose={onClose}
-      ref={ref}
-      enableDynamicSizing>
+    <BottomSheet dismissible={false} onBackdropPress={onDismiss} onDismiss={onDismiss} onClose={onClose} ref={ref} enableDynamicSizing>
       <BottomSheetView>
         <View style={styles.container}>
           <ModalNavigationHeader onClosePress={onDismiss} style={styles.close} />

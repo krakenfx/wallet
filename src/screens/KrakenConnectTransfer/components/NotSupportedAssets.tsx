@@ -1,10 +1,13 @@
+import Clipboard from '@react-native-clipboard/clipboard';
 import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import type { KrakenAssetNotSupported } from '@/api/krakenConnect/types';
 import { Label } from '@/components/Label';
 
+import { showToast } from '@/components/Toast';
+import { Touchable } from '@/components/Touchable';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
-import type { KrakenAssetNotSupported } from '@/reactQuery/hooks/krakenConnect/types';
 import { useAppCurrency } from '@/realm/settings';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 import { useTheme } from '@/theme/themes';
@@ -29,17 +32,26 @@ export const NotSupportedAssets = ({ assets }: Props) => {
   }, [assets]);
   const amountFormatted = useBalanceDisplay(formatCurrency(notSupportedBalance * fiatRate, { currency }), 7);
 
+  const showToastWithUnsupportedNames = () => {
+    const assetsList = assets.map(a => `symbol: ${a.symbol} balance: ${a.balance} balanceUSD: ${a.balanceInUsd}`).join('\n');
+    Clipboard.setString(assetsList);
+    showToast({ text: 'Unsupported assets list copied to clipboard', type: 'info' });
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: colors.light2 }]}>
-      <View style={styles.header}>
-        <Label type="boldTitle2" color="light75">
-          {loc.krakenConnect.transfer.unsupportedAssets}
+      <Touchable onPress={showToastWithUnsupportedNames}>
+        <View style={styles.header}>
+          <Label type="boldTitle2" color="light75">
+            {loc.krakenConnect.transfer.unsupportedAssets}
+          </Label>
+          <Label type="boldLargeMonospace">~{amountFormatted}</Label>
+        </View>
+
+        <Label type="regularBody" color="light50">
+          {loc.formatString(loc.krakenConnect.transfer.unsupportedAssetsDescription, { count: assets.length })}
         </Label>
-        <Label type="boldLargeMonospace">~{amountFormatted}</Label>
-      </View>
-      <Label type="regularBody" color="light50">
-        {loc.formatString(loc.krakenConnect.transfer.unsupportedAssetsDescription, { count: assets.length })}
-      </Label>
+      </Touchable>
     </View>
   );
 };

@@ -139,11 +139,14 @@ export const DebugScreen = () => {
   const [krakenConnectEnabled, setKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
   const [apiKey, setApiKey] = useState<string>();
   const [apiSecret, setApiSecret] = useState<string>();
+  const [cfToken, setCfToken] = useState<string>();
   const { setSettings, removeSettings } = useSettingsMutations();
 
   const [isEarnEnabled, setIsEarnEnabled] = useFeatureFlag('earnEnabled');
 
   const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
+
+  const [assetIconsV2Enabled, setAssetIconsV2Enabled] = useFeatureFlag('assetIconsV2Enabled');
 
   useEffect(() => {
     (async () => {
@@ -179,18 +182,27 @@ export const DebugScreen = () => {
     if (krakenConnectEnabled) {
       removeSettings(RealmSettingsKey.krakenConnectApiKey);
       removeSettings(RealmSettingsKey.krakenConnectApiSecretKey);
+      removeSettings(RealmSettingsKey.krakenConnectCFToken);
       setKrakenConnectEnabled(false);
       showToast({ text: 'Kraken Connect credential removed!', type: 'success' });
     } else {
-      const keysMissing = !apiKey || !apiSecret;
+      const keysMissing = !apiKey || !apiSecret || !cfToken;
       const msg = keysMissing ? 'Feature flag enabled, but no keys were stored!' : 'Kraken Connect credential saved! Reload the app.';
       setSettings(RealmSettingsKey.krakenConnectApiKey, apiKey || '');
       setSettings(RealmSettingsKey.krakenConnectApiSecretKey, apiSecret || '');
+      setSettings(RealmSettingsKey.krakenConnectCFToken, cfToken || '');
       setKrakenConnectEnabled(true);
       await showToast({ text: msg, type: keysMissing ? 'info' : 'success' });
       setApiSecret('');
       setApiKey('');
+      setCfToken('');
     }
+  };
+
+  const saveCFToken = async () => {
+    setSettings(RealmSettingsKey.krakenConnectCFToken, cfToken || '');
+    await showToast({ text: 'CF token updated', type: 'success' });
+    setCfToken('');
   };
 
   useEffect(() => {
@@ -333,12 +345,28 @@ export const DebugScreen = () => {
                 <Input secureTextEntry type="regularCaption1" placeholder="API KEY" onChangeText={setApiKey} value={apiKey} />
                 <Input secureTextEntry type="regularCaption1" placeholder="API SECRET" onChangeText={setApiSecret} value={apiSecret} />
               </View>
+              {krakenConnectEnabled && (
+                <Label type="regularCaption1" style={styles.topSpacing}>
+                  Personal Cloudflare token expires very early so you can paste your token here and click save btn without re-enabling all feature flag
+                </Label>
+              )}
+              <View style={styles.inputWithButton}>
+                <View style={[styles.inputWithButtonElement, { flexBasis: krakenConnectEnabled ? '75%' : '100%' }]}>
+                  <Input secureTextEntry type="regularCaption1" placeholder="Cloudflare token" onChangeText={setCfToken} value={cfToken} />
+                </View>
+                {krakenConnectEnabled && <Button size="small" color="kraken" text="SAVE" onPress={saveCFToken} />}
+              </View>
             </SettingsBox>
           </>
         )}
         {!!Config.INTERNAL_RELEASE && (
           <SettingsBox isFirst isLast isHighlighted style={styles.spacing}>
-            <SettingsSwitch icon="plus" text="DeFi Earn" enabled={isEarnEnabled} onToggle={setIsEarnEnabled} />
+            <SettingsSwitch icon="earn" text="DeFi Earn" enabled={isEarnEnabled} onToggle={setIsEarnEnabled} />
+          </SettingsBox>
+        )}
+        {!!Config.INTERNAL_RELEASE && (
+          <SettingsBox isFirst isLast isHighlighted style={styles.spacing}>
+            <SettingsSwitch icon="eye" text="Asset icons v2" enabled={assetIconsV2Enabled} onToggle={setAssetIconsV2Enabled} />
           </SettingsBox>
         )}
 
@@ -647,10 +675,24 @@ const styles = StyleSheet.create({
   spacing: {
     marginBottom: 12,
   },
+  topSpacing: {
+    marginTop: 12,
+  },
   inputs: {
     flexDirection: 'column',
     width: '100%',
     gap: 8,
+  },
+  inputWithButton: {
+    width: '100%',
+    gap: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+    flexBasis: '100%',
+  },
+  inputWithButtonElement: {
+    flexGrow: 1,
   },
   errorContainer: {
     padding: 12,

@@ -1,13 +1,12 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import MaskedView from '@react-native-masked-view/masked-view';
-
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import Svg, { Circle, Defs, G, Mask, Rect } from 'react-native-svg';
+import { View } from 'react-native';
 
 import { NetworkIcon } from '@/components/NetworkIcon';
 import type { WalletType } from '@/onChain/wallets/registry';
+
+import { ElementWithBadge } from '../ElementWithBadge/ElementWithBadge';
 
 export type MaskedElementWithCoinProps = {
   size: number;
@@ -25,15 +24,6 @@ export type MaskedElementWithCoinProps = {
   testID?: string;
 };
 
-const RoundedSquare = ({ fill = 'white', size }: Pick<MaskedElementWithCoinProps, 'size'> & { fill?: string }) => {
-  const reductionScale = 16;
-  const startXY = size / reductionScale;
-  const reducedSize = startXY * (reductionScale - 2);
-  const radius = '35%';
-
-  return <Rect x={startXY} y={startXY} width={reducedSize} height={reducedSize} rx={radius} fill={fill} />;
-};
-
 export const MaskedElementWithCoin: React.FC<MaskedElementWithCoinProps> = React.memo(
   ({
     size,
@@ -49,44 +39,18 @@ export const MaskedElementWithCoin: React.FC<MaskedElementWithCoinProps> = React
     style,
     testID,
   }) => {
-    const coinMaskPosition = { x: coinPosition.left, y: coinPosition.top };
-    const coinStyle = { top: coinPosition.top - coinSize / 2, left: coinPosition.left - coinSize / 2 };
     return (
       <View style={style} testID={testID}>
-        <MaskedView
-          maskElement={
-            <Svg>
-              <Defs>
-                <Mask id="moonShape" maskUnits="userSpaceOnUse">
-                  {maskShape === 'circle' && (
-                    <>
-                      <Circle x={size / 2} y={size / 2} r={size / 2} fill="white" />
-                      <Circle {...coinMaskPosition} r={coinSize / 2 + coinBorderSize} fill="black" />
-                    </>
-                  )}
-                  {maskShape === 'rounded-square' && (
-                    <>
-                      <RoundedSquare size={size} />
-                      <Circle {...coinMaskPosition} r={coinSize / 2 + coinBorderSize} fill="black" />
-                    </>
-                  )}
-                </Mask>
-              </Defs>
-              <G mask={'url(#moonShape)'}>
-                <Circle x={size / 2} y={size / 2} r={size / 2} />
-              </G>
-            </Svg>
-          }>
-          {maskedElement}
-        </MaskedView>
-        {coinSize > 0 && <NetworkIcon networkName={coinType} size={coinSize} style={[styles.coin, coinStyle]} />}
+        <ElementWithBadge
+          maskedElement={maskedElement}
+          badgeElement={<NetworkIcon networkName={coinType} size={coinSize} />}
+          size={size}
+          badgeSize={coinSize}
+          badegBorderSize={coinBorderSize}
+          badgePosition={coinPosition}
+          maskShape={maskShape}
+        />
       </View>
     );
   },
 );
-
-const styles = StyleSheet.create({
-  coin: {
-    position: 'absolute',
-  },
-});

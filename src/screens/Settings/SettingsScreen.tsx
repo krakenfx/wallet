@@ -5,6 +5,7 @@ import { GradientScreenView } from '@/components/Gradients';
 import { LargeHeader } from '@/components/LargeHeader';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { useLanguage } from '@/realm/settings';
+import { useIsConnectedWithExchange } from '@/realm/settings/useIsConnectedWithExchange';
 import { Routes } from '@/Routes';
 import { CurrencyBadge } from '@/screens/Settings/currency';
 import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
@@ -14,6 +15,7 @@ import { AppLockBadge } from './appLock';
 import { BuildInfo } from './BuildInfo';
 import { SettingsItem, SettingsSectionHeader } from './components';
 import { KrakenConnectTransferCTA } from './components/KrakenConnectTransferCTA';
+import { ManageConnectionsBadge } from './krakenConnect/ManageConnectionsBadge';
 import { ManageWalletsBadge } from './manageWallets';
 import { PasswordProtectionBadge } from './passwordProtection';
 
@@ -32,15 +34,15 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
   const insets = useSafeAreaInsets();
 
   const { isCloudBackupSupported } = useWalletBackupSettings();
+  const isConnectedWithExchange = useIsConnectedWithExchange();
   const [krakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
 
   return (
     <GradientScreenView>
       <ScrollView testID="Settings" style={styles.scroll} contentContainerStyle={{ paddingBottom: insets.bottom }}>
         <LargeHeader title={loc.settings.header} style={styles.header} testID="Settings" />
-
+        {!isConnectedWithExchange && krakenConnectEnabled ? <KrakenConnectTransferCTA /> : null}
         <SettingsSectionHeader title={loc.settings.wallets} />
-        {krakenConnectEnabled ? <KrakenConnectTransferCTA /> : null}
         <WalletBackupWarning />
         <SettingsItem
           title={isCloudBackupSupported ? loc.settings.walletsAndBackups : loc.settings.manageWallets}
@@ -67,6 +69,22 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
           <PasswordProtectionBadge />
         </SettingsItem>
 
+        {krakenConnectEnabled ? (
+          <>
+            <SettingsSectionHeader title={loc.settings.connections} />
+            <SettingsItem
+              title={loc.settings.krakenExchange}
+              icon="kraken"
+              iconBackgroundColor="kraken"
+              isFirst
+              isLast
+              isHighlighted
+              onPress={() => navigate(Routes.ManageConnections)}
+              testID="ManageWalletsButton">
+              <ManageConnectionsBadge />
+            </SettingsItem>
+          </>
+        ) : null}
         <SettingsSectionHeader title={loc.settings.general} />
 
         <SettingsItem

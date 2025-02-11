@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { fetchPriceForToken } from '@/api/fetchPriceForToken';
 import { fetchNotSupportedAssetPrices } from '@/api/krakenConnect/fetchNotSupportedAssetPrices';
+import { useKrakenConnectCredentials } from '@/realm/krakenConnect/useKrakenConnectCredentials';
+import { useCurrentUsdFiatRate, useGetFiatRateForCurrency } from '@/realm/usdFiatRates';
 import { Currency } from '@/screens/Settings/currency';
 import { calculateBalance } from '@/utils/calculateBalance';
 
@@ -9,9 +11,13 @@ import { useKrakenConnectAssets } from './useKrakenConnectAssets';
 
 export const useKrakenAssetsWithPrices = () => {
   const { data } = useKrakenConnectAssets();
+  const fiatRate = useCurrentUsdFiatRate();
+  const { getFiatRateForCurrency } = useGetFiatRateForCurrency();
+
+  const { CF_TOKEN } = useKrakenConnectCredentials();
 
   return useQuery({
-    queryKey: ['krakenAssetsWithPrices'],
+    queryKey: ['krakenAssetsWithPrices', fiatRate],
     enabled: !!data,
     queryFn: async () => {
       if (!data) {
@@ -33,8 +39,19 @@ export const useKrakenAssetsWithPrices = () => {
               balanceInUsd,
             };
           }
-          const usd = parseFloat(await fetchNotSupportedAssetPrices(asset));
-          const balanceInUsd = parseFloat(asset.balance ?? '0') * usd;
+          let usdRate = 0;
+          const usdTickerPrice = await fetchNotSupportedAssetPrices(asset, CF_TOKEN);
+          if (usdTickerPrice !== null) {
+            usdRate = parseFloat(usdTickerPrice);
+          } else if (Object.keys(Currency).includes(asset.symbol)) {
+            const assetFiatRate = getFiatRateForCurrency(asset.symbol as Currency);
+            if (assetFiatRate) {
+              usdRate = parseFloat(assetFiatRate.value);
+            } else if (asset.symbol === Currency.USD) {
+              usdRate = 1;
+            }
+          }
+          const balanceInUsd = parseFloat(asset.balance ?? '0') * usdRate;
 
           return {
             ...asset,

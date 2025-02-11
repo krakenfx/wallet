@@ -159,7 +159,16 @@ export const getTransactionDisplayData = ({
           />
         );
       } else {
-        icon = <TokenIcon size={IMG_SIZE} tokenSymbol={txMetadata?.symbol ?? ''} wallet={wallet} forceOmitNetworkIcon={!isGlobalView} style={styles.image} />;
+        icon = (
+          <TokenIcon
+            size={IMG_SIZE}
+            tokenId={classifiedTx.effect.assetId}
+            tokenSymbol={txMetadata?.symbol ?? ''}
+            wallet={wallet}
+            forceOmitNetworkIcon={!isGlobalView}
+            style={styles.image}
+          />
+        );
       }
       break;
     }

@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import type { RealmDefiPosition } from '@/realm/defi';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 
-import { BalanceLabel } from './BalanceLabel';
+import { DefiDetailsBalanceLabel } from './DefiDetailsBalanceLabel';
 import { DefiPositionImages } from './DefiPositionImages';
 import { DefiPositionValue } from './DefiPositionValue';
 import { MainLabel } from './MainLabel';
@@ -35,7 +35,7 @@ export const DefiDetailsRow: FC<Props> = ({ item }) => {
         <DefiPositionValue value={defiValue} category={item.category} />
 
         <View>
-          <BalanceLabel tokens={item.tokens} />
+          <DefiDetailsBalanceLabel tokens={item.tokens} />
         </View>
       </View>
     </View>

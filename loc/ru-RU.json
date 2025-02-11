@@ -126,7 +126,7 @@
     "from": "С",
     "message": "Сообщение",
     "message_signing_request": "Сообщение с запросом на подписание",
-    "messageSigningRequest": "Подписать",
+    "messageSigningRequest": "Подписать сообщение",
     "mint": "Создать",
     "nonce": "Одноразовое случайное число",
     "scrollToBottomToConfirm": "Прокрутите вниз, чтобы подтвердить",
@@ -446,13 +446,62 @@
   },
   "earn": {
     "allAssets": "Все активы",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "Внесите {symbol} в {protocol}",
+      "high": "Высокие:",
+      "info": {
+        "about": "Подробнее о {symbol}",
+        "addressCopied": "Адрес скопирован",
+        "assetsLocked": "Активы заблокированы",
+        "contractAddress": "Адрес контракта",
+        "marketCap": "Рын. капит.",
+        "network": "Сеть",
+        "numberHolders": "Количество держателей",
+        "protocol": "Протокол",
+        "tokenEarned": "Токен заработан",
+        "tokenPrice": "Цена токена",
+        "type": "Тип"
+      },
+      "low": "Низкие:",
+      "openDapp": "Открыть dApp",
+      "period": {
+        "all": "Все",
+        "day": "Д",
+        "month": "М",
+        "week": "Еженед.",
+        "year": "Г."
+      }
+    },
     "earnCTA": "Заработать",
-    "earnUpToApr": "До {apr}% APR",
+    "earnOnYourAssets": "Зарабатывайте на своих активах",
+    "earnSheet": {
+      "amountAvailable": "Доступно {balance} {symbol}",
+      "apy": "APY",
+      "earn": "Получите {symbol}",
+      "noBalanaceFound": "Нет средств. Внесите в свой кошелек {symbol}, чтобы получить возможность зарабатывать.",
+      "swapCta": "Обмен",
+      "tvl": "{tvl} TVL"
+    },
+    "earnUpToApr": "До {apy}% APY",
+    "earnUpToApy": "До {apy}% APY",
+    "earnWhileYouSleep": "Зарабатывайте в любое время",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Для получения доступа к возможностям заработка отправьте совместимые активы, такие как Ethereum или USDC, в свой кошелек.",
+        "heading": "Внесите ETH, чтобы начать зарабатывать",
+        "supportArticle": "Узнайте больше о поддерживаемых активах"
+      },
+      "explaination": "Проверьте соединение или попробуйте открыть эту страницу еще раз позже.",
+      "titlePlural": "При загрузке возможностей для заработка произошла ошибка",
+      "titleSingular": "При загрузке возможности для заработка произошла ошибка"
+    },
     "heroAvailableBalance": "Доступно {balance} {symbol}",
     "heroTitle": "Зарабатывайте {symbol} на {protocol}",
     "protocolType": {
       "lending": "Кредитование"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Переименовать",
@@ -668,12 +717,34 @@
     "balanceOnKraken": "на Kraken",
     "exchangeBalance": "Баланс обмена",
     "fundCta": {
-      "body": "Подключите свой аккаунт Kraken для <b>перевода криптовалюты в ваш кошелек</b>",
+      "body": "Подключите свой аккаунт Kraken к",
       "bodyBold": "переводите криптовалюту в свой кошелек",
       "heading": "Пополните ваш кошелек"
     },
+    "selectNetwork": {
+      "description": "Выберите сеть для зачисления {assetLabel} в ваш кошелек.",
+      "fee": "Комиссия в размере {assetValue}",
+      "minimum": "Минимум: {assetValue}",
+      "network": "Сеть {selectedNetworkName}",
+      "title": "Выбрать сеть"
+    },
     "sendScreen": {
       "title": "Перевод {assetSymbol}"
+    },
+    "settings": {
+      "benefits0": "Переводите криптовалюту с Kraken",
+      "benefits1": "Смотреть балансы биржи Kraken",
+      "benefitsHeadline": "Подключение к аккаунту Kraken позволяет:",
+      "cancel": "Отмена",
+      "connect": "Подключить",
+      "disconnect": "Отключить",
+      "disconnectScreen": {
+        "alert": "После отключения вашего кошелька ключ API останется действительным в настройках API биржи Kraken в течение 6 месяцев.",
+        "description": "Вы действительно хотите отключить этот кошелек от Kraken?",
+        "title": "Отключить от Kraken",
+        "warningMessage": "Вы больше не сможете мгновенно переводить средства между вашим кошельком <b>«{walletName}»<b> и вашим аккаунтом на бирже Kraken."
+      },
+      "walletsListTitle": "Ваши кошельки"
     },
     "stepsToConnect": {
       "hasAccount": "У меня есть аккаунт",
@@ -696,6 +767,7 @@
       "selectAsset": "Выберите актив для перевода",
       "selectAssetDescription": "Перевод с биржи Kraken на ваш кошелек",
       "title": "Перевод",
+      "transferFee": "Комиссия за перемещение",
       "unsupportedAssets": "Неподдерживаемые активы",
       "unsupportedAssetsDescription": "Некоторые активы ({count}) в вашем аккаунте на бирже не поддерживаются кошельком"
     },
@@ -1320,6 +1392,7 @@
     "appLock": "App Lock",
     "backup": "Резервная копия",
     "backup_mnemonic_seed": "Резервная мнемоническая секретная фраза для восстановления",
+    "connections": "Подключения",
     "currency": "Валюта",
     "deleteAll": "Удалить все данные",
     "electrum_error_connect": "Не удается подключиться к указанному серверу Electrum",
@@ -1332,6 +1405,8 @@
     "general": "Общие сведения",
     "header": "Настройки",
     "hideBalances": "Скрыть балансы",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Биржа Kraken",
     "language": "Язык",
     "manageWallets": "Управление кошельками",
     "notifications": "Push-уведомления",

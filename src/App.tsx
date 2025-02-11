@@ -45,13 +45,9 @@ LogBox.ignoreLogs([
   'Importing FullWindowOverlay is only valid on iOS devices',
   '"n" is not a valid color or brush',
   'socketDidDisconnect with nil clientDelegate for 0',
-  '`useBottomSheetDynamicSnapPoints` will be deprecated in the next major release!',
   '[Reanimated] Reduced motion setting is enabled on this device.',
   '[Reanimated] Tried to modify key `reduceMotion` of an object which has been already passed to a worklet',
   '[Reanimated] Property "opacity" of AnimatedComponent(TouchableOpacity) may be overwritten by a layout animation',
-
-  '[Reanimated] Reading from `value` during component render.',
-  '[Reanimated] Writing to `value` during component render.',
 ]);
 
 console.log('applogFilePath:', applogFilePath);

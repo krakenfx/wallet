@@ -1,15 +1,13 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
+import type Animated from 'react-native-reanimated';
 import type { StopProps } from 'react-native-svg';
 
-import React, { type ComponentProps } from 'react';
-
-import { StyleSheet } from 'react-native';
-import Animated from 'react-native-reanimated';
-
-import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
+import { type ComponentProps } from 'react';
 
 import { useTheme } from '@/theme/themes';
+
+import { GradientBaseBackground } from '../Gradients/GradientBaseBackground';
 
 export type GradientItemBackgroundProps = Pick<ComponentProps<typeof Animated.View>, 'entering' | 'exiting'> & {
   style?: StyleProp<ViewStyle>;
@@ -22,7 +20,7 @@ const opacities = {
   fullscreen: [0.15, 0.17, 0.2],
 };
 
-export const GradientItemBackground: React.FC<GradientItemBackgroundProps> = React.memo(({ style, backgroundType = 'fullscreen', ...viewProps }) => {
+export const GradientItemBackground: React.FC<GradientItemBackgroundProps> = ({ style, backgroundType = 'fullscreen', ...viewProps }) => {
   const {
     gradients: { itemBackground },
   } = useTheme();
@@ -33,24 +31,5 @@ export const GradientItemBackground: React.FC<GradientItemBackgroundProps> = Rea
     { offset: '100%', stopColor: itemBackground.stop3, stopOpacity: opacities[backgroundType][2] },
   ];
 
-  return (
-    <Animated.View style={[StyleSheet.absoluteFill, style, styles.noOverflow]} {...viewProps}>
-      <Svg style={StyleSheet.absoluteFill}>
-        <Defs>
-          <LinearGradient id="linearGradient" gradientUnits="userSpaceOnUse">
-            {stops.map(props => (
-              <Stop key={props.offset} {...props} />
-            ))}
-          </LinearGradient>
-        </Defs>
-        <Rect width="100%" height="100%" fill="url(#linearGradient)" />
-      </Svg>
-    </Animated.View>
-  );
-});
-
-const styles = StyleSheet.create({
-  noOverflow: {
-    overflow: 'hidden',
-  },
-});
+  return <GradientBaseBackground stops={stops} style={style} {...viewProps} />;
+};

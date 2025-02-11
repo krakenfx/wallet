@@ -1,4 +1,4 @@
-import type { KrakenAssetSupported } from '@/reactQuery/hooks/krakenConnect/types';
+import type { KrakenAssetSupported } from '@/api/krakenConnect/types';
 import type { RealmToken } from '@/realm/tokens';
 import type { RemoteAsset } from '@/types';
 

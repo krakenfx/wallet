@@ -7,20 +7,19 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import type { BottomSheetRef } from '@/components/BottomSheet';
 import { BottomSheet } from '@/components/BottomSheet';
-import { DefiDiscoveryPreview } from '@/components/DefiDiscoveryPreview';
+import { DepositOptionsCarousel } from '@/components/DepositOptionsCarousel';
 import { FadingElement } from '@/components/FadingElement';
 
 import { ListAnimatedItem } from '@/components/ListAnimatedItem';
 import { ListHeader } from '@/components/ListHeader';
 import { NFTCollectionRow } from '@/components/NFTCollectionRow';
-import { SvgIcon } from '@/components/SvgIcon';
-import { Touchable } from '@/components/Touchable';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 import type { RealmDefi } from '@/realm/defi';
 import { useDefi } from '@/realm/defi';
 import type { NftsCollection } from '@/realm/nfts';
 import { useNftsArchivedCollection, useNftsCollections } from '@/realm/nfts';
+import { useIsKrakenConnectCtaHidden } from '@/realm/settings/useIsKrakenConnectCtaHidden';
 import { useTokenPrices } from '@/realm/tokenPrice';
 import type { RealmToken } from '@/realm/tokens';
 import { sortTokensByFiatValue, useTokensFilteredByReputationAndNetwork } from '@/realm/tokens';
@@ -30,6 +29,8 @@ import { DefiRow } from '@/screens/DefiDetails/components/DefiRow';
 import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { isRealmObject } from '@/utils/isRealmObject';
 
+import { HEADER_HEIGHT } from './consts';
+import { DefiEmptyHeader } from './DefiEmptyHeader';
 import { useHomeAssetPanelEmitterListener } from './homeAssetPanelEventEmitter';
 import { HomeAssetPanelSectionList } from './HomeAssetsSectionList';
 import { HomeNFTGallery } from './HomeNFTGallery';
@@ -77,7 +78,6 @@ type SectionItem = RealmToken | NftsCollection | RealmDefi | DefiEarn;
 type SectionType = SectionListData<SectionItem, Sections>;
 
 const COLLECTIONS_TO_SHOW = 3;
-const HEADER_HEIGHT = 28;
 
 const renderSectionSeparator = () => <View style={styles.headerDivider} />;
 
@@ -103,6 +103,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
   const archivedCollection = useNftsArchivedCollection();
   const bottomSheetRef = useRef<BottomSheetRef>(null);
   const [krakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
+  const hideConnectCTA = useIsKrakenConnectCtaHidden();
 
   const stickyHeaderIndex = useSharedValue(0);
 
@@ -175,7 +176,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
         case SectionName.Defi:
           return renderDefiRow(item as RealmDefi);
         case SectionName.DefiEarnEnabled:
-          return <DefiDiscoveryPreview caption={loc.home.defiEmptyCaption} />;
+          return <DepositOptionsCarousel caption={loc.home.defiEmptyCaption} />;
       }
     },
     [renderDefiRow, renderNftRow, renderTokenRow],
@@ -217,12 +218,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
         case SectionName.Defi:
           return <ListHeader title={loc.home.deposits} style={headerStyle} />;
         case SectionName.DefiEarnEnabled:
-          return (
-            <Touchable style={styles.defiEmpty}>
-              <ListHeader title={loc.home.defiEmpty} />
-              <SvgIcon size={24} name="chevron-right" color="light100" />
-            </Touchable>
-          );
+          return <DefiEmptyHeader />;
         default:
           return null;
       }
@@ -264,7 +260,7 @@ export const HomeAssetsPanel = ({ navigation }: HomeAssetsPanelProps) => {
 
   return (
     <BottomSheet animateOnMount ref={bottomSheetRef} snapPoints={snapPoints} index={1} dismissible={false} noSafeInsetTop noBackdrop>
-      {krakenConnectEnabled ? (
+      {krakenConnectEnabled && !hideConnectCTA ? (
         <View style={styles.krakenConnectContainer}>
           <KrakenConnectFundCTA />
         </View>

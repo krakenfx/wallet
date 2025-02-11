@@ -126,7 +126,7 @@
     "from": "De",
     "message": "Mensaje",
     "message_signing_request": "Solicitud de firma de mensaje",
-    "messageSigningRequest": "Firmar",
+    "messageSigningRequest": "Mensaje",
     "mint": "Mint",
     "nonce": "Nonce",
     "scrollToBottomToConfirm": "Desplázate hasta el final para confirmar",
@@ -446,13 +446,62 @@
   },
   "earn": {
     "allAssets": "Todos los activos",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "Deposita {symbol} en {protocol}",
+      "high": "Alto:",
+      "info": {
+        "about": "Acerca de {symbol}",
+        "addressCopied": "Dirección copiada",
+        "assetsLocked": "Activos bloqueados",
+        "contractAddress": "Dirección del contrato",
+        "marketCap": "Capitalización de mercado",
+        "network": "Red",
+        "numberHolders": "Número de titulares",
+        "protocol": "Protocolo",
+        "tokenEarned": "Token ganado",
+        "tokenPrice": "Precio del token",
+        "type": "Tipo"
+      },
+      "low": "Bajo:",
+      "openDapp": "Abrir DApp",
+      "period": {
+        "all": "Todo",
+        "day": "D",
+        "month": "M",
+        "week": "S",
+        "year": "Y"
+      }
+    },
     "earnCTA": "Earn",
-    "earnUpToApr": "Hasta un {apr}% TAE",
+    "earnOnYourAssets": "Gana con tus activos",
+    "earnSheet": {
+      "amountAvailable": "Disponible: {balance} {symbol}",
+      "apy": "APY",
+      "earn": "Gane {symbol}",
+      "noBalanaceFound": "Sin balance. Deposita {symbol} en tu monedero para poder optar a Earn.",
+      "swapCta": "Swap",
+      "tvl": "{tvl} TVL"
+    },
+    "earnUpToApr": "Obtén hasta un {apy}% de rendimiento anual",
+    "earnUpToApy": "Obtén hasta un {apy}% de rendimiento anual",
+    "earnWhileYouSleep": "Gana recompensas mientras duermes",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Para acceder a las oportunidades de rendimiento, envía activos compatibles como Ethereum o USDC a tu monedero.",
+        "heading": "Deposita ETH para empezar a obtener recompensas",
+        "supportArticle": "Obtén más información sobre los activos compatibles"
+      },
+      "explaination": "Comprueba tu conexión o intenta abrir esta página más tarde",
+      "titlePlural": "Se ha producido un error al cargar las oportunidades de obtener recompensas",
+      "titleSingular": "Se ha producido un error al cargar la oportunidad de obtener recompensas"
+    },
     "heroAvailableBalance": "Disponible: {balance} {symbol}",
     "heroTitle": "Gana {symbol} en {protocol}",
     "protocolType": {
       "lending": "Préstamos"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Renombrar",
@@ -668,12 +717,34 @@
     "balanceOnKraken": "en Kraken",
     "exchangeBalance": "Balance del exchange",
     "fundCta": {
-      "body": "Conecta tu cuenta de Kraken para <b>transferir criptomonedas a tu monedero</b>",
+      "body": "Conecta tu cuenta de Kraken a",
       "bodyBold": "transfiere criptos a tu monedero",
       "heading": "Deposita fondos en tu monedero"
     },
+    "selectNetwork": {
+      "description": "Elige en qué red quieres recibir tus {assetLabel} en tu monedero.",
+      "fee": "Tarifa: {assetValue}",
+      "minimum": "Mínimo: {assetValue}",
+      "network": "Red {selectedNetworkName}",
+      "title": "Seleccionar red"
+    },
     "sendScreen": {
       "title": "Transferir {assetSymbol}"
+    },
+    "settings": {
+      "benefits0": "Transferir criptomonedas desde Kraken",
+      "benefits1": "Ver balances del exchange de Kraken",
+      "benefitsHeadline": "La conexión a la cuenta de Kraken permite:",
+      "cancel": "Cancelar",
+      "connect": "Conectar",
+      "disconnect": "Desconectar",
+      "disconnectScreen": {
+        "alert": "Una vez hayas desconectado tu monedero, la clave API será válida en la configuración API de tu exchange de Kraken durante 6 meses.",
+        "description": "¿Estás seguro de que quieres desconectar este monedero de Kraken ?",
+        "title": "Desconectarse de Kraken",
+        "warningMessage": "Ya no podrás realizar transferencias sin interrupciones entre tu monedero: <b>“{walletName}”<b>, y tu cuenta de exchange de Kraken."
+      },
+      "walletsListTitle": "Tus monederos"
     },
     "stepsToConnect": {
       "hasAccount": "He creado una cuenta",
@@ -696,6 +767,7 @@
       "selectAsset": "Selecciona un activo para transferirlo",
       "selectAssetDescription": "Transferir desde el exchange de Kraken a tu monedero",
       "title": "Transferencia",
+      "transferFee": "Comisión de transferencia",
       "unsupportedAssets": "Activos no compatibles",
       "unsupportedAssetsDescription": "{count} de los activos que tienes en la cuenta de tu exchange no son compatibles con el monedero"
     },
@@ -1320,6 +1392,7 @@
     "appLock": "App Lock",
     "backup": "Copia de seguridad",
     "backup_mnemonic_seed": "Frase semilla mnemotécnica de respaldo",
+    "connections": "Conexiones",
     "currency": "Divisa",
     "deleteAll": "Borrar todos los datos",
     "electrum_error_connect": "No se ha podido conectar al servidor Electrum proporcionado",
@@ -1332,6 +1405,8 @@
     "general": "General",
     "header": "Configuración",
     "hideBalances": "Ocultar saldos",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Kraken Exchange",
     "language": "Idioma",
     "manageWallets": "Gestionar monederos",
     "notifications": "Notificaciones push",

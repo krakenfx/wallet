@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 
-import type { AssetsDict, KrakenAssetRaw } from '@/reactQuery/hooks/krakenConnect/types';
+import type { AssetsDict, KrakenAssetRaw } from '@/api/krakenConnect/types';
 
 export const krakenToAssetSymbol: Record<string, string> = {
   XBT: 'BTC',
@@ -17,14 +17,41 @@ export const krakenToAssetSymbol: Record<string, string> = {
   XTRX: 'TRX',
 };
 
+export const krakenToFiatSymbol: Record<string, string> = {
+  ZUSD: 'USD',
+  ZEUR: 'EUR',
+  ZGBP: 'GBP',
+  ZAUD: 'AUD',
+  ZCAD: 'CAD',
+  ZCNY: 'CNY',
+  ZJPY: 'JPY',
+  ZRUB: 'RUB',
+  ZKRW: 'KRW',
+  CHF: 'CHF',
+  BRL: 'BRL',
+  AED: 'AED',
+  ZSEK: 'SEK',
+  ZILS: 'ILS',
+  ZNOK: 'NOK',
+  ZPLN: 'PLN',
+};
+
+function removeTrailingNumbers(input: string) {
+  if (/^\D+\d+$/.test(input)) {
+    return input.replace(/\d+$/, '');
+  }
+  return input;
+}
+
 export const getBaseAssetSymbol = (value: string): string => {
   const dotIndex = value.indexOf('.');
-  return dotIndex !== -1 ? value.substring(0, value.indexOf('.')) : value;
+  const symbol = dotIndex !== -1 ? value.substring(0, value.indexOf('.')) : value;
+  return removeTrailingNumbers(symbol);
 };
 
 export const getMainAssetSymbol = (value: string): string => {
   const baseSymbol = getBaseAssetSymbol(value);
-  return krakenToAssetSymbol[baseSymbol] || baseSymbol;
+  return krakenToAssetSymbol[baseSymbol] || krakenToFiatSymbol[baseSymbol] || baseSymbol;
 };
 
 export const isBalanceFromAssetOnHold = (assetName: string): boolean => {
@@ -61,3 +88,5 @@ export const mapAllAssetsToMainAssets = (assetsDict: AssetsDict) => {
     return resultArray;
   }, []);
 };
+
+export const isEvmAsset = (assetId: string) => assetId.startsWith('eip155');

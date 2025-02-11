@@ -22,6 +22,17 @@ export interface paths {
     
     post: operations["Broadcast"];
   };
+  "/v1/defi/earn/topOpportunity/{address}": {
+    
+    get: operations["GetTopOpportunity"];
+  };
+  "/v1/defi/earn/opportunities/{address}": {
+    post: operations["GetOppportunities"];
+  };
+  "/v1/depositOptions/{address}": {
+    
+    post: operations["DepositOptions"];
+  };
   "/v1/explore": {
     
     get: operations["GetMainPageContent"];
@@ -215,6 +226,84 @@ export interface components {
     };
     Result_BroadcastReceipt_: {
       content: components["schemas"]["BroadcastReceipt"];
+    };
+    Asset: {
+      name: string;
+      assetCaip: string;
+      symbol: string;
+      assetAddress: string;
+      networkName: string;
+      networkCaip: string;
+      
+      decimals: number;
+      balanceNative: string;
+      
+      balanceUsd: number;
+    };
+    Protocol: {
+      name: string;
+      product: string;
+      version: string;
+      protocolUrl?: string;
+      protocolLogo: string;
+      description?: string;
+    };
+    Apy: {
+      
+      base: number;
+      
+      rewards?: number;
+      
+      total: number;
+    };
+    Vault: {
+      name: string;
+      protocol: components["schemas"]["Protocol"];
+      vaultAddress: string;
+      vaultUrl?: string;
+      networkName: string;
+      networkCaip: string;
+      
+      tvlInUsd: number;
+      apy: components["schemas"]["Apy"];
+      
+      projectedAnnualEarnings: number;
+    };
+    BestVaultResult: {
+      requestedAddress: string;
+      asset: components["schemas"]["Asset"];
+      vault: components["schemas"]["Vault"];
+    };
+    Result_BestVaultResult_: {
+      content: components["schemas"]["BestVaultResult"];
+    };
+    DepositOptions: {
+      asset: components["schemas"]["Asset"];
+      depositOptions: components["schemas"]["Vault"][];
+    };
+    DepositOptionsResult: {
+      requestedAddress: string;
+      userBalances: components["schemas"]["DepositOptions"][];
+    };
+    Result_DepositOptionsResult_: {
+      content: components["schemas"]["DepositOptionsResult"];
+    };
+    
+    "Record_string.string-Array_": Record<string, never>;
+    DepositOptionsParams: {
+      
+      minimumBalanceThreshold?: number;
+      
+      minimumVaultTvl?: number;
+      
+      maxVaultsPerAsset?: number;
+      allowedAssets?: string[];
+      disallowedAssets?: string[];
+      allowedNetworks?: string[];
+      disallowedNetworks?: string[];
+      allowedProtocols?: string[];
+      disallowedProtocols?: string[];
+      allowedTargetUnderlyingTokenForAsset?: components["schemas"]["Record_string.string-Array_"];
     };
     
     "ExploreContentVariant.Text": "Text";
@@ -541,6 +630,8 @@ export interface components {
     RpcRequestResult: {
       
       jsonrpc: "2.0";
+      
+      id?: number;
     } & ({
       result: unknown;
     } | {
@@ -1132,6 +1223,100 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Result_BroadcastReceipt_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  GetTopOpportunity: {
+    parameters: {
+      query: {
+        network: string;
+      };
+      path: {
+        address: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_BestVaultResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  GetOppportunities: {
+    parameters: {
+      path: {
+        address: string;
+      };
+    };
+    
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["DepositOptionsParams"];
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_DepositOptionsResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  DepositOptions: {
+    parameters: {
+      path: {
+        address: string;
+      };
+    };
+    
+    requestBody: {
+      content: {
+        "application/json": {
+          allowedTargetUnderlyingTokenForAsset?: components["schemas"]["Record_string.string-Array_"];
+          disallowedProtocols?: string[];
+          allowedProtocols?: string[];
+          disallowedNetworks?: string[];
+          allowedNetworks?: string[];
+          disallowedAssets?: string[];
+          allowedAssets?: string[];
+          
+          maxVaultsPerAsset?: number;
+          
+          minimumVaultTvl?: number;
+          
+          minimumBalanceThreshold?: number;
+        };
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_DepositOptionsResult_"];
         };
       };
       

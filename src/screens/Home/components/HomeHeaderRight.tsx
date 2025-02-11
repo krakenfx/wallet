@@ -3,12 +3,19 @@ import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { SvgIcon } from '@/components/SvgIcon';
+import { useOnScanPress } from '@/hooks/useOnScanPress';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
 import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
 export const HomeHeaderRight = () => {
+  const [isEarnEnabled] = useFeatureFlag('earnEnabled');
   const navigation = useNavigation();
+  const isOnline = useIsOnline();
+  const onScanPress = useOnScanPress();
+
   const onSettingsPress = useCallback(() => {
     navigation.navigate(Routes.Settings);
   }, [navigation]);
@@ -19,6 +26,17 @@ export const HomeHeaderRight = () => {
 
   return (
     <View style={styles.container}>
+      {isEarnEnabled && (
+        <SvgIcon
+          name="scan-walletConnect"
+          onPress={onScanPress}
+          testID="ScanIcon"
+          style={styles.gap}
+          hitSlop={{ top: 16, bottom: 16, left: 0, right: 0 }}
+          disabled={!isOnline}
+        />
+      )}
+
       <SvgIcon
         name="gear"
         onPress={onSettingsPress}

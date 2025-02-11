@@ -5,10 +5,10 @@ import type { LayoutChangeEvent, LayoutRectangle, NativeScrollEvent, NativeSynth
 
 import type { AnimatedStyle, SharedValue } from 'react-native-reanimated';
 
-import { BottomSheetScrollView, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 
 import Animated, {
   interpolate,
@@ -43,12 +43,13 @@ export type ExpandableSheetProps = {
 
   onDismiss?: () => void;
   dismissible?: boolean;
-  extraPaddingBottom?: number;
   isModal?: boolean;
 };
 
+const SHEET_HANDLE_HEIGHT = 24;
+
 export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableSheetProps>(
-  ({ PreviewComponent, DetailsComponent, FloatingButtonsComponent, StickyHeaderComponent, onDismiss, dismissible, extraPaddingBottom = 16, isModal }, ref) => {
+  ({ PreviewComponent, DetailsComponent, FloatingButtonsComponent, StickyHeaderComponent, onDismiss, dismissible, isModal }, ref) => {
     const modalSheetRef = useRef<BottomSheetModalRef>(null);
     const scrollRef = useAnimatedRef<ScrollView>();
     const animatedIndex = useSharedValue<number>(0);
@@ -58,13 +59,24 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
     const [stickyHeaderLayout, setStickyHeaderLayout] = useState<LayoutRectangle>();
     const stickyHeaderCollapsed = useSharedValue(0);
 
-    const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints([
-      'CONTENT_HEIGHT',
-      '100%',
-    ]);
-
     const frame = useSafeAreaFrame();
     const insets = useSafeAreaInsets();
+
+    const snapPointsConfig = useMemo(() => {
+      if (!previewLayout || !footerLayout || (StickyHeaderComponent && !stickyHeaderLayout)) {
+        return ['100%'];
+      }
+
+      const collapsedSnapPoint =
+        SHEET_HANDLE_HEIGHT +
+        previewLayout.height +
+        footerLayout.height +
+        insets.bottom +
+        Platform.select({ android: insets.top, default: 0 }) +
+        (stickyHeaderLayout?.height ?? 0);
+
+      return [collapsedSnapPoint, '100%'];
+    }, [StickyHeaderComponent, footerLayout, insets.bottom, insets.top, previewLayout, stickyHeaderLayout]);
 
     useAnimatedReaction(
       () => animatedIndex.value < 0.5,
@@ -100,18 +112,23 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
 
     const canShowMore = !!DetailsComponent;
 
-    const paddingBottom = (footerLayout?.height ?? 0) + extraPaddingBottom;
-
     const collapsedContentStyle = useAnimatedStyle(() => ({
       opacity: interpolate(animatedIndex.value, [0, 1], [0, 1]),
     }));
+
+    const snapPoints = useDerivedValue(() => {
+      if (!canShowMore) {
+        return [snapPointsConfig[0]];
+      }
+      return snapPointsConfig;
+    }, [canShowMore, snapPointsConfig]);
 
     const renderFooter = useCallback(
       (props: BottomSheetFooterProps) => (
         <ExpandableSheetFooter
           onLayout={setFooterLayout}
           canShowMore={canShowMore}
-          snapPoints={animatedSnapPoints}
+          snapPoints={snapPoints}
           animatedIndex={animatedIndex}
           toggle={() => {
             if (animatedIndex.value === 0) {
@@ -125,22 +142,8 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
           {...props}
         />
       ),
-      [canShowMore, animatedSnapPoints, animatedIndex, FloatingButtonsComponent, sheetMethods],
+      [canShowMore, snapPoints, animatedIndex, FloatingButtonsComponent, sheetMethods],
     );
-
-    useEffect(() => {
-      if (!previewLayout) {
-        return;
-      }
-
-      if (StickyHeaderComponent && !stickyHeaderLayout) {
-        return;
-      }
-
-      const stickyHeaderHeight = stickyHeaderLayout?.height ?? 0;
-
-      handleContentLayout({ nativeEvent: { layout: { ...previewLayout, height: previewLayout.height + stickyHeaderHeight + paddingBottom } } });
-    }, [handleContentLayout, paddingBottom, previewLayout, stickyHeaderLayout, StickyHeaderComponent]);
 
     const onLayout = (event: LayoutChangeEvent) => {
       setPreviewLayout(event.nativeEvent.layout);
@@ -149,13 +152,6 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
     const onStickyHeaderLayout = (event: LayoutChangeEvent) => {
       setStickyHeaderLayout(event.nativeEvent.layout);
     };
-
-    const snapPoints = useDerivedValue(() => {
-      if (!canShowMore) {
-        return [animatedSnapPoints.value[0]];
-      }
-      return animatedSnapPoints.value;
-    }, [canShowMore]);
 
     const onBottomSheetScrollViewScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
       if (!stickyHeaderCollapsed.value && animatedIndex.value === 1 && event.nativeEvent.contentOffset.y > 5) {
@@ -181,8 +177,6 @@ export const ExpandableSheet = forwardRef<ExpandableSheetMethods, ExpandableShee
           ref={modalSheetRef}
           handleAndroidBackButton
           dismissible={dismissible}
-          contentHeight={animatedContentHeight}
-          handleHeight={animatedHandleHeight}
           snapPoints={snapPoints}
           animatedPosition={animatedPosition}
           animatedIndex={animatedIndex}
@@ -228,5 +222,6 @@ const styles = StyleSheet.create({
   },
   hiddenHandle: {
     opacity: 0,
+    height: SHEET_HANDLE_HEIGHT,
   },
 });

@@ -1,3 +1,4 @@
+import { SolanaRpcMethod } from '@/dAppIntegration/constants';
 import { TRANSACTION_TYPES } from '@/realm/transactions/const';
 
 import { WALLET_CONNECT_ETH_SIGN_TYPES } from '../types';
@@ -23,7 +24,7 @@ export const getTransactionPageTitle = (transactionType: TRANSACTION_TYPES | und
       }
     }
 
-    if (options?.method === WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TRANSACTION) {
+    if (options?.method === WALLET_CONNECT_ETH_SIGN_TYPES.SIGN_TRANSACTION || options?.method === SolanaRpcMethod.sol_signTransactions) {
       return loc.appSignRequest.sign;
     }
 

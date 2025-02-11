@@ -21,12 +21,14 @@ import { CoinsListScreen } from '@/screens/CoinsList';
 import { ConnectAppScreen, ConnectWalletConnectAppScreen } from '@/screens/ConnectApp';
 import { ConnectAppQRScanScreen } from '@/screens/ConnectAppQRScan';
 import { DebugScreen } from '@/screens/DebugScreen';
-import { DefiDetailsScreen } from '@/screens/DefiDetails';
+import { DefiDetailsScreen, DefiDetailsScreenV2 } from '@/screens/DefiDetails';
+import { EarnScreen } from '@/screens/Earn';
 import { EditNoteScreen } from '@/screens/EditNoteScreen';
 import { ExplainerScreen } from '@/screens/Explainer';
 import { ExploreScreen, ExploreSubpageScreen } from '@/screens/Explore';
 import { GlobalActivityScreen } from '@/screens/GlobalActivity';
 import { HomeScreen } from '@/screens/Home';
+import { KrakenConnectSendScreen } from '@/screens/KrakenConnectSend/KrakenConnectSendScreen';
 import { KrakenConnectTransferScreen } from '@/screens/KrakenConnectTransfer/KrakenConnectTransferScreen';
 import { ManageAssetsGlobalFilterScreen } from '@/screens/ManageAssetsGlobalFilter';
 
@@ -107,6 +109,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="ConnectedApps" component={ConnectedAppsScreen} options={ConnectedAppsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Debug" component={DebugScreen} options={DebugScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="DefiDetails" component={DefiDetailsScreen} options={DefiDetailsScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="DefiDetailsV2" component={DefiDetailsScreenV2} options={DefiDetailsScreenV2.navigationOptions(theme)} />
       <DefaultStack.Screen name="Diagnostics" component={DiagnosticsScreen} options={DiagnosticsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="EditNote" component={EditNoteScreen} options={EditNoteScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ExtendedPublicKey" component={ExtendedPublicKeyScreen} options={ExtendedPublicKeyScreen.navigationOptions(theme)} />
@@ -126,6 +129,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="Onboarding" component={OnboardingRouter} options={OnboardingRouter.navigationOptions} />
       <DefaultStack.Screen name="Receive" component={ReceiveScreen} options={ReceiveScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="UniversalReceive" component={UniversalReceiveScreen} options={UniversalReceiveScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="Earn" component={EarnScreen} options={EarnScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Explainer" component={ExplainerScreen} options={ExplainerScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ConnectAppQRScan" component={ConnectAppQRScanScreen} options={ConnectAppQRScanScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="SendStack" component={SendRouter} options={SendRouter.navigationOptions} />
@@ -165,6 +169,7 @@ const NavigationStack = () => {
         component={KrakenConnectTransferScreen}
         options={KrakenConnectTransferScreen.navigationOptions(theme)}
       />
+      <DefaultStack.Screen name="KrakenConnectSend" component={KrakenConnectSendScreen} options={KrakenConnectSendScreen.navigationOptions(theme)} />
     </DefaultStack.Navigator>
   );
 };

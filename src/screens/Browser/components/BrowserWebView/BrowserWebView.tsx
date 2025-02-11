@@ -10,6 +10,7 @@ import { useDappMethods } from '@/dAppIntegration/hooks/useDappMethods';
 import { useRandomSecret } from '@/dAppIntegration/hooks/useRandomSecret.ts';
 import { getInjectedScriptString } from '@/dAppIntegration/scripts';
 
+import solanaSdk from '@/dAppIntegration/solanaSdk-1.95.4.min.js.raw';
 import { useAndroidBackButton } from '@/utils/useAndroidBackButton';
 
 import { useBrowserAnimationContext } from '../../context/BrowserAnimationContext';
@@ -219,7 +220,7 @@ export const BrowserWebView = forwardRef<BrowserWebViewRef, BrowserWebViewProps>
               onError={onLoadError}
               onMessage={onMessage}
               onFileDownload={handleOnFileDownload}
-              injectedJavaScript={getInjectedScriptString(secret, Platform.OS)}
+              injectedJavaScript={getInjectedScriptString(secret, Platform.OS, solanaSdk)}
               renderError={() => <BrowserLoadingFailure />}
             />
           </Animated.View>

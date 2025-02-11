@@ -6,6 +6,11 @@ declare module '*.svg' {
   export default content;
 }
 
+declare module '*.raw' {
+  const content: string;
+  export default content;
+}
+
 declare module 'react-native-bootsplash';
 declare module 'react-native-argon2';
 declare module 'coinselect/split';
@@ -30,9 +35,9 @@ declare module 'react-native-config' {
     INTERNAL_RELEASE?: string;
     STORYBOOK_ENABLED?: string;
     KRAKEN_API_URI: string;
+    KRAKEN_BETA_API_URI: string;
     PERSONAL_API_KEY?: string;
     PERSONAL_PRIVATE_KEY?: string;
-    VAULTS_API_KEY: string;
   }
 
   export const Config: NativeConfig;

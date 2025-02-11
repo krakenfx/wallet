@@ -1,7 +1,6 @@
 import type React from 'react';
 
-import { BottomSheetScrollView, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
-import { useMemo } from 'react';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -18,14 +17,10 @@ export type ManageAssetsGlobalFilterParams = {
 export const ManageAssetsGlobalFilterScreen = ({ navigation, route }: NavigationProps<'ManageAssetsGlobalFilter'>) => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
-  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   return (
     <BottomSheet
-      contentHeight={animatedContentHeight}
-      handleHeight={animatedHandleHeight}
-      snapPoints={animatedSnapPoints}
+      enableDynamicSizing
       animateOnMount={false}
       detached={true}
       bottomInset={insets.bottom + 30}
@@ -34,7 +29,7 @@ export const ManageAssetsGlobalFilterScreen = ({ navigation, route }: Navigation
       onDismiss={navigation.goBack}
       handleStyle={styles.handle}
       style={styles.modal}>
-      <BottomSheetScrollView contentContainerStyle={styles.container} onLayout={handleContentLayout}>
+      <BottomSheetScrollView contentContainerStyle={styles.container}>
         {route.params.content}
         <SvgIcon name="close" size={32} onPress={navigation.goBack} style={[styles.closeIcon, { backgroundColor: theme.colors.light15 }]} />
       </BottomSheetScrollView>
@@ -63,9 +58,6 @@ const styles = StyleSheet.create({
     display: 'none',
   },
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
     paddingVertical: 35,
     paddingHorizontal: 12,
   },

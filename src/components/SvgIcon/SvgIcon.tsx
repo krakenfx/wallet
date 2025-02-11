@@ -27,7 +27,7 @@ const DEFAULT_HIT_SLOP = 6;
 export type NonSmallIconName = Exclude<IconName, `small-${string}`>;
 export type { NonSmallIconName as IconName };
 
-export interface SvgIconProps extends Pick<IconProps, 'disableFill' | 'removeInlineStyle'>, Pick<AnimatedProps<ViewProps>, 'entering' | 'exiting'> {
+export interface SvgIconProps extends Pick<IconProps, 'disableFill' | 'removeInlineStyle'>, Pick<AnimatedProps<ViewProps>, 'entering' | 'exiting' | 'layout'> {
   name: NonSmallIconName;
   color?: ColorName;
   bgColor?: ColorName;
@@ -55,6 +55,7 @@ export const SvgIcon = ({
   disabled,
   entering,
   exiting,
+  layout,
   hitSlop = DEFAULT_HIT_SLOP,
   gradientIconBackground,
   ...otherProps
@@ -75,14 +76,22 @@ export const SvgIcon = ({
 
   if (onPress || onLongPress) {
     return (
-      <Touchable testID={testID} onPress={onPress} onLongPress={onLongPress} style={containerStyle} hitSlop={hitSlop} entering={entering} exiting={exiting}>
+      <Touchable
+        testID={testID}
+        onPress={onPress}
+        onLongPress={onLongPress}
+        style={containerStyle}
+        hitSlop={hitSlop}
+        entering={entering}
+        exiting={exiting}
+        layout={layout}>
         {content}
       </Touchable>
     );
   }
 
   return (
-    <Animated.View testID={testID} style={containerStyle} entering={entering} exiting={exiting}>
+    <Animated.View testID={testID} style={containerStyle} entering={entering} exiting={exiting} layout={layout}>
       {gradientIconBackground && <GradientIconBackground />}
       {bgColor ? (
         <View

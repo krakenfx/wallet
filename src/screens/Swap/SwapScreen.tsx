@@ -68,8 +68,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   const {
     sourceTokenState: [sourceToken, setSourceToken],
     amountInputFocusState: [amountInputFocused],
-    sourceAmountState: [sourceAmount, setSourceTokenAmount],
-    sourceAmountInputValueState: [___, setSourceInputAmountValue],
+    sourceAmountSmallestUnitState: [sourceAmount],
     targetAssetState: [targetAsset, setTargetAsset],
     loadingState: [isLoading, setIsLoading],
     swapAvailableState: [_, setIsSwapAvailable],
@@ -79,6 +78,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     amountInputValidState: [isAmountInputValid],
     amountInputErrorState: [amountInputError],
     amountInputTypingState: [isTyping],
+    updateAmount,
     refreshCountdownProgress,
   } = useSwapContext();
 
@@ -137,8 +137,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     runAfterUISync(() => {
       setSourceToken(newToken);
       if (sourceToken.id !== newToken.id) {
-        setSourceTokenAmount(undefined);
-        setSourceInputAmountValue(undefined);
+        updateAmount(undefined);
         setSwapQuote(undefined);
         setTargetAsset(undefined);
       }
@@ -326,7 +325,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
 
   return (
     <GradientScreenView testID="SwapScreen">
-      <ScrollView style={styles.container} bounces={false}>
+      <ScrollView style={styles.container} bounces={false} keyboardDismissMode="interactive" keyboardShouldPersistTaps="handled">
         <SourceAssetBlock
           ref={sourceAssetBlock}
           token={sourceToken}

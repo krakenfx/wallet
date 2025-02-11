@@ -10,6 +10,7 @@ import { useShouldFilterOut } from '@/components/Reputation/useShouldFilterOut';
 import { Skeleton } from '@/components/Skeleton';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
+import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { REPUTATION, useReputation } from '@/hooks/useReputation';
 import { useAppCurrency } from '@/realm/settings';
@@ -47,6 +48,7 @@ export const TargetAssetBlock: React.FC<Props> = ({ asset, route, onChange, show
     loadingState: [isLoading],
     amountInputFocusState: [isAmountInputFocused],
     refreshFlashStyle,
+    fiatAmountToggle,
   } = useSwapContext();
 
   const opacityStyle = useAnimatedStyle(() => ({
@@ -69,12 +71,28 @@ export const TargetAssetBlock: React.FC<Props> = ({ asset, route, onChange, show
     isBtc: isBtc({ assetId: asset.assetId }),
   });
 
-  const footerLeft =
+  const fiatOutput =
     !!amount && !isNaN(Number(amount))
       ? formatCurrency(unitConverter.smallestUnit2Fiat(amount, asset.metadata.decimals, price).toString(10), { currency })
       : undefined;
-  const tokenAmountFormatted = formatTokenAmountFromToken(asset, { compact: true, currency, highPrecision: true, isBtc: isBtc({ assetId: asset.assetId }) });
-  const footerRight = loc.formatString(balanceDisplay, `${tokenAmountFormatted} ${asset.metadata.symbol}`);
+
+  const { inputInFiatCurrency, styles: fiatToggleStyles } = fiatAmountToggle;
+
+  const value = inputInFiatCurrency ? fiatOutput : outputFormatted;
+  const footerLeft = inputInFiatCurrency ? `${outputFormatted} ${asset.metadata.symbol}` : fiatOutput;
+
+  const tokenBalanceAmountFormatted = formatTokenAmountFromToken(asset, {
+    compact: true,
+    currency,
+    highPrecision: true,
+    isBtc: isBtc({ assetId: asset.assetId }),
+  });
+  const fiatTotalBalance = useTokenBalanceConvertedToAppCurrency(asset);
+
+  const footerRight = loc.formatString(
+    balanceDisplay,
+    inputInFiatCurrency ? formatCurrency(fiatTotalBalance, { currency }) : `${tokenBalanceAmountFormatted} ${asset.metadata.symbol}`,
+  );
 
   const skipReputationBadge = useShouldFilterOut(
     { assetId: asset.assetId, reputation },
@@ -89,21 +107,22 @@ export const TargetAssetBlock: React.FC<Props> = ({ asset, route, onChange, show
       <GradientItemBackground backgroundType="modal" key={String(skipReputationBadge)} />
       <View>
         <Input
-          inputStyle={refreshFlashStyle}
-          value={isLoading ? undefined : outputFormatted}
+          inputStyle={[refreshFlashStyle, fiatToggleStyles.opacity]}
+          value={isLoading ? undefined : value}
           editable={false}
           type="boldDisplay5"
           backgroundColor="transparent"
           right={<SwapAssetSelector reputation={reputation} wallet={wallet} asset={asset} onPress={onChange} />}
-          footerLeft={isLoading ? undefined : footerLeft}
+          footerLeft={isLoading ? ' ' : footerLeft}
           footerRight={footerRight}
           footerRightProps={{
             type: 'mediumCaption1',
+            style: fiatToggleStyles.opacity,
           }}
           footerLeftProps={{
             type: 'mediumCaption1',
             color: 'light50',
-            style: refreshFlashStyle,
+            style: [refreshFlashStyle, fiatToggleStyles.opacity],
             entering: undefined,
             exiting: undefined,
           }}

@@ -5372,25 +5372,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gorhom/bottom-sheet@npm:4.6.3":
-  version: 4.6.3
-  resolution: "@gorhom/bottom-sheet@npm:4.6.3"
+"@gorhom/bottom-sheet@npm:5.0.6":
+  version: 5.0.6
+  resolution: "@gorhom/bottom-sheet@npm:5.0.6"
   dependencies:
-    "@gorhom/portal": "npm:1.0.14"
-    invariant: "npm:^2.2.4"
+    "@gorhom/portal": 1.0.14
+    invariant: ^2.2.4
   peerDependencies:
     "@types/react": "*"
     "@types/react-native": "*"
     react: "*"
     react-native: "*"
-    react-native-gesture-handler: ">=1.10.1"
-    react-native-reanimated: ">=2.2.0"
+    react-native-gesture-handler: ">=2.16.1"
+    react-native-reanimated: ">=3.16.0"
   peerDependenciesMeta:
     "@types/react":
       optional: true
     "@types/react-native":
       optional: true
-  checksum: d8f6eb050f3cbea1b945bfe850e47d94d9b398c80f677658ebeb5f3880cdacbf86eda010b635d8ee1c67ad2724b599432636f0728b58a8dc44dd42a3e719f0f6
+  checksum: 99eb540c13d13d3da844cdf598fa6b7db962088b3570d25ef3a77788a1388adf6e9b3f2f90f3bca8503041348e33a052ad0e8bb602796735368c6ca2810959a4
   languageName: node
   linkType: hard
 
@@ -11653,6 +11653,15 @@ __metadata:
   resolution: "babel-plugin-error-context@workspace:plugins/babel-plugin-error-context"
   languageName: unknown
   linkType: soft
+
+"babel-plugin-inline-import@npm:3.0.0":
+  version: 3.0.0
+  resolution: "babel-plugin-inline-import@npm:3.0.0"
+  dependencies:
+    require-resolve: 0.0.2
+  checksum: 06a38d31042c0059840e63ae6a5b7997eab842cf65f928f4cb8879faacde3b934d1bcff2492588cff47a10708bba94523bd97693ebcb27dc2052ac79d58e5c45
+  languageName: node
+  linkType: hard
 
 "babel-plugin-istanbul@npm:^6.1.1":
   version: 6.1.1
@@ -19857,8 +19866,8 @@ __metadata:
 
 "kraken-wallet-cryptoicons@file:assets/kraken-wallet-cryptoicons::locator=superwallet%40workspace%3A.":
   version: 1.0.0
-  resolution: "kraken-wallet-cryptoicons@file:assets/kraken-wallet-cryptoicons#assets/kraken-wallet-cryptoicons::hash=ecc582&locator=superwallet%40workspace%3A."
-  checksum: 2830d4d9b337a9092dad85cccb655ffc949ac09a4b30289189893e11f1a2e5036dc1ac65530a735fbe1e6f10cac9c810cee3d22fd1c4a0e55150713d00c42d8b
+  resolution: "kraken-wallet-cryptoicons@file:assets/kraken-wallet-cryptoicons#assets/kraken-wallet-cryptoicons::hash=c1a525&locator=superwallet%40workspace%3A."
+  checksum: 111ed02e7f9ac4b408d6cbea132676d822ff00340e0088facbeb98a886e4712892fd5362b8e89f6bf31b49579821a1d6ae1ed7fbf2e4c94958406bba99da49d7
   languageName: node
   linkType: hard
 
@@ -22955,6 +22964,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"path-extra@npm:^1.0.2":
+  version: 1.0.3
+  resolution: "path-extra@npm:1.0.3"
+  checksum: 3c6fd4e49c158a54645a62726223262542078b515a3a4c46c6c528a795986f96e530c7024e7a118337d24ec3d312c2d4d5361a10955fd471a54da0a82d866004
+  languageName: node
+  linkType: hard
+
 "path-is-absolute@npm:^1.0.0":
   version: 1.0.1
   resolution: "path-is-absolute@npm:1.0.1"
@@ -24788,6 +24804,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"require-resolve@npm:0.0.2":
+  version: 0.0.2
+  resolution: "require-resolve@npm:0.0.2"
+  dependencies:
+    x-path: ^0.0.2
+  checksum: 4187c223cb8f1d468e5903434410fab1a49318026f742a9fd65fe3289e856977cd377c47d7c1e3e4871f7cc81b0c73a91be3222eb84be0bfe39d988d7a27aeb5
+  languageName: node
+  linkType: hard
+
 "requireg@npm:^0.2.2":
   version: 0.2.2
   resolution: "requireg@npm:0.2.2"
@@ -26444,7 +26469,7 @@ __metadata:
     "@ethereumjs/wallet": 2.0.3
     "@ethersproject/bytes": 5.7.0
     "@ethersproject/shims": 5.7.0
-    "@gorhom/bottom-sheet": 4.6.3
+    "@gorhom/bottom-sheet": 5.0.6
     "@jest/globals": 29.7.0
     "@metamask/eth-sig-util": 4.0.1
     "@metamask/react-native-webview": 14.0.4
@@ -26492,6 +26517,7 @@ __metadata:
     assert: 2.1.0
     babel-jest: 29.7.0
     babel-plugin-error-context: "file:plugins/babel-plugin-error-context"
+    babel-plugin-inline-import: 3.0.0
     babel-plugin-module-resolver: 4.1.0
     big-integer: 1.6.51
     bignumber.js: 9.1.1
@@ -26575,6 +26601,7 @@ __metadata:
     typescript: 5.5.2
     typescript-coverage-report: 1.0.0
     victory-native: 41.0.0
+    zod: 3.23.8
   languageName: unknown
   linkType: soft
 
@@ -28477,6 +28504,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"x-path@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "x-path@npm:0.0.2"
+  dependencies:
+    path-extra: ^1.0.2
+  checksum: 0e068e75c1bde6dab03e60147d228178098fee8c7ab99ce37df290ddc547c42f468ba9aca07fc16ba292d5e2869b32990b3db720104a556e8128c744f1a5009f
+  languageName: node
+  linkType: hard
+
 "xcode@npm:^3.0.1":
   version: 3.0.1
   resolution: "xcode@npm:3.0.1"
@@ -28674,7 +28710,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.4":
+"zod@npm:3.23.8, zod@npm:^3.22.4":
   version: 3.23.8
   resolution: "zod@npm:3.23.8"
   checksum: 8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69

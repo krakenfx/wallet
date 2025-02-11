@@ -11,11 +11,12 @@ type Options = {
   highPrecision?: boolean;
   compact?: boolean;
   findFirstNonZeroDigits?: boolean;
+  hideDecimals?: boolean;
 };
 
 export const formatCurrency = (
   currencyValue: string | number = 0,
-  { currency, hideCurrencySign = false, highPrecision = false, compact = false, findFirstNonZeroDigits = false }: Options,
+  { currency, hideCurrencySign = false, highPrecision = false, compact = false, findFirstNonZeroDigits = false, hideDecimals = false }: Options,
 ) => {
   const currencyValueNumber = Number(currencyValue);
   const numberAbs = Math.abs(currencyValueNumber);
@@ -45,6 +46,11 @@ export const formatCurrency = (
     if (smallNumberData.tooSmallNumber) {
       numberToFormat = smallNumberData.tooSmallNumber;
     }
+  }
+
+  if (hideDecimals) {
+    maximumFractionDigits = 0;
+    minimumFractionDigits = 0;
   }
 
   const formatted = Intl.NumberFormat('en-US', {

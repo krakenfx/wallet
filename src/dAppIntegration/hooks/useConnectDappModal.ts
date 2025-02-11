@@ -1,31 +1,35 @@
 import { useNavigation } from '@react-navigation/native';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { analyseUrl } from '@/api/analyseUrl';
 
-import type { PageInfo } from '@/dAppIntegration/types';
-import { useWalletByType } from '@/realm/wallets/useWalletByType';
-
+import { getImplForWallet } from '@/onChain/wallets/registry';
+import { useIsTestnetEnabled } from '@/realm/settings';
+import type { RealmWallet } from '@/realm/wallets';
 import { Routes } from '@/Routes';
 
+import type { PageInfo } from '../types';
+
 import { getAccountsFromMatchedWallets } from '/modules/wallet-connect/connectAppWithWalletConnect/getAccountsFromMatchedWallets';
-import { useWalletConnectSupportedNetworkIds } from '/modules/wallet-connect/hooks';
+import { getWalletConnectSupportedNetworkIds } from '/modules/wallet-connect/hooks';
+
+import { isSolanaNetwork } from '/modules/wallet-connect/utils';
 
 export const useConnectDappModal = () => {
   const { navigate, goBack } = useNavigation();
-
-  const wallet = useWalletByType('ethereum');
-  const networkIds = useWalletConnectSupportedNetworkIds('evm');
+  const isTestnetEnabled = useIsTestnetEnabled();
 
   const openModal = useCallback(
-    async (pageInfo: PageInfo | null, domain: string, baseUrl: string) => {
+    async (wallet: RealmWallet, pageInfo: PageInfo | null, domain: string, baseUrl: string) => {
       const accounts = await getAccountsFromMatchedWallets([wallet], false);
-      const allAccounts = accounts.eip155;
-      const analyseUrlResult = await analyseUrl(baseUrl, allAccounts);
+      const { isMalicious } = await analyseUrl(baseUrl, [...accounts.eip155, ...accounts.solana]);
+      const { network } = getImplForWallet(wallet);
+      const isSolana = isSolanaNetwork(network);
+      const networkIds = getWalletConnectSupportedNetworkIds(isTestnetEnabled, isSolana ? 'solana' : 'evm');
 
-      return new Promise((resolve, reject) => {
+      return new Promise<boolean>((resolve, reject) => {
         navigate(Routes.ConnectApp, {
-          isMalicious: analyseUrlResult.isMalicious,
+          isMalicious,
           uiState: undefined,
           onApprove: async () => {
             resolve(true);
@@ -45,9 +49,13 @@ export const useConnectDappModal = () => {
         });
       });
     },
-    [goBack, navigate, networkIds, wallet],
+    [goBack, navigate, isTestnetEnabled],
   );
-  return {
-    openModal,
-  };
+
+  return useMemo(
+    () => ({
+      openModal,
+    }),
+    [openModal],
+  );
 };

@@ -8,8 +8,7 @@ import {
   WALLET_CONNECT_SUPPORTED_NETWORK_IDS,
 } from '/modules/wallet-connect/consts';
 
-export const useWalletConnectSupportedNetworkIds = (limitTo?: 'evm' | 'solana') => {
-  const isTestnetEnabled = useIsTestnetEnabled();
+export const getWalletConnectSupportedNetworkIds = (isTestnetEnabled: boolean, limitTo?: 'evm' | 'solana') => {
   let walletConnectSupportedNetworkIds = isTestnetEnabled
     ? WALLET_CONNECT_SUPPORTED_NETWORK_IDS
     : WALLET_CONNECT_SUPPORTED_NETWORKS.filter(network => !isTestNet(network)).map(nonTestnet => nonTestnet.caipId);
@@ -21,4 +20,9 @@ export const useWalletConnectSupportedNetworkIds = (limitTo?: 'evm' | 'solana') 
   }
 
   return walletConnectSupportedNetworkIds;
+};
+
+export const useWalletConnectSupportedNetworkIds = (limitTo?: 'evm' | 'solana') => {
+  const isTestnetEnabled = useIsTestnetEnabled();
+  return getWalletConnectSupportedNetworkIds(isTestnetEnabled, limitTo);
 };

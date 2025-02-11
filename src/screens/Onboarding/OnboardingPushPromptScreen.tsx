@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { GradientScreenView } from '@/components/Gradients';
@@ -42,18 +43,27 @@ export const OnboardingPushPromptScreen = ({ navigation, route }: OnboardingNavi
   };
 
   return (
-    <GradientScreenView>
+    <GradientScreenView style={styles.container}>
       <PushNotificationPrompt
         onDisallow={onDisallow}
         onAllow={onAllow}
         onError={onError}
         allowButtonText={loc.pushNotificationsPrompt.allow}
         disallowButtonText={loc.pushNotificationsPrompt.skip}
-        containerStyle={{ marginTop: insets.top }}
+        containerStyle={[styles.prompt, { marginTop: insets.top }]}
       />
     </GradientScreenView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  prompt: {
+    flexGrow: 1,
+  },
+});
 
 OnboardingPushPromptScreen.navigationOptions = navigationStyle({
   headerShown: false,

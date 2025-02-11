@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import BigNumber from 'bignumber.js';
 
 import { fetchKrakenPrivateApi } from '@/api/krakenConnect/base/fetchKrakenPrivateApi';
+import type { AssetsDict, KrakenAsset, KrakenAssetRaw } from '@/api/krakenConnect/types';
 import { getNativeTokenBySymbol } from '@/onChain/wallets/registry';
 
 import { useKrakenConnectCredentials } from '@/realm/krakenConnect/useKrakenConnectCredentials';
@@ -17,15 +18,14 @@ import { tokenUnit2SmallestUnit } from '@/utils/unitConverter';
 
 import { useKrakenTokenListQuery } from '../useTokenListsQuery';
 
-import type { AssetsDict, KrakenAsset, KrakenAssetRaw } from './types';
-
 const useKrakenAccountAssets = () => {
-  const { API_SECRET, API_KEY } = useKrakenConnectCredentials();
+  const { API_SECRET, API_KEY, CF_TOKEN } = useKrakenConnectCredentials();
   async function getKrakenBalance() {
     const response = await fetchKrakenPrivateApi<AssetsDict>({
       path: '/0/private/BalanceEx',
       apiKey: API_KEY,
       privateKey: API_SECRET,
+      cfToken: CF_TOKEN,
       method: 'POST',
     });
 

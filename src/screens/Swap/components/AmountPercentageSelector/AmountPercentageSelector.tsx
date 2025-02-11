@@ -9,14 +9,10 @@ import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 
 import { Label } from '@/components/Label';
 import { Touchable } from '@/components/Touchable';
-import { useAppCurrency } from '@/realm/settings';
 import type { RealmToken } from '@/realm/tokens';
 import { useTheme } from '@/theme/themes';
-import { formatTokenAmount } from '@/utils/formatTokenAmount';
-import { isBtc } from '@/utils/isBtc';
 
 import { SuperBigNumber } from '@/utils/SuperBigNumber';
-import { unitConverter } from '@/utils/unitConverter';
 
 import { useSwapContext } from '../SwapContext';
 
@@ -27,30 +23,18 @@ type PercentageOption = (typeof PERCENTAGE_OPTS)[number];
 
 export const AmountPercentageSelector: React.FC<{ token: RealmToken }> = ({ token }) => {
   const { colors } = useTheme();
-  const { currency } = useAppCurrency();
 
   const {
-    sourceAmountState: [_, setSourceAmount],
-    sourceAmountInputValueState: [__, setSourceAmountString],
     amountInputFocusState: [isAmountInputFocused],
+    updateAmount,
   } = useSwapContext();
 
   const onSelect = useCallback(
     (o: PercentageOption) => {
       Keyboard.dismiss();
-      const balanceCut = new SuperBigNumber(token.balance).multipliedBy(o).toFixed(0);
-      const balanceCutInTokenUnit = unitConverter.smallUnit2TokenUnit(balanceCut, token.metadata.decimals);
-      const amountFormatted = formatTokenAmount(balanceCutInTokenUnit.toString(10), {
-        compact: false,
-        grouping: false,
-        currency,
-        highPrecision: true,
-        isBtc: isBtc({ assetId: token.assetId }),
-      });
-      setSourceAmountString(amountFormatted);
-      setSourceAmount(balanceCut);
+      updateAmount(new SuperBigNumber(token.balance).multipliedBy(o).toFixed(0), 'smallestUnit');
     },
-    [currency, setSourceAmount, setSourceAmountString, token.assetId, token.balance, token.metadata.decimals],
+    [token.balance, updateAmount],
   );
 
   const keyboard = useAnimatedKeyboard({ isStatusBarTranslucentAndroid: true });

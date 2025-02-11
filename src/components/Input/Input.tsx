@@ -19,7 +19,7 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   value?: string;
   left?: React.ReactElement;
   right?: React.ReactElement;
-  footerLeft?: LocalizedString;
+  footerLeft?: LocalizedString | React.ReactElement;
   footerRight?: LocalizedString;
   footerLeftProps?: LabelProps;
   footerRightProps?: LabelProps;
@@ -31,7 +31,7 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   shrinkInput?: boolean;
   transparent?: boolean;
   type?: TypographyKey;
-  placeholderStyle?: ViewStyle;
+  placeholderStyle?: StyleProp<AnimatedStyle<StyleProp<ViewStyle>>>;
   placeholderType?: TypographyKey;
   testID?: string;
   inputTestID?: string;
@@ -162,7 +162,8 @@ export const Input = React.forwardRef<InputMethods, InputProps>(
             {input}
             {(!!footerLeft || !!footerRight) && (
               <Animated.View style={styles.footerContainer} testID={`Footer-${testID}`}>
-                {footerLeft && (
+                {!!footerLeft && React.isValidElement(footerLeft) && footerLeft}
+                {!!footerLeft && !React.isValidElement(footerLeft) && (
                   <Label entering={FadeIn} exiting={FadeOut} type="regularBody" style={[!!footerRight && styles.footerLeft]} {...props.footerLeftProps}>
                     {footerLeft}
                   </Label>

@@ -1,5 +1,5 @@
 import { PermissionStatus, useCameraPermissions } from 'expo-camera';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
@@ -33,6 +33,14 @@ export const SendQRScanScreen = ({ navigation, route }: NavigationProps<'SendQRS
       navigation.navigate(Routes.UniversalSend, { ...route.params, qrCode: data });
     }
   };
+
+  useLayoutEffect(() => {
+    if (route.params.routeBack !== Routes.Send) {
+      navigation.setOptions({
+        headerRight: () => <CloseButton goBackOnly />,
+      });
+    }
+  }, [navigation, route.params.routeBack]);
 
   useEffect(() => {
     requestPermission();
@@ -79,7 +87,6 @@ const styles = StyleSheet.create({
 SendQRScanScreen.navigationOptions = navigationStyle({
   title: '',
   headerTransparent: true,
-  headerRight: () => <CloseButton goBackOnly />,
   headerBackVisible: false,
   headerLeft: () => null,
   headerStyle: {

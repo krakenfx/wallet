@@ -126,7 +126,7 @@
     "from": "Od",
     "message": "Wiadomość",
     "message_signing_request": "Prośba o podpisanie wiadomości",
-    "messageSigningRequest": "Podpisz",
+    "messageSigningRequest": "Podpisz wiadomość",
     "mint": "Mintuj",
     "nonce": "Nonce",
     "scrollToBottomToConfirm": "Przewiń w dół, aby potwierdzić",
@@ -446,13 +446,62 @@
   },
   "earn": {
     "allAssets": "Wszystkie aktywa",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "Wpłać {symbol} na {protocol}",
+      "high": "Wysoko:",
+      "info": {
+        "about": "Informacje o {symbol}",
+        "addressCopied": "Adres skopiowany",
+        "assetsLocked": "Zablokowane aktywa",
+        "contractAddress": "Adres do umowy",
+        "marketCap": "Kapitalizacja rynkowa",
+        "network": "Sieć",
+        "numberHolders": "Liczba posiadaczy",
+        "protocol": "Protokół",
+        "tokenEarned": "Zdobyty token",
+        "tokenPrice": "Cena tokena",
+        "type": "Typ"
+      },
+      "low": "Nisko:",
+      "openDapp": "Otwórz DApp",
+      "period": {
+        "all": "Wszystkie",
+        "day": "D",
+        "month": "M",
+        "week": "W",
+        "year": "R"
+      }
+    },
     "earnCTA": "Earn",
-    "earnUpToApr": "Do {apr} % rocznie",
+    "earnOnYourAssets": "Zarabiaj na swoich aktywach",
+    "earnSheet": {
+      "amountAvailable": "Dostępne: {balance} {symbol}",
+      "apy": "APY",
+      "earn": "Zyskaj {symbol}",
+      "noBalanaceFound": "Brak salda. Aby kwalifikować się do zarabiania, zasil swój portfel {symbol}.",
+      "swapCta": "Swap",
+      "tvl": "TVL {tvl}"
+    },
+    "earnUpToApr": "Do {apy} % APY",
+    "earnUpToApy": "Do {apy} % APY",
+    "earnWhileYouSleep": "Zarabiaj nawet gdy śpisz",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Aby uzyskać dostęp do okazji zysku, do portfela prześlij kompatybilne aktywa, takie jak ETH lub USDC.",
+        "heading": "Wpłać ETH, aby zacząć zarabiać",
+        "supportArticle": "Dowiedz się więcej o obsługiwanych aktywach"
+      },
+      "explaination": "Sprawdź połączenie lub spróbuj otworzyć tę stronę ponownie później.",
+      "titlePlural": "Błąd podczas ładowania okazji zysku",
+      "titleSingular": "Błąd podczas ładowania okazji zysku"
+    },
     "heroAvailableBalance": "Dostępne: {balance} {symbol}",
     "heroTitle": "Zarabiaj {symbol} na {protocol}",
     "protocolType": {
       "lending": "Pożyczki"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Zmień nazwę",
@@ -668,12 +717,34 @@
     "balanceOnKraken": "na platformie Kraken",
     "exchangeBalance": "Saldo na giełdzie",
     "fundCta": {
-      "body": "Połącz konto Kraken, aby <b>przesłać kryptowaluty do portfela</b>",
+      "body": "Połącz konto Kraken z",
       "bodyBold": "przesyłaj kryptowaluty do portfela",
       "heading": "Zasil swój portfel"
     },
+    "selectNetwork": {
+      "description": "Wybierz sieć, w której chcesz otrzymywać {assetLabel} do portfela.",
+      "fee": "Opłata {assetValue}",
+      "minimum": "Minimum {assetValue}",
+      "network": "Sieć {selectedNetworkName}",
+      "title": "Wybierz sieć"
+    },
     "sendScreen": {
       "title": "Przenieś {assetSymbol}"
+    },
+    "settings": {
+      "benefits0": "Prześlij krypto z Krakena",
+      "benefits1": "Wyświetl salda giełdy Kraken",
+      "benefitsHeadline": "Połączenie z kontem Kraken umożliwia:",
+      "cancel": "Anuluj",
+      "connect": "Podłącz",
+      "disconnect": "Rozłącz",
+      "disconnectScreen": {
+        "alert": "Po odłączeniu portfela klucz API pozostanie ważny w ustawieniach API giełdy Kraken przez 6 miesięcy. ",
+        "description": "Czy na pewno chcesz odłączyć ten portfel od Krakena?",
+        "title": "Odłącz od Krakena",
+        "warningMessage": "Utracisz dostęp do funkcji wygodnych transferów między Twoim portfelem (<b>„{walletName}”<b>) a kontem giełdowym Kraken."
+      },
+      "walletsListTitle": "Twoje portfele"
     },
     "stepsToConnect": {
       "hasAccount": "Mam konto",
@@ -696,6 +767,7 @@
       "selectAsset": "Wybierz aktywa do przeniesienia",
       "selectAssetDescription": "Wykonaj transfer z Krakena do portfela",
       "title": "Przelew",
+      "transferFee": "Opłata za przelew",
       "unsupportedAssets": "Nieobsługiwane aktywa",
       "unsupportedAssetsDescription": "Pozostałe aktywa ({count}) na Twoim koncie giełdowym nie są obsługiwane przez portfel"
     },
@@ -1320,6 +1392,7 @@
     "appLock": "Blokada App Lock",
     "backup": "Kopia zapasowa",
     "backup_mnemonic_seed": "Kopia zapasowa mnemonic seed",
+    "connections": "Połączenia",
     "currency": "Waluta",
     "deleteAll": "Usuń wszystkie dane",
     "electrum_error_connect": "Nie można połączyć z podanym serwerem Electrum",
@@ -1332,6 +1405,8 @@
     "general": "Ogólne",
     "header": "Ustawienia",
     "hideBalances": "Ukryj salda",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Giełda Kraken",
     "language": "Język",
     "manageWallets": "Zarządzaj portfelami",
     "notifications": "Powiadomienia push",

@@ -22,7 +22,7 @@ export const useSwapRouteData = (): SwapRouteUIData | undefined => {
   const {
     swapQuoteState: [swapQuoteResult],
     sourceTokenState: [sourceAsset],
-    sourceAmountState: [sourceAssetAmount],
+    sourceAmountSmallestUnitState: [sourceAssetAmount],
     targetAssetState: [targetAsset],
     swapFeesFiatValueState: [feeFiatValues],
   } = useSwapContext();

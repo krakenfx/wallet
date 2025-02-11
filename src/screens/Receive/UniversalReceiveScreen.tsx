@@ -1,6 +1,6 @@
 import type { SectionListData, SectionListRenderItem } from 'react-native';
 
-import { BottomSheetSectionList, useBottomSheetDynamicSnapPoints } from '@gorhom/bottom-sheet';
+import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
 import { useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
@@ -40,11 +40,7 @@ type SectionType = SectionListData<RealmToken, Section>;
 export const UniversalReceiveScreen = ({ navigation }: NavigationProps<'UniversalReceive'>) => {
   const { bottomSheetProps } = useBottomSheetScreenProps(navigation);
 
-  const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
-
   const tokens = useTokens();
-
-  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const sections: SectionType[] = useMemo(() => {
     return [
@@ -94,12 +90,11 @@ export const UniversalReceiveScreen = ({ navigation }: NavigationProps<'Universa
   const paddingBottom = useBottomElementSpacing();
 
   return (
-    <BottomSheet contentHeight={animatedContentHeight} handleHeight={animatedHandleHeight} snapPoints={animatedSnapPoints} {...bottomSheetProps}>
+    <BottomSheet enableDynamicSizing {...bottomSheetProps}>
       <BottomSheetSectionList
         testID="UniversalReceiveNetworkList"
         sections={sections}
         style={styles.scrollView}
-        onLayout={handleContentLayout}
         contentInsetAdjustmentBehavior="automatic"
         renderItem={renderSectionItem}
         keyExtractor={tokenItemKeyExtractor}

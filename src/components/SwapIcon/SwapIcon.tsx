@@ -42,11 +42,11 @@ export function SwapIcon({ sentAsset, receivedAsset }: Props) {
               </G>
             </Svg>
           }>
-          <TokenIcon tokenSymbol={sentAsset?.symbol} size={IMG_SIZE} forceOmitNetworkIcon />
+          <TokenIcon tokenId={sentAsset?.assetId} tokenSymbol={sentAsset?.symbol} size={IMG_SIZE} forceOmitNetworkIcon />
         </MaskedView>
       </View>
       <View style={styles.iconSwapBottom}>
-        <TokenIcon tokenSymbol={receivedAsset?.symbol} size={IMG_SIZE} forceOmitNetworkIcon />
+        <TokenIcon tokenId={receivedAsset?.assetId} tokenSymbol={receivedAsset?.symbol} size={IMG_SIZE} forceOmitNetworkIcon />
       </View>
     </View>
   );

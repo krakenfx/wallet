@@ -126,7 +126,7 @@
     "from": "Depuis",
     "message": "Message",
     "message_signing_request": "Demande de signature de message",
-    "messageSigningRequest": "Signer",
+    "messageSigningRequest": "Message de connexion",
     "mint": "Frapper",
     "nonce": "Nonce",
     "scrollToBottomToConfirm": "Faire défiler vers le bas pour confirmer",
@@ -446,13 +446,62 @@
   },
   "earn": {
     "allAssets": "Tous les actifs",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "Déposer des {symbol} sur {protocol}",
+      "high": "Élevé :",
+      "info": {
+        "about": "{symbol} – À propos",
+        "addressCopied": "Adresse copiée",
+        "assetsLocked": "Actifs verrouillés",
+        "contractAddress": "Adresse du contrat",
+        "marketCap": "Capitalisation",
+        "network": "Réseau",
+        "numberHolders": "Nombre de détenteurs",
+        "protocol": "Protocole",
+        "tokenEarned": "Token gagné",
+        "tokenPrice": "Prix du token",
+        "type": "Type"
+      },
+      "low": "Bas :",
+      "openDapp": "DApp ouverte",
+      "period": {
+        "all": "Tout",
+        "day": "D",
+        "month": "M",
+        "week": "H",
+        "year": "A"
+      }
+    },
     "earnCTA": "Gains",
-    "earnUpToApr": "Jusqu’à {apr}% de TAEG",
+    "earnOnYourAssets": "Gagner sur vos actifs",
+    "earnSheet": {
+      "amountAvailable": "{balance} {symbol} disponibles",
+      "apy": "APY",
+      "earn": "Gagner du {symbol}",
+      "noBalanaceFound": "Aucun solde. Approvisionnez votre portefeuille avec des {symbol} pour devenir éligible aux Gains.",
+      "swapCta": "Échanger",
+      "tvl": "{tvl} TVL"
+    },
+    "earnUpToApr": "Jusqu’à {apy} % d’APY",
+    "earnUpToApy": "Jusqu’à {apy} % d’APY",
+    "earnWhileYouSleep": "Gagnez pendant que vous dormez",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Pour accéder à des opportunités de rendement, envoyez des actifs compatibles comme l’Ethereum ou l’USDC sur votre portefeuille.",
+        "heading": "Déposer de l’ETH pour commencer à gagner",
+        "supportArticle": "En savoir plus sur les actifs pris en charge"
+      },
+      "explaination": "Vérifier votre connexion ou essayer à nouveau d’ouvrir cette page ultérieurement",
+      "titlePlural": "Erreur lors du chargement des opportunités de gains",
+      "titleSingular": "Erreur lors du chargement de l’opportunité de gains"
+    },
     "heroAvailableBalance": "{balance} {symbol} disponibles",
     "heroTitle": "Gagnez des {symbol} sur {protocol}",
     "protocolType": {
       "lending": "Prêt"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Renommer",
@@ -668,12 +717,34 @@
     "balanceOnKraken": "sur Kraken",
     "exchangeBalance": "Solde sur la plateforme d’échange",
     "fundCta": {
-      "body": "Connectez votre compte Kraken pour <b>transférer de la crypto sur votre portefeuille</b>",
+      "body": "Connectez votre compte Kraken à",
       "bodyBold": "transférer de la crypto sur votre portefeuille",
       "heading": "Approvisionnez votre portefeuille"
     },
+    "selectNetwork": {
+      "description": "Choisissez sur quel réseau vous souhaitez recevoir votre {assetLabel} sur votre portefeuille.",
+      "fee": "{assetValue} de frais",
+      "minimum": "{assetValue} minimum",
+      "network": "Réseau {selectedNetworkName}",
+      "title": "Sélectionnez un réseau"
+    },
     "sendScreen": {
       "title": "Transfert d’actifs {assetSymbol}"
+    },
+    "settings": {
+      "benefits0": "Transférer de la crypto sur Kraken",
+      "benefits1": "Consulter les soldes de la plateforme d'échange Kraken",
+      "benefitsHeadline": "Une connexion sur le compte Kraken permet de :",
+      "cancel": "Annuler",
+      "connect": "Connecter",
+      "disconnect": "Déconnecter",
+      "disconnectScreen": {
+        "alert": "Une fois votre portefeuille déconnecté, la clé API restera valide dans les paramètres de votre API d'échange Kraken pendant 6 mois.",
+        "description": "Souhaitez-vous vraiment déconnecter ce portefeuille de Kraken ?",
+        "title": "Se déconnecter de Kraken",
+        "warningMessage": "Vous ne conserverez plus la fonctionnalité pour effectuer des transferts simples entre votre portefeuille <b>\"{walletName}\"<b> et votre compte de la plateforme d'échange Kraken."
+      },
+      "walletsListTitle": "Vos portefeuilles"
     },
     "stepsToConnect": {
       "hasAccount": "J’ai créé un compte",
@@ -696,6 +767,7 @@
       "selectAsset": "Sélectionner un actif à transférer",
       "selectAssetDescription": "Transférez depuis la plateforme d’échange Kraken vers votre portefeuille",
       "title": "Transfert",
+      "transferFee": "Frais de transfert",
       "unsupportedAssets": "Actifs non pris en charge",
       "unsupportedAssetsDescription": "{count} autres actifs sur votre compte de plateforme d’échange ne sont pas pris en charge par le portefeuille"
     },
@@ -1320,6 +1392,7 @@
     "appLock": "App Lock",
     "backup": "Sauvegarde",
     "backup_mnemonic_seed": "Code d’accès mnémonique de sauvegarde",
+    "connections": "Connexions",
     "currency": "Devise",
     "deleteAll": "Supprimer toutes les données",
     "electrum_error_connect": "Impossible de se connecter au serveur Electrum indiqué",
@@ -1332,6 +1405,8 @@
     "general": "Général",
     "header": "Paramètres",
     "hideBalances": "Masquer les soldes",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Kraken Exchange",
     "language": "Langue",
     "manageWallets": "Gérer les portefeuilles",
     "notifications": "Alertes instantanées",

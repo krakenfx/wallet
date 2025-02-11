@@ -1,10 +1,11 @@
+import { BottomSheetFlashList } from '@gorhom/bottom-sheet';
 import sortBy from 'lodash/sortBy';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BottomSheet, BottomSheetFlashList } from '@/components/BottomSheet';
+import { BottomSheet } from '@/components/BottomSheet';
 import { FadingElement } from '@/components/FadingElement';
 import { KeyboardAvoider } from '@/components/Keyboard';
 import { NetworkFilter, useNetworkFilter } from '@/components/NetworkFilter';
