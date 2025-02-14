@@ -20,7 +20,7 @@ export async function fetchTopOpportunity({ networkCaipId, address }: Options): 
 
   try {
     const harmony = await getHarmony();
-    const response = await harmony.GET('/v1/defi/earn/topOpportunity/{address}', {
+    const response = await harmony.GET('/v1/defi/topOpportunity/{address}', {
       params: {
         path: { address },
         query: { network: networkCaipId as string },

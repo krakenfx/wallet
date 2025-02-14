@@ -65,7 +65,7 @@ export type PendingTransaction = {
   to?: string;
   time?: number;
   confirmed?: boolean;
-  additionalStatus?: 'invalidated';
+  additionalStatus?: 'invalidated' | 'kraken-connect-to-wallet';
 };
 
 export type RealmPendingTransaction = RealmTypeOf<

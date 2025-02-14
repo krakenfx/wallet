@@ -8,7 +8,6 @@ export const RealmFeatureFlag = {
   earnEnabled: 'earnEnabled',
   krakenConnectEnabled: 'krakenConnectEnabled',
   NewNetworksEnabled: 'NewNetworksEnabled',
-  assetIconsV2Enabled: 'assetIconsV2Enabled',
 } as const;
 
 export type FeatureFlags = Record<keyof typeof RealmFeatureFlag, boolean>;

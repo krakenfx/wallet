@@ -122,7 +122,7 @@ export const useTransactionMutations = () => {
   );
 
   const confirmPendingTransaction = useCallback(
-    (id: string) => {
+    (id: string, transactionId?: string | null) => {
       const pendingTx = realm.objectForPrimaryKey<RealmPendingTransaction>(REALM_TYPE_PENDING_TRANSACTION, id);
       if (pendingTx) {
         const token = pendingTx.tokenId ? realm.objectForPrimaryKey<RealmToken>(REALM_TYPE_TOKEN, pendingTx.tokenId) : undefined;
@@ -132,6 +132,9 @@ export const useTransactionMutations = () => {
             token.balance = getAvailableTokenBalance(token);
           }
           pendingTx.confirmed = true;
+          if (transactionId) {
+            pendingTx.transactionId = transactionId;
+          }
         });
       }
     },

@@ -10,6 +10,7 @@ import { useBrowser } from '@/hooks/useBrowser';
 import type { BTCTransaction } from '@/onChain/wallets/bitcoin';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { memoizedJSONParseTx, usePendingTransactionById, useTransactionById } from '@/realm/transactions';
+import { TRANSACTION_PENDING_TYPES } from '@/realm/transactions/const';
 import type { RealmWallet } from '@/realm/wallets';
 import type { NavigationProps } from '@/Routes';
 
@@ -92,14 +93,16 @@ export const TransactionDetailsScreen = ({ route, navigation }: NavigationProps<
         PreviewComponent={<TransactionDetails assetId={route.params.assetId} />}
         DetailsComponent={<TransactionShowMoreContent navigation={navigation} />}
         FloatingButtonsComponent={
-          <Button
-            size="large"
-            text={loc.transactionDetails.openExplorer}
-            testID="TxDetailsViewInExplorerButton"
-            onPress={onOpenExplorer}
-            color="kraken"
-            style={styles.viewInExplorerButton}
-          />
+          route.params.transactionDetailsData.transactionType !== TRANSACTION_PENDING_TYPES.RECEIVE_FROM_KRAKEN && (
+            <Button
+              size="large"
+              text={loc.transactionDetails.openExplorer}
+              testID="TxDetailsViewInExplorerButton"
+              onPress={onOpenExplorer}
+              color="kraken"
+              style={styles.viewInExplorerButton}
+            />
+          )
         }
       />
     </TransactionContextProvider>

@@ -12,15 +12,25 @@ import { type RealmToken, useTokens } from '@/realm/tokens';
 import { useRealmWallets } from '@/realm/wallets';
 import { mapAllAssetsToMainAssets } from '@/screens/KrakenConnectTransfer/utils';
 import type { RemoteAsset } from '@/types';
+import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { isRealmToken } from '@/utils/isRealmToken';
 
 import { tokenUnit2SmallestUnit } from '@/utils/unitConverter';
 
 import { useKrakenTokenListQuery } from '../useTokenListsQuery';
 
+import { handleError } from '/helpers/errorHandler';
+
+const STALE_TIME = 15 * 60 * 1000;
+
 const useKrakenAccountAssets = () => {
   const { API_SECRET, API_KEY, CF_TOKEN } = useKrakenConnectCredentials();
+  const [isKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
+
   async function getKrakenBalance() {
+    if (!isKrakenConnectEnabled) {
+      return {};
+    }
     const response = await fetchKrakenPrivateApi<AssetsDict>({
       path: '/0/private/BalanceEx',
       apiKey: API_KEY,
@@ -34,6 +44,7 @@ const useKrakenAccountAssets = () => {
 
   return useQuery({
     queryKey: ['krakenAccountAssets'],
+    staleTime: STALE_TIME,
     queryFn: async () => {
       const krakenBalance = await getKrakenBalance();
       if (!krakenBalance) {
@@ -45,14 +56,18 @@ const useKrakenAccountAssets = () => {
 };
 
 export const useKrakenConnectAssets = () => {
-  const { data: krakenConnectAssets } = useKrakenAccountAssets();
+  const { data: krakenConnectAssets, error, refetch: refetchKrakenBalance } = useKrakenAccountAssets();
   const { data: remoteAssets } = useKrakenTokenListQuery();
+
+  if (error) {
+    handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
+  }
 
   const tokens = useTokens();
   const wallets = useRealmWallets();
 
-  return useQuery({
-    queryKey: ['krakenAssets'],
+  const query = useQuery({
+    queryKey: ['krakenAssets', krakenConnectAssets, remoteAssets],
     enabled: !!remoteAssets && !!krakenConnectAssets,
     queryFn: () => {
       if (!remoteAssets || !krakenConnectAssets) {
@@ -104,4 +119,9 @@ export const useKrakenConnectAssets = () => {
       return krakenConnectAssets.map(matchKrakenAssetWithKnownToken);
     },
   });
+
+  return {
+    ...query,
+    refetchKrakenBalance,
+  };
 };

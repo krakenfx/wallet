@@ -164,7 +164,7 @@ export const inkNetwork = new EVMNetwork({
   label: loc.network.ink,
   blockExplorer: new Etherscan('explorer.inkonchain.com'),
   defaultGasLimit: 21000,
-  krakenConnectNetworkId: '48f5beb0-8708-4d27-9136-9b7318da8fa7',
+  krakenConnectNetworkId: 'f039bd2a-ad6c-4a3d-9c82-04c0167f49c9',
   krakenConnectMethodId: 'cd9a0143-3843-4f07-95c4-3ff3b8ca2d42',
   krakenConnectMethodName: 'Ink',
 });

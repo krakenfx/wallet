@@ -16,7 +16,7 @@ export const DefiDetailsTransactionsEmpty = () => {
         {loc.transactionTile.noTransactionsTitle}
       </Label>
       <Label type="regularBody" color="light75" style={styles.label}>
-        {loc.formatString(loc.earn.detailsSheet.deposit, { symbol: assetSymbol, protocol: protocolName })}
+        {loc.formatString(loc.earn.detailsSheet.depositCta, { symbol: assetSymbol, protocol: protocolName })}
       </Label>
     </View>
   );

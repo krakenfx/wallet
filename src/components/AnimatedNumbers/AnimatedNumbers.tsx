@@ -13,7 +13,7 @@ import { Tick } from './Tick';
 
 export type AnimatedNumbersProps = Omit<LabelProps, 'numberOfLines' | 'children' | 'type'> & {
   value: number | string;
-  type: 'headerBalance' | 'boldLargeMonospace' | 'boldTitleMarketDataPercentageLarge' | 'boldTitleMarketDataPercentage';
+  type: 'headerBalance' | 'boldLargeMonospace' | 'boldTitleMarketDataPercentageLarge' | 'boldTitleMarketDataPercentage' | 'boldCaption1';
   height?: number;
   fontSize: number;
 

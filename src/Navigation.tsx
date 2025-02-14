@@ -28,7 +28,7 @@ import { ExplainerScreen } from '@/screens/Explainer';
 import { ExploreScreen, ExploreSubpageScreen } from '@/screens/Explore';
 import { GlobalActivityScreen } from '@/screens/GlobalActivity';
 import { HomeScreen } from '@/screens/Home';
-import { KrakenConnectSendScreen } from '@/screens/KrakenConnectSend/KrakenConnectSendScreen';
+import { KrakenConnectSendRouter } from '@/screens/KrakenConnectSend/KrakenConnectSendRouter';
 import { KrakenConnectTransferScreen } from '@/screens/KrakenConnectTransfer/KrakenConnectTransferScreen';
 import { ManageAssetsGlobalFilterScreen } from '@/screens/ManageAssetsGlobalFilter';
 
@@ -49,8 +49,10 @@ import { useConnectionManager } from '@/utils/useConnectionManager';
 
 import { DefaultBackButton } from './components/BackButton';
 
+import { useDeepLinkFromExchange } from './hooks/useDeepLinkFromExchange';
 import { BrowserScreen } from './screens/Browser';
-import { KrakenConnectScreen } from './screens/KrakenConnect/KrakenConnectScreen';
+import { KarkenConnectConnectedScreen } from './screens/KrakenConnect/KarkenConnectConnectedScreen';
+import { KrakenConnectLandingScreen } from './screens/KrakenConnect/KrakenConnectLandingScreen';
 import { SwapScreen } from './screens/Swap';
 import { WhatsNewBrowserExploreScreen } from './screens/WhatsNew/WhatsNewBrowserExploreScreen';
 import { useTheme } from './theme/themes';
@@ -73,6 +75,7 @@ const NavigationStack = () => {
   useMonitorPendingTransactions();
   useDebugInfo();
   useHandleConnectToDappWalletConnectRequests();
+  useDeepLinkFromExchange();
 
   useEffect(() => {
     saveLanguage(language);
@@ -163,13 +166,18 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="Explore" component={ExploreScreen} options={ExploreScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ExploreSubpage" component={ExploreSubpageScreen} options={ExploreSubpageScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Swap" component={SwapScreen} options={SwapScreen.navigationOptions(theme)} />
-      <DefaultStack.Screen name="KrakenConnect" component={KrakenConnectScreen} options={KrakenConnectScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="KrakenConnectLanding" component={KrakenConnectLandingScreen} options={KrakenConnectLandingScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen
+        name="KrakenConnectConnected"
+        component={KarkenConnectConnectedScreen}
+        options={KarkenConnectConnectedScreen.navigationOptions(theme)}
+      />
       <DefaultStack.Screen
         name="KrakenConnectTransfer"
         component={KrakenConnectTransferScreen}
         options={KrakenConnectTransferScreen.navigationOptions(theme)}
       />
-      <DefaultStack.Screen name="KrakenConnectSend" component={KrakenConnectSendScreen} options={KrakenConnectSendScreen.navigationOptions(theme)} />
+      <DefaultStack.Screen name="KrakenConnectSendStack" component={KrakenConnectSendRouter} options={KrakenConnectSendRouter.navigationOptions(theme)} />
     </DefaultStack.Navigator>
   );
 };

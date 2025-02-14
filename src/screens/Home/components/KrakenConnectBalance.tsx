@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
 import { Label } from '@/components/Label';
+import { Skeleton } from '@/components/Skeleton';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
@@ -14,7 +15,7 @@ import { useTheme } from '@/theme/themes';
 import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-import { KrakenIcon } from './assets/KrakenIcon';
+import { KrakenIcon } from '../../../components/KrakenIcon';
 
 import loc from '/loc';
 
@@ -26,7 +27,7 @@ const MARGIN_TOP_SMALL_DEVICE = 4;
 export const KrakenConnectBalance = () => {
   const [isKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
   const isConnectedWithExchange = useIsConnectedWithExchange();
-  const { data } = useKrakenConnectBalance();
+  const { data, isLoading, isFetched } = useKrakenConnectBalance();
   const { currency } = useAppCurrency();
   const balanceFormatted = useBalanceDisplay(formatCurrency(data || 0, { currency }));
   const { colors } = useTheme();
@@ -56,9 +57,14 @@ export const KrakenConnectBalance = () => {
   return (
     <Touchable style={[styles.container, style, { backgroundColor: colors.purple_20 }]} onPress={handleOnPress}>
       <KrakenIcon />
-      <Label type="boldCaption1" style={styles.label} color="light75">
-        {balance}
-      </Label>
+      {isLoading || !isFetched ? (
+        <Skeleton style={styles.skeleton} />
+      ) : (
+        <Label type="boldCaption1" style={styles.label} color="light75">
+          {balance}
+        </Label>
+      )}
+
       <SvgIcon name="chevron-right" color="light75" size={16} />
     </Touchable>
   );
@@ -76,5 +82,12 @@ const styles = StyleSheet.create({
   label: {
     marginLeft: 4,
     lineHeight: 16,
+  },
+  skeleton: {
+    paddingVertical: 8,
+    borderRadius: 8,
+    height: '100%',
+    width: 102,
+    marginLeft: 4,
   },
 });

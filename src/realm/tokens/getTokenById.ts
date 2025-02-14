@@ -9,3 +9,7 @@ export const getTokenById = (realm: Realm, id: string | null) => {
   }
   return realm.objectForPrimaryKey<RealmToken>(REALM_TYPE_TOKEN, id);
 };
+
+export const getTokenByAssetId = (realm: Realm, assetId: string, walletId: string) => {
+  return realm.objectForPrimaryKey<RealmToken>(REALM_TYPE_TOKEN, `${walletId}:${assetId}`);
+};

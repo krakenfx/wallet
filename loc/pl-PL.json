@@ -11,7 +11,16 @@
     "copyToClipboard": "Skopiowano do schowka",
     "details": "Szczegóły",
     "done": "Gotowe",
+    "high": "Wysoko:",
+    "low": "Nisko:",
     "ok": "OK",
+    "period": {
+      "all": "Wszystkie",
+      "day": "D",
+      "month": "M",
+      "week": "W",
+      "year": "R"
+    },
     "plus": "+{count}",
     "receive": "Odbierz",
     "reconnecting": "Ponowne łączenie",
@@ -44,7 +53,9 @@
       "advanced_info": "Informacje zaawansowane",
       "connected_apps": "Podłączone aplikacje",
       "delete": "Usuń",
-      "edit": "Dostosuj"
+      "edit": "Dostosuj",
+      "exchange_connect": "Połącz z Krakenem",
+      "exchange_disconnect": "Odłącz od Krakena"
     },
     "walletDelete": {
       "error": "Portfel nie został usunięty, spróbuj ponownie",
@@ -122,6 +133,7 @@
     "confirm": "Potwierdź",
     "contractAddress": "Adres do umowy",
     "contractInteraction": "Interakcja w ramach umowy",
+    "declinedRequest": "Użytkownik odrzucił żądanie",
     "deposit": "Depozyt",
     "from": "Od",
     "message": "Wiadomość",
@@ -448,7 +460,9 @@
     "allAssets": "Wszystkie aktywa",
     "apy": "APY",
     "detailsSheet": {
-      "deposit": "Wpłać {symbol} na {protocol}",
+      "deposit": "Wpłata",
+      "depositCta": "Wpłać {symbol} na {protocol}",
+      "from": "Od:",
       "high": "Wysoko:",
       "info": {
         "about": "Informacje o {symbol}",
@@ -471,7 +485,10 @@
         "month": "M",
         "week": "W",
         "year": "R"
-      }
+      },
+      "to": "Do:",
+      "transfer": "Przelew",
+      "withdraw": "Wypłać"
     },
     "earnCTA": "Earn",
     "earnOnYourAssets": "Zarabiaj na swoich aktywach",
@@ -518,10 +535,14 @@
     "generalFetchError": "Błąd, spróbuj ponownie",
     "generic": "Coś poszło nie tak",
     "genericTryAgainLater": "Coś poszło nie tak, spróbuj ponownie później",
+    "invalidRequest": "Nieprawidłowe żądanie {method}",
     "network": "Błąd sieci",
     "offline": "Offline",
     "offlineRetry": "Jesteś offline. Spróbuj ponownie, gdy będziesz online.",
-    "seedMissing": "Błąd krytyczny! Seed jest niedostępny."
+    "permissionDenied": "Odmowa dostępu",
+    "seedMissing": "Błąd krytyczny! Seed jest niedostępny.",
+    "unauthorizedRequest": "Nieautoryzowane żądanie",
+    "unsupportedChain": "Nieobsługiwany łańcuch"
   },
   "explore": {
     "continueAccessibilityHint": "Zaakceptuj zastrzeżenie i kontynuuj",
@@ -715,12 +736,27 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "na platformie Kraken",
+    "connected": {
+      "alert": "Z platformą Kraken połączono tylko bieżący portfel: „<b>{walletName}</b>”.",
+      "cta": "Przenieś do portfela",
+      "feature0": "Możliwość <b>szybkiego odbioru środków</b> dzięki przelewom z konta Kraken",
+      "feature1": "Śledź swoje <b>aktywa onchain i salda z giełdy Kraken</b> bezpośrednio w portfelu",
+      "featuresTitle": "Odblokowano:",
+      "success": "Konto Kraken połączone!"
+    },
+    "connecting": "Łączenie z Krakenem",
+    "connectingFailed": "Błąd podczas łączenia z Krakenem ",
     "exchangeBalance": "Saldo na giełdzie",
     "fundCta": {
       "body": "Połącz konto Kraken z",
       "bodyBold": "przesyłaj kryptowaluty do portfela",
       "heading": "Zasil swój portfel"
     },
+    "noData": {
+      "description": "Konto giełdy Kraken nie zawiera żadnych aktywów do przeniesienia.",
+      "title": "Brak aktywów do przeniesienia"
+    },
+    "pendingTransactionId": "ID transakcji Kraken",
     "selectNetwork": {
       "description": "Wybierz sieć, w której chcesz otrzymywać {assetLabel} do portfela.",
       "fee": "Opłata {assetValue}",
@@ -742,7 +778,7 @@
         "alert": "Po odłączeniu portfela klucz API pozostanie ważny w ustawieniach API giełdy Kraken przez 6 miesięcy. ",
         "description": "Czy na pewno chcesz odłączyć ten portfel od Krakena?",
         "title": "Odłącz od Krakena",
-        "warningMessage": "Utracisz dostęp do funkcji wygodnych transferów między Twoim portfelem (<b>„{walletName}”<b>) a kontem giełdowym Kraken."
+        "warningMessage": "Utracisz dostęp do funkcji wygodnych przelewów między Twoim portfelem (<b>„{walletName}”</b>) a kontem giełdowym Kraken."
       },
       "walletsListTitle": "Twoje portfele"
     },
@@ -764,10 +800,13 @@
     },
     "transfer": {
       "available": "Dostępne: {value}",
+      "confirm": "Potwierdź transfer",
+      "network": "Sieć",
       "selectAsset": "Wybierz aktywa do przeniesienia",
       "selectAssetDescription": "Wykonaj transfer z Krakena do portfela",
       "title": "Przelew",
       "transferFee": "Opłata za przelew",
+      "transferringTo": "Przelew do",
       "unsupportedAssets": "Nieobsługiwane aktywa",
       "unsupportedAssetsDescription": "Pozostałe aktywa ({count}) na Twoim koncie giełdowym nie są obsługiwane przez portfel"
     },
@@ -1334,6 +1373,7 @@
     "feeWarning": "Obecna opłata sieciowa wynosi {feeAmount}, czyli o ponad {percentage}% więcej od tego, co wysyłasz.",
     "invalidAddress": "Nieprawidłowy adres, sprawdź go i spróbuj ponownie",
     "max": "Maksymalnie",
+    "minAmount": "Minimalna wartość przelewu: {minAmount} {token}",
     "network_fee": "Opłata sieciowa",
     "networkWarning": {
       "alertBody": "Upewnij się, że odbiorca posiada portfel, który obsługuje sieć {networkName}",

@@ -16,7 +16,16 @@
     "copied": "Copied",
     "view": "View",
     "today": "Today",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "period": {
+      "day": "D",
+      "week": "W",
+      "month": "M",
+      "year": "Y",
+      "all": "All"
+    },
+    "high": "High:",
+    "low": "Low:"
   },
   "about": {
     "privacyPolicy": "Privacy policy",
@@ -60,7 +69,9 @@
       "edit": "Customize",
       "connected_apps": "Connected apps",
       "delete": "Remove",
-      "advanced_info": "Advanced info"
+      "advanced_info": "Advanced info",
+      "exchange_connect": "Connect to Kraken",
+      "exchange_disconnect": "Disconnect from Kraken"
     },
     "walletDelete": {
       "success": "Your wallet was removed",
@@ -175,7 +186,7 @@
     "network": "network",
     "debt": "Debt",
     "claimable": "Claimable",
-    "apr": "APR",
+    "apy": "APY",
     "tvl": "TVL"
   },
   "earn": {
@@ -189,16 +200,7 @@
     "heroAvailableBalance": "{balance} {symbol} available",
     "tvl": "TVL",
     "detailsSheet": {
-      "deposit": "Deposit some {symbol} on {protocol}",
-      "period": {
-        "day": "D",
-        "week": "W",
-        "month": "M",
-        "year": "Y",
-        "all": "All"
-      },
-      "high": "High:",
-      "low": "Low:",
+      "depositCta": "Deposit some {symbol} on {protocol}",
       "openDapp": "Open dapp",
       "info": {
         "protocol": "Protocol",
@@ -212,7 +214,12 @@
         "contractAddress": "Contract address",
         "about": "About {symbol}",
         "addressCopied": "Address copied"
-      }
+      },
+      "deposit": "Deposit",
+      "withdraw": "Withdraw",
+      "transfer": "Transfer",
+      "from": "From:",
+      "to": "To:"
     },
     "earnSheet": {
       "earn": "Earn {symbol}",
@@ -271,12 +278,15 @@
   "home": {
     "assets": "Assets",
     "collection": "NFTs",
+    "collectionEmpty": "No NFTs yet. Your collectables will appear here once available. ",
+    "collectionEmptyCta": "Receive",
     "collection_see_all": "View all",
     "manage": "Manage",
     "total_balance": "Balance",
     "deposits": "DeFi",
-    "defiEmpty": "Start earning with DeFi",
-    "defiEmptyCaption": "Your positions will appear here once available. Participate in DeFi and start earning yield."
+    "defiEmptyTitle": "DeFi",
+    "defiEmptyCaption": "No positions yet. Participate in DeFi to earn yield on your assets.",
+    "defiEmptyCta": "Start earning"
   },
   "explore": {
     "disclaimerTitle": "Welcome to Explore!",
@@ -307,9 +317,7 @@
       "title": "Fully Diluted Valuation",
       "details": "The market cap if the max supply was in circulation, calculated by multiplying the current price by the max supply."
     },
-    "high": "High:",
     "links": "Links",
-    "low": "Low:",
     "marketCap": {
       "short": "Market Cap",
       "title": "Market Cap",
@@ -323,13 +331,6 @@
       "title": "Network fee",
       "current": "Current fee",
       "duration": "Duration"
-    },
-    "period": {
-      "day": "24H",
-      "week": "1W",
-      "month": "1M",
-      "year": "1Y",
-      "all": "ALL"
     },
     "price": "Price",
     "priceNotAvailable": "Price (not available)",
@@ -482,10 +483,6 @@
     "title": "Secure",
     "subtitle": "your wallet",
     "caption": "Use {authType} to prevent someone with your phone from accessing your crypto.",
-    "authPasscode": "Passcode",
-    "authTouchID": "TouchID",
-    "authFaceID": "FaceID",
-    "authBiometric": "Biometric Authentication",
     "skip": "Skip",
     "secureWallet": "Secure wallet"
   },
@@ -890,6 +887,7 @@
     "address": "Enter address...",
     "addressOrENS": "Enter address or ENS domain...",
     "max": "Max",
+    "minAmount": "Min transfer value: {minAmount} {token}",
     "balance": "Balance {0}",
     "network_fee": "Network Fee",
     "fee": "Fee",
@@ -1351,6 +1349,21 @@
     }
   },
   "krakenConnect": {
+    "appLock": {
+      "title": "Secure your wallet before connecting",
+      "description": "To protect your funds, turn on {authType} before connecting your exchange."
+    },
+    "appLockWarning": {
+      "title": "Turn off App Lock?",
+      "description": "Disabling App Lock will turn off your connection to Kraken. You’ll need to set it up again if you want to transfer your funds seamlessly.",
+      "ctaCancel": "Cancel",
+      "ctaTurnOff": "Turn off"
+    },
+    "noData": {
+      "title": "No assets to transfer",
+      "description": "Your Kraken exchange account does not contain any assets to transfer."
+    },
+    "pendingTransactionId": "Kraken transaction id",
     "balanceOnKraken": "on Kraken",
     "unconnected": {
       "title": "Get crypto in your wallet with Kraken",
@@ -1359,6 +1372,16 @@
       "noAccount": "I don't have an account",
       "alert": "Only the current wallet: \"<b>{walletName}</b>\", will be connected to Kraken."
     },
+    "connected": {
+      "alert": "Only the current wallet: \"<b>{walletName}</b>\", has been connected to Kraken.",
+      "success": "Kraken account connected!",
+      "featuresTitle": "You’ve unlocked:",
+      "feature0": "Ability to <b>Receive funds quickly</b> by transferring from your Kraken account",
+      "feature1": "Track your <b>onchain and Kraken exchange balances</b> right from your wallet",
+      "cta": "Transfer to wallet"
+    },
+    "connecting": "Connecting to Kraken",
+    "connectingFailed": "Error connecting to Kraken ",
     "stepsToConnect": {
       "heading": "To connect to Kraken follow these steps:",
       "step1": {
@@ -1387,12 +1410,15 @@
     "exchangeBalance": "Exchange balance",
     "transfer": {
       "available": "{value} available",
+      "confirm": "Confirm transfer",
       "title": "Transfer",
       "selectAsset": "Select an asset to transfer",
       "selectAssetDescription": "Transfer from Kraken exchange to your wallet",
       "unsupportedAssets": "Unsupported assets",
-      "unsupportedAssetsDescription": "{count} other assets in your exchange account are not supported by the wallet",
-      "transferFee": "Transfer fee"
+      "unsupportedAssetsDescription": "{assets} are not currently supported by Kraken Wallet",
+      "transferFee": "Transfer fee",
+      "transferringTo": "Transferring to",
+      "network": "Network"
     },
     "settings": {
       "connect": "Connect",
@@ -1405,7 +1431,7 @@
       "disconnectScreen": {
         "title": "Disconnect from Kraken",
         "description": "Are you sure you want to disconnect this wallet from Kraken?",
-        "warningMessage": "You will no longer retain functionality for seamless transfers between your wallet: <b>“{walletName}”<b>, and your Kraken exchange account.",
+        "warningMessage": "You will no longer retain functionality for seamless transfers between your wallet: <b>“{walletName}”</b>, and your Kraken exchange account.",
         "alert": "After you wallet is disconnected, the API key will remain valid in your Kraken exchange API settings for 6 months."
       }
     },

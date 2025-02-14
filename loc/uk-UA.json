@@ -11,7 +11,16 @@
     "copyToClipboard": "Скопійовано в буфер обміну",
     "details": "Деталі",
     "done": "Виконано",
+    "high": "Максимум:",
+    "low": "Мінімум:",
     "ok": "OK",
+    "period": {
+      "all": "Усі",
+      "day": "Д",
+      "month": "М",
+      "week": "Тижд.",
+      "year": "Р"
+    },
     "plus": "+{count}",
     "receive": "Отримати",
     "reconnecting": "Повторне підключення",
@@ -44,7 +53,9 @@
       "advanced_info": "Розширена інформація",
       "connected_apps": "Підключені застосунки",
       "delete": "Видалити",
-      "edit": "Налаштувати"
+      "edit": "Налаштувати",
+      "exchange_connect": "Під’єднати до Kraken",
+      "exchange_disconnect": "Від’єднати від Kraken"
     },
     "walletDelete": {
       "error": "Гаманець не було видалено, спробуйте ще раз",
@@ -122,6 +133,7 @@
     "confirm": "Підтвердити",
     "contractAddress": "Адреса контракту",
     "contractInteraction": "Взаємодія в межах контракту",
+    "declinedRequest": "Користувач відхилив запит",
     "deposit": "Внести",
     "from": "З",
     "message": "Повідомлення",
@@ -448,7 +460,9 @@
     "allAssets": "Усі активи",
     "apy": "APY",
     "detailsSheet": {
-      "deposit": "Внесіть {symbol} у протоколі {protocol}",
+      "deposit": "Внести",
+      "depositCta": "Внесіть {symbol} у протоколі {protocol}",
+      "from": "З:",
       "high": "Максимум:",
       "info": {
         "about": "Інформація про {symbol}",
@@ -471,7 +485,10 @@
         "month": "М",
         "week": "Тижд.",
         "year": "Р"
-      }
+      },
+      "to": "До:",
+      "transfer": "Перекази",
+      "withdraw": "Вивести"
     },
     "earnCTA": "Заробити",
     "earnOnYourAssets": "Заробляйте на своїх активах",
@@ -518,10 +535,14 @@
     "generalFetchError": "Помилка, спробуйте ще раз",
     "generic": "Щось пішло не так",
     "genericTryAgainLater": "Щось пішло не так, повторіть спробу пізніше",
+    "invalidRequest": "Недійсний запит {method}",
     "network": "Помилка мережі",
     "offline": "Офлайн",
     "offlineRetry": "Підключення до Інтернету відсутнє. Спробуйте ще раз після відновлення підключення до Інтернету.",
-    "seedMissing": "Критична помилка! Початкове значення недоступне."
+    "permissionDenied": "у дозволі відмовлено",
+    "seedMissing": "Критична помилка! Початкове значення недоступне.",
+    "unauthorizedRequest": "Несанкціонований запит",
+    "unsupportedChain": "Непідтримуваний ланцюг"
   },
   "explore": {
     "continueAccessibilityHint": "Прийміть відмову від відповідальності й продовжуйте",
@@ -715,12 +736,27 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "на Kraken",
+    "connected": {
+      "alert": "Тільки поточний гаманець «<b>{walletName}</b>» підключено до Kraken.",
+      "cta": "Перемістити до гаманця",
+      "feature0": "Можливість <b>Швидко отримувати кошти</b> шляхом переказу з вашого акаунту Kraken",
+      "feature1": "Відстежуйте свої <b>баланси ончейн і на біржі Kraken</b> безпосередньо в гаманці",
+      "featuresTitle": "Ви розблокували:",
+      "success": "Обліковий запис Kraken підключений!"
+    },
+    "connecting": "Підключення до Kraken",
+    "connectingFailed": "Помилка підключення до Kraken ",
     "exchangeBalance": "Біржовий баланс",
     "fundCta": {
       "body": "Підключіть свій акаунт Kraken до",
       "bodyBold": "переказуйте криптовалюту на свій гаманець",
       "heading": "Поповніть свій гаманець"
     },
+    "noData": {
+      "description": "Ваш акаунт на біржі Kraken не містить активів, які можна переказати.",
+      "title": "Немає активів для переказу"
+    },
+    "pendingTransactionId": "Ідентифікатор транзакції Kraken",
     "selectNetwork": {
       "description": "Виберіть, в якій мережі ви хочете отримати {assetLabel} на свій гаманець.",
       "fee": "Комісія {assetValue}",
@@ -742,7 +778,7 @@
         "alert": "Після відключення гаманця API-ключ залишається дійсним у налаштуваннях API біржі Kraken протягом 6 місяців.",
         "description": "Дійсно від’єднати цей гаманець від Kraken?",
         "title": "Від’єднати від Kraken",
-        "warningMessage": "Ви більше не матимете можливості безперешкодно здійснювати перекази між гаманцем <b>{walletName}<b> і своїм акаунтом на біржі Kraken."
+        "warningMessage": "Ви більше не матимете можливості безперешкодно здійснювати перекази між своїм гаманцем <b>«{walletName}»</b> і своїм акаунтом на біржі Kraken."
       },
       "walletsListTitle": "Ваші гаманці"
     },
@@ -764,10 +800,13 @@
     },
     "transfer": {
       "available": "Доступні {value}",
+      "confirm": "Схвалити переказ",
+      "network": "Мережа",
       "selectAsset": "Оберіть актив для переказу",
       "selectAssetDescription": "Переказуйте з біржі Kraken до свого гаманця",
       "title": "Переміщення",
       "transferFee": "Комісія за переміщення",
+      "transferringTo": "Переказування до",
       "unsupportedAssets": "Непідтримувані активи",
       "unsupportedAssetsDescription": "Стільки інших активів на вашому рахунку на біржі не підтримуються гаманцем: {count}"
     },
@@ -1334,6 +1373,7 @@
     "feeWarning": "Поточна комісія за користування мережею становить {feeAmount}, що складає понад {percentage} % від суми, яку ви надсилаєте.",
     "invalidAddress": "Невірна адреса. Перевірте й спробуйте ще раз",
     "max": "Максимум",
+    "minAmount": "Мін. сума переказу: {minAmount} {token}",
     "network_fee": "Комісія за користування мережею",
     "networkWarning": {
       "alertBody": "Переконайтеся в тому, що особа, якій ви надсилаєте, має гаманець що підтримує {networkName}",

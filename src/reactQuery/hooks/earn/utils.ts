@@ -1,4 +1,5 @@
-import type { BestVaultResult, DepositOptionsResult, Vault } from '@/api/types';
+import type { BestVaultResult, DepositOptionsResult, ProtocolWithPositions, Vault } from '@/api/types';
+import type { DefiProtocol } from '@/components/DefiProtocolPositions/DefiProtocolPositions.types';
 import type { CardData } from '@/components/DepositOptionsCarousel/DepositOptionsCarousel.types';
 import type { DefiAssetsListItem } from '@/screens/Earn/components/DefiFlatList/DefiFlatList.types';
 import type { HighlightVault } from '@/screens/Earn/components/DefiHighlightHeroContent/DefiHighlightHeroContent.types';
@@ -15,7 +16,7 @@ export const formatTopOpportunity = (data: BestVaultResult | null): HighlightVau
 
   const { asset, vault } = data;
   return {
-    assetId: asset.assetCaip,
+    assetId: asset.assetId,
     assetAddress: asset.assetAddress,
     assetSymbol: asset?.symbol ?? DEFAULT_FALLBACK_ASSET,
     assetNetwork: adaptAssetNetworkToWalletType(asset.networkName),
@@ -28,7 +29,7 @@ export const formatTopOpportunity = (data: BestVaultResult | null): HighlightVau
 
 export const formatAssetListData = (depositOptions: DepositOptionsResult): DefiAssetsListItem[] => {
   return depositOptions.userBalances.map(({ asset, depositOptions }) => ({
-    assetId: asset.assetCaip,
+    assetId: asset.assetId,
     assetName: asset.name,
     assetSymbol: asset.symbol ?? DEFAULT_FALLBACK_ASSET,
     assetNetwork: adaptAssetNetworkToWalletType(asset.networkName),
@@ -91,3 +92,28 @@ const filterOutAndSelectRandomCards = (cards: CardData[]) => {
 
   return randomCards;
 };
+
+export function mapDefiProtocols(protocolsWithPositions: ProtocolWithPositions[]): DefiProtocol[] {
+  return protocolsWithPositions.map(({ protocol, positions }) => ({
+    id: protocol.id,
+    protocolName: protocol.name,
+    protocolIcon: protocol.logoUrl || '',
+    totalValueInUsd: protocol.balanceUsd,
+    positions: positions.map(position => ({
+      id: `${position.assets.map(asset => asset.address).join('-')}-${Math.random()}`,
+      apy: position.apy ? position.apy / 100 : undefined,
+      isDebt: position.isDebt,
+      positionUsdValue: position.positionUsdValue,
+      assets: position.assets.map(asset => ({
+        id: asset.assetId,
+        address: asset.address,
+        decimals: asset.decimals,
+        network: asset.network,
+        symbol: asset.symbol,
+        balanceNative: asset.balanceNative,
+        balanceUsd: asset.balanceUsdValue,
+        portion: asset.portion,
+      })),
+    })),
+  }));
+}

@@ -7,8 +7,8 @@ import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 
-import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings';
+import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { GradientItemBackground } from '../GradientItemBackground';
@@ -17,9 +17,24 @@ import { ANIMATION_DURATION } from './DefiProtocolPositions.constants';
 
 import type { DefiProtocolHeadingProps } from './DefiProtocolPositions.types';
 
-export const DefiProtocolHeading: React.FC<DefiProtocolHeadingProps> = ({ protocolName, protocolIcon, nOfPositions, totalValue, isExpanded, onToggle }) => {
+import { capitalizeFirstLetter } from '/helpers/capitalizeFirstLetter';
+
+export const DefiProtocolHeading: React.FC<DefiProtocolHeadingProps> = ({
+  protocolName,
+  protocolIcon,
+  nOfPositions,
+  totalValueInUsd,
+  isExpanded,
+  onToggle,
+}) => {
+  const protocolNameCapitalized = protocolName.split(' ').map(capitalizeFirstLetter).join(' ');
+
   const { currency } = useAppCurrency();
-  const amountFormatted = useBalanceDisplay(formatCurrency(totalValue, { currency }), 7);
+
+  const usdFiatRate = useCurrentUsdFiatRate();
+  const valueInUserCurrency = usdFiatRate * totalValueInUsd;
+
+  const formattedFiatAmount = formatCurrency(valueInUserCurrency, { currency, compact: true, hideDecimals: false });
 
   const chevronStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: withTiming(isExpanded.value ? '-180deg' : '0deg', { duration: ANIMATION_DURATION }) }],
@@ -35,10 +50,9 @@ export const DefiProtocolHeading: React.FC<DefiProtocolHeadingProps> = ({ protoc
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>
-        {}
         <Image source={{ uri: protocolIcon }} style={styles.icon} />
         <Label color="light100" type="boldTitle1">
-          {protocolName}
+          {protocolNameCapitalized}
         </Label>
 
         <Animated.View style={[styles.nOfPositionsContainer, nOfPositionContainetStyle]}>
@@ -51,7 +65,7 @@ export const DefiProtocolHeading: React.FC<DefiProtocolHeadingProps> = ({ protoc
 
       <View style={styles.subContainer}>
         <Label color="light50" type="boldLargeMonospace">
-          {amountFormatted}
+          {formattedFiatAmount}
         </Label>
 
         <Animated.View style={chevronStyle}>

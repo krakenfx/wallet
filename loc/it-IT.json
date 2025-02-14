@@ -11,7 +11,16 @@
     "copyToClipboard": "Copiato negli appunti",
     "details": "Dettagli",
     "done": "Fatto",
+    "high": "Massimo:",
+    "low": "Minimo:",
     "ok": "OK",
+    "period": {
+      "all": "Tutti",
+      "day": "D",
+      "month": "M",
+      "week": "S",
+      "year": "Y"
+    },
     "plus": "+{count}",
     "receive": "Ricevi",
     "reconnecting": "Riconnessione",
@@ -44,7 +53,9 @@
       "advanced_info": "Info avanzate",
       "connected_apps": "App connesse",
       "delete": "Rimuovi",
-      "edit": "Personalizza"
+      "edit": "Personalizza",
+      "exchange_connect": "Collega a Kraken",
+      "exchange_disconnect": "Scollega da Kraken"
     },
     "walletDelete": {
       "error": "Il wallet non è stato rimosso. Riprova",
@@ -122,6 +133,7 @@
     "confirm": "Conferma",
     "contractAddress": "Indirizzo del contratto",
     "contractInteraction": "Interazione contrattuale",
+    "declinedRequest": "L'utente ha rifiutato la richiesta",
     "deposit": "Deposito",
     "from": "Da",
     "message": "Messaggio",
@@ -448,7 +460,9 @@
     "allAssets": "Tutti gli asset",
     "apy": "APY",
     "detailsSheet": {
-      "deposit": "Deposita {symbol} su {protocol}",
+      "deposit": "Deposito",
+      "depositCta": "Deposita {symbol} su {protocol}",
+      "from": "Da:",
       "high": "Massimo:",
       "info": {
         "about": "Informazioni su {symbol}",
@@ -471,7 +485,10 @@
         "month": "M",
         "week": "S",
         "year": "Y"
-      }
+      },
+      "to": "A:",
+      "transfer": "Trasferimento",
+      "withdraw": "Preleva"
     },
     "earnCTA": "Guadagna",
     "earnOnYourAssets": "Guadagna sui tuoi asset",
@@ -518,10 +535,14 @@
     "generalFetchError": "Errore, riprova",
     "generic": "Qualcosa è andato storto",
     "genericTryAgainLater": "Si è verificato un errore, riprova più tardi",
+    "invalidRequest": "Richiesta {method} non valida",
     "network": "Errore del network",
     "offline": "Offline",
     "offlineRetry": "Sei offline. Riprova quando sarai online.",
-    "seedMissing": "Errore critico. Seed non disponibile."
+    "permissionDenied": "Permesso negato",
+    "seedMissing": "Errore critico. Seed non disponibile.",
+    "unauthorizedRequest": "Richiesta non autorizzata",
+    "unsupportedChain": "Chain non supportata"
   },
   "explore": {
     "continueAccessibilityHint": "Accetta il disclaimer e continua",
@@ -715,12 +736,27 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "su Kraken",
+    "connected": {
+      "alert": "Solo il wallet attuale \"<b>{walletName}</b>\" è stato collegato a Kraken.",
+      "cta": "Trasferisci al wallet",
+      "feature0": "Possibilità di <b>ricevere rapidamente fondi</b> trasferendoli dal tuo account di Kraken",
+      "feature1": "Tieni traccia dei tuoi <b>saldi onchain e di Kraken Exchange</b> direttamente dal tuo wallet",
+      "featuresTitle": "Hai sbloccato:",
+      "success": "Account di Kraken collegato!"
+    },
+    "connecting": "Collegamento a Kraken",
+    "connectingFailed": "Errore durante il collegamento a Kraken ",
     "exchangeBalance": "Saldo dell’exchange",
     "fundCta": {
       "body": "Collega il tuo account di Kraken a",
       "bodyBold": "trasferisci crypto nel tuo wallet",
       "heading": "Versa fondi nel tuo wallet"
     },
+    "noData": {
+      "description": "Il tuo account di Kraken Exchange non contiene asset da trasferire.",
+      "title": "Nessun asset da trasferire"
+    },
+    "pendingTransactionId": "ID transazione di Kraken",
     "selectNetwork": {
       "description": "Scegli su quale network desideri ricevere {assetLabel} nel tuo wallet.",
       "fee": "{assetValue} commissione",
@@ -742,7 +778,7 @@
         "alert": "Una volta scollegato il tuo wallet, l'API key rimarrà valida nelle tue impostazioni delle API di Kraken Exchange per 6 mesi.",
         "description": "Desideri scollegare questo wallet da Kraken?",
         "title": "Scollega da Kraken",
-        "warningMessage": "Non potrai più effettuare trasferimenti fluidi tra il tuo wallet, <b>\"{walletName}\"<b>, e l'account di Kraken Exchange."
+        "warningMessage": "Non potrai più effettuare trasferimenti fluidi tra il tuo wallet <b>\"{walletName}\"</b> e l'account di Kraken Exchange."
       },
       "walletsListTitle": "I tuoi wallet"
     },
@@ -764,10 +800,13 @@
     },
     "transfer": {
       "available": "{value} disponibile",
+      "confirm": "Conferma trasferimento",
+      "network": "Network",
       "selectAsset": "Seleziona un asset da trasferire",
       "selectAssetDescription": "Trasferisci dall'exchange Kraken al tuo wallet",
       "title": "Trasferimento",
       "transferFee": "Commissione sul trasferimento",
+      "transferringTo": "Trasferimento a",
       "unsupportedAssets": "Asset non supportati",
       "unsupportedAssetsDescription": "Il wallet non supporta anche altri {count} asset presenti ne tuo account di exchange"
     },
@@ -1334,6 +1373,7 @@
     "feeWarning": "L’attuale commissione del network è di {feeAmount}, superiore di più del {percentage}% rispetto all’importo che stai inviando.",
     "invalidAddress": "Indirizzo non valido, controllalo e riprova",
     "max": "Max",
+    "minAmount": "Valore minimo del trasferimento: {minAmount}{token}",
     "network_fee": "Commissione network",
     "networkWarning": {
       "alertBody": "Assicurati che il destinatario disponga di un wallet che supporta {networkName}",

@@ -11,7 +11,16 @@
     "copyToClipboard": "Naar klembord gekopieerd",
     "details": "Details",
     "done": "Gereed",
+    "high": "Hoog:",
+    "low": "Laag:",
     "ok": "Oké",
+    "period": {
+      "all": "Alles",
+      "day": "D",
+      "month": "M",
+      "week": "W",
+      "year": "J"
+    },
     "plus": "+{count}",
     "receive": "Ontvangen",
     "reconnecting": "Verbinding wordt hersteld",
@@ -44,7 +53,9 @@
       "advanced_info": "Geavanceerde informatie",
       "connected_apps": "Verbonden apps",
       "delete": "Verwijderen",
-      "edit": "Personaliseren"
+      "edit": "Personaliseren",
+      "exchange_connect": "Verbinding maken met Kraken",
+      "exchange_disconnect": "Verbinding met Kraken verbreken"
     },
     "walletDelete": {
       "error": "De wallet is niet verwijderd, probeer het opnieuw",
@@ -122,6 +133,7 @@
     "confirm": "Bevestigen",
     "contractAddress": "Contractadres",
     "contractInteraction": "Contractinteractie",
+    "declinedRequest": "Gebruiker heeft het verzoek geweigerd",
     "deposit": "Storten",
     "from": "Van",
     "message": "Bericht",
@@ -448,7 +460,9 @@
     "allAssets": "Alle assets",
     "apy": "APY",
     "detailsSheet": {
-      "deposit": "Stort wat {symbol} op {protocol}",
+      "deposit": "Storten",
+      "depositCta": "Stort wat {symbol} op {protocol}",
+      "from": "Van:",
       "high": "Hoog:",
       "info": {
         "about": "Over {symbol}",
@@ -471,7 +485,10 @@
         "month": "M",
         "week": "W",
         "year": "J"
-      }
+      },
+      "to": "Naar:",
+      "transfer": "Overdracht",
+      "withdraw": "Opnemen"
     },
     "earnCTA": "Earn",
     "earnOnYourAssets": "Verdienen op je assets",
@@ -518,10 +535,14 @@
     "generalFetchError": "Fout, probeer het opnieuw",
     "generic": "Er is iets misgegaan",
     "genericTryAgainLater": "Er ging iets mis, probeer het later opnieuw",
+    "invalidRequest": "Ongeldig {method} verzoek",
     "network": "Netwerkfout",
     "offline": "Offline",
     "offlineRetry": "Je bent offline. Probeer het opnieuw wanneer je online bent.",
-    "seedMissing": "Kritieke fout! Seed is niet beschikbaar."
+    "permissionDenied": "Toestemming geweigerd",
+    "seedMissing": "Kritieke fout! Seed is niet beschikbaar.",
+    "unauthorizedRequest": "Ongeautoriseerd verzoek",
+    "unsupportedChain": "Niet-ondersteunde chain"
   },
   "explore": {
     "continueAccessibilityHint": "De disclaimer accepteren en doorgaan",
@@ -715,12 +736,27 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "op Kraken",
+    "connected": {
+      "alert": "Alleen de huidige wallet: \"<b>{walletName}</b>\" is verbonden met Kraken.",
+      "cta": "Overboeken naar wallet",
+      "feature0": "Mogelijkheid om <b>Snel geld te ontvangen</b> door deze over te boeken van je Kraken-account",
+      "feature1": "Volg je <b>onchain- en Kraken-exchange-tegoeden</b> rechtstreeks vanuit je wallet",
+      "featuresTitle": "Je hebt het volgende ontgrendeld:",
+      "success": "Kraken-account gekoppeld!"
+    },
+    "connecting": "Verbinding maken met Kraken",
+    "connectingFailed": "Fout bij het verbinden met Kraken ",
     "exchangeBalance": "Exchange-tegoed",
     "fundCta": {
       "body": "Verbind je Kraken-account met",
       "bodyBold": "crypto overboeken naar je wallet",
       "heading": "Je wallet financieren"
     },
+    "noData": {
+      "description": "Je exchange-account van Kraken bevat geen assets om over te boeken.",
+      "title": "Geen assets om over te boeken"
+    },
+    "pendingTransactionId": "Kraken-transactie-id",
     "selectNetwork": {
       "description": "Kies op welk netwerk je je {assetLabel} in je wallet wilt ontvangen.",
       "fee": "{assetValue} kosten",
@@ -742,7 +778,7 @@
         "alert": "Nadat je wallet is losgekoppeld, blijft de API-sleutel nog 6 maanden geldig in je API-instellingen van de Kraken-exchange.",
         "description": "Weet je zeker dat je deze wallet wilt loskoppelen van Kraken?",
         "title": "Verbinding met Kraken verbreken",
-        "warningMessage": "Je behoudt niet langer de functionaliteit voor naadloze overboekingen tussen je wallet: <b>\"{walletName}\"<b> en je exchange-account van Kraken."
+        "warningMessage": "Je behoudt niet langer de functionaliteit voor naadloze overboekingen tussen je wallet: <b>\"{walletName}\"</b> en je exchange-account van Kraken."
       },
       "walletsListTitle": "Jouw Wallets"
     },
@@ -764,10 +800,13 @@
     },
     "transfer": {
       "available": "{value} beschikbaar",
+      "confirm": "Overboeking bevestigen",
+      "network": "Netwerk",
       "selectAsset": "Selecteer een asset om over te boeken",
       "selectAssetDescription": "Overboeken van Kraken naar je wallet",
       "title": "Overdracht",
       "transferFee": "Overboekingskosten",
+      "transferringTo": "Overboeken naar",
       "unsupportedAssets": "Niet-ondersteunde assets",
       "unsupportedAssetsDescription": "{count} andere assets in je exchange-account worden niet ondersteund door de wallet"
     },
@@ -1334,6 +1373,7 @@
     "feeWarning": "De huidige netwerkkosten zijn {feeAmount} en dat is meer dan {percentage}% van wat je verzendt.",
     "invalidAddress": "Ongeldig adres. Gelieve het te controleren en opnieuw te proberen",
     "max": "Max",
+    "minAmount": "Minimale waarde overboeking: {minAmount} {token}",
     "network_fee": "Netwerkkosten",
     "networkWarning": {
       "alertBody": "Zorg ervoor dat de persoon naar wie je verstuurt, een wallet heeft die {networkName} ondersteunt",

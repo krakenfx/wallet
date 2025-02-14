@@ -9,6 +9,7 @@ import { Label } from '@/components/Label';
 import { LabeledField } from '@/components/LabeledField';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 
+import { TRANSACTION_PENDING_TYPES } from '@/realm/transactions/const';
 import type { NavigationProps } from '@/Routes';
 
 import { useTransactionContext } from '../context/TransactionContext';
@@ -40,19 +41,24 @@ export const TransactionShowMoreContent: React.FC<Pick<NavigationProps<'Transact
 
         <AddressesAndDescription navigation={navigation} />
 
-        <LabeledField label={loc.transactionDetails.transaction_id}>
+        <LabeledField
+          label={
+            transactionDetailsMetadata.transactionType === TRANSACTION_PENDING_TYPES.RECEIVE_FROM_KRAKEN
+              ? loc.krakenConnect.pendingTransactionId
+              : loc.transactionDetails.transaction_id
+          }>
           <CopyToClipBoard stringToCopy={transaction.transactionId}>
             <Label testID="TxDetailsId">{transaction.transactionId}</Label>
           </CopyToClipBoard>
         </LabeledField>
-
-        <TransactionDetailsShowMoreContentNetworkFee
-          assetId={network.nativeTokenCaipId}
-          nativeTokenDecimals={network.nativeTokenDecimals}
-          nativeTokenSymbol={network.nativeTokenSymbol}
-          networkFee={transactionDetailsMetadata.networkFee}
-        />
-
+        {transactionDetailsMetadata.transactionType !== TRANSACTION_PENDING_TYPES.RECEIVE_FROM_KRAKEN && (
+          <TransactionDetailsShowMoreContentNetworkFee
+            assetId={network.nativeTokenCaipId}
+            nativeTokenDecimals={network.nativeTokenDecimals}
+            nativeTokenSymbol={network.nativeTokenSymbol}
+            networkFee={transactionDetailsMetadata.networkFee}
+          />
+        )}
         {parsedTransaction && (
           <>
             {'inputs' in parsedTransaction && (parsedTransaction.inputs as string[]).length && (

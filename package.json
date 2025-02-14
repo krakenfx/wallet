@@ -1,6 +1,6 @@
 {
   "name": "superwallet",
-  "version": "1.16.1",
+  "version": "1.17.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -155,6 +155,7 @@
     "jest-html-reporters": "3.1.4",
     "kraken-wallet-cryptoicons": "file:assets/kraken-wallet-cryptoicons",
     "kraken-wallet-network-icons": "file:assets/kraken-wallet-network-icons",
+    "lint-staged": "15.4.1",
     "node-fetch": "3.3.1",
     "openapi-typescript": "6.5.3",
     "patch-package": "6.5.1",

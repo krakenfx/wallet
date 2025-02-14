@@ -1,38 +1,69 @@
 import { LinearGradient, vec } from '@shopify/react-native-skia';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { CurvedTransition } from 'react-native-reanimated';
+import Animated, { CurvedTransition, FadeIn, FadeOut } from 'react-native-reanimated';
 import { CartesianChart, Line } from 'victory-native';
 
+import { ActivityIndicator } from '@/components/ActivityIndicator';
+import { HighLowChange } from '@/components/HighLowChange';
+import { PeriodSwitcher } from '@/components/PeriodSwitcher';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
+import { useVaultMetricsQuery } from '@/reactQuery/hooks/useVaultMetricsQuery';
 import { useAppCurrency } from '@/realm/settings';
-import type { PriceHistoryPeriod, TokenPriceHighLow, TokenPriceHistoryItem } from '@/realm/tokenPrice';
-import { useTokenById } from '@/realm/tokens';
-import { useTheme } from '@/theme/themes';
+import type { PriceHistoryPeriod } from '@/realm/tokenPrice';
+import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
+import { type ColorName, useTheme } from '@/theme/themes';
 
-import { getPercentageLabel } from '@/utils/formatPercentage';
-
-import { CHART_PLACEHOLDER, HIGH_LOW_PRICE_PLACEHOLDER } from '../utils';
+import { CHART_PLACEHOLDER, fmt } from '../utils';
 
 import { useDefiDetailsContext } from './DefiDetailsContext';
-import { DefiDetailsHighLowChange } from './DefiDetailsHighLowChange';
-import { DefiDetailsPeriodSwitcher } from './DefiDetailsPeriodSwitcher';
 
+type ChartColorSet = { highLow: ColorName; gradient: string[] };
 const RED_GRADIENT = ['#8D52FF', '#8D52FF', '#EC6D6D'];
 const GREEN_GRADIENT = ['#3D3D95', '#8D52FF', '#62DD93'];
+const ASCENDING_COLOR_SET: ChartColorSet = { highLow: 'green400', gradient: GREEN_GRADIENT };
+const DESCENDING_COLOR_SET: ChartColorSet = { highLow: 'red400', gradient: RED_GRADIENT };
 
 const STANDARD_DEVICE_HEIGHT_FOR_CHART = 850;
 const DEFAULT_CHART_HEIGHT = 120;
+const CHART_DOMAIN_PADDING = { top: 12, bottom: 12 };
 
-export const DefiDetailsChart = () => {
-  const hasData = false;
-  const { assetCaipId } = useDefiDetailsContext();
-  const [period, setPeriod] = useState<PriceHistoryPeriod>('DAY');
-  const [chartData] = useState<TokenPriceHistoryItem[]>(CHART_PLACEHOLDER);
-  const [highLowData] = useState<TokenPriceHighLow>(HIGH_LOW_PRICE_PLACEHOLDER);
-  const [dataInitialised] = useState(false);
-  const token = useTokenById(assetCaipId);
+const LINE_ANIMATION = { type: 'timing' as const, duration: 500 };
+const START_POINT = vec(0, 0);
+const END_POINT = vec(400, 0);
+
+type Props = {
+  hide?: boolean;
+};
+
+export const DefiDetailsChart = ({ hide }: Props) => {
+  const { chartMetric, period, setPeriod } = useDefiDetailsContext();
   const { currency } = useAppCurrency();
+  const fiatRate = useCurrentUsdFiatRate();
+
+  const { data, isPending } = useVaultMetricsQuery(period);
+  const dataPoints = useMemo(
+    () =>
+      (data || []).map(d => {
+        return {
+          timestamp: d.timestamp,
+          value: chartMetric === 'apy' ? d.apy : fiatRate * d.tvl,
+        };
+      }),
+    [data, chartMetric, fiatRate],
+  );
+  const dataLength = dataPoints.length;
+  const hasData = Boolean(dataLength);
+  const [first, last] = useMemo(
+    () => (hasData ? [dataPoints[0], dataPoints[dataLength - 1]] : [{ value: 0 }, { value: 0 }]),
+    [hasData, dataLength, dataPoints],
+  );
+  const { high, low } = useMemo(
+    () => (hasData ? { low: Math.min(...dataPoints.map(({ value }) => value)), high: Math.max(...dataPoints.map(({ value }) => value)) } : { low: 0, high: 0 }),
+    [hasData, dataPoints],
+  );
+  const currentValue = useMemo(() => (hasData ? last.value : 0), [hasData, last]);
+  const chartData = useMemo(() => (hide ? [] : hasData ? dataPoints : CHART_PLACEHOLDER), [hide, hasData, dataPoints]);
 
   const { height, size: deviceSize } = useDeviceSize();
   const chartHeight = useMemo(() => {
@@ -41,57 +72,48 @@ export const DefiDetailsChart = () => {
     return deviceSize === 'small' ? 100 : DEFAULT_CHART_HEIGHT + chartHeightOffset;
   }, [height, deviceSize]);
 
-  const getPriceChange = (timePeriod: PriceHistoryPeriod) => {
-    switch (timePeriod) {
-      case 'DAY':
-        return token?.marketData?.priceChangePercentage.day;
-      case 'WEEK':
-        return token?.marketData?.priceChangePercentage.week;
-      case 'MONTH':
-        return token?.marketData?.priceChangePercentage.month;
-      case 'YEAR':
-        return token?.marketData?.priceChangePercentage.year;
-      case 'ALL':
-        return token?.marketData?.priceChangePercentage.all;
-      default:
-        return token?.marketData?.priceChangePercentage.day;
-    }
-  };
-
-  const priceChange = getPriceChange(period);
-  const { color } = getPercentageLabel(getPriceChange(period), 1, { currency, formatTokenAmount: true });
-
+  const valueChange = last.value - first.value;
   const { colors } = useTheme();
+  const chartColors: ChartColorSet = useMemo(() => {
+    if (!hasData || isPending) {
+      return { highLow: 'transparent', gradient: [colors.purple_40] };
+    }
 
-  const chartColor = !dataInitialised ? [colors.purple_40] : priceChange !== undefined && priceChange >= 0 ? GREEN_GRADIENT : RED_GRADIENT;
+    return valueChange >= 0 ? ASCENDING_COLOR_SET : DESCENDING_COLOR_SET;
+  }, [hasData, colors, isPending, valueChange]);
 
-  const onChangePeriod = (value: PriceHistoryPeriod) => {
-    setPeriod(value);
-  };
+  const onChangePeriod = useCallback(
+    (value: PriceHistoryPeriod) => {
+      setPeriod(value);
+    },
+    [setPeriod],
+  );
 
-  const style = deviceSize === 'small' ? styles.smallDeviceContainer : styles.container;
+  const containerStyle = deviceSize === 'small' ? styles.smallDeviceContainer : styles.container;
+  const lineColor = hasData ? colors.kraken : colors.purple_40;
+  const highLabel = fmt[chartMetric](high, currency);
+  const lowLabel = fmt[chartMetric](low, currency);
 
   return (
-    <View style={style} testID="DefiDetailsChartArea">
-      <>
-        <Animated.View style={[styles.chart, { height: chartHeight }]} layout={CurvedTransition}>
-          <CartesianChart data={chartData} xKey="timestamp" yKeys={['value']}>
-            {({ points }) => (
-              <Line
-                connectMissingData
-                curveType="natural"
-                points={points.value}
-                color={dataInitialised ? colors.kraken : colors.purple_40}
-                strokeWidth={3}
-                animate={{ type: 'timing', duration: 500 }}>
-                <LinearGradient start={vec(0, 0)} end={vec(400, 0)} colors={chartColor} />
-              </Line>
-            )}
-          </CartesianChart>
-        </Animated.View>
-        <DefiDetailsPeriodSwitcher onChange={onChangePeriod} disabled={!hasData} />
-        <DefiDetailsHighLowChange color={dataInitialised ? color : 'transparent'} highLow={highLowData} period={period} currentValue={token?.price} />
-      </>
+    <View style={containerStyle} testID="DefiDetailsChartArea">
+      <Animated.View style={[styles.chart, { height: chartHeight }]} layout={CurvedTransition} entering={FadeIn} exiting={FadeOut}>
+        <CartesianChart data={chartData} xKey="timestamp" yKeys={['value']} domainPadding={CHART_DOMAIN_PADDING}>
+          {({ points }) => (
+            <Line connectMissingData curveType="natural" points={points.value} color={lineColor} strokeWidth={3} animate={LINE_ANIMATION}>
+              <LinearGradient start={START_POINT} end={END_POINT} colors={chartColors.gradient} />
+            </Line>
+          )}
+        </CartesianChart>
+        {isPending && (
+          <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.pending}>
+            <ActivityIndicator />
+          </Animated.View>
+        )}
+      </Animated.View>
+      <PeriodSwitcher onChange={onChangePeriod} disabled={!hasData} preselectedIndex={1} />
+      <View style={styles.highLowChange}>
+        <HighLowChange color={chartColors.highLow} high={high} low={low} currentValue={currentValue} highLabel={highLabel} lowLabel={lowLabel} />
+      </View>
     </View>
   );
 };
@@ -100,10 +122,22 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
   },
+  pending: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 40,
+  },
   smallDeviceContainer: {
     marginTop: 0,
   },
   chart: {
     marginLeft: -16,
+  },
+  highLowChange: {
+    marginTop: 12,
   },
 });

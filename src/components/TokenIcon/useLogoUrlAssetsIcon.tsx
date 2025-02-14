@@ -4,13 +4,12 @@ import { useCallback, useState } from 'react';
 import FastImage, { type ImageStyle } from 'react-native-fast-image';
 
 type UseLogoUrlAssetsIconOptions = {
-  isAssetV2Enabled: boolean;
   logoUrl: string | null | undefined;
   style: StyleProp<ImageStyle>;
 };
 
 export const useLogoUrlAssetsIcon = (
-  { isAssetV2Enabled, logoUrl, style }: UseLogoUrlAssetsIconOptions,
+  { logoUrl, style }: UseLogoUrlAssetsIconOptions,
   enabled = true,
 ): {
   icon: JSX.Element | null;
@@ -22,7 +21,7 @@ export const useLogoUrlAssetsIcon = (
     setHasError(true);
   }, [setHasError]);
 
-  const icon = enabled && isAssetV2Enabled && logoUrl && !hasError ? <FastImage source={{ uri: logoUrl }} style={style} onError={handleError} /> : null;
+  const icon = enabled && logoUrl && !hasError ? <FastImage source={{ uri: logoUrl }} style={style} onError={handleError} /> : null;
 
   return { icon, error: hasError };
 };

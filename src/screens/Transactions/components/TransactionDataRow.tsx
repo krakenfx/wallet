@@ -1,11 +1,12 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
+import { TransactionRow } from '@/components/TransactionRow';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
@@ -99,51 +100,59 @@ export const TransactionDataRow = React.memo(
     const shouldShowAssetAmountAndNetworkFees = Boolean(assetAmountAndNetworkFee && assetAmountAndNetworkFeeInCurrencyFormatted);
     const isTransactionFailed = status === 'failed';
 
+    const title_ = useMemo(() => <Label type="boldBody">{isNetworkFee ? loc.transactionTile.networkFee : title}</Label>, [title, isNetworkFee]);
+    const subtitle = useMemo(
+      () => (
+        <View style={styles.description}>
+          {isTransactionFailed && <SvgIcon name="x-circle" color="red400" size={16} style={styles.space} />}
+          <View style={styles.description}>
+            {isTransactionFailed && (
+              <Label type="boldCaption1" color="red400" numberOfLines={1}>
+                {loc.transactionDetails.state.failed + ' '}
+              </Label>
+            )}
+            {descriptionIcon && <View style={styles.descriptionIcon}>{descriptionIcon}</View>}
+            <Label type="regularCaption1" color="light50" style={styles.subtitle} testID={`Description-${testID}`}>
+              {description}
+            </Label>
+          </View>
+        </View>
+      ),
+      [description, descriptionIcon, isTransactionFailed, testID],
+    );
+    const amounts = useMemo(
+      () => (
+        <>
+          {shouldShowAmounts && shouldShowAssetAmountAndNetworkFees && assetSymbol && (
+            <Amounts
+              assetAmount={assetAmountAndNetworkFee!}
+              assetSymbol={assetSymbol}
+              amountInCurrency={assetAmountAndNetworkFeeInCurrencyFormatted!}
+              testID={testID}
+            />
+          )}
+          {shouldShowAmounts && !shouldShowAssetAmountAndNetworkFees && assetAmount && assetSymbol && (
+            <Amounts assetAmount={assetAmount} assetSymbol={assetSymbol} amountInCurrency={appCurrencyValue} testID={testID} />
+          )}
+        </>
+      ),
+      [
+        appCurrencyValue,
+        assetAmountAndNetworkFee,
+        shouldShowAmounts,
+        shouldShowAssetAmountAndNetworkFees,
+        assetAmountAndNetworkFeeInCurrencyFormatted,
+        assetAmount,
+        assetSymbol,
+        testID,
+      ],
+    );
+
     return (
       <View>
         {showRow && (
           <Touchable onPress={onPress}>
-            <View style={[styles.container, containerStyle]} testID={testID}>
-              <View style={styles.startContainer}>
-                {icon}
-
-                <View style={styles.column} testID={`Title-${testID}`}>
-                  <Label type="boldBody">{isNetworkFee ? loc.transactionTile.networkFee : title}</Label>
-
-                  <View style={styles.description}>
-                    {isTransactionFailed && <SvgIcon name="x-circle" color="red400" size={16} style={styles.space} />}
-                    <View style={styles.description}>
-                      {isTransactionFailed && (
-                        <Label type="boldCaption1" color="red400" numberOfLines={1}>
-                          {loc.transactionDetails.state.failed + ' '}
-                        </Label>
-                      )}
-                      {descriptionIcon && <View style={styles.descriptionIcon}>{descriptionIcon}</View>}
-
-                      <Label type="regularCaption1" color="light50" style={styles.subtitle} testID={`Description-${testID}`}>
-                        {description}
-                      </Label>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.spacer} />
-              {shouldShowAmounts && (
-                <View style={styles.endContainer}>
-                  {shouldShowAssetAmountAndNetworkFees && assetSymbol && (
-                    <Amounts
-                      assetAmount={assetAmountAndNetworkFee!}
-                      assetSymbol={assetSymbol}
-                      amountInCurrency={assetAmountAndNetworkFeeInCurrencyFormatted!}
-                      testID={testID}
-                    />
-                  )}
-                  {!shouldShowAssetAmountAndNetworkFees && assetAmount && assetSymbol && (
-                    <Amounts assetAmount={assetAmount} assetSymbol={assetSymbol} amountInCurrency={appCurrencyValue} testID={testID} />
-                  )}
-                </View>
-              )}
-            </View>
+            <TransactionRow containerStyle={containerStyle} icon={icon} title={title_} subtitle={subtitle} amounts={amounts} testID={testID} />
           </Touchable>
         )}
       </View>
@@ -152,37 +161,11 @@ export const TransactionDataRow = React.memo(
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 6,
-    height: 56,
-  },
-  startContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    maxWidth: '60%',
-  },
-  endContainer: {
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    maxWidth: '40%',
-  },
   amountsText: {
     textAlign: 'right',
     width: '100%',
     flexShrink: 1,
     overflow: 'hidden',
-  },
-  column: {
-    marginRight: 24,
-  },
-  spacer: {
-    flex: 1,
-  },
-  verticalSpace: {
-    marginVertical: 3,
   },
   description: {
     flexDirection: 'row',

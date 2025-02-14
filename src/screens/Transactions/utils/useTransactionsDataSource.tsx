@@ -1,8 +1,6 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
-import { startOfDay } from 'date-fns';
-import { groupBy } from 'lodash';
 import { useCallback, useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { FadeOut } from 'react-native-reanimated';
@@ -20,12 +18,12 @@ import { REALM_TYPE_PENDING_TRANSACTION, usePendingNftTransactions, usePendingTr
 import { getTransactionMetadata } from '@/realm/transactions/getTransactionMetadata';
 import { memoizedJSONParseTx } from '@/realm/transactions/utils';
 import type { NavigationProps } from '@/Routes';
-import { TransactionRow } from '@/screens/Transactions/components/TransactionRow';
+import { TransactionRowClassifier } from '@/screens/Transactions/components/TransactionRowClassifier';
 import { TRANSACTIONS_REALM_QUEUE_KEY } from '@/screens/Transactions/utils/types';
+import { groupItemsByDate } from '@/utils/groupItemsByDate';
 
 import { TransactionPendingRow } from '../components/TransactionPendingRow';
 
-import { formatTransactionGroupDate } from './formatTransactionGroupDate';
 import { useIgnoredTransactions } from './useIgnoredTransactions';
 
 import loc from '/loc';
@@ -86,6 +84,11 @@ const getItemType = (item: TransactionListItem): string => {
   }
 };
 
+const dateItemWrapper = (dateFormatted: string): SectionLabel => ({
+  type: 'sectionLabel',
+  label: dateFormatted,
+});
+
 export const useTransactionsDataSource = ({
   tokenId,
   pendingTransactionIds,
@@ -113,6 +116,7 @@ export const useTransactionsDataSource = ({
   const transactions = useTransactions({ assetId: token?.assetId, walletId, networkFilter, ignoredIds });
 
   const transactionIds = useMemo<string[]>(() => transactions.map(({ id }) => id), [transactions]);
+  const transactionTxIds = useMemo<string[]>(() => transactions.map(({ transactionId }) => transactionId), [transactions]);
 
   const pendingNftTransactions = usePendingNftTransactions(token?.assetId, walletId, networkFilter);
 
@@ -132,8 +136,14 @@ export const useTransactionsDataSource = ({
   );
 
   const pendingTransactions = useMemo(() => {
-    return [...(pendingTransactionsFromTokenOrGlobal.filtered('NOT id in $0', transactionIds) ?? []), ...pendingNftTransactions];
-  }, [pendingTransactionsFromTokenOrGlobal, transactionIds, pendingNftTransactions]);
+    const pendingFilteredTransactions = pendingTransactionsFromTokenOrGlobal
+      .filtered('NOT id in $0', transactionIds)
+      .filtered(
+        'additionalStatus != "kraken-connect-to-wallet" OR (additionalStatus == "kraken-connect-to-wallet" AND NOT transactionId IN $0)',
+        transactionTxIds,
+      );
+    return [...(pendingFilteredTransactions ?? []), ...pendingNftTransactions];
+  }, [pendingTransactionsFromTokenOrGlobal, transactionIds, transactionTxIds, pendingNftTransactions]);
 
   const dataSource = useMemo(() => {
     const data: TransactionListItem[] = [];
@@ -161,15 +171,8 @@ export const useTransactionsDataSource = ({
       }
 
       if (!skipTimeHeader) {
-        const itemsWithTimeLabel = Object.entries(groupBy(txs, a => startOfDay(new Date(a.time * 1000))))
-          .map(([date, items]) => {
-            const sectionLabel = {
-              type: 'sectionLabel',
-              label: formatTransactionGroupDate(date, language),
-            } satisfies SectionLabel;
-            return [sectionLabel, ...items];
-          })
-          .flat();
+        const itemsWithTimeLabel = groupItemsByDate<RealmTransaction, SectionLabel>(txs, language, dateItemWrapper);
+
         data.push(...itemsWithTimeLabel);
       } else {
         data.push(...txs);
@@ -189,7 +192,7 @@ export const useTransactionsDataSource = ({
       const txData = getTransactionMetadata(data);
       const containerRowStyle: StyleProp<ViewStyle> = isRecentActivityView ? styles.rowContainer : {};
       return (
-        <TransactionRow
+        <TransactionRowClassifier
           item={item}
           parsedTx={data}
           classifiedTx={txData}

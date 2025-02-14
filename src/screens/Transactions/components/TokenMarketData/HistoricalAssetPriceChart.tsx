@@ -6,6 +6,7 @@ import { CartesianChart, Line } from 'victory-native';
 
 import { AnimatedNumbers } from '@/components/AnimatedNumbers';
 import { Label, Typography } from '@/components/Label';
+import { PeriodSwitcher } from '@/components/PeriodSwitcher';
 import { ScalableLabel } from '@/components/ScalableLabel';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useAppCurrency } from '@/realm/settings';
@@ -18,7 +19,6 @@ import { formatCurrency } from '@/utils/formatCurrency';
 import { getPercentageLabel } from '@/utils/formatPercentage';
 
 import { HighLowPriceChange } from './HighLowPriceChange';
-import { PeriodSwitcher } from './PeriodSwitcher';
 import { CHART_PLACEHOLDER, HIGH_LOW_PRICE_PLACEHOLDER, PRICE_PLACEHOLDER, SheetPosition } from './utils';
 
 import loc from '/loc';
@@ -68,7 +68,7 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
   }, [data, period]);
 
   useEffect(() => {
-    if (data && data.highLow && !dataInitialised) {
+    if (data && data.isValid() && data.highLow && !dataInitialised) {
       setHighLowData((data.highLow as RealmTokenPriceHighLow).toJSON());
     }
   }, [data, dataInitialised]);

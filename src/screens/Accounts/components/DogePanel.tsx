@@ -11,7 +11,7 @@ export const DogePanel = ({ derivationPath }: { derivationPath: string }) => {
     <View>
       <GradientPanelHeader>
         <View style={styles.panelHeader}>
-          <TokenIcon networkName="dogecoin" forceOmitNetworkIcon />
+          <TokenIcon networkName="dogecoin" forceOmitNetworkIcon tokenSymbol="DOGE" />
           <Label type="boldTitle2">Dogecoin</Label>
         </View>
       </GradientPanelHeader>

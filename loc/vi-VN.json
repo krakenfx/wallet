@@ -11,7 +11,16 @@
     "copyToClipboard": "Đã sao chép vào bộ nhớ tạm",
     "details": "Chi tiết",
     "done": "Xong",
+    "high": "Cao:",
+    "low": "Thấp:",
     "ok": "OK",
+    "period": {
+      "all": "Tất cả",
+      "day": "D",
+      "month": "M",
+      "week": "HT",
+      "year": "Y"
+    },
     "plus": "+{count}",
     "receive": "Nhận",
     "reconnecting": "Đang kết nối lại",
@@ -44,7 +53,9 @@
       "advanced_info": "Thông tin nâng cao",
       "connected_apps": "Ứng dụng được kết nối",
       "delete": "Xóa",
-      "edit": "Tùy chỉnh"
+      "edit": "Tùy chỉnh",
+      "exchange_connect": "Kết nối với Kraken",
+      "exchange_disconnect": "Ngắt kết nối khỏi Kraken"
     },
     "walletDelete": {
       "error": "Chưa xóa ví, vui lòng thử lại",
@@ -122,11 +133,12 @@
     "confirm": "Xác nhận",
     "contractAddress": "Địa chỉ hợp đồng",
     "contractInteraction": "Tương tác hợp đồng",
+    "declinedRequest": "Người dùng đã từ chối yêu cầu",
     "deposit": "Nạp",
     "from": "Từ",
     "message": "Tin nhắn",
     "message_signing_request": "Yêu cầu ký tin nhắn",
-    "messageSigningRequest": "Ký",
+    "messageSigningRequest": "Ký tin nhắn",
     "mint": "Mint",
     "nonce": "Số được sử dụng một lần",
     "scrollToBottomToConfirm": "Cuộn xuống dưới cùng để xác nhận",
@@ -446,13 +458,67 @@
   },
   "earn": {
     "allAssets": "Tất cả tài sản",
+    "apy": "APY",
+    "detailsSheet": {
+      "deposit": "Nạp",
+      "depositCta": "Nạp một số {symbol} trên {protocol}",
+      "from": "Từ:",
+      "high": "Cao:",
+      "info": {
+        "about": "Giới thiệu về {symbol}",
+        "addressCopied": "Đã sao chép địa chỉ",
+        "assetsLocked": "Tài sản bị khóa",
+        "contractAddress": "Địa chỉ hợp đồng",
+        "marketCap": "Vốn hóa thị trường",
+        "network": "Mạng",
+        "numberHolders": "Số lượng người nắm giữ",
+        "protocol": "Giao thức",
+        "tokenEarned": "Token đã kiếm được",
+        "tokenPrice": "Giá token",
+        "type": "Loại"
+      },
+      "low": "Thấp:",
+      "openDapp": "Mở dapp",
+      "period": {
+        "all": "Tất cả",
+        "day": "D",
+        "month": "M",
+        "week": "HT",
+        "year": "Y"
+      },
+      "to": "Tới:",
+      "transfer": "Chuyển khoản",
+      "withdraw": "Rút"
+    },
     "earnCTA": "Kiếm được",
-    "earnUpToApr": "Lên tới {apr}% APR",
+    "earnOnYourAssets": "Kiếm tiền từ tài sản của bạn",
+    "earnSheet": {
+      "amountAvailable": "Hiện có {balance} {symbol}",
+      "apy": "APY",
+      "earn": "Kiếm được {symbol}",
+      "noBalanaceFound": "Không có số dư. Nạp tiền vào ví của bạn bằng {symbol} để đủ điều kiện kiếm tiền.",
+      "swapCta": "Hoán đổi",
+      "tvl": "{tvl} TVL"
+    },
+    "earnUpToApr": "Tới {apy}% APY",
+    "earnUpToApy": "Tới {apy}% APY",
+    "earnWhileYouSleep": "Kiếm tiền trong khi bạn ngủ",
+    "errors": {
+      "emptyCarousel": {
+        "detail": "Để có cơ hội hưởng lợi nhuận, hãy gửi các tài sản tương thích như Ethereum hoặc USDC vào ví của bạn.",
+        "heading": "Nạp ETH để bắt đầu kiếm tiền",
+        "supportArticle": "Tìm hiểu thêm về các tài sản được hỗ trợ"
+      },
+      "explaination": "Kiểm tra kết nối của bạn hoặc thử mở lại trang này sau",
+      "titlePlural": "Lỗi khi tải các cơ hội kiếm tiền",
+      "titleSingular": "Lỗi khi tải cơ hội kiếm tiền"
+    },
     "heroAvailableBalance": "Hiện có {balance} {symbol}",
     "heroTitle": "Kiếm được {symbol} trên {protocol}",
     "protocolType": {
       "lending": "Cho vay"
-    }
+    },
+    "tvl": "TVL"
   },
   "editAccount": {
     "rename": "Đổi tên",
@@ -469,10 +535,14 @@
     "generalFetchError": "Có lỗi, vui lòng thử lại",
     "generic": "Đã xảy ra lỗi",
     "genericTryAgainLater": "Đã xảy ra sự cố, vui lòng thử lại sau",
+    "invalidRequest": "Yêu cầu {method} không hợp lệ",
     "network": "Lỗi mạng",
     "offline": "Ngoại tuyến",
     "offlineRetry": "Bạn đang ngoại tuyến. Vui lòng thử lại khi trực tuyến.",
-    "seedMissing": "Lỗi nghiêm trọng! Hạt giống không khả dụng."
+    "permissionDenied": "Từ chối cấp quyền",
+    "seedMissing": "Lỗi nghiêm trọng! Hạt giống không khả dụng.",
+    "unauthorizedRequest": "Yêu cầu trái phép",
+    "unsupportedChain": "Chuỗi không được hỗ trợ"
   },
   "explore": {
     "continueAccessibilityHint": "Chấp nhận tuyên bố từ chối trách nhiệm và tiếp tục",
@@ -666,14 +736,51 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "trên Kraken",
+    "connected": {
+      "alert": "Chỉ có ví hiện tại: \"<b>{walletName}</b>\", được kết nối với Kraken.",
+      "cta": "Chuyển vào ví",
+      "feature0": "Khả năng <b>nhận tiền nhanh chóng</b> bằng cách chuyển từ tài khoản Kraken của bạn",
+      "feature1": "Theo dõi <b>số dư onchain và sàn giao dịch Kraken</b> của bạn ngay từ ví",
+      "featuresTitle": "Bạn đã mở khóa:",
+      "success": "Đã kết nối tài khoản Kraken!"
+    },
+    "connecting": "Kết nối với Kraken",
+    "connectingFailed": "Lỗi khi kết nối với Kraken ",
     "exchangeBalance": "Số dư trên sàn giao dịch",
     "fundCta": {
-      "body": "Kết nối tài khoản Kraken của bạn để <b>chuyển tiền điện tử vào ví của bạn</b>",
+      "body": "Kết nối tài khoản Kraken của bạn với",
       "bodyBold": "chuyển tiền điện tử vào ví của bạn",
       "heading": "Nạp tiền vào ví của bạn"
     },
+    "noData": {
+      "description": "Tài khoản giao dịch Kraken của bạn không có bất kỳ tài sản nào để chuyển nhượng.",
+      "title": "Không có tài sản để chuyển nhượng"
+    },
+    "pendingTransactionId": "ID giao dịch Kraken",
+    "selectNetwork": {
+      "description": "Chọn mạng mà bạn muốn nhận {assetLabel} vào ví của mình.",
+      "fee": "Phí {assetValue}",
+      "minimum": "Tối thiểu {assetValue}",
+      "network": "Mạng {selectedNetworkName}",
+      "title": "Chọn một mạng"
+    },
     "sendScreen": {
       "title": "Chuyển khoản {assetSymbol}"
+    },
+    "settings": {
+      "benefits0": "Chuyển tiền điện tử từ Kraken",
+      "benefits1": "Xem số dư sàn giao dịch Kraken",
+      "benefitsHeadline": "Kết nối với tài khoản Kraken cho phép:",
+      "cancel": "Hủy",
+      "connect": "Kết nối",
+      "disconnect": "Ngắt kết nối",
+      "disconnectScreen": {
+        "alert": "Sau khi ví của bạn bị ngắt kết nối, khóa API sẽ vẫn có hiệu lực trong cài đặt API trao đổi Kraken của bạn trong 6 tháng.",
+        "description": "Bạn có chắc chắn muốn ngắt kết nối ví này khỏi Kraken không?",
+        "title": "Ngắt kết nối khỏi Kraken",
+        "warningMessage": "Bạn sẽ không còn giữ lại chức năng chuyển tiền liền mạch giữa ví của mình: <b>“{walletName}”</b>, và tài khoản giao dịch Kraken của bạn."
+      },
+      "walletsListTitle": "Ví của bạn"
     },
     "stepsToConnect": {
       "hasAccount": "Tôi đã tạo một tài khoản",
@@ -693,9 +800,13 @@
     },
     "transfer": {
       "available": "Hiện có {value}",
+      "confirm": "Xác nhận chuyển khoản",
+      "network": "Mạng",
       "selectAsset": "Chọn một tài sản để chuyển",
       "selectAssetDescription": "Chuyển từ sàn giao dịch Kraken sang ví của bạn",
       "title": "Chuyển khoản",
+      "transferFee": "Phí chuyển khoản",
+      "transferringTo": "Đang chuyển sang",
       "unsupportedAssets": "Tài sản không được hỗ trợ",
       "unsupportedAssetsDescription": "{count} tài sản khác trong tài khoản giao dịch của bạn không được ví hỗ trợ"
     },
@@ -1262,6 +1373,7 @@
     "feeWarning": "Phí mạng hiện tại là {feeAmount}, cao hơn {percentage}% số tiền bạn đang gửi.",
     "invalidAddress": "Địa chỉ không hợp lệ, vui lòng kiểm tra và thử lại",
     "max": "Tối đa",
+    "minAmount": "Giá trị chuyển nhượng tối thiểu: {minAmount} {token}",
     "network_fee": "Phí mạng",
     "networkWarning": {
       "alertBody": "Đảm bảo người bạn sẽ gửi tới có ví hỗ trợ {networkName}",
@@ -1320,6 +1432,7 @@
     "appLock": "Khóa ứng dụng",
     "backup": "Sao lưu",
     "backup_mnemonic_seed": "Sao lưu hạt giống ghi nhớ",
+    "connections": "Kết nối",
     "currency": "Tiền tệ",
     "deleteAll": "Xóa tất cả dữ liệu",
     "electrum_error_connect": "Không thể kết nối với máy chủ Electrum được cung cấp",
@@ -1332,6 +1445,8 @@
     "general": "Tổng quan",
     "header": "Cài đặt",
     "hideBalances": "Ẩn số dư",
+    "krakenConnect": "Kraken Connect",
+    "krakenExchange": "Sàn giao dịch Kraken",
     "language": "Ngôn ngữ",
     "manageWallets": "Quản lý ví",
     "notifications": "Thông báo đẩy",

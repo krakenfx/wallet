@@ -2,7 +2,7 @@ import type { PriceHistoryPeriod, TokenPriceHistory } from '@/realm/tokenPrice';
 import { getPriceHistoryId } from '@/realm/tokenPrice/utils';
 import type { Currency } from '@/screens/Settings/currency';
 import { CHART_DATA_ITEMS_COUNT } from '@/screens/Transactions/components/TokenMarketData/utils';
-import { interpolateChartData } from '@/utils/interpolateChartData';
+import { interpolateMultiDimensionalDataset } from '@/utils/interpolateDataset';
 
 import { getHarmony } from './base/apiFactory';
 
@@ -10,7 +10,7 @@ export async function fetchTokenPriceHistory(assetId: string, period: PriceHisto
   const harmony = await getHarmony();
   const { content } = await harmony.GET('/v1/priceHistory', { params: { query: { token: assetId, granularity: period, currency } } });
 
-  const interpolatedData = content ? interpolateChartData(content.prices, CHART_DATA_ITEMS_COUNT) : [];
+  const interpolatedData = content ? interpolateMultiDimensionalDataset(content.prices, CHART_DATA_ITEMS_COUNT) : [];
   const highLow = content ? content.highLow : undefined;
 
   return {

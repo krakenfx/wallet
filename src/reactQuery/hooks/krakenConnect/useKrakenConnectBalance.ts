@@ -4,12 +4,12 @@ import { useKrakenAssetsWithPrices } from '@/reactQuery/hooks/krakenConnect/useK
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 
 export const useKrakenConnectBalance = () => {
-  const { data: assetsWithPrices } = useKrakenAssetsWithPrices();
+  const { data: assetsWithPrices, isFetching } = useKrakenAssetsWithPrices();
   const fiatRate = useCurrentUsdFiatRate();
 
   return useQuery({
-    queryKey: ['krakenConnectBalance', fiatRate],
-    enabled: !!assetsWithPrices,
+    queryKey: ['krakenConnectBalance', fiatRate, assetsWithPrices],
+    enabled: !!assetsWithPrices && !isFetching,
     queryFn: async () => {
       if (!assetsWithPrices) {
         return 0;

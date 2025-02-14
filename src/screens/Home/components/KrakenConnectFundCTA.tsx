@@ -30,7 +30,7 @@ export const KrakenConnectFundCTA = () => {
   return (
     <Animated.View entering={FadeIn} exiting={FadeOut.duration(100)}>
       <View style={styles.cardContainer}>
-        <Touchable onPress={() => navigation.navigate(Routes.KrakenConnect)}>
+        <Touchable onPress={() => navigation.navigate(Routes.KrakenConnectLanding)}>
           <View style={[styles.container]}>
             <GradientPromoBackground />
             <Image style={styles.image} source={require('@/assets/images/krakenConnect/fundWalletIllustration.png')} />

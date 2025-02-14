@@ -1,5 +1,6 @@
 import type React from 'react';
 
+import { Fragment } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 
@@ -8,13 +9,15 @@ import { GradientItemBackground } from '@/components/GradientItemBackground';
 import { AccordionItem } from '../AccordionItem';
 
 import { DefiProtocolHeading } from './DefiProtocolHeading';
+import { DefiProtocolMultipleAssetsPositionRow } from './DefiProtocolMultipleAssetsPositionRow';
 import { ANIMATION_DURATION } from './DefiProtocolPositions.constants';
-import { DefiProtocolPositionsRow } from './DefiProtocolPositionsRow';
+
+import { DefiProtocolSingleAssetPositionRow } from './DefiProtocolSingleAssetPositionRow';
 
 import type { DefiProtocolPositionsProps } from './DefiProtocolPositions.types';
 
 export const DefiProtocolPositions: React.FC<DefiProtocolPositionsProps> = ({ protocol }) => {
-  const { protocolName, protocolIcon, totalValue, positions } = protocol;
+  const { protocolName, protocolIcon, totalValueInUsd, positions } = protocol;
 
   const isExpanded = useSharedValue(true);
 
@@ -28,7 +31,7 @@ export const DefiProtocolPositions: React.FC<DefiProtocolPositionsProps> = ({ pr
         protocolName={protocolName}
         protocolIcon={protocolIcon}
         nOfPositions={positions.length}
-        totalValue={totalValue}
+        totalValueInUsd={totalValueInUsd}
         isExpanded={isExpanded}
         onToggle={toggleExpanded}
       />
@@ -36,8 +39,14 @@ export const DefiProtocolPositions: React.FC<DefiProtocolPositionsProps> = ({ pr
       <AccordionItem style={styles.positionsContainer} isExpanded={isExpanded} duration={ANIMATION_DURATION}>
         <GradientItemBackground style={[StyleSheet.absoluteFill, styles.gradient]} />
         <View style={styles.positionsContent}>
-          {positions.map(position => (
-            <DefiProtocolPositionsRow key={position.id} position={position} />
+          {positions.map(({ id, assets, isDebt, positionUsdValue, apy }, index) => (
+            <Fragment key={`${id}-${index}`}>
+              {assets.length === 1 ? (
+                <DefiProtocolSingleAssetPositionRow asset={assets[0]} isDebt={isDebt} apy={apy} positionUsdValue={positionUsdValue} />
+              ) : (
+                <DefiProtocolMultipleAssetsPositionRow assets={assets} isDebt={isDebt} positionUsdValue={positionUsdValue} />
+              )}
+            </Fragment>
           ))}
         </View>
       </AccordionItem>
@@ -50,6 +59,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
+    marginBottom: 16,
   },
   gradient: {
     borderRadius: 16,
@@ -65,5 +75,6 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingVertical: 6,
     paddingHorizontal: 12,
+    minHeight: 65,
   },
 });

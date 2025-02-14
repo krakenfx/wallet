@@ -20,6 +20,7 @@ type Props = {
   feeSelector?: React.ReactElement;
   additionalInfo?: React.ReactNode;
   primaryButtonProps?: Partial<ButtonProps>;
+  isKrakenConnectTransfer?: boolean;
 };
 
 export const TransactionConfirmationFooter: React.FC<Props> = ({
@@ -30,6 +31,7 @@ export const TransactionConfirmationFooter: React.FC<Props> = ({
   additionalInfo,
   isLoading: propLoading,
   primaryButtonProps,
+  isKrakenConnectTransfer,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +44,7 @@ export const TransactionConfirmationFooter: React.FC<Props> = ({
   return (
     <View style={[hidden && styles.hidden]}>
       <View style={styles.footer}>
-        {!!feeSelector && <Label type="boldCaption1">{loc.transactionDetails.confirmation.fee}</Label>}
+        {!!feeSelector && !isKrakenConnectTransfer && <Label type="boldCaption1">{loc.transactionDetails.confirmation.fee}</Label>}
         {feeSelector}
       </View>
       {additionalInfo}

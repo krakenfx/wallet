@@ -14,7 +14,7 @@ export const BitcoinPanel = ({ accountNumber, derivationPath }: { accountNumber:
     <View>
       <GradientPanelHeader>
         <View style={styles.panelHeader}>
-          <TokenIcon networkName="HDsegwitBech32" forceOmitNetworkIcon />
+          <TokenIcon networkName="HDsegwitBech32" forceOmitNetworkIcon tokenSymbol="BTC" />
           <Label type="boldTitle2">Bitcoin</Label>
         </View>
       </GradientPanelHeader>

@@ -1,30 +1,35 @@
 import type { NativeScrollEvent } from 'react-native';
 
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { runOnJS } from 'react-native-reanimated';
+import { FadeIn, FadeOut, runOnJS } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { FadingElement } from '@/components/FadingElement';
 import { GradientScreenView } from '@/components/Gradients';
+import { Label } from '@/components/Label';
 import { FlashListWithRefreshControl } from '@/components/ScrollerWithRefreshControl';
+import { hideToast } from '@/components/Toast';
 import type { WalletType } from '@/onChain/wallets/registry';
+import { type VaultTransaction, useVaultTransactionsPagedQuery } from '@/reactQuery/hooks/useVaultTransactionsQuery';
+import { useLanguage } from '@/realm/settings';
 import type { NavigationProps } from '@/Routes';
-
-import { SheetPosition } from '@/screens/Transactions/components/TokenMarketData/utils';
-import { SMALL_SHEET_MIN_HEIGHT, defaultSheetPosition } from '@/screens/Transactions/components/TokenMarketDataBottomSheet';
-import type { TransactionListItem } from '@/screens/Transactions/utils/useTransactionsDataSource';
+import { groupItemsByDate } from '@/utils/groupItemsByDate';
 import { navigationStyle } from '@/utils/navigationStyle';
+import { useIsOnline } from '@/utils/useConnectionManager';
 
-import { DefiDetailsBottomSheet } from './components/DefiDetailsBottomSheet';
+import { DefiDetailsBottomSheet, SMALL_SHEET_MIN_HEIGHT, defaultSheetPosition } from './components/DefiDetailsBottomSheet';
 import { DefiDetailsContextProvider, useDefiDetailsContext } from './components/DefiDetailsContext';
-import { DefiDetailsHeader } from './components/DefiDetailsHeader';
-import { DefiDetailsHeaderLeft } from './components/DefiDetailsHeaderLeft';
-import { DefiDetailsHeaderRight } from './components/DefiDetailsHeaderRight';
+import { DefiDetailsHeader, DefiDetailsHeaderLeft, DefiDetailsHeaderRight } from './components/DefiDetailsHeader';
 import { DefiDetailsOpenDappButton } from './components/DefiDetailsOpenDappButton';
+import { DefiDetailsTransactionRow } from './components/DefiDetailsTransactionRow';
 import { DefiDetailsTransactionsEmpty } from './components/DefiDetailsTransactionsEmpty';
 
-import type { FlashList } from '@shopify/flash-list';
+import { SheetPosition, refreshingVaultsEvent, showRefreshingVaultsToast } from './utils';
+
+import type { FlashList, ListRenderItem } from '@shopify/flash-list';
+
+import { handleError } from '/helpers/errorHandler';
 
 export interface DefiDetailsRouteParamsV2 {
   assetAddress: string;
@@ -39,17 +44,64 @@ export interface DefiDetailsRouteParamsV2 {
   vaultAddress: string;
 }
 
+const keyExtractor: (item: VaultTransaction | string, index: number) => string = (item, index) => {
+  if (typeof item === 'string') {
+    return `${index}_${item}`;
+  }
+
+  return `${index}_${item.activity}_${item.timestamp}`;
+};
+
 const DefiDetailsScreenV2 = ({ navigation }: NavigationProps<'DefiDetailsV2'>) => {
-  const flashListRef = useRef<FlashList<TransactionListItem>>(null);
+  const isOnline = useIsOnline();
+  const flashListRef = useRef<FlashList<VaultTransaction | string>>(null);
   const [sheetPosition, setSheetPosition] = useState<SheetPosition>(defaultSheetPosition);
 
-  const dataSource: TransactionListItem[] = [];
-  const renderFooter = () => null;
-  const renderItem = () => null;
-  const keyExtractor = () => '';
-  const loadNextPage = () => {};
+  const { assetAddress, assetName, assetNetwork, assetSymbol, protocolLogo, protocolName, vaultAddress, vaultNetwork, vaultType } = useDefiDetailsContext();
 
-  const { assetAddress, assetName, assetNetwork, assetSymbol, protocolLogo, protocolName, vaultType } = useDefiDetailsContext();
+  const language = useLanguage();
+
+  const renderItem: ListRenderItem<VaultTransaction | string> = useCallback(
+    ({ item, index }) => {
+      if (typeof item === 'string') {
+        return (
+          <Label
+            entering={FadeIn}
+            exiting={FadeOut}
+            type="boldTitle2"
+            style={[styles.transactionDate, index === 0 && styles.first]}
+            color="light50"
+            testID="SectionLabel">
+            {item}
+          </Label>
+        );
+      }
+
+      return (
+        <DefiDetailsTransactionRow
+          assetAddress={assetAddress}
+          assetNetwork={assetNetwork}
+          assetSymbol={assetSymbol}
+          assetAmount={item.amount.native}
+          assetAmountInUsd={item.amount.usd}
+          protocolLogo={protocolLogo}
+          protocolName={protocolName}
+          title={item.activity}
+          testID="VaultTransaction"
+        />
+      );
+    },
+    [assetAddress, assetNetwork, assetSymbol, protocolLogo, protocolName],
+  );
+
+  const [page, setPage] = useState(1);
+  const loadNextPage = () => setPage(page => ++page);
+  const { data: vaultTransactions } = useVaultTransactionsPagedQuery({ page: page, pageSize: 10, vaultAddress, vaultNetwork });
+  const vaultTransactionsGroupedByDate = useMemo(
+    () => (vaultTransactions ? groupItemsByDate<VaultTransaction>(vaultTransactions, language) : []),
+    [vaultTransactions, language],
+  );
+
   const headerLeftComponent = useCallback(
     () => <DefiDetailsHeaderLeft assetAddress={assetAddress} assetName={assetName} assetNetwork={assetNetwork} assetSymbol={assetSymbol} />,
     [assetAddress, assetName, assetNetwork, assetSymbol],
@@ -66,12 +118,37 @@ const DefiDetailsScreenV2 = ({ navigation }: NavigationProps<'DefiDetailsV2'>) =
     });
   }, [headerLeftComponent, headerRightComponent, navigation]);
 
+  const isRequestInProgress = useRef<boolean>(false);
+  const requestRefresh = useCallback(async () => {
+    if (!isOnline) {
+      return;
+    }
+    if (isRequestInProgress.current) {
+      return;
+    }
+    isRequestInProgress.current = true;
+    showRefreshingVaultsToast();
+    try {
+      await Promise.all([() => []]);
+    } catch (error) {
+      handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
+    } finally {
+      isRequestInProgress.current = false;
+      hideToast({ id: refreshingVaultsEvent });
+    }
+  }, [isOnline]);
+
+  const pullToRefresh = async () => {
+    if (isOnline) {
+      requestRefresh();
+    }
+  };
+
   const insets = useSafeAreaInsets();
 
   const onSheetPositionChange = (position: SheetPosition) => {
     setSheetPosition(position);
   };
-  onSheetPositionChange;
 
   const onScrollEvent = useCallback(
     (e: NativeScrollEvent) => {
@@ -89,18 +166,17 @@ const DefiDetailsScreenV2 = ({ navigation }: NavigationProps<'DefiDetailsV2'>) =
     <GradientScreenView>
       <FadingElement containerStyle={{ marginBottom: insets.bottom + SMALL_SHEET_MIN_HEIGHT }}>
         <FlashListWithRefreshControl
-          onRefresh={() => {}}
+          onRefresh={pullToRefresh}
           ListHeaderComponent={<DefiDetailsHeader />}
           ListEmptyComponent={<DefiDetailsTransactionsEmpty />}
-          data={dataSource}
+          data={vaultTransactionsGroupedByDate}
           ref={flashListRef}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           contentContainerStyle={styles.container}
-          estimatedItemSize={60}
+          estimatedItemSize={20}
           onEndReached={loadNextPage}
           onEndReachedThreshold={0.4}
-          ListFooterComponent={renderFooter}
           onScrollEvent={onScrollEvent}
         />
       </FadingElement>
@@ -132,18 +208,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 150,
   },
-  header: {
-    marginTop: 46,
-    paddingBottom: 4,
+  transactionDate: {
+    marginTop: 24,
+    marginBottom: 16,
   },
-  sectionHeader: {
-    marginTop: 16,
-  },
-  transactionHeaderButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 64,
-    alignItems: 'center',
-    justifyContent: 'center',
+  first: {
+    marginTop: 40,
   },
 });

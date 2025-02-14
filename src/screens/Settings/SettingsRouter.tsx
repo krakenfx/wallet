@@ -22,7 +22,7 @@ import { SupportScreen } from './support';
 import { SettingsBackupVerifyScreen, SettingsWalletBackupMethodScreen, SettingsWalletBackupScreen } from './walletBackup';
 import { SettingsDisplaySeedScreen } from './walletBackup/SettingsDisplaySeedScreen';
 
-import type { KrakenConnectNavigationParams } from '../KrakenConnect/KrakenConnectScreen';
+import type { KrakenConnectNavigationParams } from '../KrakenConnect/types';
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 

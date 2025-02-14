@@ -21,10 +21,15 @@ export const URLs = {
   releaseNotes: 'https://blog.kraken.com/category/product/kraken-wallet',
   supportArticles: 'https://support.kraken.com/hc/en-us/categories/kraken-wallet',
   supportContact: 'https://support.kraken.com/hc/en-us/forms/24835178652180',
+  signUp: 'https://www.kraken.com/sign-up',
+  oauthRedirect: 'krakenwallet://krakenconnect',
 };
 
 export const DISABLE_PREVENT_SCREEN_CAPTURE = Config.DISABLE_PREVENT_SCREEN_CAPTURE;
 export const STORYBOOK_ENABLED = Config.STORYBOOK_ENABLED;
 
 export const KRAKEN_API_URI = Config.KRAKEN_API_URI;
+export const KRAKEN_CONNECT_CLIENT_ID = Config.KRAKEN_CONNECT_CLIENT_ID;
+
+export const KRAKEN_CONNECT_OAUTH_AUTH_URI = Config.KRAKEN_CONNECT_OAUTH_AUTH_URI;
 export const KRAKEN_BETA_API_URI = Config.KRAKEN_BETA_API_URI;

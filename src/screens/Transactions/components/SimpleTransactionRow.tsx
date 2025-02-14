@@ -46,11 +46,11 @@ export const SimpleTransactionRow = React.memo(
 
     const openTransactionDetails = useCallback(() => {
       navigation.navigate(Routes.TransactionDetails, {
-        assetId: contextToken?.assetId,
+        assetId: contextToken?.assetId || classifiedTx.effect.assetId,
         id: item.id,
         transactionDetailsData: transactionDetailsDisplayData,
       });
-    }, [contextToken?.assetId, item.id, navigation, transactionDetailsDisplayData]);
+    }, [classifiedTx.effect.assetId, contextToken?.assetId, item.id, navigation, transactionDetailsDisplayData]);
 
     const isTokenApproval = classifiedTx.type === TRANSACTION_TYPES.TOKEN_APPROVAL || classifiedTx.type === TRANSACTION_TYPES.TOKEN_APPROVAL_UNLIMITED;
 

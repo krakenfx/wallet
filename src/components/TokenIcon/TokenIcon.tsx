@@ -4,8 +4,6 @@ import { MaskedElementWithCoin } from '@/components/MaskedElementWithCoin';
 import type { WalletType } from '@/onChain/wallets/registry';
 import { useAssetMetadata } from '@/realm/assetMetadata';
 
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
-
 import { NETWORK_ICON_BORDER_TO_TOKEN_RATIO, NETWORK_ICON_TO_TOKEN_RATIO } from './constants';
 import { getBundledTokenIcon } from './getBundledTokenIcon';
 import { getTokenNetworkName } from './getTokenNetworkName';
@@ -19,24 +17,20 @@ import type { TokenIconProps } from './TokenIconProps';
 
 export const TokenIcon = (props: TokenIconProps) => {
   const { networkName, tokenId, tokenSymbol, wallet, style, size = 40, testID } = props;
-  const [isAssetV2Enabled] = useFeatureFlag('assetIconsV2Enabled');
   const metadata = useAssetMetadata({ assetId: tokenId || '' });
   const omitNetworkIcon = shouldOmitNetworkIcon(props);
-  const tokenNetworkName = getTokenNetworkName({ isAssetV2Enabled, networkName, wallet, tokenId });
+  const tokenNetworkName = getTokenNetworkName({ networkName, tokenId });
 
-  const bundledIcon = getBundledTokenIcon({ isAssetV2Enabled, tokenSymbol, tokenNetworkName, style: styles.icon, size });
+  const bundledIcon = getBundledTokenIcon({ tokenSymbol, tokenNetworkName, style: styles.icon, size });
 
   const shouldFetchKrakenAsset = bundledIcon === undefined;
   const krakenAssetsIcon = useKrakenAssetsIcon(
-    { isAssetV2Enabled, tokenAddress: metadata?.tokenAddress, style: [styles.icon, { width: size, height: size }] },
+    { tokenAddress: metadata?.tokenAddress, style: [styles.icon, { width: size, height: size }] },
     shouldFetchKrakenAsset,
   );
 
   const shouldFetchLogoUrl = bundledIcon === undefined && krakenAssetsIcon.icon === null;
-  const logoUrlAssetsIcon = useLogoUrlAssetsIcon(
-    { isAssetV2Enabled, logoUrl: metadata?.logoUrl, style: [styles.icon, { width: size, height: size }] },
-    shouldFetchLogoUrl,
-  );
+  const logoUrlAssetsIcon = useLogoUrlAssetsIcon({ logoUrl: metadata?.logoUrl, style: [styles.icon, { width: size, height: size }] }, shouldFetchLogoUrl);
 
   const assetIcon = bundledIcon ?? krakenAssetsIcon.icon ?? logoUrlAssetsIcon.icon;
   const wrappedIcon = assetIcon && <View style={[styles.ball, { width: size, height: size, borderRadius: size / 2 }, style]}>{assetIcon}</View>;

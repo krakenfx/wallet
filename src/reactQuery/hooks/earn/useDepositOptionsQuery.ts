@@ -15,6 +15,7 @@ interface Params<T> {
   networkCaipIds?: string[];
   minimumBalanceThreshold?: number;
   maxVaultsPerAsset?: number;
+  minApy?: number;
 }
 
 export const useDepositOptionsQuery = <T = DepositOptionsResult>({
@@ -22,6 +23,7 @@ export const useDepositOptionsQuery = <T = DepositOptionsResult>({
   networkCaipIds = [],
   minimumBalanceThreshold = 0,
   maxVaultsPerAsset = 1,
+  minApy = 200,
 }: Params<T>) => {
   const isOnline = useIsOnline();
   const ethWallet = useWalletByType('ethereum');
@@ -30,11 +32,11 @@ export const useDepositOptionsQuery = <T = DepositOptionsResult>({
 
   return useQuery({
     enabled: !!ethAddress,
-    queryKey: [queryKey, ethAddress, networkCaipIds, minimumBalanceThreshold, maxVaultsPerAsset],
+    queryKey: [queryKey, ethAddress, networkCaipIds, minimumBalanceThreshold, maxVaultsPerAsset, minApy],
     staleTime: SIX_HOURS,
     gcTime: Infinity,
 
-    queryFn: () => fetchDepositOptions({ address: ethAddress!, networkCaipIds, minimumBalanceThreshold, maxVaultsPerAsset }),
+    queryFn: () => fetchDepositOptions({ address: ethAddress!, networkCaipIds, minimumBalanceThreshold, maxVaultsPerAsset, minApy }),
     select,
   });
 };
@@ -48,4 +50,4 @@ export const useDepositOptionsCardDataQuery = ({ minimumBalanceThreshold, maxVau
   useDepositOptionsQuery({ select: selectCardData, minimumBalanceThreshold, maxVaultsPerAsset });
 
 export const useFilteredDepositOptionsByAssetQuery = (networkCaipIds: string[]) =>
-  useDepositOptionsQuery({ networkCaipIds, select: formatAssetListData, maxVaultsPerAsset: 5 });
+  useDepositOptionsQuery({ networkCaipIds, maxVaultsPerAsset: 5, minimumBalanceThreshold: 1, select: formatAssetListData });

@@ -4,7 +4,6 @@ import { useCallback, useMemo, useState } from 'react';
 import FastImage, { type ImageStyle } from 'react-native-fast-image';
 
 type UseKrakenAssetsIconOptions = {
-  isAssetV2Enabled: boolean;
   tokenAddress: string | null | undefined;
   style: StyleProp<ImageStyle>;
 };
@@ -12,7 +11,7 @@ type UseKrakenAssetsIconOptions = {
 const krakenAssetsIconErrorCache = new Map<string, boolean>();
 
 export const useKrakenAssetsIcon = (
-  { isAssetV2Enabled, tokenAddress, style }: UseKrakenAssetsIconOptions,
+  { tokenAddress, style }: UseKrakenAssetsIconOptions,
   enabled = true,
 ): {
   icon: JSX.Element | null;
@@ -28,7 +27,7 @@ export const useKrakenAssetsIcon = (
   const cachedError = useMemo(() => tokenAddress && krakenAssetsIconErrorCache.get(tokenAddress), [tokenAddress]);
 
   const icon =
-    enabled && isAssetV2Enabled && tokenAddress && !hasError && !cachedError ? (
+    enabled && tokenAddress && !hasError && !cachedError ? (
       <FastImage source={{ uri: `https://assets.kraken.com/marketing/wallet/address/${tokenAddress}.webp` }} style={style} onError={handleError} />
     ) : null;
 

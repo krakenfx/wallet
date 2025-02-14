@@ -6,7 +6,7 @@ import { NetworkIcon } from '@/components/NetworkIcon';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
 import type { WalletType } from '@/onChain/wallets/registry';
-import { getNetworkByNetworkId } from '@/screens/KrakenConnectSend/utils';
+import { getWalletNetworkByNetworkId } from '@/screens/KrakenConnectSend/utils';
 import { useTheme } from '@/theme/themes';
 
 import loc from '/loc';
@@ -19,9 +19,9 @@ interface Props {
 
 export const NetworkSelectButton = ({ selectedMethod, onPress, isOpen }: Props) => {
   const { colors } = useTheme();
-  const network = selectedMethod && getNetworkByNetworkId(selectedMethod.network_id);
+  const network = selectedMethod && getWalletNetworkByNetworkId(selectedMethod.network_id);
 
-  const networkIconName = network?.name || 'selectNetwork';
+  const networkIconName = network?.type || 'selectNetwork';
   const label = selectedMethod
     ? loc.formatString(loc.krakenConnect.selectNetwork.network, { selectedNetworkName: selectedMethod.network })
     : loc.krakenConnect.selectNetwork.title;

@@ -11,7 +11,16 @@
     "copyToClipboard": "Скопировано в буфер обмена",
     "details": "Подробные сведения",
     "done": "Готово",
+    "high": "Высокие:",
+    "low": "Низкие:",
     "ok": "ОК",
+    "period": {
+      "all": "Все",
+      "day": "Д",
+      "month": "М",
+      "week": "Еженед.",
+      "year": "Г."
+    },
     "plus": "+{count}",
     "receive": "Получать",
     "reconnecting": "Повторное подключение",
@@ -44,7 +53,9 @@
       "advanced_info": "Расширенная информация",
       "connected_apps": "Подключенные приложения",
       "delete": "Удалить",
-      "edit": "Настроить"
+      "edit": "Настроить",
+      "exchange_connect": "Подключить к Kraken",
+      "exchange_disconnect": "Отключить от Kraken"
     },
     "walletDelete": {
       "error": "Не удалось удалить кошелек. Повторите попытку",
@@ -122,6 +133,7 @@
     "confirm": "Подтвердить",
     "contractAddress": "Адрес контракта",
     "contractInteraction": "Взаимодействие по контракту",
+    "declinedRequest": "Пользователь отклонил запрос",
     "deposit": "Пополнение",
     "from": "С",
     "message": "Сообщение",
@@ -448,7 +460,9 @@
     "allAssets": "Все активы",
     "apy": "APY",
     "detailsSheet": {
-      "deposit": "Внесите {symbol} в {protocol}",
+      "deposit": "Пополнение",
+      "depositCta": "Внесите {symbol} в {protocol}",
+      "from": "С:",
       "high": "Высокие:",
       "info": {
         "about": "Подробнее о {symbol}",
@@ -471,7 +485,10 @@
         "month": "М",
         "week": "Еженед.",
         "year": "Г."
-      }
+      },
+      "to": "На:",
+      "transfer": "Перевод",
+      "withdraw": "Вывод"
     },
     "earnCTA": "Заработать",
     "earnOnYourAssets": "Зарабатывайте на своих активах",
@@ -518,10 +535,14 @@
     "generalFetchError": "Ошибка, повторите попытку",
     "generic": "Что-то пошло не так",
     "genericTryAgainLater": "Произошла ошибка. Повторите попытку позже",
+    "invalidRequest": "Недействительный запрос {method}",
     "network": "Ошибка сети",
     "offline": "Офлайн",
     "offlineRetry": "Вы не в сети. Повторите попытку, когда будете в сети.",
-    "seedMissing": "Серьезная ошибка! Секретная фраза для восстановления недоступна."
+    "permissionDenied": "В доступе отказано",
+    "seedMissing": "Серьезная ошибка! Секретная фраза для восстановления недоступна.",
+    "unauthorizedRequest": "Несанкционированный запрос",
+    "unsupportedChain": "Неподдерживаемая цепочка"
   },
   "explore": {
     "continueAccessibilityHint": "Ознакомьтесь с отказом от ответственности, примите его и продолжите",
@@ -715,12 +736,27 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "на Kraken",
+    "connected": {
+      "alert": "Только текущий кошелек «<b>{walletName}</b>» был подключен к Kraken.",
+      "cta": "Переместить в кошелек",
+      "feature0": "Возможность <b>быстро получать средства</b> путем их перевода из аккаунта Kraken",
+      "feature1": "Отслеживайте <b>баланс ончейн и баланс на бирже Kraken</b> прямо в своем кошельке",
+      "featuresTitle": "Вы разблокировали:",
+      "success": "Аккаунт Kraken подключен!"
+    },
+    "connecting": "Подключение к Kraken",
+    "connectingFailed": "Ошибка при подключении к Kraken ",
     "exchangeBalance": "Баланс обмена",
     "fundCta": {
       "body": "Подключите свой аккаунт Kraken к",
       "bodyBold": "переводите криптовалюту в свой кошелек",
       "heading": "Пополните ваш кошелек"
     },
+    "noData": {
+      "description": "Аккаунт на бирже Kraken не содержит активы для перевода.",
+      "title": "Нет активов для перевода"
+    },
+    "pendingTransactionId": "Идентификатор транзакции Kraken",
     "selectNetwork": {
       "description": "Выберите сеть для зачисления {assetLabel} в ваш кошелек.",
       "fee": "Комиссия в размере {assetValue}",
@@ -742,7 +778,7 @@
         "alert": "После отключения вашего кошелька ключ API останется действительным в настройках API биржи Kraken в течение 6 месяцев.",
         "description": "Вы действительно хотите отключить этот кошелек от Kraken?",
         "title": "Отключить от Kraken",
-        "warningMessage": "Вы больше не сможете мгновенно переводить средства между вашим кошельком <b>«{walletName}»<b> и вашим аккаунтом на бирже Kraken."
+        "warningMessage": "Вы больше не сможете мгновенно переводить средства между вашим кошельком <b>«{walletName}»</b> и вашим аккаунтом на бирже Kraken."
       },
       "walletsListTitle": "Ваши кошельки"
     },
@@ -764,10 +800,13 @@
     },
     "transfer": {
       "available": "Доступно {value}",
+      "confirm": "Подтвердить перевод",
+      "network": "Сеть",
       "selectAsset": "Выберите актив для перевода",
       "selectAssetDescription": "Перевод с биржи Kraken на ваш кошелек",
       "title": "Перевод",
       "transferFee": "Комиссия за перемещение",
+      "transferringTo": "Перевод на",
       "unsupportedAssets": "Неподдерживаемые активы",
       "unsupportedAssetsDescription": "Некоторые активы ({count}) в вашем аккаунте на бирже не поддерживаются кошельком"
     },
@@ -1334,6 +1373,7 @@
     "feeWarning": "Текущая комиссия сети составляет {feeAmount}, что превышает {percentage}% от суммы перевода.",
     "invalidAddress": "Недействительный адрес, проверьте и попробуйте снова",
     "max": "Макс.",
+    "minAmount": "Мин. размер перевода: {minAmount} {token}",
     "network_fee": "Комиссия сети",
     "networkWarning": {
       "alertBody": "Убедитесь, что у получателя есть кошелек, поддерживающий {networkName}.",

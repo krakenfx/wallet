@@ -5,9 +5,9 @@ import { useRealmTransaction } from '../hooks/useRealmTransaction';
 
 import { useRealm } from '../RealmContext';
 
-import { KRAKEN_CONNECT_CREDENTIALS_REALM_KEY, REALM_TYPE_KRAKEN_CONNECT_CREDENTIALS } from './schema';
+import { KRAKEN_CONNECT_CREDENTIALS_REALM_KEY, REALM_TYPE_KRAKEN_CONNECT_CREDENTIALS, REALM_TYPE_KRAKEN_OAUTH_VERIFICATION } from './schema';
 
-import type { KrakenConnectCredentials } from './schema';
+import type { KrakenConnectCredentials, KrakenConnectOauthVerification } from './schema';
 
 export const useKrakenConnectMutations = () => {
   const realm = useRealm();
@@ -37,8 +37,32 @@ export const useKrakenConnectMutations = () => {
     });
   }, [realm, runInTransaction]);
 
+  const saveOauthVerification = useCallback(
+    (challenge: string, verification: string) => {
+      runInTransaction(() => {
+        realm.create<KrakenConnectOauthVerification>(
+          REALM_TYPE_KRAKEN_OAUTH_VERIFICATION,
+          {
+            challenge,
+            verification,
+          },
+          Realm.UpdateMode.Modified,
+        );
+      });
+    },
+    [realm, runInTransaction],
+  );
+
+  const deleteOauthVerification = useCallback(() => {
+    runInTransaction(() => {
+      realm.delete(realm.objects(REALM_TYPE_KRAKEN_OAUTH_VERIFICATION));
+    });
+  }, [realm, runInTransaction]);
+
   return {
     saveExchangeCredentials,
     deleteExchangeCredentials,
+    saveOauthVerification,
+    deleteOauthVerification,
   };
 };

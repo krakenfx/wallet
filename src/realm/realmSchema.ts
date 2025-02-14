@@ -14,7 +14,7 @@ import {
   DefiTokenNestedSchema,
   DefiTokenSchema,
 } from './defi';
-import { KrakenConnectCredentialsSchema } from './krakenConnect/schema';
+import { KrakenConnectCredentialsSchema, KrakenConnectOauthVerificationSchema } from './krakenConnect/schema';
 import { NftMetadataSchema } from './nftMetadata';
 import { NftSchema, NftTraitsSchema } from './nfts';
 import { SettingsSchema } from './settings';
@@ -64,6 +64,7 @@ export const RealmSchema = [
   DefiProductsSchema,
   DefiSchema,
   KrakenConnectCredentialsSchema,
+  KrakenConnectOauthVerificationSchema,
   PendingTransactionsSchema,
   UsdFiatRatesSchema,
   AssetMarketDataSchema,

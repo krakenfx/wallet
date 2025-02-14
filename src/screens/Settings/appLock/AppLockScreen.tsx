@@ -1,42 +1,63 @@
-import { AuthenticationType, SecurityLevel } from 'expo-local-authentication';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { SecurityLevel } from 'expo-local-authentication';
+import { useRef, useState } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
 
 import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { GradientScreenView } from '@/components/Gradients';
 import { MissingBiometricsSheet } from '@/components/MissingBiometricsSheet';
+import { useAuthType } from '@/hooks/useAuthType';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
+import { useKrakenConnectCredentials } from '@/realm/krakenConnect/useKrakenConnectCredentials';
+import { useKrakenConnectMutations } from '@/realm/krakenConnect/useKrakenConnectMutation';
+import { useSettingsMutations } from '@/realm/settings';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsCheckItem, SettingsCheckItemsBox, SettingsInfoBox, SettingsSwitch } from '../components';
 
 import { useIsAppLockUsed } from './hooks/useIsAppLockUsed';
 
-import { SECURITY_ENROLLED_NONE, disableBiometrics, enableBiometrics, getSupportedAuthentication } from '/helpers/biometric-unlock';
+import { SECURITY_ENROLLED_NONE, disableBiometrics, enableBiometrics } from '/helpers/biometric-unlock';
 import loc from '/loc';
 
 export const AppLockScreen = () => {
   const { isAppLockUsed, setIsAppLockUsed } = useIsAppLockUsed();
-  const [supportedAuth, setSupportedAuth] = useState<Awaited<ReturnType<typeof getSupportedAuthentication>>>();
   const [isLoading, setIsLoading] = useState(false);
+  const { supportedAuth, authType } = useAuthType();
+  const { API_KEY } = useKrakenConnectCredentials();
+  const { deleteExchangeCredentials } = useKrakenConnectMutations();
+  const { removeExchangeConnectForAllAccounts } = useSettingsMutations();
 
   const bottomSheetModalRef = useRef<BottomSheetModalRef>(null);
 
   useHeaderTitle(loc.appLock.title);
 
-  useEffect(() => {
-    async function getAvailableTypes() {
-      const auth = await getSupportedAuthentication();
-      setSupportedAuth(auth);
-    }
-    getAvailableTypes();
-  }, []);
+  const shouldProceedWithRemovingKrakenConnectKeys = () => {
+    return new Promise(resolve => {
+      Alert.alert(
+        loc.krakenConnect.appLockWarning.title,
+        loc.krakenConnect.appLockWarning.description,
+        [
+          { text: loc.krakenConnect.appLockWarning.ctaCancel, onPress: () => resolve(false), style: 'cancel' },
+          { text: loc.krakenConnect.appLockWarning.ctaTurnOff, onPress: () => resolve(true), style: 'destructive' },
+        ],
+        { cancelable: false },
+      );
+    });
+  };
 
   const toggleAppLock = async () => {
     if (isLoading) {
       return;
     }
     try {
+      if (API_KEY && isAppLockUsed) {
+        const shouldProceed = await shouldProceedWithRemovingKrakenConnectKeys();
+        if (!shouldProceed) {
+          return Promise.reject('AppLock not disabled');
+        }
+        deleteExchangeCredentials();
+        removeExchangeConnectForAllAccounts();
+      }
       setIsLoading(true);
       if (isAppLockUsed) {
         if (await disableBiometrics()) {
@@ -60,29 +81,6 @@ export const AppLockScreen = () => {
       setIsLoading(false);
     }
   };
-
-  const authType = useMemo(() => {
-    if (supportedAuth) {
-      const { securityLevelEnrolled, authenticationTypes } = supportedAuth;
-      switch (securityLevelEnrolled) {
-        case SecurityLevel.SECRET:
-          return loc.appLock.authType.passcode;
-        case SecurityLevel.BIOMETRIC_STRONG:
-        case SecurityLevel.BIOMETRIC_WEAK:
-        case SecurityLevel.NONE: {
-          if (Platform.OS === 'ios' && authenticationTypes.length === 1) {
-            switch (authenticationTypes[0]) {
-              case AuthenticationType.FACIAL_RECOGNITION:
-                return loc.appLock.authType.faceId;
-              case AuthenticationType.FINGERPRINT:
-                return loc.appLock.authType.touchId;
-            }
-          }
-        }
-      }
-    }
-    return loc.appLock.authType.generic;
-  }, [supportedAuth]);
 
   return (
     <GradientScreenView>

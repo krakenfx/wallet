@@ -14,6 +14,7 @@ import { FlashListWithRefreshControl } from '@/components/ScrollerWithRefreshCon
 import { SvgIcon } from '@/components/SvgIcon';
 import { hideToast } from '@/components/Toast';
 import { Touchable } from '@/components/Touchable';
+import { getImplForWallet } from '@/onChain/wallets/registry';
 import { useAssetMarketdataFetch } from '@/realm/assetMarketData';
 import { useAssetMetadataFetch } from '@/realm/assetMetadata';
 import { useResolvedAssetBalance, useTokenById, useTokensFetch } from '@/realm/tokens';
@@ -53,7 +54,11 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
   const flashListRef = useRef<FlashList<TransactionListItem>>(null);
 
   const [walletId, _, tokenId] = useResolvedAssetBalance(params.assetBalanceId);
+
   const realmWallet = useRealmWalletById(walletId)!;
+
+  const { network } = getImplForWallet(realmWallet);
+
   const token = useTokenById(tokenId);
   const { colors } = useTheme();
 
@@ -69,7 +74,6 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
 
   const requestRefresh = useCallback(
     async (showIndicator = true, withMetadata = false) => {
-      console.log('[Transactions/Balance] requestRefresh', realmWallet.id);
       if (!realmWallet || !isOnline) {
         return;
       }
@@ -185,7 +189,13 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
           ListHeaderComponent={
             <>
               {token ? <TransactionsTokenHeader token={token} testID="TokenScreen" /> : null}
-              <TokenActionButtons navigation={navigation} assetBalanceId={params.assetBalanceId} canSwap={canSwap} />
+              <TokenActionButtons
+                navigation={navigation}
+                assetBalanceId={params.assetBalanceId}
+                canSwap={canSwap}
+                assetSymbol={token?.metadata.symbol}
+                krakenConnectNetworkId={network.krakenConnectNetworkId}
+              />
               {dataSource && dataSource?.length > 0 && (
                 <ListHeader buttonTestID="TokenScreen-BottomSheet-Heading" title={loc.transactionTile.activity} style={styles.header} />
               )}
