@@ -11,7 +11,7 @@ export const SolanaPanel = ({ derivationPath }: { derivationPath: string }) => {
     <View>
       <GradientPanelHeader>
         <View style={styles.panelHeader}>
-          <TokenIcon networkName="solana" forceOmitNetworkIcon />
+          <TokenIcon networkName="solana" forceOmitNetworkIcon tokenSymbol="SOL" />
           <Label type="boldTitle2">Solana</Label>
         </View>
       </GradientPanelHeader>

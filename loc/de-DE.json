@@ -11,7 +11,16 @@
     "copyToClipboard": "In die Zwischenablage kopiert",
     "details": "Details",
     "done": "Fertig",
+    "high": "Hoch:",
+    "low": "Niedrig:",
     "ok": "OK",
+    "period": {
+      "all": "Alle",
+      "day": "T",
+      "month": "Mio.",
+      "week": "W",
+      "year": "J"
+    },
     "plus": "+{count}",
     "receive": "Erhalten",
     "reconnecting": "Verbindung wird wiederhergestellt ...",
@@ -44,7 +53,9 @@
       "advanced_info": "Erweiterte Informationen",
       "connected_apps": "Verbundene Apps",
       "delete": "Entfernen",
-      "edit": "Anpassen"
+      "edit": "Anpassen",
+      "exchange_connect": "Mit Kraken verbinden",
+      "exchange_disconnect": "Von Kraken trennen"
     },
     "walletDelete": {
       "error": "Die Wallet wurde nicht entfernt, bitte versuche es erneut",
@@ -122,6 +133,7 @@
     "confirm": "Bestätigen",
     "contractAddress": "Vertragsadresse",
     "contractInteraction": "Interaktion zwischen Verträgen",
+    "declinedRequest": "Benutzer hat die Anfrage abgelehnt",
     "deposit": "Einzahlung",
     "from": "Von",
     "message": "Nachricht",
@@ -448,7 +460,9 @@
     "allAssets": "Alle Assets",
     "apy": "APY",
     "detailsSheet": {
-      "deposit": "Zahle etwas {symbol} auf {protocol} ein",
+      "deposit": "Einzahlen",
+      "depositCta": "Zahle etwas {symbol} auf {protocol} ein",
+      "from": "Von:",
       "high": "Hoch:",
       "info": {
         "about": "Über {symbol}",
@@ -471,7 +485,10 @@
         "month": "Mio.",
         "week": "W",
         "year": "J"
-      }
+      },
+      "to": "An:",
+      "transfer": "Überweisen",
+      "withdraw": "Auszahlen"
     },
     "earnCTA": "Earn",
     "earnOnYourAssets": "Verdiene mit deinen Assets",
@@ -518,10 +535,14 @@
     "generalFetchError": "Ein Fehler ist aufgetreten, bitte versuche es erneut",
     "generic": "Etwas ist schiefgelaufen",
     "genericTryAgainLater": "Etwas ist schief gelaufen, bitte versuche es später erneut",
+    "invalidRequest": "Ungültige {method}-Anfrage",
     "network": "Netzwerkfehler",
     "offline": "Offline",
     "offlineRetry": "Du bist offline. Versuche es erneut, wenn du online bist.",
-    "seedMissing": "Kritischer Fehler! Seed ist nicht verfügbar."
+    "permissionDenied": "Berechtigung verweigert",
+    "seedMissing": "Kritischer Fehler! Seed ist nicht verfügbar.",
+    "unauthorizedRequest": "Nicht berechtigte Anfrage",
+    "unsupportedChain": "Nicht unterstützte Chain"
   },
   "explore": {
     "continueAccessibilityHint": "Haftungsausschluss akzeptieren und fortfahren",
@@ -715,12 +736,27 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "auf Kraken",
+    "connected": {
+      "alert": "Nur die aktuelle Wallet „<b>{walletName}</b>“ wurde mit Kraken verbunden.",
+      "cta": "Überweisung auf die Wallet",
+      "feature0": "Die Fähigkeit; per Überweisung von deinem Kraken Konto <b>schnell Mittel zu erhalten</b>",
+      "feature1": "Verfolge dein <b>Guthaben On-Chain und auf Kraken Exchange</b> direkt von deiner Wallet aus",
+      "featuresTitle": "Du hast Folgendes freigeschaltet:",
+      "success": "Kraken Konto verbunden."
+    },
+    "connecting": "Verbindung zu Kraken wird hergestellt",
+    "connectingFailed": "Fehler bei der Verbindung zu Kraken ",
     "exchangeBalance": "Börsenguthaben",
     "fundCta": {
       "body": "Verbinde dein Kraken Konto mit",
       "bodyBold": "Krypto auf deine Wallet überweisen",
       "heading": "Zahle in deine Wallet ein"
     },
+    "noData": {
+      "description": "Dein Kraken Exchange-Konto enthält keine Assets zum Überweisen.",
+      "title": "Keine Assets zum Überweisen"
+    },
+    "pendingTransactionId": "Kraken Transaktions-ID",
     "selectNetwork": {
       "description": "Wähle aus, in welchem Netzwerk du deine {assetLabel} in deine Wallet erhalten möchtest.",
       "fee": "{assetValue} Gebühr",
@@ -742,7 +778,7 @@
         "alert": "Wenn deine Wallet getrennt wurde, bleibt der API-Schlüssel in deinen API-Einstellungen von Kraken Exchange sechs Monate lang gültig.",
         "description": "Möchtest du diese Wallet wirklich von Kraken trennen?",
         "title": "Von Kraken trennen",
-        "warningMessage": "Nahtlose Überweisungen zwischen deiner Wallet „{walletName}“ und deinem Kraken Exchange-Konto sind dann nicht mehr möglich."
+        "warningMessage": "Nahtlose Überweisungen zwischen deiner Wallet <b>„{walletName}“</b> und deinem Kraken Exchange-Konto sind nicht mehr möglich."
       },
       "walletsListTitle": "Deine Wallets"
     },
@@ -764,10 +800,13 @@
     },
     "transfer": {
       "available": "{value} verfügbar",
+      "confirm": "Transfer bestätigen",
+      "network": "Netzwerk",
       "selectAsset": "Asset zur Überweisung auswählen",
       "selectAssetDescription": "Von Kraken Exchange auf deine Wallet überweisen",
       "title": "Überweisen",
       "transferFee": "Überweisungsgebühr",
+      "transferringTo": "Überweisung an",
       "unsupportedAssets": "Nicht unterstützte Assets",
       "unsupportedAssetsDescription": "{count} weitere Assets auf deinem Börsenkonto werden nicht von der Wallet unterstützt"
     },
@@ -1334,6 +1373,7 @@
     "feeWarning": "Die aktuelle Netzwerkgebühr beträgt {feeAmount}. Das sind mehr als {percentage} % von dem, was du sendest.",
     "invalidAddress": "Ungültige Adresse, bitte überprüfen und erneut versuchen",
     "max": "Max.",
+    "minAmount": "Min. Überweisungswert: {minAmount} {token}",
     "network_fee": "Netzwerkgebühr",
     "networkWarning": {
       "alertBody": "Vergewissere dich, dass die Person, an die du sendest, eine Wallet hat, die {networkName} unterstützt",

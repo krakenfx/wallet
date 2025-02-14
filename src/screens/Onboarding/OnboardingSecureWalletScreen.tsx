@@ -1,7 +1,7 @@
-import { AuthenticationType, SecurityLevel } from 'expo-local-authentication';
+import { SecurityLevel } from 'expo-local-authentication';
 import LottieView from 'lottie-react-native';
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import type { BottomSheetModalRef } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
@@ -9,17 +9,16 @@ import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
 import { LargeHeaderPage } from '@/components/LargeHeaderPage';
 import { MissingBiometricsSheet } from '@/components/MissingBiometricsSheet';
+import { useAuthType } from '@/hooks/useAuthType';
 import { Routes } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import type { OnboardingNavigationProps } from './OnboardingRouter';
 
-import { SECURITY_ENROLLED_NONE, enableBiometrics, getSupportedAuthentication } from '/helpers/biometric-unlock';
+import { SECURITY_ENROLLED_NONE, enableBiometrics } from '/helpers/biometric-unlock';
 import loc from '/loc';
 
 export const OnboardingSecureWalletScreen = ({ navigation }: OnboardingNavigationProps<'OnboardingSecureWallet'>) => {
-  const [supportedAuth, setSupportedAuth] = useState<Awaited<ReturnType<typeof getSupportedAuthentication>>>();
-
   const finishOnboarding = useCallback((hasSecuredWallet?: boolean) => navigation.replace(Routes.OnboardingPushPrompt, { hasSecuredWallet }), [navigation]);
 
   const bottomSheetModalRef = useRef<BottomSheetModalRef>(null);
@@ -47,44 +46,11 @@ export const OnboardingSecureWalletScreen = ({ navigation }: OnboardingNavigatio
     [handleSkip, isLoading],
   );
 
-  useEffect(() => {
-    async function getAvailableTypes() {
-      const auth = await getSupportedAuthentication();
-      setSupportedAuth(auth);
-    }
-    getAvailableTypes();
-  }, []);
-
   useLayoutEffect(() => {
     navigation.setOptions({ headerRight });
   }, [headerRight, navigation]);
 
-  const authType = useMemo(() => {
-    if (!supportedAuth) {
-      return '';
-    }
-    const { securityLevelEnrolled, authenticationTypes } = supportedAuth;
-    switch (securityLevelEnrolled) {
-      case SecurityLevel.SECRET:
-        return loc.onboarding_secure_wallet.authPasscode;
-      case SecurityLevel.BIOMETRIC_STRONG:
-      case SecurityLevel.BIOMETRIC_WEAK:
-      case SecurityLevel.NONE: {
-        if (Platform.OS === 'ios' && authenticationTypes.length === 1) {
-          switch (authenticationTypes[0]) {
-            case AuthenticationType.FACIAL_RECOGNITION:
-              return loc.onboarding_secure_wallet.authFaceID;
-            case AuthenticationType.FINGERPRINT:
-              return loc.onboarding_secure_wallet.authTouchID;
-          }
-        }
-        if (authenticationTypes.length > 0) {
-          return loc.onboarding_secure_wallet.authBiometric;
-        }
-      }
-    }
-    return loc.onboarding_secure_wallet.authPasscode;
-  }, [supportedAuth]);
+  const { supportedAuth, authType } = useAuthType();
 
   const description = supportedAuth ? loc.formatString(loc.onboarding_secure_wallet.caption, { authType }) : '';
 

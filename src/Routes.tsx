@@ -13,7 +13,8 @@ import type { ScanQRCodeParams } from '@/screens/ConnectAppQRScan';
 import type { DefiDetailsRouteParams, DefiDetailsRouteParamsV2 } from '@/screens/DefiDetails';
 import type { EditNoteParams } from '@/screens/EditNoteScreen';
 import type { ExplainerProps } from '@/screens/Explainer';
-import type { KrakenConnectSendScreenNavigationParams } from '@/screens/KrakenConnectSend/KrakenConnectSendScreen';
+import type { ExploreSubpageNavigationParams } from '@/screens/Explore/ExploreSubpageScreen';
+import type { KrakenConnectSendStackParams } from '@/screens/KrakenConnectSend/KrakenConnectSendRouter';
 import type { ManageAssetsGlobalFilterParams } from '@/screens/ManageAssetsGlobalFilter';
 import type { ManageNftParams } from '@/screens/Nfts/ManageNftScreen';
 import type { NftCollectionParams } from '@/screens/Nfts/NftCollectionScreen';
@@ -25,14 +26,13 @@ import type { SendStackParams } from '@/screens/Send/SendRouter';
 import type { AppDetailsParams } from '@/screens/Settings/AppDetailsScreen';
 import type { ConnectedAppsParams } from '@/screens/Settings/ConnectedApps';
 import type { SettingsStackParams } from '@/screens/Settings/SettingsRouter';
+import type { SwapScreenParams } from '@/screens/Swap';
 import type { TransactionDetailsParams, TransactionsRouteProps } from '@/screens/Transactions';
 import type { TriggeredPushPromptParams } from '@/screens/TriggerredPushPromptScreen';
 import type { UniversalSendRouteParams } from '@/screens/UniversalSend';
 
-import type { ExploreSubpageNavigationParams } from './screens/Explore/ExploreSubpageScreen';
+import { type KrakenConnectNavigationParams } from './screens/KrakenConnect/types';
 
-import type { KrakenConnectNavigationParams } from './screens/KrakenConnect/KrakenConnectScreen';
-import type { SwapScreenParams } from './screens/Swap';
 import type { NavigatorScreenParams } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -70,7 +70,8 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     Diagnostics: undefined;
     Explore: undefined;
     ExploreSubpage: ExploreSubpageNavigationParams;
-    KrakenConnect: KrakenConnectNavigationParams | undefined;
+    KrakenConnectLanding: KrakenConnectNavigationParams | undefined;
+    KrakenConnectConnected: KrakenConnectNavigationParams;
     KrakenConnectDisconnect: KrakenConnectNavigationParams;
     Swap: SwapScreenParams | undefined;
     Earn: undefined;
@@ -82,7 +83,7 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     GlobalActivity: undefined;
     Home: undefined;
     KrakenConnectTransfer: undefined;
-    KrakenConnectSend: KrakenConnectSendScreenNavigationParams;
+    KrakenConnectSendStack: NavigatorScreenParams<KrakenConnectSendStackParams>;
     Language: undefined;
     ManageAssetsGlobalFilter: ManageAssetsGlobalFilterParams;
     ManageNft: ManageNftParams;
@@ -114,7 +115,8 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
   } & OnboardingStackParams &
     SettingsStackParams &
     AccountStackParams &
-    SendStackParams
+    SendStackParams &
+    KrakenConnectSendStackParams
 >;
 
 export enum Routes {
@@ -145,10 +147,11 @@ export enum Routes {
   ExtendedPublicKey = 'ExtendedPublicKey',
   GlobalActivity = 'GlobalActivity',
   Home = 'Home',
-  KrakenConnect = 'KrakenConnect',
+  KrakenConnectLanding = 'KrakenConnectLanding',
+  KrakenConnectConnected = 'KrakenConnectConnected',
   KrakenConnectDisconnect = 'KrakenConnectDisconnect',
   KrakenConnectTransfer = 'KrakenConnectTransfer',
-  KrakenConnectSend = 'KrakenConnectSend',
+  KrakenConnectSendStack = 'KrakenConnectSendStack',
   Language = 'Language',
   ManageAssetsGlobalFilter = 'ManageAssetsGlobalFilter',
   ManageNft = 'ManageNft',
@@ -212,6 +215,9 @@ export enum Routes {
   Send = 'Send',
   SendConfirm = 'SendConfirm',
   SendQRScan = 'SendQRScan',
+
+  KrakenConnectSend = 'KrakenConnectSend',
+  KrakenConnectSendConfirm = 'KrakenConnectSendConfirm',
 }
 
 /* eslint-disable @typescript-eslint/no-namespace */

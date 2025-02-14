@@ -38,6 +38,7 @@ export type Props = {
   onToggleCurrency?: (inputInFiatCurrency: boolean) => void;
   inputStyle?: StyleProp<ViewStyle>;
   autoFocus?: boolean;
+  minAmount?: string;
 };
 
 export interface AmountInputRef {
@@ -49,7 +50,7 @@ export interface AmountInputRef {
 }
 
 export const AmountInput = React.forwardRef<AmountInputRef, Props>(
-  ({ token, network, currentFeeEstimate, onToggleCurrency, inputStyle = {}, autoFocus = true }, ref) => {
+  ({ token, network, currentFeeEstimate, onToggleCurrency, inputStyle = {}, autoFocus = true, minAmount }, ref) => {
     const [assetAmount, setAssetAmount] = useState('');
     const [fiatAmount, setFiatAmount] = useState('');
     const { colors } = useTheme();
@@ -199,13 +200,27 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(
       } else if (isNativeToken ? amount.isGreaterThan(availableAssetAmount) : feeAmount.isGreaterThan(feeTokenBalanceAmount)) {
         setErrorMessage(loc.formatString(loc.send.exceedsFee, { token: feeToken.metadata.symbol }).toString());
         formField.setInvalid();
+      } else if (isAssetFromKrakenConnect && minAmount !== undefined && amount.isLessThan(minAmount)) {
+        setErrorMessage(loc.formatString(loc.send.minAmount, { minAmount, token: feeToken.metadata.symbol }).toString());
+        formField.setInvalid();
       } else if (!amount.isZero()) {
         formField.setValid();
       }
       if (inputInFiatCurrency) {
         setFiatAmount(Number(fiatAmount).toFixed(2));
       }
-    }, [amounts, assetAmount, feeToken.metadata.symbol, fiatAmount, formField, inputInFiatCurrency, isMaxAmount, isNativeToken]);
+    }, [
+      amounts,
+      assetAmount,
+      feeToken.metadata.symbol,
+      fiatAmount,
+      formField,
+      inputInFiatCurrency,
+      isAssetFromKrakenConnect,
+      isMaxAmount,
+      isNativeToken,
+      minAmount,
+    ]);
 
     useEffect(() => {
       if (isMaxAmount) {

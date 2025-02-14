@@ -75,5 +75,6 @@ const buildAssetContentItem = async ({
 
     assetNetwork: getNetworkName(network.caipId) as WalletType,
     assetSymbol: tokenMetadata?.symbol ?? '',
+    assetId,
   };
 };

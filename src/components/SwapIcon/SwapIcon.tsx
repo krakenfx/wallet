@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     justifyContent: 'center',
     bottom: 5,
-    marginRight: 27,
+    marginRight: 15,
   },
   iconSwapBottom: {
     position: 'absolute',

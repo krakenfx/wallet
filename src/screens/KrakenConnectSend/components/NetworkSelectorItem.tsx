@@ -8,7 +8,7 @@ import { Touchable } from '@/components/Touchable';
 import { type WalletType } from '@/onChain/wallets/registry';
 import { useTheme } from '@/theme/themes';
 
-import { getNetworkByNetworkId } from '../utils';
+import { getWalletNetworkByNetworkId } from '../utils';
 
 import loc from '/loc';
 
@@ -20,7 +20,7 @@ interface Props {
 
 export const NetworkItem = ({ method, assetSymbol, onSelect }: Props) => {
   const { colors } = useTheme();
-  const network = getNetworkByNetworkId(method.network_id);
+  const network = getWalletNetworkByNetworkId(method.network_id);
 
   if (!network) {
     return null;
@@ -38,7 +38,7 @@ export const NetworkItem = ({ method, assetSymbol, onSelect }: Props) => {
     <Touchable style={[styles.listItem, { backgroundColor: colors.purple_15 }]} key={method.network_id} onPress={handleSelect}>
       <View style={styles.left}>
         <View style={styles.itemHeader}>
-          <NetworkIcon networkName={network.name as WalletType} size={28} />
+          <NetworkIcon networkName={network.type as WalletType} size={28} />
           <Label type="boldTitle2">{method.network}</Label>
         </View>
         <View style={styles.fees}>

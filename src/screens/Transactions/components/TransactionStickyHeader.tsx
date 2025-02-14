@@ -53,6 +53,7 @@ const TransactionStickyHeaderContent: React.FC<TransactionStickyHeaderContentPro
     }
 
     case TRANSACTION_PENDING_TYPES.SEND:
+    case TRANSACTION_PENDING_TYPES.RECEIVE_FROM_KRAKEN:
     case TRANSACTION_PENDING_TYPES.RECEIVE: {
       return (
         <TransactionHeader

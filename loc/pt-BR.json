@@ -11,7 +11,16 @@
     "copyToClipboard": "Copiado para área de transferência",
     "details": "Detalhes",
     "done": "Concluído",
+    "high": "Alto:",
+    "low": "Baixo:",
     "ok": "OK",
+    "period": {
+      "all": "Tudo",
+      "day": "D",
+      "month": "M",
+      "week": "W",
+      "year": "A"
+    },
     "plus": "+{count}",
     "receive": "Receber",
     "reconnecting": "Reconectando",
@@ -44,7 +53,9 @@
       "advanced_info": "Informações avançadas",
       "connected_apps": "Aplicativos conectados",
       "delete": "Remover",
-      "edit": "Personalizar"
+      "edit": "Personalizar",
+      "exchange_connect": "Conectar a Kraken",
+      "exchange_disconnect": "Desconectar da Kraken"
     },
     "walletDelete": {
       "error": "A carteira não foi removida. Tente novamente",
@@ -122,6 +133,7 @@
     "confirm": "Confirmar",
     "contractAddress": "Endereço do contrato",
     "contractInteraction": "Interação do contrato",
+    "declinedRequest": "O usuário recusou a solicitação",
     "deposit": "Depositar",
     "from": "De",
     "message": "Mensagem",
@@ -448,7 +460,9 @@
     "allAssets": "Todos os ativos",
     "apy": "APY",
     "detailsSheet": {
-      "deposit": "Deposite {symbol} em {protocol}",
+      "deposit": "Depositar",
+      "depositCta": "Deposite {symbol} em {protocol}",
+      "from": "De:",
       "high": "Alto:",
       "info": {
         "about": "Sobre {symbol}",
@@ -471,7 +485,10 @@
         "month": "M",
         "week": "W",
         "year": "A"
-      }
+      },
+      "to": "Para:",
+      "transfer": "Transferência",
+      "withdraw": "Retirar"
     },
     "earnCTA": "Ganhe",
     "earnOnYourAssets": "Ganhe em cima de seus ativos",
@@ -518,10 +535,14 @@
     "generalFetchError": "Erro. Tente novamente",
     "generic": "Algo saiu errado",
     "genericTryAgainLater": "Algo deu errado Tente novamente mais tarde",
+    "invalidRequest": "Solicitação {method} inválida",
     "network": "Erro de rede",
     "offline": "Offline",
     "offlineRetry": "Você está offline. Tente novamente quando estiver online.",
-    "seedMissing": "Erro crítico! Fonte indisponível."
+    "permissionDenied": "Permissão negada",
+    "seedMissing": "Erro crítico! Fonte indisponível.",
+    "unauthorizedRequest": "Solicitação não autorizada",
+    "unsupportedChain": "Cadeia não suportada"
   },
   "explore": {
     "continueAccessibilityHint": "Aceitar a isenção de responsabilidade e continuar",
@@ -715,12 +736,27 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "na Kraken",
+    "connected": {
+      "alert": "Apenas a carteira atual \"<b>{walletName}</b>\" será conectada à Kraken.",
+      "cta": "Transferência para carteira",
+      "feature0": "Capacidade de <b>receber fundos rapidamente</b> transferindo da sua conta Kraken",
+      "feature1": "Monitore seus saldos de <b>on-chain e da Kraken</b> diretamente da sua carteira",
+      "featuresTitle": "Você desbloqueou:",
+      "success": "Conta Kraken conectada!"
+    },
+    "connecting": "Conectando à Kraken",
+    "connectingFailed": "Erro ao conectar à Kraken ",
     "exchangeBalance": "Saldo na exchange",
     "fundCta": {
       "body": "Conecte sua conta Kraken a",
       "bodyBold": "transfira cripto para sua carteira",
       "heading": "Deposite em sua carteira"
     },
+    "noData": {
+      "description": "Sua conta Kraken não tem nenhum ativo para transferir.",
+      "title": "Não há ativos para transferir"
+    },
+    "pendingTransactionId": "ID de transação da Kraken",
     "selectNetwork": {
       "description": "Escolha em qual rede você deseja receber {assetLabel} em sua carteira.",
       "fee": "Taxa de {assetValue}",
@@ -742,7 +778,7 @@
         "alert": "Após desconectar sua carteira, a chave API permanecerá válida nas suas configurações da exchange Kraken por 6 meses.",
         "description": "Tem certeza de que deseja desconectar essa carteira da Kraken?",
         "title": "Desconectar da Kraken",
-        "warningMessage": "Você não reterá nenhuma funcionalidade para transferências tranquilas entre sua carteira <b>“{walletName}”<b> e sua conta da exchange Kraken."
+        "warningMessage": "Você não reterá mais nenhuma funcionalidade para transferências entre sua carteira <b>“{walletName}”</b> e sua conta Kraken."
       },
       "walletsListTitle": "Suas carteiras"
     },
@@ -764,10 +800,13 @@
     },
     "transfer": {
       "available": "{value} disponível",
+      "confirm": "Confirmar transferência",
+      "network": "Rede",
       "selectAsset": "Selecione um ativo para transferir",
       "selectAssetDescription": "Transfira do Kraken Exchange para sua carteira",
       "title": "Transferência",
       "transferFee": "Taxa de transferência",
+      "transferringTo": "Transferindo para",
       "unsupportedAssets": "Ativos não suportados",
       "unsupportedAssetsDescription": "{count} outros ativos em sua conta de Exchange não são suportados pela carteira"
     },
@@ -1334,6 +1373,7 @@
     "feeWarning": "A taxa de rede atual é de {feeAmount}, o que é mais de {percentage}% do que você está enviando.",
     "invalidAddress": "Endereço inválido, verifique e tente novamente",
     "max": "Máx.",
+    "minAmount": "Valor mínimo de transferência: {minAmount} {token}",
     "network_fee": "Taxa de rede",
     "networkWarning": {
       "alertBody": "Certifique-se de que a pessoa para quem você está enviando tem uma carteira compatível {networkName}",

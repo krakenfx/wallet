@@ -5,20 +5,25 @@ import type { KrakenAssetSupported } from '@/api/krakenConnect/types';
 import { AssetRow } from '@/components/AssetRow';
 import { Label } from '@/components/Label';
 import { Routes } from '@/Routes';
+import { AssetsSkeletons } from '@/screens/KrakenConnectTransfer/components/AssetsSkeletons';
 import { useTheme } from '@/theme/themes';
 
 import loc from '/loc';
 
 interface Props {
   supportedAssets: KrakenAssetSupported[];
+  isLoading?: boolean;
 }
 
-export const AssetsToTransfer = ({ supportedAssets }: Props) => {
+export const AssetsToTransfer = ({ supportedAssets, isLoading }: Props) => {
   const { colors } = useTheme();
   const { navigate } = useNavigation();
 
   const onPress = (asset: KrakenAssetSupported) => {
-    navigate(Routes.KrakenConnectSend, { krakenAsset: asset });
+    navigate(Routes.KrakenConnectSendStack, {
+      screen: 'KrakenConnectSend',
+      params: { krakenAsset: asset },
+    });
   };
 
   return (
@@ -29,20 +34,24 @@ export const AssetsToTransfer = ({ supportedAssets }: Props) => {
           {loc.krakenConnect.transfer.selectAssetDescription}
         </Label>
       </View>
-      {supportedAssets
-        .sort((a, b) => Number(b.balanceInUsd) - Number(a.balanceInUsd))
-        .map(item => (
-          <AssetRow
-            key={item.assetId}
-            token={item}
-            options={{
-              walletId: item.walletId,
-              showAmountInFiat: true,
-              forceOmitNetworkIcon: true,
-              onPress: () => onPress(item),
-            }}
-          />
-        ))}
+      {isLoading ? (
+        <AssetsSkeletons />
+      ) : (
+        supportedAssets
+          .sort((a, b) => Number(b.balanceInUsd) - Number(a.balanceInUsd))
+          .map(item => (
+            <AssetRow
+              key={item.assetId}
+              token={item}
+              options={{
+                walletId: item.walletId,
+                showAmountInFiat: true,
+                forceOmitNetworkIcon: true,
+                onPress: () => onPress(item),
+              }}
+            />
+          ))
+      )}
     </View>
   );
 };

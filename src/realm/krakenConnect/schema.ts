@@ -18,3 +18,19 @@ export const KrakenConnectCredentialsSchema: ObjectSchema = {
   },
   primaryKey: 'primaryKey',
 };
+
+export interface KrakenConnectOauthVerification {
+  challenge: string;
+  verification: string;
+}
+
+export const REALM_TYPE_KRAKEN_OAUTH_VERIFICATION = 'KrakenConnectOauthVerification';
+
+export const KrakenConnectOauthVerificationSchema: ObjectSchema = {
+  name: REALM_TYPE_KRAKEN_OAUTH_VERIFICATION,
+  properties: {
+    challenge: 'string',
+    verification: 'string',
+  },
+  primaryKey: 'challenge',
+};

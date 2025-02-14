@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { KrakenIcon } from '@/screens/Home/components/assets/KrakenIcon';
+import { KrakenIcon } from '../KrakenIcon/KrakenIcon';
 
 import { TokenIconFallback } from '../TokenIcon';
 

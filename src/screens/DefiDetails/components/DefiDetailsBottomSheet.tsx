@@ -10,12 +10,10 @@ import { BottomSheet } from '@/components/BottomSheet';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
 
-import { SheetPosition } from '@/screens/Transactions/components/TokenMarketData/utils';
+import { SheetPosition } from '../utils';
 
 import { DefiDetailsChart } from './DefiDetailsChart';
-import { DefiDetailsInfoAsset } from './DefiDetailsInfoAsset';
-import { DefiDetailsInfoContractAddress } from './DefiDetailsInfoContractAddress';
-import { DefiDetailsInfoVault } from './DefiDetailsInfoVault';
+import { DefiDetailsInfoAsset, DefiDetailsInfoContractAddress, DefiDetailsInfoVault } from './DefiDetailsInfo';
 import { DefiDetailsSwitch } from './DefiDetailsSwitch';
 
 export const SMALL_SHEET_MIN_HEIGHT = 220;
@@ -52,7 +50,7 @@ export const DefiDetailsBottomSheet = ({ onPositionChange, positionIndex }: Prop
   useEffect(() => {
     if (positionIndex !== undefined && positionIndex === SheetPosition.SMALL) {
       ref.current?.snapToIndex(SheetPosition.SMALL);
-      setSheetPosition(positionIndex);
+      setSheetPosition(SheetPosition.SMALL);
     }
   }, [positionIndex]);
 
@@ -79,7 +77,7 @@ export const DefiDetailsBottomSheet = ({ onPositionChange, positionIndex }: Prop
   );
 
   const paddingBottom = useBottomElementSpacing(124);
-
+  const isSheetPositionSmall = sheetPosition === SheetPosition.SMALL;
   return (
     <BottomSheet
       animatedIndex={aIndex}
@@ -93,17 +91,13 @@ export const DefiDetailsBottomSheet = ({ onPositionChange, positionIndex }: Prop
       onChange={handleSheetPositionChange}>
       <BottomSheetScrollView contentContainerStyle={[styles.container, { paddingBottom }]}>
         <Animated.View entering={FadeIn} exiting={FadeOut}>
-          <DefiDetailsSwitch unset={sheetPosition === SheetPosition.SMALL} />
-          {sheetPosition !== SheetPosition.SMALL && (
-            <>
-              <DefiDetailsChart />
-              <View style={styles.infoContainer}>
-                <DefiDetailsInfoVault />
-                <DefiDetailsInfoContractAddress />
-                <DefiDetailsInfoAsset />
-              </View>
-            </>
-          )}
+          <DefiDetailsSwitch unset={isSheetPositionSmall} />
+          <DefiDetailsChart hide={isSheetPositionSmall} />
+          <View style={styles.infoContainer}>
+            <DefiDetailsInfoVault />
+            <DefiDetailsInfoContractAddress />
+            <DefiDetailsInfoAsset />
+          </View>
         </Animated.View>
       </BottomSheetScrollView>
     </BottomSheet>
@@ -112,13 +106,14 @@ export const DefiDetailsBottomSheet = ({ onPositionChange, positionIndex }: Prop
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 24,
     paddingTop: 8,
     gap: 24,
   },
   infoContainer: {
     flex: 1,
     gap: 32,
-    paddingVertical: 32,
+    paddingTop: 48,
+    paddingBottom: 32,
   },
 });

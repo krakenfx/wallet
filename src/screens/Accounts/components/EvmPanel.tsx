@@ -43,7 +43,7 @@ export const EvmPanel = ({ derivationPath }: { derivationPath: string }) => {
     <View>
       <GradientPanelHeader>
         <View style={styles.panelHeader}>
-          <TokenIcon networkName="ethereum" forceOmitNetworkIcon />
+          <TokenIcon networkName="ethereum" forceOmitNetworkIcon tokenSymbol="ETH" />
           <View>
             <View style={styles.row}>
               <Label type="boldTitle2">Ethereum</Label>

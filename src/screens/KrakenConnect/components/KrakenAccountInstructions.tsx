@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Linking, StyleSheet, View } from 'react-native';
 
 import { BottomSheet, type BottomSheetModalRef } from '@/components/BottomSheet';
 
@@ -9,6 +9,7 @@ import { Label } from '@/components/Label';
 import { type IconName, SvgIcon } from '@/components/SvgIcon/SvgIcon';
 import { type ColorName, useTheme } from '@/theme/themes';
 
+import { URLs } from '/config';
 import loc from '/loc';
 
 type StepData = {
@@ -39,6 +40,10 @@ const STEPS: StepData[] = [
   },
 ];
 
+type Props = {
+  connectToKraken: () => void;
+};
+
 const Step = ({ icon, label, description, backgroundColor }: StepData) => {
   const { colors } = useTheme();
   return (
@@ -54,9 +59,10 @@ const Step = ({ icon, label, description, backgroundColor }: StepData) => {
   );
 };
 
-export const KrakenAccountInstructions = forwardRef<BottomSheetModalRef>((_, ref) => {
-  const createAccount = () => {};
-  const connectToKraken = () => {};
+export const KrakenAccountInstructions = forwardRef<BottomSheetModalRef, Props>(({ connectToKraken }, ref) => {
+  const createAccount = () => {
+    Linking.openURL(URLs.signUp);
+  };
   const { colors } = useTheme();
   return (
     <BottomSheet index={-1} ref={ref} snapPoints={['70%']}>

@@ -26,8 +26,20 @@ export interface paths {
     
     get: operations["GetTopOpportunity"];
   };
-  "/v1/defi/earn/opportunities/{address}": {
+  "/v1/defi/topOpportunity/{address}": {
+    
+    get: operations["GetEarnTopOpportunity"];
+  };
+  "/v1/defi/opportunities/{address}": {
     post: operations["GetOppportunities"];
+  };
+  "/v1/defi/earn/opportunities/{address}": {
+    
+    post: operations["GetEarnOppportunities"];
+  };
+  "/v1/defi/positions/{address}": {
+    
+    get: operations["GetAddressPositions"];
   };
   "/v1/depositOptions/{address}": {
     
@@ -230,6 +242,7 @@ export interface components {
     Asset: {
       name: string;
       assetCaip: string;
+      assetId: string;
       symbol: string;
       assetAddress: string;
       networkName: string;
@@ -277,13 +290,12 @@ export interface components {
     Result_BestVaultResult_: {
       content: components["schemas"]["BestVaultResult"];
     };
-    DepositOptions: {
-      asset: components["schemas"]["Asset"];
-      depositOptions: components["schemas"]["Vault"][];
-    };
     DepositOptionsResult: {
       requestedAddress: string;
-      userBalances: components["schemas"]["DepositOptions"][];
+      userBalances: {
+          depositOptions: components["schemas"]["Vault"][];
+          asset: components["schemas"]["Asset"];
+        }[];
     };
     Result_DepositOptionsResult_: {
       content: components["schemas"]["DepositOptionsResult"];
@@ -296,6 +308,8 @@ export interface components {
       
       minimumVaultTvl?: number;
       
+      minApy?: number;
+      
       maxVaultsPerAsset?: number;
       allowedAssets?: string[];
       disallowedAssets?: string[];
@@ -304,6 +318,44 @@ export interface components {
       allowedProtocols?: string[];
       disallowedProtocols?: string[];
       allowedTargetUnderlyingTokenForAsset?: components["schemas"]["Record_string.string-Array_"];
+    };
+    DefiProtocol: {
+      id: string;
+      name: string;
+      
+      balanceUsd: number;
+      logoUrl?: string;
+    };
+    DefiAsset: {
+      assetId: string;
+      address: string;
+      network: string;
+      symbol: string;
+      
+      decimals: number;
+      balanceNative: string;
+      
+      balanceUsdValue: number;
+      
+      portion: number;
+    };
+    DefiPosition: {
+      assets: components["schemas"]["DefiAsset"][];
+      
+      positionUsdValue: number;
+      isDebt: boolean;
+      
+      apy?: number;
+    };
+    ProtocolWithPositions: {
+      protocol: components["schemas"]["DefiProtocol"];
+      positions: components["schemas"]["DefiPosition"][];
+    };
+    PositionsResult: {
+      positions: components["schemas"]["ProtocolWithPositions"][];
+    };
+    Result_PositionsResult_: {
+      content: components["schemas"]["PositionsResult"];
     };
     
     "ExploreContentVariant.Text": "Text";
@@ -1258,6 +1310,31 @@ export interface operations {
       };
     };
   };
+  
+  GetEarnTopOpportunity: {
+    parameters: {
+      query: {
+        network: string;
+      };
+      path: {
+        address: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_BestVaultResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
   GetOppportunities: {
     parameters: {
       path: {
@@ -1286,6 +1363,55 @@ export interface operations {
     };
   };
   
+  GetEarnOppportunities: {
+    parameters: {
+      path: {
+        address: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["DepositOptionsParams"];
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_DepositOptionsResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  GetAddressPositions: {
+    parameters: {
+      path: {
+        address: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_PositionsResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
   DepositOptions: {
     parameters: {
       path: {
@@ -1296,6 +1422,8 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": {
+          
+          minApy?: number;
           allowedTargetUnderlyingTokenForAsset?: components["schemas"]["Record_string.string-Array_"];
           disallowedProtocols?: string[];
           allowedProtocols?: string[];

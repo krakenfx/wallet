@@ -11,7 +11,16 @@
     "copyToClipboard": "Panoya kopyalandı",
     "details": "Ayrıntılar",
     "done": "Bitti",
+    "high": "Yüksek:",
+    "low": "Düşük:",
     "ok": "Tamam",
+    "period": {
+      "all": "Tümü",
+      "day": "G",
+      "month": "M",
+      "week": "H",
+      "year": "Y"
+    },
     "plus": "+{count}",
     "receive": "Teslim Al",
     "reconnecting": "Yeniden bağlanıyor",
@@ -44,7 +53,9 @@
       "advanced_info": "Gelişmiş bilgiler",
       "connected_apps": "Bağlı uygulamalar",
       "delete": "Kaldır",
-      "edit": "Özelleştir"
+      "edit": "Özelleştir",
+      "exchange_connect": "Kraken'a bağlan",
+      "exchange_disconnect": "Kraken bağlantısını kes"
     },
     "walletDelete": {
       "error": "Cüzdan kaldırılmadı, lütfen tekrar deneyin",
@@ -122,6 +133,7 @@
     "confirm": "Onayla",
     "contractAddress": "İletişim adresi",
     "contractInteraction": "Sözleşme Etkileşimi",
+    "declinedRequest": "Kullanıcı talebi reddetti",
     "deposit": "Para yatır",
     "from": "Nereden/Kimden",
     "message": "Mesaj",
@@ -448,7 +460,9 @@
     "allAssets": "Tüm varlıklar",
     "apy": "APY",
     "detailsSheet": {
-      "deposit": "{symbol} protokolünde {protocol} yatırın",
+      "deposit": "Para yatır",
+      "depositCta": "{symbol} protokolünde {protocol} yatırın",
+      "from": "Gönderici:",
       "high": "Yüksek:",
       "info": {
         "about": "{symbol} hakkında",
@@ -471,7 +485,10 @@
         "month": "M",
         "week": "H",
         "year": "Y"
-      }
+      },
+      "to": "Alıcı:",
+      "transfer": "Transfer",
+      "withdraw": "Para çekme"
     },
     "earnCTA": "Kazan",
     "earnOnYourAssets": "Varlıklarınızdan kazanç elde edin",
@@ -518,10 +535,14 @@
     "generalFetchError": "Hata, lütfen tekrar deneyin",
     "generic": "Bir hata oluştu",
     "genericTryAgainLater": "Bir hata oluştu; lütfen daha sonra tekrar deneyin",
+    "invalidRequest": "Geçersiz {method} talebi.",
     "network": "Ağ Hatası",
     "offline": "Çevrimdışı",
     "offlineRetry": "Çevrimdışısınız. Lütfen çevrimiçi olduğunuzda tekrar deneyin.",
-    "seedMissing": "Kritik hata! Tohum kullanılamıyor."
+    "permissionDenied": "İzin reddedildi",
+    "seedMissing": "Kritik hata! Tohum kullanılamıyor.",
+    "unauthorizedRequest": "Yetkisiz talep",
+    "unsupportedChain": "Desteklenmeyen zincir"
   },
   "explore": {
     "continueAccessibilityHint": "Sorumluluk reddini kabul edin ve devam edin",
@@ -715,12 +736,27 @@
   },
   "krakenConnect": {
     "balanceOnKraken": "Kraken",
+    "connected": {
+      "alert": "Yalnızca geçerli cüzdan: \"<b>{walletName}</b>\", Kraken'a bağlandı.",
+      "cta": "Cüzdana aktar",
+      "feature0": "Kraken hesabınızdan transfer gerçekleştirerek <b>Hızlıca fon alma</b> özelliği",
+      "feature1": "<b>Zincir üzerindeki ve Kraken borsasındaki bakiyelerinizi</b> doğrudan cüzdanınızdan takip edin",
+      "featuresTitle": "Kilidi açıldı:",
+      "success": "Kraken hesabı bağlandı!"
+    },
+    "connecting": "Kraken'e bağlanılıyor",
+    "connectingFailed": "Kraken'a bağlanırken bir hata oluştu ",
     "exchangeBalance": "Borsası bakiyesi",
     "fundCta": {
       "body": "Kraken hesabınızı bağlayın:",
       "bodyBold": "cüzdanınıza kripto transfer edin",
       "heading": "Cüzdanınıza fon yükleyin"
     },
+    "noData": {
+      "description": "Kraken borsa hesabınızda transfer gerçekleştirilebilecek herhangi bir varlık bulunmuyor.",
+      "title": "Transfer edilecek varlık yok"
+    },
+    "pendingTransactionId": "Kraken işlem kimliği",
     "selectNetwork": {
       "description": "{assetLabel} varlıklarınızı cüzdanınıza almak istediğiniz ağı seçin.",
       "fee": "{assetValue} ücreti",
@@ -742,7 +778,7 @@
         "alert": "Cüzdanınızın bağlantısı kesildikten sonra API anahtarı, Kraken borsa API ayarlarınızda 6 ay boyunca geçerliliğini korur.",
         "description": "Bu cüzdanın Kraken bağlantısını kesmek istediğinizden emin misiniz?",
         "title": "Kraken bağlantısını kes",
-        "warningMessage": "Artık <b>“{walletName}”<b> isimli cüzdanınız ile Kraken borsa hesabınız arasında sorunsuz transfer işlevselliğine sahip olmayacaksınız."
+        "warningMessage": "Artık <b>“{walletName}”</b> isimli cüzdanınız ile Kraken borsa hesabınız arasında sorunsuz transfer işlevselliğine sahip olmayacaksınız."
       },
       "walletsListTitle": "Cüzdanlarınız"
     },
@@ -764,10 +800,13 @@
     },
     "transfer": {
       "available": "{value} kullanılabilir",
+      "confirm": "Aktarımı onayla",
+      "network": "Ağ",
       "selectAsset": "Transfer edilecek varlık seçin",
       "selectAssetDescription": "Kraken borsasından cüzdanınıza transfer edin",
       "title": "Transfer",
       "transferFee": "Transfer ücreti",
+      "transferringTo": "Şuraya transfer ediliyor:",
       "unsupportedAssets": "Desteklenmeyen varlıklar",
       "unsupportedAssetsDescription": "Borsa hesabınızdaki diğer {count} varlık, cüzdan tarafından desteklenmiyor"
     },
@@ -1334,6 +1373,7 @@
     "feeWarning": "Mevcut Ağ Ücreti {feeAmount} olup gönderdiğiniz tutarın %{percentage} oranından fazladır.",
     "invalidAddress": "Geçersiz adres, lütfen kontrol edin ve tekrar deneyin",
     "max": "Maksimum",
+    "minAmount": "Minimum transfer değeri: {minAmount} {token}",
     "network_fee": "Ağ Ücreti",
     "networkWarning": {
       "alertBody": "Gönderdiğiniz kişinin {networkName} destekleyen bir cüzdanı olduğundan emin olun",

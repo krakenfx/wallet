@@ -8,6 +8,7 @@ import { ImageSvg } from '@/components/ImageSvg';
 import { Label } from '@/components/Label';
 import { TokenIconFallback } from '@/components/TokenIcon';
 import { Touchable } from '@/components/Touchable';
+import { TransactionRow } from '@/components/TransactionRow';
 import { useNftMetadata } from '@/realm/nftMetadata';
 
 import type { RealmToken } from '@/realm/tokens';
@@ -126,47 +127,58 @@ export const TransactionNftRow = React.memo(
       [classifiedTx.type, isGlobalView],
     );
 
+    const nftTitle = `${title} ${NFTname ? `(${NFTname})` : ''}`;
+
+    const icon = useMemo(
+      () =>
+        !nftAssetMetadata?.imageUrl ? (
+          <TokenIconFallback size={IMG_SIZE} tokenSymbol={NFT_IMAGE} style={styles.image} />
+        ) : (
+          <ImageSvg width={IMG_SIZE} height={IMG_SIZE} style={styles.image} uri={nftAssetMetadata?.imageUrl} />
+        ),
+      [nftAssetMetadata],
+    );
+    const title_ = useMemo(
+      () => (
+        <Label type="boldBody" numberOfLines={1}>
+          {nftTitle}
+        </Label>
+      ),
+      [nftTitle],
+    );
+    const subtitle = useMemo(
+      () => (
+        <Label type="regularCaption1" color="light50">
+          {description}
+        </Label>
+      ),
+      [description],
+    );
+    const amounts = useMemo(
+      () =>
+        !hideAmount ? (
+          <>
+            <Label style={styles.text} type="boldBody" numberOfLines={1}>
+              {assetAmountAndNetworkFeeInCurrencyFormatted}
+            </Label>
+
+            <Label style={styles.text} type="regularCaption1" numberOfLines={1} color="light50">
+              {`${assetAmountAndNetworkFeeFormatted} ${symbol}`}
+            </Label>
+          </>
+        ) : undefined,
+      [hideAmount, assetAmountAndNetworkFeeFormatted, assetAmountAndNetworkFeeInCurrencyFormatted, symbol],
+    );
+
     if (shouldFilterOut) {
       return null;
     }
-
-    const nftTitle = `${title} ${NFTname ? `(${NFTname})` : ''}`;
 
     return (
       <View>
         {showRow && (
           <Touchable onPress={openTransactionDetails}>
-            <View style={[styles.container, containerStyle]} testID={testID}>
-              <View style={styles.startContainer}>
-                {!nftAssetMetadata?.imageUrl ? (
-                  <TokenIconFallback size={IMG_SIZE} tokenSymbol={NFT_IMAGE} style={styles.image} />
-                ) : (
-                  <ImageSvg width={IMG_SIZE} height={IMG_SIZE} style={styles.image} uri={nftAssetMetadata?.imageUrl} />
-                )}
-
-                <View style={styles.column}>
-                  <Label type="boldBody" numberOfLines={1}>
-                    {nftTitle}
-                  </Label>
-
-                  <Label type="regularCaption1" color="light50">
-                    {description}
-                  </Label>
-                </View>
-              </View>
-              <View style={styles.spacer} />
-              {!hideAmount && (
-                <View style={styles.endContainer}>
-                  <Label style={styles.text} type="boldBody" numberOfLines={1}>
-                    {assetAmountAndNetworkFeeInCurrencyFormatted}
-                  </Label>
-
-                  <Label style={styles.text} type="regularCaption1" numberOfLines={1} color="light50">
-                    {`${assetAmountAndNetworkFeeFormatted} ${symbol}`}
-                  </Label>
-                </View>
-              )}
-            </View>
+            <TransactionRow containerStyle={containerStyle} icon={icon} title={title_} subtitle={subtitle} amounts={amounts} testID={testID} />
           </Touchable>
         )}
       </View>
@@ -177,39 +189,12 @@ export const TransactionNftRow = React.memo(
 const styles = StyleSheet.create({
   image: {
     borderRadius: 24,
-    marginRight: 12,
     alignSelf: 'flex-end',
     overflow: 'hidden',
   },
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    overflow: 'hidden',
-    paddingVertical: 6,
-    height: 56,
-  },
-  startContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    maxWidth: '60%',
-  },
-  endContainer: {
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    maxWidth: '45%',
-  },
+
   text: {
     flexShrink: 1,
-  },
-  column: {
-    marginRight: 24,
-  },
-  spacer: {
-    flex: 1,
-  },
-  verticalSpace: {
-    marginVertical: 3,
   },
 });
 

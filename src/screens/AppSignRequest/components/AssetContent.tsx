@@ -24,6 +24,7 @@ export const AssetContent = ({ content }: Props) => {
             assetNetwork={send.assetNetwork}
             assetSymbol={send.assetSymbol}
             containerStyle={containerStyle}
+            tokenIconProps={{ tokenId: send.assetId, tokenSymbol: send.assetSymbol, networkName: send.assetNetwork }}
           />
         )}
         renderBottom={({ containerStyle }) => (
@@ -33,6 +34,7 @@ export const AssetContent = ({ content }: Props) => {
             assetNetwork={receive.assetNetwork}
             assetSymbol={receive.assetSymbol}
             containerStyle={containerStyle}
+            tokenIconProps={{ tokenId: receive.assetId, networkName: receive.assetNetwork }}
           />
         )}
       />

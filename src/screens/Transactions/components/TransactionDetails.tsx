@@ -6,6 +6,7 @@ import { getImplForWallet } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings';
 import { TRANSACTION_PENDING_TYPES, TRANSACTION_TYPES } from '@/realm/transactions/const';
 
+import { TransactionPathFromKrakenToWallet } from '@/screens/KrakenConnectSend/components/TransactionPathFromKrakenToWallet';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { smallUnit2TokenUnit } from '@/utils/unitConverter';
 
@@ -123,6 +124,28 @@ export const TransactionDetails: React.FC<TransactionDetailsProps> = ({ assetId 
         );
       }
       return null;
+    }
+    case TRANSACTION_PENDING_TYPES.RECEIVE_FROM_KRAKEN: {
+      return (
+        <>
+          <TransactionAmount
+            tokenIconProps={{
+              wallet: transaction.wallet,
+              tokenId: assetId,
+              tokenSymbol: transactionDetailsMetadata.symbol,
+            }}
+            assetAmount={formatTokenAmount(transactionDetailsMetadata.tokenAmount, {
+              compact: true,
+              currency,
+            })}
+            assetFiatAmount={transactionDetailsMetadata.appCurrencyValue}
+            assetNetwork={transaction.wallet.type}
+            assetSymbol={transactionDetailsMetadata.symbol}
+            attached={false}
+          />
+          <TransactionPathFromKrakenToWallet />
+        </>
+      );
     }
 
     case TRANSACTION_TYPES.SEND:

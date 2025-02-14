@@ -8,7 +8,7 @@ import { useVaultBalanceQuery } from '@/reactQuery/hooks/useVaultBalanceQuery';
 import { useVaultQuery } from '@/reactQuery/hooks/useVaultQuery';
 import { useAssetMarketData } from '@/realm/assetMarketData';
 import { useAppCurrency } from '@/realm/settings';
-import { useTokenPrice } from '@/realm/tokenPrice';
+import { type PriceHistoryPeriod, useTokenPrice } from '@/realm/tokenPrice';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
@@ -23,10 +23,12 @@ export type DefiDetailsContext = {
   assetPrice: string;
   assetSymbol: string;
   chartMetric: 'apy' | 'tvl';
+  period: PriceHistoryPeriod;
   protocolDescription?: string;
   protocolLogo: string;
   protocolName: string;
   setChartMetric: Dispatch<React.SetStateAction<'apy' | 'tvl'>>;
+  setPeriod: Dispatch<React.SetStateAction<PriceHistoryPeriod>>;
   vaultAddress: string;
   vaultAssetsLocked: string;
   vaultBalance?: VaultBalance;
@@ -69,6 +71,7 @@ export const DefiDetailsContextProvider: React.FC<PropsWithChildren<ContextProps
 }) => {
   const { currency } = useAppCurrency();
   const [chartMetric, setChartMetric] = useState<'apy' | 'tvl'>('apy');
+  const [period, setPeriod] = useState<PriceHistoryPeriod>('WEEK');
 
   const { data: vaultBalance } = useVaultBalanceQuery(vaultAddress, vaultNetwork);
   const { data: vault } = useVaultQuery(vaultAddress, vaultNetwork);
@@ -93,10 +96,12 @@ export const DefiDetailsContextProvider: React.FC<PropsWithChildren<ContextProps
       assetPrice: tokenPriceFormatted ?? '-',
       assetSymbol: assetSymbol.toUpperCase(),
       chartMetric,
+      period,
       protocolDescription,
       protocolLogo,
       protocolName: protocolNameCapitalized,
       setChartMetric,
+      setPeriod,
       vaultAddress,
       vaultAssetsLocked: assetsLocked ?? '-',
       vaultBalance,
@@ -117,10 +122,12 @@ export const DefiDetailsContextProvider: React.FC<PropsWithChildren<ContextProps
       assetSymbol,
       chartMetric,
       marketCapFormatted,
+      period,
       protocolDescription,
       protocolLogo,
       protocolNameCapitalized,
       setChartMetric,
+      setPeriod,
       tokenPriceFormatted,
       vault,
       vaultAddress,

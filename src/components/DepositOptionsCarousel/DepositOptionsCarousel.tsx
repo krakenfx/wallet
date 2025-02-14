@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
 import { Label } from '@/components/Label';
 
@@ -14,7 +15,7 @@ import type { CardData } from './DepositOptionsCarousel.types';
 type Props = { caption?: string };
 
 const renderItem = ({ item }: { item: CardData }) => <DepositOptionsCarouselCard {...item} />;
-const keyExtractor = (item: CardData) => item?.vaultAddress;
+const keyExtractor = (item: CardData, index: number) => item?.vaultAddress + '_' + index;
 
 export const DepositOptionsCarousel = ({ caption }: Props) => {
   const { data: cards, isLoading } = useDepositOptionsCardDataQuery({ minimumBalanceThreshold: 0, maxVaultsPerAsset: 1 });
@@ -32,6 +33,9 @@ export const DepositOptionsCarousel = ({ caption }: Props) => {
             contentContainerStyle={styles.contentContainer}
             horizontal
             showsHorizontalScrollIndicator={false}
+            scrollEnabled
+            nestedScrollEnabled
+            keyboardShouldPersistTaps="handled"
           />
         ) : (
           <DepositOptionsCarouselEmpty />

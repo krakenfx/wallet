@@ -1,9 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 
 import { AvatarIcon } from '@/components/AvatarIcon';
+import { KrakenIcon } from '@/components/KrakenIcon';
 import { TransactionPath } from '@/components/Transaction';
 import { useAccountById, useCurrentAccountNumber } from '@/realm/accounts';
-import { KrakenIcon } from '@/screens/Home/components/assets/KrakenIcon';
 
 export const TransactionPathFromKrakenToWallet = () => {
   const accountNumber = useCurrentAccountNumber();

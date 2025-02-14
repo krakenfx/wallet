@@ -8,7 +8,7 @@ export function adaptDepositOptionToCardData(depositOption: Vault, asset: Asset)
 
   return {
     assetAddress: asset.assetAddress,
-    assetCaipId: asset.assetCaip,
+    assetCaipId: asset.assetId,
     assetName: asset.name,
     assetNetwork,
     assetSymbol: asset.symbol,

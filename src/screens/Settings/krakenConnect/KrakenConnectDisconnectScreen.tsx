@@ -39,14 +39,14 @@ export const KrakenConnectDisconnectScreen = ({ navigation, route }: NavigationP
     <BottomSheet snapPoints={['100%']} {...bottomSheetProps}>
       <ModalNavigationHeader
         style={styles.headerContainer}
-        title={<Label type="boldBody">{loc.krakenConnect.settings.disconnectScreen.title}</Label>}
+        title={<Label type="boldTitle2">{loc.krakenConnect.settings.disconnectScreen.title}</Label>}
         goBackOnly={true}
       />
       <View style={styles.textContainer}>
-        <Label style={styles.bottomMargin} type="headerKrakenConnectDisconnect">
+        <Label style={styles.bottomMargin} type="boldDisplay5">
           {loc.krakenConnect.settings.disconnectScreen.description}
         </Label>
-        <Label style={styles.bottomMargin} type="regularBody" color="light75">
+        <Label style={styles.bottomMargin} type="regularTitle1" color="light75">
           {warningMessage}
         </Label>
       </View>

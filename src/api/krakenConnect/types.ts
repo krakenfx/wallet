@@ -74,3 +74,31 @@ export interface KrakenWithdrawFee {
   net: string;
   fee_token: string;
 }
+
+interface AddressObj {
+  type: string;
+  address: string;
+}
+
+export interface KrakenConnectFundingAddress {
+  id: string;
+  network_id: string;
+  name?: string;
+  description?: string;
+  address: AddressObj;
+}
+
+export interface KrakenConnectWithdrawStatus {
+  method: string;
+  aclass: string;
+  asset: string;
+  refid: string;
+  txid: string | null;
+  info: string;
+  amount: string;
+  fee: string;
+  time: number;
+  status: string;
+  key: string;
+  network: string;
+}

@@ -9,5 +9,4 @@ export * from './Explorers';
 export * from './Links';
 export * from './AboutAsset';
 export * from './HistoricalAssetPriceChart';
-export * from './PeriodSwitcher';
 export * from './HighLowPriceChange';

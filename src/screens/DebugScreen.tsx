@@ -25,6 +25,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Share from 'react-native-share';
 
 import BackendConfigurator from '@/api/base/BackendConfigurator';
+import { deleteFundingAddresses } from '@/api/krakenConnect/deleteFundingAddresses';
 import { PushNotifications } from '@/api/PushNotifications';
 import type { TokenConfigurationType } from '@/api/types';
 import { BottomSheet } from '@/components/BottomSheet';
@@ -42,6 +43,7 @@ import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
 import { BitcoinNetwork } from '@/onChain/wallets/bitcoin';
 import { polygonNetwork } from '@/onChain/wallets/evmNetworks';
 import { getImplForWallet } from '@/onChain/wallets/registry';
+import { useKrakenConnectCredentials } from '@/realm/krakenConnect/useKrakenConnectCredentials';
 import { RealmSettingsKey, useSettingsMutations } from '@/realm/settings';
 import { useRealmWallets } from '@/realm/wallets';
 import { Routes } from '@/Routes';
@@ -141,12 +143,11 @@ export const DebugScreen = () => {
   const [apiSecret, setApiSecret] = useState<string>();
   const [cfToken, setCfToken] = useState<string>();
   const { setSettings, removeSettings } = useSettingsMutations();
+  const { API_KEY, API_SECRET, CF_TOKEN } = useKrakenConnectCredentials();
 
   const [isEarnEnabled, setIsEarnEnabled] = useFeatureFlag('earnEnabled');
 
   const [isNewNetworksEnabled, setIsNewNetworksEnabled] = useFeatureFlag('NewNetworksEnabled');
-
-  const [assetIconsV2Enabled, setAssetIconsV2Enabled] = useFeatureFlag('assetIconsV2Enabled');
 
   useEffect(() => {
     (async () => {
@@ -199,9 +200,28 @@ export const DebugScreen = () => {
     }
   };
 
+  const deleteKrakenConnectAddresses = async () => {
+    try {
+      await deleteFundingAddresses({
+        cfToken: CF_TOKEN,
+        privateKey: API_SECRET,
+        apiKey: API_KEY,
+      });
+      await showToast({ text: 'Addresses were removed', type: 'success' });
+    } catch {
+      await showToast({ text: 'Addresses were NOT removed', type: 'error' });
+    }
+  };
+
   const saveCFToken = async () => {
     setSettings(RealmSettingsKey.krakenConnectCFToken, cfToken || '');
     await showToast({ text: 'CF token updated', type: 'success' });
+    setCfToken('');
+  };
+
+  const clearCFToken = async () => {
+    removeSettings(RealmSettingsKey.krakenConnectCFToken);
+    await showToast({ text: 'CF token removed', type: 'success' });
     setCfToken('');
   };
 
@@ -356,17 +376,16 @@ export const DebugScreen = () => {
                 </View>
                 {krakenConnectEnabled && <Button size="small" color="kraken" text="SAVE" onPress={saveCFToken} />}
               </View>
+              <View style={styles.inputWithButton}>
+                <Button size="small" color="kraken" text="Delete all addresses" onPress={deleteKrakenConnectAddresses} />
+                <Button size="small" color="kraken" text="Clear CF token" onPress={clearCFToken} />
+              </View>
             </SettingsBox>
           </>
         )}
         {!!Config.INTERNAL_RELEASE && (
           <SettingsBox isFirst isLast isHighlighted style={styles.spacing}>
             <SettingsSwitch icon="earn" text="DeFi Earn" enabled={isEarnEnabled} onToggle={setIsEarnEnabled} />
-          </SettingsBox>
-        )}
-        {!!Config.INTERNAL_RELEASE && (
-          <SettingsBox isFirst isLast isHighlighted style={styles.spacing}>
-            <SettingsSwitch icon="eye" text="Asset icons v2" enabled={assetIconsV2Enabled} onToggle={setAssetIconsV2Enabled} />
           </SettingsBox>
         )}
 

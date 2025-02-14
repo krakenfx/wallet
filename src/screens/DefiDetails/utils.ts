@@ -1,6 +1,17 @@
-import type { TokenPriceHighLow, TokenPriceHighLowItem, TokenPriceHistoryItem } from '@/realm/tokenPrice';
+import { showToast } from '@/components/Toast';
+import { Routes } from '@/Routes';
+import type { Currency } from '@/screens/Settings/currency/types';
 import type { Theme } from '@/theme/themes';
 import { useTheme } from '@/theme/themes';
+import { formatCurrency } from '@/utils/formatCurrency';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
+
+import loc from '/loc';
+
+export const fmt = {
+  apy: (v: number, currency: Currency) => formatTokenAmount(String(v / 100), { currency }) + '%',
+  tvl: (v: number, currency: Currency) => formatCurrency(String(v), { compact: true, currency }),
+};
 
 export const useColorByCategory = (category: string, value: number) => {
   const { colors } = useTheme();
@@ -23,24 +34,10 @@ export enum SheetPosition {
   HIGH = 2,
 }
 
-export const PRICE_PLACEHOLDER = '-.--';
-
-export const CHART_DATA_ITEMS_COUNT = 100;
-
-const defaultHighLowItem: TokenPriceHighLowItem = {
-  low: 0,
-  high: 0,
-};
-
-export const HIGH_LOW_PRICE_PLACEHOLDER: TokenPriceHighLow = {
-  day: defaultHighLowItem,
-  week: defaultHighLowItem,
-  month: defaultHighLowItem,
-  year: defaultHighLowItem,
-  all: defaultHighLowItem,
-};
-
-const generateChartPlaceholder = (): TokenPriceHistoryItem[] => {
+const generateChartPlaceholder = (): {
+  timestamp: number;
+  value: number;
+}[] => {
   const placeholder = [];
   const numPoints = 100;
   for (let i = 0; i < numPoints; i++) {
@@ -50,4 +47,20 @@ const generateChartPlaceholder = (): TokenPriceHistoryItem[] => {
   }
   return placeholder;
 };
-export const CHART_PLACEHOLDER: TokenPriceHistoryItem[] = generateChartPlaceholder();
+export const CHART_PLACEHOLDER: {
+  timestamp: number;
+  value: number;
+}[] = generateChartPlaceholder();
+
+export const refreshingVaultsEvent = 'refreshingVaults';
+
+export const showRefreshingVaultsToast = async () =>
+  showToast({
+    type: 'info',
+    text: loc._.updating,
+    id: refreshingVaultsEvent,
+    testID: 'RefreshingVaultsToast',
+    dismissMode: 'event',
+    iconLottieSource: require('@/assets/lottie/refreshSpinner.json'),
+    whiteListRoutes: [Routes.DefiDetailsV2],
+  });

@@ -21,4 +21,5 @@ export enum TRANSACTION_TYPES {
 export enum TRANSACTION_PENDING_TYPES {
   SEND = 'pending-send',
   RECEIVE = 'pending-receive',
+  RECEIVE_FROM_KRAKEN = 'pending-receive-from-kraken',
 }

@@ -14,11 +14,12 @@ import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { TokenIcon, TokenIconFallback } from '@/components/TokenIcon';
 import { Touchable } from '@/components/Touchable';
+import { TransactionRow } from '@/components/TransactionRow';
 import { useAppCurrencyValue } from '@/hooks/useAppCurrencyValue';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings';
 import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
-import { getAvailableTokenBalance, useTokenById } from '@/realm/tokens';
+import { getAvailableTokenBalance, useTokenByAssetId, useTokenById } from '@/realm/tokens';
 import type { RealmPendingTransaction } from '@/realm/transactions';
 import { TRANSACTION_PENDING_TYPES } from '@/realm/transactions/const';
 import { Routes } from '@/Routes';
@@ -45,10 +46,17 @@ interface Props {
 const DELAY_TIME_TO_REFRESH_ALL = 3000;
 
 export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed, onDisappear, containerStyle }) => {
-  const tokenId = item.tokenId || contextTokenId;
-  const token = useTokenById(tokenId);
-  const contextToken = useTokenById(contextTokenId);
   const { wallet } = item;
+  const tokenId = item.tokenId || contextTokenId;
+
+  const token_ = useTokenById(tokenId);
+  const tokenByAssetId = useTokenByAssetId(tokenId || '', wallet.id);
+  const token = token_ || tokenByAssetId;
+
+  const contextToken_ = useTokenById(contextTokenId);
+  const contextTokenByAssetId = useTokenByAssetId(contextTokenId || '', wallet.id);
+  const contextToken = contextToken_ || contextTokenByAssetId;
+
   const navigation = useNavigation();
   const { amount, from, to, kind, fee } = item;
   const isNft = item.type === 'nft';
@@ -121,7 +129,12 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
       description: item.notes?.value || '',
       appCurrencyValue: detailsAmountInCurrencyFormatted,
       tokenAmount: detailsAmountFormatted,
-      transactionType: kind === 'send' ? TRANSACTION_PENDING_TYPES.SEND : TRANSACTION_PENDING_TYPES.RECEIVE,
+      transactionType:
+        item.additionalStatus === 'kraken-connect-to-wallet'
+          ? TRANSACTION_PENDING_TYPES.RECEIVE_FROM_KRAKEN
+          : kind === 'send'
+            ? TRANSACTION_PENDING_TYPES.SEND
+            : TRANSACTION_PENDING_TYPES.RECEIVE,
       symbol: metadata.symbol,
       pendingMetadata: {
         to: to ?? '',
@@ -130,7 +143,19 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
       networkFee,
       isNft,
     };
-  }, [isNft, title, item.notes?.value, detailsAmountInCurrencyFormatted, detailsAmountFormatted, kind, metadata.symbol, to, from, networkFee]);
+  }, [
+    isNft,
+    title,
+    item.notes?.value,
+    item.additionalStatus,
+    detailsAmountInCurrencyFormatted,
+    detailsAmountFormatted,
+    kind,
+    metadata.symbol,
+    to,
+    from,
+    networkFee,
+  ]);
 
   const openTransactionDetails = useCallback(() => {
     navigation.navigate(Routes.TransactionDetails, {
@@ -162,38 +187,37 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
     maxWidth: withTiming(pendingAnimated.value),
     opacity: withTiming(pendingAnimated.value),
   }));
-
-  return (
-    <Touchable style={[styles.container, containerStyle]} onPress={openTransactionDetails}>
-      <View style={styles.leftContainer}>
-        {isNft ? (
-          <TokenIconFallback size={40} tokenSymbol="NFT" />
+  const icon = isNft ? (
+    <TokenIconFallback size={40} tokenSymbol="NFT" />
+  ) : (
+    <TokenIcon tokenId={token?.assetId} tokenSymbol={metadata.symbol} wallet={wallet} forceOmitNetworkIcon />
+  );
+  const title_ = useMemo(() => <Label type="boldBody">{title}</Label>, [title]);
+  const subtitle = useMemo(
+    () => (
+      <View style={styles.description}>
+        {isSuccess ? (
+          <Animated.View style={pendingStyle}>
+            <SvgIcon name="check-circle" color="green500" size={16} style={styles.space} />
+          </Animated.View>
         ) : (
-          <TokenIcon tokenId={token?.assetId} tokenSymbol={metadata.symbol} wallet={wallet} forceOmitNetworkIcon />
+          <LottieView source={require('@/assets/lottie/orangeSpinner.json')} autoPlay loop style={styles.lottie} />
         )}
-        <View style={styles.column}>
-          <Label type="boldBody">{title}</Label>
-          <View style={styles.description}>
-            {isSuccess ? (
-              <Animated.View style={pendingStyle}>
-                <SvgIcon name="check-circle" color="green500" size={16} style={styles.space} />
-              </Animated.View>
-            ) : (
-              <LottieView source={require('@/assets/lottie/orangeSpinner.json')} autoPlay loop style={styles.lottie} />
-            )}
-            <View style={styles.description}>
-              <Label type="boldCaption1" color={isSuccess ? 'green500' : 'yellow500'} style={pendingStyle} numberOfLines={1}>
-                {pendingDescription + ' '}
-              </Label>
-              <Label type="regularCaption1" color="light50" style={styles.subtitle}>
-                {subTitle}
-              </Label>
-            </View>
-          </View>
+        <View style={styles.description}>
+          <Label type="boldCaption1" color={isSuccess ? 'green500' : 'yellow500'} style={pendingStyle} numberOfLines={1}>
+            {pendingDescription + ' '}
+          </Label>
+          <Label type="regularCaption1" color="light50" style={styles.subtitle}>
+            {subTitle}
+          </Label>
         </View>
       </View>
-
-      <View style={styles.amountContainer}>
+    ),
+    [isSuccess, pendingDescription, pendingStyle, subTitle],
+  );
+  const amounts = useMemo(
+    () => (
+      <>
         <Label
           style={[styles.amountFiatText, balancesHidden && styles.hiddenBalance]}
           type="boldLargeMonospace"
@@ -204,34 +228,24 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
         <Label style={styles.amountText} type="regularMonospace" color="light50" numberOfLines={1}>
           {tokenDisplay}
         </Label>
-      </View>
+      </>
+    ),
+    [balancesHidden, currencyDisplay, tokenDisplay],
+  );
+
+  return (
+    <Touchable onPress={openTransactionDetails}>
+      <TransactionRow containerStyle={containerStyle} icon={icon} title={title_} subtitle={subtitle} amounts={amounts} />
     </Touchable>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 52,
-  },
-  leftContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  column: {
-    justifyContent: 'space-between',
-    marginLeft: 12,
-  },
   description: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   space: {
     marginRight: 4,
-  },
-  amountContainer: {
-    paddingLeft: 10,
   },
   amountText: {
     textAlign: 'right',

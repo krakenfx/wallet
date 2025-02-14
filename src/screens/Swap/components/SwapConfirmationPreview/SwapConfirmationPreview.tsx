@@ -100,6 +100,7 @@ export const SwapConfirmationPreview: React.FC<Props> = ({
             assetAmountLabelProps={{ type: 'boldDisplay3' }}
             fiatAmountLabelProps={{ type: 'mediumCaption1' }}
             containerStyle={containerStyle}
+            tokenIconProps={{ wallet: sourceAsset.wallet, tokenId: sourceAsset.assetId, tokenSymbol: sourceAsset.metadata.symbol }}
           />
         )}
         renderBottom={({ containerStyle }) => (
@@ -114,6 +115,7 @@ export const SwapConfirmationPreview: React.FC<Props> = ({
             containerStyle={containerStyle}
             assetAmountLabelProps={{ style: refreshFlashStyle, type: 'boldDisplay3' }}
             fiatAmountLabelProps={{ style: refreshFlashStyle, type: 'mediumCaption1' }}
+            tokenIconProps={{ tokenId: targetAsset.assetId, tokenSymbol: targetAsset.metadata.symbol }}
             isLoading={isLoading}
           />
         )}

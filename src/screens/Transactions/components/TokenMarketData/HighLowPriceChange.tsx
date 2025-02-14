@@ -1,16 +1,19 @@
 import { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
 
-import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
-
-import { Label } from '@/components/Label';
+import { HighLowChange } from '@/components/HighLowChange';
 import { useAppCurrency } from '@/realm/settings';
 import type { PriceHistoryPeriod, TokenPrice, TokenPriceHighLow } from '@/realm/tokenPrice';
+
 import type { ColorName } from '@/theme/themes';
-import { useTheme } from '@/theme/themes';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-import loc from '/loc';
+const mapPeriodToKey: Record<string, keyof TokenPriceHighLow> = {
+  WEEK: 'week',
+  MONTH: 'month',
+  YEAR: 'year',
+  ALL: 'all',
+  DAY: 'day',
+};
 
 interface Props {
   highLow: TokenPriceHighLow;
@@ -19,88 +22,19 @@ interface Props {
   color: ColorName;
 }
 
-export const HighLowPriceChange = ({ highLow, currentPrice, color, period }: Props) => {
+export const HighLowPriceChange = ({ currentPrice, color, highLow, period }: Props) => {
   const { currency } = useAppCurrency();
   const price = Number(currentPrice?.fiatValue[currency].value || 0);
-  const { colors } = useTheme();
-
-  const mapPeriodToKey = (timePeriod: PriceHistoryPeriod): keyof TokenPriceHighLow => {
-    switch (timePeriod) {
-      case 'WEEK':
-        return 'week';
-      case 'MONTH':
-        return 'month';
-      case 'YEAR':
-        return 'year';
-      case 'ALL':
-        return 'all';
-    }
-    return 'day';
-  };
 
   const { high, low } = useMemo(() => {
-    const highLowPeriod = highLow[mapPeriodToKey(period)];
+    const highLowPeriod = highLow[mapPeriodToKey[period] || 'day'];
     return {
       low: highLowPeriod?.low ?? 0,
       high: highLowPeriod?.high ?? 0,
     };
   }, [highLow, period]);
+  const highLabel = formatCurrency(high, { currency, findFirstNonZeroDigits: true });
+  const lowLabel = formatCurrency(low, { currency, findFirstNonZeroDigits: true });
 
-  const style = useAnimatedStyle(() => {
-    const value = ((price - low) / (high - low || 1)) * 100;
-    return {
-      width: withTiming(`${value}%`),
-      backgroundColor: withTiming(colors[color]),
-    };
-  });
-
-  return (
-    <View style={styles.container} testID="HighLowPriceChange">
-      <View style={[styles.lineArea, { backgroundColor: colors.purple_40 }]}>
-        <Animated.View style={[styles.lineValue, style]} />
-      </View>
-      <View style={styles.rowWithLabels}>
-        <View style={styles.priceLabel}>
-          <Label type="regularCaption1" color="light75">
-            {`${loc.marketData.low} `}
-          </Label>
-          <Label type="boldCaption1" color="light100">
-            {formatCurrency(low, { currency, findFirstNonZeroDigits: true })}
-          </Label>
-        </View>
-        <View style={styles.priceLabel}>
-          <Label type="regularCaption1" color="light75">
-            {`${loc.marketData.high} `}
-          </Label>
-          <Label type="boldCaption1" color="light100">
-            {formatCurrency(high, { currency, findFirstNonZeroDigits: true })}
-          </Label>
-        </View>
-      </View>
-    </View>
-  );
+  return <HighLowChange color={color} currentValue={price} high={high} highLabel={highLabel} low={low} lowLabel={lowLabel} />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 24,
-  },
-  rowWithLabels: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  lineArea: {
-    height: 6,
-    borderRadius: 12,
-    marginBottom: 8,
-    overflow: 'hidden',
-  },
-  priceLabel: {
-    flexDirection: 'row',
-  },
-  lineValue: {
-    position: 'absolute',
-    height: '100%',
-    borderRadius: 12,
-  },
-});

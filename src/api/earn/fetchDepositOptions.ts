@@ -15,6 +15,7 @@ interface Options {
   networkCaipIds?: string[];
   maxVaultsPerAsset?: number;
   minimumBalanceThreshold?: number;
+  minApy?: number;
 }
 
 export async function fetchDepositOptions({
@@ -22,16 +23,18 @@ export async function fetchDepositOptions({
   networkCaipIds = [],
   minimumBalanceThreshold = 0,
   maxVaultsPerAsset = 1,
+  minApy = 200,
 }: Options): Promise<DepositOptionsResult> {
   try {
     const harmony = await getHarmony();
-    const response = await harmony.POST('/v1/defi/earn/opportunities/{address}', {
+    const response = await harmony.POST('/v1/defi/opportunities/{address}', {
       params: { path: { address } },
       body: {
         allowedNetworks: networkCaipIds?.length > 0 ? networkCaipIds : evmNetworks,
         maxVaultsPerAsset,
         minimumBalanceThreshold,
         minimumVaultTvl: 10000000,
+        minApy,
       },
     });
 
