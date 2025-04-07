@@ -8,7 +8,7 @@ import nacl from 'tweetnacl';
 
 import { Buffer } from 'buffer';
 
-import type { SolanaFeeOption, SolanaSimulationInput, SolanaSimulationResult } from '@/api/types';
+import type { SolanaAddressLookupTableEntry, SolanaFeeOption, SolanaSimulationInput, SolanaSimulationResult } from '@/api/types';
 import type { Nft } from '@/realm/nfts';
 import type { RealmToken } from '@/realm/tokens';
 
@@ -60,6 +60,7 @@ type SolanaTransactionPlan = {
   }[];
 
   instructions: web3.TransactionInstruction[];
+  lookupTables?: SolanaAddressLookupTableEntry[];
 };
 
 type SolanaPreparedTransaction = {
@@ -103,6 +104,7 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
           };
         }),
         instructions,
+        clientLookupTables: transaction?.lookupTables ?? [],
         feePayer: payer.toString(),
       };
     }

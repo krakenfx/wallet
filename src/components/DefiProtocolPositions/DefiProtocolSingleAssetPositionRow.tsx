@@ -3,9 +3,10 @@ import type React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 
 import { useAssetMetadata } from '@/realm/assetMetadata';
-import { useAppCurrency } from '@/realm/settings';
+import { useAppCurrency, useIsHideBalancesEnabled } from '@/realm/settings';
 import { getNetworkNameFromAssetId } from '@/realm/tokens';
 
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
@@ -31,10 +32,17 @@ export const DefiProtocolSingleAssetPositionRow: React.FC<DefiProtocolSingleAsse
   const usdFiatRate = useCurrentUsdFiatRate();
   const valueInUserCurrency = usdFiatRate * balanceUsd;
 
-  const formattedFiatAmount = formatCurrency(valueInUserCurrency, { currency, compact: true, hideDecimals: false });
+  const isHideBalancesEnabled = useIsHideBalancesEnabled();
+  const formattedFiatAmount = useBalanceDisplay(formatCurrency(valueInUserCurrency, { currency, compact: true, hideDecimals: false }), 7);
+  const fiatAmountColor = isHideBalancesEnabled ? 'light50' : 'light100';
 
   const tokenAmount = unitConverter.smallUnit2TokenUnit(balanceNative, asset.decimals).toString(10);
-  const tokenAmountFormatted = formatTokenAmount(tokenAmount, { compact: true, currency });
+  const tokenAmountFormatted = useBalanceDisplay(`${formatTokenAmount(tokenAmount, { compact: true, currency })} ${metadata?.symbol ?? ''}`, 7);
+  const tokenAmountFormattedIsDebt = isDebt ? '-' : '';
+
+  const apyLabel = apy ? `${apy}% ${loc.defi.apy}` : '';
+  const isDebtLabel = isDebt ? `${loc.defi.debt} ${apy ? `· ` : ''}` : '';
+  const isDebtColor = isDebt ? 'yellow500' : 'green400';
 
   return (
     <View style={styles.container}>
@@ -46,21 +54,21 @@ export const DefiProtocolSingleAssetPositionRow: React.FC<DefiProtocolSingleAsse
             {metadata?.label}
           </Label>
 
-          <Label type="regularCaption1" color={isDebt ? 'yellow500' : 'green400'}>
-            {isDebt ? `${loc.defi.debt} ${apy ? `· ` : ''}` : ''}
-            {apy ? `${apy}% ${loc.defi.apy}` : ''}
+          <Label type="regularCaption1" color={isDebtColor}>
+            {isDebtLabel}
+            {apyLabel}
           </Label>
         </View>
       </View>
 
       <View style={styles.valueContainer}>
-        <Label type="boldLargeMonospace" color="light100">
+        <Label type="boldLargeMonospace" color={fiatAmountColor}>
           {formattedFiatAmount}
         </Label>
 
         <Label type="regularCaption1" color="light50">
-          {isDebt ? '-' : ''}
-          {tokenAmountFormatted} {metadata?.symbol}
+          {tokenAmountFormattedIsDebt}
+          {tokenAmountFormatted}
         </Label>
       </View>
     </View>

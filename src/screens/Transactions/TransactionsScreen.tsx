@@ -24,6 +24,7 @@ import type { NavigationProps } from '@/Routes';
 
 import { useTheme } from '@/theme/themes';
 import type { AssetBalanceId } from '@/types';
+import { isVaultsSupportedAsset } from '@/utils/isVaultsSupportedAsset';
 import { navigationStyle } from '@/utils/navigationStyle';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
@@ -32,6 +33,7 @@ import { isSwapSupportedForToken } from '../Swap/utils/isSwapSupportedForToken';
 import { TokenActionButtons } from './components/TokenActionButtons';
 import { SheetPosition } from './components/TokenMarketData/utils';
 import { SMALL_SHEET_MIN_HEIGHT, TokenMarketDataBottomSheet, defaultSheetPosition } from './components/TokenMarketDataBottomSheet';
+import { TransactionsEarnSheet } from './components/TransactionsEarnSheet';
 import { TransactionsTokenHeader } from './components/TransactionsTokenHeader';
 
 import { refreshingTransactionsEvent, showRefreshingTransactionsToast } from './utils/showRefreshingTransactionsToast';
@@ -181,6 +183,15 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
     [sheetPosition],
   );
 
+  const [showEarnSheet, setShowEarnSheet] = useState(false);
+  const onEarnPress =
+    isVaultsSupportedAsset(token?.assetId ?? '') && isOnline
+      ? () => {
+          setShowEarnSheet(true);
+        }
+      : undefined;
+  const onCloseEarnSheet = () => setShowEarnSheet(false);
+
   return (
     <GradientScreenView>
       <FadingElement containerStyle={{ marginBottom: insets.bottom + SMALL_SHEET_MIN_HEIGHT }}>
@@ -195,6 +206,7 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
                 canSwap={canSwap}
                 assetSymbol={token?.metadata.symbol}
                 krakenConnectNetworkId={network.krakenConnectNetworkId}
+                onEarnPress={onEarnPress}
               />
               {dataSource && dataSource?.length > 0 && (
                 <ListHeader buttonTestID="TokenScreen-BottomSheet-Heading" title={loc.transactionTile.activity} style={styles.header} />
@@ -215,6 +227,9 @@ export const TransactionsScreen = ({ navigation, route }: NavigationProps<'Trans
         />
       </FadingElement>
       {tokenId && <TokenMarketDataBottomSheet tokenId={tokenId} onPositionChange={onSheetPositionChange} positionIndex={sheetPosition} />}
+      {showEarnSheet && token && (
+        <TransactionsEarnSheet assetSymbol={token.metadata.symbol} assetId={token.assetId} walletType={realmWallet.type} onCloseSheet={onCloseEarnSheet} />
+      )}
     </GradientScreenView>
   );
 };

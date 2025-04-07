@@ -7,6 +7,9 @@ import type { RealmWallet } from '../wallets';
 
 import type { ObjectSchema } from 'realm';
 
+export const TRANSACTION_STATUS_KRAKEN_CONNECT = 'kraken-connect-to-wallet' as const;
+export const TRANSACTION_STATUS_INVALIDATED = 'invalidated' as const;
+
 export interface Transaction {
   id: string;
   transactionId: string;
@@ -16,6 +19,7 @@ export interface Transaction {
   time: number;
   fee?: string;
   value?: string;
+  additionalStatus?: typeof TRANSACTION_STATUS_KRAKEN_CONNECT;
 }
 export type RealmTransaction = RealmTypeOf<
   Transaction,
@@ -48,6 +52,7 @@ export const WalletTransactionsSchema: ObjectSchema = {
       objectType: REALM_TYPE_TRANSACTION_NOTES,
       optional: true,
     },
+    additionalStatus: 'string?',
   },
   primaryKey: 'id',
 };
@@ -65,7 +70,7 @@ export type PendingTransaction = {
   to?: string;
   time?: number;
   confirmed?: boolean;
-  additionalStatus?: 'invalidated' | 'kraken-connect-to-wallet';
+  additionalStatus?: typeof TRANSACTION_STATUS_INVALIDATED | typeof TRANSACTION_STATUS_KRAKEN_CONNECT;
 };
 
 export type RealmPendingTransaction = RealmTypeOf<

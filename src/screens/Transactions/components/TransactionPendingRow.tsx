@@ -1,15 +1,15 @@
-import type { FC } from 'react';
-
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import BigNumber from 'bignumber.js';
 import LottieView from 'lottie-react-native';
+import { type FC } from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { KrakenIcon } from '@/components/KrakenIcon';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { TokenIcon, TokenIconFallback } from '@/components/TokenIcon';
@@ -20,7 +20,7 @@ import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings';
 import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
 import { getAvailableTokenBalance, useTokenByAssetId, useTokenById } from '@/realm/tokens';
-import type { RealmPendingTransaction } from '@/realm/transactions';
+import { type RealmPendingTransaction, TRANSACTION_STATUS_KRAKEN_CONNECT } from '@/realm/transactions';
 import { TRANSACTION_PENDING_TYPES } from '@/realm/transactions/const';
 import { Routes } from '@/Routes';
 import { formatTransactionAddress } from '@/screens/Transactions/utils/formatAddress';
@@ -130,7 +130,7 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
       appCurrencyValue: detailsAmountInCurrencyFormatted,
       tokenAmount: detailsAmountFormatted,
       transactionType:
-        item.additionalStatus === 'kraken-connect-to-wallet'
+        item.additionalStatus === TRANSACTION_STATUS_KRAKEN_CONNECT
           ? TRANSACTION_PENDING_TYPES.RECEIVE_FROM_KRAKEN
           : kind === 'send'
             ? TRANSACTION_PENDING_TYPES.SEND
@@ -156,6 +156,8 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
     from,
     networkFee,
   ]);
+
+  const isTransactionFromKrakenConnect = from?.toLowerCase() === 'kraken';
 
   const openTransactionDetails = useCallback(() => {
     navigation.navigate(Routes.TransactionDetails, {
@@ -196,6 +198,11 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
   const subtitle = useMemo(
     () => (
       <View style={styles.description}>
+        {isTransactionFromKrakenConnect && (
+          <View style={styles.space}>
+            <KrakenIcon size={16} iconSize={12} />
+          </View>
+        )}
         {isSuccess ? (
           <Animated.View style={pendingStyle}>
             <SvgIcon name="check-circle" color="green500" size={16} style={styles.space} />
@@ -213,7 +220,7 @@ export const TransactionPendingRow: FC<Props> = ({ item, contextTokenId, succeed
         </View>
       </View>
     ),
-    [isSuccess, pendingDescription, pendingStyle, subTitle],
+    [isSuccess, isTransactionFromKrakenConnect, pendingDescription, pendingStyle, subTitle],
   );
   const amounts = useMemo(
     () => (

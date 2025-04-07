@@ -7,7 +7,7 @@ import { useKrakenConnectCredentials } from '@/realm/krakenConnect/useKrakenConn
 import { useRealm } from '@/realm/RealmContext';
 import { checkTokenGalleryChange } from '@/realm/tokenPrice/utils';
 import { getTokenById, useTokensFetch, useTokensMutations } from '@/realm/tokens';
-import type { RealmPendingTransaction } from '@/realm/transactions';
+import { type RealmPendingTransaction, TRANSACTION_STATUS_KRAKEN_CONNECT } from '@/realm/transactions';
 import { usePendingTransactions, useTransactionMutations } from '@/realm/transactions';
 
 import { handleError } from '/helpers/errorHandler';
@@ -15,6 +15,9 @@ import loc from '/loc';
 
 const MAX_SOLANA_TX_DURATION = 2 * 60 * 1000;
 const MAX_KRAKEN_TRANSFER_DURATION = 24 * 60 * 60 * 1000;
+const DELAY_TIME_FETCH_BALANCE = 3000;
+
+const delayFetchBalance = () => new Promise(resolve => setTimeout(resolve, DELAY_TIME_FETCH_BALANCE));
 
 export const useMonitorPendingTransactions = () => {
   const interval = useRef<NodeJS.Timer>();
@@ -23,7 +26,7 @@ export const useMonitorPendingTransactions = () => {
   const { setTokenGalleryStatus } = useTokensMutations();
   const { fetchBalance } = useTokensFetch();
   const realm = useRealm();
-  const { API_KEY, API_SECRET, CF_TOKEN } = useKrakenConnectCredentials();
+  const { API_KEY, API_SECRET } = useKrakenConnectCredentials();
 
   const checkTransaction = useCallback(
     async (tx: RealmPendingTransaction) => {
@@ -49,6 +52,7 @@ export const useMonitorPendingTransactions = () => {
         const isComplete = await transport.isTransactionComplete(network, tx.transactionId);
         if (isComplete && tx.isValid()) {
           confirmPendingTransaction(id);
+          await delayFetchBalance();
           await fetchBalance(tx.wallet, false);
           const token = getTokenById(realm, tx.tokenId);
           if (token) {
@@ -70,11 +74,11 @@ export const useMonitorPendingTransactions = () => {
           timestamp: tx.time,
           apiKey: API_KEY,
           privateKey: API_SECRET,
-          cfToken: CF_TOKEN,
         });
         if (status === 'success') {
           if (tx.isValid()) {
             confirmPendingTransaction(tx.id, transactionId);
+            await delayFetchBalance();
             await fetchBalance(tx.wallet, false);
           }
         } else {
@@ -86,7 +90,7 @@ export const useMonitorPendingTransactions = () => {
         handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
       }
     },
-    [API_KEY, API_SECRET, CF_TOKEN, confirmPendingTransaction, fetchBalance, invalidatePendingTransaction],
+    [API_KEY, API_SECRET, confirmPendingTransaction, fetchBalance, invalidatePendingTransaction],
   );
 
   useEffect(() => {
@@ -94,7 +98,7 @@ export const useMonitorPendingTransactions = () => {
       interval.current = setInterval(async () => {
         for (const tx of pendingTransactions) {
           if (tx.isValid() && !tx.confirmed) {
-            if (tx.additionalStatus !== 'kraken-connect-to-wallet') {
+            if (tx.additionalStatus !== TRANSACTION_STATUS_KRAKEN_CONNECT) {
               checkTransaction(tx);
             } else {
               checkPendingKrakenTransfer(tx);

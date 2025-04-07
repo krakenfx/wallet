@@ -4,6 +4,7 @@ import type { KrakenAssetSupported } from '@/api/krakenConnect/types';
 import { TransactionAmount, TransactionBroadcastSuccess, TransactionHeader } from '@/components/Transaction';
 import type { WalletType } from '@/onChain/wallets/registry';
 import { useAppCurrency } from '@/realm/settings';
+import { getkBtcAssetId } from '@/screens/KrakenConnectSend/utils';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
@@ -17,10 +18,17 @@ interface Props {
   amount: string;
   network: WalletType;
   isSuccess?: boolean;
+  isKBTC?: boolean;
 }
 
-export const ConfirmPreview = ({ asset, network, amountFiat, amount, isSuccess }: Props) => {
+export const ConfirmPreview = ({ asset, network, amountFiat, amount, isSuccess, isKBTC }: Props) => {
   const { currency } = useAppCurrency();
+  const kBTCProps = isKBTC
+    ? {
+        tokenIconProps: { tokenId: getkBtcAssetId(network) },
+      }
+    : {};
+
   return (
     <>
       <View style={[isSuccess && styles.hide]}>
@@ -30,6 +38,7 @@ export const ConfirmPreview = ({ asset, network, amountFiat, amount, isSuccess }
           assetFiatAmount={formatCurrency(amountFiat, { currency })}
           assetNetwork={network}
           assetSymbol={asset.symbol}
+          {...kBTCProps}
         />
         <TransactionPathFromKrakenToWallet />
       </View>

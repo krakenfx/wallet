@@ -77,9 +77,9 @@ export const baseNetwork = new EVMNetwork({
     bgColor: `rgba(132, 92, 224, ${opacity})`,
   }),
   defaultGasLimit: 21000,
-  krakenConnectNetworkId: null,
-  krakenConnectMethodId: null,
-  krakenConnectMethodName: null,
+  krakenConnectNetworkId: '9637bc15-ec8a-43de-8310-887f0a02a9ed',
+  krakenConnectMethodId: '8debb585-0daa-4a8f-8928-5e13c2bc7c21',
+  krakenConnectMethodName: 'Base',
 });
 
 export const optimismNetwork = new EVMNetwork({

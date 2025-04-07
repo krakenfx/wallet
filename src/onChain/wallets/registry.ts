@@ -147,9 +147,3 @@ export const networkIdToNetworkName = fromPairs<WalletType>(
     return [network.caipId, type as WalletType];
   }),
 );
-
-export const nativeCoinToNetworkName = fromPairs<WalletType>(
-  entries(Networks).map(([type, network]) => {
-    return [network.nativeTokenCaipId, type as WalletType];
-  }),
-);

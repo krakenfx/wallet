@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 36,
     gap: 8,
-    minHeight: 150,
   },
   protocoloName: {
     textTransform: 'capitalize',

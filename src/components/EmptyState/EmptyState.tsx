@@ -2,12 +2,11 @@ import { StyleSheet, View } from 'react-native';
 
 import { useTheme } from '@/theme/themes';
 
-import { Button } from '../Button';
 import { Label } from '../Label';
 
 import type { EmptyStateProps } from './EmptyState.types';
 
-export const EmptyState: React.FC<EmptyStateProps> = ({ description, ctaLabel, ctaOnPress }) => {
+export const EmptyState: React.FC<EmptyStateProps> = ({ description }) => {
   const { colors } = useTheme();
 
   return (
@@ -15,8 +14,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({ description, ctaLabel, c
       <Label style={styles.description} type="regularBody" color="light50">
         {description}
       </Label>
-
-      <Button size="small" color="light8" textColor="light100" text={ctaLabel} onPress={ctaOnPress} />
+      {}
     </View>
   );
 };

@@ -6,7 +6,7 @@ import { Tooltip, type Props as TooltipProps } from '../Tooltip';
 
 export type TooltipMenuProps = {
   tooltipProps?: LabelProps;
-  tooltip: string;
+  tooltip: string | React.ReactNode;
   horizontalTipOffset?: number;
 };
 

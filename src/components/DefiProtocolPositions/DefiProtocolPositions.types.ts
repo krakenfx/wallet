@@ -1,5 +1,7 @@
 import type { SharedValue } from 'react-native-reanimated';
 
+import type { WalletType } from '@/onChain/wallets/registry';
+
 export interface DefiProtocolPositionsProps {
   protocol: DefiProtocol;
 }
@@ -28,6 +30,8 @@ export interface Position {
   positionUsdValue: number;
   apy?: number;
   assets: DefiAsset[];
+  vaultAddress?: string;
+  vaultNetwork: WalletType;
 }
 
 export interface DefiProtocolHeadingProps {

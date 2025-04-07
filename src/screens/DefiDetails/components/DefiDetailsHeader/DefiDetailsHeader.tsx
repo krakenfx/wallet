@@ -1,14 +1,33 @@
+import { StyleSheet, View } from 'react-native';
+
 import { useDefiDetailsContext } from '../DefiDetailsContext';
 
 import { DefiDetailsHeaderBalance } from './DefiDetailsHeaderBalance';
+import { DefiDetailsHeaderDailyChange } from './DefiDetailsHeaderDailyChange';
 import { DefiDetailsHeaderProtocol } from './DefiDetailsHeaderProtocol';
+import { DefiDetailsHeaderSkeleton } from './DefiDetailsHeaderSkeleton';
 
 export const DefiDetailsHeader = () => {
-  const { protocolDescription, protocolName, vaultBalance } = useDefiDetailsContext();
+  const { isPending, protocolDescription, protocolName, position } = useDefiDetailsContext();
+  const hasPosition = !isPending && position;
+  const noPosition = !isPending && !position;
 
-  if (vaultBalance) {
-    return <DefiDetailsHeaderBalance vaultBalance={vaultBalance} />;
-  }
-
-  return <DefiDetailsHeaderProtocol protocolName={protocolName} protocolDescription={protocolDescription} />;
+  return (
+    <View style={styles.container}>
+      {isPending && <DefiDetailsHeaderSkeleton />}
+      {hasPosition && (
+        <>
+          <DefiDetailsHeaderBalance position={position} />
+          <DefiDetailsHeaderDailyChange balanceUsd={position.positionUsdValue} />
+        </>
+      )}
+      {noPosition && <DefiDetailsHeaderProtocol protocolName={protocolName} protocolDescription={protocolDescription} />}
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    minHeight: 186,
+  },
+});

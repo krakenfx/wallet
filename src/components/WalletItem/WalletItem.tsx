@@ -16,7 +16,6 @@ import { useIsAccountConnected } from '@/realm/krakenConnect/useIsAccountConnect
 import { useAppCurrency } from '@/realm/settings';
 import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { Button } from '../Button/Button';
@@ -61,7 +60,6 @@ export const WalletItem = ({
   const borderBottomRadius = isLast ? { borderBottomLeftRadius: 16, borderBottomRightRadius: 16 } : {};
   const style = [styles.container, borderTopRadius, borderBottomRadius, { backgroundColor: containerBackgroundColor }];
   const balanceDisplay = useBalanceDisplay(formatCurrency(balance, { currency }));
-  const [krakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
 
   const handlePress = () => {
     if (onPress) {
@@ -87,9 +85,9 @@ export const WalletItem = ({
 
   const handleKrakenConnect = () => {
     if (isAccountConnectedWithExchange) {
-      navigation.navigate(Routes.KrakenConnectDisconnect, { selectedAccountNumber: accountNumber });
+      navigation.navigate(Routes.Settings, { screen: Routes.KrakenConnectDisconnect, params: { selectedAccountNumber: accountNumber } });
     } else {
-      navigation.navigate(Routes.KrakenConnectLanding, { selectedAccountNumber: accountNumber });
+      navigation.navigate(Routes.KrakenConnect, { selectedAccountNumber: accountNumber });
     }
   };
 
@@ -125,7 +123,7 @@ export const WalletItem = ({
       onPress: handleDeletePress,
       testID: 'RemoveWallet',
     },
-  ].filter(item => krakenConnectEnabled || item?.testID !== 'KrakenConnect') as ContextMenuItem[];
+  ];
 
   return (
     <Touchable onPress={handlePress} style={style} disabled={!onPress} testID={testID ?? `Wallet-${accountNumber}`}>
@@ -152,7 +150,7 @@ export const WalletItem = ({
           </Label>
         </View>
       </View>
-      {krakenConnectEnabled && showKrakenConnect ? (
+      {showKrakenConnect ? (
         <Button
           size="medium"
           style={styles.button}

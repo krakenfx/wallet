@@ -21,7 +21,7 @@ import { CoinsListScreen } from '@/screens/CoinsList';
 import { ConnectAppScreen, ConnectWalletConnectAppScreen } from '@/screens/ConnectApp';
 import { ConnectAppQRScanScreen } from '@/screens/ConnectAppQRScan';
 import { DebugScreen } from '@/screens/DebugScreen';
-import { DefiDetailsScreen, DefiDetailsScreenV2 } from '@/screens/DefiDetails';
+import { DefiDetailsScreen, DefiDetailsSparseScreen } from '@/screens/DefiDetails';
 import { EarnScreen } from '@/screens/Earn';
 import { EditNoteScreen } from '@/screens/EditNoteScreen';
 import { ExplainerScreen } from '@/screens/Explainer';
@@ -51,8 +51,7 @@ import { DefaultBackButton } from './components/BackButton';
 
 import { useDeepLinkFromExchange } from './hooks/useDeepLinkFromExchange';
 import { BrowserScreen } from './screens/Browser';
-import { KarkenConnectConnectedScreen } from './screens/KrakenConnect/KarkenConnectConnectedScreen';
-import { KrakenConnectLandingScreen } from './screens/KrakenConnect/KrakenConnectLandingScreen';
+import { KarkenConnectScreen } from './screens/KrakenConnect/KarkenConnectScreen';
 import { SwapScreen } from './screens/Swap';
 import { WhatsNewBrowserExploreScreen } from './screens/WhatsNew/WhatsNewBrowserExploreScreen';
 import { useTheme } from './theme/themes';
@@ -112,7 +111,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="ConnectedApps" component={ConnectedAppsScreen} options={ConnectedAppsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Debug" component={DebugScreen} options={DebugScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="DefiDetails" component={DefiDetailsScreen} options={DefiDetailsScreen.navigationOptions(theme)} />
-      <DefaultStack.Screen name="DefiDetailsV2" component={DefiDetailsScreenV2} options={DefiDetailsScreenV2.navigationOptions(theme)} />
+      <DefaultStack.Screen name="DefiDetailsSparse" component={DefiDetailsSparseScreen} options={DefiDetailsSparseScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Diagnostics" component={DiagnosticsScreen} options={DiagnosticsScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="EditNote" component={EditNoteScreen} options={EditNoteScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ExtendedPublicKey" component={ExtendedPublicKeyScreen} options={ExtendedPublicKeyScreen.navigationOptions(theme)} />
@@ -166,12 +165,7 @@ const NavigationStack = () => {
       <DefaultStack.Screen name="Explore" component={ExploreScreen} options={ExploreScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="ExploreSubpage" component={ExploreSubpageScreen} options={ExploreSubpageScreen.navigationOptions(theme)} />
       <DefaultStack.Screen name="Swap" component={SwapScreen} options={SwapScreen.navigationOptions(theme)} />
-      <DefaultStack.Screen name="KrakenConnectLanding" component={KrakenConnectLandingScreen} options={KrakenConnectLandingScreen.navigationOptions(theme)} />
-      <DefaultStack.Screen
-        name="KrakenConnectConnected"
-        component={KarkenConnectConnectedScreen}
-        options={KarkenConnectConnectedScreen.navigationOptions(theme)}
-      />
+      <DefaultStack.Screen name="KrakenConnect" component={KarkenConnectScreen} options={KarkenConnectScreen.navigationOptions(theme)} />
       <DefaultStack.Screen
         name="KrakenConnectTransfer"
         component={KrakenConnectTransferScreen}

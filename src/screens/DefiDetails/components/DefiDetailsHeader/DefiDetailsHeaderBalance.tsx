@@ -1,46 +1,47 @@
+import BigNumber from 'bignumber.js';
+
 import { BalanceHeader } from '@/components/BalanceHeader';
-import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
-import type { VaultBalance } from '@/reactQuery/hooks/usePositionsQuery';
+import type { DefiAsset, Position } from '@/components/DefiProtocolPositions/DefiProtocolPositions.types';
 import { useAppCurrency } from '@/realm/settings';
-import { Currency, getCurrencyInfo } from '@/screens/Settings/currency';
+import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
+import { smallUnit2TokenUnit } from '@/utils/unitConverter';
 
-import { DefiDetailsHeaderFooter } from './DefiDetailsHeaderFooter';
+import { DefiDetailsHeaderBalanceSimple } from './DefiDetailsHeaderBalanceSimple';
 
-interface DefiDetailsHeaderBalanceProps {
-  vaultBalance: VaultBalance;
+export interface Props {
+  position: Position;
 }
 
-export const DefiDetailsHeaderBalance = ({ vaultBalance }: DefiDetailsHeaderBalanceProps) => {
+export const DefiDetailsHeaderBalance: React.FC<Props> = ({ position }) => {
   const { currency, currencyInfo } = useAppCurrency();
-  const token = {
-    balance: vaultBalance.balanceNative,
-    assetId: vaultBalance.asset.assetAddress,
-    metadata: { decimals: vaultBalance.asset.decimals },
-  };
-  const fiatValue = useTokenBalanceConvertedToAppCurrency(token);
-  const fiatValueDependentData = {
-    currency,
-    currencyInfo,
-    fiatValue,
-  };
+  const fiatRate = useCurrentUsdFiatRate();
+  const fiatTotal = position.positionUsdValue * fiatRate;
+  const asset: DefiAsset | undefined = position.assets[0];
 
-  if (fiatValue === undefined) {
-    fiatValueDependentData.currency = Currency.USD;
-    fiatValueDependentData.currencyInfo = getCurrencyInfo(Currency.USD);
-    fiatValueDependentData.fiatValue = Number(vaultBalance.balanceUsd);
-  }
+  const isSameNetwork = new Set(position.assets.map(a => a.network)).size === 1;
+  const isSameToken = new Set(position.assets.map(a => a.id)).size === 1;
+
+  const isSameNetworkSameToken = isSameNetwork && isSameToken;
+  const nativeBalanceTotal = smallUnit2TokenUnit(
+    BigNumber.sum(...position.assets.map(a => BigNumber(a.balanceNative).multipliedBy(position.isDebt ? -1 : 1))),
+    asset?.decimals ?? 0,
+  ).toString(10);
 
   return (
-    <BalanceHeader
-      currency={fiatValueDependentData.currency}
-      currencyInfo={fiatValueDependentData.currencyInfo}
-      fiatLast
-      fiatValue={fiatValueDependentData.fiatValue}
-      footer={DefiDetailsHeaderFooter}
-      testIDs={['Balance-DefiDetailsScreen', 'AssetBalance-DefiDetailsScreen', 'FiatBalance-DefiDetailsScreen']}
-      tokenAmount={vaultBalance.balanceNative}
-      tokenSymbol={vaultBalance.asset.symbol}
-      tokenId={vaultBalance.asset.assetAddress}
-    />
+    <>
+      {isSameNetworkSameToken ? (
+        <BalanceHeader
+          currency={currency}
+          currencyInfo={currencyInfo}
+          fiatLast
+          fiatValue={fiatTotal}
+          tokenAmount={nativeBalanceTotal}
+          tokenSymbol={asset.symbol}
+          tokenId={asset.id}
+        />
+      ) : (
+        <DefiDetailsHeaderBalanceSimple balanceUsd={position.positionUsdValue} assets={position.assets} />
+      )}
+    </>
   );
 };

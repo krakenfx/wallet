@@ -10,7 +10,7 @@ import type { BrowserParams } from '@/screens/Browser';
 import type { ConnectAppParams } from '@/screens/ConnectApp/ConnectAppScreen';
 import type { ConnectWalletConnectAppParams } from '@/screens/ConnectApp/ConnectWalletConnectAppScreen';
 import type { ScanQRCodeParams } from '@/screens/ConnectAppQRScan';
-import type { DefiDetailsRouteParams, DefiDetailsRouteParamsV2 } from '@/screens/DefiDetails';
+import type { DefiDetailsRouteParams, DefiDetailsSparseRouteParams } from '@/screens/DefiDetails';
 import type { EditNoteParams } from '@/screens/EditNoteScreen';
 import type { ExplainerProps } from '@/screens/Explainer';
 import type { ExploreSubpageNavigationParams } from '@/screens/Explore/ExploreSubpageScreen';
@@ -65,13 +65,12 @@ export type RouteProps = ExcludeRealmObjectsFromRouteParams<
     ConnectAppQRScan: ScanQRCodeParams | undefined;
     ConnectedApps: ConnectedAppsParams;
     Debug: undefined;
+    DefiDetailsSparse: DefiDetailsSparseRouteParams;
     DefiDetails: DefiDetailsRouteParams;
-    DefiDetailsV2: DefiDetailsRouteParamsV2;
     Diagnostics: undefined;
     Explore: undefined;
     ExploreSubpage: ExploreSubpageNavigationParams;
-    KrakenConnectLanding: KrakenConnectNavigationParams | undefined;
-    KrakenConnectConnected: KrakenConnectNavigationParams;
+    KrakenConnect: KrakenConnectNavigationParams | undefined;
     KrakenConnectDisconnect: KrakenConnectNavigationParams;
     Swap: SwapScreenParams | undefined;
     Earn: undefined;
@@ -136,7 +135,7 @@ export enum Routes {
   ConnectAppQRScan = 'ConnectAppQRScan',
   Currency = 'Currency',
   DefiDetails = 'DefiDetails',
-  DefiDetailsV2 = 'DefiDetailsV2',
+  DefiDetailsSparse = 'DefiDetailsSparse',
   Debug = 'Debug',
   Diagnostics = 'Diagnostics',
   Earn = 'Earn',
@@ -147,8 +146,7 @@ export enum Routes {
   ExtendedPublicKey = 'ExtendedPublicKey',
   GlobalActivity = 'GlobalActivity',
   Home = 'Home',
-  KrakenConnectLanding = 'KrakenConnectLanding',
-  KrakenConnectConnected = 'KrakenConnectConnected',
+  KrakenConnect = 'KrakenConnect',
   KrakenConnectDisconnect = 'KrakenConnectDisconnect',
   KrakenConnectTransfer = 'KrakenConnectTransfer',
   KrakenConnectSendStack = 'KrakenConnectSendStack',

@@ -1,4 +1,4 @@
-import type { DefiAssetsListItem } from '../DefiFlatList/DefiFlatList.types';
+import type { DefiProtocol } from '../DefiAssetProtocolRow/DefiAssetProtocolRow.types';
 
 export enum SheetPosition {
   'MEDIUM' = 0,
@@ -6,6 +6,7 @@ export enum SheetPosition {
 }
 
 export interface DefiEarnSheetProps {
-  selectedAsset: DefiAssetsListItem | null;
   onCloseEarnSheet: () => void;
+  assetId: string;
+  protocols: DefiProtocol[];
 }

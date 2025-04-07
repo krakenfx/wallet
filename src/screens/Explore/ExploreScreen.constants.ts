@@ -10,6 +10,7 @@ export const Sizes = {
     third: unit / 3,
     half: unit / 2,
     s1: unit,
+    s1AndThird: unit + unit / 3,
     s2: unit * 2,
     s3: unit * 3,
     s4: unit * 4,

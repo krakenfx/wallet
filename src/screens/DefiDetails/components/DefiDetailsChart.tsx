@@ -5,18 +5,22 @@ import Animated, { CurvedTransition, FadeIn, FadeOut } from 'react-native-reanim
 import { CartesianChart, Line } from 'victory-native';
 
 import { ActivityIndicator } from '@/components/ActivityIndicator';
+import { Button } from '@/components/Button';
 import { HighLowChange } from '@/components/HighLowChange';
 import { PeriodSwitcher } from '@/components/PeriodSwitcher';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
-import { useVaultMetricsQuery } from '@/reactQuery/hooks/useVaultMetricsQuery';
+import { TARGET_DATASET_LENGTH, useVaultHistoricalMetricsQuery } from '@/reactQuery/hooks/earn/useVaultHistoricalMetricsQuery';
 import { useAppCurrency } from '@/realm/settings';
 import type { PriceHistoryPeriod } from '@/realm/tokenPrice';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 import { type ColorName, useTheme } from '@/theme/themes';
+import { generateChartPlaceholder } from '@/utils/generateChartPlaceholder';
 
-import { CHART_PLACEHOLDER, fmt } from '../utils';
+import { fmt } from '../utils';
 
 import { useDefiDetailsContext } from './DefiDetailsContext';
+
+import loc from '/loc';
 
 type ChartColorSet = { highLow: ColorName; gradient: string[] };
 const RED_GRADIENT = ['#8D52FF', '#8D52FF', '#EC6D6D'];
@@ -24,6 +28,7 @@ const GREEN_GRADIENT = ['#3D3D95', '#8D52FF', '#62DD93'];
 const ASCENDING_COLOR_SET: ChartColorSet = { highLow: 'green400', gradient: GREEN_GRADIENT };
 const DESCENDING_COLOR_SET: ChartColorSet = { highLow: 'red400', gradient: RED_GRADIENT };
 
+const CHART_PLACEHOLDER = generateChartPlaceholder(TARGET_DATASET_LENGTH);
 const STANDARD_DEVICE_HEIGHT_FOR_CHART = 850;
 const DEFAULT_CHART_HEIGHT = 120;
 const CHART_DOMAIN_PADDING = { top: 12, bottom: 12 };
@@ -37,11 +42,14 @@ type Props = {
 };
 
 export const DefiDetailsChart = ({ hide }: Props) => {
-  const { chartMetric, period, setPeriod } = useDefiDetailsContext();
+  const { vaultAddress, vaultNetwork, chartMetric, period, setPeriod } = useDefiDetailsContext();
   const { currency } = useAppCurrency();
   const fiatRate = useCurrentUsdFiatRate();
 
-  const { data, isPending } = useVaultMetricsQuery(period);
+  const { data, isPending, isError, refetch, isRefetching } = useVaultHistoricalMetricsQuery(vaultAddress, vaultNetwork, period);
+  const refreshChart = () => refetch();
+  const isPendingOrRefetching = isPending || isRefetching;
+
   const dataPoints = useMemo(
     () =>
       (data || []).map(d => {
@@ -54,6 +62,7 @@ export const DefiDetailsChart = ({ hide }: Props) => {
   );
   const dataLength = dataPoints.length;
   const hasData = Boolean(dataLength);
+  const showRefreshChartButton = ((isError && !hasData) || !hasData) && !isPendingOrRefetching;
   const [first, last] = useMemo(
     () => (hasData ? [dataPoints[0], dataPoints[dataLength - 1]] : [{ value: 0 }, { value: 0 }]),
     [hasData, dataLength, dataPoints],
@@ -104,13 +113,18 @@ export const DefiDetailsChart = ({ hide }: Props) => {
             </Line>
           )}
         </CartesianChart>
-        {isPending && (
+        {isPendingOrRefetching && (
           <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.pending}>
             <ActivityIndicator />
           </Animated.View>
         )}
+        {showRefreshChartButton && (
+          <View style={styles.refreshChartButtonContainer}>
+            <Button text={loc.earn.detailsSheet.refreshChart} style={styles.refreshChartButton} onPress={refreshChart} />
+          </View>
+        )}
       </Animated.View>
-      <PeriodSwitcher onChange={onChangePeriod} disabled={!hasData} preselectedIndex={1} />
+      <PeriodSwitcher onChange={onChangePeriod} disabled={!isError && !hasData} preselectedIndex={1} hideYearAndAll />
       <View style={styles.highLowChange}>
         <HighLowChange color={chartColors.highLow} high={high} low={low} currentValue={currentValue} highLabel={highLabel} lowLabel={lowLabel} />
       </View>
@@ -139,5 +153,15 @@ const styles = StyleSheet.create({
   },
   highLowChange: {
     marginTop: 12,
+  },
+  refreshChartButtonContainer: {
+    position: 'absolute',
+    justifyContent: 'center',
+    left: 0,
+    right: 0,
+    top: DEFAULT_CHART_HEIGHT / 2,
+  },
+  refreshChartButton: {
+    marginHorizontal: 'auto',
   },
 });

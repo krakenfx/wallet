@@ -181,17 +181,16 @@
     "yes": "Yes"
   },
   "defi": {
-    "onePosition": "1 position",
-    "positions": "{numberOfPositions} positions",
-    "network": "network",
     "debt": "Debt",
-    "claimable": "Claimable",
     "apy": "APY",
     "tvl": "TVL"
   },
   "earn": {
     "allAssets": "All assets",
     "apy": "APY",
+    "balance": "Balance",
+    "debt": "Debt",
+    "liquidityPool": "Liquidity Pool",
     "earnUpToApy": "Up to {apy}% APY",
     "earnCTA": "Earn",
     "earnWhileYouSleep": "Earn while you sleep",
@@ -204,6 +203,8 @@
       "openDapp": "Open dapp",
       "info": {
         "protocol": "Protocol",
+        "pool": "Pool",
+        "composition": "Composition",
         "type": "Type",
         "tokenEarned": "Token earned",
         "network": "Network",
@@ -211,7 +212,7 @@
         "numberHolders": "Number of holders",
         "tokenPrice": "Token price",
         "marketCap": "Market cap",
-        "contractAddress": "Contract address",
+        "poolAddress": "Pool address",
         "about": "About {symbol}",
         "addressCopied": "Address copied"
       },
@@ -219,7 +220,8 @@
       "withdraw": "Withdraw",
       "transfer": "Transfer",
       "from": "From:",
-      "to": "To:"
+      "to": "To:",
+      "refreshChart": "Refresh chart"
     },
     "earnSheet": {
       "earn": "Earn {symbol}",
@@ -532,7 +534,9 @@
     "valid": "Imported",
     "paste": "Paste",
     "header": "Import your wallet",
-    "headerInvalid": "Check your secret phrase"
+    "headerInvalid": "Check your secret phrase",
+    "disclaimerTitle": "Attention!",
+    "disclaimer": "If anyone else knows this Secret Recovery Phrase (seed words), they also have access to this wallet and the funds are not safe."
   },
   "onboardingImportSubWallets": {
     "loadingSubWallets": {
@@ -1012,6 +1016,10 @@
       "failed": "Failed",
       "success": "Success"
     },
+    "krakenConnect": {
+      "transferredIn": "Transferred in",
+      "fromKraken": "From: Kraken"
+    },
     "description": {
       "approval": {
         "succeeded": "{amount} was approved on {address}",
@@ -1349,6 +1357,16 @@
     }
   },
   "krakenConnect": {
+    "errors": {
+      "fetchBalance": "Unable to retrieve the Kraken exchange balance.",
+      "createAddress": "Failed to create a funding address.",
+      "getFee": "Unable to fetch the exact fee amount.",
+      "transferAppLockFailure": "Transfer was not initiated."
+    },
+    "availableBalanceInfo": {
+      "title": "A portion of your Kraken exchange holdings can be unavailable for withdrawal due to a temporary hold.",
+      "description": "Why is there a hold?"
+    },
     "appLock": {
       "title": "Secure your wallet before connecting",
       "description": "To protect your funds, turn on {authType} before connecting your exchange."
@@ -1406,6 +1424,10 @@
       "heading": "Fund your wallet",
       "body": "Connect your Kraken account to",
       "bodyBold": "transfer crypto to your wallet"
+    },
+    "receiveCta": {
+      "headline": "Fast transfer from Kraken",
+      "body": "Connect your Kraken Exchange account"
     },
     "exchangeBalance": "Exchange balance",
     "transfer": {

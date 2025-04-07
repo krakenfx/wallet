@@ -10,11 +10,10 @@ import { Label } from '@/components/Label';
 
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
-
 import loc from '/loc';
 
 interface Props {
+  onEarnPress?: () => unknown;
   onSendPress: () => unknown;
   onReceivePress: () => unknown;
   onSwapPress?: () => unknown;
@@ -24,9 +23,8 @@ interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-export const ActionButtons = ({ onReceivePress, onSendPress, canSwap, onSwapPress, style, krakenAsset, onTransferPress }: Props) => {
+export const ActionButtons = ({ onEarnPress, onReceivePress, onSendPress, canSwap, onSwapPress, style, krakenAsset, onTransferPress }: Props) => {
   const { size } = useDeviceSize();
-  const [isKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
   const renderButton = (label: string, btnProps: ButtonProps) => {
     return (
       <View style={styles.btnContainer}>
@@ -42,10 +40,9 @@ export const ActionButtons = ({ onReceivePress, onSendPress, canSwap, onSwapPres
     <Animated.View style={[styles.container, style, size === 'small' && styles.smallDeviceContainer]} entering={FadeIn}>
       {renderButton(loc.universalSend.buttonTitle, { icon: 'send', onPress: onSendPress, testID: 'UniversalSendBtn' })}
       {renderButton(loc.universalReceive.buttonTitle, { icon: 'receive', onPress: onReceivePress, testID: 'UniversalReceiveBtn' })}
-      {krakenAsset &&
-        isKrakenConnectEnabled &&
-        renderButton(loc.krakenConnect.transfer.title, { icon: 'transfer', onPress: onTransferPress, testID: 'UniversalTransferBtn' })}
+      {krakenAsset && renderButton(loc.krakenConnect.transfer.title, { icon: 'transfer', onPress: onTransferPress, testID: 'UniversalTransferBtn' })}
       {canSwap && renderButton(loc.swap.buttonTitle, { icon: 'swap', onPress: onSwapPress, testID: 'UniversalSwapBtn' })}
+      {!!onEarnPress && renderButton(loc.earn.earnCTA, { icon: 'earn', onPress: onEarnPress, testID: 'EarnBtn' })}
     </Animated.View>
   );
 };

@@ -417,6 +417,7 @@
   "defi": {
     "allAssets": "Tutti gli asset",
     "apr": "APR",
+    "apy": "APY",
     "claimable": "Reclamabile",
     "debt": "Debito",
     "dept": "Dept",
@@ -459,6 +460,8 @@
   "earn": {
     "allAssets": "Tutti gli asset",
     "apy": "APY",
+    "balance": "Saldo",
+    "debt": "Debito",
     "detailsSheet": {
       "deposit": "Deposito",
       "depositCta": "Deposita {symbol} su {protocol}",
@@ -468,10 +471,13 @@
         "about": "Informazioni su {symbol}",
         "addressCopied": "Indirizzo copiato",
         "assetsLocked": "Asset bloccati",
+        "composition": "Composizione",
         "contractAddress": "Indirizzo del contratto",
         "marketCap": "Market cap",
         "network": "Network",
         "numberHolders": "Numero di detentori",
+        "pool": "Pool",
+        "poolAddress": "Indirizzo del pool",
         "protocol": "Protocollo",
         "tokenEarned": "Token guadagnati",
         "tokenPrice": "Prezzo del token",
@@ -486,6 +492,7 @@
         "week": "S",
         "year": "Y"
       },
+      "refreshChart": "Aggiorna grafico",
       "to": "A:",
       "transfer": "Trasferimento",
       "withdraw": "Preleva"
@@ -515,6 +522,7 @@
     },
     "heroAvailableBalance": "Disponibilità di {balance} {symbol}",
     "heroTitle": "Guadagna {symbol} su {protocol}",
+    "liquidityPool": "Pool di liquidità",
     "protocolType": {
       "lending": "Prestito"
     },
@@ -728,13 +736,31 @@
     "assets": "Asset",
     "collection": "NFT",
     "collection_see_all": "Vedi tutto",
+    "collectionEmpty": "Ancora nessun NFT. I tuoi oggetti da collezione verranno visualizzati qui quando disponibili. ",
+    "collectionEmptyCta": "Ricevi",
     "defiEmpty": "Inizia a guadagnare con la DeFi",
-    "defiEmptyCaption": "Le tue posizioni verranno visualizzate qui quando disponibili. Partecipa alla DeFi e inizia a ottenere rendimenti.",
+    "defiEmptyCaption": "Ancora nessuna posizione. Partecipa alla DeFi per ottenere rendimenti dai tuoi asset.",
+    "defiEmptyCta": "Inizia a guadagnare",
+    "defiEmptyTitle": "DeFi",
     "deposits": "DeFi",
     "manage": "Gestisci",
     "total_balance": "Saldo"
   },
   "krakenConnect": {
+    "appLock": {
+      "description": "Per proteggere i tuoi fondi, attiva {authType} prima di connetterti all'exchange.",
+      "title": "Proteggi il tuo wallet prima di connetterti"
+    },
+    "appLockWarning": {
+      "ctaCancel": "Annulla",
+      "ctaTurnOff": "Disattiva",
+      "description": "Se disattivi App Lock, perderai la connessione a Kraken. Dovrai reimpostarlo se desideri trasferire fondi senza problemi.",
+      "title": "Desideri disattivare App Lock?"
+    },
+    "availableBalanceInfo": {
+      "description": "Perché è stata applicata una sospensione?",
+      "title": "Una parte dei tuoi asset detenuti nell'exchange può non essere disponibile per il prelievo a causa di una sospensione temporanea."
+    },
     "balanceOnKraken": "su Kraken",
     "connected": {
       "alert": "Solo il wallet attuale \"<b>{walletName}</b>\" è stato collegato a Kraken.",
@@ -746,6 +772,12 @@
     },
     "connecting": "Collegamento a Kraken",
     "connectingFailed": "Errore durante il collegamento a Kraken ",
+    "errors": {
+      "createAddress": "Impossibile creare un indirizzo per i versamenti.",
+      "fetchBalance": "Impossibile recuperare il saldo di Kraken Exchange.",
+      "getFee": "Impossibile recuperare l'importo esatto della commissione.",
+      "transferAppLockFailure": "Il trasferimento non è stato avviato."
+    },
     "exchangeBalance": "Saldo dell’exchange",
     "fundCta": {
       "body": "Collega il tuo account di Kraken a",
@@ -757,6 +789,10 @@
       "title": "Nessun asset da trasferire"
     },
     "pendingTransactionId": "ID transazione di Kraken",
+    "receiveCta": {
+      "body": "Connetti l'account di Kraken Exchange",
+      "headline": "Trasferimento veloce da Kraken"
+    },
     "selectNetwork": {
       "description": "Scegli su quale network desideri ricevere {assetLabel} nel tuo wallet.",
       "fee": "{assetValue} commissione",
@@ -770,7 +806,7 @@
     "settings": {
       "benefits0": "Trasferisci crypto da Kraken",
       "benefits1": "Visualizza i saldi di Kraken Exchange",
-      "benefitsHeadline": "Il collegamento all'account di Kraken consente di:",
+      "benefitsHeadline": "Il collegamento all'account consente di:",
       "cancel": "Annulla",
       "connect": "Connetti",
       "disconnect": "Scollega",
@@ -808,7 +844,7 @@
       "transferFee": "Commissione sul trasferimento",
       "transferringTo": "Trasferimento a",
       "unsupportedAssets": "Asset non supportati",
-      "unsupportedAssetsDescription": "Il wallet non supporta anche altri {count} asset presenti ne tuo account di exchange"
+      "unsupportedAssetsDescription": "{assets} non sono al momento supportati da Kraken Wallet"
     },
     "transferCta": {
       "body": "Collega il tuo account di Kraken per trasferire rapidamente criptovalute",
@@ -1172,6 +1208,8 @@
   },
   "onboardingImportWallet": {
     "caption": "Per importare il tuo wallet, inserisci la tua frase di recupero segreta.",
+    "disclaimer": "Se qualcun altro venisse a conoscenza della frase di recupero segreta (seed words), potrebbe accedere a questo wallet e i fondi non sarebbero al sicuro.",
+    "disclaimerTitle": "Attenzione!",
     "header": "Importa wallet",
     "headerInvalid": "Controlla la tua frase segreta",
     "import": "Importa",
@@ -1712,6 +1750,10 @@
     "genericNetworkFee": "Commissione del network",
     "input": "Input",
     "inputs": "Ingressi",
+    "krakenConnect": {
+      "fromKraken": "Da: Kraken",
+      "transferredIn": "Trasferiti in"
+    },
     "networkFee": "Commissione del network {network}",
     "networkFee_": "Commissione del network",
     "notes": "Descrizione",

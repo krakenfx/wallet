@@ -16,7 +16,7 @@ export const KrakenConnectTransferCTA = () => {
     <View style={styles.container}>
       <Touchable
         onPress={() => {
-          navigation.navigate(Routes.KrakenConnectLanding);
+          navigation.navigate(Routes.KrakenConnect);
         }}>
         <View style={styles.card}>
           <GradientItemBackground />

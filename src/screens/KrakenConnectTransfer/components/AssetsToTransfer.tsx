@@ -48,6 +48,7 @@ export const AssetsToTransfer = ({ supportedAssets, isLoading }: Props) => {
                 showAmountInFiat: true,
                 forceOmitNetworkIcon: true,
                 onPress: () => onPress(item),
+                disableLongPress: true,
               }}
             />
           ))

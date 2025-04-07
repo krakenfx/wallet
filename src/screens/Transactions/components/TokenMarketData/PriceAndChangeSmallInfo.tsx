@@ -7,7 +7,7 @@ import { useAppCurrency } from '@/realm/settings';
 import { useTokenById } from '@/realm/tokens';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-import { getPercentageLabel } from '@/utils/formatPercentage';
+import { getPercentageLabel } from '@/utils/getPercentageLabel';
 
 import { commonStyles } from './styles';
 import { PRICE_PLACEHOLDER } from './utils';

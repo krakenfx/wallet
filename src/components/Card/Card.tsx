@@ -8,14 +8,15 @@ import { Touchable } from '@/components/Touchable';
 type CardProps = {
   onPress?: () => void;
   size?: 'large';
+  testID?: string;
 };
 
-export const Card: FC<PropsWithChildren & CardProps> = ({ children, onPress, size }) => {
+export const Card: FC<PropsWithChildren & CardProps> = ({ children, onPress, size, testID }) => {
   const style = [size === 'large' ? styles.large : styles.small, styles.container];
 
   if (onPress) {
     return (
-      <Touchable onPress={onPress} style={style}>
+      <Touchable onPress={onPress} style={style} testID={testID}>
         <GradientItemBackground />
         {children}
       </Touchable>

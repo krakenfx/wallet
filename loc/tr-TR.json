@@ -417,6 +417,7 @@
   "defi": {
     "allAssets": "Tüm varlıklar",
     "apr": "APR",
+    "apy": "APY",
     "claimable": "Talep edilebilir",
     "debt": "Borç",
     "dept": "Bölüm",
@@ -459,6 +460,8 @@
   "earn": {
     "allAssets": "Tüm varlıklar",
     "apy": "APY",
+    "balance": "Bakiye",
+    "debt": "Borç",
     "detailsSheet": {
       "deposit": "Para yatır",
       "depositCta": "{symbol} protokolünde {protocol} yatırın",
@@ -468,10 +471,13 @@
         "about": "{symbol} hakkında",
         "addressCopied": "Adres kopyalandı",
         "assetsLocked": "Varlıklar kilitlendi",
+        "composition": "Kompozisyon",
         "contractAddress": "İletişim adresi",
         "marketCap": "Piyasa değeri",
         "network": "Ağ",
         "numberHolders": "Sahip sayısı",
+        "pool": "Yatırma",
+        "poolAddress": "Havuz adresi",
         "protocol": "Protokol",
         "tokenEarned": "Token kazanıldı",
         "tokenPrice": "Token fiyatı",
@@ -486,6 +492,7 @@
         "week": "H",
         "year": "Y"
       },
+      "refreshChart": "Grafiği yenile",
       "to": "Alıcı:",
       "transfer": "Transfer",
       "withdraw": "Para çekme"
@@ -515,6 +522,7 @@
     },
     "heroAvailableBalance": "{balance} {symbol} kullanılabilir",
     "heroTitle": "{protocol} ile {symbol} kazanın",
+    "liquidityPool": "Likidite Havuzu",
     "protocolType": {
       "lending": "Ödünç Verme"
     },
@@ -728,13 +736,31 @@
     "assets": "Varlıklar",
     "collection": "NFT'ler",
     "collection_see_all": "Tümünü görüntüle",
+    "collectionEmpty": "Henüz NFT yok. Toplanabilir ürünler kullanılabilir olduğunda burada görünecektir. ",
+    "collectionEmptyCta": "Teslim Al",
     "defiEmpty": "DeFi ile kazanmaya başlayın",
-    "defiEmptyCaption": "Pozisyonlarınız kullanılabilir olduğunda burada görünecektir. DeFi'ye katılın ve getiri elde etmeye başlayın.",
+    "defiEmptyCaption": "Henüz pozisyon yok. Varlıklarınız üzerinden getiri elde etmek için DeFi'a katılın.",
+    "defiEmptyCta": "Kazanmaya başlayın",
+    "defiEmptyTitle": "DeFi",
     "deposits": "DeFi",
     "manage": "Yönet",
     "total_balance": "Bakiye"
   },
   "krakenConnect": {
+    "appLock": {
+      "description": "Fonlarınızı korumak için borsanızı bağlamadan önce {authType} özelliğini açın.",
+      "title": "Bağlanmadan önce cüzdanınızı güvence altına alın"
+    },
+    "appLockWarning": {
+      "ctaCancel": "İptal",
+      "ctaTurnOff": "Kapat",
+      "description": "Uygulama Kilidinin devre dışı bırakılması Kraken ile bağlantınızı kesecektir. Sorunsuz şekilde fon transfer etmeye devam etmek isterseniz bu bağlantıyı yeniden ayarlamanız gerekecektir.",
+      "title": "Uygulama Kilidi kapatılsın mı?"
+    },
+    "availableBalanceInfo": {
+      "description": "Neden işlem beklemede?",
+      "title": "Kraken borsa varlıklarınızın bir bölümü, geçici olarak beklemeye alındığından çekilemeyebilir."
+    },
     "balanceOnKraken": "Kraken",
     "connected": {
       "alert": "Yalnızca geçerli cüzdan: \"<b>{walletName}</b>\", Kraken'a bağlandı.",
@@ -746,6 +772,12 @@
     },
     "connecting": "Kraken'e bağlanılıyor",
     "connectingFailed": "Kraken'a bağlanırken bir hata oluştu ",
+    "errors": {
+      "createAddress": "Fonlama adresi oluşturulamadı.",
+      "fetchBalance": "Kraken borsa bakiyesi alınamıyor.",
+      "getFee": "Tam ücret miktarı alınamıyor.",
+      "transferAppLockFailure": "Transfer başlatılmadı."
+    },
     "exchangeBalance": "Borsası bakiyesi",
     "fundCta": {
       "body": "Kraken hesabınızı bağlayın:",
@@ -757,6 +789,10 @@
       "title": "Transfer edilecek varlık yok"
     },
     "pendingTransactionId": "Kraken işlem kimliği",
+    "receiveCta": {
+      "body": "Kraken Exchange hesabınızı bağlayın",
+      "headline": "Kraken'dan hızlı transfer"
+    },
     "selectNetwork": {
       "description": "{assetLabel} varlıklarınızı cüzdanınıza almak istediğiniz ağı seçin.",
       "fee": "{assetValue} ücreti",
@@ -808,7 +844,7 @@
       "transferFee": "Transfer ücreti",
       "transferringTo": "Şuraya transfer ediliyor:",
       "unsupportedAssets": "Desteklenmeyen varlıklar",
-      "unsupportedAssetsDescription": "Borsa hesabınızdaki diğer {count} varlık, cüzdan tarafından desteklenmiyor"
+      "unsupportedAssetsDescription": "{assets} varlıkları şu anda Kraken Wallet'ta desteklenmemektedir"
     },
     "transferCta": {
       "body": "Hızlı bir şekilde kripto transfer etmek için Kraken hesabınızı bağlayın",
@@ -1172,6 +1208,8 @@
   },
   "onboardingImportWallet": {
     "caption": "Cüzdanınızı içe aktarmak için gizli kurtarma ifadenizi girin.",
+    "disclaimer": "Bu Gizli Kurtarma İfadesini (anahtar kelimeler) bilen başka biri varsa bu kişiler bu cüzdana da erişebilir ve fonlar güvende değildir.",
+    "disclaimerTitle": "Dikkat!",
     "header": "Cüzdanınızı içe aktarın",
     "headerInvalid": "Gizli ifadenizi kontrol edin",
     "import": "İçe Aktar",
@@ -1712,6 +1750,10 @@
     "genericNetworkFee": "Ağ ücreti",
     "input": "Giriş",
     "inputs": "Giriş",
+    "krakenConnect": {
+      "fromKraken": "Gönderici: Kraken",
+      "transferredIn": "Transfer süresi:"
+    },
     "networkFee": "{network} Ağ Ücreti",
     "networkFee_": "Ağ ücreti",
     "notes": "Açıklama",

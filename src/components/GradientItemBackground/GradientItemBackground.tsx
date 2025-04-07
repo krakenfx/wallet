@@ -9,9 +9,11 @@ import { useTheme } from '@/theme/themes';
 
 import { GradientBaseBackground } from '../Gradients/GradientBaseBackground';
 
+export type GradientItemBackgroundType = 'modal' | 'fullscreen' | 'modalLight';
+
 export type GradientItemBackgroundProps = Pick<ComponentProps<typeof Animated.View>, 'entering' | 'exiting'> & {
   style?: StyleProp<ViewStyle>;
-  backgroundType?: 'modal' | 'fullscreen' | 'modalLight';
+  backgroundType?: GradientItemBackgroundType;
 };
 
 const opacities = {

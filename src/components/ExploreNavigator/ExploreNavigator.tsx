@@ -10,8 +10,6 @@ import { useGlobalState } from '@/components/GlobalState';
 import { useOnScanPress } from '@/hooks/useOnScanPress';
 import { Routes } from '@/Routes';
 
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
-
 import type { NavigationState } from '@react-navigation/native';
 
 const getRouteFromState = (state: NavigationState): string => {
@@ -27,7 +25,6 @@ export const ExploreNavigator: FC = () => {
   const [showNavTabs, setShowNavTabs] = useGlobalState('showNavTabs');
   const [canShowNav, setCanShowNav] = useState<boolean>(false);
   const [tabIndex, setTabIndex] = useState<number>(0);
-  const [isEarnEnabled] = useFeatureFlag('earnEnabled');
 
   const onScanPress = useOnScanPress();
 
@@ -41,16 +38,6 @@ export const ExploreNavigator: FC = () => {
     setShowNavTabs(true);
   }, [navigation, setShowNavTabs]);
 
-  const onThirdButtonPress = useCallback(() => {
-    if (isEarnEnabled) {
-      navigation.navigate(Routes.Earn);
-      setShowNavTabs(true);
-      return;
-    }
-
-    onScanPress();
-  }, [navigation, isEarnEnabled, onScanPress, setShowNavTabs]);
-
   useEffect(() => {
     const unsubscribe = navigation.addListener('state', event => {
       setCurrentRoute(getRouteFromState(event?.data?.state));
@@ -62,33 +49,19 @@ export const ExploreNavigator: FC = () => {
     const isAllowed = ALLOWED_ROUTES.map((s: string) => s).includes(currentRoute);
     setCanShowNav(isAllowed);
     setShowNavTabs(isAllowed);
-
-    const newTabIndex = getCurrentTabIndex(currentRoute, isEarnEnabled);
-    setTabIndex(newTabIndex);
-  }, [currentRoute, isEarnEnabled, setShowNavTabs]);
+    setTabIndex(currentRoute === Routes.Home ? 0 : 1);
+  }, [currentRoute, setShowNavTabs]);
 
   return (
     <ExploreTabBar
       leftIconName="wallet"
       centerIconName="compass"
-      rightIconName={isEarnEnabled ? 'earn' : 'scan-walletConnect'}
+      rightIconName="scan-walletConnect"
       onTabLeftPress={onWalletPress}
       onTabCenterPress={onExplorePress}
-      onTabRightPress={onThirdButtonPress}
+      onTabRightPress={onScanPress}
       activeTab={tabIndex}
       showTabs={showNavTabs && canShowNav}
     />
   );
 };
-
-function getCurrentTabIndex(currentRoute: string, isEarnEnabled: boolean) {
-  if (isEarnEnabled && currentRoute === Routes.Earn) {
-    return 2;
-  }
-
-  if (currentRoute === Routes.Home) {
-    return 0;
-  }
-
-  return 1;
-}

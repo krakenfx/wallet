@@ -1,3 +1,4 @@
+import { PublicKey, TransactionInstruction } from '@solana/web3.js';
 import React, { type RefObject, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
@@ -94,7 +95,7 @@ export const SwapConfirmationSheet = React.forwardRef<ExpandableSheetMethods, Pr
           throw new Error('Failed to get fee options');
         }
 
-        const selectedFee = fees.options.length === 3 ? fees.options[1] : fees.options[0];
+        const selectedFee = swapTxData.txType === 'solana' ? undefined : fees.options.length === 3 ? fees.options[1] : fees.options[0];
         if (approvalTxData) {
           const approvalTxPayload = {
             from: approvalTxData.fromAddress,
@@ -116,11 +117,31 @@ export const SwapConfirmationSheet = React.forwardRef<ExpandableSheetMethods, Pr
           await waitForTransactionConfirmation(wallet, approvalTxId);
         }
 
-        const txPayload = {
-          to: swapTxData.txTarget,
-          data: swapTxData.data,
-          value: parseInt(swapTxData.value, 16),
-        };
+        const txPayload =
+          swapTxData.txType === 'solana'
+            ? {
+                ...swapTxData.data,
+                instructions: swapTxData.data.instructions.map(
+                  i =>
+                    new TransactionInstruction({
+                      keys: i.keys.map(key => {
+                        return {
+                          pubkey: new PublicKey(key.pubkey),
+                          isSigner: key.isSigner,
+                          isWritable: key.isWritable,
+                        };
+                      }),
+                      programId: new PublicKey(i.programId),
+                      data: Buffer.from(i.data),
+                    }),
+                ),
+              }
+            : {
+                to: swapTxData.txTarget,
+                data: swapTxData.data,
+                value: parseInt(swapTxData.value, 16),
+              };
+
         const prepared = await transport.prepareTransaction(network, wallet, walletStorage, txPayload, selectedFee, true);
         if (prepared.isError) {
           throw new Error(`Simulation failed with reason: ${prepared.errorReason}`);

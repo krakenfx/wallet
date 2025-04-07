@@ -417,6 +417,7 @@
   "defi": {
     "allAssets": "Усі активи",
     "apr": "APR",
+    "apy": "APY",
     "claimable": "З можливістю запиту",
     "debt": "Борг",
     "dept": "Відділ",
@@ -459,6 +460,8 @@
   "earn": {
     "allAssets": "Усі активи",
     "apy": "APY",
+    "balance": "Баланс",
+    "debt": "Борг",
     "detailsSheet": {
       "deposit": "Внести",
       "depositCta": "Внесіть {symbol} у протоколі {protocol}",
@@ -468,10 +471,13 @@
         "about": "Інформація про {symbol}",
         "addressCopied": "Адресу скопійовано",
         "assetsLocked": "Активи заблоковано",
+        "composition": "Склад",
         "contractAddress": "Адреса контракту",
         "marketCap": "Ринкова капіталізація",
         "network": "Мережа",
         "numberHolders": "Кількість власників",
+        "pool": "Пул",
+        "poolAddress": "Адреса пула",
         "protocol": "Протокол",
         "tokenEarned": "Зароблений токен",
         "tokenPrice": "Ціна токена",
@@ -486,6 +492,7 @@
         "week": "Тижд.",
         "year": "Р"
       },
+      "refreshChart": "Оновити графік",
       "to": "До:",
       "transfer": "Перекази",
       "withdraw": "Вивести"
@@ -515,6 +522,7 @@
     },
     "heroAvailableBalance": "Доступно {balance} {symbol}",
     "heroTitle": "Заробіть {symbol} на {protocol}",
+    "liquidityPool": "Пули ліквідності",
     "protocolType": {
       "lending": "Кредитування"
     },
@@ -728,13 +736,31 @@
     "assets": "Активи",
     "collection": "NFT",
     "collection_see_all": "Показати все",
+    "collectionEmpty": "NFT поки що немає. Ваші колекції відображатимуться тут, щойно стануть доступними. ",
+    "collectionEmptyCta": "Отримати",
     "defiEmpty": "Почніть заробляти з DeFi",
-    "defiEmptyCaption": "Ваші позиції відображатимуться тут, щойно стануть доступними. Беріть участь у DeFi і починайте заробляти.",
+    "defiEmptyCaption": "Позицій поки що немає. Беріть участь у DeFi, щоб отримувати дохід від своїх активів.",
+    "defiEmptyCta": "Почати заробляти",
+    "defiEmptyTitle": "DeFi",
     "deposits": "DeFi",
     "manage": "Керувати",
     "total_balance": "Баланс"
   },
   "krakenConnect": {
+    "appLock": {
+      "description": "Щоб захистити свої кошти, увімкніть {authType} перед під’єднанням своєї біржі.",
+      "title": "Захистіть свій гаманець перед під’єднанням"
+    },
+    "appLockWarning": {
+      "ctaCancel": "Скасувати",
+      "ctaTurnOff": "Вимкнути",
+      "description": "Вимкнення App Lock призведе до відключення вашого з’єднання з Kraken. Для здійснення безперешкодного переказу коштів вам потрібно буде налаштувати його заново.",
+      "title": "Вимкнути App Lock?"
+    },
+    "availableBalanceInfo": {
+      "description": "Чому відбувається утримання?",
+      "title": "Частина ваших активів на біржі Kraken може бути недоступна для виведення через тимчасове утримання."
+    },
     "balanceOnKraken": "на Kraken",
     "connected": {
       "alert": "Тільки поточний гаманець «<b>{walletName}</b>» підключено до Kraken.",
@@ -746,6 +772,12 @@
     },
     "connecting": "Підключення до Kraken",
     "connectingFailed": "Помилка підключення до Kraken ",
+    "errors": {
+      "createAddress": "Не вдалося створити адресу для переказів.",
+      "fetchBalance": "Не вдається отримати біржовий баланс Kraken.",
+      "getFee": "Не вдалося отримати точну суму комісії.",
+      "transferAppLockFailure": "Переказ не було ініційовано."
+    },
     "exchangeBalance": "Біржовий баланс",
     "fundCta": {
       "body": "Підключіть свій акаунт Kraken до",
@@ -757,6 +789,10 @@
       "title": "Немає активів для переказу"
     },
     "pendingTransactionId": "Ідентифікатор транзакції Kraken",
+    "receiveCta": {
+      "body": "Під’єднайте свій акаунт біржі Kraken",
+      "headline": "Швидкий переказ із Kraken"
+    },
     "selectNetwork": {
       "description": "Виберіть, в якій мережі ви хочете отримати {assetLabel} на свій гаманець.",
       "fee": "Комісія {assetValue}",
@@ -808,7 +844,7 @@
       "transferFee": "Комісія за переміщення",
       "transferringTo": "Переказування до",
       "unsupportedAssets": "Непідтримувані активи",
-      "unsupportedAssetsDescription": "Стільки інших активів на вашому рахунку на біржі не підтримуються гаманцем: {count}"
+      "unsupportedAssetsDescription": "Наразі Kraken Wallet не підтримує {assets}"
     },
     "transferCta": {
       "body": "Підключіть свій акаунт Kraken для швидкого переказу криптовалюти",
@@ -1172,6 +1208,8 @@
   },
   "onboardingImportWallet": {
     "caption": "Введіть секретну фразу для відновлення, щоб імпортувати свій гаманець.",
+    "disclaimer": "Якщо іншій людині відома ця секретна фраза для відновлення (ключові слова), вона також може отримати доступ до цього гаманця і ваші кошти у небезпеці.",
+    "disclaimerTitle": "Увага!",
     "header": "Імпортувати свій гаманець",
     "headerInvalid": "Перевірте свою секретну фразу",
     "import": "Імпорт",
@@ -1712,6 +1750,10 @@
     "genericNetworkFee": "Комісія за користування мережею",
     "input": "Введення",
     "inputs": "Ввідні дані",
+    "krakenConnect": {
+      "fromKraken": "З: Kraken",
+      "transferredIn": "Переказано в"
+    },
     "networkFee": "Комісія за користування мережею {network}",
     "networkFee_": "Комісія за користування мережею",
     "notes": "Опис",

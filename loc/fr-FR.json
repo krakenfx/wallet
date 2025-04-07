@@ -417,6 +417,7 @@
   "defi": {
     "allAssets": "Tous les actifs",
     "apr": "TAEG",
+    "apy": "APY",
     "claimable": "Pouvant faire l’objet d’une réclamation",
     "debt": "Dette",
     "dept": "Service",
@@ -459,6 +460,8 @@
   "earn": {
     "allAssets": "Tous les actifs",
     "apy": "APY",
+    "balance": "Solde",
+    "debt": "Dette",
     "detailsSheet": {
       "deposit": "Dépôt",
       "depositCta": "Déposer des {symbol} sur {protocol}",
@@ -468,10 +471,13 @@
         "about": "{symbol} – À propos",
         "addressCopied": "Adresse copiée",
         "assetsLocked": "Actifs verrouillés",
+        "composition": "Composition",
         "contractAddress": "Adresse du contrat",
         "marketCap": "Capitalisation",
         "network": "Réseau",
         "numberHolders": "Nombre de détenteurs",
+        "pool": "Pool",
+        "poolAddress": "Adresse du pool",
         "protocol": "Protocole",
         "tokenEarned": "Token gagné",
         "tokenPrice": "Prix du token",
@@ -486,6 +492,7 @@
         "week": "H",
         "year": "A"
       },
+      "refreshChart": "Actualiser le graphique",
       "to": "À :",
       "transfer": "Transfert",
       "withdraw": "Retrait"
@@ -515,6 +522,7 @@
     },
     "heroAvailableBalance": "{balance} {symbol} disponibles",
     "heroTitle": "Gagnez des {symbol} sur {protocol}",
+    "liquidityPool": "Pool de liquidités",
     "protocolType": {
       "lending": "Prêt"
     },
@@ -728,13 +736,31 @@
     "assets": "Actifs",
     "collection": "NFT",
     "collection_see_all": "Afficher tout",
+    "collectionEmpty": "Aucun NFT pour le moment. Les éléments de votre collection apparaîtront ici une fois disponibles. ",
+    "collectionEmptyCta": "Recevoir",
     "defiEmpty": "Commencer à générer des rendements avec la DeFi",
-    "defiEmptyCaption": "Vos positions apparaîtront une fois disponibles. Participez à la DeFi et commencez à générer des rendements.",
+    "defiEmptyCaption": "Aucune position pour le moment. Générez des rendements sur vos actifs avec la DeFi.",
+    "defiEmptyCta": "Commencer à gagner",
+    "defiEmptyTitle": "DeFi",
     "deposits": "DeFi",
     "manage": "Gérer",
     "total_balance": "Solde"
   },
   "krakenConnect": {
+    "appLock": {
+      "description": "Pour protéger vos fonds, activez {authType} avant de connecter votre plateforme d’échange.",
+      "title": "Sécurisez votre portefeuille avant la connexion"
+    },
+    "appLockWarning": {
+      "ctaCancel": "Annuler",
+      "ctaTurnOff": "Désactiver",
+      "description": "En désactivant App Lock, vous mettrez fin à votre connexion à Kraken. Vous devrez la configurer à nouveau si vous voulez transférer facilement vos fonds.",
+      "title": "Désactiver App Lock ?"
+    },
+    "availableBalanceInfo": {
+      "description": "Pourquoi les avoirs sont-ils bloqués ?",
+      "title": "Une partie de vos avoirs sur la plateforme d’échange Kraken peuvent être indisponibles en raison d’un blocage temporaire."
+    },
     "balanceOnKraken": "sur Kraken",
     "connected": {
       "alert": "Seul le portefeuille actuel (\"<b>{walletName}</b>\") a été connecté à Kraken.",
@@ -746,7 +772,13 @@
     },
     "connecting": "Connexion à Kraken",
     "connectingFailed": "Erreur lors de la connexion à Kraken ",
-    "exchangeBalance": "Solde sur la plateforme d’échange",
+    "errors": {
+      "createAddress": "Impossible de créer une adresse de financement.",
+      "fetchBalance": "Impossible d’accéder au solde de la plateforme d’échange Kraken.",
+      "getFee": "Impossible de consulter le montant exact des frais.",
+      "transferAppLockFailure": "Le transfert n’a pas été initié."
+    },
+    "exchangeBalance": "Solde d’échange",
     "fundCta": {
       "body": "Connectez votre compte Kraken à",
       "bodyBold": "transférer de la crypto sur votre portefeuille",
@@ -757,6 +789,10 @@
       "title": "Aucun actif à transférer"
     },
     "pendingTransactionId": "Identifiant de transaction de Kraken",
+    "receiveCta": {
+      "body": "Connectez votre compte de plateforme d’échange Kraken",
+      "headline": "Transfert rapide depuis Kraken"
+    },
     "selectNetwork": {
       "description": "Choisissez sur quel réseau vous souhaitez recevoir votre {assetLabel} sur votre portefeuille.",
       "fee": "{assetValue} de frais",
@@ -768,9 +804,9 @@
       "title": "Transfert d’actifs {assetSymbol}"
     },
     "settings": {
-      "benefits0": "Transférer de la crypto sur Kraken",
+      "benefits0": "Transférer de la crypto depuis Kraken",
       "benefits1": "Consulter les soldes de la plateforme d'échange Kraken",
-      "benefitsHeadline": "Une connexion sur le compte Kraken permet de :",
+      "benefitsHeadline": "Une connexion sur le compte permet de :",
       "cancel": "Annuler",
       "connect": "Connecter",
       "disconnect": "Déconnecter",
@@ -808,7 +844,7 @@
       "transferFee": "Frais de transfert",
       "transferringTo": "Transfert vers",
       "unsupportedAssets": "Actifs non pris en charge",
-      "unsupportedAssetsDescription": "{count} autres actifs sur votre compte de plateforme d’échange ne sont pas pris en charge par le portefeuille"
+      "unsupportedAssetsDescription": "{assets} ne sont pas pris en charge actuellement par Kraken Wallet"
     },
     "transferCta": {
       "body": "Connectez votre compte Kraken pour transférer de la crypto rapidement",
@@ -1172,6 +1208,8 @@
   },
   "onboardingImportWallet": {
     "caption": "Saisissez votre phrase de récupération secrète pour importer votre portefeuille.",
+    "disclaimer": "Si une autre personne connaît cette phrase de récupération secrète (mots d’accès), elle aura également accès à ce portefeuille et les fonds ne sont donc pas en sécurité.",
+    "disclaimerTitle": "Attention !",
     "header": "Importer votre portefeuille",
     "headerInvalid": "Vérifiez votre phrase secrète",
     "import": "Importer",
@@ -1712,6 +1750,10 @@
     "genericNetworkFee": "Frais de réseau",
     "input": "Entrée",
     "inputs": "Entrées",
+    "krakenConnect": {
+      "fromKraken": "De : Kraken",
+      "transferredIn": "Transférés en"
+    },
     "networkFee": "Frais de réseau {network}",
     "networkFee_": "Frais de réseau",
     "notes": "Description",

@@ -11,9 +11,11 @@ import { AddressDisplay } from '@/components/AddressDisplay';
 import { BottomSheet } from '@/components/BottomSheet';
 import { CoinHeader } from '@/components/CoinHeader';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
+import { KrakenConnectReceiveCTA } from '@/components/KrakenConnectReceiveCTA/KrakenConnectReceiveCTA';
 import { Label } from '@/components/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
+import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { useResolvedAssetBalance, useTokenById } from '@/realm/tokens';
 import { useRealmWalletById } from '@/realm/wallets';
@@ -49,8 +51,9 @@ export const ReceiveScreen = ({ route, navigation }: NavigationProps<'Receive'>)
 
   const share = () => Share.open({ message: displayAddressText });
   const { width } = useSafeAreaFrame();
-
-  const qrCodeSize = width - 96;
+  const { size } = useDeviceSize();
+  const qrCodeOffset = size === 'small' ? 168 : 96;
+  const qrCodeSize = width - qrCodeOffset;
 
   return (
     <BottomSheet dismissible={useIsFocused()} animatedIndex={sheetIndex} snapPoints={['100%']} {...bottomSheetProps}>
@@ -69,6 +72,9 @@ export const ReceiveScreen = ({ route, navigation }: NavigationProps<'Receive'>)
             <AddressDisplay address={displayAddressText} showButton hasSpaces boldPrefix />
           </View>
         ) : undefined}
+        <View style={styles.krakenConnect}>
+          <KrakenConnectReceiveCTA token={token} networkId={network.krakenConnectNetworkId} />
+        </View>
       </BottomSheetScrollView>
       {!displayAddressText ? (
         <View style={styles.emptyOverlay} pointerEvents="none">
@@ -98,6 +104,10 @@ const styles = StyleSheet.create({
     top: 0,
   },
   qrcode: {
+    marginVertical: 24,
+  },
+  krakenConnect: {
+    position: 'relative',
     marginVertical: 24,
   },
   warningLabel: {

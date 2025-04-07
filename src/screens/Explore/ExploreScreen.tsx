@@ -64,7 +64,7 @@ export const ExploreScreen = ({ navigation }: NavigationProps<'Explore'>) => {
   return (
     <ExploreAnimationContextProvider animateScreenUnmount={animateScreenUnmount}>
       <ExploreScrollView>
-        <View style={styles.searchBarContainer}>
+        <View style={styles.searchBarContainer} testID="ExploreScreen">
           <ExploreSearchBar />
         </View>
         <Animated.View style={animatedStyle}>

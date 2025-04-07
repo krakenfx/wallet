@@ -1,26 +1,44 @@
 import { StyleSheet, View } from 'react-native';
 
 import { Label } from '@/components/Label';
+import { OverlappingCollection } from '@/components/OverlappingCollection';
 import { TokenIcon } from '@/components/TokenIcon';
 import { type WalletType } from '@/onChain/wallets/registry';
+import { useTheme } from '@/theme/themes';
 
 interface CoinHeaderSimpleProps {
-  tokenAddress: string;
-  tokenName: string;
-  tokenNetwork: WalletType;
-  tokenSymbol: string;
+  coins: { tokenId: string; tokenSymbol: string; tokenNetwork: WalletType }[];
+  itemsToShow?: number;
+  title: string;
+  subtitle: string;
 }
 
-export const CoinHeaderSimple = ({ tokenAddress, tokenName, tokenNetwork, tokenSymbol }: CoinHeaderSimpleProps) => {
+export const CoinHeaderSimple = ({ coins, itemsToShow = 2, subtitle, title }: CoinHeaderSimpleProps) => {
+  const { colors } = useTheme();
+  const omitNetworkIcon = coins.length > 1;
+  const items = coins.map(({ tokenId, tokenSymbol, tokenNetwork }) => (
+    <TokenIcon size={32} tokenId={tokenId} tokenSymbol={tokenSymbol} networkName={tokenNetwork} forceOmitNetworkIcon={omitNetworkIcon} />
+  ));
+
   return (
     <View style={styles.container}>
-      <TokenIcon size={32} tokenId={tokenAddress} tokenSymbol={tokenSymbol} networkName={tokenNetwork} />
+      {items.length === 1 ? (
+        items
+      ) : (
+        <OverlappingCollection
+          itemSize={32}
+          items={items}
+          itemsToShow={itemsToShow}
+          maskedItemOffset={15}
+          hasMoreCountProps={{ backgroundColor: colors.purple_40, fontSize: 12 }}
+        />
+      )}
       <View style={styles.titleContainer}>
         <View style={styles.titleHeaderContainer}>
-          <Label numberOfLines={1}>{tokenName}</Label>
+          <Label numberOfLines={1}>{title}</Label>
         </View>
-        <Label type="regularCaption1" color="light50" style={styles.tokenNetwork}>
-          {tokenNetwork}
+        <Label type="regularCaption1" color="light50" numberOfLines={1} style={styles.subtitle}>
+          {subtitle}
         </Label>
       </View>
     </View>
@@ -43,7 +61,7 @@ const styles = StyleSheet.create({
     gap: 4,
     maxWidth: 175,
   },
-  tokenNetwork: {
+  subtitle: {
     textTransform: 'capitalize',
   },
 });

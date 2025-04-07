@@ -102,7 +102,7 @@ export const DefiFlatList = () => {
         renderItem={renderItem}
       />
 
-      <DefiEarnSheet selectedAsset={selectedAsset} onCloseEarnSheet={onCloseEarnSheet} />
+      {selectedAsset && <DefiEarnSheet assetId={selectedAsset.assetId} protocols={selectedAsset.protocols} onCloseEarnSheet={onCloseEarnSheet} />}
     </Fragment>
   );
 };

@@ -34,3 +34,23 @@ export const KrakenConnectOauthVerificationSchema: ObjectSchema = {
   },
   primaryKey: 'challenge',
 };
+
+export type KrakenConnectSettingsType = 'accountsConnected' | 'dismissedCta';
+
+export type KrakenConnectSettings = {
+  name: KrakenConnectSettingsType;
+  value: number[];
+};
+export const REALM_TYPE_KRAKEN_CONNECT_SETTINGS = 'krakenConnectSettings';
+export const KrakenConnectSettingsSchema: ObjectSchema = {
+  name: REALM_TYPE_KRAKEN_CONNECT_SETTINGS,
+  properties: {
+    name: 'string',
+    value: {
+      type: 'list',
+      objectType: 'int',
+      default: [],
+    },
+  },
+  primaryKey: 'name',
+};

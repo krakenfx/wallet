@@ -11,17 +11,16 @@ interface Params {
 }
 
 export const useKrakenConnectWithdrawMethods = ({ asset }: Params) => {
-  const { API_SECRET, API_KEY, CF_TOKEN } = useKrakenConnectCredentials();
+  const { API_SECRET, API_KEY } = useKrakenConnectCredentials();
   return useQuery({
     queryKey: ['krakenConnectWithdrawMethods', asset.symbol],
     queryFn: async () => {
       const methods = await fetchWithdrawMethods({
         assetSymbol: asset.symbol,
-        cfToken: CF_TOKEN,
         apiKey: API_KEY,
         privateKey: API_SECRET,
       });
-      return getSupportedMethods(methods, asset);
+      return getSupportedMethods(methods);
     },
   });
 };

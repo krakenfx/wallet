@@ -20,6 +20,7 @@ export const SWAP_NETWORKS = [
   Networks.linea,
   Networks.blast,
   Networks.polygon,
+  Networks.solana,
 ];
 export const SWAP_NETWORKS_CAIP_IDS = SWAP_NETWORKS.map(n => n.caipId);
 export const SWAP_NETWORK_FILTER = SWAP_NETWORKS_CAIP_IDS.map(getNetworkFilterFromCaip);

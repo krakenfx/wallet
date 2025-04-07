@@ -18,21 +18,23 @@ interface Props {
   onChange: (value: PriceHistoryPeriod) => void;
   disabled?: boolean;
   preselectedIndex?: number;
+  hideYearAndAll?: boolean;
 }
 
-export const PeriodSwitcher = ({ onChange, disabled, preselectedIndex = 0 }: Props) => {
+export const PeriodSwitcher = ({ onChange, disabled, preselectedIndex = 0, hideYearAndAll }: Props) => {
   const [index, setIndex] = useState(preselectedIndex);
   const animation = useSharedValue(preselectedIndex);
 
   const { colors } = useTheme();
   const leftWidth = useSharedValue(0);
   const fullWidth = useSharedValue(0);
+  const periodCount = hideYearAndAll ? PERIOD_COUNT - 2 : PERIOD_COUNT;
 
   const style = useAnimatedStyle(() => {
     const realWidth = fullWidth.value - 2 * padding;
     return {
-      width: interpolate(fullWidth.value, [0, 1], [animation.value, realWidth / PERIOD_COUNT], { extrapolateRight: Extrapolation.CLAMP }),
-      left: interpolate(animation.value, [0, PERIOD_COUNT - 1], [0, fullWidth.value - realWidth / PERIOD_COUNT], {
+      width: interpolate(fullWidth.value, [0, 1], [animation.value, realWidth / periodCount], { extrapolateRight: Extrapolation.CLAMP }),
+      left: interpolate(animation.value, [0, periodCount - 1], [0, fullWidth.value - realWidth / periodCount], {
         extrapolateRight: Extrapolation.CLAMP,
         extrapolateLeft: Extrapolation.CLAMP,
       }),
@@ -72,8 +74,8 @@ export const PeriodSwitcher = ({ onChange, disabled, preselectedIndex = 0 }: Pro
           {renderItem(0, loc._.period.day, 'DAY')}
           {renderItem(1, loc._.period.week, 'WEEK')}
           {renderItem(2, loc._.period.month, 'MONTH')}
-          {renderItem(3, loc._.period.year, 'YEAR')}
-          {renderItem(4, loc._.period.all, 'ALL')}
+          {!hideYearAndAll && renderItem(3, loc._.period.year, 'YEAR')}
+          {!hideYearAndAll && renderItem(4, loc._.period.all, 'ALL')}
         </View>
       </Animated.View>
     </Animated.View>
