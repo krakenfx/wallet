@@ -1,18 +1,22 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView, type BottomSheetScrollViewMethods } from '@gorhom/bottom-sheet';
+import BigNumber from 'bignumber.js';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { Keyboard, StyleSheet, View } from 'react-native';
 
 import type { KrakenAssetSupported, KrakenWithdrawMethod } from '@/api/krakenConnect/types';
+import { AmountPercentageSelector, type PercentageOption } from '@/components/AmountPercentageSelector/AmountPercentageSelector';
 import { BottomSheet, type BottomSheetModalRef } from '@/components/BottomSheet';
 
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { Label } from '@/components/Label';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
+import { useKeyboardEvent } from '@/hooks/useKeyboardEvent';
 import { getImplForWallet } from '@/onChain/wallets/registry';
 import { useKrakenConnectWithdrawMethods } from '@/reactQuery/hooks/krakenConnect/useKrakenConnectWithdrawMethods';
 import { useRealmWalletById } from '@/realm/wallets';
 import { type NavigationProps, Routes } from '@/Routes';
+import { useAvailableBalance } from '@/screens/KrakenConnectSend/hooks/useAvailableBalance';
 import { AmountInput, type AmountInputRef } from '@/screens/Send/components/AmountInput';
 import { FormProvider, useFormContext } from '@/screens/Send/utils/sendForm';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -37,8 +41,10 @@ const KrakenConnectSend = ({ navigation, route }: NavigationProps<'KrakenConnect
   const { bottomSheetProps } = useBottomSheetScreenProps(navigation);
   const snapPoints = useMemo(() => ['100%'], []);
   const { data: methods } = useKrakenConnectWithdrawMethods({ asset: krakenAsset });
+  const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
 
   const networkSelectorRef = useRef<BottomSheetModalRef>(null);
+  const bottomSheetScrollViewRef = useRef<BottomSheetScrollViewMethods>(null);
 
   const [isNetworkSelectorOpen, setIsNetworkSelectorOpen] = useState(false);
 
@@ -80,6 +86,9 @@ const KrakenConnectSend = ({ navigation, route }: NavigationProps<'KrakenConnect
     [currentFeeEstimate, krakenAsset.metadata.decimals],
   );
 
+  const availableBalanceMinFee = useAvailableBalance({ asset: krakenAsset, feeAmount: feeEstimateInTokensFormat });
+  const totalAvailableBalance = useAvailableBalance({ asset: krakenAsset, feeAmount: '0' });
+
   const wallet = useRealmWalletById(krakenAsset.walletId);
 
   const { network: walletNetwork } = getImplForWallet(wallet);
@@ -119,10 +128,33 @@ const KrakenConnectSend = ({ navigation, route }: NavigationProps<'KrakenConnect
     }
   };
 
+  const onPercentageSelect = (o: PercentageOption) => {
+    if (o === 1) {
+      amountInputRef.current?.setAssetAmount(availableBalanceMinFee);
+    } else {
+      amountInputRef.current?.setAssetAmount(BigNumber(totalAvailableBalance).multipliedBy(o).toString(10));
+    }
+  };
+
+  useKeyboardEvent('keyboardDidHide', () => amountInputRef.current?.blur());
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+    setTimeout(() => bottomSheetScrollViewRef.current?.scrollTo({ y: 60 }), 100);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
+
   return (
     <>
       <BottomSheet snapPoints={snapPoints} {...bottomSheetProps} style={styles.container}>
-        <BottomSheetScrollView>
+        <BottomSheetScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardDismissMode="interactive"
+          keyboardShouldPersistTaps="handled"
+          ref={bottomSheetScrollViewRef}>
           <NetworkSelectorSheet
             ref={networkSelectorRef}
             methods={methods}
@@ -149,13 +181,16 @@ const KrakenConnectSend = ({ navigation, route }: NavigationProps<'KrakenConnect
               currentFeeEstimate={feeEstimateInTokensFormat}
               onToggleCurrency={handleToggleCurrency}
               minAmount={withdrawMethod?.minimum}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
             />
             {withdrawMethod && <TransferFee fee={withdrawMethod.fee.fee} isInputInFiatCurrency={isInputInFiatCurrency} asset={krakenAsset} />}
           </View>
+          {isInputFocused && <View style={styles.emptyElement} />}
         </BottomSheetScrollView>
 
         <FloatingBottomButtons
-          avoidKeyboard
+          style={styles.buttons}
           primary={{
             disabled: !isFormValid || !withdrawMethod,
             onPress: openConfirmationSheet,
@@ -163,6 +198,7 @@ const KrakenConnectSend = ({ navigation, route }: NavigationProps<'KrakenConnect
           }}
         />
       </BottomSheet>
+      <AmountPercentageSelector onSelect={onPercentageSelect} isInputFocused={isInputFocused} />
     </>
   );
 };
@@ -193,6 +229,14 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     marginBottom: 0,
+  },
+  buttons: {
+    paddingHorizontal: 0,
+    marginBottom: 16,
+  },
+  emptyElement: {
+    width: '100%',
+    height: 350,
   },
 });
 

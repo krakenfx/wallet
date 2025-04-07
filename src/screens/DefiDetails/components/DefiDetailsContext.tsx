@@ -2,10 +2,10 @@ import { type Dispatch, type PropsWithChildren } from 'react';
 
 import React, { useContext, useMemo, useState } from 'react';
 
+import type { Position } from '@/components/DefiProtocolPositions/DefiProtocolPositions.types';
 import type { WalletType } from '@/onChain/wallets/registry';
-import { type VaultBalance } from '@/reactQuery/hooks/usePositionsQuery';
-import { useVaultBalanceQuery } from '@/reactQuery/hooks/useVaultBalanceQuery';
-import { useVaultQuery } from '@/reactQuery/hooks/useVaultQuery';
+import { useDefiPositionQuery } from '@/reactQuery/hooks/earn/useDefiPositionsQuery';
+import { useVaultInfoQuery } from '@/reactQuery/hooks/earn/useVaultInfoQuery';
 import { useAssetMarketData } from '@/realm/assetMarketData';
 import { useAppCurrency } from '@/realm/settings';
 import { type PriceHistoryPeriod, useTokenPrice } from '@/realm/tokenPrice';
@@ -16,14 +16,17 @@ import { capitalizeFirstLetter } from '/helpers/capitalizeFirstLetter';
 
 export type DefiDetailsContext = {
   assetAddress: string;
-  assetCaipId: string;
+  assetDecimals?: number;
+  assetId: string;
   assetMarketCap: string;
   assetName: string;
   assetNetwork: WalletType;
   assetPrice: string;
   assetSymbol: string;
   chartMetric: 'apy' | 'tvl';
+  isPending: boolean;
   period: PriceHistoryPeriod;
+  position?: Position;
   protocolDescription?: string;
   protocolLogo: string;
   protocolName: string;
@@ -31,7 +34,6 @@ export type DefiDetailsContext = {
   setPeriod: Dispatch<React.SetStateAction<PriceHistoryPeriod>>;
   vaultAddress: string;
   vaultAssetsLocked: string;
-  vaultBalance?: VaultBalance;
   vaultLink: string;
   vaultName: string;
   vaultNetwork: string;
@@ -44,86 +46,73 @@ export type DefiDetailsContext = {
 const DefiDetailsContext = React.createContext<DefiDetailsContext | undefined>(undefined);
 
 type ContextProps = {
-  assetAddress: string;
-  assetCaipId: string;
-  assetName: string;
-  assetNetwork: WalletType;
-  assetSymbol: string;
-  protocolDescription?: string;
+  assetId: string;
   protocolLogo: string;
-  protocolName: string;
   vaultNetwork: WalletType;
   vaultAddress: string;
 };
 
-export const DefiDetailsContextProvider: React.FC<PropsWithChildren<ContextProps>> = ({
-  children,
-  assetAddress,
-  assetCaipId,
-  assetName,
-  assetNetwork,
-  assetSymbol,
-  protocolDescription,
-  protocolLogo,
-  protocolName,
-  vaultNetwork,
-  vaultAddress,
-}) => {
+export const DefiDetailsContextProvider: React.FC<PropsWithChildren<ContextProps>> = ({ children, assetId, protocolLogo, vaultNetwork, vaultAddress }) => {
   const { currency } = useAppCurrency();
   const [chartMetric, setChartMetric] = useState<'apy' | 'tvl'>('apy');
   const [period, setPeriod] = useState<PriceHistoryPeriod>('WEEK');
+  const { data: position, isPending: isPendingPosition } = useDefiPositionQuery(vaultAddress);
 
-  const { data: vaultBalance } = useVaultBalanceQuery(vaultAddress, vaultNetwork);
-  const { data: vault } = useVaultQuery(vaultAddress, vaultNetwork);
+  const { data: vault, isPending: isPendingVaultInfo } = useVaultInfoQuery(vaultAddress, vaultNetwork);
   const assetsLocked = vault
     ? formatTokenAmount(String((Number(vault.tvlDetails.lockedUsd) / Number(vault.tvlDetails.tvlUsd)) * 100), { currency }) + '%'
     : undefined;
+  const vaultNumberOfHoldersFormatted = vault ? formatTokenAmount(String(vault.numberOfHolders), { currency }) : '-';
 
-  const tokenPrice = useTokenPrice({ assetId: assetCaipId, refresh: true });
+  const tokenPrice = useTokenPrice({ assetId, refresh: true });
   const tokenPriceFormatted = tokenPrice ? formatCurrency(tokenPrice, { compact: true, currency, findFirstNonZeroDigits: true }) : undefined;
-  const assetMarketData = useAssetMarketData({ assetId: assetCaipId, refresh: true });
+  const assetMarketData = useAssetMarketData({ assetId, refresh: true });
   const marketCapFormatted = assetMarketData?.marketCap ? formatTokenAmount(String(assetMarketData.marketCap), { compact: true, currency }) : undefined;
+  const assetNetwork = (vault?.network === 'mainnet' ? 'ethereum' : (vault?.network ?? 'ethereum')) as WalletType;
+  const assetSymbol = vault?.token.symbol.toUpperCase() ?? '-';
 
-  const protocolNameCapitalized = protocolName.split(' ').map(capitalizeFirstLetter).join(' ');
+  const protocolNameCapitalized = vault?.protocol.split(' ').map(capitalizeFirstLetter).join(' ') ?? '';
+  const isPending = isPendingPosition || isPendingVaultInfo;
 
   const providerValue = useMemo(
     () => ({
-      assetAddress,
-      assetCaipId,
+      assetAddress: vault?.token.assetAddress ?? '-',
+      assetDecimals: vault?.token.decimals,
+      assetId,
       assetMarketCap: marketCapFormatted ?? '-',
-      assetName,
+      assetName: vault?.token.name ?? '-',
       assetNetwork,
       assetPrice: tokenPriceFormatted ?? '-',
-      assetSymbol: assetSymbol.toUpperCase(),
+      assetSymbol,
       chartMetric,
+      isPending,
       period,
-      protocolDescription,
+      position,
+      protocolDescription: vault?.description ?? '',
       protocolLogo,
       protocolName: protocolNameCapitalized,
       setChartMetric,
       setPeriod,
       vaultAddress,
       vaultAssetsLocked: assetsLocked ?? '-',
-      vaultBalance,
       vaultLink: vault?.lendLink ?? '-',
       vaultName: vault?.name ?? '-',
       vaultNetwork,
-      vaultNumberOfHolders: vault ? String(vault.numberOfHolders) : '-',
+      vaultNumberOfHolders: vaultNumberOfHoldersFormatted,
       vaultProtocol: vault?.protocol ?? '-',
       vaultTokenSymbol: vault?.token.symbol ?? '-',
       vaultType: vault?.tags[0] ?? '-',
     }),
     [
-      assetAddress,
-      assetCaipId,
-      assetName,
+      assetId,
       assetNetwork,
-      assetsLocked,
       assetSymbol,
+      assetsLocked,
       chartMetric,
+      isPending,
       marketCapFormatted,
       period,
-      protocolDescription,
+      position,
       protocolLogo,
       protocolNameCapitalized,
       setChartMetric,
@@ -131,8 +120,8 @@ export const DefiDetailsContextProvider: React.FC<PropsWithChildren<ContextProps
       tokenPriceFormatted,
       vault,
       vaultAddress,
-      vaultBalance,
       vaultNetwork,
+      vaultNumberOfHoldersFormatted,
     ],
   );
 

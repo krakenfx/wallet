@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js';
+import { keyBy } from 'lodash';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import { Keyboard, StyleSheet, View } from 'react-native';
@@ -14,11 +15,14 @@ import { IconButton } from '@/components/IconButton';
 
 import { useMenu } from '@/components/Menu';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
-import { getImplForWallet } from '@/onChain/wallets/registry';
-import { type RealmToken, useTokenByAssetId } from '@/realm/tokens';
+import { getImplForType, getImplForWallet } from '@/onChain/wallets/registry';
+import { useRealm } from '@/realm/RealmContext';
+import { type RealmToken, getNetworkNameFromAssetId, useTokenByAssetId } from '@/realm/tokens';
+import { getWalletsForMutations } from '@/realm/wallets/useWallets';
 import type { NavigationProps } from '@/Routes';
 import { Routes } from '@/Routes';
 import type { RemoteAsset } from '@/types';
+import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { runAfterUISync } from '@/utils/runAfterUISync';
@@ -27,13 +31,13 @@ import { useAppState } from '@/utils/useAppState';
 
 import { EXPLAINER_CONTENT_TYPES } from '../Explainer';
 
-import { AmountPercentageSelector } from './components/AmountPercentageSelector';
 import { DividerOverlay } from './components/DividerOverlay';
 import { LoadingBlock } from './components/LoadingBlock';
 import { RouteDetails } from './components/RouteDetails';
 import { SlippageConfigSheet, type SlippageConfigSheetMethods } from './components/SlippageConfigSheet';
 import { SourceAssetBlock, type SourceAssetBlockRef } from './components/SourceAssetBlock';
 import { SourceAssetList } from './components/SourceAssetList';
+import { SwapAmountPercentageSelector } from './components/SwapAmountPercentageSelector';
 import { SwapConfirmationSheet } from './components/SwapConfirmationSheet';
 import { SwapContextProvider, useSwapContext } from './components/SwapContext';
 import { SwapRouteExplainerSheet } from './components/SwapRouteExplainerSheet/SwapRouteExplainerSheet';
@@ -52,9 +56,12 @@ import loc from '/loc';
 
 export type SwapScreenParams = {
   tokenId?: string;
+  targetTokenId?: string;
 };
 
 const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
+  const preselectedTargetAsset = useRef(Boolean(route.params?.targetTokenId));
+
   const sourceAssetSheet = useRef<BottomSheetRef>(null);
   const targetAssetSheet = useRef<BottomSheetRef>(null);
   const confirmationSheet = useRef<BottomSheetModalRef>(null);
@@ -85,6 +92,9 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
   const { hide: hideMenu } = useMenu();
 
   const [selectedRouteType, setSelectedRouteType] = useState<SwapQuoteRouteType>('value');
+
+  const realm = useRealm();
+  const unencryptedRealm = useUnencryptedRealm();
 
   const showSlippageOptions = useCallback(() => {
     slippageConfigRef.current?.open();
@@ -139,24 +149,33 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
       if (sourceToken.id !== newToken.id) {
         updateAmount(undefined);
         setSwapQuote(undefined);
-        setTargetAsset(undefined);
+
+        if (!preselectedTargetAsset.current) {
+          setTargetAsset(undefined);
+        }
       }
     });
   };
 
   const onTargetAssetSelected = (target: RemoteAsset | RealmToken) => {
     targetAssetSheet.current?.close();
+    preselectedTargetAsset.current = false;
     runAfterUISync(() => {
       setTargetAsset(target);
     });
   };
 
-  const onSourceListClose = useCallback((hasSelectedAsset?: boolean) => {
-    if (hasSelectedAsset) {
-      showTargetAssetSelection();
-    }
-    Keyboard.dismiss();
-  }, []);
+  const onSourceListClose = useCallback(
+    (hasSelectedAsset?: boolean) => {
+      const hasNoPreselectedTargetAsset = !preselectedTargetAsset.current || (preselectedTargetAsset.current && !targetAsset);
+
+      if (hasSelectedAsset && hasNoPreselectedTargetAsset) {
+        showTargetAssetSelection();
+      }
+      Keyboard.dismiss();
+    },
+    [targetAsset],
+  );
 
   const onTargetListClose = useCallback(() => {
     if (!!targetAsset && !sourceAmount) {
@@ -187,9 +206,14 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     setInsufficientFundsError(false);
     hideMenu();
     try {
-      const { network } = getImplForWallet(sourceToken.wallet);
+      const { network: sourceNetwork } = getImplForWallet(sourceToken.wallet);
+      const { network: targetNetwork } = getImplForType(getNetworkNameFromAssetId(targetAsset.assetId));
+      const wallets = keyBy(Array.from(getWalletsForMutations(realm, unencryptedRealm)), 'type');
+      const networkName = getNetworkNameFromAssetId(targetAsset.assetId);
+      const targetAssetWallet = wallets[networkName];
 
-      const fromAddress = await network.deriveAddress(sourceToken.wallet);
+      const fromAddress = await sourceNetwork.deriveAddress(sourceToken.wallet);
+      const toAddress = await targetNetwork.deriveAddress(targetAssetWallet);
       const data = await fetchQuote(
         {
           from: {
@@ -199,7 +223,8 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
           to: {
             assetId: targetAsset.assetId,
           },
-          fromAddress,
+          fromCaip10Account: sourceNetwork.caipId + ':' + fromAddress,
+          toCaip10Account: targetNetwork.caipId + ':' + toAddress,
           routeType: selectedRouteType,
           maxSlippage,
         },
@@ -233,6 +258,8 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
     setFeesFiatValues,
     setSwapQuoteError,
     hideMenu,
+    realm,
+    unencryptedRealm,
     selectedRouteType,
     maxSlippage,
     isMaxNativeTokenAmount,
@@ -352,7 +379,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
         )}
         {!isLoading && swapQuoteError && <UnsupportedRoute />}
       </ScrollView>
-      <AmountPercentageSelector token={sourceToken} />
+      <SwapAmountPercentageSelector token={sourceToken} />
       <FloatingBottomButtons
         primary={{
           text: loc.swap.buttonTitle,
@@ -411,7 +438,7 @@ const SwapScreen = ({ route, navigation }: NavigationProps<'Swap'>) => {
 const SwapScreenWrapper = (props: NavigationProps<'Swap'>) => {
   useHeaderTitle(loc.swap.title);
   return (
-    <SwapContextProvider defaultTokenId={props.route.params?.tokenId}>
+    <SwapContextProvider defaultTokenId={props.route.params?.tokenId} targetTokenId={props.route.params?.targetTokenId}>
       <SwapScreen {...props} />
     </SwapContextProvider>
   );

@@ -14,11 +14,9 @@ type Props = CardData;
 
 export const DepositOptionsCarouselCard = ({
   assetAddress,
-  assetCaipId,
+  assetId,
   assetSymbol,
-  assetName,
   assetNetwork,
-  protocolDescription,
   protocolLogo,
   protocolName,
   protocolApy,
@@ -27,22 +25,16 @@ export const DepositOptionsCarouselCard = ({
 }: Props) => {
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate(Routes.DefiDetailsV2, {
-      assetAddress,
-      assetCaipId,
-      assetName,
-      assetNetwork,
-      assetSymbol,
-      protocolDescription,
+    navigation.navigate(Routes.DefiDetails, {
+      assetId,
       protocolLogo,
-      protocolName,
       vaultNetwork,
       vaultAddress,
     });
   };
 
   return (
-    <Card onPress={onPress}>
+    <Card onPress={onPress} testID="DepositOptionsCarouselCard">
       <View style={styles.cardContent}>
         <TokenIcon
           tokenId={assetAddress}

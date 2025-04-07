@@ -120,6 +120,12 @@ type UpdatePsbtInput = (wallet: WalletData, pbst: PsbtInputExtended, utxo: Utxo)
 
 type BitcoinFeeOption = BaseFeeOption;
 
+export const BitcoinKrakenConnect = {
+  networkId: 'ee9d686d-aeb6-4e61-9d83-448e3a7511f3',
+  methodId: '12fca2ad-edae-4d8c-acbb-4a424c1fbdeb',
+  methodName: 'Bitcoin',
+};
+
 export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
   label: string = loc.network.bitcoin;
   blockExplorer: BlockExplorer = {
@@ -136,9 +142,9 @@ export class BitcoinNetwork implements Network<SendTransaction, SendRequest> {
   nativeTokenCaipId: string = ChainAgnostic.COIN_BITCOIN;
   nativeTokenDecimals: number = 8;
   nativeTokenSymbol: NativeTokenSymbol = 'BTC';
-  krakenConnectNetworkId: string = 'ee9d686d-aeb6-4e61-9d83-448e3a7511f3';
-  krakenConnectMethodId: string = '12fca2ad-edae-4d8c-acbb-4a424c1fbdeb';
-  krakenConnectMethodName: string = 'Bitcoin';
+  krakenConnectNetworkId: string = BitcoinKrakenConnect.networkId;
+  krakenConnectMethodId: string = BitcoinKrakenConnect.methodId;
+  krakenConnectMethodName: string = BitcoinKrakenConnect.methodName;
   segwitType: SegwitType | undefined;
   generateAddress: GenerateAddress;
   prepareInput?: UpdatePsbtInput;

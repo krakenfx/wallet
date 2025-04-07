@@ -22,7 +22,7 @@ export const ExploreRow = ({ children, index = 0 }: ExploreRowProps) => {
 const styles = StyleSheet.create({
   row: {
     paddingHorizontal: Space.s1,
-    marginVertical: Space.s1,
+    marginVertical: Space.s1AndThird,
     marginHorizontal: Space.s1,
   },
 });

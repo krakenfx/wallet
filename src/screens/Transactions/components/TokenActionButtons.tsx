@@ -15,9 +15,10 @@ interface Props {
   canSwap: boolean;
   assetSymbol?: string;
   krakenConnectNetworkId?: string | null;
+  onEarnPress?: () => unknown;
 }
 
-export const TokenActionButtons = ({ assetBalanceId, canSwap, navigation, assetSymbol, krakenConnectNetworkId }: Props) => {
+export const TokenActionButtons = ({ assetBalanceId, canSwap, navigation, onEarnPress, assetSymbol, krakenConnectNetworkId }: Props) => {
   const isWalletBackupPromptNeeded = useIsWalletBackupPromptNeeded();
   const { krakenAsset } = useGetKrakenSupportedAsset(assetSymbol);
   const isAccountConnectedWithExchange = useIsAccountConnected();
@@ -50,6 +51,7 @@ export const TokenActionButtons = ({ assetBalanceId, canSwap, navigation, assetS
 
   return (
     <ActionButtons
+      onEarnPress={onEarnPress}
       onSendPress={onSend}
       onReceivePress={onReceive}
       onSwapPress={onSwap}

@@ -1,8 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import { DepositOptionsCarousel } from '@/components/DepositOptionsCarousel';
-import { SvgIcon } from '@/components/SvgIcon';
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 
 import { Sizes } from '../../ExploreScreen.constants';
 
@@ -18,17 +16,10 @@ type Props = {
 };
 
 export const ExploreStaticContent = ({ index, variant }: Props) => {
-  const [isEarnEnabled] = useFeatureFlag('earnEnabled');
-
-  if (isEarnEnabled && index === 0 && variant === 'Hero') {
+  if (index === 0 && variant === 'Hero') {
     return (
       <ContentWrapper marker="defi_discovery_preview">
-        <ExploreText
-          body={loc.explore.earnBody}
-          style={styles.textContent}
-          title={loc.explore.earnTitle}
-          titleIcon={<SvgIcon size={24} name="chevron-right" color="light100" />}
-        />
+        <ExploreText body={loc.explore.earnBody} style={styles.textContent} title={loc.explore.earnTitle} />
         <DepositOptionsCarousel />
       </ContentWrapper>
     );
@@ -39,7 +30,6 @@ export const ExploreStaticContent = ({ index, variant }: Props) => {
 
 const styles = StyleSheet.create({
   textContent: {
-    paddingHorizontal: Space.s1,
-    paddingBottom: Space.s1,
+    paddingBottom: Space.s1AndThird,
   },
 });

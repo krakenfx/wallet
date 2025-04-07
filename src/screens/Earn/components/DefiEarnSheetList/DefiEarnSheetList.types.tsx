@@ -6,4 +6,5 @@ export interface DefiEarnSheetListProps {
   isHeaderShrunk: SharedValue<boolean>;
   scrollEnabled: boolean;
   protocols: DefiProtocol[];
+  closeEarnSheet: () => void;
 }

@@ -1,5 +1,5 @@
 export interface EmptyStateProps {
   description: string;
-  ctaLabel: string;
-  ctaOnPress: () => void;
+  ctaLabel?: string;
+  ctaOnPress?: () => void;
 }

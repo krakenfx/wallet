@@ -29,7 +29,7 @@ export const HighLowChange = ({ color, currentValue, high, highLabel, low, lowLa
     };
   });
 
-  const hasLowHighValues = !!low && !!high;
+  const hasLowHighValues = low !== 0 || high !== 0;
 
   return (
     <View style={styles.container} testID="HighLowPriceChange">

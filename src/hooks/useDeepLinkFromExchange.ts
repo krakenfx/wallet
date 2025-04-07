@@ -15,7 +15,7 @@ export const useDeepLinkFromExchange = () => {
         const code = params.get('code');
         const state = params.get('state');
         const connectionError = params.get('error');
-        navigation.navigate(Routes.KrakenConnectConnected, {
+        navigation.navigate(Routes.KrakenConnect, {
           code,
           state,
           connectionError,

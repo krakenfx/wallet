@@ -37,9 +37,9 @@ declare module 'react-native-config' {
     KRAKEN_API_URI: string;
     KRAKEN_CONNECT_CLIENT_ID: string;
     KRAKEN_CONNECT_OAUTH_AUTH_URI: string;
-    KRAKEN_BETA_API_URI: string;
     PERSONAL_API_KEY?: string;
     PERSONAL_PRIVATE_KEY?: string;
+    DEBUG_KEYSTORE_ANDROID_PASSWORD: string;
   }
 
   export const Config: NativeConfig;

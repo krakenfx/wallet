@@ -7,6 +7,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 import Animated, { FadeIn, FadeOut, SequencedTransition, runOnJS } from 'react-native-reanimated';
 
+import { CardWarning } from '@/components/CardWarning';
 import { FloatingBottomButtons } from '@/components/FloatingBottomButtons';
 import { GradientScreenView } from '@/components/Gradients';
 import { KeyboardAvoider, KeyboardDoneInputAccessoryView } from '@/components/Keyboard';
@@ -289,6 +290,12 @@ export const OnboardingImportWalletScreen = ({ navigation }: OnboardingNavigatio
           </Touchable>
         </Animated.View>
         <KeyboardAvoider style={styles.keyboardAvoider}>{suggestedWords?.length > 0 && suggestedWordsList}</KeyboardAvoider>
+        <CardWarning
+          title={loc.onboardingImportWallet.disclaimerTitle}
+          description={loc.onboardingImportWallet.disclaimer}
+          style={styles.cardWarning}
+          type="info"
+        />
         <FloatingBottomButtons
           primary={{
             disabled: buttonDisabled,
@@ -391,6 +398,9 @@ const styles = StyleSheet.create({
   },
   suggestedWordButton: {
     paddingHorizontal: 20,
+  },
+  cardWarning: {
+    marginHorizontal: 24,
   },
 });
 

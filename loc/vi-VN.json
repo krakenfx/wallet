@@ -417,6 +417,7 @@
   "defi": {
     "allAssets": "Tất cả tài sản",
     "apr": "APR",
+    "apy": "APY",
     "claimable": "Có thể bồi hoàn",
     "debt": "Nợ",
     "dept": "Phòng",
@@ -459,6 +460,8 @@
   "earn": {
     "allAssets": "Tất cả tài sản",
     "apy": "APY",
+    "balance": "Số dư",
+    "debt": "Nợ",
     "detailsSheet": {
       "deposit": "Nạp",
       "depositCta": "Nạp một số {symbol} trên {protocol}",
@@ -468,10 +471,13 @@
         "about": "Giới thiệu về {symbol}",
         "addressCopied": "Đã sao chép địa chỉ",
         "assetsLocked": "Tài sản bị khóa",
+        "composition": "Thành phần",
         "contractAddress": "Địa chỉ hợp đồng",
         "marketCap": "Vốn hóa thị trường",
         "network": "Mạng",
         "numberHolders": "Số lượng người nắm giữ",
+        "pool": "Pool",
+        "poolAddress": "Địa chỉ pool",
         "protocol": "Giao thức",
         "tokenEarned": "Token đã kiếm được",
         "tokenPrice": "Giá token",
@@ -486,6 +492,7 @@
         "week": "HT",
         "year": "Y"
       },
+      "refreshChart": "Làm mới biểu đồ",
       "to": "Tới:",
       "transfer": "Chuyển khoản",
       "withdraw": "Rút"
@@ -515,6 +522,7 @@
     },
     "heroAvailableBalance": "Hiện có {balance} {symbol}",
     "heroTitle": "Kiếm được {symbol} trên {protocol}",
+    "liquidityPool": "Pool thanh khoản",
     "protocolType": {
       "lending": "Cho vay"
     },
@@ -728,13 +736,31 @@
     "assets": "Tài sản",
     "collection": "NFT",
     "collection_see_all": "Xem tất cả",
+    "collectionEmpty": "Chưa có NFT nào. Đồ sưu tầm của bạn sẽ xuất hiện ở đây khi có sẵn. ",
+    "collectionEmptyCta": "Nhận",
     "defiEmpty": "Bắt đầu kiếm tiền với DeFi",
-    "defiEmptyCaption": "Các vị thế của bạn sẽ hiển thị ở đây khi khả dụng. Tham gia DeFi và bắt đầu kiếm được lợi nhuận.",
+    "defiEmptyCaption": "Chưa có vị thế nào. Tham gia DeFi để kiếm được lợi nhuận từ tài sản của bạn.",
+    "defiEmptyCta": "Bắt đầu kiếm tiền",
+    "defiEmptyTitle": "DeFi",
     "deposits": "DeFi",
     "manage": "Quản lý",
     "total_balance": "Số dư"
   },
   "krakenConnect": {
+    "appLock": {
+      "description": "Để bảo vệ tiền của bạn, hãy bật {authType} trước khi kết nối sàn giao dịch.",
+      "title": "Bảo mật ví của bạn trước khi kết nối"
+    },
+    "appLockWarning": {
+      "ctaCancel": "Hủy",
+      "ctaTurnOff": "Tắt",
+      "description": "Tắt Khóa ứng dụng sẽ tắt kết nối của bạn với Kraken. Bạn sẽ cần phải thiết lập lại nếu muốn chuyển tiền một cách liền mạch.",
+      "title": "Tắt Khóa ứng dụng?"
+    },
+    "availableBalanceInfo": {
+      "description": "Tại sao lại có lệnh giữ lại?",
+      "title": "Một phần tài sản trao đổi Kraken của bạn có thể không thể rút được do bị giữ tạm thời."
+    },
     "balanceOnKraken": "trên Kraken",
     "connected": {
       "alert": "Chỉ có ví hiện tại: \"<b>{walletName}</b>\", được kết nối với Kraken.",
@@ -746,6 +772,12 @@
     },
     "connecting": "Kết nối với Kraken",
     "connectingFailed": "Lỗi khi kết nối với Kraken ",
+    "errors": {
+      "createAddress": "Không tạo được địa chỉ nạp/rút.",
+      "fetchBalance": "Không thể lấy lại số dư trao đổi của Kraken.",
+      "getFee": "Không thể lấy được số tiền phí chính xác.",
+      "transferAppLockFailure": "Quá trình chuyển khoản chưa bắt đầu."
+    },
     "exchangeBalance": "Số dư trên sàn giao dịch",
     "fundCta": {
       "body": "Kết nối tài khoản Kraken của bạn với",
@@ -757,6 +789,10 @@
       "title": "Không có tài sản để chuyển nhượng"
     },
     "pendingTransactionId": "ID giao dịch Kraken",
+    "receiveCta": {
+      "body": "Kết nối tài khoản Sàn giao dịch Kraken của bạn",
+      "headline": "Chuyển khoản nhanh từ Kraken"
+    },
     "selectNetwork": {
       "description": "Chọn mạng mà bạn muốn nhận {assetLabel} vào ví của mình.",
       "fee": "Phí {assetValue}",
@@ -808,7 +844,7 @@
       "transferFee": "Phí chuyển khoản",
       "transferringTo": "Đang chuyển sang",
       "unsupportedAssets": "Tài sản không được hỗ trợ",
-      "unsupportedAssetsDescription": "{count} tài sản khác trong tài khoản giao dịch của bạn không được ví hỗ trợ"
+      "unsupportedAssetsDescription": "{assets} hiện không được Kraken Wallet hỗ trợ"
     },
     "transferCta": {
       "body": "Kết nối tài khoản Kraken của bạn để chuyển tiền điện tử nhanh chóng",
@@ -1172,6 +1208,8 @@
   },
   "onboardingImportWallet": {
     "caption": "Nhập cụm từ khôi phục bí mật để nhập ví của bạn.",
+    "disclaimer": "Nếu bất kỳ ai khác biết Cụm từ khôi phục bí mật này (từ gốc), họ cũng có thể truy cập vào ví này và số tiền sẽ không an toàn.",
+    "disclaimerTitle": "Chú ý!",
     "header": "Nhập ví của bạn",
     "headerInvalid": "Kiểm tra cụm từ bí mật của bạn",
     "import": "Nhập",
@@ -1712,6 +1750,10 @@
     "genericNetworkFee": "Phí mạng",
     "input": "Đầu vào",
     "inputs": "Thông tin nhập",
+    "krakenConnect": {
+      "fromKraken": "Từ: Kraken",
+      "transferredIn": "Đã chuyển vào"
+    },
     "networkFee": "Phí mạng {network}",
     "networkFee_": "Phí mạng",
     "notes": "Mô tả",

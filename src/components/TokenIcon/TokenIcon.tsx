@@ -57,5 +57,6 @@ const styles = StyleSheet.create({
   icon: {
     width: '60%',
     height: '60%',
+    backgroundColor: '#ffffff',
   },
 });

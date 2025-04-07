@@ -2,12 +2,11 @@ import type { KrakenAssetNotSupported, KrakenTickerDict } from '@/api/krakenConn
 
 import { fetchKrakenPublicApi } from './base/fetchKrakenPublicApi';
 
-export const fetchNotSupportedAssetPrices = async (asset: KrakenAssetNotSupported, cfToken: string) => {
+export const fetchNotSupportedAssetPrices = async (asset: KrakenAssetNotSupported) => {
   const params = `?pair=${asset.symbol}USD`;
   const { result, error } = await fetchKrakenPublicApi<KrakenTickerDict>({
     path: '/0/public/Ticker',
     params,
-    cfToken,
   });
   if (error) {
     return null;

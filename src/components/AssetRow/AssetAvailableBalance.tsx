@@ -6,11 +6,12 @@ import { FadeIn } from 'react-native-reanimated';
 import type { KrakenAssetSupported } from '@/api/krakenConnect/types';
 import { useTokenBalanceConvertedToAppCurrency } from '@/hooks/useAppCurrencyValue';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
-
 import { useAppCurrency } from '@/realm/settings';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { Label } from '../Label';
+
+import { AvailableBalanceTooltip } from './AvailableBalanceTooltip';
 
 import loc from '/loc';
 
@@ -32,6 +33,7 @@ const AvailableBalanceInFiat = ({ asset }: Props) => {
   return (
     <Label entering={FadeIn} type="regularCaption1" color="light50" style={styles.priceLabel}>
       {availableAmountText}
+      <AvailableBalanceTooltip />
     </Label>
   );
 };

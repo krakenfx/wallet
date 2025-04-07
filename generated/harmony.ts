@@ -26,24 +26,25 @@ export interface paths {
     
     get: operations["GetTopOpportunity"];
   };
-  "/v1/defi/topOpportunity/{address}": {
-    
-    get: operations["GetEarnTopOpportunity"];
-  };
   "/v1/defi/opportunities/{address}": {
-    post: operations["GetOppportunities"];
-  };
-  "/v1/defi/earn/opportunities/{address}": {
     
-    post: operations["GetEarnOppportunities"];
+    post: operations["GetOppportunities"];
   };
   "/v1/defi/positions/{address}": {
     
     get: operations["GetAddressPositions"];
   };
-  "/v1/depositOptions/{address}": {
+  "/v1/defi/vaultInfo/{network}/{vaultAddress}": {
     
-    post: operations["DepositOptions"];
+    get: operations["GetVaultInfo"];
+  };
+  "/v1/defi/vaultHistoricalMetrics/{network}/{vaultAddress}": {
+    
+    get: operations["GetVaultHistoricalMetrics"];
+  };
+  "/v1/defi/vaultTransactions/{network}/{vaultAddress}/{userAddress}": {
+    
+    get: operations["GetVaultTransactions"];
   };
   "/v1/explore": {
     
@@ -60,6 +61,10 @@ export interface paths {
   "/v1/fee": {
     
     get: operations["GetFees"];
+  };
+  "/v1/krakenConnectProxy": {
+    
+    post: operations["ProxyKrakenConnect"];
   };
   "/v1/nfts": {
     
@@ -116,6 +121,10 @@ export interface paths {
   "/v1/swap/quote": {
     
     post: operations["SwapQuote"];
+  };
+  "/v2/swap/quote": {
+    
+    post: operations["SwapQuoteV2"];
   };
   "/v1/swap/tokenList/to": {
     
@@ -344,8 +353,13 @@ export interface components {
       
       positionUsdValue: number;
       isDebt: boolean;
+      category: string;
       
       apy?: number;
+      
+      tvl?: number;
+      vaultAddress?: string;
+      vaultNetwork: string;
     };
     ProtocolWithPositions: {
       protocol: components["schemas"]["DefiProtocol"];
@@ -356,6 +370,122 @@ export interface components {
     };
     Result_PositionsResult_: {
       content: components["schemas"]["PositionsResult"];
+    };
+    TvlDetails: {
+      tvlNative: string;
+      tvlUsd: string;
+      lockedNative: string;
+      lockedUsd: string;
+      liquidNative: string;
+      liquidUsd: string;
+    };
+    Token: {
+      name: string;
+      assetAddress: string;
+      assetCaip: string;
+      symbol: string;
+      
+      decimals: number;
+    };
+    ApyDetails: {
+      
+      "1day": number;
+      
+      "7day": number;
+      
+      "30day": number;
+    };
+    APY: {
+      base: components["schemas"]["ApyDetails"];
+      rewards?: components["schemas"]["ApyDetails"];
+      total: components["schemas"]["ApyDetails"];
+    };
+    Reward: {
+      apy: components["schemas"]["ApyDetails"];
+      
+      assetPriceInUsd: number;
+      asset: components["schemas"]["Token"];
+    };
+    Score: {
+      
+      vaultScore: number;
+      
+      vaultTvlScore: number;
+      
+      protocolTvlScore: number;
+      
+      holderScore: number;
+      
+      networkScore: number;
+      
+      assetScore: number;
+    };
+    TopHolder: {
+      address: string;
+      balance: string;
+    };
+    VaultInfoResult: {
+      name: string;
+      address: string;
+      network: string;
+      protocol: string;
+      tvlDetails: components["schemas"]["TvlDetails"];
+      
+      numberOfHolders: number;
+      lendLink: string;
+      tags: string[];
+      token: components["schemas"]["Token"];
+      apy: components["schemas"]["APY"];
+      description: string;
+      rewards: components["schemas"]["Reward"][];
+      isTransactional: boolean;
+      score: components["schemas"]["Score"];
+      
+      assetPriceInUsd: number;
+      topHolders: components["schemas"]["TopHolder"][];
+      holdersTotalBalance: string;
+    };
+    Result_VaultInfoResult_: {
+      content: components["schemas"]["VaultInfoResult"];
+    };
+    DataEntry: {
+      
+      timestamp: number;
+      
+      blockNumber: number;
+      apy: components["schemas"]["Apy"];
+      tvlDetails: components["schemas"]["TvlDetails"];
+    };
+    VaultHistoricalMetricsResult: {
+      
+      next_page?: number;
+      data: components["schemas"]["DataEntry"][];
+    };
+    Result_VaultHistoricalMetricsResult_: {
+      content: components["schemas"]["VaultHistoricalMetricsResult"];
+    };
+    Amount: {
+      
+      usd: number;
+      native: string;
+    };
+    PositionValue: {
+      
+      usd: number;
+      native: string;
+    };
+    VaultTransaction: {
+      activity: string;
+      
+      timestamp: number;
+      amount: components["schemas"]["Amount"];
+      positionValue: components["schemas"]["PositionValue"];
+    };
+    VaultTransactionsResult: {
+      transactions: components["schemas"]["VaultTransaction"][];
+    };
+    Result_VaultTransactionsResult_: {
+      content: components["schemas"]["VaultTransactionsResult"];
     };
     
     "ExploreContentVariant.Text": "Text";
@@ -510,6 +640,71 @@ export interface components {
     "Result_FeeOption-Array_": {
       content: components["schemas"]["FeeOption"][];
     };
+    KrakenConnectBalanceEx: {
+      [key: string]: {
+        hold_trade: string;
+        balance: string;
+      };
+    };
+    KrakenConnectWithdrawMethods: {
+      fee: unknown;
+      minimum: string;
+      network: string;
+      network_id: string;
+      method: string;
+      method_id: string;
+      asset: string;
+    };
+    KrakenConnectWithdrawFee: {
+      fee_token: string;
+      net: string;
+      total: string;
+      fee: string;
+      asset: string;
+      asset_class: string;
+    };
+    KrakenConnectListFundingAddresses: {
+      items: {
+          address: {
+            address: string;
+            type: string;
+          };
+          network_id: string;
+          id: string;
+        }[];
+      next_cursor: string | null;
+    };
+    KrakenConnectCreateFundingAddress: {
+      verified: boolean;
+      id: string;
+    };
+    KrakenConnectCreateFundingWithdrawal: {
+      fee: {
+        amount: string;
+        asset: string;
+        asset_class: string;
+      };
+      transaction_id: string;
+    };
+    KrakenConnectDeleteFundingAddress: boolean;
+    KrakenConnectProxyResponse: {
+      error: unknown[];
+      result: components["schemas"]["KrakenConnectBalanceEx"] | components["schemas"]["KrakenConnectWithdrawMethods"] | components["schemas"]["KrakenConnectWithdrawFee"] | components["schemas"]["KrakenConnectListFundingAddresses"] | components["schemas"]["KrakenConnectCreateFundingAddress"] | components["schemas"]["KrakenConnectCreateFundingWithdrawal"] | components["schemas"]["KrakenConnectDeleteFundingAddress"];
+    };
+    KrakenConnectProxyRequestHeaders: {
+      [key: string]: string;
+    };
+    KrakenConnectProxyRequest: {
+      apiURI: string;
+      
+      method: "GET" | "POST";
+      headers: components["schemas"]["KrakenConnectProxyRequestHeaders"];
+      body?: string;
+      params?: {
+        [key: string]: unknown;
+      };
+      tokenId?: string;
+    };
     
     NFT: {
       
@@ -560,6 +755,8 @@ export interface components {
       usdValue: string | number;
       tokens: components["schemas"]["ProtocolPositionToken"][];
       metadata: components["schemas"]["ProtocolPositionMetadata"];
+      
+      supply?: number;
     };
     ProtocolProduct: {
       label: string;
@@ -817,9 +1014,14 @@ export interface components {
           pubkey: string;
         }[];
     };
+    AddressLookupTableEntry: {
+      address: string;
+      serializedState: string;
+    };
     SolanaSimulationInputPlain: {
       dAppOrigin?: string;
       signatory?: string;
+      clientLookupTables?: components["schemas"]["AddressLookupTableEntry"][];
       atas?: {
           instruction: components["schemas"]["SerializedSolanaInstruction"];
           address: string;
@@ -962,6 +1164,59 @@ export interface components {
         assetId: string;
       };
       fromAddress: string;
+      routeType: components["schemas"]["SwapQuoteRouteType"];
+      
+      maxSlippage?: number;
+    };
+    SwapEthereumTxData: {
+      data: string;
+      value: string;
+      txTarget: string;
+      
+      txType: "eth_sendTransaction" | "eth_signMessage";
+    };
+    SwapSolanaTxData: {
+      data: {
+        latestBlockhash: {
+          
+          lastValidBlockHeight: number;
+          blockhash: string;
+        };
+        signers: number[][];
+        lookupTables: components["schemas"]["AddressLookupTableEntry"][];
+        instructions: {
+            data: number[];
+            keys: {
+                isWritable: boolean;
+                isSigner: boolean;
+                pubkey: string;
+              }[];
+            programId: string;
+          }[];
+      };
+      value: string;
+      
+      txType: "solana";
+    };
+    SwapTxDataV2: components["schemas"]["SwapEthereumTxData"] | components["schemas"]["SwapSolanaTxData"];
+    SwapQuoteResultV2: {
+      quote: components["schemas"]["SwapQuote"];
+      approvalTxData?: components["schemas"]["SwapApprovalTxData"];
+      swapTxData: components["schemas"]["SwapTxDataV2"];
+    };
+    Result_SwapQuoteResultV2_: {
+      content: components["schemas"]["SwapQuoteResultV2"];
+    };
+    SwapQuoteRequestV2: {
+      from: {
+        amount: string;
+        assetId: string;
+      };
+      to: {
+        assetId: string;
+      };
+      fromCaip10Account: string;
+      toCaip10Account: string;
       routeType: components["schemas"]["SwapQuoteRouteType"];
       
       maxSlippage?: number;
@@ -1311,30 +1566,6 @@ export interface operations {
     };
   };
   
-  GetEarnTopOpportunity: {
-    parameters: {
-      query: {
-        network: string;
-      };
-      path: {
-        address: string;
-      };
-    };
-    responses: {
-      
-      200: {
-        content: {
-          "application/json": components["schemas"]["Result_BestVaultResult_"];
-        };
-      };
-      
-      default: {
-        content: {
-          "application/json": components["schemas"]["ErrorResult"];
-        };
-      };
-    };
-  };
   GetOppportunities: {
     parameters: {
       path: {
@@ -1342,33 +1573,6 @@ export interface operations {
       };
     };
     
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["DepositOptionsParams"];
-      };
-    };
-    responses: {
-      
-      200: {
-        content: {
-          "application/json": components["schemas"]["Result_DepositOptionsResult_"];
-        };
-      };
-      
-      default: {
-        content: {
-          "application/json": components["schemas"]["ErrorResult"];
-        };
-      };
-    };
-  };
-  
-  GetEarnOppportunities: {
-    parameters: {
-      path: {
-        address: string;
-      };
-    };
     requestBody: {
       content: {
         "application/json": components["schemas"]["DepositOptionsParams"];
@@ -1412,39 +1616,71 @@ export interface operations {
     };
   };
   
-  DepositOptions: {
+  GetVaultInfo: {
     parameters: {
       path: {
-        address: string;
-      };
-    };
-    
-    requestBody: {
-      content: {
-        "application/json": {
-          
-          minApy?: number;
-          allowedTargetUnderlyingTokenForAsset?: components["schemas"]["Record_string.string-Array_"];
-          disallowedProtocols?: string[];
-          allowedProtocols?: string[];
-          disallowedNetworks?: string[];
-          allowedNetworks?: string[];
-          disallowedAssets?: string[];
-          allowedAssets?: string[];
-          
-          maxVaultsPerAsset?: number;
-          
-          minimumVaultTvl?: number;
-          
-          minimumBalanceThreshold?: number;
-        };
+        network: string;
+        vaultAddress: string;
       };
     };
     responses: {
       
       200: {
         content: {
-          "application/json": components["schemas"]["Result_DepositOptionsResult_"];
+          "application/json": components["schemas"]["Result_VaultInfoResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  GetVaultHistoricalMetrics: {
+    parameters: {
+      query?: {
+        fromTimestamp?: number;
+        toTimestamp?: number;
+        granularity?: number;
+        perPage?: number;
+      };
+      path: {
+        network: string;
+        vaultAddress: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_VaultHistoricalMetricsResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  GetVaultTransactions: {
+    parameters: {
+      path: {
+        network: string;
+        vaultAddress: string;
+        userAddress: string;
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_VaultTransactionsResult_"];
         };
       };
       
@@ -1534,6 +1770,28 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Result_FeeOption-Array_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  ProxyKrakenConnect: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["KrakenConnectProxyRequest"];
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["KrakenConnectProxyResponse"];
         };
       };
       
@@ -1875,6 +2133,28 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Result_SwapQuoteResult_"];
+        };
+      };
+      
+      default: {
+        content: {
+          "application/json": components["schemas"]["ErrorResult"];
+        };
+      };
+    };
+  };
+  
+  SwapQuoteV2: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["SwapQuoteRequestV2"];
+      };
+    };
+    responses: {
+      
+      200: {
+        content: {
+          "application/json": components["schemas"]["Result_SwapQuoteResultV2_"];
         };
       };
       

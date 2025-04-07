@@ -24,10 +24,12 @@ export const OverlappingCollection = React.memo(
 
     const data = useMemo(() => {
       const hasMore = itemsToShow < items.length;
-      const items_ = items
+      const items_ = [...items]
+        .reverse()
         .slice(0, itemsToShow)
         .map<React.ReactNode>((item, i) => {
-          const index = i + (hasMore ? 1 : 0);
+          const isLast = (itemsToShow - 1 === i || items.length - 1 === i) && !hasMore;
+
           return (
             <View key={i} style={[styles.collectionIconContainer, { borderRadius, width: itemSize, height: itemSize }]}>
               <MaskedView
@@ -36,7 +38,7 @@ export const OverlappingCollection = React.memo(
                     <Defs>
                       <Mask id="moonShape" maskUnits="userSpaceOnUse">
                         <Circle x={borderRadius} y={borderRadius} r={borderRadius} fill="white" />
-                        {index !== 0 && <Circle x={itemSize + 2} y={borderRadius} r={borderRadius + 2} fill="black" />}
+                        {!isLast && <Circle x={itemSize + 2} y={borderRadius} r={borderRadius + 2} fill="black" />}
                       </Mask>
                     </Defs>
                     <G mask={'url(#moonShape)'}>
@@ -48,8 +50,7 @@ export const OverlappingCollection = React.memo(
               </MaskedView>
             </View>
           );
-        })
-        .reverse();
+        });
 
       const hasMoreCountProps_: OverlappingListWithHasMoreCountProps['hasMoreCount'] = {
         backgroundColor: colors.light15,

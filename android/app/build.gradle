@@ -52,7 +52,7 @@ react {
     //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
     // hermesFlags = ["-O", "-output-source-map"]
 
-     
+
     /* Autolinking */
     autolinkLibrariesWithApp()
 }
@@ -120,9 +120,9 @@ android {
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
-            storePassword 'android'
+            storePassword project.ext.env.DEBUG_KEYSTORE_ANDROID_PASSWORD
             keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            keyPassword project.ext.env.DEBUG_KEYSTORE_ANDROID_PASSWORD
         }
     }
     buildTypes {
@@ -152,6 +152,10 @@ android {
             }
 
         }
+    }
+
+    androidResources {
+      noCompress += ["bundle"]
     }
 }
 

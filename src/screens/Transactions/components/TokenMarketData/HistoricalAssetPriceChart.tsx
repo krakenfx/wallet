@@ -16,7 +16,7 @@ import { useTokenById } from '@/realm/tokens';
 import { useTheme } from '@/theme/themes';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-import { getPercentageLabel } from '@/utils/formatPercentage';
+import { getPercentageLabel } from '@/utils/getPercentageLabel';
 
 import { HighLowPriceChange } from './HighLowPriceChange';
 import { CHART_PLACEHOLDER, HIGH_LOW_PRICE_PLACEHOLDER, PRICE_PLACEHOLDER, SheetPosition } from './utils';

@@ -10,7 +10,7 @@ import { REALM_TYPE_TOKEN, getAvailableTokenBalance } from '../tokens';
 
 import { REALM_TYPE_TRANSACTION_NOTES } from '../transactionNotes';
 
-import { REALM_TYPE_PENDING_TRANSACTION, REALM_TYPE_WALLET_TRANSACTION } from './schema';
+import { REALM_TYPE_PENDING_TRANSACTION, REALM_TYPE_WALLET_TRANSACTION, TRANSACTION_STATUS_INVALIDATED, TRANSACTION_STATUS_KRAKEN_CONNECT } from './schema';
 import { convertToTimestamp, getCombinedTransactionId } from './utils';
 
 import type { PendingTransaction, RealmPendingTransaction, RealmTransaction } from './schema';
@@ -29,7 +29,16 @@ export const useTransactionMutations = () => {
         for (const tx of transactions) {
           const txCombinedId = getCombinedTransactionId(wallet.id, tx.id);
           const confirmedTxExist = !!realm.objectForPrimaryKey(REALM_TYPE_WALLET_TRANSACTION, txCombinedId);
-          const pendingTxExist = !!realm.objectForPrimaryKey(REALM_TYPE_PENDING_TRANSACTION, txCombinedId);
+          const pendingStandardTx = realm.objectForPrimaryKey<PendingTransaction>(REALM_TYPE_PENDING_TRANSACTION, txCombinedId);
+          const pendingTxsFromKrakenConnect = realm
+            .objects<PendingTransaction>(REALM_TYPE_PENDING_TRANSACTION)
+            .filtered('additionalStatus == "kraken-connect-to-wallet"');
+
+          const pendingTxFromKrakenConnect = pendingTxsFromKrakenConnect.filtered('transactionId == $0', tx.id);
+
+          const pendingTx: PendingTransaction | null = pendingStandardTx || (pendingTxFromKrakenConnect.length > 0 ? pendingTxFromKrakenConnect[0] : null);
+
+          const pendingTxExist = !!pendingTx;
 
           if (confirmedTxExist || pendingTxExist) {
             foundExistingTransaction = true;
@@ -37,8 +46,11 @@ export const useTransactionMutations = () => {
 
           // @ts-expect-error not supported on BE yet
           if (tx.status === 'pending') {
-            if (!pendingTxExist) {
-              const effect = tx.effects[0];
+            const effect = tx.effects[0];
+            const amount = 'amount' in effect ? effect.amount : null;
+
+            const pendingBtcTransactionFromKrakenConnect = pendingTxsFromKrakenConnect.filtered('amount == $0 && walletId == $1', amount, wallet.id);
+            if (!pendingTxExist && pendingBtcTransactionFromKrakenConnect.length === 0) {
               const assetId = 'assetId' in effect && effect.assetId;
               const tokenId = `${wallet.id}:${assetId}`;
               if (assetId && (effect.type === 'send' || effect.type === 'receive')) {
@@ -50,7 +62,7 @@ export const useTransactionMutations = () => {
                     walletId: wallet.id,
                     wallet,
                     tokenId,
-                    amount: 'amount' in effect ? effect.amount : null,
+                    amount,
                     kind: effect.type,
                     type: 'coin',
                     from: 'sender' in effect ? effect.sender : null,
@@ -83,6 +95,9 @@ export const useTransactionMutations = () => {
                 fee: tx.fee?.amount,
                 value: '0',
               };
+              if (pendingTx && pendingTx.additionalStatus === TRANSACTION_STATUS_KRAKEN_CONNECT) {
+                Object.assign(transaction, { additionalStatus: TRANSACTION_STATUS_KRAKEN_CONNECT });
+              }
               realm.create<RealmTransaction>(REALM_TYPE_WALLET_TRANSACTION, { ...transaction, ...withNotes }, Realm.UpdateMode.Modified);
             }
           }
@@ -160,7 +175,7 @@ export const useTransactionMutations = () => {
       if (pendingTx) {
         console.log('[invalidatePendingTransaction] ', id);
         realm.write(() => {
-          pendingTx.additionalStatus = 'invalidated';
+          pendingTx.additionalStatus = TRANSACTION_STATUS_INVALIDATED;
         });
       }
     },

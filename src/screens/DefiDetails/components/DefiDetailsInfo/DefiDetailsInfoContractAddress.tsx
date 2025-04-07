@@ -16,7 +16,7 @@ export const DefiDetailsInfoContractAddress = () => {
   return (
     <Animated.View entering={FadeIn} exiting={FadeOut} testID="DefiDetailsVaultInfo">
       <Label style={styles.heading} type="boldTitle2">
-        {loc.earn.detailsSheet.info.contractAddress}
+        {loc.earn.detailsSheet.info.poolAddress}
       </Label>
       <View style={[styles.container, { backgroundColor: colors.dark15 }]}>
         <AddressDisplayOneLine address={vaultAddress} />

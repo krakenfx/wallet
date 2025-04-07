@@ -417,6 +417,7 @@
   "defi": {
     "allAssets": "Wszystkie aktywa",
     "apr": "RSO",
+    "apy": "APY",
     "claimable": "Do odbioru",
     "debt": "Dług",
     "dept": "Dług",
@@ -459,6 +460,8 @@
   "earn": {
     "allAssets": "Wszystkie aktywa",
     "apy": "APY",
+    "balance": "Saldo",
+    "debt": "Dług",
     "detailsSheet": {
       "deposit": "Wpłata",
       "depositCta": "Wpłać {symbol} na {protocol}",
@@ -468,10 +471,13 @@
         "about": "Informacje o {symbol}",
         "addressCopied": "Adres skopiowany",
         "assetsLocked": "Zablokowane aktywa",
+        "composition": "Skład",
         "contractAddress": "Adres do umowy",
         "marketCap": "Kapitalizacja rynkowa",
         "network": "Sieć",
         "numberHolders": "Liczba posiadaczy",
+        "pool": "Pula",
+        "poolAddress": "Adres puli",
         "protocol": "Protokół",
         "tokenEarned": "Zdobyty token",
         "tokenPrice": "Cena tokena",
@@ -486,6 +492,7 @@
         "week": "W",
         "year": "R"
       },
+      "refreshChart": "Odśwież wykres",
       "to": "Do:",
       "transfer": "Przelew",
       "withdraw": "Wypłać"
@@ -515,6 +522,7 @@
     },
     "heroAvailableBalance": "Dostępne: {balance} {symbol}",
     "heroTitle": "Zarabiaj {symbol} na {protocol}",
+    "liquidityPool": "Pula płynności",
     "protocolType": {
       "lending": "Pożyczki"
     },
@@ -728,13 +736,31 @@
     "assets": "Aktywa",
     "collection": "NFT",
     "collection_see_all": "Wyświetl wszystkie",
+    "collectionEmpty": "Na razie brak NFT. Twoje zdobycze pojawią się tutaj, jak tylko będą dostępne. ",
+    "collectionEmptyCta": "Odbierz",
     "defiEmpty": "Zacznij zarabiać dzięki DeFi",
-    "defiEmptyCaption": "Twoje pozycje pojawią się tutaj, gdy będą dostępne. Miej swój udział w DeFi i zacznij zarabiać.",
+    "defiEmptyCaption": "Na razie brak pozycji. Udział w DeFi pozwoli Ci zarabiać na aktywach.",
+    "defiEmptyCta": "Zacznij zarabiać",
+    "defiEmptyTitle": "DeFi",
     "deposits": "DeFi",
     "manage": "Zarządzaj",
     "total_balance": "Saldo"
   },
   "krakenConnect": {
+    "appLock": {
+      "description": "Aby chronić swoje środki, przed podłączeniem giełdy włącz {authType}.",
+      "title": "Zanim dokonasz połączenia, zabezpiecz swój portfel"
+    },
+    "appLockWarning": {
+      "ctaCancel": "Anuluj",
+      "ctaTurnOff": "Wyłącz",
+      "description": "Wyłączenie blokady App Lock anuluje połączenie z Krakenem. Jeśli chcesz bezproblemowo przesyłać środki, musisz ją skonfigurować ponownie.",
+      "title": "Wyłączyć blokadę App Lock?"
+    },
+    "availableBalanceInfo": {
+      "description": "Dlaczego wstrzymano wypłatę?",
+      "title": "Część Twoich środków na giełdzie Kraken może być niedostępna do wypłaty z powodu tymczasowej blokady."
+    },
     "balanceOnKraken": "na platformie Kraken",
     "connected": {
       "alert": "Z platformą Kraken połączono tylko bieżący portfel: „<b>{walletName}</b>”.",
@@ -746,6 +772,12 @@
     },
     "connecting": "Łączenie z Krakenem",
     "connectingFailed": "Błąd podczas łączenia z Krakenem ",
+    "errors": {
+      "createAddress": "Nie udało się utworzyć adresu do wpłat.",
+      "fetchBalance": "Nie można pobrać salda giełdy Kraken.",
+      "getFee": "Nie można pobrać dokładnej kwoty opłaty.",
+      "transferAppLockFailure": "Nie rozpoczęto przelewu."
+    },
     "exchangeBalance": "Saldo na giełdzie",
     "fundCta": {
       "body": "Połącz konto Kraken z",
@@ -757,6 +789,10 @@
       "title": "Brak aktywów do przeniesienia"
     },
     "pendingTransactionId": "ID transakcji Kraken",
+    "receiveCta": {
+      "body": "Połącz konto giełdy Kraken",
+      "headline": "Szybki przelew z Krakena"
+    },
     "selectNetwork": {
       "description": "Wybierz sieć, w której chcesz otrzymywać {assetLabel} do portfela.",
       "fee": "Opłata {assetValue}",
@@ -808,7 +844,7 @@
       "transferFee": "Opłata za przelew",
       "transferringTo": "Przelew do",
       "unsupportedAssets": "Nieobsługiwane aktywa",
-      "unsupportedAssetsDescription": "Pozostałe aktywa ({count}) na Twoim koncie giełdowym nie są obsługiwane przez portfel"
+      "unsupportedAssetsDescription": "{assets} nie są obecnie obsługiwane przez Kraken Wallet"
     },
     "transferCta": {
       "body": "Połącz konto Kraken, aby szybciej przesyłać kryptowaluty",
@@ -1172,6 +1208,8 @@
   },
   "onboardingImportWallet": {
     "caption": "Wprowadź swoją tajną frazę odzyskiwania, aby zaimportować swój portfel.",
+    "disclaimer": "Jeśli ktokolwiek inny pozna tę tajną frazę odzyskiwania (słowa frazy seed), również uzyska dostęp do tego portfela, a środki nie będą bezpieczne.",
+    "disclaimerTitle": "Uwaga!",
     "header": "Zaimportuj swój portfel",
     "headerInvalid": "Sprawdź swoją tajną frazę",
     "import": "Importuj",
@@ -1712,6 +1750,10 @@
     "genericNetworkFee": "Opłata sieciowa",
     "input": "Wejście",
     "inputs": "Wejścia",
+    "krakenConnect": {
+      "fromKraken": "Od: Kraken",
+      "transferredIn": "Przelano w"
+    },
     "networkFee": "{network} Opłata sieciowa",
     "networkFee_": "Opłata sieciowa",
     "notes": "Opis",

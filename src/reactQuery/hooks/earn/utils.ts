@@ -1,9 +1,12 @@
+import memoize from 'lodash/memoize';
+
 import type { BestVaultResult, DepositOptionsResult, ProtocolWithPositions, Vault } from '@/api/types';
 import type { DefiProtocol } from '@/components/DefiProtocolPositions/DefiProtocolPositions.types';
 import type { CardData } from '@/components/DepositOptionsCarousel/DepositOptionsCarousel.types';
+import type { WalletType } from '@/onChain/wallets/registry';
+import { networkIdToNetworkName } from '@/onChain/wallets/registry';
 import type { DefiAssetsListItem } from '@/screens/Earn/components/DefiFlatList/DefiFlatList.types';
 import type { HighlightVault } from '@/screens/Earn/components/DefiHighlightHeroContent/DefiHighlightHeroContent.types';
-
 import { adaptAssetNetworkToWalletType } from '@/utils/adaptAssetNetworkToWalletType';
 import { adaptDepositOptionToCardData } from '@/utils/adaptDepositOptionToCardData';
 
@@ -39,6 +42,9 @@ export const formatAssetListData = (depositOptions: DepositOptionsResult): DefiA
       protocolLogo: depositOption.protocol.protocolLogo,
       apy: depositOption.apy.total / 100,
       tvlInUsd: depositOption.tvlInUsd,
+      vaultAddress: depositOption.vaultAddress,
+      vaultNetwork: adaptAssetNetworkToWalletType(depositOption.networkName),
+      assetId: asset.assetId,
     })),
   }));
 };
@@ -57,7 +63,7 @@ function getMaxAPY(depositOptions: Vault[]) {
 
 const MAX_CARDS = 30;
 
-export const selectCardData = (depositOptions: DepositOptionsResult): CardData[] => {
+export const selectCardData = memoize((depositOptions: DepositOptionsResult): CardData[] => {
   const options = depositOptions.userBalances.map(({ asset, depositOptions }) => {
     return depositOptions.map(depositOption => adaptDepositOptionToCardData(depositOption, asset));
   });
@@ -67,7 +73,7 @@ export const selectCardData = (depositOptions: DepositOptionsResult): CardData[]
   }
 
   return filterOutAndSelectRandomCards(options.flat());
-};
+});
 
 const filterOutAndSelectRandomCards = (cards: CardData[]) => {
   const filteredCards = cards.filter(card => {
@@ -93,6 +99,14 @@ const filterOutAndSelectRandomCards = (cards: CardData[]) => {
   return randomCards;
 };
 
+function adaptVaultNetworkToWalletType(vaultNetwork?: string) {
+  if (!vaultNetwork) {
+    return 'ethereum';
+  }
+
+  return vaultNetwork.startsWith('eip') ? (networkIdToNetworkName[vaultNetwork] ?? 'ethereum') : adaptAssetNetworkToWalletType(vaultNetwork);
+}
+
 export function mapDefiProtocols(protocolsWithPositions: ProtocolWithPositions[]): DefiProtocol[] {
   return protocolsWithPositions.map(({ protocol, positions }) => ({
     id: protocol.id,
@@ -108,12 +122,14 @@ export function mapDefiProtocols(protocolsWithPositions: ProtocolWithPositions[]
         id: asset.assetId,
         address: asset.address,
         decimals: asset.decimals,
-        network: asset.network,
+        network: (asset.network === 'mainnet' ? 'ethereum' : asset.network) as WalletType,
         symbol: asset.symbol,
         balanceNative: asset.balanceNative,
         balanceUsd: asset.balanceUsdValue,
         portion: asset.portion,
       })),
+      vaultAddress: position.vaultAddress,
+      vaultNetwork: adaptVaultNetworkToWalletType(position.vaultNetwork),
     })),
   }));
 }

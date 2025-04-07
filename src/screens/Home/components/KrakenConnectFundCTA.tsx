@@ -9,14 +9,14 @@ import { Label } from '@/components/Label';
 
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable/Touchable';
-import { useSettingsMutations } from '@/realm/settings/useSettingsMutations';
+import { useKrakenConnectSettingsMutations } from '@/realm/krakenConnect/useKrakenConnectSettingsMutations';
 import { Routes } from '@/Routes';
 
 import loc from '/loc';
 
 export const KrakenConnectFundCTA = () => {
   const navigation = useNavigation();
-  const { setExchangeCtasHidden } = useSettingsMutations();
+  const { setExchangeCtasHidden } = useKrakenConnectSettingsMutations();
   const [dismissed, setDismissed] = useState<boolean>(false);
   const handleClose = () => {
     setExchangeCtasHidden();
@@ -30,12 +30,12 @@ export const KrakenConnectFundCTA = () => {
   return (
     <Animated.View entering={FadeIn} exiting={FadeOut.duration(100)}>
       <View style={styles.cardContainer}>
-        <Touchable onPress={() => navigation.navigate(Routes.KrakenConnectLanding)}>
+        <Touchable onPress={() => navigation.navigate(Routes.KrakenConnect)}>
           <View style={[styles.container]}>
             <GradientPromoBackground />
             <Image style={styles.image} source={require('@/assets/images/krakenConnect/fundWalletIllustration.png')} />
             <View style={styles.textContent}>
-              <Label style={styles.headline} type="boldTitle0" numberOfLines={1}>
+              <Label style={styles.headline} type="boldTitle0" numberOfLines={2}>
                 {loc.krakenConnect.fundCta.heading}
               </Label>
               <Label type="promoBodyRegular" style={styles.body} color="light75">
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   textContent: {
     flexDirection: 'column',
     paddingStart: 10,
+    flex: 1,
   },
   body: {
     overflow: 'hidden',
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
   },
   headline: {
     marginBottom: 8,
+    marginRight: 40,
   },
   image: {
     resizeMode: 'contain',

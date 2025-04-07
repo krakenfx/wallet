@@ -1,6 +1,6 @@
 {
   "name": "superwallet",
-  "version": "1.17.0",
+  "version": "1.18.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -171,6 +171,9 @@
   "react-native": {
     "net": "react-native-tcp-socket",
     "tls": "react-native-tcp-socket"
+  },
+  "resolutions": {
+    "elliptic": "6.6.1"
   },
   "engines": {
     "node": ">=18"

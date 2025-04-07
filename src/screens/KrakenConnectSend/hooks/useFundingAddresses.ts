@@ -4,23 +4,29 @@ import { createFundingAddress } from '@/api/krakenConnect/createFundingAddress';
 import { useKrakenConnectFundingAddresses } from '@/reactQuery/hooks/krakenConnect/useKrakenConnectFundingAddresses';
 import { useKrakenConnectCredentials } from '@/realm/krakenConnect/useKrakenConnectCredentials';
 
+import { handleError } from '/helpers/errorHandler';
+import loc from '/loc';
+
 export const useFundingAddresses = () => {
-  const { API_SECRET, API_KEY, CF_TOKEN } = useKrakenConnectCredentials();
+  const { API_SECRET, API_KEY } = useKrakenConnectCredentials();
   const { data: fundingAddresses, isFetched, refetch } = useKrakenConnectFundingAddresses();
 
   const createNewFundingAddress = useCallback(
     async (networkId: string, address: string) => {
-      const response = await createFundingAddress({
-        network_id: networkId,
-        address,
-        cfToken: CF_TOKEN,
-        apiKey: API_KEY,
-        privateKey: API_SECRET,
-      });
-      refetch();
-      return response?.id;
+      try {
+        const response = await createFundingAddress({
+          network_id: networkId,
+          address,
+          apiKey: API_KEY,
+          privateKey: API_SECRET,
+        });
+        refetch();
+        return response?.id;
+      } catch (e) {
+        handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.krakenConnect.errors.createAddress });
+      }
     },
-    [API_KEY, API_SECRET, CF_TOKEN, refetch],
+    [API_KEY, API_SECRET, refetch],
   );
 
   const getExistingFundingAddress = useCallback(

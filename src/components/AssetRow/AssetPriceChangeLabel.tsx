@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 
 import { useTokenPriceChangePercentage } from '@/realm/tokenPrice';
-import { getPercentageLabel } from '@/utils/formatPercentage';
+import { getPercentageLabel } from '@/utils/getPercentageLabel';
 
 import { Label } from '../Label';
 

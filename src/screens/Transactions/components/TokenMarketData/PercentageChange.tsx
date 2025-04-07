@@ -10,7 +10,7 @@ import type { AssetMarketDataPercentageChange } from '@/realm/assetMarketData';
 import { useAppCurrency } from '@/realm/settings';
 
 import { useTheme } from '@/theme/themes';
-import { getPercentageLabel } from '@/utils/formatPercentage';
+import { getPercentageLabel } from '@/utils/getPercentageLabel';
 
 interface ItemProps {
   time: keyof AssetMarketDataPercentageChange;

@@ -17,7 +17,8 @@ export function interpolateDataset(dataset: number[], targetLength: number): num
     } else {
       const weight = position - leftIndex;
       const leftValue = dataset[leftIndex];
-      const rightValue = dataset[rightIndex];
+      const rightValue = dataset[rightIndex] ?? leftValue;
+
       interpolated.push(leftValue + weight * (rightValue - leftValue));
     }
   }

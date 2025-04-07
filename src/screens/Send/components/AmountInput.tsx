@@ -39,6 +39,9 @@ export type Props = {
   inputStyle?: StyleProp<ViewStyle>;
   autoFocus?: boolean;
   minAmount?: string;
+  hideDoneAccessoryView?: boolean;
+  onFocus?: () => void;
+  onBlur?: () => void;
 };
 
 export interface AmountInputRef {
@@ -47,10 +50,11 @@ export interface AmountInputRef {
   getFiatAmount: () => string;
   showFeeError: () => void;
   focus: () => void;
+  blur: () => void;
 }
 
 export const AmountInput = React.forwardRef<AmountInputRef, Props>(
-  ({ token, network, currentFeeEstimate, onToggleCurrency, inputStyle = {}, autoFocus = true, minAmount }, ref) => {
+  ({ token, network, currentFeeEstimate, onToggleCurrency, inputStyle = {}, autoFocus = true, minAmount, hideDoneAccessoryView, onFocus, onBlur }, ref) => {
     const [assetAmount, setAssetAmount] = useState('');
     const [fiatAmount, setFiatAmount] = useState('');
     const { colors } = useTheme();
@@ -147,6 +151,7 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(
         showFeeError,
         getFiatAmount,
         focus: () => inputRef.current?.focus(),
+        blur: () => inputRef.current?.blur(),
       }),
       [assetAmount, getFiatAmount, isMaxAmount, showFeeError, updateFiatAmount],
     );
@@ -299,6 +304,16 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(
 
     const placeholder = loc.formatString(loc.send.enterAmount, { symbol: inputInFiatCurrency ? currency : tokenSymbol }).toString();
 
+    const handleFocus = () => {
+      onFocus?.();
+      clearErrors();
+    };
+
+    const handleBlur = () => {
+      onBlur?.();
+      verifyBalance();
+    };
+
     return (
       <Animated.View layout={CurvedTransition}>
         {!isAssetFromKrakenConnect && (
@@ -312,9 +327,9 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(
             testID="AmountInput"
             inputTestID="AmountNativeInput"
             autoFocus={autoFocus}
-            onFocus={clearErrors}
+            onFocus={handleFocus}
             errorText={errorMessage}
-            onBlur={verifyBalance}
+            onBlur={handleBlur}
             blurOnSubmit={false}
             left={
               <Label style={[toggleStyles.opacity, toggleStyles.moveDown]} type="boldDisplay4">
@@ -341,6 +356,7 @@ export const AmountInput = React.forwardRef<AmountInputRef, Props>(
             inputWrapperStyle={styles.inputWrapper}
             inputStyle={[styles.input, toggleStyles.opacity, toggleStyles.moveDown]}
             style={styles.innerContainerStyle}
+            hideDoneAccessoryView={hideDoneAccessoryView}
           />
           {!isAssetFromKrakenConnect && <Button text={loc.send.max} onPress={handleMaxButtonPress} style={styles.absoluteButton} testID="MaxAmountButton" />}
         </View>

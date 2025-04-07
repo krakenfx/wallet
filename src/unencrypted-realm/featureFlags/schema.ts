@@ -5,8 +5,6 @@ export const NEW_EVM_NETWORKS = [] as const;
 export const NEW_NETWORKS = [...NEW_EVM_NETWORKS, ...NEW_NON_EVM_NETWORKS] as const;
 
 export const RealmFeatureFlag = {
-  earnEnabled: 'earnEnabled',
-  krakenConnectEnabled: 'krakenConnectEnabled',
   NewNetworksEnabled: 'NewNetworksEnabled',
 } as const;
 

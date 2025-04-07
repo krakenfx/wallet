@@ -16,3 +16,6 @@ export const KRAKEN_CONNECT_API_SCOPES = [
   'account.fast-api-key:funds-add',
   'account.info:basic',
 ];
+
+export const FUNDING_ADDR_KRAKEN_WALLET_IDENTIFIER = 'Kraken Wallet address';
+export const FUNDING_ADDR_KRAKEN_WALLET_IDENTIFIER_DESCRIPTION = 'App id: ';

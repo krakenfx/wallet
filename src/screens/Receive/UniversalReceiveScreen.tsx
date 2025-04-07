@@ -2,9 +2,10 @@ import type { SectionListData, SectionListRenderItem } from 'react-native';
 
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet';
 import { useCallback, useMemo } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { BottomSheet } from '@/components/BottomSheet';
+import { KrakenConnectReceiveCTA } from '@/components/KrakenConnectReceiveCTA/KrakenConnectReceiveCTA';
 import { Label } from '@/components/Label';
 import { useBottomElementSpacing } from '@/hooks/useBottomElementSpacing';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
@@ -39,9 +40,7 @@ type SectionType = SectionListData<RealmToken, Section>;
 
 export const UniversalReceiveScreen = ({ navigation }: NavigationProps<'UniversalReceive'>) => {
   const { bottomSheetProps } = useBottomSheetScreenProps(navigation);
-
   const tokens = useTokens();
-
   const sections: SectionType[] = useMemo(() => {
     return [
       {
@@ -65,8 +64,23 @@ export const UniversalReceiveScreen = ({ navigation }: NavigationProps<'Universa
   );
 
   const renderSectionItem: SectionListRenderItem<RealmToken, Section> = useCallback(
-    ({ item }) => <ReceiveTokenRow token={item} onQRcodePress={openReceiveScreen} showEthereumExplainer={showEthereumExplainer} />,
-    [openReceiveScreen, showEthereumExplainer],
+    ({ item, index, section: { key, data } }) => {
+      const lastKey = sections[sections.length - 1].key;
+      const rowContent = <ReceiveTokenRow token={item} onQRcodePress={openReceiveScreen} showEthereumExplainer={showEthereumExplainer} />;
+
+      if (key === lastKey && index === data.length - 1) {
+        return (
+          <View>
+            {rowContent}
+            <View style={styles.krakenConnect}>
+              <KrakenConnectReceiveCTA />
+            </View>
+          </View>
+        );
+      }
+      return rowContent;
+    },
+    [openReceiveScreen, showEthereumExplainer, sections],
   );
 
   const renderHeader = useCallback(
@@ -119,6 +133,10 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 6,
+  },
+  krakenConnect: {
+    marginBottom: 32,
+    marginTop: 16,
   },
 });
 

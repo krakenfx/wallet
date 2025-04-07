@@ -8,11 +8,10 @@ import { Touchable } from '@/components/Touchable';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useKrakenConnectBalance } from '@/reactQuery/hooks/krakenConnect/useKrakenConnectBalance';
+import { useIsConnectedWithExchange } from '@/realm/krakenConnect/useIsConnectedWithExchange';
 import { useAppCurrency } from '@/realm/settings';
-import { useIsConnectedWithExchange } from '@/realm/settings/useIsConnectedWithExchange';
 import { Routes } from '@/Routes';
 import { useTheme } from '@/theme/themes';
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { KrakenIcon } from '../../../components/KrakenIcon';
@@ -25,7 +24,6 @@ const MARGIN_TOP = 12;
 const MARGIN_TOP_SMALL_DEVICE = 4;
 
 export const KrakenConnectBalance = () => {
-  const [isKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
   const isConnectedWithExchange = useIsConnectedWithExchange();
   const { data, isLoading, isFetched } = useKrakenConnectBalance();
   const { currency } = useAppCurrency();
@@ -34,7 +32,7 @@ export const KrakenConnectBalance = () => {
   const { size } = useDeviceSize();
   const navigation = useNavigation();
 
-  if (!(isKrakenConnectEnabled && isConnectedWithExchange)) {
+  if (!isConnectedWithExchange) {
     return null;
   }
 

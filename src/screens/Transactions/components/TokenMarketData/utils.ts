@@ -1,4 +1,5 @@
 import type { TokenPriceHighLow, TokenPriceHighLowItem, TokenPriceHistoryItem } from '@/realm/tokenPrice';
+import { generateChartPlaceholder } from '@/utils/generateChartPlaceholder';
 
 export enum SheetPosition {
   'SMALL' = 0,
@@ -23,14 +24,4 @@ export const HIGH_LOW_PRICE_PLACEHOLDER: TokenPriceHighLow = {
   all: defaultHighLowItem,
 };
 
-const generateChartPlaceholder = (): TokenPriceHistoryItem[] => {
-  const placeholder = [];
-  const numPoints = 100;
-  for (let i = 0; i < numPoints; i++) {
-    const timestamp = i + 1;
-    const value = 1.5 * Math.sin((2.5 * Math.PI * i) / (numPoints - 1));
-    placeholder.push({ timestamp, value });
-  }
-  return placeholder;
-};
-export const CHART_PLACEHOLDER: TokenPriceHistoryItem[] = generateChartPlaceholder();
+export const CHART_PLACEHOLDER: TokenPriceHistoryItem[] = generateChartPlaceholder(CHART_DATA_ITEMS_COUNT);

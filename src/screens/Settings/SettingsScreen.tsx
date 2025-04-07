@@ -4,11 +4,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GradientScreenView } from '@/components/Gradients';
 import { LargeHeader } from '@/components/LargeHeader';
 import { useWalletBackupSettings } from '@/hooks/useWalletBackupSettings';
+import { useIsConnectedWithExchange } from '@/realm/krakenConnect/useIsConnectedWithExchange';
 import { useLanguage } from '@/realm/settings';
-import { useIsConnectedWithExchange } from '@/realm/settings/useIsConnectedWithExchange';
 import { Routes } from '@/Routes';
 import { CurrencyBadge } from '@/screens/Settings/currency';
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { AppLockBadge } from './appLock';
@@ -35,13 +34,12 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
 
   const { isCloudBackupSupported } = useWalletBackupSettings();
   const isConnectedWithExchange = useIsConnectedWithExchange();
-  const [krakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
 
   return (
     <GradientScreenView>
       <ScrollView testID="Settings" style={styles.scroll} contentContainerStyle={{ paddingBottom: insets.bottom }}>
         <LargeHeader title={loc.settings.header} style={styles.header} testID="Settings" />
-        {!isConnectedWithExchange && krakenConnectEnabled ? <KrakenConnectTransferCTA /> : null}
+        {!isConnectedWithExchange ? <KrakenConnectTransferCTA /> : null}
         <SettingsSectionHeader title={loc.settings.wallets} />
         <WalletBackupWarning />
         <SettingsItem
@@ -69,22 +67,21 @@ export const SettingsScreen = ({ navigation }: SettingsNavigationProps<'Settings
           <PasswordProtectionBadge />
         </SettingsItem>
 
-        {krakenConnectEnabled ? (
-          <>
-            <SettingsSectionHeader title={loc.settings.connections} />
-            <SettingsItem
-              title={loc.settings.krakenExchange}
-              icon="kraken"
-              iconBackgroundColor="kraken"
-              isFirst
-              isLast
-              isHighlighted
-              onPress={() => navigate(Routes.ManageConnections)}
-              testID="ManageWalletsButton">
-              <ManageConnectionsBadge />
-            </SettingsItem>
-          </>
-        ) : null}
+        <>
+          <SettingsSectionHeader title={loc.settings.connections} />
+          <SettingsItem
+            title={loc.settings.krakenExchange}
+            icon="kraken"
+            iconBackgroundColor="kraken"
+            isFirst
+            isLast
+            isHighlighted
+            onPress={() => navigate(Routes.ManageConnections)}
+            testID="ManageWalletsButton">
+            <ManageConnectionsBadge />
+          </SettingsItem>
+        </>
+
         <SettingsSectionHeader title={loc.settings.general} />
 
         <SettingsItem

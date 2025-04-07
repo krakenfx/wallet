@@ -12,7 +12,6 @@ import { type RealmToken, useTokens } from '@/realm/tokens';
 import { useRealmWallets } from '@/realm/wallets';
 import { mapAllAssetsToMainAssets } from '@/screens/KrakenConnectTransfer/utils';
 import type { RemoteAsset } from '@/types';
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { isRealmToken } from '@/utils/isRealmToken';
 
 import { tokenUnit2SmallestUnit } from '@/utils/unitConverter';
@@ -20,22 +19,21 @@ import { tokenUnit2SmallestUnit } from '@/utils/unitConverter';
 import { useKrakenTokenListQuery } from '../useTokenListsQuery';
 
 import { handleError } from '/helpers/errorHandler';
+import loc from '/loc';
 
 const STALE_TIME = 15 * 60 * 1000;
 
 const useKrakenAccountAssets = () => {
-  const { API_SECRET, API_KEY, CF_TOKEN } = useKrakenConnectCredentials();
-  const [isKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
+  const { API_SECRET, API_KEY } = useKrakenConnectCredentials();
 
   async function getKrakenBalance() {
-    if (!isKrakenConnectEnabled) {
+    if (!API_KEY || !API_SECRET) {
       return {};
     }
     const response = await fetchKrakenPrivateApi<AssetsDict>({
       path: '/0/private/BalanceEx',
       apiKey: API_KEY,
       privateKey: API_SECRET,
-      cfToken: CF_TOKEN,
       method: 'POST',
     });
 
@@ -43,7 +41,7 @@ const useKrakenAccountAssets = () => {
   }
 
   return useQuery({
-    queryKey: ['krakenAccountAssets'],
+    queryKey: ['krakenAccountAssets', API_KEY],
     staleTime: STALE_TIME,
     queryFn: async () => {
       const krakenBalance = await getKrakenBalance();
@@ -60,7 +58,7 @@ export const useKrakenConnectAssets = () => {
   const { data: remoteAssets } = useKrakenTokenListQuery();
 
   if (error) {
-    handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
+    handleError(error, 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.krakenConnect.errors.fetchBalance });
   }
 
   const tokens = useTokens();

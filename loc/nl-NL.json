@@ -417,6 +417,7 @@
   "defi": {
     "allAssets": "Alle assets",
     "apr": "APR",
+    "apy": "APY",
     "claimable": "Te vorderen",
     "debt": "Schuld",
     "dept": "Dept",
@@ -459,6 +460,8 @@
   "earn": {
     "allAssets": "Alle assets",
     "apy": "APY",
+    "balance": "Tegoed",
+    "debt": "Schuld",
     "detailsSheet": {
       "deposit": "Storten",
       "depositCta": "Stort wat {symbol} op {protocol}",
@@ -468,10 +471,13 @@
         "about": "Over {symbol}",
         "addressCopied": "Adres gekopieerd",
         "assetsLocked": "Assets vergrendeld",
+        "composition": "Samenstelling",
         "contractAddress": "Contractadres",
         "marketCap": "Marktkapitalisatie",
         "network": "Netwerk",
         "numberHolders": "Aantal houders",
+        "pool": "Pool",
+        "poolAddress": "Pooladres",
         "protocol": "Protocol",
         "tokenEarned": "Verdiende token",
         "tokenPrice": "Prijs token",
@@ -486,6 +492,7 @@
         "week": "W",
         "year": "J"
       },
+      "refreshChart": "Grafiek verversen",
       "to": "Naar:",
       "transfer": "Overdracht",
       "withdraw": "Opnemen"
@@ -515,6 +522,7 @@
     },
     "heroAvailableBalance": "{balance} {symbol} beschikbaar",
     "heroTitle": "Verdien {symbol} op {protocol}",
+    "liquidityPool": "Liquiditeitspool",
     "protocolType": {
       "lending": "Lenen"
     },
@@ -728,13 +736,31 @@
     "assets": "Assets",
     "collection": "NFT's",
     "collection_see_all": "Alles weergeven",
+    "collectionEmpty": "Er zijn nog geen NFT's. Je verzamelobjecten verschijnen hier zodra ze beschikbaar zijn. ",
+    "collectionEmptyCta": "Ontvangen",
     "defiEmpty": "Begin met verdienen met DeFi",
-    "defiEmptyCaption": "Je posities verschijnen hier zodra ze beschikbaar zijn. Neem deel aan DeFi en begin met rendement verdienen.",
+    "defiEmptyCaption": "Er zijn nog geen posities. Neem deel aan DeFi om rendement te verdienen op je assets.",
+    "defiEmptyCta": "Begin met verdienen",
+    "defiEmptyTitle": "DeFi",
     "deposits": "DeFi",
     "manage": "Beheren",
     "total_balance": "Saldo"
   },
   "krakenConnect": {
+    "appLock": {
+      "description": "Om je geld te beschermen, schakel je {authType} voordat je je exchange koppelt.",
+      "title": "Beveilig je wallet voordat je ze gaat koppelen"
+    },
+    "appLockWarning": {
+      "ctaCancel": "Annuleren",
+      "ctaTurnOff": "Schakel uit",
+      "description": "Als je App-vergrendeling uitschakelt, wordt je verbinding met Kraken verbroken. Je moet het opnieuw instellen als je je geld naadloos wilt kunnen overboeken.",
+      "title": "App-vergrendeling uitschakelen?"
+    },
+    "availableBalanceInfo": {
+      "description": "Waarom is er een blokkade?",
+      "title": "Een deel van je exchange-holdings van Kraken kan onbeschikbaar zijn voor opname vanwege een tijdelijke blokkade."
+    },
     "balanceOnKraken": "op Kraken",
     "connected": {
       "alert": "Alleen de huidige wallet: \"<b>{walletName}</b>\" is verbonden met Kraken.",
@@ -746,6 +772,12 @@
     },
     "connecting": "Verbinding maken met Kraken",
     "connectingFailed": "Fout bij het verbinden met Kraken ",
+    "errors": {
+      "createAddress": "Het is niet gelukt een financieringsadres aan te maken.",
+      "fetchBalance": "Kan het exchange-tegoed van Kraken niet ophalen.",
+      "getFee": "Kan het exacte bedrag niet achterhalen.",
+      "transferAppLockFailure": "De overboeking is niet in gang gezet."
+    },
     "exchangeBalance": "Exchange-tegoed",
     "fundCta": {
       "body": "Verbind je Kraken-account met",
@@ -757,6 +789,10 @@
       "title": "Geen assets om over te boeken"
     },
     "pendingTransactionId": "Kraken-transactie-id",
+    "receiveCta": {
+      "body": "Verbind je Kraken Exchange-account",
+      "headline": "Snelle overboeking vanaf Kraken"
+    },
     "selectNetwork": {
       "description": "Kies op welk netwerk je je {assetLabel} in je wallet wilt ontvangen.",
       "fee": "{assetValue} kosten",
@@ -770,7 +806,7 @@
     "settings": {
       "benefits0": "Crypto overboeken van Kraken",
       "benefits1": "Bekijk exchangetegoeden van Kraken",
-      "benefitsHeadline": "Verbinding met Kraken-account maakt het volgende mogelijk:",
+      "benefitsHeadline": "Door te verbinden met je Kraken-account kan je:",
       "cancel": "Annuleren",
       "connect": "Verbinden",
       "disconnect": "Verbindingen verbreken",
@@ -808,7 +844,7 @@
       "transferFee": "Overboekingskosten",
       "transferringTo": "Overboeken naar",
       "unsupportedAssets": "Niet-ondersteunde assets",
-      "unsupportedAssetsDescription": "{count} andere assets in je exchange-account worden niet ondersteund door de wallet"
+      "unsupportedAssetsDescription": "{assets} worden momenteel niet ondersteund door Kraken Wallet"
     },
     "transferCta": {
       "body": "Verbind je Kraken-account om snel crypto over te zetten",
@@ -1172,6 +1208,8 @@
   },
   "onboardingImportWallet": {
     "caption": "Voer jouw geheime herstelzin in om je wallet te importeren.",
+    "disclaimer": "Als iemand anders deze geheime herstelzin (seedwoorden) kent, hebben ze ook toegang tot deze wallet en is het geld niet veilig.",
+    "disclaimerTitle": "Opgelet!",
     "header": "Jouw wallet importeren",
     "headerInvalid": "Controleer je geheime zin",
     "import": "Importeren",
@@ -1712,6 +1750,10 @@
     "genericNetworkFee": "Netwerkkosten",
     "input": "Invoer",
     "inputs": "Invoer",
+    "krakenConnect": {
+      "fromKraken": "Van: Kraken",
+      "transferredIn": "Overgeboekt in"
+    },
     "networkFee": "{network} Netwerkkosten",
     "networkFee_": "Netwerkkosten",
     "notes": "Beschrijving",

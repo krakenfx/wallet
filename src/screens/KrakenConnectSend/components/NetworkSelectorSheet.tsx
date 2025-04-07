@@ -1,16 +1,14 @@
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useHeaderHeight } from '@react-navigation/elements';
 import React, { useMemo } from 'react';
-
 import { StyleSheet, View } from 'react-native';
 
-import { useSafeAreaFrame } from 'react-native-safe-area-context';
-
 import type { KrakenAssetSupported, KrakenWithdrawMethod } from '@/api/krakenConnect/types';
-
 import { BottomSheetModal, type BottomSheetModalRef } from '@/components/BottomSheet';
-
 import { Label } from '@/components/Label';
+import { useCommonSnapPoints } from '@/hooks/useCommonSnapPoints';
+
+import { methodOrder } from '../utils';
 
 import { NetworkItem } from './NetworkSelectorItem';
 
@@ -23,8 +21,13 @@ interface Props {
   onClose: () => void;
 }
 
+const END_QUEUE_NUMBER = 100;
+
+const isOldTypeOfNetworkWithdraw = (method: KrakenWithdrawMethod) => {
+  return method.network.includes('.e');
+};
+
 export const NetworkSelectorSheet = React.forwardRef<BottomSheetModalRef, Props>(({ onClose, onMethodSelect, methods, asset }, ref) => {
-  const { height } = useSafeAreaFrame();
   const headerHeight = useHeaderHeight();
 
   const handleSheetChange = (index: number) => {
@@ -33,8 +36,28 @@ export const NetworkSelectorSheet = React.forwardRef<BottomSheetModalRef, Props>
     }
   };
 
-  const snapPoints = useMemo(() => [height - headerHeight - 100], [height, headerHeight]);
-  if (!methods) {
+  const sortedMethods = useMemo(
+    () =>
+      methods?.sort((a, b) => {
+        let orderA = methodOrder[a.network_id] ?? END_QUEUE_NUMBER;
+        let orderB = methodOrder[b.network_id] ?? END_QUEUE_NUMBER;
+
+        if (isOldTypeOfNetworkWithdraw(a)) {
+          orderA = orderA + END_QUEUE_NUMBER;
+        }
+
+        if (isOldTypeOfNetworkWithdraw(b)) {
+          orderB = orderB + END_QUEUE_NUMBER;
+        }
+
+        return orderA - orderB;
+      }),
+    [methods],
+  );
+
+  const snapPoints = useCommonSnapPoints('toHeaderTransparent');
+
+  if (!sortedMethods) {
     return null;
   }
 
@@ -50,7 +73,7 @@ export const NetworkSelectorSheet = React.forwardRef<BottomSheetModalRef, Props>
           </Label>
         </View>
         <View style={styles.networkList}>
-          {methods.map(method => (
+          {sortedMethods.map(method => (
             <NetworkItem method={method} key={method.method_id} assetSymbol={asset.symbol} onSelect={onMethodSelect} />
           ))}
         </View>
@@ -72,5 +95,6 @@ const styles = StyleSheet.create({
   },
   networkList: {
     gap: 12,
+    marginBottom: 32,
   },
 });

@@ -12,14 +12,13 @@ import { formatCurrency } from '@/utils/formatCurrency';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 import { smallUnit2TokenUnit } from '@/utils/unitConverter';
 
-import { useDefiDetailsContext } from './DefiDetailsContext';
-
 import loc from '/loc';
 
 export type DefiDetailsTransactionRowProps = {
-  assetAddress: string;
   assetAmount: string;
   assetAmountInUsd: number;
+  assetDecimals?: number;
+  assetId: string;
   assetNetwork: WalletType;
   assetSymbol: string;
   protocolLogo: string;
@@ -42,8 +41,9 @@ const subtitleLocalized: Record<string, () => string> = {
 
 export const DefiDetailsTransactionRow = ({
   title,
-  assetAddress,
+  assetId,
   assetAmountInUsd,
+  assetDecimals,
   assetNetwork,
   protocolLogo,
   protocolName,
@@ -53,16 +53,12 @@ export const DefiDetailsTransactionRow = ({
 }: DefiDetailsTransactionRowProps) => {
   const title_ = titleLocalized[title]?.() ?? '-';
   const subtitle = subtitleLocalized[title]?.() ?? loc.earn.detailsSheet.to;
+  const assetSymbol_ = assetSymbol === '-' ? '' : assetSymbol;
 
   return (
     <TransactionRow
       icon={
-        <TokenIcon
-          tokenId={assetAddress}
-          tokenSymbol={assetSymbol}
-          networkName={assetNetwork}
-          forceOmitNetworkIcon={omitNetworkIcons[assetAddress] === assetNetwork}
-        />
+        <TokenIcon tokenId={assetId} tokenSymbol={assetSymbol_} networkName={assetNetwork} forceOmitNetworkIcon={omitNetworkIcons[assetId] === assetNetwork} />
       }
       title={
         <Label type="boldBody" numberOfLines={1} adjustsFontSizeToFit>
@@ -80,7 +76,9 @@ export const DefiDetailsTransactionRow = ({
           </Label>
         </View>
       }
-      amounts={<Amounts assetAmount={assetAmount} assetSymbol={assetSymbol} assetAmountInUsd={assetAmountInUsd} testID={testID} />}
+      amounts={
+        <Amounts assetAmount={assetAmount} assetDecimals={assetDecimals} assetSymbol={assetSymbol} assetAmountInUsd={assetAmountInUsd} testID={testID} />
+      }
       testID={testID}
     />
   );
@@ -88,20 +86,20 @@ export const DefiDetailsTransactionRow = ({
 
 const Amounts = ({
   assetAmount,
+  assetDecimals,
   assetSymbol,
   assetAmountInUsd,
   testID,
 }: {
   assetAmount: string;
+  assetDecimals?: number;
   assetSymbol: string;
   assetAmountInUsd: number;
   testID?: string;
 }) => {
-  const { vaultBalance } = useDefiDetailsContext();
   const { currency } = useAppCurrency();
   const fiatRate = useCurrentUsdFiatRate();
-  const decimals = vaultBalance?.asset.decimals;
-  const assetAmountInTokenUnit = smallUnit2TokenUnit(assetAmount, decimals ?? 18);
+  const assetAmountInTokenUnit = smallUnit2TokenUnit(assetAmount, assetDecimals ?? 18);
   const assetAmountFormatted = formatTokenAmount(assetAmountInTokenUnit.toString(), {
     compact: true,
     currency,
@@ -111,7 +109,7 @@ const Amounts = ({
   const assetAmountFiatFormatted = formatCurrency(String(fiatRate * assetAmountInUsd), { currency });
   const balancesHidden = useIsHideBalancesEnabled();
   const currencyDisplay = useBalanceDisplay(assetAmountFiatFormatted, 7);
-  const balanceDisplay = useBalanceDisplay(`${decimals ? assetAmountFormatted : '-'} ${assetSymbol}`);
+  const balanceDisplay = useBalanceDisplay(`${assetDecimals ? assetAmountFormatted : '-'} ${assetSymbol}`);
   const color = balancesHidden ? 'light50' : 'light100';
   const fiatTestId = testID && `Fiat-${testID}`;
   const amountTestId = testID && `Amount-${testID}`;

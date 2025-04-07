@@ -6,9 +6,8 @@ import { useWalletByType } from '@/realm/wallets/useWalletByType';
 import { useReceiveAddress } from '@/screens/Receive/hooks/useReceiveAddress';
 import { useIsOnline } from '@/utils/useConnectionManager';
 
+import { ONE_HOUR } from './consts';
 import { formatTopOpportunity } from './utils';
-
-const SIX_HOURS = 6 * 3600000;
 
 interface Params {
   networkCaipId: ChainAgnostic;
@@ -18,12 +17,12 @@ export const useTopOpportunityQuery = ({ networkCaipId }: Params) => {
   const isOnline = useIsOnline();
   const ethWallet = useWalletByType('ethereum');
   const ethAddress = useReceiveAddress(ethWallet, isOnline);
-  const queryKey = 'deposit-options';
+  const queryKey = 'top-opportunity';
 
   return useQuery({
     enabled: !!ethAddress,
     queryKey: [queryKey, ethAddress, networkCaipId],
-    staleTime: SIX_HOURS,
+    staleTime: ONE_HOUR,
     gcTime: Infinity,
     select: formatTopOpportunity,
 

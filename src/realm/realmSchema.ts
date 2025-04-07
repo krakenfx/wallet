@@ -14,7 +14,7 @@ import {
   DefiTokenNestedSchema,
   DefiTokenSchema,
 } from './defi';
-import { KrakenConnectCredentialsSchema, KrakenConnectOauthVerificationSchema } from './krakenConnect/schema';
+import { KrakenConnectCredentialsSchema, KrakenConnectOauthVerificationSchema, KrakenConnectSettingsSchema } from './krakenConnect/schema';
 import { NftMetadataSchema } from './nftMetadata';
 import { NftSchema, NftTraitsSchema } from './nfts';
 import { SettingsSchema } from './settings';
@@ -75,10 +75,11 @@ export const RealmSchema = [
   TokenPriceHighLowItem,
   TokenPriceHighLow,
   DappWalletPermissionsSchema,
+  KrakenConnectSettingsSchema,
 ];
 
 export const realmConfig: Configuration = {
-  schemaVersion: 40,
+  schemaVersion: 42,
   schema: RealmSchema,
   onMigration,
 };

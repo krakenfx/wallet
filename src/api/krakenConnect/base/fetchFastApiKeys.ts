@@ -1,6 +1,7 @@
 import { KRAKEN_CONNECT_PERMISSIONS } from '../consts';
 
 import { KRAKEN_API_URI, KRAKEN_CONNECT_CLIENT_ID, URLs } from '/config';
+import { handleError } from '/helpers/errorHandler';
 
 export type ApiKeyResponse = {
   api_key: string;
@@ -34,7 +35,9 @@ export async function fetchFastApiKey(code: string, verification: string): Promi
     const { access_token } = tokenJson;
 
     if (!access_token) {
-      throw new Error('Error fetching oauth access_token');
+      const tokenError = new Error('Error fetching oauth access_token');
+      handleError(tokenError, 'ERROR_CONTEXT_PLACEHOLDER');
+      throw tokenError;
     }
 
     const fastKeyFetchParams = {
@@ -59,11 +62,14 @@ export async function fetchFastApiKey(code: string, verification: string): Promi
     const { result } = fastApiKeyJson;
 
     if (!('api_key' in result) || !('secret' in result)) {
-      throw new Error('invalid fast api keys response');
+      const apiKeyError = new Error('Invalid fast api keys response');
+      handleError(apiKeyError, 'ERROR_CONTEXT_PLACEHOLDER');
+      throw apiKeyError;
     }
     return result;
   } catch (error) {
     console.error(error);
+    handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
     throw new Error('Error fetching fast api keys');
   }
 }

@@ -100,7 +100,7 @@ export interface Transport<TTransaction, TTransactionRequest, TWalletState, TNet
     walletData: WalletData,
     data: IWalletStorage<TWalletState>,
     transaction: TTransactionRequest,
-    fee: TFeeOption,
+    fee?: TFeeOption,
     final?: boolean,
   ): Promise<PreparedTransaction<TTransaction>>;
 

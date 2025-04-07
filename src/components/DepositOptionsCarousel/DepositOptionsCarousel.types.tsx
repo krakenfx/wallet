@@ -2,7 +2,7 @@ import type { WalletType } from '@/onChain/wallets/registry';
 
 export type CardData = {
   assetAddress: string;
-  assetCaipId: string;
+  assetId: string;
   assetName: string;
   assetNetwork: WalletType;
   assetSymbol: string;

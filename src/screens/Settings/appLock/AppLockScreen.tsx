@@ -7,9 +7,8 @@ import { GradientScreenView } from '@/components/Gradients';
 import { MissingBiometricsSheet } from '@/components/MissingBiometricsSheet';
 import { useAuthType } from '@/hooks/useAuthType';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
+import { useKrakenConnectClear } from '@/hooks/useKrakenConnectClear';
 import { useKrakenConnectCredentials } from '@/realm/krakenConnect/useKrakenConnectCredentials';
-import { useKrakenConnectMutations } from '@/realm/krakenConnect/useKrakenConnectMutation';
-import { useSettingsMutations } from '@/realm/settings';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SettingsCheckItem, SettingsCheckItemsBox, SettingsInfoBox, SettingsSwitch } from '../components';
@@ -24,8 +23,7 @@ export const AppLockScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { supportedAuth, authType } = useAuthType();
   const { API_KEY } = useKrakenConnectCredentials();
-  const { deleteExchangeCredentials } = useKrakenConnectMutations();
-  const { removeExchangeConnectForAllAccounts } = useSettingsMutations();
+  const { clearKrakenConnect } = useKrakenConnectClear();
 
   const bottomSheetModalRef = useRef<BottomSheetModalRef>(null);
 
@@ -55,8 +53,7 @@ export const AppLockScreen = () => {
         if (!shouldProceed) {
           return Promise.reject('AppLock not disabled');
         }
-        deleteExchangeCredentials();
-        removeExchangeConnectForAllAccounts();
+        await clearKrakenConnect();
       }
       setIsLoading(true);
       if (isAppLockUsed) {

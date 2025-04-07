@@ -3,6 +3,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { KrakenIcon } from '@/components/KrakenIcon';
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
@@ -10,7 +11,7 @@ import { TransactionRow } from '@/components/TransactionRow';
 import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
 import { useIsHideBalancesEnabled } from '@/realm/settings/useIsHideBalancesEnabled';
-import type { RealmTransaction, TransactionStatus } from '@/realm/transactions';
+import { type RealmTransaction, TRANSACTION_STATUS_KRAKEN_CONNECT, type TransactionStatus } from '@/realm/transactions';
 import { usePendingTransactionById } from '@/realm/transactions';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
@@ -99,12 +100,25 @@ export const TransactionDataRow = React.memo(
 
     const shouldShowAssetAmountAndNetworkFees = Boolean(assetAmountAndNetworkFee && assetAmountAndNetworkFeeInCurrencyFormatted);
     const isTransactionFailed = status === 'failed';
+    const isTransactionFromKrakenConnect = item.additionalStatus === TRANSACTION_STATUS_KRAKEN_CONNECT;
 
-    const title_ = useMemo(() => <Label type="boldBody">{isNetworkFee ? loc.transactionTile.networkFee : title}</Label>, [title, isNetworkFee]);
+    const title_ = useMemo(
+      () => (
+        <Label type="boldBody">
+          {isNetworkFee ? loc.transactionTile.networkFee : isTransactionFromKrakenConnect ? loc.transactionDetails.krakenConnect.transferredIn : title}
+        </Label>
+      ),
+      [isNetworkFee, isTransactionFromKrakenConnect, title],
+    );
     const subtitle = useMemo(
       () => (
         <View style={styles.description}>
           {isTransactionFailed && <SvgIcon name="x-circle" color="red400" size={16} style={styles.space} />}
+          {isTransactionFromKrakenConnect && (
+            <View style={styles.space}>
+              <KrakenIcon size={16} iconSize={12} />
+            </View>
+          )}
           <View style={styles.description}>
             {isTransactionFailed && (
               <Label type="boldCaption1" color="red400" numberOfLines={1}>
@@ -113,12 +127,12 @@ export const TransactionDataRow = React.memo(
             )}
             {descriptionIcon && <View style={styles.descriptionIcon}>{descriptionIcon}</View>}
             <Label type="regularCaption1" color="light50" style={styles.subtitle} testID={`Description-${testID}`}>
-              {description}
+              {isTransactionFromKrakenConnect ? loc.transactionDetails.krakenConnect.fromKraken : description}
             </Label>
           </View>
         </View>
       ),
-      [description, descriptionIcon, isTransactionFailed, testID],
+      [description, descriptionIcon, isTransactionFailed, isTransactionFromKrakenConnect, testID],
     );
     const amounts = useMemo(
       () => (

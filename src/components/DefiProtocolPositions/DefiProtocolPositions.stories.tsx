@@ -39,6 +39,7 @@ export const Basic: StoryObj<typeof DefiProtocolPositions> = {
           positionUsdValue: 27.680131391141956,
           apy: 8.18,
           isDebt: false,
+          vaultNetwork: 'ethereum',
           assets: [
             {
               id: 'eip155:10/erc20:0x94b008aA00579c1307B0EF2c499aD98a8ce58e58',
@@ -57,6 +58,7 @@ export const Basic: StoryObj<typeof DefiProtocolPositions> = {
           positionUsdValue: 31.140956240263936,
           apy: 1.82,
           isDebt: true,
+          vaultNetwork: 'ethereum',
           assets: [
             {
               id: 'eip155:10/erc20:0x4200000000000000000000000000000000000006',
@@ -75,6 +77,7 @@ export const Basic: StoryObj<typeof DefiProtocolPositions> = {
           positionUsdValue: 1.0112296209735285,
           apy: 7.83,
           isDebt: false,
+          vaultNetwork: 'ethereum',
           assets: [
             {
               id: 'eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
@@ -92,6 +95,7 @@ export const Basic: StoryObj<typeof DefiProtocolPositions> = {
           id: 'eip155:137/erc20:0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
           positionUsdValue: 131.09395639623,
           isDebt: false,
+          vaultNetwork: 'ethereum',
           assets: [
             {
               id: 'eip155:137/erc20:0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
@@ -122,6 +126,7 @@ export const WithMultipleAssets: StoryObj<typeof DefiProtocolPositions> = {
           id: 'eip155:10/erc20:0x94b008aA00579c1307B0EF2c499aD98a8ce58e58',
           isDebt: false,
           positionUsdValue: 1535.8185413054177,
+          vaultNetwork: 'ethereum',
           assets: [
             {
               id: 'eip155:1/erc20:0x075b1bb99792c9e1041ba13afef80c91a1e70fb3',
@@ -149,6 +154,7 @@ export const WithMultipleAssets: StoryObj<typeof DefiProtocolPositions> = {
           id: 'eip155:1/erc20:0x69457a1c9ec492419344da01daf0df0e0369d5d0-2',
           isDebt: false,
           positionUsdValue: 1535.8185413054177,
+          vaultNetwork: 'ethereum',
           assets: [
             {
               id: 'eip155:1/erc20:0x69457a1c9ec492419344da01daf0df0e0369d5d0',

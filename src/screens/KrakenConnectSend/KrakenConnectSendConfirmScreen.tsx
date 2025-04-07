@@ -2,14 +2,18 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { StyleSheet } from 'react-native';
 
+import { serializeError } from 'serialize-error';
+
 import type { KrakenAssetSupported, KrakenWithdrawFee, KrakenWithdrawMethod } from '@/api/krakenConnect/types';
 import { ExpandableSheet, type ExpandableSheetMethods } from '@/components/Sheets';
 import { TransactionConfirmationFooter } from '@/components/Transaction';
 import { type WalletType } from '@/onChain/wallets/registry';
+import { getTokenIdFromChainIdAndAssetId } from '@/onChain/wallets/utils/ChainAgnostic';
 import { useTokensMutations } from '@/realm/tokens';
-import { getCombinedTransactionId } from '@/realm/transactions';
+import { TRANSACTION_STATUS_KRAKEN_CONNECT, getCombinedTransactionId } from '@/realm/transactions';
 import { useWalletByType } from '@/realm/wallets/useWalletByType';
 import { showRecentActivity } from '@/screens/Home/components/homeAssetPanelEventEmitter';
+import { getkBtcAssetId, isBtcOnEvm } from '@/screens/KrakenConnectSend/utils';
 import { useReceiveAddress } from '@/screens/Receive/hooks';
 import { hapticFeedback } from '@/utils/hapticFeedback';
 import { navigationStyle } from '@/utils/navigationStyle';
@@ -27,7 +31,9 @@ import { useKrakenConnectSendContext } from './KrakenConnectContext';
 
 import type { KrakenConnectSendNavigationProps } from './KrakenConnectSendRouter';
 
+import { biometricUnlock } from '/helpers/biometric-unlock';
 import { handleError } from '/helpers/errorHandler';
+import loc from '/loc';
 
 export interface KrakenConnectSendConfirmParams {
   asset: KrakenAssetSupported;
@@ -42,7 +48,8 @@ export const KrakenConnectSendConfirmScreen = ({ route, navigation }: KrakenConn
   const sheetRef = useRef<ExpandableSheetMethods>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const { transfer } = useWithdrawMethod();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isTransferLoading, setIsTransferLoading] = useState<boolean>(false);
 
   const [feeWithToken, setFeeWithToken] = useState<KrakenWithdrawFee>();
   const [fundingAddressId, setFundingAddressId] = useState<string>('');
@@ -64,14 +71,20 @@ export const KrakenConnectSendConfirmScreen = ({ route, navigation }: KrakenConn
     walletNetworkType,
   } = useKrakenConnectSendContext();
 
+  const isAssetKBTC = withdrawMethod ? isBtcOnEvm(asset.symbol, withdrawMethod.network_id) : false;
+
   const wallet = useWalletByType(walletNetworkType as WalletType);
   const receiveAddress = useReceiveAddress(wallet) || '';
 
   useEffect(() => {
     const fetchFee = async (withdrawMethod: KrakenWithdrawMethod) => {
-      const fee_ = await getFee(amount, withdrawMethod.method_id);
-      if (fee_) {
-        setFeeWithToken(fee_);
+      try {
+        const fee_ = await getFee(amount, withdrawMethod.method_id);
+        if (fee_) {
+          setFeeWithToken(fee_);
+        }
+      } catch (e) {
+        handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.krakenConnect.errors.getFee });
       }
     };
     const fetchAddressId = async (withdrawMethod: KrakenWithdrawMethod) => {
@@ -84,7 +97,7 @@ export const KrakenConnectSendConfirmScreen = ({ route, navigation }: KrakenConn
       if (!withdrawMethod || !receiveAddress) {
         return;
       }
-      setLoading(true);
+      setIsLoading(true);
 
       try {
         await fetchAddressId(withdrawMethod);
@@ -92,7 +105,7 @@ export const KrakenConnectSendConfirmScreen = ({ route, navigation }: KrakenConn
       } catch (e) {
         handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchAndSetAllNeededData();
@@ -122,21 +135,38 @@ export const KrakenConnectSendConfirmScreen = ({ route, navigation }: KrakenConn
     if (!fundingAddressId || !feeWithToken || !amount || !withdrawMethod) {
       return;
     }
+    if (!(await biometricUnlock())) {
+      handleError('[Transfer confirm]: AppLock failed', 'ERROR_CONTEXT_PLACEHOLDER', { text: loc.krakenConnect.errors.transferAppLockFailure });
+      return;
+    }
+    let result;
     try {
-      const result = await transfer({
+      setIsTransferLoading(true);
+      const tokenId = getTokenIdFromChainIdAndAssetId(wallet.caipId, asset.assetId.split('/')[1]);
+      result = await transfer({
         addressId: fundingAddressId,
         feeToken: feeWithToken?.fee_token,
         amount,
         assetSymbol: asset.symbol,
         methodId: withdrawMethod.method_id,
+        tokenId,
       });
+    } catch (e) {
+      handleError(e, 'ERROR_CONTEXT_PLACEHOLDER', { text: JSON.stringify(serializeError(e)) });
+      return;
+    } finally {
+      setIsTransferLoading(false);
+    }
+    try {
       if (result?.transaction_id) {
+        const krakenAsset = isAssetKBTC ? { ...asset, assetId: getkBtcAssetId(wallet.type), metadata: { ...asset.metadata, symbol: 'kBTC' } } : asset;
         const refid = result.transaction_id;
         const { shouldCreateRealmToken, remoteToken } = savePendingTxFromKrakenExchange({
           tx: {
             id: getCombinedTransactionId(wallet.id, refid),
             transactionId: refid,
             walletId: wallet.id,
+
             amount: tokenUnit2SmallestUnit(amount, asset.metadata.decimals).toString(10),
             kind: 'receive',
             type: 'token',
@@ -144,28 +174,29 @@ export const KrakenConnectSendConfirmScreen = ({ route, navigation }: KrakenConn
             from: 'Kraken',
             time: Math.round(new Date().getTime() / 1000),
             fee: tokenUnit2SmallestUnit(feeWithToken.fee, asset.metadata.decimals).toString(10),
-            additionalStatus: 'kraken-connect-to-wallet',
+            additionalStatus: TRANSACTION_STATUS_KRAKEN_CONNECT,
           },
           wallet,
-          krakenAsset: asset,
+          krakenAsset,
         });
         if (shouldCreateRealmToken && remoteToken) {
           addTokenToRealm(remoteToken, wallet);
         }
       }
-
-      setIsSuccess(true);
-      hapticFeedback.notificationSuccess();
-      onSucceed();
     } catch (error) {
       handleError(error, 'ERROR_CONTEXT_PLACEHOLDER');
     }
+
+    setIsSuccess(true);
+    hapticFeedback.notificationSuccess();
+    onSucceed();
   }, [
     addTokenToRealm,
     amount,
     asset,
     feeWithToken,
     fundingAddressId,
+    isAssetKBTC,
     onSucceed,
     receiveAddress,
     savePendingTxFromKrakenExchange,
@@ -184,12 +215,19 @@ export const KrakenConnectSendConfirmScreen = ({ route, navigation }: KrakenConn
       dismissible
       onDismiss={onDismiss}
       PreviewComponent={
-        <ConfirmPreview asset={asset} amountFiat={amountFiat} amount={amount} network={walletNetworkType as WalletType} isSuccess={isSuccess} />
+        <ConfirmPreview
+          asset={asset}
+          amountFiat={amountFiat}
+          amount={amount}
+          network={walletNetworkType as WalletType}
+          isKBTC={isAssetKBTC}
+          isSuccess={isSuccess}
+        />
       }
       DetailsComponent={
         !isSuccess && (
           <ConfirmDetails
-            isLoading={loading}
+            isLoading={isLoading}
             address={receiveAddress}
             fee={fee}
             amountFiat={amountFiat}
@@ -201,12 +239,13 @@ export const KrakenConnectSendConfirmScreen = ({ route, navigation }: KrakenConn
       }
       FloatingButtonsComponent={
         <TransactionConfirmationFooter
-          isLoading={loading}
+          isLoading={isTransferLoading}
+          primaryButtonProps={{ disabled: isLoading }}
           onConfirm={handleConfirm}
           onCancel={onCancel}
           hidden={isSuccess}
           isKrakenConnectTransfer
-          feeSelector={<TransferFee fee={fee} isInputInFiatCurrency={isInputInFiatCurrency} asset={asset} style={styles.fee} isLoading={loading} />}
+          feeSelector={<TransferFee fee={fee} isInputInFiatCurrency={isInputInFiatCurrency} asset={asset} style={styles.fee} isLoading={isLoading} />}
         />
       }
     />

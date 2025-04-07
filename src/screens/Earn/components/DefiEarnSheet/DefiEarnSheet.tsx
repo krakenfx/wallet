@@ -18,7 +18,7 @@ import { DefiEarnSheetList } from '../DefiEarnSheetList/DefiEarnSheetList';
 
 import { type DefiEarnSheetProps, SheetPosition } from './DefiEarnSheet.types';
 
-export const DefiEarnSheet: React.FC<DefiEarnSheetProps> = ({ selectedAsset, onCloseEarnSheet }) => {
+export const DefiEarnSheet: React.FC<DefiEarnSheetProps> = ({ assetId, protocols, onCloseEarnSheet }) => {
   const [sheetPosition, setSheetPosition] = useState<SheetPosition>(SheetPosition.MEDIUM);
 
   const bottomSheetModalRef = useRef<BottomSheetModalRef>(null);
@@ -29,10 +29,10 @@ export const DefiEarnSheet: React.FC<DefiEarnSheetProps> = ({ selectedAsset, onC
   const isHeaderShrunk = useSharedValue(false);
 
   useEffect(() => {
-    if (selectedAsset?.assetId) {
+    if (assetId) {
       bottomSheetModalRef.current?.present();
     }
-  }, [bottomSheetModalRef, selectedAsset?.assetId]);
+  }, [bottomSheetModalRef, assetId]);
 
   const coinsImageStyle = useAnimatedStyle(() => ({
     opacity: withTiming(isHeaderShrunk.value ? 0 : 1, EARN_SHEET_ANIMATION_CONFIG),
@@ -60,26 +60,20 @@ export const DefiEarnSheet: React.FC<DefiEarnSheetProps> = ({ selectedAsset, onC
   }, [bottomSheetModalRef, onCloseEarnSheet]);
 
   return (
-    <BottomSheetModal
-      ref={bottomSheetModalRef}
-      topInset={headerHeight}
-      snapPoints={['70%', '100%']}
-      onDismiss={onCloseEarnSheet}
-      onChange={handleSheetPositionChange}>
-      {selectedAsset?.assetId && (
-        <BottomSheetView style={styles.container}>
-          <Animated.Image style={[StyleSheet.absoluteFill, styles.coinsImage, coinsImageStyle]} source={require('@/assets/images/common/coinsGroup.webp')} />
-
-          <DefiEarnSheetHeader assetId={selectedAsset?.assetId} closeEarnSheet={closeEarnSheet} isHeaderShrunk={isHeaderShrunk} />
-
+    <BottomSheetModal ref={bottomSheetModalRef} topInset={headerHeight} enableDynamicSizing onDismiss={onCloseEarnSheet} onChange={handleSheetPositionChange}>
+      <BottomSheetView style={styles.container} testID="DefiEarnSheet">
+        <Animated.Image style={[StyleSheet.absoluteFill, styles.coinsImage, coinsImageStyle]} source={require('@/assets/images/common/coinsGroup.webp')} />
+        <DefiEarnSheetHeader assetId={assetId} closeEarnSheet={closeEarnSheet} isHeaderShrunk={isHeaderShrunk} />
+        {!!protocols.length && (
           <DefiEarnSheetList
             ref={flatListRef}
-            protocols={selectedAsset.protocols}
+            protocols={protocols}
             isHeaderShrunk={isHeaderShrunk}
             scrollEnabled={sheetPosition === SheetPosition.HIGH}
+            closeEarnSheet={closeEarnSheet}
           />
-        </BottomSheetView>
-      )}
+        )}
+      </BottomSheetView>
     </BottomSheetModal>
   );
 };
@@ -88,6 +82,7 @@ const styles = StyleSheet.create({
   container: {
     gap: 16,
     paddingHorizontal: 24,
+    paddingBottom: 48,
     flex: 1,
   },
   coinsImage: {

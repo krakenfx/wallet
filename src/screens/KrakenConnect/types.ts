@@ -4,3 +4,5 @@ export type KrakenConnectNavigationParams = {
   connectionError?: string | null;
   selectedAccountNumber?: number;
 };
+
+export type KarkenConnectScreenType = 'landing' | 'connected' | 'loading' | 'error';

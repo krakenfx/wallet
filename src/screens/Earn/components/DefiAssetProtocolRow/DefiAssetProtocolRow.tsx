@@ -1,5 +1,7 @@
 import type React from 'react';
 
+import { useNavigation } from '@react-navigation/native';
+import { useCallback } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { GradientItemBackground } from '@/components/GradientItemBackground';
@@ -8,20 +10,30 @@ import { Touchable } from '@/components/Touchable';
 
 import { useAppCurrency } from '@/realm/settings';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
+import { Routes } from '@/Routes';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import type { DefiAssetProtocolRowProps } from './DefiAssetProtocolRow.types';
 
 import loc from '/loc';
 
-export const DefiAssetProtocolRow: React.FC<DefiAssetProtocolRowProps> = ({ protocol, isFirst, isLast }) => {
+export const DefiAssetProtocolRow: React.FC<DefiAssetProtocolRowProps> = ({ protocol, isFirst, isLast, closeEarnSheet }) => {
   const { currency } = useAppCurrency();
+  const navigation = useNavigation();
 
   const usdFiatRate = useCurrentUsdFiatRate();
   const valueInUserCurrency = usdFiatRate * protocol.tvlInUsd;
   const formattedTvl = formatCurrency(valueInUserCurrency, { currency, compact: true, hideDecimals: true });
 
-  const onSelectProtocol = () => {};
+  const onSelectProtocol = useCallback(() => {
+    navigation.navigate(Routes.DefiDetails, {
+      assetId: protocol.assetId,
+      protocolLogo: protocol.protocolLogo,
+      vaultAddress: protocol.vaultAddress,
+      vaultNetwork: protocol.vaultNetwork,
+    });
+    closeEarnSheet();
+  }, [closeEarnSheet, navigation, protocol]);
 
   return (
     <Touchable style={styles.protocolItem} onPress={onSelectProtocol}>

@@ -2,12 +2,12 @@ import { StyleSheet, View } from 'react-native';
 
 import { SvgIcon } from '@/components/SvgIcon';
 
-import { useConnectedWithExchangeList } from '@/realm/settings/useConnectedWithExchangeList';
+import { useKrakenConnectAccountsConnected } from '@/realm/krakenConnect/useKrakenConnectSettings';
 
 import { SettingsTextBadge } from '../components';
 
 export const ManageConnectionsBadge = () => {
-  const accounts = useConnectedWithExchangeList();
+  const accounts = useKrakenConnectAccountsConnected();
   const hasConnection = accounts.length > 0;
 
   return (

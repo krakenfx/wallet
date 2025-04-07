@@ -1,24 +1,14 @@
 import type { SupportedPublicApiPaths } from './supportedPaths';
 
-import { KRAKEN_API_URI, KRAKEN_BETA_API_URI } from '/config';
+import { KRAKEN_API_URI } from '/config';
 
-export interface PublicApiSecureParams {
-  cfToken: string;
-}
-
-interface PublicApiParams extends PublicApiSecureParams {
+interface PublicApiParams {
   path: SupportedPublicApiPaths;
   params: string;
 }
 
-export const fetchKrakenPublicApi = async <T>({ path, params, cfToken }: PublicApiParams): Promise<{ result: T | null; error: any }> => {
-  const apiURI = cfToken ? KRAKEN_BETA_API_URI : KRAKEN_API_URI;
-
-  const response = await fetch(apiURI + path + params, {
-    headers: {
-      'CF-Access-Token': cfToken,
-    },
-  });
+export const fetchKrakenPublicApi = async <T>({ path, params }: PublicApiParams): Promise<{ result: T | null; error: any }> => {
+  const response = await fetch(KRAKEN_API_URI + path + params);
   const json = await response.json();
   if (!response.ok) {
     return {

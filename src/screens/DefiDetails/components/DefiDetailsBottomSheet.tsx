@@ -1,4 +1,4 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView, type BottomSheetScrollViewMethods } from '@gorhom/bottom-sheet';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut, runOnJS, useAnimatedReaction, useSharedValue } from 'react-native-reanimated';
@@ -29,6 +29,8 @@ export const DefiDetailsBottomSheet = ({ onPositionChange, positionIndex }: Prop
   const defaultSnapPoints = useCommonSnapPoints('toHeaderAndMainContentSmall');
   const { bottom } = useSafeAreaInsets();
   const ref = useRef<BottomSheetRef>(null);
+  const scrollRef = useRef<BottomSheetScrollViewMethods>(null);
+
   const snapPoints = useMemo(
     () => [
       SMALL_SHEET_MIN_HEIGHT +
@@ -51,6 +53,13 @@ export const DefiDetailsBottomSheet = ({ onPositionChange, positionIndex }: Prop
     if (positionIndex !== undefined && positionIndex === SheetPosition.SMALL) {
       ref.current?.snapToIndex(SheetPosition.SMALL);
       setSheetPosition(SheetPosition.SMALL);
+      scrollRef.current?.scrollTo({ y: 0, animated: true });
+    }
+
+    if (positionIndex !== undefined && positionIndex === SheetPosition.MEDIUM) {
+      ref.current?.snapToIndex(SheetPosition.MEDIUM);
+      setSheetPosition(SheetPosition.MEDIUM);
+      scrollRef.current?.scrollTo({ y: 0, animated: true });
     }
   }, [positionIndex]);
 
@@ -89,12 +98,14 @@ export const DefiDetailsBottomSheet = ({ onPositionChange, positionIndex }: Prop
       noBackdrop
       ref={ref}
       onChange={handleSheetPositionChange}>
-      <BottomSheetScrollView contentContainerStyle={[styles.container, { paddingBottom }]}>
+      <BottomSheetScrollView ref={scrollRef} contentContainerStyle={[styles.container, { paddingBottom }]}>
         <Animated.View entering={FadeIn} exiting={FadeOut}>
-          <DefiDetailsSwitch unset={isSheetPositionSmall} />
+          <View style={styles.switchContainer}>
+            <DefiDetailsSwitch unset={isSheetPositionSmall} />
+          </View>
           <DefiDetailsChart hide={isSheetPositionSmall} />
           <View style={styles.infoContainer}>
-            <DefiDetailsInfoVault />
+            <DefiDetailsInfoVault handleSheetPositionChange={handleSheetPositionChange} />
             <DefiDetailsInfoContractAddress />
             <DefiDetailsInfoAsset />
           </View>
@@ -109,6 +120,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 8,
     gap: 24,
+  },
+  switchContainer: {
+    marginVertical: 10,
   },
   infoContainer: {
     flex: 1,

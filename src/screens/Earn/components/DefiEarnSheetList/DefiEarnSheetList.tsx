@@ -14,7 +14,7 @@ import type { DefiProtocol } from '../DefiAssetProtocolRow/DefiAssetProtocolRow.
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList) as FlatList;
 
-export const DefiEarnSheetList = forwardRef<FlatList, DefiEarnSheetListProps>(({ protocols, isHeaderShrunk, scrollEnabled }, ref) => {
+export const DefiEarnSheetList = forwardRef<FlatList, DefiEarnSheetListProps>(({ protocols, isHeaderShrunk, scrollEnabled, closeEarnSheet }, ref) => {
   const listPaddingBottom = useBottomSheetPadding();
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -31,9 +31,9 @@ export const DefiEarnSheetList = forwardRef<FlatList, DefiEarnSheetListProps>(({
 
   const renderItem = useCallback(
     ({ item, index }: { item: DefiProtocol; index: number }) => (
-      <DefiAssetProtocolRow protocol={item} isFirst={index === 0} isLast={index === protocols.length - 1} />
+      <DefiAssetProtocolRow protocol={item} isFirst={index === 0} isLast={index === protocols.length - 1} closeEarnSheet={closeEarnSheet} />
     ),
-    [protocols.length],
+    [protocols.length, closeEarnSheet],
   );
 
   return (

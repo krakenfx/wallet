@@ -10,12 +10,11 @@ import { useDebounceEffect } from '@/hooks/useDebounceEffect';
 import { useDeviceSize } from '@/hooks/useDeviceSize';
 import { useAccountsMutations } from '@/realm/accounts';
 import { useCurrentAccount } from '@/realm/accounts/useCurrentAccount';
+import { useIsConnectedWithExchange } from '@/realm/krakenConnect/useIsConnectedWithExchange';
 import { useIsHideBalancesEnabled, useSettingsMutations } from '@/realm/settings';
 import { useAppCurrency } from '@/realm/settings/useAppCurrency';
-import { useIsConnectedWithExchange } from '@/realm/settings/useIsConnectedWithExchange';
 import { useTotalWalletBalance } from '@/realm/tokenPrice';
 
-import { useFeatureFlag } from '@/unencrypted-realm/featureFlags/useFeatureFlag';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { KRAKEN_CONNECT_BALANCE_FULL_HEIGHT, KRAKEN_CONNECT_BALANCE_FULL_HEIGHT_SMALL_DEVICE, KrakenConnectBalance } from './KrakenConnectBalance';
@@ -40,12 +39,11 @@ export const HomeBalance = () => {
     setHideBalances(false);
   };
 
-  const [isKrakenConnectEnabled] = useFeatureFlag('krakenConnectEnabled');
   const isConnectedWithExchange = useIsConnectedWithExchange();
   const { size } = useDeviceSize();
   const headerMarginTop = size === 'small' ? SMALL_DEVICE_MARGIN_TOP : DEFAULT_MARGIN_TOP;
   const headerFullHeight = size === 'small' ? KRAKEN_CONNECT_BALANCE_FULL_HEIGHT_SMALL_DEVICE : KRAKEN_CONNECT_BALANCE_FULL_HEIGHT;
-  const headerStyle = isKrakenConnectEnabled && isConnectedWithExchange ? { marginTop: Math.max(headerMarginTop - headerFullHeight, 0) } : {};
+  const headerStyle = isConnectedWithExchange ? { marginTop: Math.max(headerMarginTop - headerFullHeight, 0) } : {};
   return (
     <>
       <WaitForAccountSwitchSettled>
@@ -70,7 +68,7 @@ export const HomeBalance = () => {
           )}
         </Touchable>
       </LargeHeader>
-      {isKrakenConnectEnabled && <KrakenConnectBalance />}
+      <KrakenConnectBalance />
     </>
   );
 };

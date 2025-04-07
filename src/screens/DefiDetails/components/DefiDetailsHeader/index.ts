@@ -1,3 +1,6 @@
 export * from './DefiDetailsHeader';
-export * from './DefiDetailsHeaderLeft';
+export * from './DefiDetailsHeaderBalance';
+export * from './DefiDetailsHeaderBalanceSimple';
+export * from './DefiDetailsHeaderBalance';
+export * from './DefiDetailsHeaderNavSkeleton';
 export * from './DefiDetailsHeaderRight';

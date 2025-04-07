@@ -35,7 +35,7 @@ export const DefiEarnSheetHeader: React.FC<DefiEarnSheetHeaderProps> = ({ assetI
 
   const onSwap = () => {
     closeEarnSheet();
-    navigation.navigate(Routes.Swap);
+    navigation.navigate(Routes.Swap, { targetTokenId: assetId });
   };
 
   const { headerStyle, tokenIconStyle, copyStyle, onLayout } = useSheetHeaderAnimation({ tokenAmountFormatted, isHeaderShrunk });
@@ -54,7 +54,7 @@ export const DefiEarnSheetHeader: React.FC<DefiEarnSheetHeaderProps> = ({ assetI
           </Label>
         ) : (
           <Animated.View style={[styles.noAssetsHoldView, { backgroundColor: colors.dark15 }]}>
-            <Label type="regularCaption1" color="light50">
+            <Label type="regularCaption1" color="light50" style={styles.noBalanaceFoundText}>
               {loc.formatString(loc.earn.earnSheet.noBalanaceFound, { symbol: metadata?.symbol || '' })}
             </Label>
 
@@ -69,21 +69,26 @@ export const DefiEarnSheetHeader: React.FC<DefiEarnSheetHeaderProps> = ({ assetI
 const styles = StyleSheet.create({
   container: {
     paddingTop: 40,
-    paddingHorizontal: 45,
     gap: 16,
     alignItems: 'center',
     height: 'auto',
   },
+  noBalanaceFoundText: {
+    flex: 1,
+  },
   copy: {
+    flex: 1,
     gap: 2,
     alignItems: 'center',
   },
   noAssetsHoldView: {
     flexDirection: 'row',
-    paddingHorizontal: 24,
     alignItems: 'center',
+    justifyContent: 'space-between',
     gap: 16,
-    padding: 12,
+    paddingVertical: 12,
+    paddingLeft: 16,
+    paddingRight: 12,
     borderRadius: 16,
     marginTop: 16,
   },

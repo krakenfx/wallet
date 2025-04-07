@@ -8,9 +8,9 @@ import { Label } from '@/components/Label/Label';
 import { ModalNavigationHeader } from '@/components/ModalNavigationHeader/ModalNavigationHeader';
 import { SvgIcon } from '@/components/SvgIcon/SvgIcon';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
+import { useKrakenConnectClear } from '@/hooks/useKrakenConnectClear';
 import { useAccountById } from '@/realm/accounts/useAccountById';
 import { useCurrentAccountNumber } from '@/realm/accounts/useCurrentAccountNumber';
-import { useSettingsMutations } from '@/realm/settings';
 import type { NavigationProps } from '@/Routes';
 import { navigationStyle } from '@/utils/navigationStyle';
 
@@ -23,7 +23,7 @@ export const KrakenConnectDisconnectScreen = ({ navigation, route }: NavigationP
   const accountNumber = selectedAccountNumber ?? currentAccountNumber;
   const account = useAccountById(accountNumber);
   const accountName = account.accountCustomName;
-  const { removeExchangeConnectForAccount } = useSettingsMutations();
+  const { removeExchangeConnectForAccount } = useKrakenConnectClear();
   const { bottomSheetProps } = useBottomSheetScreenProps(navigation);
   const warningMessage = loc.formatString(loc.krakenConnect.settings.disconnectScreen.warningMessage, { walletName: accountName }).toString();
   const pressHandler =

@@ -6,7 +6,7 @@ import Animated, { Easing, useAnimatedStyle, withTiming } from 'react-native-rea
 import { Label } from '@/components/Label';
 import { SvgIcon } from '@/components/SvgIcon';
 import { Touchable } from '@/components/Touchable';
-
+import { useBalanceDisplay } from '@/hooks/useBalanceDisplay';
 import { useAppCurrency } from '@/realm/settings';
 import { useCurrentUsdFiatRate } from '@/realm/usdFiatRates';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -34,7 +34,7 @@ export const DefiProtocolHeading: React.FC<DefiProtocolHeadingProps> = ({
   const usdFiatRate = useCurrentUsdFiatRate();
   const valueInUserCurrency = usdFiatRate * totalValueInUsd;
 
-  const formattedFiatAmount = formatCurrency(valueInUserCurrency, { currency, compact: true, hideDecimals: false });
+  const formattedFiatAmount = useBalanceDisplay(formatCurrency(valueInUserCurrency, { currency, compact: true, hideDecimals: false }), 7);
 
   const chevronStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: withTiming(isExpanded.value ? '-180deg' : '0deg', { duration: ANIMATION_DURATION }) }],
@@ -63,7 +63,7 @@ export const DefiProtocolHeading: React.FC<DefiProtocolHeadingProps> = ({
         </Animated.View>
       </View>
 
-      <View style={styles.subContainer}>
+      <View style={[styles.subContainer, styles.rightSubContainer]}>
         <Label color="light50" type="boldLargeMonospace">
           {formattedFiatAmount}
         </Label>
@@ -101,6 +101,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     gap: 8,
+  },
+  rightSubContainer: {
+    gap: 4,
   },
   icon: {
     height: 24,

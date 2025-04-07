@@ -13,7 +13,7 @@ import { omitNetworkIcons } from '@/components/TokenIcon';
 import { useRealmQueue } from '@/realm/hooks/useRealmQueue';
 import { useFilterInBlacklistedAssets, useFilterInUnverifiedAssets, useLanguage } from '@/realm/settings';
 import { useTokenById } from '@/realm/tokens';
-import type { RealmPendingTransaction, RealmTransaction } from '@/realm/transactions';
+import { type RealmPendingTransaction, type RealmTransaction } from '@/realm/transactions';
 import { REALM_TYPE_PENDING_TRANSACTION, usePendingNftTransactions, usePendingTransactions, useTransactions } from '@/realm/transactions';
 import { getTransactionMetadata } from '@/realm/transactions/getTransactionMetadata';
 import { memoizedJSONParseTx } from '@/realm/transactions/utils';

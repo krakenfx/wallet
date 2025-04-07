@@ -64,3 +64,7 @@ export function parseCAIP19(assetType: string): CAIP19 | null {
   };
   return caip19;
 }
+
+export function getTokenIdFromChainIdAndAssetId(chainId: string, assetId: string) {
+  return `${chainId}/${assetId}`;
+}

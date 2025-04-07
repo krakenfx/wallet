@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import { AvatarIcon } from '@/components/AvatarIcon/AvatarIcon';
 import { GradientItemBackground } from '@/components/GradientItemBackground/GradientItemBackground';
 import { Label } from '@/components/Label/Label';
-import { SvgIcon } from '@/components/SvgIcon/SvgIcon';
 import { useAccountById } from '@/realm/accounts/useAccountById';
 
 import loc from '/loc';
@@ -24,7 +23,6 @@ export const KrakenConnectWalletAlert = ({ accountNumber, message }: KrakenConne
       <Label style={styles.alertBody} type="regularCaption1">
         {alertString}
       </Label>
-      <SvgIcon name="info-circle" color="light75" />
     </View>
   );
 };

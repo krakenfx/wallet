@@ -4,26 +4,19 @@ import Realm from 'realm';
 import type { Currency } from '@/screens/Settings/currency';
 import { useSecuredKeychain } from '@/secureStore/SecuredKeychainProvider';
 
-import { useCurrentAccountNumber } from '../accounts/useCurrentAccountNumber';
 import { useAssetMarketDataMutations } from '../assetMarketData';
 import { useRealmTransaction } from '../hooks/useRealmTransaction';
-import { useKrakenConnectMutations } from '../krakenConnect/useKrakenConnectMutation';
-import { useRealm } from '../RealmContext';
 import { useWalletsMutations } from '../wallets';
 
-import { getSettingsByKey } from './getSettingsByKey';
 import { REALM_TYPE_SETTINGS, RealmSettingsKey } from './schema';
 
 import type { RealmSettings, SettingsType } from './schema';
 
 export const useSettingsMutations = () => {
-  const realm = useRealm();
   const { runInTransaction } = useRealmTransaction();
   const { enableTestnetWallets, disableTestnetWallets } = useWalletsMutations();
   const { deleteAllAssetMarketData } = useAssetMarketDataMutations();
   const { getSeed } = useSecuredKeychain();
-  const currentAccountNumber = useCurrentAccountNumber();
-  const { deleteExchangeCredentials } = useKrakenConnectMutations();
   const setSettings = useCallback(
     <T extends keyof SettingsType>(name: T, value: SettingsType[T]) => {
       runInTransaction(realm => {
@@ -138,41 +131,6 @@ export const useSettingsMutations = () => {
     [setSettings],
   );
 
-  const setExchangeConnectForAccount = useCallback(
-    (selectedAccount = currentAccountNumber) => {
-      const exchangeAccounts = getSettingsByKey(realm, RealmSettingsKey.krakenConnectAccountsConnected) || [];
-      const ids = new Set([...exchangeAccounts, selectedAccount]);
-      setSettings(RealmSettingsKey.krakenConnectAccountsConnected, Array.from(ids));
-    },
-    [setSettings, currentAccountNumber, realm],
-  );
-
-  const removeExchangeConnectForAccount = useCallback(
-    (selectedAccount = currentAccountNumber) => {
-      const exchangeAccounts = getSettingsByKey(realm, RealmSettingsKey.krakenConnectAccountsConnected) || [];
-      const ids = new Set(exchangeAccounts.filter(id => id !== selectedAccount));
-      setSettings(RealmSettingsKey.krakenConnectAccountsConnected, Array.from(ids));
-
-      if (ids.size === 0) {
-        deleteExchangeCredentials();
-      }
-    },
-    [setSettings, currentAccountNumber, realm, deleteExchangeCredentials],
-  );
-
-  const removeExchangeConnectForAllAccounts = useCallback(() => {
-    removeSettings(RealmSettingsKey.krakenConnectAccountsConnected);
-  }, [removeSettings]);
-
-  const setExchangeCtasHidden = useCallback(
-    (selectedAccount = currentAccountNumber) => {
-      const hiddenOnAccounts = getSettingsByKey(realm, RealmSettingsKey.krakenConnectDismissedCta) || [];
-      const ids = new Set([...hiddenOnAccounts, selectedAccount]);
-      setSettings(RealmSettingsKey.krakenConnectDismissedCta, Array.from(ids));
-    },
-    [setSettings, currentAccountNumber, realm],
-  );
-
   return {
     setSettings,
     setAccountNumber,
@@ -187,11 +145,7 @@ export const useSettingsMutations = () => {
     setCloudBackupDismissed,
     setManualBackupDismissed,
     setManualBackupCompleted,
-    setExchangeCtasHidden,
-    setExchangeConnectForAccount,
-    removeExchangeConnectForAccount,
     removeCloudBackup,
     removeSettings,
-    removeExchangeConnectForAllAccounts,
   };
 };

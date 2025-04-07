@@ -6,6 +6,7 @@ export interface WithdrawParams {
   assetSymbol: string;
   addressId: string;
   feeToken: string;
+  tokenId: string;
 }
 
 type Params = WithdrawParams & PrivateApiSecureParams;
@@ -19,10 +20,11 @@ interface Response {
   transaction_id: string;
 }
 
-export const createFundingWithdrawal = async ({ assetSymbol, amount, feeToken, methodId, addressId, ...secureParams }: Params) => {
+export const createFundingWithdrawal = async ({ assetSymbol, amount, feeToken, methodId, addressId, tokenId, ...secureParams }: Params) => {
   const response = await fetchKrakenPrivateApi<Response>({
     path: '/0/private/CreateFundingWithdrawal',
     method: 'POST',
+    tokenId,
     body: {
       method_id: methodId,
       fee_token: feeToken,

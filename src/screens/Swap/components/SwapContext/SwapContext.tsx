@@ -58,14 +58,18 @@ const SwapContext = React.createContext<SwapContext | undefined>(undefined);
 
 type ContextProps = {
   defaultTokenId?: string;
+  targetTokenId?: string;
 };
 
-export const SwapContextProvider: React.FC<PropsWithChildren<ContextProps>> = ({ children, defaultTokenId }) => {
+export const SwapContextProvider: React.FC<PropsWithChildren<ContextProps>> = ({ children, defaultTokenId, targetTokenId }) => {
   const ethToken = useTokens().filtered('assetId = $0', defaultTokenId ?? ChainAgnostic.COIN_ETHEREUM)[0];
   const defaultToken = useTokenById(defaultTokenId);
 
+  const targetToken = useTokenById(targetTokenId);
+  const targetToken_ = useTokens().filtered('assetId = $0', targetTokenId)[0];
+
   const sourceTokenState = useState<RealmToken>(defaultToken ?? ethToken);
-  const targetAssetState = useState<SwapTargetAsset>();
+  const targetAssetState = useState<SwapTargetAsset | undefined>(targetToken || targetToken_);
   const sourceAmountSmallestUnitState = useState<string>();
   const sourceAmountTokenUnitState = useState<string>();
   const sourceAmountFiatState = useState<string>();
