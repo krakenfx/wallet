@@ -2,18 +2,25 @@ import type { PropsWithChildren } from 'react';
 
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react';
 
-import { Keyboard } from 'react-native';
+import { Keyboard, Platform } from 'react-native';
 
 import { useLockout } from '@/screens/Settings/passwordProtection/hooks/useLockout';
 import { PasswordProtectionSheet } from '@/screens/Settings/passwordProtection/PasswordProtectionSheet';
 import type { PasswordProtectionModalRef, Rationale } from '@/screens/Settings/passwordProtection/PasswordProtectionSheet';
 
+import { loadMnemonicSlow } from '@/utils/loadMnemonicSlow';
+
 import { getAppLockSecret, retrieveMnemonic, retrieveSeed } from './domains';
 import { KeychainKey, getFromKeychain } from './keychain';
 import { hexStringToBuffer } from './utils';
 
+interface SecretWithPassword {
+  secret: string;
+  password: string | undefined;
+}
+
 export interface SecuredKeychainContext {
-  getMnemonic: <T extends boolean>(throwOnError?: T) => Promise<T extends true ? string : string | false>;
+  getMnemonic: <T extends boolean>(throwOnError?: T, rationale?: Rationale) => Promise<T extends true ? SecretWithPassword : SecretWithPassword | false>;
   getSeed: <T extends boolean>(rationale: Rationale, throwOnError?: T) => Promise<T extends true ? ArrayBuffer : ArrayBuffer | false>;
 }
 const SecuredKeychainContext = createContext<SecuredKeychainContext>({
@@ -23,7 +30,7 @@ const SecuredKeychainContext = createContext<SecuredKeychainContext>({
 
 export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
   const sheetRef = useRef<PasswordProtectionModalRef>(null);
-  const resolveResult = useRef<(value: string | PromiseLike<string>) => void>();
+  const resolveResult = useRef<(value: SecretWithPassword | PromiseLike<SecretWithPassword>) => void>();
   const retrieve = useRef<typeof retrieveMnemonic | typeof retrieveSeed>();
   const appLockSecret = useRef<string | false>();
 
@@ -35,7 +42,7 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
     appLockSecret.current = undefined;
   };
 
-  const getSecuredValue = useCallback(async (rationale: Rationale): Promise<string> => {
+  const getSecuredValue = useCallback(async (rationale: Rationale): Promise<SecretWithPassword> => {
     const retrieveSecret = retrieve.current;
     console.log('[getSecuredValue] called, rationale: ', rationale);
 
@@ -55,7 +62,7 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
     if (!isPasswordProtected) {
       try {
         const secret = await retrieveSecret(appLockSecret.current || undefined);
-        return secret;
+        return { secret, password: undefined };
       } finally {
         reset();
       }
@@ -74,7 +81,10 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
       const value = await retrieve.current(appLockSecret.current || undefined, password);
       Keyboard.dismiss();
       lockout.onSuccessfulAttempt();
-      resolveResult.current?.(value);
+      resolveResult.current?.({
+        secret: value,
+        password,
+      });
       sheetRef.current?.dismiss();
       reset();
     } catch {
@@ -92,16 +102,16 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
   };
 
   const getMnemonic = useCallback(
-    async <T extends boolean>(throwOnError?: T) => {
+    async <T extends boolean>(throwOnError?: T, rationale?: Rationale) => {
       try {
         console.log('[getMnemonic] called');
         setRetrieveFunction(retrieveMnemonic);
-        return getSecuredValue('viewPhrase');
+        return getSecuredValue(rationale ?? 'viewPhrase');
       } catch (e) {
         if (throwOnError) {
           throw e;
         } else {
-          return false as T extends true ? string : false;
+          return false as T extends true ? SecretWithPassword : false;
         }
       }
     },
@@ -112,8 +122,15 @@ export const SecuredKeychainProvider = ({ children }: PropsWithChildren) => {
     async <T extends boolean>(rationale: Rationale, throwOnError?: T) => {
       try {
         console.log('[getSeed] called');
+        if (Platform.OS === 'android' && Platform.Version === 36) {
+          setRetrieveFunction(retrieveMnemonic);
+          const { secret } = await getSecuredValue(rationale);
+          const seedBuffer = await loadMnemonicSlow(secret);
+          return seedBuffer;
+        }
         setRetrieveFunction(retrieveSeed);
-        return hexStringToBuffer(await getSecuredValue(rationale));
+        const { secret } = await getSecuredValue(rationale);
+        return hexStringToBuffer(secret);
       } catch (e) {
         if (throwOnError) {
           throw e;

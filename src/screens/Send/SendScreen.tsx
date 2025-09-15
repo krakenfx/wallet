@@ -12,6 +12,7 @@ import { FloatingBottomContainer } from '@/components/FloatingBottomContainer';
 import { GradientScreenView } from '@/components/Gradients';
 import { KeyboardAvoider } from '@/components/Keyboard';
 import { NftBlock } from '@/components/NftBlock';
+import { showToast } from '@/components/Toast';
 import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
 import { PrepareError } from '@/onChain/wallets/bitcoin';
 import { getImplForWallet } from '@/onChain/wallets/registry';
@@ -264,11 +265,12 @@ const Send = ({ navigation, route: { params } }: SendNavigationProps<'Send'>) =>
     if (qrCode) {
       try {
         const value = decodeQrCodeAddress(qrCode);
-        if (typeof value === 'string') {
-          onChangeAddress(value);
-        } else if (typeof value === 'object') {
+        if (value) {
           onChangeAddress(value.address);
-          if (value.options.amount) {
+          if (value.isEip681) {
+            showToast({ type: 'info', text: loc.send.eip681Warning });
+          }
+          if (value.options?.amount) {
             amountInputRef.current?.setAssetAmount(`${value.options.amount}`);
           }
         }

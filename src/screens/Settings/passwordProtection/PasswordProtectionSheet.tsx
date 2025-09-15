@@ -19,7 +19,7 @@ type Props = {
   lockout: ReturnType<typeof useLockout>;
 };
 
-export type Rationale = 'createWallet' | 'sign' | 'viewPhrase' | 'getXPub';
+export type Rationale = 'createWallet' | 'sign' | 'viewPhrase' | 'getXPub' | 'updateStorage';
 
 export const PasswordProtectionSheet = forwardRef<PasswordProtectionModalRef & LockScreenRef, Props>(({ checkPassword, onDismiss, lockout }, ref) => {
   const modalRef = useRef<BottomSheetModalRef>(null);
@@ -36,6 +36,8 @@ export const PasswordProtectionSheet = forwardRef<PasswordProtectionModalRef & L
         return loc.passwordProtection.rationaleSeeRecoveryPhrase;
       case 'getXPub':
         return loc.passwordProtection.rationaleGetXPub;
+      case 'updateStorage':
+        return loc.passwordProtection.rationaleUpdateStorage;
     }
   };
 

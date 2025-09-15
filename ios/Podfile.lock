@@ -1375,7 +1375,7 @@ PODS:
     - React-Core
   - react-native-safe-area-context (4.10.5):
     - React-Core
-  - react-native-skia (1.5.3):
+  - react-native-skia (1.12.4):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1684,7 +1684,7 @@ PODS:
     - React-logger (= 0.75.4)
     - React-perflogger (= 0.75.4)
     - React-utils (= 0.75.4)
-  - RealmJS (12.13.2):
+  - RealmJS (12.14.2):
     - React
   - RNArgon2 (2.0.1):
     - CatCrypto
@@ -2299,7 +2299,7 @@ SPEC CHECKSUMS:
   react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
   react-native-netinfo: f0a9899081c185db1de5bb2fdc1c88c202a059ac
   react-native-safe-area-context: a240ad4b683349e48b1d51fed1611138d1bdad97
-  react-native-skia: 2ddddc0cda79a7fe0bbae14a9844f01c0fdff743
+  react-native-skia: 56d126fa2d216f4056929db508102126663bce93
   react-native-slider: 97ce0bd921f40de79cead9754546d5e4e7ba44f8
   react-native-tcp-socket: e724380c910c2e704816ec817ed28f1342246ff7
   react-native-webview-mm: c518409c962c1f0f95c08bb6a700b9f97aff131b
@@ -2329,7 +2329,7 @@ SPEC CHECKSUMS:
   React-utils: cbe8b8b3d7b2ac282e018e46f0e7b25cdc87c5a0
   ReactCodegen: 4bcb34e6b5ebf6eef5cee34f55aa39991ea1c1f1
   ReactCommon: 6a952e50c2a4b694731d7682aaa6c79bc156e4ad
-  RealmJS: bfe9a997a1f813c05c432c94405753879572a1a2
+  RealmJS: ab0e1afd06ef856f8ae396520da1690bcaa669f8
   RNArgon2: 1481820722fd4af1575c09f7fc9ad67c00ee8a42
   RNBootSplash: e025d4ee98d942ee6c8b495a6fe66339a6b5f6dd
   RNCAsyncStorage: d35c79ffba52c1013013e16b1fc295aec2feabb6

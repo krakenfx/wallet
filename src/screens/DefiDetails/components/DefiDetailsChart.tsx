@@ -85,7 +85,7 @@ export const DefiDetailsChart = ({ hide }: Props) => {
   const { colors } = useTheme();
   const chartColors: ChartColorSet = useMemo(() => {
     if (!hasData || isPending) {
-      return { highLow: 'transparent', gradient: [colors.purple_40] };
+      return { highLow: 'transparent', gradient: [colors.purple_40, colors.purple_40] };
     }
 
     return valueChange >= 0 ? ASCENDING_COLOR_SET : DESCENDING_COLOR_SET;

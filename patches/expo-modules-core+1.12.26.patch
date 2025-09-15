@@ -1,0 +1,451 @@
+diff --git a/node_modules/expo-modules-core/android/build/generated/source/buildConfig/debug/expo/modules/BuildConfig.java b/node_modules/expo-modules-core/android/build/generated/source/buildConfig/debug/expo/modules/BuildConfig.java
+new file mode 100644
+index 0000000..3ded53c
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/generated/source/buildConfig/debug/expo/modules/BuildConfig.java
+@@ -0,0 +1,12 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package expo.modules;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = Boolean.parseBoolean("true");
++  public static final String LIBRARY_PACKAGE_NAME = "expo.modules";
++  public static final String BUILD_TYPE = "debug";
++  // Field from default config.
++  public static final boolean IS_NEW_ARCHITECTURE_ENABLED = false;
++}
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml b/node_modules/expo-modules-core/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..2e9937d
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    package="expo.modules" >
++
++    <uses-sdk android:minSdkVersion="28" />
++
++    <application>
++        <meta-data
++            android:name="org.unimodules.core.AppLoader#react-native-headless"
++            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
++        <meta-data
++            android:name="com.facebook.soloader.enabled"
++            android:value="true"
++            tools:replace="android:value" />
++    </application>
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json b/node_modules/expo-modules-core/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json
+new file mode 100644
+index 0000000..abb1565
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "expo.modules",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties b/node_modules/expo-modules-core/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties
+new file mode 100644
+index 0000000..1211b1e
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties
+@@ -0,0 +1,6 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=1
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
++coreLibraryDesugaringEnabled=false
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json b/node_modules/expo-modules-core/android/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar b/node_modules/expo-modules-core/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar
+new file mode 100644
+index 0000000..913cc58
+Binary files /dev/null and b/node_modules/expo-modules-core/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar differ
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/compile_symbol_list/debug/generateDebugRFile/R.txt b/node_modules/expo-modules-core/android/build/intermediates/compile_symbol_list/debug/generateDebugRFile/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/expo-modules-core/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..441a118
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Sep 02 12:36:11 CEST 2025
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/expo-modules-core/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..aaed38d
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/build/generated/res/resValues/debug"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/incremental/mergeDebugShaders/merger.xml b/node_modules/expo-modules-core/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+new file mode 100644
+index 0000000..034b368
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/debug/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/incremental/packageDebugAssets/merger.xml b/node_modules/expo-modules-core/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+new file mode 100644
+index 0000000..21e6ead
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/assets"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/debug/assets"/></dataSet><dataSet config="generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/am/Projects/mobile/node_modules/expo-modules-core/android/build/intermediates/shader_assets/debug/compileDebugShaders/out"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt b/node_modules/expo-modules-core/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt b/node_modules/expo-modules-core/android/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt
+new file mode 100644
+index 0000000..846b8e6
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt
+@@ -0,0 +1,26 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    xmlns:tools="http://schemas.android.com/tools"
++4    package="expo.modules" >
++5
++6    <uses-sdk android:minSdkVersion="28" />
++7
++8    <application>
++8-->/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:4:5-12:19
++9        <meta-data
++9-->/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:5:9-7:89
++10            android:name="org.unimodules.core.AppLoader#react-native-headless"
++10-->/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:6:13-79
++11            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
++11-->/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:7:13-86
++12        <meta-data
++12-->/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:8:9-11:45
++13            android:name="com.facebook.soloader.enabled"
++13-->/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:9:13-57
++14            android:value="true"
++14-->/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:10:13-33
++15            tools:replace="android:value" />
++15-->/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:11:13-42
++16    </application>
++17
++18</manifest>
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml b/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml
+new file mode 100644
+index 0000000..2e9937d
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    package="expo.modules" >
++
++    <uses-sdk android:minSdkVersion="28" />
++
++    <application>
++        <meta-data
++            android:name="org.unimodules.core.AppLoader#react-native-headless"
++            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
++        <meta-data
++            android:name="com.facebook.soloader.enabled"
++            android:value="true"
++            tools:replace="android:value" />
++    </application>
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/navigation_json/debug/extractDeepLinksDebug/navigation.json b/node_modules/expo-modules-core/android/build/intermediates/navigation_json/debug/extractDeepLinksDebug/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/navigation_json/debug/extractDeepLinksDebug/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt b/node_modules/expo-modules-core/android/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt
+new file mode 100644
+index 0000000..08f4ebe
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt
+@@ -0,0 +1 @@
++0 Warning/Error
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt b/node_modules/expo-modules-core/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
+new file mode 100644
+index 0000000..eeeb776
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
+@@ -0,0 +1 @@
++expo.modules
+diff --git a/node_modules/expo-modules-core/android/build/kotlin/compileDebugKotlin/cacheable/dirty-sources.txt b/node_modules/expo-modules-core/android/build/kotlin/compileDebugKotlin/cacheable/dirty-sources.txt
+new file mode 100644
+index 0000000..a64c2b8
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/kotlin/compileDebugKotlin/cacheable/dirty-sources.txt
+@@ -0,0 +1,170 @@
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/apifeatures/Features.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/AnyTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityaware/OnActivityAvailableListener.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/Either.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/net/URLTypConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/DateTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/JSTypeConverterHelper.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/com/facebook/react/uimanager/ReactStylesDiffMapHelper.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/apploader/HeadlessAppLoaderNotifier.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/LoggerTimer.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/SetTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ExpoView.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ReactLifecycleDelegate.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewWrapperDelegateHolder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/DynamicExtenstions.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/defaultmodules/NativeModulesProxyModule.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/ReadableArgumentsTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/typedarray/TypedArrayIterator.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/interfaces/permissions/PermissionsResponse.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/uuidv5/Exceptions.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewManagerDefinition.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JavaScriptWeakObject.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/tracing/ExpoTrace.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/events/EventListener.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/SuspendFunctionComponent.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/ListTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/allocators/ObjectConstructorFactory.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/PersistentFileLogHandler.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ReactExtensions.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/objects/ObjectDefinitionBuilder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/FunctionBuilder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityaware/AppCompatActivityAware.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/ColorTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/folly/FollyDynamicExtensionConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/EitherTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/EnumTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/net/UriTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ConcatIterator.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JavaCallback.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/modules/ModuleDefinitionBuilder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/LogHandlers.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/TypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/PromiseImpl.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/SimpleViewManagerWrapper.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/Utils.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/classcomponent/ClassComponentBuilder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/ByteArrayTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JavaScriptObject.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/defaultmodules/CoreModule.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ExpoBridgeModule.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityresult/DataPersistor.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/viewevent/ViewEventDelegate.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityresult/AppContextActivityResultContract.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/exception/CommonExceptions.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ConcreteViewProp.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/events/OnActivityResultPayload.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/objects/ObjectDefinitionData.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/LogType.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/sharedobjects/SharedObjectRegistry.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityresult/ActivityResultsManager.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/Promise.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/CppType.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/utilities/EmulatorUtilities.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/JSTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ModuleHolder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/KotlinInteropModuleRegistry.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/TypeConverterProvider.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/AnyFunction.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/records/ValidationBinder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/BaseAsyncFunctionComponent.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ReadableTypeExtensions.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JavaScriptFunction.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/interfaces/filesystem/AppDirectoriesModuleInterface.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ModuleRegistry.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/devtools/OkHttpHeadersExtension.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ReadableArrayIterator.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityresult/AppContextActivityResultLauncher.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/classcomponent/ClassDefinitionData.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/records/Record.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewGroupDefinition.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/typedarray/ConcreteTypedArrays.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/typedarray/TypedArray.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/records/Field.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/events/KModuleEventEmitterWrapper.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/io/FileTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/AsyncFunctionWithPromiseComponent.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JNIFunctionBody.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/sharedobjects/SharedRef.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/records/Validators.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/SyncFunctionComponent.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/events/EventName.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/ModulePriorities.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/devtools/ExpoRequestCdpInterceptor.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/modules/DefinitionMarker.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JavaScriptValue.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/exception/ExceptionDecorator.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/LogHandler.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/io/PathTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewManagerType.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewDefinitionBuilder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/sharedobjects/SharedObject.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/KPromiseWrapper.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/allocators/ObjectConstructor.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/Logger.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/events/EventEmitter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/ExpectedType.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AndroidExtensions.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/FilteredIterator.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/devtools/cdp/CdpNetworkTypes.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/FabricComponentsRegistry.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/GroupViewManagerWrapper.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityresult/AppContextActivityResultRegistry.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/CallbacksDefinition.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/AnyType.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/records/RecordTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/AnyViewProp.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/events/EventsDefinition.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ErrorView.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/allocators/UnsafeAllocator.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/apploader/RNHeadlessAppLoader.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityresult/AppContextActivityResultCaller.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/errors/ContextDestroyedException.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ArrayExtenstions.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/providers/CurrentActivityProvider.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/devtools/ExpoNetworkInspectOkHttpInterceptors.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/utilities/KotlinUtilities.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/CoreLogger.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewManagerWrapperDelegate.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/exception/CodedException.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/AsyncFunctionComponent.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/records/FieldValidator.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/PairTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/uuidv5/Uuidv5.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JavaScriptTypedArray.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/FilteredReadableMap.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityresult/AppContextActivityResultFallbackCallback.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/PersistentFileLogSerialDispatchQueue.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/Enumerable.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/EnforceType.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/MapTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/PersistentFileLog.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JNIDeallocator.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/records/Required.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/ArrayTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/typedarray/GenericTypedArray.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/objects/PropertyComponent.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/defaultmodules/ErrorManagerModule.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JSIContext.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/modules/Module.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/TypedArrayTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ModulesProvider.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/permissions/PermissionsService.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/modules/ModuleDefinitionData.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewGroupDefinitionBuilder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/logging/OSLogHandler.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/UnitTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/AsyncFunctionBuilder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/JavaScriptModuleObject.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/activityaware/AppCompatActivityAwareHelper.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/objects/PropertyComponentBuilder.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/providers/AppContextProvider.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/types/JavaScriptFunctionTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/functions/AsyncFunction.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/sharedobjects/SharedObjectTypeConverter.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/ExpoModulesHelper.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/viewevent/ViewEvent.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/core/errors/ModuleDestroyedException.kt
++/Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/sharedobjects/ClassRegistry.kt
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin b/node_modules/expo-modules-core/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin
+new file mode 100644
+index 0000000..6d58234
+Binary files /dev/null and b/node_modules/expo-modules-core/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin differ
+diff --git a/node_modules/expo-modules-core/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/expo-modules-core/android/build/outputs/logs/manifest-merger-debug-report.txt
+new file mode 100644
+index 0000000..52087d2
+--- /dev/null
++++ b/node_modules/expo-modules-core/android/build/outputs/logs/manifest-merger-debug-report.txt
+@@ -0,0 +1,34 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:1:1-14:12
++INJECTED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:1:1-14:12
++	package
++		INJECTED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml
++	xmlns:tools
++		ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:2:11-57
++	xmlns:android
++		ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:1:11-69
++application
++ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:4:5-12:19
++meta-data#org.unimodules.core.AppLoader#react-native-headless
++ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:5:9-7:89
++	android:value
++		ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:7:13-86
++	android:name
++		ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:6:13-79
++meta-data#com.facebook.soloader.enabled
++ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:8:9-11:45
++	tools:replace
++		ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:11:13-42
++	android:value
++		ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:10:13-33
++	android:name
++		ADDED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:9:13-57
++uses-sdk
++INJECTED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
++INJECTED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml
++INJECTED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml
++	android:targetSdkVersion
++		INJECTED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml
++	android:minSdkVersion
++		INJECTED from /Users/am/Projects/mobile/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml
+diff --git a/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/permissions/PermissionsService.kt b/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/permissions/PermissionsService.kt
+index ae0a811..180b46c 100644
+--- a/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/permissions/PermissionsService.kt
++++ b/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/permissions/PermissionsService.kt
+@@ -163,7 +163,7 @@ open class PermissionsService(val context: Context) : InternalModule, Permission
+   override fun isPermissionPresentInManifest(permission: String): Boolean {
+     try {
+       context.packageManager.getPackageInfo(context.packageName, PackageManager.GET_PERMISSIONS)?.run {
+-        return requestedPermissions.contains(permission)
++        return requestedPermissions?.contains(permission) ?: false
+       }
+       return false
+     } catch (e: PackageManager.NameNotFoundException) {

@@ -96,7 +96,7 @@ export const HistoricalAssetPriceChart = ({ assetId, tokenId, size, price }: Pro
 
   const { colors } = useTheme();
 
-  const chartColor = !dataInitialised ? [colors.purple_40] : priceChange !== undefined && priceChange >= 0 ? GREEN_GRADIENT : RED_GRADIENT;
+  const chartColor = !dataInitialised ? [colors.purple_40, colors.purple_40] : priceChange !== undefined && priceChange >= 0 ? GREEN_GRADIENT : RED_GRADIENT;
 
   const onChangePeriod = (value: PriceHistoryPeriod) => {
     setPeriod(value);

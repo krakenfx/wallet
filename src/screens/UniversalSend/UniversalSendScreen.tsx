@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { BottomSheet } from '@/components/BottomSheet';
+import { showToast } from '@/components/Toast';
 import { useBottomSheetScreenProps } from '@/hooks/useBottomSheetScreenProps';
 import { useGetWalletStorage } from '@/hooks/useGetWalletStorage';
 import type { Network } from '@/onChain/wallets/base';
@@ -19,6 +20,8 @@ import { useUnencryptedRealm } from '@/unencrypted-realm/RealmContext';
 import { navigationStyle } from '@/utils/navigationStyle';
 
 import { SendAsset, SendTo } from './components';
+
+import loc from '/loc';
 
 type ScreenMode = 'sendTo' | 'sendAsset';
 
@@ -70,10 +73,11 @@ const UniversalSend = ({ navigation, route: { params } }: NavigationProps<'Unive
     if (params?.qrCode) {
       try {
         const value = decodeQrCodeAddress(params.qrCode);
-        if (typeof value === 'string') {
-          setAddressFromQrcode(value);
-        } else if (typeof value === 'object') {
+        if (value) {
           setAddressFromQrcode(value.address);
+          if (value.isEip681) {
+            showToast({ type: 'info', text: loc.send.eip681Warning });
+          }
         }
       } catch {
         setAddressFromQrcode(params.qrCode);
