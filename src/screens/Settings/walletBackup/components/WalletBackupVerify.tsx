@@ -44,7 +44,9 @@ export const WalletBackupVerify = ({ onVerifySuccess }: Props) => {
 
   useEffect(() => {
     const getSecret = async () => {
-      const mnemonic = await getMnemonic();
+      const response = await getMnemonic();
+      const mnemonic = typeof response === 'boolean' ? false : response.secret;
+
       if (mnemonic) {
         setSecret(mnemonic);
       }

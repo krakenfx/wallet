@@ -1,6 +1,6 @@
 import * as splToken from '@solana/spl-token';
 import * as web3 from '@solana/web3.js';
-import { ComputeBudgetProgram } from '@solana/web3.js';
+import { ComputeBudgetProgram, Connection, clusterApiUrl } from '@solana/web3.js';
 import BigNumber from 'bignumber.js';
 import bs58 from 'bs58';
 import * as ed25519 from 'ed25519-hd-key';
@@ -57,6 +57,7 @@ type SolanaTransactionPlan = {
     address: web3.PublicKey;
     mint: web3.PublicKey;
     owner: web3.PublicKey;
+    programId: web3.PublicKey;
   }[];
 
   instructions: web3.TransactionInstruction[];
@@ -99,8 +100,16 @@ export class SolanaHarmonyTransport extends HarmonyTransport<SolanaPreparedTrans
         atas: transaction.atas?.map(ata => {
           return {
             address: ata.address.toString(),
-
-            instruction: serializeInstruction(splToken.createAssociatedTokenAccountInstruction(new web3.PublicKey(payer), ata.address, ata.owner, ata.mint)),
+            instruction: serializeInstruction(
+              splToken.createAssociatedTokenAccountIdempotentInstruction(
+                new web3.PublicKey(payer),
+                ata.address,
+                ata.owner,
+                ata.mint,
+                ata.programId,
+                splToken.ASSOCIATED_TOKEN_PROGRAM_ID,
+              ),
+            ),
           };
         }),
         instructions,
@@ -215,8 +224,17 @@ export class SolanaNetwork implements Network<SolanaPreparedTransaction, SolanaT
     const toPubkey = new web3.PublicKey(to);
     const mintPubkey = new web3.PublicKey(mintAddress);
 
-    const fromAtaAcount = await splToken.getAssociatedTokenAddress(mintPubkey, fromWallet);
-    const toAtaAccount = await splToken.getAssociatedTokenAddress(mintPubkey, toPubkey);
+    const connection = new Connection(clusterApiUrl('mainnet-beta'));
+
+    let programId = splToken.TOKEN_PROGRAM_ID;
+
+    const mintAccountInfo = await connection.getAccountInfo(mintPubkey);
+    if (mintAccountInfo) {
+      programId = mintAccountInfo.owner.equals(splToken.TOKEN_2022_PROGRAM_ID) ? splToken.TOKEN_2022_PROGRAM_ID : splToken.TOKEN_PROGRAM_ID;
+    }
+
+    const fromAtaAccount = await splToken.getAssociatedTokenAddress(mintPubkey, fromWallet, false, programId, splToken.ASSOCIATED_TOKEN_PROGRAM_ID);
+    const toAtaAccount = await splToken.getAssociatedTokenAddress(mintPubkey, toPubkey, false, programId, splToken.ASSOCIATED_TOKEN_PROGRAM_ID);
 
     return {
       atas: [
@@ -224,9 +242,10 @@ export class SolanaNetwork implements Network<SolanaPreparedTransaction, SolanaT
           address: toAtaAccount,
           mint: mintPubkey,
           owner: toPubkey,
+          programId,
         },
       ],
-      instructions: [splToken.createTransferInstruction(fromAtaAcount, toAtaAccount, fromWallet, parseInt(amount, 10), [], splToken.TOKEN_PROGRAM_ID)],
+      instructions: [splToken.createTransferInstruction(fromAtaAccount, toAtaAccount, fromWallet, parseInt(amount, 10), [], programId)],
     };
   }
 

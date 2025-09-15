@@ -11,7 +11,8 @@ const useSeed = () => {
   const { getMnemonic } = useSecuredKeychain();
 
   const fetchSeed = async () => {
-    const res = await getMnemonic();
+    const response = await getMnemonic();
+    const res = typeof response === 'boolean' ? false : response.secret;
     if (res) {
       setSeed(res);
     }

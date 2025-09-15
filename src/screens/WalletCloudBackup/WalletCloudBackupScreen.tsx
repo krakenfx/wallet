@@ -62,7 +62,7 @@ export const WalletCloudBackupScreen = ({ navigation, route }: NavigationProps<'
 
   const writePasskeyData = async ({ credentialID, backupDate, backupName }: PendingBackup) => {
     try {
-      const mnemonic = await getMnemonic(true);
+      const { secret: mnemonic } = await getMnemonic(true);
       await CloudBackupManager.writeData(credentialID, mnemonic);
     } catch (e) {
       if (e instanceof Error) {
