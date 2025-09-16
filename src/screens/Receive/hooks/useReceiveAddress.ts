@@ -28,9 +28,10 @@ export const getReceiveAddress = async (
         await timeout(transport.fetchState?.(wallet, network, storage), 3000);
       } catch (e) {
         if (e instanceof Timeout) {
-        } else {
-          await handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
+          // ignore fetch timeout
+          return;
         }
+        await handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
       }
     }
 

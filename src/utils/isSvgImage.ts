@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { debounce } from 'lodash';
 
-import { fetchClient } from '@/api/base/fetchClient';
+import { fetchClient, HTTPError } from '@/api/base/fetchClient';
 
 const NFT_IMAGE_IS_SVG: Record<string, boolean> = {};
 
@@ -27,9 +27,17 @@ export async function isSvgImage(imageUrl?: string | null) {
     return cached;
   }
 
-  const result = await fetchClient(imageUrl, {
-    method: 'HEAD',
-  });
+  let result: Response;
+  try {
+    result = await fetchClient(imageUrl, {
+      method: 'HEAD',
+    });
+  } catch (e) {
+    if (e instanceof HTTPError) {
+      return false;
+    }
+    throw e;
+  }
 
   const isSvg = isContentTypeSvg(result.headers.get('content-type') ?? '');
 

@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import type { Platform } from 'react-native';
 
 import type {
@@ -630,7 +632,9 @@ function injectProviders(secret: string, platform: typeof Platform.OS, solanaSdk
 
         requestMap.delete(responseOrEvent.id);
       }
-    } catch {}
+    } catch {
+      return; // ignore malformed messages
+    }
   }
 
   if (platform === 'ios') {

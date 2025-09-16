@@ -1,5 +1,5 @@
 import { getHarmony } from '@/api/base/apiFactory';
-import { fetchClient } from '@/api/base/fetchClient';
+import { fetchClient, HTTPError } from '@/api/base/fetchClient';
 import type { NftWithRawMetadata, RawNftMetadata } from '@/api/fetchNfts';
 import type { NFT } from '@/api/types';
 
@@ -17,8 +17,14 @@ export async function fetchRawNftMetadata(nft: NFT): Promise<NftWithRawMetadata>
     if (result.content && 'isNFT' in result.content && result.content.isNFT) {
       metadata = result.content ?? undefined;
       if (!metadata?.contentType && metadata?.contentUrl) {
-        const contentTypeResult = await fetchClient(metadata?.contentUrl, { method: 'HEAD' });
-        metadata.contentType = contentTypeResult.headers.get('content-type')?.toLowerCase();
+        try {
+          const contentTypeResult = await fetchClient(metadata?.contentUrl, { method: 'HEAD' });
+          metadata.contentType = contentTypeResult.headers.get('content-type')?.toLowerCase();
+        } catch (e) {
+          if (!(e instanceof HTTPError)) {
+            throw e;
+          }
+        }
       }
     }
     return {
@@ -27,6 +33,9 @@ export async function fetchRawNftMetadata(nft: NFT): Promise<NftWithRawMetadata>
       metadataType: 'raw',
     };
   } catch (e) {
+    if (e instanceof HTTPError) {
+      console.error('HTTPError while fetching metadata', await e.response.text());
+    }
     handleError(e, 'ERROR_CONTEXT_PLACEHOLDER');
     return {
       metadata,
